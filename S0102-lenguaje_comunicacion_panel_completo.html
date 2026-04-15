@@ -1,0 +1,949 @@
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+.hero-header {
+  background: linear-gradient(135deg, #0052A3 0%, #003d7a 100%);
+  color: white;
+  padding: 2rem 1.5rem;
+  margin-bottom: 0;
+}
+
+.hero-header h1 {
+  font-size: 26px;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.02em;
+}
+
+.hero-subtitle {
+  font-size: 14px;
+  opacity: 0.9;
+  font-weight: 400;
+}
+
+.tabs-container {
+  background: white;
+  border-bottom: 2px solid #e0e0e0;
+  overflow-x: auto;
+  white-space: nowrap;
+  -webkit-overflow-scrolling: touch;
+}
+
+.tabs {
+  display: inline-flex;
+  min-width: 100%;
+}
+
+.tab {
+  flex: 1;
+  min-width: 140px;
+  padding: 14px 16px;
+  background: transparent;
+  border: none;
+  border-bottom: 3px solid transparent;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 400;
+  color: #666;
+  transition: all 0.2s;
+}
+
+.tab:hover {
+  background: #f5f5f5;
+  color: #333;
+}
+
+.tab.active {
+  color: #0052A3;
+  border-bottom-color: #FFB81C;
+  font-weight: 500;
+}
+
+.content-wrapper {
+  background: #FAFBFC;
+  padding: 2rem 1.5rem;
+  min-height: 500px;
+}
+
+.tab-content {
+  display: none;
+  animation: fadeIn 0.3s;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.section-title {
+  font-size: 20px;
+  font-weight: 500;
+  color: #0052A3;
+  margin-bottom: 1.5rem;
+  border-left: 4px solid #FFB81C;
+  padding-left: 12px;
+}
+
+.concept-card {
+  background: white;
+  border: 0.5px solid #e0e0e0;
+  border-top: 3px solid #FFB81C;
+  border-radius: 8px;
+  padding: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.concept-card h3 {
+  font-size: 16px;
+  font-weight: 500;
+  color: #0052A3;
+  margin-bottom: 0.75rem;
+}
+
+.concept-card p {
+  font-family: var(--font-serif);
+  font-size: 15px;
+  line-height: 1.7;
+  color: #2C3E50;
+  margin-bottom: 0.75rem;
+}
+
+.example-box {
+  background: #f8f9fa;
+  border-left: 4px solid #FFB81C;
+  padding: 1rem 1.25rem;
+  margin: 1rem 0;
+}
+
+.example-box h4 {
+  font-size: 14px;
+  font-weight: 500;
+  color: #0052A3;
+  margin-bottom: 0.5rem;
+}
+
+.example-box p, .example-box ul {
+  font-family: var(--font-serif);
+  font-size: 14px;
+  line-height: 1.6;
+  color: #34495e;
+}
+
+.example-box ul {
+  padding-left: 1.5rem;
+  margin: 0.5rem 0;
+}
+
+.example-box li {
+  margin-bottom: 0.35rem;
+}
+
+.quote-block {
+  border-left: 4px solid #FFB81C;
+  padding: 1rem 1.25rem;
+  background: white;
+  margin: 1.5rem 0;
+  font-family: var(--font-serif);
+  font-style: italic;
+  color: #2C3E50;
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+.comparison-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+
+.comparison-card {
+  background: white;
+  border: 0.5px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 1rem;
+}
+
+.comparison-card.negative {
+  border-top: 3px solid #E24B4A;
+}
+
+.comparison-card.positive {
+  border-top: 3px solid #639922;
+}
+
+.comparison-card h4 {
+  font-size: 13px;
+  font-weight: 500;
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.comparison-card.negative h4 {
+  color: #A32D2D;
+}
+
+.comparison-card.positive h4 {
+  color: #3B6D11;
+}
+
+.comparison-card p {
+  font-family: var(--font-serif);
+  font-size: 13px;
+  line-height: 1.6;
+  color: #34495e;
+  margin-bottom: 0.5rem;
+}
+
+.analysis-card {
+  background: white;
+  border: 0.5px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.analysis-card .question {
+  background: #E6F1FB;
+  padding: 1rem;
+  border-radius: 6px;
+  margin-bottom: 1rem;
+  border-left: 4px solid #0052A3;
+}
+
+.analysis-card .question h4 {
+  font-size: 14px;
+  font-weight: 500;
+  color: #0052A3;
+  margin-bottom: 0.5rem;
+}
+
+.analysis-card .question p {
+  font-family: var(--font-serif);
+  font-size: 14px;
+  line-height: 1.6;
+  color: #2C3E50;
+}
+
+.analysis-card .answer {
+  padding: 1rem;
+  background: #FAF9F6;
+}
+
+.analysis-card .answer h5 {
+  font-size: 13px;
+  font-weight: 500;
+  color: #0052A3;
+  margin: 1rem 0 0.5rem 0;
+}
+
+.analysis-card .answer p, .analysis-card .answer ul {
+  font-family: var(--font-serif);
+  font-size: 14px;
+  line-height: 1.6;
+  color: #2C3E50;
+}
+
+.analysis-card .answer ul {
+  padding-left: 1.5rem;
+  margin: 0.5rem 0;
+}
+
+.key-points {
+  background: white;
+  border: 0.5px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 1.25rem;
+  margin: 1.5rem 0;
+}
+
+.key-points h4 {
+  font-size: 15px;
+  font-weight: 500;
+  color: #0052A3;
+  margin-bottom: 1rem;
+}
+
+.key-points ol {
+  padding-left: 1.5rem;
+}
+
+.key-points li {
+  font-family: var(--font-serif);
+  font-size: 14px;
+  line-height: 1.6;
+  color: #2C3E50;
+  margin-bottom: 0.75rem;
+}
+
+.key-points strong {
+  color: #0052A3;
+  font-weight: 500;
+}
+
+.stat-badge {
+  display: inline-block;
+  background: #FFB81C;
+  color: #2C3E50;
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-size: 13px;
+  font-weight: 500;
+  margin: 0 4px;
+}
+
+.divider {
+  height: 1px;
+  background: linear-gradient(to right, transparent, #e0e0e0, transparent);
+  margin: 2rem 0;
+}
+
+@media (max-width: 640px) {
+  .comparison-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .hero-header h1 {
+    font-size: 22px;
+  }
+  
+  .tab {
+    min-width: 120px;
+    font-size: 12px;
+  }
+}
+</style>
+
+<div class="hero-header">
+  <h1>Lenguaje y Comunicación</h1>
+  <p class="hero-subtitle">Diferencia entre hablar y comunicar • Procesamiento de mensajes • Tipos de lenguaje</p>
+</div>
+
+<div class="tabs-container">
+  <div class="tabs">
+    <button class="tab active" onclick="showTab(0)">Hablar vs Comunicar</button>
+    <button class="tab" onclick="showTab(1)">Procesamiento</button>
+    <button class="tab" onclick="showTab(2)">L. Verbal</button>
+    <button class="tab" onclick="showTab(3)">L. No Verbal</button>
+    <button class="tab" onclick="showTab(4)">L. Paraverbal</button>
+    <button class="tab" onclick="showTab(5)">L. Escrito</button>
+    <button class="tab" onclick="showTab(6)">Casos Prácticos</button>
+    <button class="tab" onclick="showTab(7)">Síntesis</button>
+  </div>
+</div>
+
+<div class="content-wrapper">
+  <div class="tab-content active" id="tab0">
+    <h2 class="section-title">Hablar vs. Comunicar</h2>
+    
+    <div class="quote-block">
+      "El auditor habló durante 45 minutos sobre procedimientos, normativas y metodologías. Al finalizar, el director financiero preguntó: '¿Entonces, tenemos un problema o no?'. El auditor habló, pero no comunicó."
+    </div>
+
+    <div class="concept-card">
+      <h3>La diferencia fundamental</h3>
+      <p><strong>HABLAR</strong> es emitir palabras, sonidos, hacer ruido vocal. Es un acto mecánico, unidireccional.</p>
+      <p><strong>COMUNICAR</strong> es lograr que el mensaje llegue, sea comprendido, genere una reacción y cree un puente de entendimiento mutuo. Es un proceso bidireccional y completo.</p>
+    </div>
+
+    <div class="comparison-grid">
+      <div class="comparison-card negative">
+        <h4>❌ HABLAR (Inefectivo)</h4>
+        <p><strong>Email del auditor:</strong></p>
+        <p>"Estimado cliente: Se requiere documentación contable del periodo fiscal para procedimientos de verificación según normativas aplicables."</p>
+        <p><strong>Resultado:</strong> El cliente no sabe qué enviar, cuándo, ni en qué formato. Auditoría retrasada 3 semanas.</p>
+      </div>
+
+      <div class="comparison-card positive">
+        <h4>✅ COMUNICAR (Efectivo)</h4>
+        <p><strong>Email del auditor:</strong></p>
+        <p>"Estimado Sr. González: Para continuar con la auditoría, necesito:</p>
+        <p>1. Estados financieros enero-diciembre 2024 (PDF)<br>
+        2. Conciliaciones bancarias Q4 2024<br>
+        3. Facturas de compras &gt;$5,000</p>
+        <p><strong>Plazo:</strong> Viernes 25 oct, 5 PM<br>
+        <strong>Contacto:</strong> 098-XXX-XXXX"</p>
+        <p><strong>Resultado:</strong> Cliente entrega todo a tiempo.</p>
+      </div>
+    </div>
+
+    <div class="example-box">
+      <h4>📍 Ejemplo cotidiano: En casa</h4>
+      <p><strong>Hablar sin comunicar:</strong></p>
+      <ul>
+        <li>Mamá: "Hay que arreglar el problema del agua"</li>
+        <li>Tú: "Ajá, sí" (sigues en el celular)</li>
+        <li>Resultado: Dos días después hay inundación</li>
+      </ul>
+      <p><strong>Comunicar efectivamente:</strong></p>
+      <ul>
+        <li>Mamá: "El lavabo está goteando. ¿Puedes llamar al plomero hoy antes de las 3? Aquí está su número. Avísame cuando lo hagas"</li>
+        <li>Tú: "Perfecto, lo llamo en mi hora de almuerzo y te confirmo"</li>
+        <li>Resultado: Problema resuelto</li>
+      </ul>
+    </div>
+
+    <div class="key-points">
+      <h4>🎯 Elementos de la comunicación efectiva</h4>
+      <ol>
+        <li><strong>Mensaje claro:</strong> Específico, sin ambigüedades</li>
+        <li><strong>Contexto:</strong> Por qué es importante</li>
+        <li><strong>Plazos definidos:</strong> Cuándo se necesita</li>
+        <li><strong>Formato establecido:</strong> Cómo debe entregarse</li>
+        <li><strong>Confirmación:</strong> Verificar que se entendió</li>
+        <li><strong>Retroalimentación:</strong> Espacio para preguntas</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="tab-content" id="tab1">
+    <h2 class="section-title">Procesamiento de Mensajes</h2>
+
+    <div class="concept-card">
+      <h3>El modelo de comunicación</h3>
+      <p>La comunicación es como un paquete de Amazon que debe llegar intacto a su destino. Cada etapa del proceso puede afectar el mensaje final:</p>
+    </div>
+
+    <div class="key-points">
+      <h4>Las 8 etapas del proceso</h4>
+      <ol>
+        <li><strong>EMISOR:</strong> Quien crea el mensaje (tú, el vendedor)</li>
+        <li><strong>CODIFICACIÓN:</strong> Cómo empaquetas el mensaje (palabras, tono, gestos)</li>
+        <li><strong>CANAL:</strong> Medio de transporte (presencial, email, WhatsApp, Zoom)</li>
+        <li><strong>MENSAJE:</strong> El paquete en tránsito</li>
+        <li><strong>RUIDO:</strong> Todo lo que puede dañar el mensaje</li>
+        <li><strong>RECEPTOR:</strong> Quien recibe el mensaje</li>
+        <li><strong>DECODIFICACIÓN:</strong> Cómo el receptor interpreta</li>
+        <li><strong>RETROALIMENTACIÓN:</strong> Confirmación de recepción</li>
+      </ol>
+    </div>
+
+    <div class="concept-card">
+      <h3>Los "RUIDOS" en la comunicación</h3>
+      <p>Son interferencias que distorsionan o bloquean el mensaje. En contextos profesionales, pueden costar miles de dólares.</p>
+    </div>
+
+    <div class="example-box">
+      <h4>🔊 Tipos de ruido en una presentación por Zoom</h4>
+      <ul>
+        <li><strong>Técnico:</strong> Internet se congela, eco en audio, pantalla compartida incorrecta</li>
+        <li><strong>Semántico:</strong> Usar términos como "materialidad" sin explicar</li>
+        <li><strong>Psicológico:</strong> CEO recibió malas noticias, no presta atención</li>
+        <li><strong>Fisiológico:</strong> Presentación a las 2 PM post-almuerzo, audiencia con sueño</li>
+        <li><strong>Ambiental:</strong> Perro ladrando, micrófono sin silenciar</li>
+      </ul>
+    </div>
+
+    <div class="example-box">
+      <h4>💡 Ejemplo profesional: Nota de voz de WhatsApp</h4>
+      <p><strong>Situación:</strong> Tu amigo envía nota de voz de 4 minutos caminando por la calle.</p>
+      <p><strong>Ruidos presentes:</strong></p>
+      <ul>
+        <li>Físico: Carros, viento, gente hablando</li>
+        <li>Semántico: Usa palabras coloquiales ambiguas</li>
+        <li>Psicológico: Estás estresado por examen, no receptivo</li>
+        <li>Técnico: Conexión falla, se cortan 20 segundos</li>
+      </ul>
+      <p><strong>Resultado:</strong> Creíste que la reunión era a las 3 PM, pero era a las 2 PM. Llegas tarde.</p>
+    </div>
+
+    <div class="quote-block">
+      "Sin comunicación clara y verificación, el 70% del mensaje se pierde. En auditoría y contabilidad, ese 70% puede ser la diferencia entre éxito y fracaso."
+    </div>
+  </div>
+
+  <div class="tab-content" id="tab2">
+    <h2 class="section-title">Lenguaje Verbal</h2>
+
+    <div class="concept-card">
+      <h3>Las palabras que elegimos</h3>
+      <p>No todas las palabras comunican igual, incluso cuando significan "lo mismo" técnicamente. El lenguaje verbal no es solo QUÉ decimos, sino CÓMO lo decimos.</p>
+    </div>
+
+    <div class="example-box">
+      <h4>📱 Ejemplo cotidiano: Pidiendo un favor</h4>
+      <p><strong>Opción A:</strong> "Oye, pásame eso"</p>
+      <ul><li>Resultado: Rechazo o mala actitud. Demandante, sin cortesía.</li></ul>
+      
+      <p><strong>Opción B:</strong> "Disculpa, ¿podrías pasarme eso por favor? Gracias"</p>
+      <ul><li>Resultado: Acceso inmediato con buena actitud.</li></ul>
+      
+      <p><strong>Opción C:</strong> "Perdón que te moleste, sé que estás ocupado, pero si no es mucha molestia..."</p>
+      <ul><li>Resultado: Irritación. Exceso de inseguridad.</li></ul>
+    </div>
+
+    <div class="comparison-grid">
+      <div class="comparison-card negative">
+        <h4>❌ Agresivo</h4>
+        <p>"Su empresa está violando las NIIF. Encontramos errores graves en depreciación. Esto es inaceptable y debe corregirse inmediatamente."</p>
+        <p><strong>Efecto:</strong> Cliente a la defensiva, relación dañada, resistencia al cambio.</p>
+      </div>
+
+      <div class="comparison-card negative">
+        <h4>❌ Demasiado suave</h4>
+        <p>"Bueno, quizás, tal vez, podría ser que la depreciación podría mejorarse un poquito, si ustedes quieren..."</p>
+        <p><strong>Efecto:</strong> Cliente no toma en serio. Cuando el SRI audite, te preguntarán por qué no fuiste claro.</p>
+      </div>
+    </div>
+
+    <div class="comparison-card positive" style="margin-top: 1rem;">
+      <h4>✅ Asertivo y profesional</h4>
+      <p>"Hemos identificado una oportunidad de mejora en el cálculo de depreciación de activos fijos. Actualmente se aplica el método 'X', pero según la NIIF vigente, debería aplicarse el método 'Y'. Esto genera una diferencia de $XX,XXX en los estados financieros.</p>
+      <p><strong>Recomendación:</strong> Ajustar la política contable para el próximo período.</p>
+      <p><strong>Beneficio:</strong> Estados financieros más precisos y cumplimiento normativo.</p>
+      <p><strong>Próximos pasos:</strong> Podemos apoyarles con la implementación. ¿Les parece agendar una reunión?"</p>
+      <p><strong>Efecto:</strong> Mensaje claro, profesional, no amenazante pero firme. Incluye solución.</p>
+    </div>
+
+    <div class="key-points">
+      <h4>🎯 Principios del lenguaje verbal efectivo</h4>
+      <ol>
+        <li><strong>Claridad sobre complejidad:</strong> Simple y claro &gt; complejo e incomprensible</li>
+        <li><strong>Especificidad mata ambigüedad:</strong> Detalles concretos, no generalidades</li>
+        <li><strong>Tono asertivo:</strong> Ni agresivo ni pasivo</li>
+        <li><strong>Vocabulario adaptado:</strong> Ajusta el lenguaje técnico según tu audiencia</li>
+        <li><strong>Cortesía profesional:</strong> Respeto sin sacrificar claridad</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="tab-content" id="tab3">
+    <h2 class="section-title">Lenguaje No Verbal</h2>
+
+    <div class="quote-block">
+      "El 55% del impacto de un mensaje viene del lenguaje corporal, el 38% del tono de voz, y solo el 7% de las palabras. Puedes decir 'todo está bien' pero si tus brazos están cruzados y evitas contacto visual, tu cuerpo está gritando 'NADA ESTÁ BIEN'."
+    </div>
+
+    <div class="concept-card">
+      <h3>El cuerpo nunca miente</h3>
+      <p>En contextos profesionales, especialmente en auditoría, leer el lenguaje no verbal puede ser la diferencia entre detectar un fraude y pasar por alto señales de alarma.</p>
+    </div>
+
+    <div class="comparison-grid">
+      <div class="comparison-card negative">
+        <h4>Candidato A - Lenguaje corporal negativo</h4>
+        <ul style="font-size: 13px; line-height: 1.5;">
+          <li>Llega 5 minutos tarde</li>
+          <li>Evita contacto visual</li>
+          <li>Juega con celular mientras espera</li>
+          <li>Apretón de mano débil</li>
+          <li>Se sienta encorvado</li>
+          <li>Responde mirando al piso</li>
+        </ul>
+        <p><strong>Mensaje:</strong> "No tengo confianza. No estoy interesado."</p>
+      </div>
+
+      <div class="comparison-card positive">
+        <h4>Candidato B - Lenguaje corporal positivo</h4>
+        <ul style="font-size: 13px; line-height: 1.5;">
+          <li>Llega 10 minutos antes</li>
+          <li>Contacto visual firme pero natural</li>
+          <li>Celular apagado</li>
+          <li>Apretón de mano firme</li>
+          <li>Postura erguida pero relajada</li>
+          <li>Sonríe apropiadamente, asiente</li>
+        </ul>
+        <p><strong>Mensaje:</strong> "Soy profesional. Estoy preparado."</p>
+      </div>
+    </div>
+
+    <div class="example-box">
+      <h4>🔍 Caso profesional: Detectando fraude mediante lenguaje no verbal</h4>
+      <p>Un auditor detectó un fraude de $500,000 NO por los números (estaban perfectamente manipulados), sino por señales no verbales del gerente financiero:</p>
+      <ul>
+        <li><strong>Microexpresiones:</strong> Flash de 0.2 segundos de miedo al mencionar proveedor específico</li>
+        <li><strong>Gestos autoconsoladores:</strong> Se tocaba el cuello repetidamente (estrés)</li>
+        <li><strong>Barreras físicas:</strong> Cruzó brazos, puso laptop entre él y auditor</li>
+        <li><strong>Cambios en conducta:</strong> Normalmente relajado, se volvió tenso al tocar tema</li>
+        <li><strong>Respuestas sobreelaboradas:</strong> Explicaciones extremadamente largas a preguntas simples</li>
+        <li><strong>Evitación visual:</strong> No mantenía contacto visual al mencionar cantidades</li>
+        <li><strong>Incongruencia:</strong> Decía "sí, todo perfecto" mientras sacudía la cabeza</li>
+      </ul>
+      <p><strong>Lección:</strong> Los mejores auditores no solo leen números. Leen personas.</p>
+    </div>
+
+    <div class="key-points">
+      <h4>🎯 Señales no verbales clave a observar</h4>
+      <ol>
+        <li><strong>Contacto visual:</strong> Confianza vs evasión</li>
+        <li><strong>Postura corporal:</strong> Apertura vs defensividad</li>
+        <li><strong>Gestos con manos:</strong> Nerviosismo vs seguridad</li>
+        <li><strong>Expresiones faciales:</strong> Congruencia con mensaje verbal</li>
+        <li><strong>Proximidad:</strong> Comodidad vs distancia</li>
+        <li><strong>Tono muscular:</strong> Tensión vs relajación</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="tab-content" id="tab4">
+    <h2 class="section-title">Lenguaje Paraverbal</h2>
+
+    <div class="concept-card">
+      <h3>No es QUÉ dices, es CÓMO lo dices</h3>
+      <p>El lenguaje paraverbal incluye: tono, volumen, ritmo, pausas, énfasis. La misma frase puede tener significados completamente diferentes según dónde pongas el énfasis.</p>
+    </div>
+
+    <div class="example-box">
+      <h4>🎭 La frase que cambia de significado</h4>
+      <p>Lee esta frase poniendo énfasis en la palabra en MAYÚSCULAS:</p>
+      <ol style="font-family: var(--font-serif); font-size: 14px; line-height: 1.7;">
+        <li><strong>YO</strong> no dije que él robó el dinero (Alguien más lo dijo)</li>
+        <li>Yo <strong>NO</strong> dije que él robó el dinero (No lo dije, lo insinué)</li>
+        <li>Yo no <strong>DIJE</strong> que él robó el dinero (Lo escribí o pensé)</li>
+        <li>Yo no dije que <strong>ÉL</strong> robó el dinero (Alguien más lo robó)</li>
+        <li>Yo no dije que él <strong>ROBÓ</strong> el dinero (Lo tomó prestado)</li>
+        <li>Yo no dije que él robó <strong>EL</strong> dinero (Robó otro dinero)</li>
+        <li>Yo no dije que él robó el <strong>DINERO</strong> (Robó otra cosa)</li>
+      </ol>
+      <p><strong>La misma frase, siete significados completamente diferentes.</strong></p>
+    </div>
+
+    <div class="comparison-grid">
+      <div class="comparison-card negative">
+        <h4>❌ Monotonía (Inefectivo)</h4>
+        <p style="font-style: italic;">"Los ingresos bajaron quince por ciento... los costos aumentaron... tuvimos pérdidas... pero hay oportunidades... implementamos controles... proyectamos recuperación..."</p>
+        <p><strong>Efecto:</strong> Todo suena igual. El directorio no sabe si celebrar o preocuparse.</p>
+      </div>
+
+      <div class="comparison-card positive">
+        <h4>✅ Paralenguaje estratégico</h4>
+        <p>"Los ingresos <span class="stat-badge">[PAUSA]</span> bajaron quince por ciento. <strong>[Tono serio, más lento]</strong></p>
+        <p>Esto es significativo. <span class="stat-badge">[Pausa]</span></p>
+        <p>PERO <strong>[Tono energético]</strong> implementamos controles que ahorraron 200 mil dólares.</p>
+        <p>Las proyecciones <span class="stat-badge">[Pausa, optimista]</span> muestran crecimiento del 12%.</p>
+        <p><strong>Efecto:</strong> Directorio entiende problemas PERO hay esperanza y plan.</p>
+      </div>
+    </div>
+
+    <div class="key-points">
+      <h4>🎯 Elementos del lenguaje paraverbal</h4>
+      <ol>
+        <li><strong>Tono de voz:</strong> Alto/bajo, alegre/serio, cálido/frío</li>
+        <li><strong>Volumen:</strong> Fuerte/suave, ajustado al contexto</li>
+        <li><strong>Ritmo:</strong> Rápido/lento, pausado/acelerado</li>
+        <li><strong>Pausas estratégicas:</strong> Para énfasis y claridad</li>
+        <li><strong>Énfasis:</strong> Palabras que destacas</li>
+        <li><strong>Entonación:</strong> Afirmación, pregunta, duda</li>
+      </ol>
+    </div>
+
+    <div class="quote-block">
+      "En presentaciones profesionales, el paralenguaje es tu director de orquesta. Controla el ritmo emocional de tu audiencia y mantiene su atención."
+    </div>
+  </div>
+
+  <div class="tab-content" id="tab5">
+    <h2 class="section-title">Lenguaje Escrito</h2>
+
+    <div class="quote-block">
+      "Lo que hablas desaparece en el aire. Lo que escribes queda para siempre. En el lenguaje escrito no hay tono, no hay expresión facial. Las palabras quedan desnudas y el receptor llena los vacíos con SUS emociones."
+    </div>
+
+    <div class="concept-card">
+      <h3>La permanencia de las palabras</h3>
+      <p>En contextos profesionales, un email mal escrito puede perder clientes, retrasar proyectos, dañar reputaciones y afectar tu carrera. El lenguaje escrito requiere precisión, claridad y profesionalismo.</p>
+    </div>
+
+    <div class="comparison-grid">
+      <div class="comparison-card negative">
+        <h4>❌ Email que casi causa demanda</h4>
+        <p>"Estimado cliente:</p>
+        <p>Su cuenta está vencida hace 60 días. Si no paga inmediatamente procederemos con acciones legales. No tenemos tiempo para más excusas.</p>
+        <p>Departamento de Cobranzas"</p>
+        <p><strong>Resultado:</strong> Cliente furioso, amenazó con demandar, canceló contrato, reseña negativa.</p>
+      </div>
+
+      <div class="comparison-card positive">
+        <h4>✅ Email profesional efectivo</h4>
+        <p>"Estimado [Nombre]:</p>
+        <p>Le escribimos para recordarle que su cuenta presenta saldo de $X,XXX vencido desde [fecha].</p>
+        <p>Entendemos que pueden surgir imprevistos. Opciones:</p>
+        <p>• Pago completo con 5% descuento antes del [fecha]<br>
+        • Plan de 3 cuotas sin intereses<br>
+        • Extensión de 30 días</p>
+        <p>¿Agendamos una llamada esta semana?</p>
+        <p>Valoramos su relación con nosotros."</p>
+        <p><strong>Resultado:</strong> Cliente respeta, hay soluciones, relación preservada.</p>
+      </div>
+    </div>
+
+    <div class="example-box">
+      <h4>💬 Ejemplo cotidiano: WhatsApp mal interpretado</h4>
+      <p><strong>Amigo:</strong> "Me puedes ayudar a mudarme el sábado?"</p>
+      <p><strong>Tú:</strong> "Veremos"</p>
+      <p><strong>Tu amigo interpreta:</strong> "No quiere ayudarme, le caigo mal"</p>
+      <p><strong>Tu intención real:</strong> "Aún no sé si tengo compromisos, pero si puedo, con gusto"</p>
+      <div class="divider"></div>
+      <p><strong>Mejor respuesta:</strong> "Me encantaría ayudarte! Déjame confirmar que no tenga otro compromiso ese día y te confirmo mañana. Si no puedo, te ayudo a conseguir a alguien más. 👍"</p>
+    </div>
+
+    <div class="key-points">
+      <h4>🎯 Principios del lenguaje escrito profesional</h4>
+      <ol>
+        <li><strong>Claridad absoluta:</strong> Sin ambigüedades ni dobles interpretaciones</li>
+        <li><strong>Tono apropiado:</strong> Profesional pero humano</li>
+        <li><strong>Estructura lógica:</strong> Introducción → Cuerpo → Cierre</li>
+        <li><strong>Especificidad:</strong> Fechas, montos, contactos exactos</li>
+        <li><strong>Cortesía profesional:</strong> Respeto sin ser servil</li>
+        <li><strong>Llamado a la acción:</strong> Qué esperas que haga el receptor</li>
+        <li><strong>Revisión antes de enviar:</strong> Leer en voz alta para detectar errores</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="tab-content" id="tab6">
+    <h2 class="section-title">Casos Prácticos de Análisis</h2>
+
+    <div class="analysis-card">
+      <div class="question">
+        <h4>Caso #1: Email del auditor junior</h4>
+        <p><strong>Situación:</strong> Tu jefe te pide: "Pídele al CFO la info de bancos del Q3, los papeles de inventarios y lo de las inversiones. Necesito eso para mañana."</p>
+        <p>Tú escribes: "Asunto: Documentos. Hola: Necesito papeles de bancos, inventarios e inversiones del Q3. Es para mañana. Gracias"</p>
+        <p>El CFO no responde. Dos días después tu jefe pregunta dónde están los documentos.</p>
+        <p><strong>Preguntas:</strong></p>
+        <p>1. ¿Qué errores de comunicación hay aquí?<br>
+        2. ¿En qué etapas del proceso hubo fallas?<br>
+        3. ¿Qué debiste hacer ANTES de enviar?<br>
+        4. Reescribe el email profesionalmente</p>
+      </div>
+
+      <div class="answer">
+        <h5>Análisis de errores (8+ identificados)</h5>
+        <ul>
+          <li>Asunto vago: "Documentos" no informa nada</li>
+          <li>Saludo informal: "Hola" inapropiado para CFO</li>
+          <li>Lenguaje impreciso: "papeles", "info", "Q3" sin año</li>
+          <li>Falta de especificidad: ¿QUÉ documentos exactamente?</li>
+          <li>Plazo irreal sin contexto: "mañana" sin hora</li>
+          <li>Tono inadecuado: Suena como orden, no solicitud</li>
+          <li>Sin contexto: No explica PARA QUÉ</li>
+          <li>Sin firma profesional: No hay contacto ni cargo</li>
+        </ul>
+
+        <h5>Email reescrito correctamente</h5>
+        <p style="background: white; padding: 1rem; border-radius: 6px; border: 0.5px solid #e0e0e0;">
+        <strong>Asunto:</strong> Solicitud documentación - Auditoría 2024 [EMPRESA] - Vence 23/Oct<br><br>
+        Estimado Sr. [Apellido]:<br><br>
+        Mi nombre es [Nombre], auditor junior de [Firma] bajo supervisión del Sr. [Jefe].<br><br>
+        Como parte de la auditoría del Q3-2024, necesitamos:<br><br>
+        <strong>1. Información bancaria Q3-2024:</strong><br>
+        • Conciliaciones julio-septiembre<br>
+        • Estados de cuenta cuentas operativas<br><br>
+        <strong>2. Control de inventarios:</strong><br>
+        • Reporte inventario físico 30/09/2024<br>
+        • Kardex 20 productos mayor rotación<br><br>
+        <strong>3. Inversiones:</strong><br>
+        • Portafolio al 30/09/2024<br>
+        • Estados casa de valores<br><br>
+        <strong>Plazo:</strong> 23 de octubre, 5 PM<br>
+        <strong>Formato:</strong> PDF o Excel a este correo<br><br>
+        Por favor confirme recepción. Ante dudas: [teléfono]<br><br>
+        Saludos cordiales,<br>
+        [Nombre]<br>
+        Auditor Junior - [Firma]
+        </p>
+
+        <h5>Lección profesional</h5>
+        <p>Un email de 3 líneas confuso = 0% respuesta. Un email estructurado con contexto = 85% respuesta positiva. La diferencia está en la COMUNICACIÓN, no solo en hablar.</p>
+      </div>
+    </div>
+
+    <div class="analysis-card">
+      <div class="question">
+        <h4>Caso #2: Auditoría perdida por email del viernes</h4>
+        <p><strong>Situación:</strong> Firma de auditoría en Guayaquil pierde cliente importante. El auditor senior envió informe final con 3 hallazgos significativos por email un viernes a las 7 PM, sin contexto adicional, sin avisar antes. El lunes el cliente llamó furioso a cancelar.</p>
+        <p><strong>Preguntas:</strong></p>
+        <p>1. ¿Qué ruidos de comunicación identificas?<br>
+        2. ¿El auditor habló o comunicó?<br>
+        3. ¿Cómo hubieras manejado esta situación?<br>
+        4. ¿Qué impacto financiero tiene este error?</p>
+      </div>
+
+      <div class="answer">
+        <h5>1. Ruidos identificados</h5>
+        <ul>
+          <li><strong>Psicológico:</strong> Viernes 7 PM genera ansiedad todo el fin de semana sin poder resolver dudas</li>
+          <li><strong>Contextual:</strong> Hallazgos significativos no deben ser sorpresas en informe final</li>
+          <li><strong>De canal:</strong> Email frío para temas delicados es inapropiado</li>
+          <li><strong>Falta de retroalimentación:</strong> No hubo espacio para diálogo</li>
+        </ul>
+
+        <h5>2. ¿Habló o comunicó?</h5>
+        <p><strong>HABLÓ.</strong> Envió información pero no comunicó porque:</p>
+        <ul>
+          <li>No consideró estado emocional del receptor</li>
+          <li>No eligió momento adecuado</li>
+          <li>No seleccionó canal apropiado</li>
+          <li>No creó espacio para diálogo</li>
+          <li>No gestionó expectativas previas</li>
+        </ul>
+
+        <h5>3. Manejo correcto</h5>
+        <p><strong>Durante auditoría:</strong> "Sr. Cliente, identificamos áreas de mejora. ¿Tiene 30 minutos el jueves?"</p>
+        <p><strong>Reunión previa:</strong> Presentar hallazgos verbalmente, escuchar perspectiva, acordar plan</p>
+        <p><strong>Envío informe:</strong> Martes-jueves (nunca viernes), email: "Adjunto informe que discutimos. Los tres hallazgos son..."</p>
+        <p><strong>Seguimiento:</strong> Llamar 2 horas después, ofrecer reunión para plan de implementación</p>
+
+        <h5>4. Impacto financiero</h5>
+        <p><strong>Pérdidas directas:</strong> $15,000-$50,000 anuales × años potenciales = $150,000+</p>
+        <p><strong>Pérdidas indirectas:</strong></p>
+        <ul>
+          <li>Reputacional: Cliente contará mala experiencia</li>
+          <li>Marketing negativo: -5 clientes potenciales referidos</li>
+          <li>Costo reemplazo: 5× más caro que retener cliente</li>
+          <li>Moral equipo: Auditor se desmoraliza, posible renuncia</li>
+        </ul>
+        <p><strong>Total estimado:</strong> $200,000+ en valor perdido por error de comunicación de 15 minutos.</p>
+        <p><span class="stat-badge">LECCIÓN</span> La comunicación impacta directamente el resultado financiero.</p>
+      </div>
+    </div>
+
+    <div class="analysis-card">
+      <div class="question">
+        <h4>Caso #3: Lenguaje no verbal en reunión por Zoom</h4>
+        <p><strong>Situación:</strong> Presentas opciones de planificación tributaria a cliente por Zoom. Tu presentación técnicamente es perfecta, pero notas:</p>
+        <ul style="font-size: 14px; margin-top: 0.5rem;">
+          <li>Cliente escribe en celular</li>
+          <li>Cámara en ángulo raro (solo frente visible)</li>
+          <li>Responde monosílabos: "ajá", "ok", "sí"</li>
+          <li>No hace preguntas</li>
+          <li>Mueca breve al mencionar "inversión"</li>
+        </ul>
+        <p><strong>Preguntas:</strong></p>
+        <p>1. ¿Qué comunica su lenguaje no verbal?<br>
+        2. ¿Continuar o cambiar estrategia?<br>
+        3. ¿Qué decir para reconectar?</p>
+      </div>
+
+      <div class="answer">
+        <h5>1. Lo que comunica el no verbal</h5>
+        <ul>
+          <li>Celular: "No eres mi prioridad, hay algo más importante"</li>
+          <li>Cámara mal: "No quiero mostrarte mi reacción completa"</li>
+          <li>Monosílabos: "Quiero que esto termine rápido"</li>
+          <li>Sin preguntas: Desinterés o desconexión</li>
+          <li>Mueca al mencionar precio: "Es muy caro / No veo el valor"</li>
+        </ul>
+        <p><strong>DIAGNÓSTICO:</strong> Perdiste a tu audiencia. Continuar es desperdiciar tiempo.</p>
+
+        <h5>2. Cambiar de estrategia INMEDIATAMENTE</h5>
+        <p>Continuar ignorando señales = ser mal comunicador. El cliente se desconecta emocionalmente.</p>
+
+        <h5>3. Cómo reconectar</h5>
+        <p><strong>❌ No hacer:</strong> "Veo que estás distraído" (regaño), ignorar señales, "¿me prestas atención?"</p>
+        
+        <p><strong>✅ Hacer:</strong></p>
+        <p style="background: #EAF3DE; padding: 1rem; border-radius: 6px; margin-top: 0.5rem;">
+        <strong>Opción A:</strong> "Disculpa, [Nombre]. Siento que no estoy explicando esto de forma útil para ti. ¿Hay algo específico que te gustaría que profundice?"<br><br>
+        <strong>Opción B:</strong> "¿Qué te parece si conversamos sobre cuál es tu mayor preocupación tributaria ahora mismo? Así voy directo a cómo esto te ayuda."<br><br>
+        <strong>Opción C:</strong> "[Nombre], noto una pausa cuando menciono la inversión. Déjame explicarte el retorno específico: [datos concretos ahorro vs costo]."
+        </p>
+
+        <p><strong>POR QUÉ FUNCIONA:</strong> Inteligencia emocional, respeto al tiempo, cambio a diálogo, aborda objeción real.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="tab-content" id="tab7">
+    <h2 class="section-title">Síntesis y Conclusiones</h2>
+
+    <div class="key-points">
+      <h4>🎯 Los 10 mandamientos de la comunicación profesional</h4>
+      <ol>
+        <li><strong>Claridad sobre inteligencia:</strong> Mejor simple y claro que complejo e incomprensible</li>
+        <li><strong>Contexto es rey:</strong> Nunca envíes mensaje sin explicar POR QUÉ</li>
+        <li><strong>Especificidad mata ambigüedad:</strong> Detalles concretos, fechas, formatos</li>
+        <li><strong>Lee el lenguaje no verbal:</strong> Clientes dicen verdad con cuerpo antes que palabras</li>
+        <li><strong>El tono es 50% del mensaje:</strong> CÓMO lo dices importa tanto como QUÉ</li>
+        <li><strong>Verifica comprensión siempre:</strong> "¿Quedó claro?" "¿Preguntas?"</li>
+        <li><strong>Lo escrito es permanente:</strong> Pregúntate si estarías cómodo en audiencia legal</li>
+        <li><strong>Adapta al receptor:</strong> No hablas igual con CEO que con colega junior</li>
+        <li><strong>El silencio comunica:</strong> No responder = desinterés o desorganización</li>
+        <li><strong>Comunicación es bidireccional:</strong> Si solo hablas, estás transmitiendo, no comunicando</li>
+      </ol>
+    </div>
+
+    <div class="quote-block">
+      "¿De qué sirve tener la mejor solución profesional si no puedes comunicarla de forma que otros la entiendan, confíen en ella y la implementen? La respuesta es: No sirve de nada."
+    </div>
+
+    <div class="concept-card">
+      <h3>Tu futuro profesional en 5 años</h3>
+      <p><strong>Escenario A - Contador con comunicación deficiente:</strong></p>
+      <p>Técnicamente competente, hace bien los cálculos. PERO: Informes confusos, presentaciones aburridas, emails generan malentendidos.</p>
+      <p><span class="stat-badge">Resultado</span> Posiciones operativas, $800-$1,200 mensuales, reemplazable</p>
+      
+      <div class="divider"></div>
+      
+      <p><strong>Escenario B - Contador con comunicación excepcional:</strong></p>
+      <p>Técnicamente competente (igual que A). ADEMÁS: Explica complejidad con claridad, inspira confianza, emails resuelven problemas.</p>
+      <p><span class="stat-badge">Resultado</span> Gerencias, $2,500-$5,000 mensuales, consultorías propias, headhunters</p>
+      
+      <div class="divider"></div>
+      
+      <p><strong>La diferencia no es capacidad técnica. Es la capacidad de COMUNICAR esa capacidad técnica.</strong></p>
+    </div>
+
+    <div class="key-points">
+      <h4>💡 Competencias desarrolladas en esta unidad</h4>
+      <ol>
+        <li>Diferenciar entre hablar (transmitir) y comunicar (conectar)</li>
+        <li>Identificar y eliminar ruidos en el proceso comunicativo</li>
+        <li>Dominar lenguaje verbal para persuadir profesionalmente</li>
+        <li>Leer lenguaje no verbal para detectar incongruencias</li>
+        <li>Usar paralenguaje estratégicamente en presentaciones</li>
+        <li>Escribir comunicaciones profesionales efectivas</li>
+        <li>Aplicar comunicación efectiva en auditoría y contabilidad</li>
+      </ol>
+    </div>
+
+    <div class="example-box">
+      <h4>📚 Tarea para la próxima clase</h4>
+      <p><strong>1. Ejercicio de observación:</strong> Identifica 3 situaciones donde hubo "hablar" pero no "comunicar". Describe qué falló y cómo debió ser.</p>
+      <p><strong>2. Ejercicio de escritura:</strong> Email profesional (150-200 palabras) solicitando reunión con gerente para ofrecer servicios de auditoría.</p>
+      <p><strong>3. Ejercicio de lectura crítica:</strong> Lee artículo de economía/finanzas. Identifica tipos de lenguaje usados. ¿Es efectivo? ¿Por qué?</p>
+    </div>
+
+    <div class="quote-block">
+      "No solo sean buenos contadores. Sean contadores que saben comunicar. Ahí está su verdadera ventaja competitiva. Cada vez que lean, desarrollan capacidad de procesar información compleja. Cada vez que escriben, afinan estructura de pensamiento. Cada vez que presentan, mejoran persuasión e influencia."
+    </div>
+
+    <div class="concept-card" style="text-align: center; background: linear-gradient(135deg, #E6F1FB 0%, #FAF9F6 100%); border-top: 3px solid #0052A3;">
+      <h3 style="color: #0052A3; margin-bottom: 1rem;">Reflexión final</h3>
+      <p style="font-size: 16px; font-family: var(--font-serif); font-style: italic;">
+      "Su éxito profesional será directamente proporcional a su capacidad de comunicación. No es una 'habilidad blanda'. Es una competencia dura con impacto medible en dólares."
+      </p>
+    </div>
+  </div>
+</div>
+
+<script>
+function showTab(index) {
+  const tabs = document.querySelectorAll('.tab');
+  const contents = document.querySelectorAll('.tab-content');
+  
+  tabs.forEach((tab, i) => {
+    if (i === index) {
+      tab.classList.add('active');
+    } else {
+      tab.classList.remove('active');
+    }
+  });
+  
+  contents.forEach((content, i) => {
+    if (i === index) {
+      content.classList.add('active');
+    } else {
+      content.classList.remove('active');
+    }
+  });
+  
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+</script>

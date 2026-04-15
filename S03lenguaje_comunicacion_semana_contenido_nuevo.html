@@ -1,0 +1,723 @@
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font-sans)}
+:root{
+  --ug-blue:#0052A3;
+  --ug-gold:#FFB81C;
+  --ug-lblue:#E6F1FB;
+  --ug-dblue:#003875;
+  --ug-gold-dark:#8a6200;
+  --ug-gold-bg:#fffbf0;
+  --ug-red:#c0392b;
+  --ug-green:#1a7a3c;
+}
+.wrap{max-width:900px;margin:0 auto;padding:1rem 1rem 3rem}
+
+.hero{background:linear-gradient(135deg,var(--ug-blue) 0%,var(--ug-dblue) 100%);border-radius:12px;padding:2rem 2rem 1.5rem;margin-bottom:1.5rem;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-40px;right:-40px;width:200px;height:200px;border-radius:50%;background:rgba(255,184,28,0.12)}
+.hero-badge{display:inline-block;background:rgba(255,184,28,0.2);color:var(--ug-gold);font-size:11px;font-weight:500;padding:3px 10px;border-radius:20px;margin-bottom:0.75rem;letter-spacing:0.5px;text-transform:uppercase}
+.hero h1{font-size:22px;font-weight:500;color:#fff;margin-bottom:0.4rem;line-height:1.3}
+.hero p{font-size:13px;color:rgba(255,255,255,0.72);line-height:1.6;max-width:600px}
+
+.recap-bar{background:var(--ug-gold-bg);border:0.5px solid var(--ug-gold);border-radius:10px;padding:1rem 1.25rem;margin-bottom:1.5rem}
+.recap-bar h3{font-size:13px;font-weight:500;color:var(--ug-gold-dark);margin-bottom:0.6rem;text-transform:uppercase;letter-spacing:0.4px}
+.recap-pills{display:flex;flex-wrap:wrap;gap:6px}
+.pill{background:#fff;border:0.5px solid var(--ug-gold);color:var(--ug-gold-dark);font-size:12px;padding:3px 10px;border-radius:20px}
+
+.tabs-nav{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:1.25rem}
+.tnav{background:var(--color-background-secondary,#f5f5f5);border:0.5px solid var(--color-border-tertiary);color:var(--color-text-secondary);font-size:13px;padding:7px 14px;border-radius:20px;cursor:pointer;transition:all .2s}
+.tnav.on{background:var(--ug-blue);color:#fff;border-color:var(--ug-blue)}
+.tnav:hover:not(.on){background:var(--ug-lblue);color:var(--ug-blue);border-color:var(--ug-blue)}
+
+.panel{display:none}
+.panel.on{display:block}
+
+.sec-title{font-size:18px;font-weight:500;color:var(--ug-blue);margin-bottom:0.25rem}
+.sec-lead{font-size:14px;color:var(--color-text-secondary);margin-bottom:1.25rem;line-height:1.6}
+
+.quote{border-left:3px solid var(--ug-gold);background:var(--ug-gold-bg);padding:0.85rem 1rem;border-radius:0 8px 8px 0;margin:1rem 0;font-style:italic;font-size:14px;color:#555;line-height:1.7}
+.quote strong{color:var(--ug-gold-dark);font-style:normal}
+
+.cards-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin:1rem 0}
+.card{background:var(--color-background-primary,#fff);border:0.5px solid var(--color-border-tertiary);border-radius:12px;padding:1rem 1.1rem;border-top:3px solid var(--ug-gold)}
+.card h4{font-size:14px;font-weight:500;color:var(--ug-blue);margin-bottom:0.5rem}
+.card p,.card li{font-size:13px;color:var(--color-text-secondary);line-height:1.65}
+.card ul{padding-left:1.1rem}
+
+.comp-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:1rem 0}
+.comp-neg{border-top:3px solid var(--ug-red)}
+.comp-pos{border-top:3px solid var(--ug-green)}
+.comp-neg h4{color:var(--ug-red)}
+.comp-pos h4{color:var(--ug-green)}
+.comp-label{font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:0.4px;margin-bottom:0.35rem}
+.comp-neg .comp-label{color:var(--ug-red)}
+.comp-pos .comp-label{color:var(--ug-green)}
+
+.value-chip{display:inline-flex;align-items:center;gap:5px;background:var(--ug-lblue);color:var(--ug-blue);font-size:11px;padding:3px 9px;border-radius:20px;margin:2px}
+.value-chip::before{content:'✦';font-size:9px}
+
+.cult-card{background:var(--color-background-primary,#fff);border:0.5px solid var(--color-border-tertiary);border-radius:10px;margin:0.75rem 0;overflow:hidden}
+.cult-header{background:var(--ug-blue);color:#fff;font-size:13px;font-weight:500;padding:0.6rem 1rem;display:flex;justify-content:space-between;align-items:center}
+.cult-body{padding:0.85rem 1rem}
+.cult-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;font-size:13px}
+.cult-col{padding:0.5rem 0.6rem;border-radius:6px;line-height:1.55}
+.cult-col-h{font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:0.4px;color:#888;margin-bottom:3px}
+.c1{background:#fff3e0}.c2{background:#e3f2fd}.c3{background:#e8f5e9}
+
+.brain-section{margin:1.25rem 0}
+.brain-part{background:var(--color-background-primary,#fff);border:0.5px solid var(--color-border-tertiary);border-radius:10px;margin-bottom:10px;overflow:hidden}
+.brain-part-head{display:flex;align-items:center;gap:10px;padding:0.75rem 1rem;cursor:pointer;user-select:none}
+.brain-part-icon{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0}
+.brain-part-title{font-size:14px;font-weight:500;color:var(--color-text-primary)}
+.brain-part-sub{font-size:12px;color:var(--color-text-secondary);margin-left:auto}
+.brain-part-body{display:none;padding:0 1rem 1rem 1rem;font-size:13px;line-height:1.7;color:var(--color-text-secondary)}
+.brain-part-body.open{display:block}
+.brain-ex{background:var(--ug-lblue);border-radius:6px;padding:0.6rem 0.8rem;margin-top:0.6rem;font-size:13px}
+.brain-ex strong{color:var(--ug-blue);font-weight:500}
+
+.quiz-section{margin-top:0.5rem}
+.q-item{background:var(--color-background-primary,#fff);border:0.5px solid var(--color-border-tertiary);border-radius:10px;margin-bottom:14px;overflow:hidden}
+.q-head{padding:0.9rem 1rem;font-size:14px;font-weight:500;color:var(--color-text-primary);line-height:1.5}
+.q-num{display:inline-block;background:var(--ug-blue);color:#fff;font-size:11px;font-weight:500;padding:1px 7px;border-radius:10px;margin-right:6px;vertical-align:middle}
+.q-opts{padding:0 1rem 0.75rem}
+.q-opt{display:flex;align-items:flex-start;gap:8px;padding:7px 10px;border-radius:7px;cursor:pointer;margin-bottom:5px;font-size:13px;color:var(--color-text-primary);border:0.5px solid transparent;transition:all .15s}
+.q-opt:hover{background:var(--ug-lblue);border-color:var(--ug-blue)}
+.q-opt-letter{width:22px;height:22px;border-radius:50%;border:1.5px solid var(--color-border-secondary,#bbb);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:500;flex-shrink:0;margin-top:1px;transition:all .15s}
+.q-opt.selected .q-opt-letter{background:var(--ug-blue);border-color:var(--ug-blue);color:#fff}
+.q-opt.correct{background:#e8f5e9;border-color:#1a7a3c}
+.q-opt.correct .q-opt-letter{background:#1a7a3c;border-color:#1a7a3c;color:#fff}
+.q-opt.wrong{background:#fce8e6;border-color:var(--ug-red)}
+.q-opt.wrong .q-opt-letter{background:var(--ug-red);border-color:var(--ug-red);color:#fff}
+.q-feedback{display:none;padding:0.75rem 1rem;border-top:0.5px solid var(--color-border-tertiary);font-size:13px;line-height:1.65}
+.q-feedback.show{display:block}
+.fb-correct{background:#e8f5e9;border-left:3px solid #1a7a3c;border-radius:0 6px 6px 0}
+.fb-wrong{background:#fce8e6;border-left:3px solid var(--ug-red);border-radius:0 6px 6px 0}
+.fb-title{font-weight:500;margin-bottom:0.3rem}
+.fb-correct .fb-title{color:var(--ug-green)}
+.fb-wrong .fb-title{color:var(--ug-red)}
+.fb-reflection{background:var(--ug-gold-bg);border-left:3px solid var(--ug-gold);border-radius:0 6px 6px 0;padding:0.6rem 0.8rem;margin-top:0.6rem;font-size:12px;color:#6b4c00}
+
+.score-box{background:var(--ug-blue);color:#fff;border-radius:12px;padding:1.5rem;text-align:center;margin-top:1.5rem;display:none}
+.score-box.show{display:block}
+.score-num{font-size:40px;font-weight:500;margin-bottom:0.25rem}
+.score-msg{font-size:14px;opacity:0.85;line-height:1.5}
+.restart-btn{margin-top:1rem;background:var(--ug-gold);color:#000;border:none;padding:8px 20px;border-radius:20px;font-size:13px;font-weight:500;cursor:pointer}
+
+@media(max-width:580px){
+  .comp-grid{grid-template-columns:1fr}
+  .cult-row{grid-template-columns:1fr}
+  .hero h1{font-size:18px}
+}
+</style>
+
+<div class="wrap">
+
+<div class="hero">
+  <div class="hero-badge">Universidad de Guayaquil · Contabilidad y Auditoría</div>
+  <h1>Lenguaje y Comunicación — Módulo II</h1>
+  <p>Importancia de la comunicación · Tipos de comunicación · Cómo funciona tu cerebro · Contrastes culturales · Cuestionario reflexivo</p>
+</div>
+
+<div class="recap-bar">
+  <h3>Lo que vimos en la sesión anterior — resumen rápido</h3>
+  <div class="recap-pills">
+    <span class="pill">Hablar ≠ comunicar</span>
+    <span class="pill">Emisor · Mensaje · Canal · Receptor</span>
+    <span class="pill">Ruido y retroalimentación</span>
+    <span class="pill">Lenguaje verbal</span>
+    <span class="pill">Lenguaje no verbal</span>
+    <span class="pill">Lenguaje paraverbal</span>
+    <span class="pill">Lenguaje escrito</span>
+  </div>
+</div>
+
+<div class="tabs-nav">
+  <button class="tnav on" onclick="showTab('t1')">Importancia</button>
+  <button class="tnav" onclick="showTab('t2')">Tipos de comunicación</button>
+  <button class="tnav" onclick="showTab('t3')">Tu cerebro</button>
+  <button class="tnav" onclick="showTab('t4')">Contrastes culturales</button>
+  <button class="tnav" onclick="showTab('t5')">Cuestionario</button>
+</div>
+
+<!-- TAB 1: IMPORTANCIA -->
+<div id="t1" class="panel on">
+  <div class="sec-title">¿Por qué importa realmente la comunicación?</div>
+  <div class="sec-lead">No es un tema decorativo ni un requisito de malla. Es el mecanismo que decide si tus conocimientos llegan al mundo o se quedan atrapados dentro de ti.</div>
+
+  <div class="quote">
+    "Un contador que no sabe comunicar es como una biblioteca cerrada: llena de conocimiento que nadie puede usar."
+    <br><strong>— Principio rector de la materia</strong>
+  </div>
+
+  <div class="cards-grid">
+    <div class="card">
+      <h4>En el ejercicio profesional</h4>
+      <ul>
+        <li>Un dictamen mal redactado puede invalidar un proceso de auditoría.</li>
+        <li>Una presentación de resultados mal articulada confunde al directorio.</li>
+        <li>Un correo ambiguo con el SRI puede derivar en sanciones.</li>
+        <li>Una entrevista forense sin escucha activa pierde evidencia clave.</li>
+      </ul>
+      <div style="margin-top:0.75rem">
+        <span class="value-chip">Responsabilidad</span>
+        <span class="value-chip">Precisión</span>
+      </div>
+    </div>
+    <div class="card">
+      <h4>En las relaciones humanas</h4>
+      <ul>
+        <li>El 70% de los conflictos laborales tienen raíces comunicativas, no técnicas.</li>
+        <li>La confianza entre colegas se construye con coherencia entre lo que se dice y lo que se hace.</li>
+        <li>Callar también es comunicar — el silencio tiene interpretaciones.</li>
+      </ul>
+      <div style="margin-top:0.75rem">
+        <span class="value-chip">Empatía</span>
+        <span class="value-chip">Integridad</span>
+      </div>
+    </div>
+    <div class="card">
+      <h4>En la detección del fraude</h4>
+      <ul>
+        <li>El auditor forense lee lo que no se dice: pausas, evasivas, contradicciones.</li>
+        <li>Las palabras exactas que alguien elige revelan su mapa mental.</li>
+        <li>La comunicación no verbal confirma o desmiente el relato verbal.</li>
+      </ul>
+      <div style="margin-top:0.75rem">
+        <span class="value-chip">Justicia</span>
+        <span class="value-chip">Agudeza</span>
+      </div>
+    </div>
+    <div class="card">
+      <h4>En tu desarrollo personal</h4>
+      <ul>
+        <li>Quienes se expresan con claridad acceden a más oportunidades.</li>
+        <li>La asertividad protege tu dignidad sin vulnerar la del otro.</li>
+        <li>Comunicar bien es pensar bien: el lenguaje estructura el pensamiento.</li>
+      </ul>
+      <div style="margin-top:0.75rem">
+        <span class="value-chip">Autoestima sana</span>
+        <span class="value-chip">Respeto</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="quote" style="margin-top:1.25rem">
+    "Lo que no puedes expresar, no puedes defender. Y lo que no puedes defender, no puede transformar la realidad."
+    <br><strong>— Reflexión de aula</strong>
+  </div>
+
+  <div style="margin-top:1.25rem">
+    <div class="sec-title" style="font-size:15px;margin-bottom:0.75rem">Comunicación como competencia técnica, no "habilidad blanda"</div>
+    <div class="comp-grid">
+      <div class="card comp-neg">
+        <div class="comp-label">Creencia limitante</div>
+        <h4>"La comunicación es innata — o la tienes o no"</h4>
+        <p style="font-size:13px;color:var(--color-text-secondary);margin-top:0.4rem">Esta idea paraliza. Lleva a personas brillantes a creer que su torpeza verbal es irreversible, y a conformarse con un papel secundario en reuniones donde tienen mucho que aportar.</p>
+      </div>
+      <div class="card comp-pos">
+        <div class="comp-label">Verdad transformadora</div>
+        <h4>"La comunicación es una disciplina que se aprende y se perfecciona"</h4>
+        <p style="font-size:13px;color:var(--color-text-secondary);margin-top:0.4rem">Tiene principios, métodos, técnicas medibles. El mismo cerebro que aprendió a auditar bajo NIIF puede aprender a construir mensajes claros, persuasivos y empáticos.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="quote" style="margin-top:0.5rem">
+    Pregunta para llevar contigo: <strong>¿Qué mensaje importante has guardado silencio sobre él, por no saber cómo expresarlo? ¿Cuánto te ha costado ese silencio?</strong>
+  </div>
+</div>
+
+<!-- TAB 2: TIPOS DE COMUNICACIÓN -->
+<div id="t2" class="panel">
+  <div class="sec-title">Tipos de comunicación</div>
+  <div class="sec-lead">La comunicación no es un proceso único ni lineal. Existen múltiples dimensiones que se activan simultáneamente en cada acto comunicativo. Conocerlas te permite elegir conscientemente cuál usar y cuándo.</div>
+
+  <div class="cards-grid" style="grid-template-columns:repeat(auto-fit,minmax(240px,1fr))">
+    <div class="card">
+      <h4>Según el canal</h4>
+      <ul>
+        <li><strong style="color:var(--ug-blue)">Oral:</strong> voz, tono, presencia. Alta carga emocional.</li>
+        <li><strong style="color:var(--ug-blue)">Escrita:</strong> permanente, revisable, formal. Exige precisión.</li>
+        <li><strong style="color:var(--ug-blue)">Visual:</strong> gráficos, gestos, apariencia. Opera antes que las palabras.</li>
+        <li><strong style="color:var(--ug-blue)">Digital:</strong> correo, chat, videollamada. Mezcla y comprime los anteriores.</li>
+      </ul>
+      <div style="margin-top:0.6rem"><span class="value-chip">Elección consciente del canal</span></div>
+    </div>
+    <div class="card">
+      <h4>Según la dirección</h4>
+      <ul>
+        <li><strong style="color:var(--ug-blue)">Unidireccional:</strong> el emisor emite, no espera respuesta. Un comunicado oficial.</li>
+        <li><strong style="color:var(--ug-blue)">Bidireccional:</strong> hay intercambio, ajuste mutuo. Una reunión de trabajo.</li>
+        <li><strong style="color:var(--ug-blue)">Multidireccional:</strong> redes, equipos, foros. Varios emisores y receptores simultáneos.</li>
+      </ul>
+      <div style="margin-top:0.6rem"><span class="value-chip">Escucha activa</span></div>
+    </div>
+    <div class="card">
+      <h4>Según el número de personas</h4>
+      <ul>
+        <li><strong style="color:var(--ug-blue)">Intrapersonal:</strong> el diálogo interno. Cómo te hablas a ti mismo.</li>
+        <li><strong style="color:var(--ug-blue)">Interpersonal:</strong> entre dos personas. La más íntima y poderosa.</li>
+        <li><strong style="color:var(--ug-blue)">Grupal:</strong> equipos de trabajo, aulas.</li>
+        <li><strong style="color:var(--ug-blue)">Masiva:</strong> medios, redes, conferencias públicas.</li>
+      </ul>
+      <div style="margin-top:0.6rem"><span class="value-chip">Autoconocimiento</span></div>
+    </div>
+    <div class="card">
+      <h4>Según el código</h4>
+      <ul>
+        <li><strong style="color:var(--ug-blue)">Verbal:</strong> palabras habladas o escritas.</li>
+        <li><strong style="color:var(--ug-blue)">No verbal:</strong> cuerpo, espacio, mirada.</li>
+        <li><strong style="color:var(--ug-blue)">Paraverbal:</strong> tono, ritmo, pausas.</li>
+        <li><strong style="color:var(--ug-blue)">Icónico:</strong> símbolos, señales, emojis.</li>
+      </ul>
+      <div style="margin-top:0.6rem"><span class="value-chip">Coherencia comunicativa</span></div>
+    </div>
+    <div class="card">
+      <h4>Según el contexto</h4>
+      <ul>
+        <li><strong style="color:var(--ug-blue)">Formal:</strong> estructura reglamentada. Informes, actas, dictámenes.</li>
+        <li><strong style="color:var(--ug-blue)">Informal:</strong> sin protocolos fijos. Conversaciones de pasillo, pausas.</li>
+        <li><strong style="color:var(--ug-blue)">Institucional:</strong> representa a una organización, no solo al individuo.</li>
+      </ul>
+      <div style="margin-top:0.6rem"><span class="value-chip">Contexto y propósito</span></div>
+    </div>
+    <div class="card">
+      <h4>Según la intención</h4>
+      <ul>
+        <li><strong style="color:var(--ug-blue)">Informativa:</strong> transmitir datos. "El déficit es del 3%."</li>
+        <li><strong style="color:var(--ug-blue)">Persuasiva:</strong> cambiar actitudes o acciones.</li>
+        <li><strong style="color:var(--ug-blue)">Expresiva:</strong> manifestar estados emocionales.</li>
+        <li><strong style="color:var(--ug-blue)">Regulativa:</strong> normar conductas. "Favor no interrumpir."</li>
+      </ul>
+      <div style="margin-top:0.6rem"><span class="value-chip">Honestidad de intención</span></div>
+    </div>
+  </div>
+
+  <div style="margin-top:1.5rem">
+    <div class="sec-title" style="font-size:15px;margin-bottom:0.75rem">La comunicación asertiva — el tipo más valioso para un profesional</div>
+    <div class="comp-grid">
+      <div class="card comp-neg">
+        <div class="comp-label">Comunicación pasiva</div>
+        <h4>Calla lo que piensa para evitar conflicto</h4>
+        <p style="font-size:13px;color:var(--color-text-secondary);margin-top:0.4rem">"El gerente me pidió firmar algo que yo dudaba. No dije nada por no parecer conflictivo. Firmé. Meses después, ese documento fue evidencia en su contra — y en la mía."</p>
+        <div style="margin-top:0.6rem"><span class="value-chip" style="background:#fce8e6;color:#7a1a1a;border:none">Riesgo ético alto</span></div>
+      </div>
+      <div class="card comp-pos">
+        <div class="comp-label">Comunicación asertiva</div>
+        <h4>Expresa con claridad, sin agresividad ni sumisión</h4>
+        <p style="font-size:13px;color:var(--color-text-secondary);margin-top:0.4rem">"Gerente, antes de firmar necesito revisar este punto. Mi función es asegurar que los procedimientos sean correctos. ¿Puede darme 24 horas?" — Firmeza con respeto. Eso es asertividad.</p>
+        <div style="margin-top:0.6rem"><span class="value-chip">Valentía ética</span><span class="value-chip">Dignidad profesional</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="quote" style="margin-top:1rem">
+    <strong>Para reflexionar:</strong> ¿En cuál tipo de comunicación te reconoces más? ¿En tu comunicación intrapersonal — cómo te hablas a ti mismo — eres más duro o más compasivo? Esa voz interior es el primer emisor que tienes que transformar.
+  </div>
+</div>
+
+<!-- TAB 3: CEREBRO -->
+<div id="t3" class="panel">
+  <div class="sec-title">Cómo funciona tu cerebro cuando te comunicas</div>
+  <div class="sec-lead">No eres solo razón. Tu cerebro tiene tres "niveles" que procesan los mensajes de manera distinta — y en el mundo profesional, entender cuál está activo en ti y en tu interlocutor puede determinar el éxito de toda una negociación. Haz clic en cada parte para explorarla.</div>
+
+  <div class="brain-section">
+    <div class="brain-part">
+      <div class="brain-part-head" onclick="toggleBrain('b1')">
+        <div class="brain-part-icon" style="background:#fff3e0;color:#e65100;font-size:18px">🦎</div>
+        <div>
+          <div class="brain-part-title">Cerebro reptiliano — supervivencia</div>
+          <div style="font-size:12px;color:var(--color-text-secondary)">Respuestas automáticas, instintos, lucha o huida</div>
+        </div>
+        <div class="brain-part-sub">▾</div>
+      </div>
+      <div class="brain-part-body" id="b1">
+        <p>Es el más antiguo. Actúa antes de que pienses. Cuando percibes amenaza — una pregunta agresiva en auditoría, una crítica pública, un tono de voz elevado — este cerebro toma el control en milisegundos.</p>
+        <p style="margin-top:0.6rem">En comunicación: genera reacciones defensivas, bloqueos, respuestas impulsivas que luego lamentamos. Cuando un gerente auditado se pone rígido y corta tus preguntas, su cerebro reptiliano se activó — no es que te deteste, es que siente amenaza.</p>
+        <div class="brain-ex">
+          <strong>Ejemplo profesional:</strong> Durante una entrevista forense, el contador del área auditada levanta la voz y se niega a responder. El auditor que entiende esto no lo toma como hostilidad personal — lo lee como una señal: algo en esa área genera miedo. Esa reacción reptiliana es evidencia comunicativa.
+        </div>
+        <div class="brain-ex" style="background:#fff3e0;margin-top:6px">
+          <strong>Valor en juego:</strong> <span class="value-chip">Autocontrol</span> <span class="value-chip">Serenidad</span> — El profesional maduro aprende a notar cuándo su propio reptiliano se activa y hace una pausa antes de responder.
+        </div>
+      </div>
+    </div>
+
+    <div class="brain-part">
+      <div class="brain-part-head" onclick="toggleBrain('b2')">
+        <div class="brain-part-icon" style="background:#e8f5e9;color:#1a7a3c;font-size:18px">❤️</div>
+        <div>
+          <div class="brain-part-title">Sistema límbico — emociones y memoria</div>
+          <div style="font-size:12px;color:var(--color-text-secondary)">Interpreta mensajes con carga emocional y memorias pasadas</div>
+        </div>
+        <div class="brain-part-sub">▾</div>
+      </div>
+      <div class="brain-part-body" id="b2">
+        <p>Aquí viven tus emociones y tus memorias. Un mensaje neutral puede activar una respuesta emocional intensa si tu historia personal lo carga de significado. Este fenómeno explica el 80% de los malentendidos relacionales.</p>
+        <p style="margin-top:0.6rem">La amígdala — parte del sistema límbico — evalúa constantemente: ¿esto me gusta o no me gusta? ¿me hace sentir seguro o amenazado? Esa evaluación filtra cómo recibes cada mensaje antes de que tu razón intervenga.</p>
+        <div class="brain-ex">
+          <strong>Ejemplo profesional:</strong> Un supervisor dice: "Este informe tiene observaciones." Para un auditor con autoconfianza sana, eso es información. Para alguien que creció con críticas destructivas, activa vergüenza y defensividad. El mismo mensaje, dos cerebros límbicos distintos, dos recepciones completamente diferentes.
+        </div>
+        <div class="brain-ex" style="background:#e8f5e9;margin-top:6px">
+          <strong>Valor en juego:</strong> <span class="value-chip">Inteligencia emocional</span> <span class="value-chip">Empatía</span> — Antes de juzgar la reacción de alguien, pregúntate: ¿qué historia personal podría estar procesando esta persona junto con mi mensaje?
+        </div>
+      </div>
+    </div>
+
+    <div class="brain-part">
+      <div class="brain-part-head" onclick="toggleBrain('b3')">
+        <div class="brain-part-icon" style="background:var(--ug-lblue);color:var(--ug-blue);font-size:18px">🧠</div>
+        <div>
+          <div class="brain-part-title">Neocórtex — razón y lenguaje</div>
+          <div style="font-size:12px;color:var(--color-text-secondary)">Análisis, planificación, construcción del mensaje consciente</div>
+        </div>
+        <div class="brain-part-sub">▾</div>
+      </div>
+      <div class="brain-part-body" id="b3">
+        <p>Aquí está el lenguaje. Las áreas de Broca (producción del habla) y Wernicke (comprensión del lenguaje) residen en el neocórtex. Cuando estás calmado, el neocórtex preside: articulas con claridad, escuchas con profundidad, eliges las palabras correctas.</p>
+        <p style="margin-top:0.6rem">El problema: el neocórtex es el último en activarse bajo estrés. Si el reptiliano o el límbico "secuestran" la respuesta, el neocórtex queda fuera del juicio. Por eso bajo presión decimos cosas que luego nos arrepentimos.</p>
+        <div class="brain-ex">
+          <strong>Ejemplo profesional:</strong> Antes de presentar conclusiones de auditoría a un directorio crítico, el auditor experimentado hace una pausa consciente, respira, organiza sus ideas. Ese gesto activa el neocórtex y desactiva el reptiliano — el resultado es una presentación clara y tranquila, no reactiva.
+        </div>
+        <div class="brain-ex" style="background:var(--ug-lblue);margin-top:6px">
+          <strong>Valor en juego:</strong> <span class="value-chip">Sabiduría práctica</span> <span class="value-chip">Prudencia</span> — Pensar antes de hablar no es debilidad. Es señal de madurez cognitiva y comunicativa.
+        </div>
+      </div>
+    </div>
+
+    <div class="brain-part">
+      <div class="brain-part-head" onclick="toggleBrain('b4')">
+        <div class="brain-part-icon" style="background:#f3e5f5;color:#6a1b9a;font-size:18px">⚡</div>
+        <div>
+          <div class="brain-part-title">Neuroplasticidad — puedes cambiar</div>
+          <div style="font-size:12px;color:var(--color-text-secondary)">Lo que practicas se fortalece; los hábitos comunicativos se pueden reescribir</div>
+        </div>
+        <div class="brain-part-sub">▾</div>
+      </div>
+      <div class="brain-part-body" id="b4">
+        <p>El cerebro no es fijo. Cada vez que practicas una habilidad comunicativa — escuchar sin interrumpir, expresar una emoción difícil con calma, elegir palabras precisas en lugar de vagas — refuerzas redes neuronales que la hacen más natural la próxima vez.</p>
+        <p style="margin-top:0.6rem">Esto significa que si hoy te cuesta hablar en público, pedir feedback, o manejar conversaciones difíciles, no es tu destino. Es tu punto de partida. La práctica consciente y consistente rewiring your brain — literalmente.</p>
+        <div class="brain-ex">
+          <strong>Aplicación directa:</strong> Cada simulacro de presentación en clase, cada foro escrito, cada correo profesional que redactas con cuidado no es solo una tarea. Es entrenamiento neurológico que te acerca al comunicador que necesitas ser como contador y auditor.
+        </div>
+        <div class="brain-ex" style="background:#f3e5f5;margin-top:6px">
+          <strong>Valor en juego:</strong> <span class="value-chip">Esperanza</span> <span class="value-chip">Perseverancia</span> <span class="value-chip">Humildad para aprender</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="quote" style="margin-top:0.5rem">
+    <strong>Dato para reflexionar:</strong> Estudios de neurociencia indican que el cerebro bajo estrés sostenido reduce literalmente la capacidad de procesar lenguaje complejo. Un ambiente laboral hostil no solo afecta el ánimo — afecta la calidad cognitiva de la comunicación. Los valores de respeto y trato digno en la empresa no son idealismos: son condiciones para que el equipo pueda pensar bien y comunicarse bien.
+  </div>
+</div>
+
+<!-- TAB 4: CONTRASTES CULTURALES -->
+<div id="t4" class="panel">
+  <div class="sec-title">Las mismas palabras, mundos distintos</div>
+  <div class="sec-lead">El español es la lengua materna de más de 480 millones de personas en 21 países — y dentro de esa comunidad, una misma palabra puede significar cosas radicalmente distintas. Un contador o auditor que trabaja con empresas multinacionales, o que migra profesionalmente, debe conocer estos contrastes. La ignorancia cultural no excusa el malentendido; en el mundo empresarial, puede costar negocios, reputación y relaciones.</div>
+
+  <div class="cult-card">
+    <div class="cult-header">
+      <span>Palabras con doble filo — significados que varían por país</span>
+      <span style="font-size:11px;opacity:0.75">Contexto de negocios y vida cotidiana</span>
+    </div>
+    <div class="cult-body">
+      <div class="cult-row" style="margin-bottom:8px;font-weight:500;color:#888;font-size:11px;text-transform:uppercase;letter-spacing:0.4px">
+        <div>Palabra / expresión</div>
+        <div>País A — significado</div>
+        <div>País B — significado / riesgo</div>
+      </div>
+
+      <div class="cult-row" style="margin-bottom:6px">
+        <div class="cult-col c1"><div class="cult-col-h">Expresión</div><strong>"Coger el autobús"</strong></div>
+        <div class="cult-col c2"><div class="cult-col-h">España</div>Tomar el bus. Uso neutro y cotidiano.</div>
+        <div class="cult-col c3"><div class="cult-col-h">México / Ecuador / gran parte de Latinoamérica</div>Connotación sexual explícita. Genera incomodidad o risa en reunión de trabajo.</div>
+      </div>
+      <div class="cult-row" style="margin-bottom:6px">
+        <div class="cult-col c1"><div class="cult-col-h">Expresión</div><strong>"Estás muy buen mozo"</strong></div>
+        <div class="cult-col c2"><div class="cult-col-h">Ecuador / Perú / Colombia</div>Eres muy apuesto / atractivo. Cumplido directo.</div>
+        <div class="cult-col c3"><div class="cult-col-h">Argentina / Uruguay</div>Se usa más "guapo". "Mozo" se asocia principalmente a mesero de restaurante.</div>
+      </div>
+      <div class="cult-row" style="margin-bottom:6px">
+        <div class="cult-col c1"><div class="cult-col-h">Expresión</div><strong>"Voy a mandar a alguien"</strong></div>
+        <div class="cult-col c2"><div class="cult-col-h">Ecuador / Colombia</div>Enviaré a una persona para resolver algo. Uso neutral.</div>
+        <div class="cult-col c3"><div class="cult-col-h">México (ciertos contextos)</div>Puede interpretarse como amenaza o desafío dependiendo del tono y el contexto.</div>
+      </div>
+      <div class="cult-row" style="margin-bottom:6px">
+        <div class="cult-col c1"><div class="cult-col-h">Expresión</div><strong>"Hacer una vaca"</strong></div>
+        <div class="cult-col c2"><div class="cult-col-h">Ecuador / Venezuela / Colombia</div>Juntarse varias personas para aportar dinero y comprar algo entre todos.</div>
+        <div class="cult-col c3"><div class="cult-col-h">España / Argentina</div>Completamente desconocido. Genera confusión en correo corporativo.</div>
+      </div>
+      <div class="cult-row" style="margin-bottom:6px">
+        <div class="cult-col c1"><div class="cult-col-h">Expresión</div><strong>"Ahorita te llamo"</strong></div>
+        <div class="cult-col c2"><div class="cult-col-h">México</div>Puede ser en 5 minutos, mañana, o nunca. Es un tiempo indefinido y relativo.</div>
+        <div class="cult-col c3"><div class="cult-col-h">Ecuador / otros</div>Se interpreta como "en este momento". Genera frustración cuando no hay respuesta.</div>
+      </div>
+      <div class="cult-row" style="margin-bottom:6px">
+        <div class="cult-col c1"><div class="cult-col-h">Expresión</div><strong>"Plata"</strong></div>
+        <div class="cult-col c2"><div class="cult-col-h">Ecuador / Perú / Colombia / Argentina</div>Dinero. "¿Tienes plata?" = ¿Tienes dinero? Uso cotidiano y profesional.</div>
+        <div class="cult-col c3"><div class="cult-col-h">España</div>El metal argénteo. En conversación de negocios puede sonar informal o confuso.</div>
+      </div>
+      <div class="cult-row" style="margin-bottom:6px">
+        <div class="cult-col c1"><div class="cult-col-h">Expresión</div><strong>"Manejar una empresa"</strong></div>
+        <div class="cult-col c2"><div class="cult-col-h">Ecuador / Latinoamérica</div>Dirigir, gestionar, administrar una empresa.</div>
+        <div class="cult-col c3"><div class="cult-col-h">España</div>Se prefiere "gestionar" o "dirigir". "Manejar" se asocia casi exclusivamente a conducir un vehículo.</div>
+      </div>
+      <div class="cult-row" style="margin-bottom:6px">
+        <div class="cult-col c1"><div class="cult-col-h">Expresión</div><strong>"Botar" algo</strong></div>
+        <div class="cult-col c2"><div class="cult-col-h">Ecuador / Colombia</div>Tirar a la basura. "Bota ese documento."</div>
+        <div class="cult-col c3"><div class="cult-col-h">España / Argentina</div>Lanzar con fuerza. "Botar el documento" suena como lanzarlo físicamente, no desecharlo.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cult-card" style="margin-top:1rem">
+    <div class="cult-header">
+      <span>Comunicación no verbal — lo que el cuerpo dice y varía según la cultura</span>
+    </div>
+    <div class="cult-body">
+      <div class="cards-grid" style="margin:0">
+        <div class="card" style="border-top-color:var(--ug-blue)">
+          <h4>El silencio</h4>
+          <p>En Japón y muchas culturas asiáticas, el silencio en una negociación indica reflexión y respeto. En Ecuador y Latinoamérica puede interpretarse como desacuerdo, incomodidad o falta de conocimiento. Un auditor que no entiende esto puede malinterpretar la pausa reflexiva de un ejecutivo extranjero como evasión.</p>
+        </div>
+        <div class="card" style="border-top-color:var(--ug-blue)">
+          <h4>El contacto visual</h4>
+          <p>En culturas occidentales, mantener contacto visual durante una conversación transmite confianza y honestidad. En algunas culturas indígenas de Ecuador y Latinoamérica, mirar directamente a los ojos a un superior puede considerarse irrespetuoso o desafiante. El mismo gesto, dos mensajes opuestos.</p>
+        </div>
+        <div class="card" style="border-top-color:var(--ug-blue)">
+          <h4>El apretón de manos</h4>
+          <p>En entornos anglosajones de negocios, un apretón firme proyecta confianza. En algunas culturas árabes, un apretón prolongado y suave entre hombres es señal de confianza y cercanía. La misma presión "segura" puede leerse como agresividad en un contexto u otro.</p>
+        </div>
+        <div class="card" style="border-top-color:var(--ug-blue)">
+          <h4>La distancia física (proxémica)</h4>
+          <p>Los ecuatorianos y latinoamericanos en general se comunican a menor distancia que los europeos del norte. Un colega alemán que retrocede durante una conversación no está siendo frío — está siendo cómodo según su propio código cultural. Invadirle el espacio puede generar tensión aunque el mensaje sea amistoso.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="quote" style="margin-top:1rem">
+    <strong>Reflexión de valores:</strong> La diversidad cultural no es un obstáculo para la comunicación — es su terreno más rico. Un profesional que aprende a leer diferencias culturales sin juzgarlas desarrolla una cualidad escasa y preciosa: la <em>humildad epistémica</em> — la conciencia de que mi manera de hablar, callar, mirar o gesticular no es "la correcta", sino simplemente la mía. Y desde esa humildad, puedo conectar con cualquier persona.
+  </div>
+</div>
+
+<!-- TAB 5: CUESTIONARIO -->
+<div id="t5" class="panel">
+  <div class="sec-title">Cuestionario reflexivo — ¿Cómo te comunicas realmente?</div>
+  <div class="sec-lead">Este cuestionario no evalúa solo tu memoria. Te enfrenta con situaciones reales donde la forma de comunicarte tiene consecuencias profesionales y humanas. Después de cada respuesta, lee la reflexión — ahí está el verdadero aprendizaje.</div>
+
+  <div class="quiz-section" id="quiz">
+
+    <div class="q-item">
+      <div class="q-head"><span class="q-num">1</span> En una reunión con el directorio de una empresa auditada, presentas tus hallazgos. El gerente general interrumpe tu exposición y dice con tono elevado: "Eso que dices es incorrecto." ¿Cuál es la respuesta comunicativamente más apropiada?</div>
+      <div class="q-opts">
+        <div class="q-opt" onclick="selectOpt(this,1,'a')"><div class="q-opt-letter">A</div>Mantén la calma, agradece el señalamiento y responde: "Entiendo su perspectiva. Permítame mostrarle la evidencia que sustenta este hallazgo."</div>
+        <div class="q-opt" onclick="selectOpt(this,1,'b')"><div class="q-opt-letter">B</div>Defenderte de inmediato con voz firme para que no te intimiden frente a los demás asistentes.</div>
+        <div class="q-opt" onclick="selectOpt(this,1,'c')"><div class="q-opt-letter">C</div>Disculparte y decir que revisarás el punto, aunque estés seguro de que tienes razón.</div>
+        <div class="q-opt" onclick="selectOpt(this,1,'d')"><div class="q-opt-letter">D</div>Hacer silencio y esperar que otra persona tome la palabra para evitar el conflicto.</div>
+      </div>
+      <div class="q-feedback" id="fb1">
+        <div class="fb-correct"><div class="fb-title">Respuesta correcta: A</div>Esta es comunicación asertiva en acción. No agresiva (no ataca), no pasiva (no cede sin fundamento). La calma activa el neocórtex — tanto en ti como en tu interlocutor — y el recurso a la evidencia traslada la discusión del plano emocional al plano técnico, que es donde el auditor tiene ventaja.</div>
+        <div class="fb-reflection">Reflexión: ¿Tu cerebro reptiliano te hubiera hecho reaccionar diferente? Nota cómo la respuesta A requiere exactamente lo que la neurociencia enseña: pausar, activar el neocórtex, elegir conscientemente.</div>
+      </div>
+    </div>
+
+    <div class="q-item">
+      <div class="q-head"><span class="q-num">2</span> Envías un correo a un cliente importante con el asunto: "Oye, te mando los estados pa' que los revises cuando puedas, saludos". ¿Qué problema de comunicación evidencia este mensaje?</div>
+      <div class="q-opts">
+        <div class="q-opt" onclick="selectOpt(this,2,'a')"><div class="q-opt-letter">A</div>Inadecuación del registro: el tono informal y el lenguaje coloquial son inapropiados para comunicación profesional escrita con un cliente.</div>
+        <div class="q-opt" onclick="selectOpt(this,2,'b')"><div class="q-opt-letter">B</div>El correo está bien porque es directo y no desperdicia el tiempo del cliente con palabras de más.</div>
+        <div class="q-opt" onclick="selectOpt(this,2,'c')"><div class="q-opt-letter">C</div>El único problema es el uso de la abreviación "pa'" — si se escribe completo "para", el mensaje queda correcto.</div>
+        <div class="q-opt" onclick="selectOpt(this,2,'d')"><div class="q-opt-letter">D</div>No hay problema real; el cliente entiende perfectamente el mensaje, así que la comunicación fue exitosa.</div>
+      </div>
+      <div class="q-feedback" id="fb2">
+        <div class="fb-correct"><div class="fb-title">Respuesta correcta: A</div>La comunicación formal escrita tiene reglas de registro que no son caprichos: proyectan profesionalismo, respeto al destinatario y cuidado institucional. Un correo con lenguaje coloquial a un cliente no solo suena descuidado — puede interpretarse como que no valoras su tiempo ni su estatus.</div>
+        <div class="fb-reflection">Reflexión: El lenguaje que usas comunica quién eres antes de que tu argumento sea evaluado. La primera impresión de tu comunicación escrita llega antes que tu currículum, tu experiencia o tu conocimiento técnico.</div>
+      </div>
+    </div>
+
+    <div class="q-item">
+      <div class="q-head"><span class="q-num">3</span> Durante una auditoría, el contador del área entrevistado responde todas tus preguntas con frases muy cortas, evita el contacto visual y cruza los brazos. ¿Cómo debes interpretar esta comunicación no verbal?</div>
+      <div class="q-opts">
+        <div class="q-opt" onclick="selectOpt(this,3,'a')"><div class="q-opt-letter">A</div>Como una señal que amerita mayor indagación: los indicadores no verbales sugieren incomodidad o estrés, lo que en contexto de auditoría puede ser relevante para profundizar en áreas específicas.</div>
+        <div class="q-opt" onclick="selectOpt(this,3,'b')"><div class="q-opt-letter">B</div>Como prueba directa de que la persona está ocultando información o es culpable de irregularidades.</div>
+        <div class="q-opt" onclick="selectOpt(this,3,'c')"><div class="q-opt-letter">C</div>Como una señal de que la persona es tímida por naturaleza y no hay nada relevante que investigar.</div>
+        <div class="q-opt" onclick="selectOpt(this,3,'d')"><div class="q-opt-letter">D</div>No debe considerarse: en auditoría solo cuenta la evidencia documental, no el lenguaje corporal.</div>
+      </div>
+      <div class="q-feedback" id="fb3">
+        <div class="fb-correct"><div class="fb-title">Respuesta correcta: A</div>La comunicación no verbal es evidencia contextual, no evidencia conclusiva. El auditor experimentado la registra como dato, no como veredicto. Puede haber mil razones para esa postura — timidez, enfermedad, mal día, o sí, algo que ocultar. La diferencia entre A y B es la diferencia entre un profesional que observa con inteligencia y uno que prejuzga.</div>
+        <div class="fb-reflection">Reflexión: Valor en juego — la justicia. Condenar a alguien por su postura corporal sin evidencia sólida es un error ético. Pero ignorar esa postura también es negligencia profesional. El auditor sabio observa todo y concluye con prudencia.</div>
+      </div>
+    </div>
+
+    <div class="q-item">
+      <div class="q-head"><span class="q-num">4</span> Tu jefe te pide que presentes el informe de resultados a un directorio de 10 personas. Sientes que te pones nervioso, tu voz tiembla y pierdes el hilo. ¿Qué está sucediendo neurológicamente?</div>
+      <div class="q-opts">
+        <div class="q-opt" onclick="selectOpt(this,4,'a')"><div class="q-opt-letter">A</div>El cerebro reptiliano y el sistema límbico están respondiendo al estrés de la situación, lo que temporalmente reduce el acceso al neocórtex — donde reside la capacidad de articular el lenguaje con claridad.</div>
+        <div class="q-opt" onclick="selectOpt(this,4,'b')"><div class="q-opt-letter">B</div>Tienes un problema neurológico que requiere atención médica urgente.</div>
+        <div class="q-opt" onclick="selectOpt(this,4,'c')"><div class="q-opt-letter">C</div>Simplemente no tienes la suficiente preparación técnica del tema, por eso te bloqueaste.</div>
+        <div class="q-opt" onclick="selectOpt(this,4,'d')"><div class="q-opt-letter">D</div>Es una característica de tu personalidad que no puede cambiarse; algunas personas simplemente no sirven para hablar en público.</div>
+      </div>
+      <div class="q-feedback" id="fb4">
+        <div class="fb-correct"><div class="fb-title">Respuesta correcta: A</div>Este es el "secuestro amigdalar" descrito por la neurociencia: el sistema de alarma cerebral toma el control y las funciones ejecutivas del lenguaje se deterioran. No es debilidad moral ni falta de preparación — es biología. La buena noticia: con práctica, respiración consciente y exposición progresiva, el cerebro aprende a mantener al neocórtex activo incluso bajo presión.</div>
+        <div class="fb-reflection">Reflexión: Si D fuera verdad, no habría oradores que superaron el miedo escénico. Muchos de los comunicadores más poderosos del mundo narran historias de bloqueos anteriores. La neuroplasticidad es real: puedes reentrenar tu respuesta al estrés comunicativo.</div>
+      </div>
+    </div>
+
+    <div class="q-item">
+      <div class="q-head"><span class="q-num">5</span> Un colega ecuatoriano le escribe a un socio español: "Hacemos una vaca entre el equipo para el regalo de despedida del jefe." El español responde confundido. ¿Cuál es la raíz del problema?</div>
+      <div class="q-opts">
+        <div class="q-opt" onclick="selectOpt(this,5,'a')"><div class="q-opt-letter">A</div>Una barrera semántica-cultural: la expresión "hacer una vaca" es un regionalism hispanoamericano que no forma parte del léxico profesional español, generando una ruptura en el canal de comunicación escrita.</div>
+        <div class="q-opt" onclick="selectOpt(this,5,'b')"><div class="q-opt-letter">B</div>El español no entiende bien el castellano y debería esforzarse más por comprender variedades regionales.</div>
+        <div class="q-opt" onclick="selectOpt(this,5,'c')"><div class="q-opt-letter">C</div>El ecuatoriano usó un término técnico de contabilidad que el español no reconoce.</div>
+        <div class="q-opt" onclick="selectOpt(this,5,'d')"><div class="q-opt-letter">D</div>El problema está en el canal elegido — si hubiera llamado por teléfono, el español habría entendido.</div>
+      </div>
+      <div class="q-feedback" id="fb5">
+        <div class="fb-correct"><div class="fb-title">Respuesta correcta: A</div>Las barreras semánticas ocurren cuando emisor y receptor no comparten el mismo código — aunque ambos hablen "español". En comunicación multinacional o multicultural, el communicador responsable evalúa si su vocabulario cotidiano es comprensible para el otro. Usar jerga regional en comunicación profesional transnacional es un error de adecuación del código.</div>
+        <div class="fb-reflection">Reflexión: Valor en juego — la consideración hacia el otro. Antes de enviar cualquier comunicación profesional, pregúntate: ¿mi receptor comparte mi código? La humildad de adaptar el lenguaje al receptor no te hace menos ecuatoriano ni menos auténtico; te hace mejor comunicador.</div>
+      </div>
+    </div>
+
+    <div class="q-item">
+      <div class="q-head"><span class="q-num">6</span> Un compañero de trabajo dice lo correcto, pero en tono agresivo, con los brazos cruzados y mirando al techo. ¿Cuál dimensión de la comunicación está fallando?</div>
+      <div class="q-opts">
+        <div class="q-opt" onclick="selectOpt(this,6,'a')"><div class="q-opt-letter">A</div>La coherencia entre lenguaje verbal, no verbal y paraverbal: el contenido del mensaje puede ser válido, pero los canales no verbales transmiten hostilidad, lo que el receptor procesará primero.</div>
+        <div class="q-opt" onclick="selectOpt(this,6,'b')"><div class="q-opt-letter">B</div>Solo el lenguaje verbal, porque dijo algo correcto pero no lo suficientemente claro.</div>
+        <div class="q-opt" onclick="selectOpt(this,6,'c')"><div class="q-opt-letter">C</div>Ninguna: si el contenido es correcto, la forma no importa en un entorno profesional.</div>
+        <div class="q-opt" onclick="selectOpt(this,6,'d')"><div class="q-opt-letter">D</div>El canal digital, porque debería haberlo enviado por correo en lugar de decirlo verbalmente.</div>
+      </div>
+      <div class="q-feedback" id="fb6">
+        <div class="fb-correct"><div class="fb-title">Respuesta correcta: A</div>Estudios de comunicación interpersonal señalan que el impacto de un mensaje depende en gran medida de los canales no verbales y paraverbales — y estos pueden contradecir o amplificar el contenido verbal. Cuando hay incoherencia, el receptor tiende a creer los canales no verbales antes que las palabras.</div>
+        <div class="fb-reflection">Reflexión: "Lo que dices" y "cómo lo dices" son inseparables en la percepción del receptor. Un informe técnicamente perfecto presentado con desdén puede ser rechazado. Una crítica justa dicha con respeto puede transformar. La forma es parte del fondo.</div>
+      </div>
+    </div>
+
+    <div class="q-item">
+      <div class="q-head"><span class="q-num">7</span> Alguien te dice: "Tú siempre llegas tarde, nunca eres puntual, eres un irresponsable." Desde la comunicación asertiva, ¿cuál respuesta es más apropiada para ti cuando necesitas señalar ese tipo de conducta en otro?</div>
+      <div class="q-opts">
+        <div class="q-opt" onclick="selectOpt(this,7,'a')"><div class="q-opt-letter">A</div>Describir el hecho concreto y su impacto: "Esta semana llegaste 20 minutos tarde a las reuniones del martes y jueves. Eso afecta el tiempo del equipo. Me gustaría entender qué está pasando."</div>
+        <div class="q-opt" onclick="selectOpt(this,7,'b')"><div class="q-opt-letter">B</div>Responder con igual firmeza para que la persona entienda la gravedad: "Tú también tienes defectos, no me vengas a señalar."</div>
+        <div class="q-opt" onclick="selectOpt(this,7,'c')"><div class="q-opt-letter">C</div>Callar y absorber la crítica para no generar conflicto en el equipo.</div>
+        <div class="q-opt" onclick="selectOpt(this,7,'d')"><div class="q-opt-letter">D</div>Llevar el tema a recursos humanos directamente sin hablarlo con la persona involucrada.</div>
+      </div>
+      <div class="q-feedback" id="fb7">
+        <div class="fb-correct"><div class="fb-title">Respuesta correcta: A</div>La comunicación asertiva trabaja con hechos observables y específicos, no con generalizaciones ("siempre", "nunca", "jamás"). Los absolutos atacan la identidad de la persona y activan su sistema de defensa — hacen imposible la conversación productiva. La fórmula "hecho + impacto + pregunta abierta" abre el diálogo sin destruir la relación.</div>
+        <div class="fb-reflection">Reflexión: Cuando usas "siempre" o "nunca" para describir la conducta de alguien, estás construyendo una etiqueta, no observando una realidad. Ese tipo de lenguaje no describe — condena. Y nadie cambia sintiéndose condenado; la gente cambia cuando se siente vista con justicia.</div>
+      </div>
+    </div>
+
+    <div class="q-item">
+      <div class="q-head"><span class="q-num">8</span> ¿Qué comunica el silencio de un auditor que escucha una respuesta de entrevista sin interrumpir, asintiendo levemente y manteniendo contacto visual?</div>
+      <div class="q-opts">
+        <div class="q-opt" onclick="selectOpt(this,8,'a')"><div class="q-opt-letter">A</div>Escucha activa y seguridad profesional: el silencio acompañado de señales no verbales de atención invita al entrevistado a hablar más y con mayor profundidad, lo que puede revelar información relevante.</div>
+        <div class="q-opt" onclick="selectOpt(this,8,'b')"><div class="q-opt-letter">B</div>Desinterés o falta de preparación: si el auditor no hace preguntas, no está haciendo su trabajo.</div>
+        <div class="q-opt" onclick="selectOpt(this,8,'c')"><div class="q-opt-letter">C</div>Acuerdo con todo lo que dice el entrevistado, lo que puede comprometer la objetividad de la auditoría.</div>
+        <div class="q-opt" onclick="selectOpt(this,8,'d')"><div class="q-opt-letter">D</div>Nada relevante: el silencio no es una forma de comunicación reconocida en contextos profesionales.</div>
+      </div>
+      <div class="q-feedback" id="fb8">
+        <div class="fb-correct"><div class="fb-title">Respuesta correcta: A</div>El silencio es una de las herramientas más poderosas del comunicador avanzado. En interrogación forense y entrevistas de auditoría, los investigadores experimentados saben que cuando una persona habla sin ser interrumpida, tiende a añadir información que no había planeado revelar. El silencio estratégico es activo, no pasivo.</div>
+        <div class="fb-reflection">Reflexión: Vivimos en una cultura que confunde hablar mucho con comunicar bien. Pero los líderes más respetados, los mejores terapeutas, los auditores más eficaces dominan el arte de escuchar. El silencio de quien escucha profundamente es, en sí mismo, un acto comunicativo de gran poder.</div>
+      </div>
+    </div>
+
+    <div class="q-item">
+      <div class="q-head"><span class="q-num">9</span> Tu comunicación intrapersonal — la manera en que te hablas a ti mismo — tiene efectos reales en tu comunicación con los demás. Si antes de una presentación importante te repites "voy a quedar mal, soy pésimo para esto", ¿qué consecuencia es más probable?</div>
+      <div class="q-opts">
+        <div class="q-opt" onclick="selectOpt(this,9,'a')"><div class="q-opt-letter">A</div>Que esa narrativa interna active el sistema límbico en modo amenaza, genere cortisol y adrenalina, y dificulte el acceso al neocórtex — deteriorando precisamente las capacidades que necesitas para comunicarte bien.</div>
+        <div class="q-opt" onclick="selectOpt(this,9,'b')"><div class="q-opt-letter">B</div>Que la humildad de reconocer tus limitaciones te haga más auténtico y conectes mejor con la audiencia.</div>
+        <div class="q-opt" onclick="selectOpt(this,9,'c')"><div class="q-opt-letter">C</div>Que no tenga ningún efecto real: lo que piensas en tu cabeza no influye en tu desempeño externo.</div>
+        <div class="q-opt" onclick="selectOpt(this,9,'d')"><div class="q-opt-letter">D</div>Que te prepare para lo peor y así cualquier resultado sea una sorpresa agradable.</div>
+      </div>
+      <div class="q-feedback" id="fb9">
+        <div class="fb-correct"><div class="fb-title">Respuesta correcta: A</div>El diálogo interno negativo no es humildad — es sabotaje neurológico. La investigación en psicología cognitiva y neurociencia es clara: los pensamientos repetitivos activan las mismas vías neuronales que las situaciones reales. Anticipar el fracaso crea las condiciones fisiológicas del fracaso. La diferencia entre prepararse realistamente y sabotearse mentalmente es enorme.</div>
+        <div class="fb-reflection">Reflexión: No se trata de autoengañarse con un optimismo vacío. Se trata de hablar contigo mismo con la misma justicia y respeto con que hablarías a un ser querido que necesita confianza antes de un momento importante. ¿Cómo te hablas a ti mismo cuando nadie te escucha?</div>
+      </div>
+    </div>
+
+    <div class="q-item">
+      <div class="q-head"><span class="q-num">10</span> Un gerente de empresa usa constantemente comunicación unidireccional: solo informa, nunca escucha, no permite retroalimentación. ¿Cuál es el impacto más probable en su organización?</div>
+      <div class="q-opts">
+        <div class="q-opt" onclick="selectOpt(this,10,'a')"><div class="q-opt-letter">A</div>Acumulación de ruido organizacional, pérdida de información valiosa del equipo, deterioro de la confianza y mayor probabilidad de errores no detectados a tiempo — incluyendo, potencialmente, riesgos de control interno.</div>
+        <div class="q-opt" onclick="selectOpt(this,10,'b')"><div class="q-opt-letter">B</div>Mayor eficiencia, porque las decisiones se toman sin debates que consuman tiempo.</div>
+        <div class="q-opt" onclick="selectOpt(this,10,'c')"><div class="q-opt-letter">C</div>Que el equipo se vuelve más disciplinado y eficiente al recibir instrucciones claras.</div>
+        <div class="q-opt" onclick="selectOpt(this,10,'d')"><div class="q-opt-letter">D</div>Ningún impacto real: el trabajo técnico no depende del estilo comunicativo del líder.</div>
+      </div>
+      <div class="q-feedback" id="fb10">
+        <div class="fb-correct"><div class="fb-title">Respuesta correcta: A</div>Los organismos de auditoría y las teorías de gobierno corporativo coinciden: los entornos donde la comunicación es unidireccional favorecen la opacidad, el silencio ante irregularidades y la ausencia de alerta temprana. En contabilidad y auditoría, la retroalimentación no es una cortesía — es un mecanismo de control. Sin ella, el sistema se ciega a sí mismo.</div>
+        <div class="fb-reflection">Reflexión: Esto conecta directamente con los valores de transparencia y bien común. Un líder que no escucha no solo falla como comunicador — falla como guardián de la salud de su organización. Cuando llegues a posiciones de liderazgo, recuerda: tu disposición a escuchar no debilita tu autoridad; la legitima.</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div id="scoreBox" class="score-box">
+    <div class="score-num" id="scoreNum">0/10</div>
+    <div class="score-msg" id="scoreMsg"></div>
+    <button class="restart-btn" onclick="restartQuiz()">Intentar de nuevo</button>
+  </div>
+</div>
+
+</div>
+
+<script>
+function showTab(id){
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('on'));
+  document.querySelectorAll('.tnav').forEach(b=>b.classList.remove('on'));
+  document.getElementById(id).classList.add('on');
+  var btns=document.querySelectorAll('.tnav');
+  var map={t1:0,t2:1,t3:2,t4:3,t5:4};
+  btns[map[id]].classList.add('on');
+}
+
+function toggleBrain(id){
+  var body=document.getElementById(id);
+  if(body.classList.contains('open')){body.classList.remove('open')}
+  else{body.classList.add('open')}
+}
+
+var answers={};
+var correct={1:'a',2:'a',3:'a',4:'a',5:'a',6:'a',7:'a',8:'a',9:'a',10:'a'};
+
+function selectOpt(el,qnum,letter){
+  var opts=el.parentElement.querySelectorAll('.q-opt');
+  opts.forEach(function(o){o.classList.remove('selected','correct','wrong')});
+  var fb=document.getElementById('fb'+qnum);
+  el.classList.add('selected');
+  answers[qnum]=letter;
+  var isCorrect=(letter===correct[qnum]);
+  if(isCorrect){el.classList.add('correct')}
+  else{
+    el.classList.add('wrong');
+    var corrOpts=el.parentElement.querySelectorAll('.q-opt');
+    corrOpts.forEach(function(o){
+      if(o.innerText.trim().charAt(0)===correct[qnum].toUpperCase()){o.classList.add('correct')}
+    });
+  }
+  fb.classList.remove('fb-correct','fb-wrong');
+  fb.classList.add(isCorrect?'fb-correct':'fb-wrong','show');
+  checkAllAnswered();
+}
+
+function checkAllAnswered(){
+  if(Object.keys(answers).length===10){
+    var score=0;
+    for(var k in answers){if(answers[k]===correct[k])score++}
+    var box=document.getElementById('scoreBox');
+    document.getElementById('scoreNum').innerText=score+'/10';
+    var msgs=['Sigue practicando — cada intento te acerca más.','Buen avance. Relee las reflexiones de las respuestas incorrectas.','Sólido desempeño. Ya internalizas los conceptos clave.','Excelente. Tu consciencia comunicativa está muy desarrollada.','Perfecto. Estás listo para aplicar esto en el mundo profesional.'];
+    document.getElementById('scoreMsg').innerText=msgs[Math.min(Math.floor(score/2.5),4)];
+    box.classList.add('show');
+    box.scrollIntoView({behavior:'smooth',block:'nearest'});
+  }
+}
+
+function restartQuiz(){
+  answers={};
+  document.querySelectorAll('.q-opt').forEach(function(o){o.classList.remove('selected','correct','wrong')});
+  document.querySelectorAll('.q-feedback').forEach(function(f){f.classList.remove('show')});
+  document.getElementById('scoreBox').classList.remove('show');
+}
+</script>
