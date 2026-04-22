@@ -1,0 +1,1254 @@
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,400;0,700;1,400&family=Source+Sans+3:wght@400;600;700&display=swap');
+
+  h2.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0,0,0,0); }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ug-blue: #0052A3;
+    --ug-gold: #FFB81C;
+    --ug-cyan: #00AEEF;
+    --ug-light: #E6F1FB;
+    --ug-teal: #007B9E;
+    --ug-dark: #003470;
+    --white: #ffffff;
+    --text: #1a1a2e;
+    --text-soft: #3a4a6b;
+    --surface: #f4f8fd;
+    --border: #d0e3f5;
+  }
+
+  body { font-family: 'Source Sans 3', sans-serif; background: #fff; color: var(--text); }
+
+  .wrapper { max-width: 900px; margin: 0 auto; }
+
+  /* HEADER */
+  .header {
+    background: linear-gradient(135deg, var(--ug-dark) 0%, var(--ug-blue) 60%, var(--ug-teal) 100%);
+    padding: 28px 32px 22px;
+    position: relative;
+    overflow: hidden;
+  }
+  .header::before {
+    content: '';
+    position: absolute; top: -30px; right: -30px;
+    width: 180px; height: 180px;
+    border-radius: 50%;
+    background: rgba(255,184,28,0.15);
+  }
+  .header::after {
+    content: '';
+    position: absolute; bottom: -20px; right: 80px;
+    width: 100px; height: 100px;
+    border-radius: 50%;
+    background: rgba(0,174,239,0.12);
+  }
+  .header-top { display: flex; align-items: center; gap: 16px; margin-bottom: 14px; }
+  .ug-badge {
+    background: var(--ug-gold);
+    color: var(--ug-dark);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    padding: 4px 12px;
+    border-radius: 20px;
+    text-transform: uppercase;
+  }
+  .week-label {
+    color: rgba(255,255,255,0.75);
+    font-size: 13px;
+    font-weight: 400;
+  }
+  .header h1 {
+    font-family: 'Merriweather', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.35;
+    max-width: 700px;
+    position: relative;
+  }
+  .header-sub {
+    color: rgba(255,255,255,0.72);
+    font-size: 13.5px;
+    margin-top: 8px;
+    position: relative;
+  }
+  .gold-line {
+    width: 48px; height: 3px;
+    background: var(--ug-gold);
+    border-radius: 2px;
+    margin: 10px 0 0;
+  }
+
+  /* NAV TABS */
+  .nav-outer {
+    background: var(--ug-blue);
+    padding: 0 24px;
+    overflow-x: auto;
+    display: flex;
+    gap: 2px;
+    scrollbar-width: none;
+  }
+  .nav-outer::-webkit-scrollbar { display: none; }
+  .tab-btn {
+    background: none;
+    border: none;
+    color: rgba(255,255,255,0.68);
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 13px 16px 11px;
+    cursor: pointer;
+    white-space: nowrap;
+    border-bottom: 3px solid transparent;
+    transition: color 0.18s, border-color 0.18s;
+    letter-spacing: 0.2px;
+  }
+  .tab-btn:hover { color: rgba(255,255,255,0.92); }
+  .tab-btn.active {
+    color: var(--ug-gold);
+    border-bottom-color: var(--ug-gold);
+  }
+
+  /* PANELS */
+  .panel { display: none; padding: 28px 28px 40px; }
+  .panel.active { display: block; }
+
+  /* INDEX CARDS */
+  .index-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 14px;
+    margin: 20px 0 28px;
+  }
+  .index-card {
+    background: var(--white);
+    border: 1.5px solid var(--border);
+    border-top: 4px solid var(--ug-gold);
+    border-radius: 10px;
+    padding: 18px 16px 16px;
+    cursor: pointer;
+    transition: box-shadow 0.18s, border-color 0.18s;
+  }
+  .index-card:hover {
+    border-color: var(--ug-blue);
+    box-shadow: 0 4px 16px rgba(0,82,163,0.10);
+  }
+  .index-card .ic-num {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--ug-gold);
+    letter-spacing: 1px;
+    margin-bottom: 6px;
+  }
+  .index-card .ic-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--ug-blue);
+    line-height: 1.3;
+    margin-bottom: 4px;
+  }
+  .index-card .ic-desc {
+    font-size: 12px;
+    color: var(--text-soft);
+    line-height: 1.4;
+  }
+  .go-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 8px;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--ug-blue);
+    letter-spacing: 0.5px;
+  }
+
+  /* SECTION TITLES */
+  .sec-title {
+    font-family: 'Merriweather', serif;
+    font-size: 19px;
+    font-weight: 700;
+    color: var(--ug-blue);
+    border-left: 5px solid var(--ug-gold);
+    padding-left: 14px;
+    margin-bottom: 18px;
+    line-height: 1.3;
+  }
+  .sec-sub {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--ug-dark);
+    margin: 22px 0 10px;
+  }
+  .sec-body {
+    font-size: 15px;
+    line-height: 1.75;
+    color: var(--text);
+    margin-bottom: 14px;
+  }
+
+  /* CONCEPT CARD */
+  .concept-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-top: 4px solid var(--ug-gold);
+    border-radius: 10px;
+    padding: 18px 20px;
+    margin: 14px 0;
+  }
+  .concept-card .cc-label {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--ug-gold);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .concept-card .cc-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--ug-blue);
+    margin-bottom: 8px;
+  }
+  .concept-card p { font-size: 14.5px; line-height: 1.7; color: var(--text); }
+
+  /* QUOTE BLOCK */
+  .quote-block {
+    border-left: 5px solid var(--ug-gold);
+    background: var(--ug-light);
+    border-radius: 0 8px 8px 0;
+    padding: 16px 20px;
+    margin: 16px 0;
+    font-family: 'Merriweather', serif;
+    font-style: italic;
+    font-size: 14.5px;
+    line-height: 1.7;
+    color: var(--ug-dark);
+  }
+  .quote-author {
+    display: block;
+    margin-top: 8px;
+    font-style: normal;
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--ug-blue);
+    letter-spacing: 0.3px;
+  }
+
+  /* COMPARISON GRID */
+  .compare-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 16px 0; }
+  .compare-neg {
+    background: #fff5f5;
+    border: 1.5px solid #f5c1c1;
+    border-top: 4px solid #e24b4a;
+    border-radius: 10px;
+    padding: 14px 16px;
+  }
+  .compare-pos {
+    background: #f0f9f0;
+    border: 1.5px solid #c0dd97;
+    border-top: 4px solid #639922;
+    border-radius: 10px;
+    padding: 14px 16px;
+  }
+  .compare-neg .ch { color: #a32d2d; font-size: 12px; font-weight: 700; margin-bottom: 6px; letter-spacing: 0.5px; }
+  .compare-pos .ch { color: #3b6d11; font-size: 12px; font-weight: 700; margin-bottom: 6px; letter-spacing: 0.5px; }
+  .compare-neg p, .compare-pos p { font-size: 13.5px; line-height: 1.65; color: var(--text); }
+
+  /* EXAMPLE BOX */
+  .ex-box {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 5px solid var(--ug-cyan);
+    border-radius: 0 8px 8px 0;
+    padding: 14px 18px;
+    margin: 12px 0;
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--text);
+  }
+  .ex-label {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--ug-teal);
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+
+  /* IMPACT BOX */
+  .impact-box {
+    background: linear-gradient(135deg, var(--ug-dark), var(--ug-blue));
+    color: #fff;
+    border-radius: 10px;
+    padding: 20px 22px;
+    margin: 20px 0;
+  }
+  .impact-box .ib-title { font-size: 13px; font-weight: 700; color: var(--ug-gold); letter-spacing: 1px; margin-bottom: 8px; }
+  .impact-box p { font-size: 14.5px; line-height: 1.7; }
+
+  /* SIGNOS: PUNTUACIÓN DEMO */
+  .punct-demo {
+    background: var(--white);
+    border: 1.5px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 16px 0;
+  }
+  .punct-header {
+    background: var(--ug-blue);
+    color: #fff;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 10px 18px;
+    letter-spacing: 0.5px;
+  }
+  .punct-row { display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid var(--border); }
+  .punct-cell {
+    padding: 16px 18px;
+    font-size: 14px;
+    line-height: 1.7;
+  }
+  .punct-cell:first-child { border-right: 1px solid var(--border); }
+  .punct-cell .sent {
+    font-family: 'Merriweather', serif;
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    line-height: 1.5;
+  }
+  .sent-neg { color: #a32d2d; }
+  .sent-pos { color: #0c447c; }
+  .punct-cell .interp {
+    font-size: 13px;
+    color: var(--text-soft);
+    line-height: 1.6;
+  }
+  .punct-consequence {
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    padding: 12px 18px;
+    font-size: 13px;
+    color: var(--text-soft);
+    line-height: 1.6;
+  }
+
+  /* SIGNOS TABLE */
+  .sign-table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 14px; }
+  .sign-table th {
+    background: var(--ug-blue);
+    color: #fff;
+    padding: 10px 14px;
+    text-align: left;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+  }
+  .sign-table td { padding: 10px 14px; border-bottom: 1px solid var(--border); vertical-align: top; line-height: 1.6; }
+  .sign-table tr:nth-child(even) td { background: var(--surface); }
+  .sign-name { font-weight: 700; color: var(--ug-blue); font-size: 15px; }
+
+  /* ABBREV WARNING */
+  .warn-box {
+    background: #fff8e6;
+    border: 1.5px solid var(--ug-gold);
+    border-radius: 10px;
+    padding: 16px 20px;
+    margin: 16px 0;
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+  .warn-icon { font-size: 20px; flex-shrink: 0; margin-top: 2px; }
+  .warn-body { font-size: 14px; line-height: 1.7; color: var(--text); }
+  .warn-body strong { color: var(--ug-dark); }
+
+  /* PROCESO STEPS */
+  .process-steps { display: flex; flex-direction: column; gap: 12px; margin: 16px 0; }
+  .step-item {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 18px;
+  }
+  .step-num {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    background: var(--ug-blue);
+    color: #fff;
+    font-size: 14px;
+    font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .step-content .step-title { font-size: 14px; font-weight: 700; color: var(--ug-blue); margin-bottom: 4px; }
+  .step-content p { font-size: 13.5px; line-height: 1.65; color: var(--text); }
+
+  /* QUIZ */
+  .quiz-container { }
+  .quiz-progress {
+    background: var(--surface);
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin-bottom: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+  }
+  .prog-bar-wrap { flex: 1; background: var(--border); border-radius: 4px; height: 8px; }
+  .prog-bar { background: var(--ug-blue); height: 8px; border-radius: 4px; transition: width 0.4s; }
+  .prog-label { font-size: 13px; font-weight: 700; color: var(--ug-blue); white-space: nowrap; }
+  .score-badge {
+    background: var(--ug-gold);
+    color: var(--ug-dark);
+    font-size: 13px;
+    font-weight: 700;
+    padding: 4px 12px;
+    border-radius: 20px;
+  }
+
+  .q-card {
+    background: var(--white);
+    border: 1.5px solid var(--border);
+    border-top: 4px solid var(--ug-blue);
+    border-radius: 12px;
+    padding: 22px 22px 18px;
+    margin-bottom: 18px;
+  }
+  .q-number {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--ug-gold);
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+  }
+  .q-text {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--ug-dark);
+    line-height: 1.55;
+    margin-bottom: 16px;
+    font-family: 'Merriweather', serif;
+  }
+  .options { display: flex; flex-direction: column; gap: 8px; }
+  .opt-btn {
+    background: var(--surface);
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    padding: 11px 16px;
+    text-align: left;
+    font-size: 14px;
+    line-height: 1.55;
+    color: var(--text);
+    cursor: pointer;
+    transition: border-color 0.15s, background 0.15s;
+    font-family: 'Source Sans 3', sans-serif;
+  }
+  .opt-btn:hover:not(:disabled) { border-color: var(--ug-blue); background: var(--ug-light); }
+  .opt-btn.correct { background: #f0f9f0; border-color: #639922; color: #27500a; font-weight: 600; }
+  .opt-btn.wrong { background: #fff5f5; border-color: #e24b4a; color: #a32d2d; }
+  .opt-btn.reveal-correct { background: #f0f9f0; border-color: #639922; }
+  .opt-btn:disabled { cursor: default; }
+
+  .justification {
+    margin-top: 14px;
+    background: var(--ug-light);
+    border-left: 4px solid var(--ug-gold);
+    border-radius: 0 8px 8px 0;
+    padding: 12px 16px;
+    font-size: 13.5px;
+    line-height: 1.7;
+    color: var(--ug-dark);
+    display: none;
+  }
+  .justification.visible { display: block; }
+  .just-label { font-weight: 700; color: var(--ug-blue); margin-bottom: 4px; font-size: 12px; letter-spacing: 0.5px; }
+
+  .quiz-actions { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 6px; }
+  .q-nav-btn {
+    background: var(--ug-blue);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: 700;
+    font-family: 'Source Sans 3', sans-serif;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+  .q-nav-btn:hover { background: var(--ug-dark); }
+  .q-nav-btn.secondary {
+    background: var(--white);
+    color: var(--ug-blue);
+    border: 1.5px solid var(--ug-blue);
+  }
+  .q-nav-btn.secondary:hover { background: var(--ug-light); }
+
+  .result-box {
+    background: linear-gradient(135deg, var(--ug-dark), var(--ug-blue));
+    border-radius: 12px;
+    padding: 30px 28px;
+    text-align: center;
+    color: #fff;
+    margin: 20px 0;
+    display: none;
+  }
+  .result-box.visible { display: block; }
+  .result-score { font-size: 52px; font-weight: 700; color: var(--ug-gold); line-height: 1; margin-bottom: 8px; }
+  .result-label { font-size: 15px; margin-bottom: 16px; opacity: 0.9; }
+  .result-msg { font-size: 14px; line-height: 1.7; opacity: 0.85; max-width: 500px; margin: 0 auto; }
+
+  /* RESPONSIVE */
+  @media (max-width: 600px) {
+    .compare-grid { grid-template-columns: 1fr; }
+    .punct-row { grid-template-columns: 1fr; }
+    .punct-cell:first-child { border-right: none; border-bottom: 1px solid var(--border); }
+    .header h1 { font-size: 17px; }
+    .panel { padding: 18px 16px 32px; }
+    .index-grid { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+
+<h2 class="sr-only">Material educativo Semana 4: Importancia de la Lectura y Proceso de Comunicación — Universidad de Guayaquil, Lenguaje y Comunicación</h2>
+
+<div class="wrapper">
+  <div class="header">
+    <div class="header-top">
+      <span class="ug-badge">Univ. de Guayaquil</span>
+      <span class="week-label">Lenguaje y Comunicación · Primer Ciclo · Contabilidad y Auditoría</span>
+    </div>
+    <h1>Semana 4: Importancia de la Lectura<br>& Proceso de Comunicación</h1>
+    <p class="header-sub">Los signos que cambian el destino de un texto — y por qué leer bien es una competencia profesional.</p>
+    <div class="gold-line"></div>
+  </div>
+
+  <div class="nav-outer" id="tabNav">
+    <button class="tab-btn active" data-tab="inicio">Inicio</button>
+    <button class="tab-btn" data-tab="resumen">Semanas 1–3</button>
+    <button class="tab-btn" data-tab="lectura">Importancia de la Lectura</button>
+    <button class="tab-btn" data-tab="signos">Signos de Puntuación</button>
+    <button class="tab-btn" data-tab="abreviar">El Peligro de Abreviar</button>
+    <button class="tab-btn" data-tab="proceso">Proceso de Comunicación</button>
+    <button class="tab-btn" data-tab="cuestionario">Cuestionario</button>
+  </div>
+
+  <!-- ===================== PANEL: INICIO ===================== -->
+  <div class="panel active" id="tab-inicio">
+    <p class="sec-body" style="margin-bottom:20px;">Bienvenido al material de la <strong>Semana 4</strong>. Este recurso está diseñado para que puedas estudiar de forma autónoma, a tu ritmo, con total claridad y sin necesidad de depender de un docente presente. Cada sección está explicada desde cero, con ejemplos concretos y situaciones reales. Navega usando las pestañas de arriba o desde las tarjetas de abajo.</p>
+    <div class="index-grid">
+      <div class="index-card" onclick="goTab('resumen')">
+        <div class="ic-num">SECCIÓN 01</div>
+        <div class="ic-title">Resumen Semanas 1 al 3</div>
+        <div class="ic-desc">Todo lo que hemos construido hasta aquí: fundamentos, tipos de lenguaje, cerebro y comunicación.</div>
+        <div class="go-btn">Ver resumen →</div>
+      </div>
+      <div class="index-card" onclick="goTab('lectura')">
+        <div class="ic-num">SECCIÓN 02</div>
+        <div class="ic-title">Importancia de la Lectura</div>
+        <div class="ic-desc">Por qué leer no es un hobby sino una herramienta profesional indispensable en el siglo XXI.</div>
+        <div class="go-btn">Explorar →</div>
+      </div>
+      <div class="index-card" onclick="goTab('signos')">
+        <div class="ic-num">SECCIÓN 03</div>
+        <div class="ic-title">Signos de Puntuación</div>
+        <div class="ic-desc">Una coma puede salvar una vida o hundir una carrera. Aprende por qué marcan la diferencia.</div>
+        <div class="go-btn">Explorar →</div>
+      </div>
+      <div class="index-card" onclick="goTab('abreviar')">
+        <div class="ic-num">SECCIÓN 04</div>
+        <div class="ic-title">El Peligro de Abreviar</div>
+        <div class="ic-desc">Cuando escribir "xq" en un correo al gerente puede costarle el trabajo a alguien.</div>
+        <div class="go-btn">Explorar →</div>
+      </div>
+      <div class="index-card" onclick="goTab('proceso')">
+        <div class="ic-num">SECCIÓN 05</div>
+        <div class="ic-title">Proceso de Comunicación</div>
+        <div class="ic-desc">Los siete elementos que deben alinearse para que un mensaje llegue correctamente.</div>
+        <div class="go-btn">Explorar →</div>
+      </div>
+      <div class="index-card" onclick="goTab('cuestionario')">
+        <div class="ic-num">EVALUACIÓN</div>
+        <div class="ic-title">Cuestionario Interactivo</div>
+        <div class="ic-desc">Pon a prueba tu comprensión con 10 preguntas desafiantes con retroalimentación inmediata.</div>
+        <div class="go-btn">Iniciar cuestionario →</div>
+      </div>
+    </div>
+    <div class="impact-box" style="margin-top:10px;">
+      <div class="ib-title">PARA TENER EN CUENTA ESTA SEMANA</div>
+      <p>La comunicación no ocurre en el vacío: requiere lectura, signos, claridad y un proceso completo que funcione en todas sus partes. Esta semana conectaremos esas piezas y veremos por qué en el mundo contable y de auditoría, escribir correctamente es tan importante como hacer bien los números.</p>
+    </div>
+  </div>
+
+  <!-- ===================== PANEL: RESUMEN SEMANAS 1-3 ===================== -->
+  <div class="panel" id="tab-resumen">
+    <div class="sec-title">Lo que hemos aprendido: Semanas 1, 2 y 3</div>
+    <p class="sec-body">Este resumen recoge los temas más importantes desarrollados durante las tres primeras semanas del curso. Si en algún momento te surge una duda sobre algún concepto, este es tu punto de partida para recordarlo.</p>
+
+    <div class="sec-sub">Semana 1 y 2 — Hablar no es lo mismo que comunicar · Tipos de lenguaje</div>
+    <div class="concept-card">
+      <div class="cc-label">Concepto Central</div>
+      <div class="cc-title">La diferencia entre hablar y comunicar</div>
+      <p>Hablar es emitir palabras. Comunicar es lograr que el mensaje que construiste en tu mente llegue —de forma completa y comprensible— a la mente de otra persona, y que esa persona pueda reaccionar ante él. Hablar sin comunicar es como enviar un sobre en blanco: salió del remitente, pero no llevó nada útil.</p>
+    </div>
+    <div class="ex-box">
+      <div class="ex-label">Ejemplo profesional</div>
+      Un auditor le dice a su cliente: "Necesito los papeles para mañana." Eso es hablar. El cliente no sabe qué papeles, en qué formato, a qué hora ni para qué fin. Si el auditor dice: "Necesito los estados financieros del año 2024 en formato PDF al correo auditoria@empresa.com antes de las 17h00 del día 25, porque debo tener el borrador del informe para el 28" — eso es comunicar.
+    </div>
+    <div class="concept-card">
+      <div class="cc-label">Modelo teórico</div>
+      <div class="cc-title">El procesamiento del mensaje: el viaje de la información</div>
+      <p>Cada mensaje que enviamos pasa por un proceso: el <strong>emisor</strong> codifica una idea en palabras (o gestos, o imágenes), esa idea viaja por un <strong>canal</strong> (verbal, escrito, digital), y el <strong>receptor</strong> la decodifica. En ese viaje puede haber ruido: físico (sonido ambiental), semántico (palabras mal entendidas), psicológico (preconceptos del receptor) o fisiológico (cansancio, dolor). Para que la comunicación sea efectiva, el emisor debe verificar que el mensaje llegó completo mediante la <strong>retroalimentación</strong>.</p>
+    </div>
+    <div class="concept-card">
+      <div class="cc-label">Los cuatro tipos de lenguaje</div>
+      <div class="cc-title">Lenguaje verbal, no verbal, paraverbal y escrito</div>
+      <p><strong>Lenguaje verbal:</strong> las palabras que decimos oralmente. <strong>Lenguaje no verbal:</strong> gestos, postura, expresión facial y contacto visual. Estudios comunicacionales indican que la mayor parte del impacto de un mensaje en una conversación cara a cara viene del lenguaje no verbal y paraverbal. <strong>Lenguaje paraverbal:</strong> cómo decimos las palabras: el volumen, el tono, la velocidad, las pausas, los silencios. <strong>Lenguaje escrito:</strong> texto producido para ser leído, que exige mayor precisión porque no cuenta con apoyo de gestos ni tono de voz en tiempo real.</p>
+    </div>
+
+    <div class="sec-sub" style="margin-top:24px;">Semana 3 — Tipos de comunicación · El cerebro y la comunicación · Comunicación asertiva</div>
+    <div class="concept-card">
+      <div class="cc-label">Tipos de comunicación</div>
+      <div class="cc-title">Interpersonal, intrapersonal, grupal, masiva y organizacional</div>
+      <p><strong>Comunicación intrapersonal:</strong> el diálogo interno con uno mismo, la base del autoconocimiento. <strong>Interpersonal:</strong> entre dos personas. <strong>Grupal:</strong> en equipos de trabajo, familias, equipos de auditoría. <strong>Masiva:</strong> hacia grandes audiencias (prensa, redes, informes públicos). <strong>Organizacional:</strong> la comunicación formal e informal dentro de una institución, empresa o entidad pública.</p>
+    </div>
+    <div class="concept-card">
+      <div class="cc-label">Neurociencia aplicada</div>
+      <div class="cc-title">Cómo el estado del cerebro afecta la comunicación</div>
+      <p>El cerebro no recibe los mensajes de forma neutra. Lo que vivimos, sentimos y experimentamos antes de recibir un mensaje determina cómo lo interpretamos. Si un estudiante llega a clases después de una pelea familiar, su cerebro estará en alerta: procesará los mensajes de forma defensiva. Si llega descansado y motivado, la información se absorbe con mayor claridad. Esto es neuroplasticidad aplicada a la comunicación: los patrones que practicamos se refuerzan. Practicar la escucha activa, por ejemplo, mejora con el tiempo.</p>
+    </div>
+    <div class="concept-card">
+      <div class="cc-label">Habilidad clave</div>
+      <div class="cc-title">Asertividad: ni sumisión ni agresión</div>
+      <p>Comunicarse asertivamente significa expresar lo que se piensa y siente con claridad, respeto y firmeza, sin atropellar al otro ni callarse por miedo. Es la zona de equilibrio entre la agresividad (que impone) y la pasividad (que cede sin decir lo que necesita). Para un contador o auditor, la asertividad es esencial: presentar hallazgos incómodos, dar retroalimentación, negociar plazos con clientes — todo requiere asertividad.</p>
+    </div>
+    <div class="quote-block">
+      "No es lo que dices, es cómo lo dices. Pero tampoco: es lo que dices, cómo lo dices, cuándo lo dices, a quién se lo dices, y si escuchas lo que te responden."
+      <span class="quote-author">— Principio integrador del curso</span>
+    </div>
+  </div>
+
+  <!-- ===================== PANEL: LECTURA ===================== -->
+  <div class="panel" id="tab-lectura">
+    <div class="sec-title">Importancia de la Lectura como competencia profesional</div>
+    <p class="sec-body">La lectura es, sin exageración, una de las habilidades más poderosas que puede desarrollar un ser humano. Y sin embargo, en la era de los mensajes cortos, los videos de 30 segundos y la información "instantánea", leer se ha convertido en una práctica que muchos han abandonado sin darse cuenta. Esta sección explica por qué eso tiene consecuencias muy concretas en la vida profesional de un contador o auditor.</p>
+
+    <div class="sec-sub">¿Qué significa leer bien?</div>
+    <div class="concept-card">
+      <div class="cc-label">Definición</div>
+      <div class="cc-title">Leer no es solo reconocer palabras</div>
+      <p>Leer, en sentido pleno, implica tres procesos simultáneos: <strong>decodificar</strong> (reconocer las palabras y sus significados), <strong>comprender</strong> (entender el mensaje completo, su intención y su contexto) e <strong>interpretar</strong> (relacionar lo leído con el propio conocimiento, hacer preguntas, generar criterio). Quien solo decodifica, puede "leer" un contrato sin entender a qué está comprometiéndose. Quien comprende e interpreta, puede detectar una cláusula abusiva que otros pasaron por alto.</p>
+    </div>
+    <div class="ex-box">
+      <div class="ex-label">Caso real en auditoría</div>
+      Durante una auditoría financiera, el equipo revisó un contrato de arrendamiento de 40 páginas. El auditor junior "lo leyó" en 10 minutos y no encontró nada fuera de lo común. El auditor senior, que lee con comprensión profunda, identificó en la página 31 una cláusula que permitía al arrendador aumentar el canon de arrendamiento en un 40% sin previo aviso después del tercer año. Esa cláusula representaba un pasivo contingente que no estaba revelado en los estados financieros. La diferencia entre leer y leer bien puede costar millones.
+    </div>
+
+    <div class="sec-sub">Lo que desarrolla la lectura regular</div>
+    <div class="process-steps">
+      <div class="step-item">
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <div class="step-title">Vocabulario activo ampliado</div>
+          <p>Quien lee regularmente incorpora nuevas palabras de forma natural y las usa con propiedad. Un profesional con vocabulario amplio puede redactar informes más precisos, negociar con mayor claridad y explicar conceptos complejos con palabras exactas. El vocabulario pobre obliga a usar palabras imprecisas que generan ambigüedad.</p>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <div class="step-title">Capacidad de concentración sostenida</div>
+          <p>Leer un texto de fondo (un libro, un informe técnico, una norma contable) entrena al cerebro a mantener la atención durante períodos largos. En un mundo donde la distracción digital es constante, esta capacidad es extraordinariamente valiosa. Un profesional que puede concentrarse 90 minutos seguidos en un análisis financiero tiene una ventaja enorme sobre quien no puede sostener la atención más de 10 minutos.</p>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <div class="step-title">Pensamiento crítico y capacidad de análisis</div>
+          <p>La lectura exige que el cerebro organice, compare, cuestione y sintetice información. Esto desarrolla el pensamiento crítico: la capacidad de no aceptar cualquier información como verdadera sin antes evaluarla. En contabilidad y auditoría, el pensamiento crítico es esencial para detectar irregularidades, interpretar normas y cuestionar cifras que "no cuadran".</p>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">4</div>
+        <div class="step-content">
+          <div class="step-title">Empatía y comprensión de realidades distintas</div>
+          <p>La lectura expone al lector a perspectivas, culturas y situaciones que no ha vivido directamente. Esto amplía la capacidad empática: entender qué siente y piensa una persona que viene de un contexto diferente. En la comunicación profesional, la empatía es lo que permite adaptar el mensaje al interlocutor: un contador que explica un informe de forma distinta ante el directorio, ante el cliente y ante el organismo de control, demuestra empatía comunicacional.</p>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">5</div>
+        <div class="step-content">
+          <div class="step-title">Mejor escritura y expresión oral</div>
+          <p>Leer modela el lenguaje. Quien lee mucho, escribe mejor: construye oraciones más claras, usa correctamente los signos de puntuación (que veremos en la siguiente sección), estructura sus ideas con coherencia y evita la ambigüedad. También habla mejor, porque tiene más recursos para expresarse con precisión.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="sec-sub">Lectura y profesión contable: un vínculo directo</div>
+    <div class="compare-grid">
+      <div class="compare-neg">
+        <div class="ch">PROFESIONAL QUE NO LEE</div>
+        <p>Interpreta las normas contables de memoria o "como cree que son". Redacta informes con errores de coherencia. No detecta inconsistencias en contratos. Tiene dificultad para argumentar sus criterios técnicos. En una junta, no puede defender sus conclusiones con claridad.</p>
+      </div>
+      <div class="compare-pos">
+        <div class="ch">PROFESIONAL QUE LEE REGULARMENTE</div>
+        <p>Consulta las NIIF actualizadas y las comprende en profundidad. Redacta informes de auditoría precisos y estructurados. Identifica cláusulas problemáticas en contratos. Argumenta sus criterios con base en fuentes. En una junta, explica con claridad y convence.</p>
+      </div>
+    </div>
+
+    <div class="quote-block">
+      "Un libro es un dispositivo para prender fuego a la imaginación." Sin embargo, un informe de auditoría bien leído es un dispositivo para detectar el fraude que nadie más vio.
+      <span class="quote-author">— Adaptación pedagógica para el contexto contable</span>
+    </div>
+
+    <div class="impact-box">
+      <div class="ib-title">DATO PARA REFLEXIONAR</div>
+      <p>Según estudios de hábitos lectores en América Latina, el promedio de lectura por placer en adultos es de menos de un libro al año. El promedio de los líderes empresariales más exitosos del mundo es de más de 50 libros al año. La diferencia no es de inteligencia: es de hábito. Y los hábitos se construyen con decisiones pequeñas y constantes.</p>
+    </div>
+  </div>
+
+  <!-- ===================== PANEL: SIGNOS ===================== -->
+  <div class="panel" id="tab-signos">
+    <div class="sec-title">Los signos de puntuación: pequeños símbolos con enorme poder</div>
+    <p class="sec-body">Los signos de puntuación no son adornos decorativos que se colocan "cuando parece que va una coma". Son instrucciones precisas para el lector sobre cómo organizar el mensaje, dónde hacer pausa, qué tiene más peso, qué es una pregunta y qué es una exclamación. Su ausencia, mal uso o desplazamiento puede cambiar radicalmente el significado de un texto, con consecuencias que van desde lo ridículo hasta lo gravemente perjudicial.</p>
+
+    <div class="sec-sub">El ejemplo que lo dice todo</div>
+    <div class="punct-demo">
+      <div class="punct-header">UN MISMO CONJUNTO DE PALABRAS — DOS MENSAJES COMPLETAMENTE OPUESTOS</div>
+      <div class="punct-row">
+        <div class="punct-cell">
+          <div class="sent sent-neg">Fidel Castro debe morir, no lo necesitamos en Cuba.</div>
+          <div class="interp">Esta oración, escrita con una coma y sin signos de interrogación ni exclamación, es una sentencia. Afirma que Fidel Castro debe morir porque no es necesario para Cuba. Es una declaración directa de condena. Quien la escribe, así expresada, emite un juicio categórico sin posibilidad de duda ni debate.</div>
+        </div>
+        <div class="punct-cell">
+          <div class="sent sent-pos">¿Fidel Castro debe morir? ¡No! Lo necesitamos en Cuba.</div>
+          <div class="interp">Esta misma secuencia de palabras, reorganizada con signos de interrogación y exclamación, se convierte en lo opuesto: una pregunta retórica que se responde con una negación enérgica y una declaración de apoyo. El mensaje final defiende su permanencia.</div>
+        </div>
+      </div>
+      <div class="punct-consequence">
+        Lo que cambia no es ninguna palabra. No se añadió ningún término nuevo ni se eliminó ninguno. Lo único que cambia son los signos de puntuación. Sin embargo, el significado es diametralmente opuesto: uno condena, el otro defiende. Esto ilustra de forma contundente por qué los signos de puntuación no son un detalle estilístico: son el esqueleto del sentido de la escritura.
+      </div>
+    </div>
+
+    <div class="sec-sub" style="margin-top:24px;">Más ejemplos que cambian todo</div>
+
+    <div class="punct-demo">
+      <div class="punct-header">EJEMPLO 2: LA COMA QUE SALVA (O CONDENA) UNA HERENCIA</div>
+      <div class="punct-row">
+        <div class="punct-cell">
+          <div class="sent sent-neg">"Dejo mis bienes a mi sobrino Juan no a mi hermano Pedro."</div>
+          <div class="interp">Sin comas, esta oración es ambigua. Un juez podría interpretarla de varias maneras. ¿Excluye definitivamente al hermano? ¿Es una aclaración o una corrección? La falta de puntuación convierte un deseo claro en un conflicto legal.</div>
+        </div>
+        <div class="punct-cell">
+          <div class="sent sent-pos">"Dejo mis bienes a mi sobrino Juan, no a mi hermano Pedro."</div>
+          <div class="interp">Una simple coma después de "Juan" hace que la oración sea inequívoca. La voluntad del testador es perfectamente clara: el beneficiario es el sobrino, no el hermano. Una coma previene años de litigios y conflictos familiares.</div>
+        </div>
+      </div>
+      <div class="punct-consequence">Este ejemplo es real: existen casos jurídicos en los que testamentos mal puntuados han generado disputas legales prolongadas y costosas. En documentos legales y financieros, los signos de puntuación tienen valor jurídico.</div>
+    </div>
+
+    <div class="punct-demo" style="margin-top:16px;">
+      <div class="punct-header">EJEMPLO 3: EL PEDIDO QUE SE MALINTERPRETA EN UNA EMPRESA</div>
+      <div class="punct-row">
+        <div class="punct-cell">
+          <div class="sent sent-neg">"No autorizo el pago a proveedores pequeños clientes y contratistas."</div>
+          <div class="interp">Sin puntuación clara, esta instrucción de un gerente puede interpretarse de dos formas: ¿no autoriza ningún pago a nadie? ¿O no autoriza solo los pagos a proveedores, pero sí a clientes y contratistas? La ambigüedad puede detener operaciones completas.</div>
+        </div>
+        <div class="punct-cell">
+          <div class="sent sent-pos">"No autorizo el pago a proveedores pequeños, clientes y contratistas."</div>
+          <div class="interp">Con la coma correcta, queda claro que la restricción aplica a tres categorías específicas: proveedores pequeños, clientes y contratistas. El resto de pagos puede proceder. La coma organiza la lista y elimina toda duda.</div>
+        </div>
+      </div>
+      <div class="punct-consequence">En el entorno contable y empresarial, instrucciones mal puntuadas generan errores operativos, retrasos en pagos y, en el peor de los casos, sanciones por incumplimiento.</div>
+    </div>
+
+    <div class="punct-demo" style="margin-top:16px;">
+      <div class="punct-header">EJEMPLO 4: EL CORREO QUE CAMBIÓ EL TONO DE UNA REUNIÓN</div>
+      <div class="punct-row">
+        <div class="punct-cell">
+          <div class="sent sent-neg">"El informe que presentó el equipo está mal el director lo rechazó totalmente."</div>
+          <div class="interp">Sin puntuación, esta oración es una cadena confusa. ¿Qué está mal, el informe o el equipo? ¿El director rechazó el informe o al equipo? La falta de puntuación convierte una comunicación profesional en un texto agresivo e inentendible.</div>
+        </div>
+        <div class="punct-cell">
+          <div class="sent sent-pos">"El informe que presentó el equipo está mal. El director lo rechazó totalmente."</div>
+          <div class="interp">Dos puntos y todo cambia. Ahora hay dos oraciones claras y distintas: la primera describe el problema (el informe está mal), la segunda informa la consecuencia (el director lo rechazó). El lector sabe exactamente qué pasó.</div>
+        </div>
+      </div>
+      <div class="punct-consequence">En comunicaciones profesionales, un correo sin puntuación adecuada puede ser percibido como descuido, falta de profesionalismo o incluso agresividad involuntaria. Y en el mundo laboral, la percepción importa tanto como la realidad.</div>
+    </div>
+
+    <div class="sec-sub" style="margin-top:24px;">Guía rápida de los signos principales y su función</div>
+    <table class="sign-table">
+      <thead>
+        <tr><th>Signo</th><th>Nombre</th><th>Función principal</th><th>Error común</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="sign-name">,</span></td>
+          <td>Coma</td>
+          <td>Separa elementos de una lista, introduce aclaraciones, marca pausas breves en una idea. Es el signo más frecuente y el más mal usado.</td>
+          <td>Colocarla entre el sujeto y el verbo: "El contador, revisó los estados financieros." Esto es incorrecto porque interrumpe la unidad básica de la oración.</td>
+        </tr>
+        <tr>
+          <td><span class="sign-name">.</span></td>
+          <td>Punto</td>
+          <td>Cierra una idea completa. Indica que el pensamiento terminó. Después del punto, comienza algo nuevo.</td>
+          <td>No usarlo cuando debería: escribir párrafos interminables sin punto que mezclan varias ideas y obligan al lector a releer varias veces para entender.</td>
+        </tr>
+        <tr>
+          <td><span class="sign-name">;</span></td>
+          <td>Punto y coma</td>
+          <td>Separa ideas que están relacionadas entre sí pero que son lo suficientemente distintas como para no ir unidas por una simple coma. Es más fuerte que la coma y más débil que el punto.</td>
+          <td>No usarlo nunca, lo que obliga a usar comas donde no corresponde, o puntos que fragmentan en exceso.</td>
+        </tr>
+        <tr>
+          <td><span class="sign-name">:</span></td>
+          <td>Dos puntos</td>
+          <td>Introduce lo que viene a continuación: una lista, una cita, una consecuencia, una explicación. Promete al lector que lo que sigue es el desarrollo o la concreción de lo que se acaba de decir.</td>
+          <td>Usarlos antes de un verbo: "Los documentos requeridos son: los estados financieros, las conciliaciones…" El verbo "son" ya actúa como introductor; los dos puntos son redundantes.</td>
+        </tr>
+        <tr>
+          <td><span class="sign-name">¿ ?</span></td>
+          <td>Signos de interrogación</td>
+          <td>En español, la interrogación se abre y se cierra. Esto permite al lector saber desde el principio que viene una pregunta, y preparar su lectura con la entonación mental correcta.</td>
+          <td>Escribir solo el signo de cierre: "Cuándo se presenta el informe?" La ausencia del signo de apertura es un error ortográfico en español.</td>
+        </tr>
+        <tr>
+          <td><span class="sign-name">¡ !</span></td>
+          <td>Signos de exclamación</td>
+          <td>Indican énfasis, sorpresa, urgencia o emoción intensa. Igual que la interrogación, en español deben abrirse y cerrarse.</td>
+          <td>Abusar de ellos en textos formales: "El informe fue rechazado!!! Necesitamos una reunión urgente!!!" El exceso de exclamaciones trivializa el mensaje y lo hace parecer informal o histérico.</td>
+        </tr>
+        <tr>
+          <td><span class="sign-name">( )</span></td>
+          <td>Paréntesis</td>
+          <td>Encierran información complementaria que no interrumpe el flujo principal de la oración. Si se elimina lo que está entre paréntesis, la oración principal debe seguir teniendo sentido completo.</td>
+          <td>Usar paréntesis para la información principal: "El análisis (fue presentado al directorio) y aprobado." Lo que está entre paréntesis no debe ser la información central de la oración.</td>
+        </tr>
+        <tr>
+          <td><span class="sign-name">— " "</span></td>
+          <td>Raya y comillas</td>
+          <td>La raya introduce diálogos o aclaraciones extensas. Las comillas señalan que se cita textualmente a alguien o que una palabra se usa en sentido especial o irónico.</td>
+          <td>Usar comillas para enfatizar ("el director dijo que el informe estaba "muy bien"") cuando en realidad se quiere solo remarcar. Esto puede dar un tono irónico involuntario al texto.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="impact-box">
+      <div class="ib-title">CONCLUSIÓN DE ESTA SECCIÓN</div>
+      <p>Un texto sin signos de puntuación correctos es como un mapa sin señales de tránsito: puedes llegar a algún lado, pero es muy probable que te pierdas, que tomes el camino incorrecto o que causes un accidente. En el ámbito profesional, un informe mal puntuado no solo es una falla estética: es una falla comunicacional que puede generar errores, conflictos y pérdida de credibilidad.</p>
+    </div>
+  </div>
+
+  <!-- ===================== PANEL: ABREVIAR ===================== -->
+  <div class="panel" id="tab-abreviar">
+    <div class="sec-title">El peligro de abreviar: cuando lo "rápido" sale caro</div>
+    <p class="sec-body">Vivimos en la era de los mensajes instantáneos. WhatsApp, Instagram, TikTok y los chats de trabajo han generado una cultura de la inmediatez donde abreviar se ha convertido en norma. "xq", "tmb", "pq", "q tal", "bno" y docenas de contracciones similares pueblan nuestras conversaciones digitales cotidianas. Pero cuando esas mismas prácticas migran al entorno profesional y académico, las consecuencias pueden ser muy serias. Esta sección no busca prohibir el lenguaje informal: busca que aprendas a distinguir cuándo y dónde es apropiado cada registro.</p>
+
+    <div class="sec-sub">¿Qué significa "abreviar" en el contexto comunicacional?</div>
+    <div class="concept-card">
+      <div class="cc-label">Definición</div>
+      <div class="cc-title">Abreviar como hábito y sus dos caras</div>
+      <p>Abreviar, en sentido estricto, significa reducir una palabra o conjunto de palabras a una forma más corta. Existen abreviaturas formales aceptadas incluso en textos académicos y legales: "Dr." para "Doctor", "Art." para "Artículo", "Cía." para "Compañía". Estas son abreviaturas con reglas, con tradición y con reconocimiento universal en su contexto. Lo que genera problemas es la abreviación informal, creada por conveniencia individual, que carece de reglas claras y cuyo significado puede variar de una persona a otra.</p>
+    </div>
+
+    <div class="warn-box">
+      <div class="warn-icon">⚠</div>
+      <div class="warn-body"><strong>El problema central:</strong> el lenguaje informal no está prohibido — existe y cumple una función en los intercambios cotidianos y afectivos. El problema surge cuando ese mismo registro se traslada a contextos que requieren formalidad, precisión y credibilidad: correos al gerente, informes de auditoría, solicitudes a clientes, trabajos universitarios, comunicaciones con organismos de control.</div>
+    </div>
+
+    <div class="sec-sub">Ejemplos concretos: lo que se escribe y lo que se debería escribir</div>
+
+    <div class="punct-demo">
+      <div class="punct-header">CASO 1: EL CORREO AL SUPERVISOR DESDE EL CELULAR</div>
+      <div class="punct-row">
+        <div class="punct-cell">
+          <div class="sent sent-neg">Lo q revise d los docs esta bn, hay xo q ajustar dsp d la reunion. T aviso</div>
+          <div class="interp">Esto se escribe con la intención de ser rápido. Sin embargo, el receptor no sabe qué documentos se revisaron, qué hay que ajustar, cuándo es la reunión ni cuándo llegará el aviso. Es un mensaje que genera más preguntas que respuestas, y que proyecta una imagen de descuido.</div>
+        </div>
+        <div class="punct-cell">
+          <div class="sent sent-pos">Revisé los documentos de la auditoría de cuentas por cobrar. En general están bien, pero hay algunos ajustes menores por hacer después de la reunión del jueves. Le aviso en cuanto tengamos la versión final.</div>
+          <div class="interp">El mismo contenido, bien escrito. El receptor sabe exactamente qué se revisó, cuál es el estado, cuándo será la reunión y qué puede esperar. No se pierde ninguna información y la imagen del emisor es la de un profesional organizado.</div>
+        </div>
+      </div>
+      <div class="punct-consequence">El tiempo adicional que toma escribir el segundo mensaje: aproximadamente 45 segundos. El valor que ese mensaje agrega a la relación profesional: incalculable.</div>
+    </div>
+
+    <div class="punct-demo" style="margin-top:16px;">
+      <div class="punct-header">CASO 2: LA RESPUESTA A UN CLIENTE</div>
+      <div class="punct-row">
+        <div class="punct-cell">
+          <div class="sent sent-neg">"Hla! Xfavor mande los docus pa k podamos avanzar. Grax"</div>
+          <div class="interp">Este mensaje, enviado desde el departamento de auditoría de una firma profesional, proyecta informalidad extrema, falta de preparación y ausencia de criterio sobre el contexto. El cliente puede dudar seriamente de la seriedad del equipo que lo audita.</div>
+        </div>
+        <div class="punct-cell">
+          <div class="sent sent-pos">"Estimado cliente: Para continuar con el proceso de auditoría, le solicitamos amablemente que nos remita los documentos mencionados en la reunión del lunes. Esto nos permitirá avanzar según el cronograma establecido. Quedo atento a cualquier consulta."</div>
+          <div class="interp">Claro, completo, profesional y empático. Usa el nombre genérico "estimado cliente" pero puede personalizarse. Explica por qué se necesita lo que se pide. Cierra con disposición al diálogo.</div>
+        </div>
+      </div>
+      <div class="punct-consequence">Un cliente que recibe el primer mensaje puede decidir no renovar el contrato. Un cliente que recibe el segundo siente que está en manos de profesionales capaces.</div>
+    </div>
+
+    <div class="punct-demo" style="margin-top:16px;">
+      <div class="punct-header">CASO 3: UN TRABAJO UNIVERSITARIO</div>
+      <div class="punct-row">
+        <div class="punct-cell">
+          <div class="sent sent-neg">"La comunicacion es importante xq sin ella no podemos decir lo q pensamos ni entender a los demas tmb es clave pa el trabajo en equipo."</div>
+          <div class="interp">Este párrafo tiene varias fallas acumuladas: ausencia de tilde en "comunicación", uso de abreviaciones propias de mensajería instantánea ("xq", "pa", "tmb"), ausencia de coma antes de "también" y oración sin estructura clara. En un trabajo académico, esto representa un problema de forma que afecta la calificación y la credibilidad del argumento.</div>
+        </div>
+        <div class="punct-cell">
+          <div class="sent sent-pos">"La comunicación es una competencia fundamental, porque sin ella no es posible transmitir ideas, coordinar acciones ni construir relaciones de confianza. Esta condición la convierte también en un factor determinante para el trabajo en equipo dentro de cualquier organización."</div>
+          <div class="interp">El mismo argumento, expresado con corrección ortográfica, estructura gramatical clara y puntuación apropiada. El contenido no es más profundo, pero su presentación lo hace más creíble y más fácil de evaluar positivamente.</div>
+        </div>
+      </div>
+      <div class="punct-consequence">La forma en que se presenta un argumento influye en cómo se percibe su validez. Un argumento sólido mal escrito pierde fuerza. Un argumento moderado bien escrito gana credibilidad.</div>
+    </div>
+
+    <div class="sec-sub">El argumento de "todo el mundo lo hace"</div>
+    <p class="sec-body">Uno de los razonamientos más comunes para justificar el uso de lenguaje informal en contextos formales es: "todo el mundo escribe así ahora" o "así nos entendemos todos". Este argumento tiene un problema fundamental: en comunicación, el estándar no lo pone "todo el mundo" — lo pone el contexto y el receptor. Si su jefe, su cliente o su docente esperan comunicación formal, el hecho de que "todo el mundo abrevie" no lo exime de la responsabilidad de comunicarse correctamente. Y en el mundo laboral, ese criterio puede ser la diferencia entre recibir un aumento o perder una oportunidad.</p>
+
+    <div class="warn-box">
+      <div class="warn-icon">⚠</div>
+      <div class="warn-body"><strong>El efecto acumulativo:</strong> Cada vez que alguien practica el lenguaje informal en contextos formales, debilita su propia capacidad de escribir bien. El cerebro aprende lo que practica. Si durante cinco años solo se escribe en lenguaje de mensajería instantánea, redactar un informe formal se vuelve genuinamente difícil. El hábito de escribir bien, como cualquier habilidad, requiere práctica constante para mantenerse.</div>
+    </div>
+
+    <div class="impact-box">
+      <div class="ib-title">REFLEXIÓN FINAL DE ESTA SECCIÓN</div>
+      <p>El lenguaje informal tiene su lugar: en la conversación con amigos, en el grupo de WhatsApp familiar, en el chat informal con un compañero. Pero el profesional que triunfa en el siglo XXI no es el que abandona el lenguaje formal — es el que domina ambos registros y sabe perfectamente cuándo usar cada uno. Esa capacidad de adaptación lingüística es una señal de inteligencia comunicacional.</p>
+    </div>
+  </div>
+
+  <!-- ===================== PANEL: PROCESO ===================== -->
+  <div class="panel" id="tab-proceso">
+    <div class="sec-title">El proceso de comunicación: los siete elementos que deben funcionar juntos</div>
+    <p class="sec-body">La comunicación no es un acto simple. No basta con que una persona diga algo para que el mensaje llegue completo, claro y con el efecto deseado. La comunicación es un proceso que involucra múltiples elementos que deben funcionar en armonía. Cuando uno de esos elementos falla, el mensaje se distorsiona, se pierde o genera el efecto contrario al deseado. A continuación, exploraremos cada elemento de este proceso con ejemplos tomados del mundo real de la contabilidad y la auditoría.</p>
+
+    <div class="sec-sub">Los siete elementos del proceso de comunicación</div>
+    <div class="process-steps">
+      <div class="step-item">
+        <div class="step-num" style="background:var(--ug-dark);">1</div>
+        <div class="step-content">
+          <div class="step-title">El Emisor: quien genera el mensaje</div>
+          <p>El emisor es la persona, institución o sistema que produce y envía el mensaje. No es suficiente con querer comunicar algo: el emisor debe tener claridad sobre qué quiere decir, conocer a su receptor, elegir el lenguaje apropiado y asumir la responsabilidad de que su mensaje sea comprensible. En el ámbito profesional, el emisor es el auditor que redacta un informe, el contador que explica una declaración al SRI, o el gerente que imparte instrucciones a su equipo. Su credibilidad y competencia comunicacional son parte del mensaje mismo.</p>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num" style="background:var(--ug-blue);">2</div>
+        <div class="step-content">
+          <div class="step-title">El Mensaje: la idea codificada</div>
+          <p>El mensaje es la información, idea, emoción o instrucción que el emisor quiere transmitir, expresada en un código (generalmente el lenguaje verbal o escrito). Un mensaje bien construido es claro (sin ambigüedades), completo (incluye toda la información necesaria), oportuno (llega en el momento adecuado) y pertinente (es relevante para el receptor). En contabilidad, un mensaje es el informe de auditoría, el correo al cliente, la nota al pie de un balance o la instrucción a un asistente contable.</p>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num" style="background:var(--ug-teal);">3</div>
+        <div class="step-content">
+          <div class="step-title">El Código: el sistema compartido de signos</div>
+          <p>El código es el sistema de signos que tanto el emisor como el receptor conocen y comparten. El código más común es el lenguaje: el español, el inglés, el quichua. Pero también existen códigos técnicos: la terminología contable (activo, pasivo, devengado, conciliación) es un código que los profesionales del área comparten, pero que un cliente sin formación contable puede no entender. Cuando el emisor usa un código que el receptor no domina, la comunicación falla aunque las palabras estén perfectamente escritas.</p>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num" style="background:var(--ug-cyan);">4</div>
+        <div class="step-content">
+          <div class="step-title">El Canal: el medio por el que viaja el mensaje</div>
+          <p>El canal es el medio físico o digital a través del cual el mensaje se traslada del emisor al receptor. Puede ser oral (una conversación, una reunión, una llamada telefónica), escrito (un correo electrónico, un informe, un contrato), visual (una gráfica, una presentación de diapositivas) o digital (un mensaje de texto, una plataforma virtual, un video). La elección del canal es fundamental: un canal inadecuado puede distorsionar el mensaje. Una conversación grave no debería ocurrir por mensaje de texto; un informe complejo no debería comunicarse solo de forma verbal sin apoyo escrito.</p>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num" style="background:var(--ug-gold);color:#003470;">5</div>
+        <div class="step-content">
+          <div class="step-title">El Receptor: quien recibe e interpreta</div>
+          <p>El receptor es quien recibe el mensaje y lo decodifica: lo interpreta según su propio bagaje cultural, emocional, académico y contextual. Es fundamental comprender que el receptor no es un elemento pasivo: interpreta activamente, y esa interpretación puede diferir del mensaje original. Un buen emisor anticipará cómo su receptor puede interpretar el mensaje y ajustará el código, el canal y el tono para minimizar la posibilidad de malentendidos. En una reunión de directorio, el receptor puede ser un gerente que no tiene formación contable: el emisor debe adaptar su mensaje a ese perfil.</p>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num" style="background:#a32d2d;">6</div>
+        <div class="step-content">
+          <div class="step-title">El Ruido: todo lo que interfiere con el mensaje</div>
+          <p>El ruido es cualquier elemento que interfiere con la transmisión o recepción correcta del mensaje. Puede ser físico (el sonido de una calle ruidosa durante una llamada importante), semántico (el uso de palabras técnicas que el receptor no comprende), psicológico (los prejuicios, el estrés o la desconfianza del receptor), o fisiológico (el cansancio, el dolor de cabeza o el hambre). En el entorno virtual de este curso, el ruido puede ser una conexión inestable, distractores en el entorno del estudiante, o simplemente la ansiedad ante un contenido nuevo. Identificar el ruido y gestionarlo activamente es una responsabilidad compartida entre emisor y receptor.</p>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num" style="background:#3b6d11;">7</div>
+        <div class="step-content">
+          <div class="step-title">La Retroalimentación (feedback): el cierre del ciclo</div>
+          <p>La retroalimentación es la respuesta que el receptor envía al emisor como señal de que el mensaje fue recibido, comprendido y procesado. Sin retroalimentación, la comunicación es un monólogo: el emisor habla pero no sabe si fue escuchado, entendido o si su mensaje generó el efecto deseado. La retroalimentación puede ser verbal ("entendido, procedo a enviar los documentos"), no verbal (un gesto de asentimiento), escrita (una respuesta a un correo) o incluso comportamental (el receptor actúa conforme al mensaje recibido, lo que demuestra comprensión). Un profesional que no busca retroalimentación vive en la ilusión de que su mensaje llegó como lo pensó.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="sec-sub">El proceso completo: un ejemplo integrador de auditoría</div>
+    <div class="ex-box">
+      <div class="ex-label">Caso integrador</div>
+      <strong>Situación:</strong> Un auditor senior debe comunicar al cliente que se han encontrado inconsistencias en las cuentas por pagar del trimestre anterior.<br><br>
+      <strong>Emisor:</strong> El auditor senior, con credibilidad técnica y responsabilidad ética.<br>
+      <strong>Mensaje:</strong> "Se identificaron inconsistencias en las cuentas por pagar del Q3 que requieren documentación adicional antes de emitir el dictamen."<br>
+      <strong>Código:</strong> Español formal con terminología técnica contable, adaptada al nivel del interlocutor (el gerente financiero del cliente).<br>
+      <strong>Canal:</strong> Reunión presencial apoyada por un informe escrito en PDF. Se eligió este canal porque la naturaleza delicada del hallazgo requiere diálogo en tiempo real.<br>
+      <strong>Receptor:</strong> El gerente financiero del cliente. Es contador, así que comprende el código técnico sin necesidad de simplificación extrema.<br>
+      <strong>Ruido:</strong> El gerente llega a la reunión visiblemente preocupado por otro asunto. El auditor percibe esto y decide reformular el inicio de su presentación para crear primero un clima de confianza antes de presentar los hallazgos.<br>
+      <strong>Retroalimentación:</strong> El gerente responde con preguntas específicas sobre los documentos faltantes y acuerda una fecha para entregar la información. El auditor confirma por escrito lo acordado al finalizar la reunión.
+    </div>
+
+    <div class="quote-block">
+      "La comunicación es el proceso mediante el cual construimos realidades compartidas. Sin ese proceso completo, no hay acuerdo posible, no hay confianza, no hay colaboración. Solo hay personas hablando solas en el mismo cuarto."
+      <span class="quote-author">— Síntesis del módulo de Lenguaje y Comunicación, Prof. Gabriel — Universidad de Guayaquil</span>
+    </div>
+  </div>
+
+  <!-- ===================== PANEL: CUESTIONARIO ===================== -->
+  <div class="panel" id="tab-cuestionario">
+    <div class="sec-title">Cuestionario de autoevaluación — Semana 4</div>
+    <p class="sec-body" style="margin-bottom:20px;">Responde cada pregunta con atención. Las opciones han sido diseñadas para que tengas que pensar: no hay respuestas "obviamente incorrectas". Luego de elegir tu respuesta, recibirás la justificación completa de por qué la opción correcta es la correcta. No hay límite de tiempo. Tómate el espacio que necesites para reflexionar.</p>
+    <div class="quiz-container" id="quizContainer"></div>
+    <div class="result-box" id="resultBox">
+      <div class="result-score" id="resultScore"></div>
+      <div class="result-label" id="resultLabel"></div>
+      <div class="result-msg" id="resultMsg"></div>
+      <button class="q-nav-btn" style="margin-top:20px;" onclick="resetQuiz()">Repetir cuestionario</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  function goTab(id) {
+    document.querySelectorAll('.tab-btn').forEach(b => {
+      b.classList.toggle('active', b.dataset.tab === id);
+    });
+    document.querySelectorAll('.panel').forEach(p => {
+      p.classList.toggle('active', p.id === 'tab-' + id);
+    });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => goTab(btn.dataset.tab));
+  });
+
+  const questions = [
+    {
+      q: "Una auditora envía el siguiente correo a su cliente: 'Necesito los estados financieros del año 2024, las conciliaciones bancarias de los cuatro trimestres y las facturas de compras superiores a $5.000, todo en formato PDF al correo auditoria@empresa.com, antes del viernes 25 a las 17h00.' Según lo estudiado, este correo es un ejemplo de…",
+      opts: [
+        "A) Comunicación efectiva, porque el mensaje es claro, completo, preciso y orientado a la acción del receptor.",
+        "B) Hablar, no comunicar, porque contiene demasiada información y puede confundir al cliente.",
+        "C) Ruido semántico, porque usa términos técnicos que el cliente podría no entender.",
+        "D) Retroalimentación, porque el emisor está respondiendo a una solicitud previa del receptor."
+      ],
+      correct: 0,
+      just: "La comunicación efectiva no solo transmite palabras: logra que el receptor sepa exactamente qué hacer, cómo, cuándo y por qué. Este correo cumple todos esos criterios. No hay ambigüedad sobre qué se necesita, en qué formato, a qué correo y para cuándo. La opción B confunde cantidad de información con falta de claridad: dar más detalles no genera confusión si están bien organizados. La opción C asume ruido cuando en realidad los términos usados son comprensibles para cualquier persona que maneje documentación financiera básica. La opción D confunde retroalimentación con el envío inicial de una instrucción."
+    },
+    {
+      q: "Analiza estas dos versiones del mismo texto y elige la que representa una aplicación correcta de los signos de puntuación: Versión 1: 'El contador que revisó el balance no encontró errores el director aprobó el informe sin observaciones.' / Versión 2: 'El contador que revisó el balance no encontró errores. El director aprobó el informe sin observaciones.'",
+      opts: [
+        "A) La Versión 2 es correcta, porque el punto separa dos ideas completas e independientes, facilitando la comprensión.",
+        "B) La Versión 1 es correcta, porque mantiene el flujo del texto sin interrupciones innecesarias.",
+        "C) Ambas versiones son igualmente válidas, ya que el lector puede deducir el sentido en los dos casos.",
+        "D) La Versión 1 es preferible en contextos formales porque los puntos reducen la fluidez del texto profesional."
+      ],
+      correct: 0,
+      just: "El punto cierra una unidad de pensamiento completa. En la Versión 1, se acumulan dos ideas distintas en una sola oración sin puntuación, lo que obliga al lector a hacer el trabajo de separación mental. Esto genera carga cognitiva innecesaria y es considerado un error de estructura en cualquier texto formal. La Versión 2 separa claramente la acción del contador (revisó y no encontró errores) de la acción del director (aprobó el informe), mejorando la claridad sin perder información. La opción B confunde 'flujo' con 'falta de estructura'. Las opciones C y D son incorrectas porque en escritura formal, la corrección no es opcional: no se delega al lector el trabajo de interpretar lo que el emisor no puntuó correctamente."
+    },
+    {
+      q: "Un estudiante universitario de Contabilidad entrega un trabajo con el siguiente párrafo: 'La auditoria es importante xq permite identificar errores en los estados financieros y tmb ayuda a las empresas a cumplir con la ley.' Su docente lo califica negativamente por razones de forma. ¿Cuál de las siguientes opciones explica MEJOR por qué ese párrafo es problemático en un contexto académico?",
+      opts: [
+        "A) Usa abreviaciones propias de mensajería instantánea en un texto formal, omite la tilde en 'auditoría' y carece de una estructura gramatical que refleje competencia en escritura académica.",
+        "B) El párrafo es demasiado corto para un trabajo universitario, lo que reduce su valor académico independientemente del lenguaje.",
+        "C) La idea expresada es incorrecta desde el punto de vista técnico, porque la auditoría no es solo para identificar errores sino también para emitir dictámenes.",
+        "D) El estudiante debió usar inglés técnico, ya que los términos contables tienen mayor precisión en ese idioma."
+      ],
+      correct: 0,
+      just: "El problema central del párrafo no es su extensión ni su contenido técnico —que es correcto en términos generales— sino su forma. Tres fallas acumuladas lo hacen inaceptable: primero, 'xq' y 'tmb' son abreviaciones de mensajería que no tienen lugar en ningún texto académico o profesional; segundo, 'auditoria' sin tilde es una falta ortográfica en español (la palabra es esdrújula: 'auditoría'); tercero, la oración no está correctamente estructurada para el registro formal requerido. La opción B es incorrecta porque la extensión no determina la corrección. La opción C introduce un debate técnico que no es el objeto de la evaluación de forma. La opción D es incorrecta: el español tiene toda la precisión necesaria para los términos contables."
+    },
+    {
+      q: "Durante una reunión de directorio, el gerente general hace la siguiente pregunta a la auditora jefe: '¿Podría decirnos en términos sencillos qué encontraron en la revisión?' La auditora responde con una exposición cargada de tecnicismos: 'Detectamos discrepancias en la conciliación de cuentas por cobrar con impacto en el EBITDA del periodo y observaciones a la NIC 37 sobre provisiones contingentes.' ¿Qué elemento del proceso de comunicación fue ignorado?",
+      opts: [
+        "A) La adecuación al receptor, porque el emisor no adaptó el código al nivel de comprensión del interlocutor, generando una barrera semántica.",
+        "B) El canal, porque una reunión de directorio no es el espacio adecuado para presentar hallazgos de auditoría.",
+        "C) La retroalimentación, porque la auditora no esperó a que el directorio respondiera antes de continuar hablando.",
+        "D) El mensaje, porque los hallazgos presentados son demasiado complejos para ser comunicados verbalmente."
+      ],
+      correct: 0,
+      just: "El gerente general solicitó explícitamente una explicación 'en términos sencillos', lo que señala que el receptor no maneja el código técnico con fluidez. Al ignorar esa señal y responder con terminología especializada (EBITDA, NIC 37, cuentas por cobrar en sentido técnico), la auditora creó una barrera semántica: las palabras están en español, pero el receptor no puede decodificarlas adecuadamente. El problema no es el canal (reunión de directorio es perfectamente apropiado para informes de auditoría), ni la retroalimentación (la pregunta fue respondida, aunque mal), ni el mensaje en sí (los hallazgos son válidos). El error fue no adaptar el código al perfil del receptor."
+    },
+    {
+      q: "Lee las dos versiones de una misma oración y determina cómo cambia su significado según la puntuación: Versión A: 'No aprobamos el informe, revisemos los números.' / Versión B: '¿No aprobamos el informe? Revisemos los números.'",
+      opts: [
+        "A) La Versión A es una decisión afirmativa (el informe no fue aprobado y se ordena revisar); la Versión B es una pregunta que induce a la reflexión antes de actuar.",
+        "B) Ambas versiones significan exactamente lo mismo; los signos de puntuación no alteran el contenido semántico de una oración.",
+        "C) La Versión B es más formal porque el uso de signos de interrogación indica un tono más respetuoso hacia los colegas.",
+        "D) La Versión A es una pregunta implícita, mientras que la Versión B es una afirmación con tono irónico."
+      ],
+      correct: 0,
+      just: "La Versión A es una declaración: algo ocurrió (no se aprobó el informe) y se da una instrucción derivada (hay que revisar los números). El tono es conclusivo. La Versión B introduce una duda: el signo de interrogación convierte la primera parte en una pregunta que cuestiona si realmente no se aprobó el informe, y la segunda parte invita a revisar antes de concluir. El tono es reflexivo y abierto al diálogo. Esto demuestra que los signos de puntuación no solo organizan visualmente el texto: determinan el tipo de acto de habla (afirmación, pregunta, orden) y, por lo tanto, el significado completo del mensaje. La opción B es radicalmente incorrecta y contradice el fundamento de esta unidad."
+    },
+    {
+      q: "En la teoría del proceso de comunicación estudiada, ¿cuál es la función ESPECÍFICA de la retroalimentación dentro del ciclo comunicativo?",
+      opts: [
+        "A) Confirmar al emisor que el mensaje fue recibido y comprendido, cerrando el ciclo y permitiendo la corrección de malentendidos.",
+        "B) Repetir el mensaje original con otras palabras para asegurarse de que el receptor lo recuerde.",
+        "C) Eliminar el ruido que interfiere con la transmisión del mensaje entre emisor y receptor.",
+        "D) Sustituir al canal cuando este falla, garantizando que el mensaje llegue a su destino."
+      ],
+      correct: 0,
+      just: "La retroalimentación es la respuesta del receptor al emisor, y su función específica es cerrar el ciclo comunicativo: le dice al emisor que el mensaje llegó, si fue comprendido y cuál fue el efecto generado. Sin retroalimentación, el emisor no puede saber si su mensaje cumplió su propósito. Puede tomar la forma de una respuesta verbal, una acción, un gesto o un escrito. La opción B describe la paráfrasis, que es una herramienta de comprensión pero no la retroalimentación en sí misma. La opción C confunde retroalimentación con gestión del ruido, que es un proceso distinto. La opción D describe una función del canal, no de la retroalimentación."
+    },
+    {
+      q: "Un profesional que lee regularmente textos de su área (normas contables, informes de auditoría, jurisprudencia tributaria) desarrolla capacidades que van más allá del conocimiento técnico. ¿Cuál de las siguientes afirmaciones describe con mayor precisión uno de esos beneficios comunicacionales de la lectura?",
+      opts: [
+        "A) Amplía el vocabulario activo y desarrolla la capacidad de redactar con precisión, porque la lectura modela los patrones de escritura que el cerebro utiliza al producir textos.",
+        "B) Le permite memorizar definiciones con mayor facilidad, lo que reduce el tiempo de estudio en períodos de evaluación.",
+        "C) Lo hace más veloz al hablar, porque el cerebro reconoce más rápidamente las palabras que ya ha procesado al leer.",
+        "D) Mejora su capacidad matemática, porque los textos contables requieren razonamiento cuantitativo para ser comprendidos."
+      ],
+      correct: 0,
+      just: "La lectura actúa como modelo lingüístico: al leer textos bien construidos, el cerebro absorbe patrones de sintaxis, vocabulario y estructura que luego aplica al producir sus propios textos. Esto es lo que explica por qué los grandes escritores son también grandes lectores: no copian a quienes leen, sino que internalizan los patrones del buen lenguaje. En el contexto profesional, un contador que lee regularmente normas y documentos técnicos desarrolla la capacidad de redactar informes con precisión terminológica, coherencia estructural y corrección gramatical. La opción B confunde lectura con memorización mecánica. La opción C es una afirmación no sostenida por la teoría estudiada. La opción D introduce una relación que no es el objeto de este módulo."
+    },
+    {
+      q: "Un auditor identifica que su cliente firmó un contrato con una cláusula redactada así: 'El proveedor no está obligado a entregar los bienes en perfecto estado de conservación sin embargo el comprador acepta recibirlos.' ¿Qué problema presenta esta cláusula desde la perspectiva de la escritura profesional?",
+      opts: [
+        "A) Carece de puntuación que delimite las dos ideas, lo que genera ambigüedad jurídica: no queda claro si el proveedor no está obligado a nada o si la excepción es solo sobre el estado de conservación.",
+        "B) Usa el término 'sin embargo' de forma incorrecta, porque ese conector solo puede usarse al inicio de un párrafo nuevo.",
+        "C) El problema es de fondo, no de forma: el contenido de la cláusula es abusivo para el comprador independientemente de cómo esté redactado.",
+        "D) No hay ningún problema real, porque en el lenguaje jurídico es aceptado que las oraciones largas carezcan de puntuación interna."
+      ],
+      correct: 0,
+      just: "La ausencia de puntuación crea una ambigüedad que tiene consecuencias jurídicas. Con una coma o un punto después de 'conservación', la cláusula significaría que el proveedor no está obligado a entregar en perfecto estado, pero el comprador acepta igual. Sin esa puntuación, la cláusula puede leerse como que el proveedor no está obligado a nada 'en perfecto estado de conservación' —como si 'en perfecto estado de conservación' modificara la obligación en su totalidad—. Esta diferencia puede generar disputas legales. La opción B es incorrecta: 'sin embargo' puede usarse dentro de una oración si va correctamente puntuado. La opción C, aunque plantea un punto válido de fondo, no responde la pregunta sobre el problema de escritura. La opción D es completamente falsa: la precisión es fundamental en el lenguaje jurídico y contractual."
+    },
+    {
+      q: "¿Cuál de las siguientes situaciones representa la manifestación más clara de 'ruido psicológico' dentro del proceso de comunicación?",
+      opts: [
+        "A) Un empleado que llega a su evaluación de desempeño convencido de que su jefe ya decidió despedirlo, e interpreta cualquier comentario —incluso el positivo— como una confirmación de esa creencia.",
+        "B) Una reunión que se realiza en una sala con eco pronunciado, lo que hace difícil escuchar con claridad lo que se dice.",
+        "C) Un correo enviado con términos técnicos que el receptor no conoce, lo que impide la comprensión del mensaje.",
+        "D) Un orador que habla tan rápido que el receptor no puede tomar notas con suficiente velocidad."
+      ],
+      correct: 0,
+      just: "El ruido psicológico no proviene del entorno físico ni del código verbal: proviene del estado mental, emocional o cognitivo del receptor. En la opción A, el empleado tiene una creencia previa (va a ser despedido) que actúa como un filtro que distorsiona la interpretación de todos los mensajes que recibe. Incluso un elogio puede ser reinterpretado como 'me están preparando para el golpe'. Este tipo de ruido es especialmente peligroso porque el receptor no es consciente de él. La opción B describe ruido físico (ambiental). La opción C describe ruido semántico (de código). La opción D podría considerarse ruido fisiológico o de canal, pero no psicológico."
+    },
+    {
+      q: "Un grupo de estudiantes debatía sobre si es necesario usar lenguaje formal en los trabajos universitarios. Uno argumentó: 'Da igual cómo escribamos, lo importante es que la idea esté clara.' Otro respondió: 'La forma en que expresas una idea es parte del mensaje mismo.' Según los contenidos de esta semana, ¿cuál de los dos argumentos está mejor fundamentado?",
+      opts: [
+        "A) El segundo, porque la forma en que se presenta una idea —vocabulario, estructura, puntuación, registro— determina cómo el receptor la recibe, la evalúa y la toma en serio.",
+        "B) El primero, porque la comunicación es efectiva siempre que el receptor logre comprender la idea central, independientemente de la forma en que esté expresada.",
+        "C) Ambos tienen razón en partes iguales: el contenido es lo prioritario y la forma es un complemento deseable pero no esencial.",
+        "D) El segundo, pero solo en contextos estrictamente formales como una defensa de tesis; en trabajos regulares, la informalidad es aceptable."
+      ],
+      correct: 0,
+      just: "El estudio del proceso de comunicación demuestra que el mensaje no es solo el contenido: es el contenido más el código, el canal, el registro y la forma. Una misma idea expresada con vocabulario pobre, estructura deficiente y puntuación incorrecta genera una percepción de menor rigor intelectual, incluso si la idea de fondo es válida. En el contexto académico y profesional, la forma es parte de la competencia evaluada. La opción B asume que el receptor puede 'extraer' la idea correcta de cualquier envoltorio lingüístico, lo que no siempre ocurre. La opción C subestima el peso de la forma. La opción D limita injustificadamente el ámbito de aplicación de la corrección formal."
+    }
+  ];
+
+  let answered = new Array(questions.length).fill(false);
+  let scores = new Array(questions.length).fill(null);
+
+  function buildQuiz() {
+    const container = document.getElementById('quizContainer');
+    container.innerHTML = '';
+
+    const prog = document.createElement('div');
+    prog.className = 'quiz-progress';
+    prog.innerHTML = `
+      <div class="prog-bar-wrap"><div class="prog-bar" id="progBar" style="width:0%"></div></div>
+      <span class="prog-label" id="progLabel">0 / ${questions.length} respondidas</span>
+      <span class="score-badge" id="scoreBadge">Puntaje: 0</span>
+    `;
+    container.appendChild(prog);
+
+    questions.forEach((q, qi) => {
+      const card = document.createElement('div');
+      card.className = 'q-card';
+      card.id = 'qcard-' + qi;
+
+      const num = document.createElement('div');
+      num.className = 'q-number';
+      num.textContent = 'PREGUNTA ' + (qi + 1) + ' DE ' + questions.length;
+      card.appendChild(num);
+
+      const qtext = document.createElement('div');
+      qtext.className = 'q-text';
+      qtext.textContent = q.q;
+      card.appendChild(qtext);
+
+      const opts = document.createElement('div');
+      opts.className = 'options';
+      q.opts.forEach((opt, oi) => {
+        const btn = document.createElement('button');
+        btn.className = 'opt-btn';
+        btn.textContent = opt;
+        btn.addEventListener('click', () => handleAnswer(qi, oi, card, q));
+        opts.appendChild(btn);
+      });
+      card.appendChild(opts);
+
+      const just = document.createElement('div');
+      just.className = 'justification';
+      just.innerHTML = '<div class="just-label">¿POR QUÉ ESTA ES LA RESPUESTA CORRECTA?</div>' + q.just;
+      just.id = 'just-' + qi;
+      card.appendChild(just);
+
+      container.appendChild(card);
+    });
+  }
+
+  function handleAnswer(qi, oi, card, q) {
+    if (answered[qi]) return;
+    answered[qi] = true;
+    scores[qi] = oi === q.correct ? 1 : 0;
+
+    const btns = card.querySelectorAll('.opt-btn');
+    btns.forEach((b, i) => {
+      b.disabled = true;
+      if (i === q.correct) b.classList.add(oi === q.correct && i === oi ? 'correct' : 'reveal-correct');
+      if (i === oi && oi !== q.correct) b.classList.add('wrong');
+    });
+
+    document.getElementById('just-' + qi).classList.add('visible');
+    updateProgress();
+    checkComplete();
+  }
+
+  function updateProgress() {
+    const done = answered.filter(Boolean).length;
+    const score = scores.filter(s => s === 1).length;
+    const pct = Math.round((done / questions.length) * 100);
+    document.getElementById('progBar').style.width = pct + '%';
+    document.getElementById('progLabel').textContent = done + ' / ' + questions.length + ' respondidas';
+    document.getElementById('scoreBadge').textContent = 'Puntaje: ' + score;
+  }
+
+  function checkComplete() {
+    if (!answered.every(Boolean)) return;
+    const score = scores.filter(s => s === 1).length;
+    const pct = Math.round((score / questions.length) * 100);
+    let msg = '';
+    let label = '';
+    if (pct >= 90) { label = '¡Excelente desempeño!'; msg = 'Has demostrado una comprensión sólida de los contenidos de esta semana. La lectura, los signos de puntuación y el proceso de comunicación están bien asimilados. Sigue así.'; }
+    else if (pct >= 70) { label = 'Buen trabajo'; msg = 'Has comprendido la mayor parte de los contenidos. Revisa las preguntas que no respondiste correctamente y vuelve a los textos correspondientes para reforzar esos conceptos.'; }
+    else if (pct >= 50) { label = 'En progreso'; msg = 'Estás avanzando. Hay conceptos que necesitan más atención. Te recomendamos releer las secciones de Signos de Puntuación y Proceso de Comunicación antes de continuar.'; }
+    else { label = 'Refuerzo necesario'; msg = 'Los resultados indican que hay conceptos fundamentales que requieren mayor dedicación. No es motivo de desánimo: es una señal clara de por dónde enfocar el estudio. Regresa al material y vuelve a intentarlo.'; }
+
+    const box = document.getElementById('resultBox');
+    document.getElementById('resultScore').textContent = score + '/' + questions.length;
+    document.getElementById('resultLabel').textContent = label + ' — ' + pct + '%';
+    document.getElementById('resultMsg').textContent = msg;
+    box.classList.add('visible');
+    box.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  function resetQuiz() {
+    answered = new Array(questions.length).fill(false);
+    scores = new Array(questions.length).fill(null);
+    document.getElementById('resultBox').classList.remove('visible');
+    buildQuiz();
+    document.getElementById('quizContainer').scrollIntoView({ behavior: 'smooth' });
+  }
+
+  buildQuiz();
+</script>
