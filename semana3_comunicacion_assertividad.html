@@ -1,0 +1,1780 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Semana 3 | Lenguaje y Comunicación | Universidad de Guayaquil</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 16px;
+    line-height: 1.7;
+    background: #f0f4f8;
+    color: #1a1a2e;
+    min-height: 100vh;
+  }
+
+  /* HEADER */
+  .header {
+    background: #003366;
+    color: #fff;
+    padding: 18px 28px;
+  }
+  .header-top {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+  }
+  .header-logo {
+    width: 58px;
+    height: 58px;
+    background: #fff;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .header-logo svg { width: 40px; height: 40px; }
+  .header-info { flex: 1; }
+  .header-institution {
+    font-family: 'Lora', serif;
+    font-size: 13px;
+    letter-spacing: 0.5px;
+    opacity: 0.85;
+    text-transform: uppercase;
+  }
+  .header-title {
+    font-family: 'Lora', serif;
+    font-size: 22px;
+    font-weight: 700;
+    margin: 2px 0 4px;
+    line-height: 1.3;
+  }
+  .header-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-top: 6px;
+  }
+  .header-badge {
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 20px;
+    padding: 3px 12px;
+    font-size: 12.5px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+  }
+
+  /* NAV TABS */
+  .nav-wrapper {
+    background: #87CEEB;
+    overflow-x: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #003366 #87CEEB;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  }
+  .nav-wrapper::-webkit-scrollbar { height: 5px; }
+  .nav-wrapper::-webkit-scrollbar-track { background: #87CEEB; }
+  .nav-wrapper::-webkit-scrollbar-thumb { background: #003366; border-radius: 3px; }
+  .nav-tabs {
+    display: flex;
+    white-space: nowrap;
+    padding: 0 12px;
+    min-width: max-content;
+  }
+  .tab-btn {
+    padding: 12px 16px;
+    border: none;
+    background: transparent;
+    color: #1a1a2e;
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    border-bottom: 3px solid transparent;
+    transition: all 0.2s;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .tab-btn:hover { background: rgba(255,255,255,0.4); }
+  .tab-btn.active {
+    background: #fff;
+    color: #003366;
+    font-weight: 700;
+    border-bottom: 3px solid #003366;
+  }
+
+  /* CONTENT AREA */
+  .content-area {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 28px 20px 60px;
+  }
+  .tab-content { display: none; }
+  .tab-content.active { display: block; }
+
+  /* SECTION TITLES */
+  .section-title {
+    font-family: 'Lora', serif;
+    font-size: 24px;
+    font-weight: 700;
+    color: #003366;
+    margin-bottom: 6px;
+  }
+  .section-subtitle {
+    font-size: 15px;
+    color: #555;
+    margin-bottom: 22px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid #87CEEB;
+  }
+  h3.sub-heading {
+    font-family: 'Lora', serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: #003366;
+    margin: 24px 0 10px;
+  }
+  h4.mini-heading {
+    font-size: 15px;
+    font-weight: 700;
+    color: #003366;
+    margin: 18px 0 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  p { margin-bottom: 14px; }
+  p:last-child { margin-bottom: 0; }
+
+  /* BOXES */
+  .box-concept {
+    border-left: 5px solid #003366;
+    background: #f7faff;
+    padding: 16px 20px;
+    border-radius: 0 8px 8px 0;
+    margin: 18px 0;
+  }
+  .box-concept .box-label {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #003366;
+    margin-bottom: 6px;
+  }
+  .box-concept p { margin: 0; font-size: 15px; }
+
+  .box-example {
+    background: #ddeeff;
+    border: 1px solid #b0ccee;
+    border-radius: 8px;
+    padding: 16px 20px;
+    margin: 18px 0;
+  }
+  .box-example .box-label {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #003366;
+    margin-bottom: 8px;
+  }
+
+  .box-key {
+    background: linear-gradient(135deg, #003366 0%, #004488 100%);
+    color: #fff;
+    border-radius: 10px;
+    padding: 18px 22px;
+    margin: 22px 0;
+  }
+  .box-key .box-label {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    opacity: 0.75;
+    margin-bottom: 6px;
+  }
+  .box-key p { margin: 0; font-size: 15px; color: #fff; }
+
+  .box-warning {
+    border-left: 5px solid #e07b39;
+    background: #fff8f3;
+    border-radius: 0 8px 8px 0;
+    padding: 16px 20px;
+    margin: 18px 0;
+  }
+  .box-warning .box-label {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #c0541a;
+    margin-bottom: 6px;
+  }
+
+  /* COMPARISON TABLE */
+  .compare-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 18px 0;
+    font-size: 14.5px;
+  }
+  .compare-table th {
+    background: #003366;
+    color: #fff;
+    padding: 10px 14px;
+    text-align: left;
+    font-family: 'Source Sans 3', sans-serif;
+    font-weight: 600;
+  }
+  .compare-table th:first-child { border-radius: 8px 0 0 0; }
+  .compare-table th:last-child { border-radius: 0 8px 0 0; }
+  .compare-table td {
+    padding: 10px 14px;
+    border-bottom: 1px solid #dde6f3;
+    vertical-align: top;
+  }
+  .compare-table tr:nth-child(even) td { background: #f3f7ff; }
+  .compare-table td.col-bad { color: #b33000; }
+  .compare-table td.col-good { color: #1a6b2f; }
+
+  /* DIALOGUE CARDS */
+  .dialogue-pair {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin: 18px 0;
+  }
+  @media (max-width: 620px) { .dialogue-pair { grid-template-columns: 1fr; } }
+  .dialogue-card {
+    border-radius: 10px;
+    padding: 16px;
+    position: relative;
+  }
+  .dialogue-card.bad {
+    background: #fff0ee;
+    border: 1.5px solid #f4b0a0;
+  }
+  .dialogue-card.good {
+    background: #eefff4;
+    border: 1.5px solid #90d4aa;
+  }
+  .dialogue-tag {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    padding: 3px 10px;
+    border-radius: 20px;
+    margin-bottom: 10px;
+  }
+  .dialogue-tag.bad { background: #ffd0c4; color: #8b2a10; }
+  .dialogue-tag.good { background: #c4f0d4; color: #0e5c24; }
+  .dialogue-bubble {
+    background: #fff;
+    border-radius: 12px 12px 12px 3px;
+    padding: 10px 14px;
+    font-size: 14.5px;
+    font-style: italic;
+    margin: 8px 0;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  }
+  .dialogue-card.good .dialogue-bubble { border-radius: 12px 12px 3px 12px; }
+  .dialogue-explanation {
+    font-size: 13px;
+    color: #555;
+    margin-top: 10px;
+    line-height: 1.5;
+  }
+
+  /* INTERACTIVE EXERCISE */
+  .exercise-container { margin-top: 10px; }
+  .exercise-item {
+    background: #fff;
+    border: 1.5px solid #dde6f3;
+    border-radius: 10px;
+    padding: 18px;
+    margin-bottom: 16px;
+    transition: border-color 0.3s;
+  }
+  .exercise-item.correct { border-color: #2ecc71; background: #f0fff6; }
+  .exercise-item.incorrect { border-color: #e74c3c; background: #fff5f5; }
+  .exercise-question {
+    font-weight: 600;
+    font-size: 15px;
+    margin-bottom: 12px;
+    color: #1a1a2e;
+  }
+  .exercise-options { display: flex; flex-direction: column; gap: 8px; }
+  .exercise-option {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 10px 14px;
+    border: 1.5px solid #dde;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14.5px;
+    transition: all 0.2s;
+    background: #fafbff;
+  }
+  .exercise-option:hover { border-color: #003366; background: #eef4ff; }
+  .exercise-option input[type="radio"],
+  .exercise-option input[type="checkbox"] { margin-top: 3px; flex-shrink: 0; accent-color: #003366; }
+  .exercise-option.selected { border-color: #003366; background: #e8efff; }
+  .exercise-feedback {
+    margin-top: 12px;
+    padding: 10px 14px;
+    border-radius: 8px;
+    font-size: 14px;
+    display: none;
+    line-height: 1.5;
+  }
+  .exercise-feedback.correct { background: #e8fff2; color: #0c6b2a; border: 1px solid #90d4aa; }
+  .exercise-feedback.incorrect { background: #fff2f0; color: #8b1c0c; border: 1px solid #f4b0a0; }
+
+  /* QUIZ */
+  .quiz-item {
+    background: #fff;
+    border: 1.5px solid #dde6f3;
+    border-radius: 10px;
+    padding: 18px;
+    margin-bottom: 16px;
+  }
+  .quiz-item.correct { border-color: #2ecc71; background: #f0fff6; }
+  .quiz-item.incorrect { border-color: #e74c3c; background: #fff5f5; }
+  .quiz-badge {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    padding: 3px 10px;
+    border-radius: 20px;
+    margin-bottom: 10px;
+  }
+  .quiz-badge.teorica { background: #ddeeff; color: #003366; }
+  .quiz-badge.analisis { background: #fff0dd; color: #7a4200; }
+  .quiz-question { font-weight: 600; font-size: 15px; margin-bottom: 12px; }
+  .quiz-options { display: flex; flex-direction: column; gap: 8px; }
+  .quiz-option {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 10px 14px;
+    border: 1.5px solid #dde;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14.5px;
+    background: #fafbff;
+    transition: all 0.2s;
+  }
+  .quiz-option:hover { border-color: #003366; background: #eef4ff; }
+  .quiz-option.selected { border-color: #003366; background: #e8efff; }
+  .quiz-option input[type="radio"] { margin-top: 3px; flex-shrink: 0; accent-color: #003366; }
+
+  /* BUTTONS */
+  .btn-primary {
+    background: #003366;
+    color: #fff;
+    border: none;
+    padding: 12px 28px;
+    border-radius: 8px;
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+    margin-top: 16px;
+  }
+  .btn-primary:hover { background: #004488; }
+  .btn-secondary {
+    background: #fff;
+    color: #003366;
+    border: 2px solid #003366;
+    padding: 10px 24px;
+    border-radius: 8px;
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 12px;
+    margin-left: 12px;
+    transition: all 0.2s;
+  }
+  .btn-secondary:hover { background: #eef4ff; }
+
+  /* RESULTS */
+  .results-panel {
+    background: #fff;
+    border: 2px solid #003366;
+    border-radius: 12px;
+    padding: 24px;
+    margin-top: 20px;
+    display: none;
+  }
+  .results-panel.visible { display: block; }
+  .results-score {
+    font-family: 'Lora', serif;
+    font-size: 40px;
+    font-weight: 700;
+    color: #003366;
+    text-align: center;
+  }
+  .results-label { text-align: center; font-size: 15px; color: #555; margin-bottom: 16px; }
+  .progress-bar-wrapper {
+    background: #dde6f3;
+    border-radius: 100px;
+    height: 14px;
+    overflow: hidden;
+    margin: 10px 0 16px;
+  }
+  .progress-bar-fill {
+    height: 100%;
+    border-radius: 100px;
+    background: #003366;
+    transition: width 0.8s ease;
+  }
+  .results-message {
+    text-align: center;
+    font-size: 17px;
+    font-weight: 600;
+    padding: 12px;
+    border-radius: 8px;
+    margin-top: 10px;
+  }
+
+  /* REFLECTION */
+  .reflection-card {
+    background: #fff;
+    border: 1.5px solid #dde6f3;
+    border-radius: 10px;
+    padding: 18px 22px;
+    margin-bottom: 16px;
+  }
+  .reflection-number {
+    width: 32px;
+    height: 32px;
+    background: #003366;
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 14px;
+    float: left;
+    margin-right: 14px;
+    margin-top: 2px;
+    flex-shrink: 0;
+  }
+  .reflection-text { overflow: hidden; }
+  .reflection-question {
+    font-weight: 600;
+    font-size: 15.5px;
+    color: #003366;
+    margin-bottom: 8px;
+  }
+  .reflection-guide { font-size: 14px; color: #555; line-height: 1.6; }
+
+  /* AI ACTIVITY */
+  .ai-prompt-box {
+    background: #f0f0ff;
+    border: 1.5px solid #aab0ee;
+    border-radius: 10px;
+    padding: 18px 22px;
+    margin: 16px 0;
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 14px;
+    line-height: 1.7;
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
+  .ai-step {
+    display: flex;
+    gap: 14px;
+    margin-bottom: 16px;
+    align-items: flex-start;
+  }
+  .ai-step-num {
+    width: 30px;
+    height: 30px;
+    background: #003366;
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+  .ai-step-body { flex: 1; }
+
+  /* BIBLIOGRAPHY */
+  .bib-card {
+    background: #fff;
+    border: 1.5px solid #dde6f3;
+    border-left: 5px solid #003366;
+    border-radius: 0 10px 10px 0;
+    padding: 16px 20px;
+    margin-bottom: 14px;
+  }
+  .bib-author { font-weight: 700; font-size: 14px; color: #003366; }
+  .bib-year { font-size: 13px; color: #555; margin: 2px 0; }
+  .bib-title { font-style: italic; font-size: 14.5px; color: #1a1a2e; margin: 4px 0; }
+  .bib-source { font-size: 13px; color: #555; }
+  .bib-note {
+    background: #fffbe6;
+    border: 1px solid #e6cc66;
+    border-radius: 8px;
+    padding: 12px 16px;
+    font-size: 13.5px;
+    margin-top: 20px;
+    color: #5a4a00;
+  }
+
+  /* MISC */
+  .chip-list { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0; }
+  .chip {
+    background: #ddeeff;
+    color: #003366;
+    border-radius: 20px;
+    padding: 4px 14px;
+    font-size: 13px;
+    font-weight: 600;
+  }
+  .chip.orange { background: #fff0dd; color: #7a3500; }
+  .chip.red { background: #ffe8e8; color: #7a0000; }
+  .chip.green { background: #e8fff0; color: #005a1a; }
+
+  .info-alert {
+    background: #e8f0ff;
+    border: 1px solid #99b8ee;
+    border-radius: 8px;
+    padding: 12px 16px;
+    font-size: 14px;
+    color: #002255;
+    margin: 14px 0;
+  }
+
+  ul.styled-list { padding-left: 22px; margin: 10px 0 16px; }
+  ul.styled-list li { margin-bottom: 7px; font-size: 15px; }
+
+  .feedback-icon { font-size: 16px; margin-right: 6px; }
+  .result-icon { font-size: 36px; text-align: center; display: block; margin: 6px 0; }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-top">
+    <div class="header-logo">
+      <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="20" cy="20" r="18" fill="#003366"/>
+        <text x="20" y="27" text-anchor="middle" font-family="serif" font-size="18" font-weight="bold" fill="#87CEEB">UG</text>
+      </svg>
+    </div>
+    <div class="header-info">
+      <div class="header-institution">Universidad de Guayaquil · Facultad de Ciencias Administrativas · Contabilidad y Auditoría</div>
+      <div class="header-title">Lenguaje y Comunicación — Semana 3</div>
+      <div class="header-meta">
+        <span class="header-badge">Unidad: La Comunicación</span>
+        <span class="header-badge">Tema: Comunicación Asertiva y Formulismos</span>
+        <span class="header-badge">Semana 3</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- NAV -->
+<div class="nav-wrapper">
+  <div class="nav-tabs" id="navTabs">
+    <button class="tab-btn active" onclick="showTab('repaso')">📋 Repaso</button>
+    <button class="tab-btn" onclick="showTab('tema1')">1. Formulismos</button>
+    <button class="tab-btn" onclick="showTab('tema2')">2. Asertividad</button>
+    <button class="tab-btn" onclick="showTab('tema3')">3. Neurocomunicación</button>
+    <button class="tab-btn" onclick="showTab('tema4')">4. Autoestima y C.</button>
+    <button class="tab-btn" onclick="showTab('tema5')">5. Profesional</button>
+    <button class="tab-btn" onclick="showTab('ejercicio')">✏️ Ejercicio</button>
+    <button class="tab-btn" onclick="showTab('cuestionario')">📝 Cuestionario</button>
+    <button class="tab-btn" onclick="showTab('reflexion')">💭 Reflexión</button>
+    <button class="tab-btn" onclick="showTab('actividad_ia')">🤖 Actividad IA</button>
+    <button class="tab-btn" onclick="showTab('bibliografia')">📚 Bibliografía</button>
+  </div>
+</div>
+
+<!-- CONTENT AREA -->
+<div class="content-area">
+
+<!-- ==================== REPASO ==================== -->
+<div id="tab-repaso" class="tab-content active">
+  <div class="section-title">Repaso · Semanas 1 y 2</div>
+  <div class="section-subtitle">Lo que ya sabes y que sirve de base para esta semana</div>
+
+  <p>Durante las dos primeras semanas estudiamos los <strong>fundamentos del lenguaje y la comunicación</strong>. Comenzamos reconociendo que la comunicación no es simplemente "hablar y escuchar": es un proceso complejo en el que intervienen un emisor, un mensaje, un canal, un receptor, y, crucialmente, un código compartido. Si alguno de estos elementos falla, el mensaje se distorsiona o no llega.</p>
+
+  <div class="box-concept">
+    <div class="box-label">Concepto clave — Semana 1</div>
+    <p><strong>Tipos de comunicación:</strong> Verbal (oral y escrita), no verbal (gestos, postura, mirada, distancia física) y paraverbal (tono, ritmo, volumen, pausas). Descubrimos que el 93% del impacto de un mensaje proviene del componente no verbal y paraverbal, según los estudios de Albert Mehrabian.</p>
+  </div>
+
+  <p>En la <strong>Semana 2</strong> profundizamos en las <strong>barreras de la comunicación</strong>: físicas (ruido, distancia), semánticas (palabras ambiguas, jerga), psicológicas (prejuicios, estado emocional) y culturales (diferencias de valores y normas). También introdujimos el concepto de <strong>contexto comunicativo</strong>: el mismo mensaje puede significar cosas distintas según el lugar, el momento y la relación entre las personas.</p>
+
+  <div class="box-example">
+    <div class="box-label">Ejemplo de repaso — Contexto ecuatoriano</div>
+    <p>Un estudiante llega tarde a una reunión de trabajo en Guayaquil y dice: <em>"Disculpe el atraso, el tráfico en la Av. 9 de Octubre estaba horrible."</em> Aquí el <strong>canal</strong> es oral, el <strong>contexto</strong> es profesional, y la <strong>barrera</strong> fue física (el tráfico). Pero hay además una barrera psicológica: el estudiante llega con ansiedad y eso afecta la calidad de su comunicación posterior.</p>
+  </div>
+
+  <h3 class="sub-heading">¿Por qué esto importa ahora?</h3>
+  <p>Esta semana damos un salto cualitativo: pasamos de <em>describir</em> cómo funciona la comunicación a <em>evaluar</em> si nuestra manera cotidiana de comunicarnos es efectiva o está llena de hábitos que nos restan poder, claridad y autenticidad. Para hacerlo, necesitaremos entender qué son los <strong>formulismos</strong>, qué es la <strong>comunicación asertiva</strong>, y cómo el cerebro, la autoestima y la inteligencia emocional influyen en cada palabra que decimos.</p>
+
+  <div class="box-key">
+    <div class="box-label">Idea clave</div>
+    <p>Comunicarse bien no es sólo conocer la teoría: es revisar los hábitos del lenguaje que usamos todos los días, muchos de los cuales aprendimos sin darnos cuenta y que, sin saberlo, nos hacen parecer inseguros, evasivos o incluso pueden generar malentendidos graves.</p>
+  </div>
+</div>
+
+<!-- ==================== TEMA 1 ==================== -->
+<div id="tab-tema1" class="tab-content">
+  <div class="section-title">Tema 1 · Los formulismos del lenguaje cotidiano</div>
+  <div class="section-subtitle">Por qué las frases "de cortesía" pueden causar el efecto contrario</div>
+
+  <p>Un <strong>formulismo</strong> (también llamado <em>fórmula ritual</em> en lingüística) es una expresión fija, repetida por costumbre, cuya función en el momento de usarla ha perdido su significado original. Son frases hechas que decimos en "piloto automático" sin evaluar si realmente comunican lo que queremos.</p>
+
+  <div class="box-concept">
+    <div class="box-label">Definición técnica</div>
+    <p>Los formulismos son <strong>enunciados estereotipados</strong> que forman parte del repertorio lingüístico social. Funcionan como lubricante social cuando son apropiados, pero se convierten en barreras cuando contradicen el propósito real del hablante o generan interpretaciones negativas en el oyente.</p>
+  </div>
+
+  <h3 class="sub-heading">Categoría 1 — Formulismos de inicio que piden permiso para existir</h3>
+  <p>Existen frases de apertura de conversación que, en lugar de abrir un diálogo con confianza, lo inician con una disculpa implícita. El hablante, sin querer, comunica al otro: <em>"Mi presencia aquí ya es un problema"</em>.</p>
+
+  <div class="dialogue-pair">
+    <div class="dialogue-card bad">
+      <div class="dialogue-tag bad">❌ Formulismo problemático</div>
+      <div class="dialogue-bubble">"Disculpe que le moleste, profesora..."</div>
+      <div class="dialogue-bubble">"¿Me puede molestar un momento?"</div>
+      <div class="dialogue-bubble">"No sé si es el momento, pero..."</div>
+      <div class="dialogue-explanation"><strong>¿Por qué es problemático?</strong> Activa en el receptor la idea de que está siendo interrumpido o molestado. Si el receptor está ocupado, su cerebro inmediatamente genera resistencia. Además, el hablante se posiciona como una carga, no como alguien con un pedido legítimo.</div>
+    </div>
+    <div class="dialogue-card good">
+      <div class="dialogue-tag good">✔ Versión asertiva</div>
+      <div class="dialogue-bubble">"Buenos días, profesora. ¿Tiene un momento?"</div>
+      <div class="dialogue-bubble">"Hola, quería consultarle algo cuando pueda."</div>
+      <div class="dialogue-bubble">"Buenas tardes. Necesito su orientación."</div>
+      <div class="dialogue-explanation"><strong>¿Por qué funciona mejor?</strong> El saludo ubica al oyente en un tono positivo. La pregunta respetuosa ("¿tiene un momento?") deja al receptor en control sin hacerle sentir que está siendo agredido. El hablante se presenta con dignidad.</div>
+    </div>
+  </div>
+
+  <div class="box-warning">
+    <div class="box-label">⚠ Atención — El efecto en quien ocupa un cargo</div>
+    <p>Si una persona ocupada escucha <em>"disculpe que le moleste"</em>, su cerebro procesa literalmente: <em>"va a molestarme"</em>. La mente directiva puede generar en fracciones de segundo: <em>"si sabe que viene a molestar, ¿por qué viene?"</em>. No es una reacción de mala voluntad: es el efecto natural del lenguaje sobre el cerebro. Esto lo explicaremos con más profundidad en el Tema 3 (Neurocomunicación).</p>
+  </div>
+
+  <h3 class="sub-heading">Categoría 2 — Formulismos de cierre que minimizan el esfuerzo</h3>
+  <p>Al final de una conversación o al entregar un trabajo, muchas personas usan frases que, con la intención de mostrarse humildes, en realidad invalidan su propio aporte o el del otro.</p>
+
+  <div class="dialogue-pair">
+    <div class="dialogue-card bad">
+      <div class="dialogue-tag bad">❌ Formulismo problemático</div>
+      <div class="dialogue-bubble">"No fue nada, no se preocupe."</div>
+      <div class="dialogue-bubble">"¡De qué pues! No hice nada especial."</div>
+      <div class="dialogue-bubble">"Es solo un trabajito que hice rápido."</div>
+      <div class="dialogue-explanation"><strong>¿Por qué es problemático?</strong> Si alguien te agradece por algo y dices "no fue nada", le estás comunicando que lo que recibió era insignificante. La persona que agradeció ahora siente que su reconocimiento fue exagerado o innecesario. Hay una disminución mutua.</div>
+    </div>
+    <div class="dialogue-card good">
+      <div class="dialogue-tag good">✔ Versión asertiva</div>
+      <div class="dialogue-bubble">"Con gusto, fue un placer ayudarle."</div>
+      <div class="dialogue-bubble">"Me alegra que le haya servido."</div>
+      <div class="dialogue-bubble">"Gracias a usted por confiar en mi trabajo."</div>
+      <div class="dialogue-explanation"><strong>¿Por qué funciona mejor?</strong> Estas respuestas validan tanto el agradecimiento del otro como el esfuerzo propio. Se acepta el reconocimiento con elegancia, sin soberbia pero sin falsa modestia.</div>
+    </div>
+  </div>
+
+  <h3 class="sub-heading">Categoría 3 — El círculo del "lo que tú quieras"</h3>
+  <p>Un patrón muy común en relaciones familiares y de pareja es la evasión de la decisión propia para parecer complaciente. El resultado es que ninguna de las dos personas comunica realmente lo que quiere.</p>
+
+  <table class="compare-table">
+    <tr>
+      <th>Situación</th>
+      <th class="col-bad">Fórmula evasiva</th>
+      <th class="col-good">Versión asertiva</th>
+    </tr>
+    <tr>
+      <td>¿Dónde comemos?</td>
+      <td class="col-bad">"Lo que tú quieras."</td>
+      <td class="col-good">"Me antoja mariscos hoy. ¿Eso te parece?"</td>
+    </tr>
+    <tr>
+      <td>¿Qué película vemos?</td>
+      <td class="col-bad">"Da igual, tú elige."</td>
+      <td class="col-good">"Prefiero algo ligero esta noche. ¿Tú qué tienes ganas?"</td>
+    </tr>
+    <tr>
+      <td>¿A qué hora nos vemos?</td>
+      <td class="col-bad">"A la que tú puedas."</td>
+      <td class="col-good">"Puedo desde las 3. ¿Eso te viene bien?"</td>
+    </tr>
+    <tr>
+      <td>¿Qué quieres de regalo?</td>
+      <td class="col-bad">"No me regales nada, en serio."</td>
+      <td class="col-good">"Me encantaría un libro de comunicación o cualquier cosa que tú elijas."</td>
+    </tr>
+  </table>
+
+  <div class="box-example">
+    <div class="box-label">La solución que lo resuelve todo — Ejemplo cotidiano</div>
+    <p>Imagina esta escena familiar en Guayaquil, un domingo: "¿Qué comemos?" — "Lo que tú quieras." — "No, tú dime." — "Cualquier cosa." — "Bueno, hacemos seco de pollo." — "Ay, la verdad no me provoca pollo..."</p>
+    <p style="margin-top:10px;">El problema no es la falta de hambre: es la falta de permiso propio para expresar un deseo. La versión asertiva: <em>"¿Qué te gustaría? A mí cualquier comida compartida contigo sabe genial, pero hoy me vendría bien algo fresquito como un ceviche."</em> Esto expresa preferencia, deja espacio al otro, y avanza la conversación hacia una decisión real.</p>
+  </div>
+
+  <div class="box-key">
+    <div class="box-label">Idea clave del Tema 1</div>
+    <p>Los formulismos no son en sí mismos malos: el problema surge cuando reemplazan la comunicación real. Cuando digo "lo que tú quieras" creyendo que soy flexible, en realidad estoy delegando mi propia voz y creando una carga en el otro. Aprender a decir lo que realmente pienso, de manera respetuosa, no es egoísmo: es responsabilidad comunicativa.</p>
+  </div>
+</div>
+
+<!-- ==================== TEMA 2 ==================== -->
+<div id="tab-tema2" class="tab-content">
+  <div class="section-title">Tema 2 · Comunicación asertiva</div>
+  <div class="section-subtitle">La diferencia entre decir lo que se piensa y cómo se lo dice</div>
+
+  <div class="box-concept">
+    <div class="box-label">Definición precisa</div>
+    <p>La <strong>comunicación asertiva</strong> es la capacidad de expresar pensamientos, sentimientos, necesidades u opiniones propias de forma directa, honesta y respetuosa, sin agredir al otro ni someterse a él. Es el punto intermedio entre la agresividad (imponer) y la pasividad (ceder).</p>
+  </div>
+
+  <p>El término "asertividad" proviene del latín <em>asserere</em>, que significa "afirmar" o "declarar". En psicología, fue sistematizado por <strong>Andrew Salter</strong> (1949) y luego desarrollado por <strong>Joseph Wolpe</strong> y <strong>Arnold Lazarus</strong> en los años 60-70 como parte de la terapia conductual. Hoy es un concepto central en psicología de la comunicación, recursos humanos y educación.</p>
+
+  <h3 class="sub-heading">Los tres estilos de comunicación</h3>
+  <table class="compare-table">
+    <tr>
+      <th>Estilo</th>
+      <th>¿Qué hace?</th>
+      <th>Efecto en el otro</th>
+      <th>Resultado</th>
+    </tr>
+    <tr>
+      <td><strong>Pasivo</strong></td>
+      <td>Cede, evade, no expresa lo que quiere. Usa formulismos de disculpa y evasión.</td>
+      <td>Frustración, confusión, se convierte en el "decisor" de todo.</td>
+      <td>Relación desequilibrada. El pasivo acumula resentimiento.</td>
+    </tr>
+    <tr>
+      <td><strong>Agresivo</strong></td>
+      <td>Impone, critica, interrumpe. Usa lenguaje directo pero irrespetuoso.</td>
+      <td>Miedo, defensividad, cierre del diálogo.</td>
+      <td>Logra objetivos a corto plazo pero destruye relaciones.</td>
+    </tr>
+    <tr>
+      <td><strong>Asertivo</strong></td>
+      <td>Expresa con claridad y respeto. Escucha activamente. Negocia.</td>
+      <td>Respeto mutuo, apertura, diálogo genuino.</td>
+      <td>Relaciones sanas y comunicación efectiva.</td>
+    </tr>
+  </table>
+
+  <h3 class="sub-heading">¿La falsa cortesía es asertividad?</h3>
+  <p>No. La falsa cortesía —como decir "disculpe que le moleste"— es en realidad una forma de <strong>comunicación pasiva</strong>. La persona que la usa cree estar siendo educada, pero en realidad está:</p>
+  <ul class="styled-list">
+    <li>Posicionando su necesidad como algo inferior o no válido.</li>
+    <li>Creando una carga emocional en el receptor, que se siente implicado en algo incómodo antes de saber siquiera de qué se trata.</li>
+    <li>Reduciendo su propia credibilidad: si la persona misma no valora su pedido, ¿por qué lo haría el receptor?</li>
+  </ul>
+
+  <div class="box-example">
+    <div class="box-label">Ejemplo aplicado — Contexto universitario</div>
+    <p><strong>Situación:</strong> Un estudiante necesita que el docente le explique un ejercicio de auditoría que no entendió.</p>
+    <p style="margin-top:8px;"><strong>Pasivo:</strong> <em>"Profe, disculpe que le moleste, no sé si tiene tiempo, pero... es que no entendí el ejercicio... bueno, si puede..."</em></p>
+    <p style="margin-top:8px;"><strong>Agresivo:</strong> <em>"Profe, es que usted no explicó bien el ejercicio 3."</em></p>
+    <p style="margin-top:8px;"><strong>Asertivo:</strong> <em>"Buenas tardes, profe. Estuve revisando el ejercicio 3 y hay un paso que no me quedó claro sobre el registro contable. ¿Podría explicármelo cuando tenga un momento?"</em></p>
+    <p style="margin-top:8px;">La versión asertiva muestra que el estudiante ya hizo esfuerzo previo, identifica exactamente qué necesita, y pide de forma respetuosa sin invalidarse a sí mismo.</p>
+  </div>
+
+  <h3 class="sub-heading">Los formulismos como "corrupción suave" del lenguaje</h3>
+  <p>Existe un tipo de formulismo especialmente peligroso en contextos formales y profesionales: el que insinúa un beneficio indebido. En Ecuador y en muchos países de América Latina, frases como las siguientes han adquirido connotaciones que van más allá de su significado literal:</p>
+
+  <div class="box-warning">
+    <div class="box-label">⚠ Frases que abren la puerta a la corrupción — Análisis lingüístico</div>
+    <p><strong>"¿Cómo nos ayudamos?"</strong> — En el lenguaje coloquial ecuatoriano, esta frase puede significar: <em>"Yo te facilito algo (dinero, un favor) y tú agilitas mi trámite."</em> Aunque quien lo dice no siempre tenga esa intención, el oyente puede interpretarlo así, y eso ya es suficiente para generar un problema ético y legal.</p>
+    <p style="margin-top:10px;"><strong>"¿No hay manera de agilitar esto?"</strong> — Puede ser una pregunta legítima sobre plazos. O puede ser el primer movimiento en una negociación irregular. La ambigüedad es el problema.</p>
+    <p style="margin-top:10px;"><strong>"Hábleme, a ver qué podemos hacer."</strong> — Frase de apertura ambigua en trámites públicos. Puede ser cortés. O puede ser una invitación implícita a una propuesta indebida.</p>
+  </div>
+
+  <p>La solución no es sospechar de todo el mundo: es <strong>ser explícito</strong>. En lugar de frases ambiguas, la comunicación asertiva profesional usa:</p>
+
+  <div class="dialogue-pair">
+    <div class="dialogue-card bad">
+      <div class="dialogue-tag bad">❌ Ambiguo / riesgoso</div>
+      <div class="dialogue-bubble">"¿Cómo nos ayudamos para esto?"</div>
+      <div class="dialogue-bubble">"A ver qué se puede hacer..."</div>
+      <div class="dialogue-bubble">"¿No hay forma de moverlo más rápido?"</div>
+    </div>
+    <div class="dialogue-card good">
+      <div class="dialogue-tag good">✔ Claro y profesional</div>
+      <div class="dialogue-bubble">"¿Cuál es el proceso oficial y el plazo regular?"</div>
+      <div class="dialogue-bubble">"¿Qué documentos necesito para que esto avance?"</div>
+      <div class="dialogue-bubble">"¿Existe algún procedimiento de urgencia dentro de la normativa?"</div>
+    </div>
+  </div>
+
+  <div class="box-key">
+    <div class="box-label">Idea clave del Tema 2</div>
+    <p>Ser asertivo no es ser grosero ni directo hasta la rudeza. Es tener suficiente autoconfianza como para expresar lo que se necesita sin disfrazarlo de disculpa, y suficiente respeto por el otro como para no imponerlo. La asertividad protege relaciones, reputaciones y, en el ámbito profesional, también integridades.</p>
+  </div>
+</div>
+
+<!-- ==================== TEMA 3 ==================== -->
+<div id="tab-tema3" class="tab-content">
+  <div class="section-title">Tema 3 · Neurocomunicación</div>
+  <div class="section-subtitle">Cómo el cerebro procesa las palabras que elegimos</div>
+
+  <div class="box-concept">
+    <div class="box-label">Definición</div>
+    <p>La <strong>neurocomunicación</strong> (o neurolingüística aplicada a la comunicación) estudia cómo el cerebro humano recibe, procesa e interpreta los mensajes verbales y no verbales. Parte del principio de que el lenguaje no es neutro: cada palabra, tono y estructura gramatical activa circuitos específicos en el cerebro del receptor.</p>
+  </div>
+
+  <h3 class="sub-heading">Principio 1: El cerebro procesa literalmente primero</h3>
+  <p>Uno de los hallazgos más relevantes de la neurociencia cognitiva es que el cerebro, en una fracción de segundo, procesa el significado literal de las palabras <em>antes</em> de contextualizarlas. Esto explica un fenómeno clave: si dices "no pienses en un elefante rosa", lo primero que el cerebro hace es... pensar en un elefante rosa.</p>
+
+  <div class="box-example">
+    <div class="box-label">Aplicación directa — El formulismo y el cerebro</div>
+    <p>Cuando alguien dice <em>"Disculpe que le moleste"</em>, el cerebro del receptor procesa primero la palabra <strong>MOLESTAR</strong>. Activa el campo semántico: interrupción, incomodidad, carga, problema. Solo después procesa "disculpe". Pero ya el marco emocional está activado: el receptor está en estado de alerta (leve estrés) antes de saber de qué se trata el pedido.</p>
+    <p style="margin-top:10px;">En cambio, <em>"Buenos días, ¿tiene un momento?"</em> activa primero: saludo (seguridad), brevedad (control del tiempo). El receptor está en modo receptivo, no en modo defensa.</p>
+  </div>
+
+  <h3 class="sub-heading">Principio 2: El sistema límbico gobierna la primera impresión</h3>
+  <p>El <strong>sistema límbico</strong> es la parte del cerebro que gestiona las emociones y la memoria emocional. Responde más rápido que la corteza prefrontal (que es donde ocurre el razonamiento lógico). Esto significa que la primera impresión emocional de un mensaje ocurre antes de que podamos evaluarlo racionalmente.</p>
+  <p>Un tono de voz inseguro, una frase de disculpa innecesaria, o un formulismo de minimización activan el sistema límbico del receptor de forma negativa incluso antes de que este pueda pensar: "espera, esta persona tiene un pedido válido".</p>
+
+  <h3 class="sub-heading">Principio 3: La PNL y los marcos lingüísticos</h3>
+  <p>La <strong>Programación Neurolingüística</strong> (PNL) fue desarrollada por Richard Bandler y John Grinder en los años 70. Aunque tiene aspectos que la ciencia contemporánea ha matizado, su contribución al estudio del lenguaje es poderosa: propone que las palabras que elegimos crean <strong>marcos</strong> (frames) que condicionan cómo el otro ve la realidad.</p>
+
+  <table class="compare-table">
+    <tr>
+      <th>Marco negativo (limita)</th>
+      <th>Marco positivo o neutro (abre)</th>
+      <th>Efecto neurocomunicativo</th>
+    </tr>
+    <tr>
+      <td>"No es tan difícil como parece..."</td>
+      <td>"Esto tiene pasos claros, te los explico."</td>
+      <td>El primer marco activa "difícil" en el cerebro del receptor.</td>
+    </tr>
+    <tr>
+      <td>"No me hagas caso si te parece tonto..."</td>
+      <td>"Tengo una idea que me gustaría compartir."</td>
+      <td>El primer marco anticipa el rechazo antes de dar la idea.</td>
+    </tr>
+    <tr>
+      <td>"No fue nada, en serio."</td>
+      <td>"Fue un placer, cuente con esto cuando necesite."</td>
+      <td>El primer marco invalida el vínculo creado; el segundo lo refuerza.</td>
+    </tr>
+    <tr>
+      <td>"Es solo un trabajito..."</td>
+      <td>"Aquí está el informe que me pidió."</td>
+      <td>El diminutivo "trabajito" minimiza el valor antes de entregarlo.</td>
+    </tr>
+  </table>
+
+  <h3 class="sub-heading">El efecto del lenguaje en el cerebro del hablante</h3>
+  <p>La neurocomunicación no solo estudia al receptor: también al emisor. Cuando una persona usa repetidamente frases que minimizan su valor ("disculpe que le moleste", "no sé si sirve de algo, pero..."), está <strong>reforzando en su propio cerebro</strong> la creencia de que su presencia, sus ideas y sus necesidades son una carga para los demás. Este es un ciclo que, con el tiempo, erosiona la autoestima y la confianza comunicativa.</p>
+
+  <div class="box-key">
+    <div class="box-label">Idea clave del Tema 3</div>
+    <p>Las palabras que elegimos no describen la realidad: la construyen. Tanto en el cerebro del receptor (que reacciona emocionalmente antes de razonar) como en el cerebro del propio hablante (que se programa con sus propias palabras). Cambiar el vocabulario habitual es, literalmente, cambiar la arquitectura mental propia y la percepción que los demás tienen de uno.</p>
+  </div>
+</div>
+
+<!-- ==================== TEMA 4 ==================== -->
+<div id="tab-tema4" class="tab-content">
+  <div class="section-title">Tema 4 · Autoestima e Inteligencia Emocional en la comunicación</div>
+  <div class="section-subtitle">El vínculo entre cómo me veo a mí mismo y cómo me comunico</div>
+
+  <div class="box-concept">
+    <div class="box-label">¿Qué es la autoestima comunicativa?</div>
+    <p>La <strong>autoestima</strong> es la valoración que una persona hace de sí misma: de sus capacidades, su valor como ser humano y su derecho a ocupar espacio en el mundo. En comunicación, la autoestima se manifiesta directamente en la elección de palabras: una persona con alta autoestima sana expresa sus necesidades sin disculparse por existir; una persona con autoestima baja tiende a minimizarse, pedir permiso para hablar o disculparse innecesariamente.</p>
+  </div>
+
+  <h3 class="sub-heading">La autoestima y los formulismos: la conexión oculta</h3>
+  <p>Cuando una persona dice repetidamente "disculpe que le moleste", no solo está usando un formulismo aprendido: en muchos casos está expresando una creencia profunda: <em>"No merezco ocupar el tiempo de esta persona"</em> o <em>"Mi necesidad es menos importante que la de otros"</em>. Esta creencia se llama en psicología <strong>guion limitante</strong>.</p>
+
+  <div class="box-example">
+    <div class="box-label">Ejemplo — El estudiante que pide disculpas por preguntar</div>
+    <p>Un estudiante de Contabilidad llega donde su docente y dice: <em>"Profe, disculpe que le moleste, sé que está ocupado, yo sé que el tema es básico y no debería tener esta duda, pero..."</em>. Antes de formular su pregunta, ya se ha minimizado tres veces. Esto revela no una falta de conocimiento contable, sino un patrón de baja autoestima comunicativa que, en el mundo profesional de la auditoría, puede interpretarse como falta de seguridad técnica.</p>
+  </div>
+
+  <h3 class="sub-heading">Inteligencia Emocional (IE) aplicada a la comunicación</h3>
+  <p>El concepto de <strong>Inteligencia Emocional</strong> fue popularizado por Daniel Goleman (1995), quien la define como la capacidad de reconocer, entender y gestionar las propias emociones, y la capacidad de reconocer y responder apropiadamente a las emociones de los demás. En comunicación, la IE se traduce en cuatro habilidades clave:</p>
+
+  <table class="compare-table">
+    <tr>
+      <th>Habilidad IE</th>
+      <th>En el lenguaje cotidiano se ve como...</th>
+      <th>Cuando falla...</th>
+    </tr>
+    <tr>
+      <td><strong>Autoconciencia emocional</strong></td>
+      <td>"Estoy nervioso por esta reunión y lo reconozco."</td>
+      <td>El nerviosismo sale como agresividad o como exceso de disculpas.</td>
+    </tr>
+    <tr>
+      <td><strong>Autorregulación</strong></td>
+      <td>"Antes de responder este correo, espero calmarme."</td>
+      <td>Se envían mensajes impulsivos que luego hay que remediar.</td>
+    </tr>
+    <tr>
+      <td><strong>Empatía</strong></td>
+      <td>"Detecto que la otra persona está ocupada, ajusto mi mensaje."</td>
+      <td>Se hace el pedido sin leer el contexto del otro; o se evita el pedido por miedo.</td>
+    </tr>
+    <tr>
+      <td><strong>Habilidades sociales</strong></td>
+      <td>"Sé cuándo hablar, cuándo escuchar, cómo entrar en un diálogo."</td>
+      <td>Se interrumpe, se evade, o se usan formulismos que distancian.</td>
+    </tr>
+  </table>
+
+  <h3 class="sub-heading">La IE en el proceso de comunicación — Modelo circular</h3>
+  <p>El proceso de comunicación no es lineal (emisor → receptor): es circular. La IE nos permite gestionar ese ciclo conscientemente: antes de hablar, mientras hablo, y después de haber hablado. Una persona con alta IE no solo evalúa su mensaje: también observa la reacción del otro y ajusta en tiempo real.</p>
+
+  <div class="box-example">
+    <div class="box-label">Ejemplo profesional — Contexto de Auditoría en Ecuador</div>
+    <p><strong>Situación:</strong> Un auditor junior debe comunicarle a un cliente que encontró inconsistencias en su contabilidad.</p>
+    <p style="margin-top:8px;"><strong>Sin IE:</strong> <em>"Encontré varios errores graves en sus registros."</em> — Activa defensividad inmediata en el cliente.</p>
+    <p style="margin-top:8px;"><strong>Con IE y asertividad:</strong> <em>"Al revisar los registros del período, identifiqué algunas discrepancias que necesitamos analizar juntos. Le propongo revisarlas en detalle para determinar su origen y definir el ajuste correspondiente."</em> — Comunica el mismo hallazgo, pero en un marco colaborativo que reduce la defensividad y facilita la solución.</p>
+    <p style="margin-top:8px;">La diferencia no es evasión ni suavizamiento del problema: es <strong>inteligencia emocional aplicada a la comunicación profesional</strong>.</p>
+  </div>
+
+  <div class="box-key">
+    <div class="box-label">Idea clave del Tema 4</div>
+    <p>La autoestima sana no es arrogancia: es el convencimiento interno de que tengo derecho a hablar, a preguntar, a necesitar y a aportar. La inteligencia emocional no es debilidad: es la capacidad de leer el contexto emocional para comunicarse de forma más efectiva. Ambas juntas producen un comunicador que ni se minimiza ni agrede: expresa, escucha, ajusta y construye.</p>
+  </div>
+</div>
+
+<!-- ==================== TEMA 5 ==================== -->
+<div id="tab-tema5" class="tab-content">
+  <div class="section-title">Tema 5 · Comunicación en el ámbito profesional del Contador y Auditor</div>
+  <div class="section-subtitle">Cuando las palabras tienen peso legal, ético y financiero</div>
+
+  <p>La formación en Contabilidad y Auditoría es técnicamente exigente. Sin embargo, en la práctica profesional cotidiana, los errores más costosos no siempre provienen de un cálculo incorrecto: frecuentemente surgen de una comunicación deficiente. Un informe mal redactado, una instrucción ambigua o una conversación con lenguaje evasivo pueden derivar en problemas legales, pérdidas económicas o daño reputacional.</p>
+
+  <h3 class="sub-heading">Situaciones críticas de comunicación en Contabilidad y Auditoría</h3>
+
+  <div class="dialogue-pair">
+    <div class="dialogue-card bad">
+      <div class="dialogue-tag bad">❌ Comunicación débil</div>
+      <div class="dialogue-bubble">"Le hice el balance, no sé si estará bien, era complicado..."</div>
+      <div class="dialogue-explanation">Minimiza el trabajo, genera desconfianza en el cliente antes de que vea el documento. El profesional parece inseguro de su propio trabajo.</div>
+    </div>
+    <div class="dialogue-card good">
+      <div class="dialogue-tag good">✔ Comunicación asertiva</div>
+      <div class="dialogue-bubble">"Aquí tiene el balance del período. He revisado todos los rubros y está cuadrado. Si quiere revisamos juntos algún punto."</div>
+      <div class="dialogue-explanation">Presenta el trabajo con seguridad, invita a la revisión conjunta (IE), y transmite competencia profesional.</div>
+    </div>
+  </div>
+
+  <div class="dialogue-pair">
+    <div class="dialogue-card bad">
+      <div class="dialogue-tag bad">❌ Comunicación ambigua</div>
+      <div class="dialogue-bubble">"Hay algunas cositas en la contabilidad que habrá que ver..."</div>
+      <div class="dialogue-explanation">El diminutivo "cositas" y el verbo impersonal "habrá que ver" evitan la responsabilidad directa. No comunica el problema ni quién debe resolverlo.</div>
+    </div>
+    <div class="dialogue-card good">
+      <div class="dialogue-tag good">✔ Comunicación precisa</div>
+      <div class="dialogue-bubble">"Encontré tres inconsistencias en los registros de agosto. Necesito que el departamento de ventas me proporcione los comprobantes faltantes antes del viernes."</div>
+      <div class="dialogue-explanation">Identifica el problema, lo cuantifica, ubica la responsabilidad y establece un plazo. Esto es comunicación profesional.</div>
+    </div>
+  </div>
+
+  <h3 class="sub-heading">Comunicación escrita profesional — Errores comunes</h3>
+  <table class="compare-table">
+    <tr>
+      <th>Error frecuente en correos y memorandos</th>
+      <th>Versión correcta</th>
+    </tr>
+    <tr>
+      <td>"Le escribo para molestarle con lo siguiente..."</td>
+      <td>"Me dirijo a usted para solicitarle..."</td>
+    </tr>
+    <tr>
+      <td>"Si no es mucha molestia, ¿podría enviarnos...?"</td>
+      <td>"Le solicito que nos envíe... a más tardar el..."</td>
+    </tr>
+    <tr>
+      <td>"No sé si esto será lo que necesita, pero aquí va..."</td>
+      <td>"Adjunto el informe solicitado con los datos del período."</td>
+    </tr>
+    <tr>
+      <td>"No es muy urgente, pero cuando pueda vea esto..."</td>
+      <td>"Este documento requiere su revisión antes del [fecha]."</td>
+    </tr>
+    <tr>
+      <td>"Espero no haberme equivocado en nada..."</td>
+      <td>"Quedo atento a sus observaciones."</td>
+    </tr>
+  </table>
+
+  <h3 class="sub-heading">La comunicación y la ética profesional del contador</h3>
+  <p>El Código de Ética del Contador Público, en línea con los estándares de IFAC (Federación Internacional de Contadores), establece principios como <strong>integridad</strong>, <strong>objetividad</strong> y <strong>comportamiento profesional</strong>. Estos principios no son solo técnicos: se expresan en el lenguaje cotidiano.</p>
+
+  <div class="box-warning">
+    <div class="box-label">⚠ Caso real de riesgo comunicativo — Ecuador</div>
+    <p>Un contador que dice a su cliente: <em>"Mire, podemos manejar esto de una forma más... flexible"</em>, sin especificar qué significa "flexible", ha abierto la puerta a una interpretación que puede ir desde una solución contable legítima hasta un acuerdo irregular. La ambigüedad intencional es, en sí misma, una forma de deshonestidad comunicativa.</p>
+    <p style="margin-top:10px;">La comunicación ética del contador es <strong>clara, verificable y documentable</strong>. Cualquier acuerdo, instrucción o hallazgo debe poder leerse y entenderse sin ambigüedad.</p>
+  </div>
+
+  <div class="box-example">
+    <div class="box-label">Escenario de auditoría — Comunicación asertiva con cliente</div>
+    <p><strong>El cliente dice:</strong> "¿Cómo podemos hacer para que esto quede bien en el informe?"</p>
+    <p style="margin-top:8px;"><strong>Respuesta pasiva (peligrosa):</strong> "Bueno, a ver, algo se puede hacer..." — Abre una puerta sin saber a dónde conduce.</p>
+    <p style="margin-top:8px;"><strong>Respuesta agresiva:</strong> "Eso es pedir que falsifique el informe." — Cierra el diálogo innecesariamente y puede dañar la relación.</p>
+    <p style="margin-top:8px;"><strong>Respuesta asertiva:</strong> "El informe debe reflejar exactamente lo que encontramos. Lo que sí puedo hacer es explicarle cada hallazgo con claridad para que podamos identificar cuáles son subsanables antes del cierre del período." — Mantiene la ética, preserva la relación y mueve hacia una solución real.</p>
+  </div>
+
+  <div class="box-key">
+    <div class="box-label">Idea clave del Tema 5</div>
+    <p>En la carrera de Contabilidad y Auditoría, la comunicación no es una materia de relleno: es una competencia profesional esencial. Un contador que comunica con precisión, asertividad y ética no solo entrega mejores informes: construye relaciones de confianza, protege su integridad y la de su cliente, y ejerce su profesión con plena responsabilidad.</p>
+  </div>
+</div>
+
+<!-- ==================== EJERCICIO ==================== -->
+<div id="tab-ejercicio" class="tab-content">
+  <div class="section-title">Ejercicio Interactivo</div>
+  <div class="section-subtitle">Elige la versión correcta — Lee primero, responde después, verifica al final</div>
+
+  <div class="info-alert">
+    <strong>Instrucciones:</strong> Lee cada situación y selecciona la opción que representa la comunicación más asertiva y apropiada según lo estudiado en esta semana. Responde <strong>todas las preguntas</strong> antes de presionar "Verificar respuestas".
+  </div>
+
+  <div class="exercise-container" id="exerciseContainer">
+
+    <!-- Item 1 -->
+    <div class="exercise-item" id="ex-item-0">
+      <div class="exercise-question">1. Un estudiante necesita consultar una duda al docente. ¿Cuál es la forma más asertiva de iniciar la conversación?</div>
+      <div class="exercise-options">
+        <label class="exercise-option" onclick="selectExOption(this, 0, 0)">
+          <input type="radio" name="ex0" value="0"> "Disculpe que le moleste, profe, sé que tiene cosas importantes..."
+        </label>
+        <label class="exercise-option" onclick="selectExOption(this, 0, 1)">
+          <input type="radio" name="ex0" value="1"> "Buenos días, profe. ¿Tiene un momento? Tengo una duda sobre el ejercicio 3."
+        </label>
+        <label class="exercise-option" onclick="selectExOption(this, 0, 2)">
+          <input type="radio" name="ex0" value="2"> "Oiga, ¿por qué no explicó bien el ejercicio?"
+        </label>
+        <label class="exercise-option" onclick="selectExOption(this, 0, 3)">
+          <input type="radio" name="ex0" value="3"> "No sé si es el momento, pero tenía una preguntita..."
+        </label>
+      </div>
+      <div class="exercise-feedback" id="ex-feedback-0"></div>
+    </div>
+
+    <!-- Item 2 -->
+    <div class="exercise-item" id="ex-item-1">
+      <div class="exercise-question">2. Un cliente agradece al contador por haber entregado el balance a tiempo. El contador responde:</div>
+      <div class="exercise-options">
+        <label class="exercise-option" onclick="selectExOption(this, 1, 0)">
+          <input type="radio" name="ex1" value="0"> "¡De qué pues! No hice nada especial."
+        </label>
+        <label class="exercise-option" onclick="selectExOption(this, 1, 1)">
+          <input type="radio" name="ex1" value="1"> "Con gusto, es parte de mi trabajo y me alegra que llegara a tiempo."
+        </label>
+        <label class="exercise-option" onclick="selectExOption(this, 1, 2)">
+          <input type="radio" name="ex1" value="2"> "No fue nada, era algo muy sencillo."
+        </label>
+        <label class="exercise-option" onclick="selectExOption(this, 1, 3)">
+          <input type="radio" name="ex1" value="3"> "Era lo mínimo que podía hacer."
+        </label>
+      </div>
+      <div class="exercise-feedback" id="ex-feedback-1"></div>
+    </div>
+
+    <!-- Item 3 -->
+    <div class="exercise-item" id="ex-item-2">
+      <div class="exercise-question">3. Una pareja no puede decidir qué comer. Uno pregunta "¿qué comemos?" y el otro responde siempre "lo que tú quieras". Según lo estudiado, ¿cuál es la causa raíz de este patrón?</div>
+      <div class="exercise-options">
+        <label class="exercise-option" onclick="selectExOption(this, 2, 0)">
+          <input type="radio" name="ex2" value="0"> Falta de hambre real.</label>
+        <label class="exercise-option" onclick="selectExOption(this, 2, 1)">
+          <input type="radio" name="ex2" value="1"> Un estilo de comunicación pasivo que evita expresar las propias preferencias.</label>
+        <label class="exercise-option" onclick="selectExOption(this, 2, 2)">
+          <input type="radio" name="ex2" value="2"> Un estilo de comunicación agresivo.</label>
+        <label class="exercise-option" onclick="selectExOption(this, 2, 3)">
+          <input type="radio" name="ex2" value="3"> Una barrera física de comunicación.</label>
+      </div>
+      <div class="exercise-feedback" id="ex-feedback-2"></div>
+    </div>
+
+    <!-- Item 4 -->
+    <div class="exercise-item" id="ex-item-3">
+      <div class="exercise-question">4. Un auditor encuentra inconsistencias en los registros de un cliente. ¿Cuál es la forma más asertiva y ética de comunicarlo?</div>
+      <div class="exercise-options">
+        <label class="exercise-option" onclick="selectExOption(this, 3, 0)">
+          <input type="radio" name="ex3" value="0"> "Hay unas cositas en la contabilidad que habrá que ver..."</label>
+        <label class="exercise-option" onclick="selectExOption(this, 3, 1)">
+          <input type="radio" name="ex3" value="1"> "Su contabilidad tiene errores graves que demuestran descuido."</label>
+        <label class="exercise-option" onclick="selectExOption(this, 3, 2)">
+          <input type="radio" name="ex3" value="2"> "Identifiqué tres inconsistencias en agosto. Necesito los comprobantes faltantes para antes del viernes."</label>
+        <label class="exercise-option" onclick="selectExOption(this, 3, 3)">
+          <input type="radio" name="ex3" value="3"> "Disculpe que le diga esto, pero creo que hay algunos errorcitos..."</label>
+      </div>
+      <div class="exercise-feedback" id="ex-feedback-3"></div>
+    </div>
+
+    <!-- Item 5 -->
+    <div class="exercise-item" id="ex-item-4">
+      <div class="exercise-question">5. La frase "¿Cómo nos ayudamos?" en un contexto de trámites públicos en Ecuador es problemática principalmente porque:</div>
+      <div class="exercise-options">
+        <label class="exercise-option" onclick="selectExOption(this, 4, 0)">
+          <input type="radio" name="ex4" value="0"> Es gramaticalmente incorrecta.</label>
+        <label class="exercise-option" onclick="selectExOption(this, 4, 1)">
+          <input type="radio" name="ex4" value="1"> Su ambigüedad puede interpretarse como una insinuación de pago indebido, aunque no sea la intención.</label>
+        <label class="exercise-option" onclick="selectExOption(this, 4, 2)">
+          <input type="radio" name="ex4" value="2"> Es demasiado directa y agresiva.</label>
+        <label class="exercise-option" onclick="selectExOption(this, 4, 3)">
+          <input type="radio" name="ex4" value="3"> Pertenece a un formulismo de cierre, no de apertura.</label>
+      </div>
+      <div class="exercise-feedback" id="ex-feedback-4"></div>
+    </div>
+
+    <!-- Item 6 -->
+    <div class="exercise-item" id="ex-item-5">
+      <div class="exercise-question">6. Según la neurocomunicación, cuando alguien dice "no pienses en un error", el cerebro del receptor:</div>
+      <div class="exercise-options">
+        <label class="exercise-option" onclick="selectExOption(this, 5, 0)">
+          <input type="radio" name="ex5" value="0"> Ignora completamente la palabra "error".</label>
+        <label class="exercise-option" onclick="selectExOption(this, 5, 1)">
+          <input type="radio" name="ex5" value="1"> Procesa primero el "no" y bloquea el concepto siguiente.</label>
+        <label class="exercise-option" onclick="selectExOption(this, 5, 2)">
+          <input type="radio" name="ex5" value="2"> Procesa primero la palabra "error" antes de contextualizar la negación.</label>
+        <label class="exercise-option" onclick="selectExOption(this, 5, 3)">
+          <input type="radio" name="ex5" value="3"> Solo procesa el tono de voz, no las palabras.</label>
+      </div>
+      <div class="exercise-feedback" id="ex-feedback-5"></div>
+    </div>
+
+    <!-- Item 7 -->
+    <div class="exercise-item" id="ex-item-6">
+      <div class="exercise-question">7. Un contador envía el informe por correo con el texto: "No sé si esto será lo que necesita, pero aquí va..." ¿Qué problema comunicativo refleja esta frase?</div>
+      <div class="exercise-options">
+        <label class="exercise-option" onclick="selectExOption(this, 6, 0)">
+          <input type="radio" name="ex6" value="0"> Es un estilo de comunicación agresivo.</label>
+        <label class="exercise-option" onclick="selectExOption(this, 6, 1)">
+          <input type="radio" name="ex6" value="1"> Es un formulismo de minimización que resta confianza al trabajo profesional entregado.</label>
+        <label class="exercise-option" onclick="selectExOption(this, 6, 2)">
+          <input type="radio" name="ex6" value="2"> Es una barrera semántica por uso de términos técnicos.</label>
+        <label class="exercise-option" onclick="selectExOption(this, 6, 3)">
+          <input type="radio" name="ex6" value="3"> No hay ningún problema; es una forma normal de redactar.</label>
+      </div>
+      <div class="exercise-feedback" id="ex-feedback-6"></div>
+    </div>
+
+    <!-- Item 8 -->
+    <div class="exercise-item" id="ex-item-7">
+      <div class="exercise-question">8. ¿Cuál de las siguientes es una respuesta que demuestra Inteligencia Emocional ante el hallazgo de un error contable?</div>
+      <div class="exercise-options">
+        <label class="exercise-option" onclick="selectExOption(this, 7, 0)">
+          <input type="radio" name="ex7" value="0"> "Hay un error grave. Esto es inaceptable."</label>
+        <label class="exercise-option" onclick="selectExOption(this, 7, 1)">
+          <input type="radio" name="ex7" value="1"> "Al revisar el período encontré una discrepancia. Revisemos juntos su origen para determinar el ajuste correcto."</label>
+        <label class="exercise-option" onclick="selectExOption(this, 7, 2)">
+          <input type="radio" name="ex7" value="2"> "Bueno, no es tan grave, no se preocupe..."</label>
+        <label class="exercise-option" onclick="selectExOption(this, 7, 3)">
+          <input type="radio" name="ex7" value="3"> "Habrá que ver lo que se puede hacer con esto..."</label>
+      </div>
+      <div class="exercise-feedback" id="ex-feedback-7"></div>
+    </div>
+
+  </div>
+
+  <div style="display:flex; align-items:center; flex-wrap:wrap; gap:8px; margin-top:8px;">
+    <button class="btn-primary" onclick="verifyExercise()">Verificar respuestas</button>
+    <button class="btn-secondary" onclick="resetExercise()">Reiniciar</button>
+  </div>
+
+  <div class="results-panel" id="exerciseResults">
+    <div class="result-icon" id="exResultIcon"></div>
+    <div class="results-score" id="exScore"></div>
+    <div class="results-label" id="exLabel"></div>
+    <div class="progress-bar-wrapper">
+      <div class="progress-bar-fill" id="exProgressBar" style="width:0%"></div>
+    </div>
+    <div class="results-message" id="exMessage"></div>
+  </div>
+</div>
+
+<!-- ==================== CUESTIONARIO ==================== -->
+<div id="tab-cuestionario" class="tab-content">
+  <div class="section-title">Cuestionario</div>
+  <div class="section-subtitle">10 preguntas · Selecciona todas tus respuestas y luego presiona Verificar</div>
+
+  <div class="info-alert">
+    <strong>Instrucciones:</strong> Responde las 10 preguntas. Las preguntas marcadas con <span class="quiz-badge teorica">Teórica</span> se basan en el contenido de esta semana. Las de <span class="quiz-badge analisis">Análisis</span> requieren razonamiento propio. Verifica al final.
+  </div>
+
+  <div id="quizContainer">
+
+    <!-- Q1 -->
+    <div class="quiz-item" id="q-0">
+      <div class="quiz-badge teorica">Teórica</div>
+      <div class="quiz-question">1. ¿Cómo se denomina en lingüística a las expresiones fijas y repetidas por costumbre cuyo significado original se ha perdido?</div>
+      <div class="quiz-options">
+        <label class="quiz-option" onclick="selectQuizOption(this, 0, 0)"><input type="radio" name="q0" value="0"> Actos de habla</label>
+        <label class="quiz-option" onclick="selectQuizOption(this, 0, 1)"><input type="radio" name="q0" value="1"> Formulismos o fórmulas rituales</label>
+        <label class="quiz-option" onclick="selectQuizOption(this, 0, 2)"><input type="radio" name="q0" value="2"> Metáforas conceptuales</label>
+        <label class="quiz-option" onclick="selectQuizOption(this, 0, 3)"><input type="radio" name="q0" value="3"> Deixis</label>
+      </div>
+      <div class="exercise-feedback" id="q-feedback-0"></div>
+    </div>
+
+    <!-- Q2 -->
+    <div class="quiz-item" id="q-1">
+      <div class="quiz-badge teorica">Teórica</div>
+      <div class="quiz-question">2. La comunicación asertiva se define como la capacidad de expresar ideas, necesidades u opiniones de forma:</div>
+      <div class="quiz-options">
+        <label class="quiz-option" onclick="selectQuizOption(this, 1, 0)"><input type="radio" name="q1" value="0"> Indirecta y suavizada para no ofender</label>
+        <label class="quiz-option" onclick="selectQuizOption(this, 1, 1)"><input type="radio" name="q1" value="1"> Directa, honesta y respetuosa, sin agredir ni someterse</label>
+        <label class="quiz-option" onclick="selectQuizOption(this, 1, 2)"><input type="radio" name="q1" value="2"> Impositiva para lograr los propios objetivos</label>
+        <label class="quiz-option" onclick="selectQuizOption(this, 1, 3)"><input type="radio" name="q1" value="3"> Pasiva para evitar conflictos en todo momento</label>
+      </div>
+      <div class="exercise-feedback" id="q-feedback-1"></div>
+    </div>
+
+    <!-- Q3 -->
+    <div class="quiz-item" id="q-2">
+      <div class="quiz-badge teorica">Teórica</div>
+      <div class="quiz-question">3. ¿Cuál de las siguientes es una característica del estilo de comunicación PASIVO?</div>
+      <div class="quiz-options">
+        <label class="quiz-option" onclick="selectQuizOption(this, 2, 0)"><input type="radio" name="q2" value="0"> Expresa lo que piensa con claridad y respeto</label>
+        <label class="quiz-option" onclick="selectQuizOption(this, 2, 1)"><input type="radio" name="q2" value="1"> Impone su voluntad sobre el interlocutor</label>
+        <label class="quiz-option" onclick="selectQuizOption(this, 2, 2)"><input type="radio" name="q2" value="2"> Evade la expresión de sus propias necesidades y usa formulismos de disculpa</label>
+        <label class="quiz-option" onclick="selectQuizOption(this, 2, 3)"><input type="radio" name="q2" value="3"> Negocia activamente buscando acuerdos</label>
+      </div>
+      <div class="exercise-feedback" id="q-feedback-2"></div>
+    </div>
+
+    <!-- Q4 -->
+    <div class="quiz-item" id="q-3">
+      <div class="quiz-badge teorica">Teórica</div>
+      <div class="quiz-question">4. Según el principio de neurocomunicación estudiado, cuando el cerebro escucha "disculpe que le moleste", ¿qué sucede primero?</div>
+      <div class="quiz-options">
+        <label class="quiz-option" onclick="selectQuizOption(this, 3, 0)"><input type="radio" name="q3" value="0"> Procesa "disculpe" y se activa un estado de empatía</label>
+        <label class="quiz-option" onclick="selectQuizOption(this, 3, 1)"><input type="radio" name="q3" value="1"> Procesa "molestar" y activa campos semánticos de interrupción e incomodidad</label>
+        <label class="quiz-option" onclick="selectQuizOption(this, 3, 2)"><input type="radio" name="q3" value="2"> Evalúa el contexto antes de procesar las palabras</label>
+        <label class="quiz-option" onclick="selectQuizOption(this, 3, 3)"><input type="radio" name="q3" value="3"> Ignora la frase introductoria y espera el contenido real</label>
+      </div>
+      <div class="exercise-feedback" id="q-feedback-3"></div>
+    </div>
+
+    <!-- Q5 -->
+    <div class="quiz-item" id="q-4">
+      <div class="quiz-badge teorica">Teórica</div>
+      <div class="quiz-question">5. La Inteligencia Emocional, según Daniel Goleman, incluye la capacidad de:</div>
+      <div class="quiz-options">
+        <label class="quiz-option" onclick="selectQuizOption(this, 4, 0)"><input type="radio" name="q4" value="0"> Reprimir las emociones para mantener el profesionalismo</label>
+        <label class="quiz-option" onclick="selectQuizOption(this, 4, 1)"><input type="radio" name="q4" value="1"> Reconocer, entender y gestionar las propias emociones y las de los demás</label>
+        <label class="quiz-option" onclick="selectQuizOption(this, 4, 2)"><input type="radio" name="q4" value="2"> Expresar las emociones libremente sin considerar el contexto</label>
+        <label class="quiz-option" onclick="selectQuizOption(this, 4, 3)"><input type="radio" name="q4" value="3"> Aplicar exclusivamente habilidades técnicas en el trabajo</label>
+      </div>
+      <div class="exercise-feedback" id="q-feedback-4"></div>
+    </div>
+
+    <!-- Q6 -->
+    <div class="quiz-item" id="q-5">
+      <div class="quiz-badge teorica">Teórica</div>
+      <div class="quiz-question">6. ¿Por qué decir "no fue nada" cuando alguien nos agradece puede ser contraproducente?</div>
+      <div class="quiz-options">
+        <label class="quiz-option" onclick="selectQuizOption(this, 5, 0)"><input type="radio" name="q5" value="0"> Porque es demasiado formal para una conversación cotidiana</label>
+        <label class="quiz-option" onclick="selectQuizOption(this, 5, 1)"><input type="radio" name="q5" value="1"> Porque invalida el reconocimiento del otro y minimiza el esfuerzo propio, afectando el vínculo</label>
+        <label class="quiz-option" onclick="selectQuizOption(this, 5, 2)"><input type="radio" name="q5" value="2"> Porque puede interpretarse como arrogancia</label>
+        <label class="quiz-option" onclick="selectQuizOption(this, 5, 3)"><input type="radio" name="q5" value="3"> Porque es una frase gramaticalmente incorrecta</label>
+      </div>
+      <div class="exercise-feedback" id="q-feedback-5"></div>
+    </div>
+
+    <!-- Q7 -->
+    <div class="quiz-item" id="q-6">
+      <div class="quiz-badge teorica">Teórica</div>
+      <div class="quiz-question">7. La Programación Neurolingüística (PNL) propone que las palabras elegidas crean "marcos" que condicionan la percepción de la realidad. Esto se relaciona directamente con:</div>
+      <div class="quiz-options">
+        <label class="quiz-option" onclick="selectQuizOption(this, 6, 0)"><input type="radio" name="q6" value="0"> La gramática normativa del español</label>
+        <label class="quiz-option" onclick="selectQuizOption(this, 6, 1)"><input type="radio" name="q6" value="1"> El efecto que las palabras tienen en la percepción del emisor y del receptor antes de que actúe la razón</label>
+        <label class="quiz-option" onclick="selectQuizOption(this, 6, 2)"><input type="radio" name="q6" value="2"> La selección del canal de comunicación más adecuado</label>
+        <label class="quiz-option" onclick="selectQuizOption(this, 6, 3)"><input type="radio" name="q6" value="3"> La diferencia entre comunicación oral y escrita</label>
+      </div>
+      <div class="exercise-feedback" id="q-feedback-6"></div>
+    </div>
+
+    <!-- Q8 - Análisis -->
+    <div class="quiz-item" id="q-7">
+      <div class="quiz-badge analisis">Análisis</div>
+      <div class="quiz-question">8. Una persona llega a una entidad pública a gestionar un trámite y dice al funcionario: "A ver, ¿cómo hacemos para que esto salga pronto?" ¿Cuál es el riesgo principal de esta frase?</div>
+      <div class="quiz-options">
+        <label class="quiz-option" onclick="selectQuizOption(this, 7, 0)"><input type="radio" name="q7" value="0"> Es demasiado agresiva y podría generar un conflicto</label>
+        <label class="quiz-option" onclick="selectQuizOption(this, 7, 1)"><input type="radio" name="q7" value="1"> Su ambigüedad puede ser interpretada como una insinuación de pago informal, aunque no sea la intención del hablante</label>
+        <label class="quiz-option" onclick="selectQuizOption(this, 7, 2)"><input type="radio" name="q7" value="2"> Es pasiva y no comunica claramente lo que necesita</label>
+        <label class="quiz-option" onclick="selectQuizOption(this, 7, 3)"><input type="radio" name="q7" value="3"> No tiene ningún riesgo, es una pregunta normal</label>
+      </div>
+      <div class="exercise-feedback" id="q-feedback-7"></div>
+    </div>
+
+    <!-- Q9 - Análisis -->
+    <div class="quiz-item" id="q-8">
+      <div class="quiz-badge analisis">Análisis</div>
+      <div class="quiz-question">9. En una reunión profesional, una contadora presenta su informe diciendo: "Hice esto rápido, espero que sirva de algo, no sé si estará bien..." El cliente escucha y pierde confianza en el trabajo antes de leerlo. ¿Qué principio explica mejor este fenómeno?</div>
+      <div class="quiz-options">
+        <label class="quiz-option" onclick="selectQuizOption(this, 8, 0)"><input type="radio" name="q8" value="0"> Las barreras físicas de la comunicación afectan la recepción del mensaje</label>
+        <label class="quiz-option" onclick="selectQuizOption(this, 8, 1)"><input type="radio" name="q8" value="1"> El sistema límbico del cliente procesa primero el marco emocional negativo (inseguridad) antes de poder evaluar el informe racionalmente</label>
+        <label class="quiz-option" onclick="selectQuizOption(this, 8, 2)"><input type="radio" name="q8" value="2"> La comunicación escrita siempre genera más confianza que la oral</label>
+        <label class="quiz-option" onclick="selectQuizOption(this, 8, 3)"><input type="radio" name="q8" value="3"> El cliente tiene prejuicios contra los contadores jóvenes</label>
+      </div>
+      <div class="exercise-feedback" id="q-feedback-8"></div>
+    </div>
+
+    <!-- Q10 - Análisis -->
+    <div class="quiz-item" id="q-9">
+      <div class="quiz-badge analisis">Análisis</div>
+      <div class="quiz-question">10. Una estudiante universitaria siempre comienza sus intervenciones en clase con: "No sé si tengo razón, pero... no creo que sea lo correcto, pero..." Según los temas estudiados, ¿qué revela este patrón?</div>
+      <div class="quiz-options">
+        <label class="quiz-option" onclick="selectQuizOption(this, 9, 0)"><input type="radio" name="q9" value="0"> Es una señal de pensamiento crítico y humildad intelectual apropiados</label>
+        <label class="quiz-option" onclick="selectQuizOption(this, 9, 1)"><input type="radio" name="q9" value="1"> Revela un patrón de baja autoestima comunicativa que minimiza el aporte propio antes de expresarlo, y que puede interpretarse como inseguridad académica</label>
+        <label class="quiz-option" onclick="selectQuizOption(this, 9, 2)"><input type="radio" name="q9" value="2"> Es una estrategia agresiva para desafiar al docente</label>
+        <label class="quiz-option" onclick="selectQuizOption(this, 9, 3)"><input type="radio" name="q9" value="3"> Solo refleja diferencias culturales en el estilo comunicativo</label>
+      </div>
+      <div class="exercise-feedback" id="q-feedback-9"></div>
+    </div>
+
+  </div>
+
+  <div style="display:flex; align-items:center; flex-wrap:wrap; gap:8px; margin-top:8px;">
+    <button class="btn-primary" onclick="verifyQuiz()">Verificar respuestas</button>
+    <button class="btn-secondary" onclick="resetQuiz()">Reiniciar</button>
+  </div>
+
+  <div class="results-panel" id="quizResults">
+    <div class="result-icon" id="qResultIcon"></div>
+    <div class="results-score" id="qScore"></div>
+    <div class="results-label" id="qLabel"></div>
+    <div class="progress-bar-wrapper">
+      <div class="progress-bar-fill" id="qProgressBar" style="width:0%"></div>
+    </div>
+    <div class="results-message" id="qMessage"></div>
+  </div>
+</div>
+
+<!-- ==================== REFLEXION ==================== -->
+<div id="tab-reflexion" class="tab-content">
+  <div class="section-title">Preguntas de Reflexión</div>
+  <div class="section-subtitle">No hay respuestas correctas ni incorrectas — solo conciencia propia</div>
+
+  <div class="info-alert">
+    Estas preguntas no se calificarán ni se entregarán. Su propósito es conectar el contenido académico con tu vida real. Léelas con calma, y si puedes, escribe tus respuestas en un cuaderno o app de notas. La reflexión honesta es el primer paso del cambio.
+  </div>
+
+  <div class="reflection-card">
+    <div style="display:flex; align-items:flex-start;">
+      <div class="reflection-number">1</div>
+      <div class="reflection-text">
+        <div class="reflection-question">¿Qué frase usas con más frecuencia para iniciar una conversación cuando necesitas algo? ¿Empieza con una disculpa, con una duda sobre si es el momento, o con un saludo directo?</div>
+        <div class="reflection-guide">Intenta recordar la última vez que pediste algo a un profesor, jefe o familiar. ¿Cómo comenzaste? ¿Sientes que esa forma de hablar dice algo sobre cómo te valoras a ti mismo en ese contexto?</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="reflection-card">
+    <div style="display:flex; align-items:flex-start;">
+      <div class="reflection-number">2</div>
+      <div class="reflection-text">
+        <div class="reflection-question">¿Hay personas en tu vida a las que les cuesta expresar lo que quieren? ¿Cómo te hace sentir tener que adivinar constantemente lo que necesitan?</div>
+        <div class="reflection-guide">Piensa en ese familiar o amigo que siempre dice "lo que tú quieras". ¿Esa actitud te parece considerada o, al contrario, te genera frustración? ¿Qué dice esto sobre la relación entre comunicar y cuidar al otro?</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="reflection-card">
+    <div style="display:flex; align-items:flex-start;">
+      <div class="reflection-number">3</div>
+      <div class="reflection-text">
+        <div class="reflection-question">Cuando alguien te agradece algo que hiciste, ¿cómo respondes habitualmente? ¿Aceptas el reconocimiento o lo minimizan con un "no fue nada"?</div>
+        <div class="reflection-guide">¿De dónde crees que viene esa respuesta automática? ¿Te la enseñaron como una forma de ser humilde? ¿Sientes que aceptar un agradecimiento te parece incómodo o arrogante? ¿Por qué?</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="reflection-card">
+    <div style="display:flex; align-items:flex-start;">
+      <div class="reflection-number">4</div>
+      <div class="reflection-text">
+        <div class="reflection-question">¿Alguna vez has usado (o escuchado) una frase que sin querer abrió la puerta a una malinterpretación ética, como "cómo nos ayudamos" o "habrá que ver"?</div>
+        <div class="reflection-guide">Reflexiona: en el Ecuador que conoces, ¿estas frases son inocentes o tienen un peso adicional? ¿Cómo te cuidas en tu comunicación para que tu intención y tu mensaje sean siempre coherentes?</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="reflection-card">
+    <div style="display:flex; align-items:flex-start;">
+      <div class="reflection-number">5</div>
+      <div class="reflection-text">
+        <div class="reflection-question">¿En qué situaciones de tu vida cotidiana te sientes más y menos asertivo? ¿Con quién te cuesta más decir lo que realmente piensas?</div>
+        <div class="reflection-guide">A veces somos asertivos con desconocidos pero pasivos con quienes más queremos, o agresivos en el trabajo pero callados en casa. ¿A qué crees que se debe esa diferencia? ¿Qué emociones aparecen cuando quieres decir algo importante y no te animas?</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="reflection-card">
+    <div style="display:flex; align-items:flex-start;">
+      <div class="reflection-number">6</div>
+      <div class="reflection-text">
+        <div class="reflection-question">Si pudieras cambiar UNA sola frase que usas habitualmente en tu comunicación, ¿cuál sería y por qué?</div>
+        <div class="reflection-guide">El cambio no tiene que ser dramático. A veces reemplazar "disculpe que le moleste" por "buenos días, ¿tiene un momento?" es suficiente para cambiar por completo la percepción que los demás tienen de ti. ¿Cuál es tu "disculpe que le moleste" personal?</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="reflection-card">
+    <div style="display:flex; align-items:flex-start;">
+      <div class="reflection-number">7</div>
+      <div class="reflection-text">
+        <div class="reflection-question">Piensa en el auditor o contador que quieres ser. ¿Qué tipo de comunicador necesita serlo esa persona? ¿Cómo quieres que te perciban tus clientes y colegas?</div>
+        <div class="reflection-guide">La identidad profesional se construye también con palabras. ¿Qué palabras quieres que definan tu comunicación profesional? ¿Seguridad? ¿Claridad? ¿Empatía? ¿Integridad? ¿Cómo vas a empezar a construir eso hoy?</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="box-key" style="margin-top:24px;">
+    <div class="box-label">Para cerrar esta reflexión</div>
+    <p>La comunicación no es solo una materia que se estudia: es el medio a través del cual construyes relaciones, ejerces tu profesión y te presentas al mundo. Cada conversación es una oportunidad de elegir quién eres. Empieza hoy, con la próxima frase que digas.</p>
+  </div>
+</div>
+
+<!-- ==================== ACTIVIDAD IA ==================== -->
+<div id="tab-actividad_ia" class="tab-content">
+  <div class="section-title">Actividad con Inteligencia Artificial</div>
+  <div class="section-subtitle">Usa la IA como espejo crítico de tu propia comunicación</div>
+
+  <div class="box-concept">
+    <div class="box-label">¿Por qué usar IA para aprender comunicación?</div>
+    <p>La Inteligencia Artificial puede simular conversaciones, analizar textos y proporcionar retroalimentación inmediata. En esta actividad, la usarás no para que te dé "la respuesta correcta", sino para que te <strong>desafíe a pensar</strong> y desarrollar tu propio criterio comunicativo.</p>
+  </div>
+
+  <h3 class="sub-heading">Herramienta recomendada</h3>
+  <p>Usa <strong>Claude</strong> en <a href="https://claude.ai" target="_blank">claude.ai</a> (de Anthropic) — acceso gratuito con registro. Alternativas: ChatGPT (chatgpt.com) o Gemini (gemini.google.com).</p>
+
+  <h3 class="sub-heading" style="margin-top:24px;">Nombre de la actividad</h3>
+  <p style="font-weight:700; font-size:17px; color:#003366;">"El consultor de comunicación" — Analiza y transforma tu propio lenguaje</p>
+
+  <h3 class="sub-heading">Paso 1 — Prepara tu material</h3>
+  <div class="ai-step">
+    <div class="ai-step-num">A</div>
+    <div class="ai-step-body">
+      <p>Antes de ir a la IA, escribe en papel o en un documento personal <strong>5 frases reales</strong> que tú usas habitualmente en conversaciones cotidianas o académicas. Pueden ser saludos, formas de pedir algo, de agradecer, de disculparte, de presentar un trabajo. Sé honesto/a.</p>
+      <p><em>Ejemplo: "Disculpe que le moleste, profe" / "No fue nada" / "Lo que tú quieras" / "No sé si estará bien, pero aquí va el trabajo" / "Espero no molestar"</em></p>
+    </div>
+  </div>
+
+  <h3 class="sub-heading">Paso 2 — El prompt exacto para usar con la IA</h3>
+  <p>Copia y pega el siguiente texto en Claude (o la IA que elijas), <strong>reemplazando las frases de ejemplo por las tuyas reales</strong>:</p>
+
+  <div class="ai-prompt-box">Actúa como un experto en comunicación asertiva y neurocomunicación. Voy a compartirte 5 frases que uso habitualmente en mi comunicación cotidiana. Para cada una necesito que:
+
+1. Identifiques qué estilo de comunicación refleja (pasivo, agresivo o asertivo) y expliques por qué.
+2. Analices qué efecto neurológico y emocional puede tener esta frase en quien la recibe.
+3. Me propongas una versión alternativa más asertiva, que mantenga el respeto pero que no minimice mi presencia ni mi pedido.
+4. Me expliques qué creencia sobre mí mismo/a podría estar detrás de esa frase original.
+
+Mis 5 frases son:
+1. [ESCRIBE AQUÍ TU PRIMERA FRASE REAL]
+2. [ESCRIBE AQUÍ TU SEGUNDA FRASE REAL]
+3. [ESCRIBE AQUÍ TU TERCERA FRASE REAL]
+4. [ESCRIBE AQUÍ TU CUARTA FRASE REAL]
+5. [ESCRIBE AQUÍ TU QUINTA FRASE REAL]
+
+Por favor, responde de forma clara, sin tecnicismos innecesarios, como si me hablaras directamente a mí.</div>
+
+  <h3 class="sub-heading">Paso 3 — Qué hacer con la respuesta de la IA</h3>
+  <div class="ai-step">
+    <div class="ai-step-num">1</div>
+    <div class="ai-step-body"><p>Lee el análisis que te da la IA. <strong>No lo copies directamente</strong>. Primero pregúntate: ¿estoy de acuerdo con su análisis? ¿Hay algo que no encaje con mi experiencia real?</p></div>
+  </div>
+  <div class="ai-step">
+    <div class="ai-step-num">2</div>
+    <div class="ai-step-body"><p>Para cada frase que te analizó, decide si <strong>aceptas</strong> la versión alternativa propuesta o si quieres <strong>crear la tuya propia</strong>. Escribe tu versión mejorada de las 5 frases.</p></div>
+  </div>
+  <div class="ai-step">
+    <div class="ai-step-num">3</div>
+    <div class="ai-step-body"><p>Hazle una <strong>pregunta de seguimiento</strong> a la IA: por ejemplo, <em>"¿Podría haber una situación en la que la versión original fuera más apropiada que la asertiva?"</em> — Evalúa si la respuesta de la IA es matizada o simplista.</p></div>
+  </div>
+  <div class="ai-step">
+    <div class="ai-step-num">4</div>
+    <div class="ai-step-body"><p>Escribe un párrafo de reflexión propio (mínimo 100 palabras): <em>¿Qué aprendiste sobre tu propia comunicación? ¿En qué situación vas a intentar cambiar una de estas frases esta semana?</em></p></div>
+  </div>
+
+  <h3 class="sub-heading">Criterios de evaluación</h3>
+  <table class="compare-table">
+    <tr>
+      <th>Indicador</th>
+      <th>Pensamiento crítico ✔</th>
+      <th>Copia simple ✗</th>
+    </tr>
+    <tr>
+      <td>Frases utilizadas</td>
+      <td>Son reales y personales, no inventadas para "quedar bien"</td>
+      <td>Son genéricas, tomadas de los ejemplos del widget</td>
+    </tr>
+    <tr>
+      <td>Versiones alternativas</td>
+      <td>Las adapta a su propio estilo y contexto</td>
+      <td>Copia textualmente lo que propone la IA</td>
+    </tr>
+    <tr>
+      <td>Pregunta de seguimiento</td>
+      <td>Cuestiona, profundiza o contradice algo de la respuesta</td>
+      <td>No hace preguntas adicionales</td>
+    </tr>
+    <tr>
+      <td>Párrafo de reflexión</td>
+      <td>Conecta el análisis con una situación real de su vida o carrera</td>
+      <td>Parafrasea lo que dijo la IA sin agregar perspectiva propia</td>
+    </tr>
+  </table>
+
+  <div class="box-key">
+    <div class="box-label">Recuerda</div>
+    <p>La IA es una herramienta de pensamiento, no un oráculo. Su análisis puede ser brillante, superficial o incluso equivocado. Tu tarea es usarla para pensar mejor, no para pensar menos. El aprendizaje real ocurre cuando tú decides qué hacer con lo que la IA te dice.</p>
+  </div>
+</div>
+
+<!-- ==================== BIBLIOGRAFIA ==================== -->
+<div id="tab-bibliografia" class="tab-content">
+  <div class="section-title">Bibliografía</div>
+  <div class="section-subtitle">Referencias en formato APA 7.ª edición</div>
+
+  <div class="bib-card">
+    <div class="bib-author">Goleman, D.</div>
+    <div class="bib-year">(1995)</div>
+    <div class="bib-title">Emotional intelligence: Why it can matter more than IQ</div>
+    <div class="bib-source">Bantam Books.</div>
+  </div>
+
+  <div class="bib-card">
+    <div class="bib-author">Castanyer, O.</div>
+    <div class="bib-year">(2014)</div>
+    <div class="bib-title">La asertividad: Expresión de una sana autoestima</div>
+    <div class="bib-source">Desclée De Brouwer. (Obra original publicada en 1996)</div>
+  </div>
+
+  <div class="bib-card">
+    <div class="bib-author">Bandler, R., y Grinder, J.</div>
+    <div class="bib-year">(1975)</div>
+    <div class="bib-title">The structure of magic I: A book about language and therapy</div>
+    <div class="bib-source">Science and Behavior Books.</div>
+  </div>
+
+  <div class="bib-card">
+    <div class="bib-author">Mehrabian, A.</div>
+    <div class="bib-year">(1972)</div>
+    <div class="bib-title">Nonverbal communication</div>
+    <div class="bib-source">Aldine-Atherton.</div>
+  </div>
+
+  <div class="bib-card">
+    <div class="bib-author">Watzlawick, P., Beavin, J. H., y Jackson, D. D.</div>
+    <div class="bib-year">(1985)</div>
+    <div class="bib-title">Teoría de la comunicación humana: Interacciones, patologías y paradojas</div>
+    <div class="bib-source">Herder. (Obra original publicada en 1967)</div>
+  </div>
+
+  <div class="bib-card">
+    <div class="bib-author">Jakobson, R.</div>
+    <div class="bib-year">(1981)</div>
+    <div class="bib-title">Lingüística y poética</div>
+    <div class="bib-source">Cátedra.</div>
+  </div>
+
+  <div class="bib-card">
+    <div class="bib-author">Federación Internacional de Contadores (IFAC).</div>
+    <div class="bib-year">(2021)</div>
+    <div class="bib-title">Código de ética para profesionales de la contabilidad (edición 2021)</div>
+    <div class="bib-source">IFAC. https://www.ifac.org/system/files/publications/files/IESBA-2021-Handbook-Code-of-Ethics.pdf</div>
+  </div>
+
+  <div class="bib-card">
+    <div class="bib-author">Bishop, S.</div>
+    <div class="bib-year">(2006)</div>
+    <div class="bib-title">Develop your assertiveness</div>
+    <div class="bib-source">Kogan Page.</div>
+  </div>
+
+  <div class="bib-note">
+    <strong>Nota importante:</strong> Se recomienda verificar cada referencia en Google Scholar (<a href="https://scholar.google.com" target="_blank">scholar.google.com</a>) o en el repositorio institucional de la Universidad de Guayaquil antes de citar en trabajos académicos. Las fechas y editoriales deben confirmarse en la fuente original.
+  </div>
+</div>
+
+</div><!-- /content-area -->
+
+<script>
+// ===== TAB NAVIGATION =====
+function showTab(tabId) {
+  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + tabId).classList.add('active');
+  const btns = document.querySelectorAll('.tab-btn');
+  const tabOrder = ['repaso','tema1','tema2','tema3','tema4','tema5','ejercicio','cuestionario','reflexion','actividad_ia','bibliografia'];
+  const idx = tabOrder.indexOf(tabId);
+  if (idx >= 0 && btns[idx]) btns[idx].classList.add('active');
+}
+
+// ===== EXERCISE =====
+const exAnswers = [1, 1, 1, 2, 1, 2, 1, 1]; // correct option index (0-based)
+const exFeedbacks = [
+  ["Incorrecto. Esta frase es el formulismo de disculpa por excelencia. Activa en el cerebro del receptor la palabra 'molestia' antes de saber el pedido.", "¡Correcto! Esta respuesta usa saludo directo, verifica disponibilidad del otro, e identifica el pedido con precisión. Es asertiva.", "Incorrecto. Esta frase es agresiva: atribuye el error al docente sin base confirmada.", "Incorrecto. El diminutivo 'preguntita' y la duda inicial son formulismos de minimización y pasividad."],
+  ["Incorrecto. '¡De qué pues!' es un formulismo coloquial que invalida el reconocimiento e implica que lo que el otro agradece no valía la pena.", "¡Correcto! Acepta el agradecimiento con naturalidad, reafirma el compromiso profesional y mantiene el vínculo positivo.", "Incorrecto. 'No fue nada' y 'muy sencillo' minimizan el trabajo ante el cliente, generando desconfianza.", "Incorrecto. 'Lo mínimo' sigue siendo una minimización del esfuerzo propio."],
+  ["Incorrecto. La falta de hambre no explica el patrón repetido de evasión en la decisión.", "¡Correcto! Responder siempre 'lo que tú quieras' es un patrón pasivo: evita expresar preferencias propias, lo cual crea un ciclo sin resolución.", "Incorrecto. Ceder sistemáticamente es pasividad, no agresividad.", "Incorrecto. No hay barreras físicas en esta situación."],
+  ["Incorrecto. 'Cositas' y 'habrá que ver' son formulismos vagos que evaden la responsabilidad y no comunican el problema claramente.", "Incorrecto. Aunque directa, esta respuesta es agresiva: juzga al cliente sin proponer solución.", "¡Correcto! Identifica el problema con precisión, cuantifica (tres inconsistencias), ubica la responsabilidad y establece un plazo claro.", "Incorrecto. 'Disculpe' y 'errorcitos' son formulismos de disculpa y minimización que restan autoridad al auditor."],
+  ["Incorrecto. La frase es gramaticalmente válida en español ecuatoriano; el problema es su significado en contexto.", "¡Correcto! La ambigüedad de 'cómo nos ayudamos' puede interpretarse como una insinuación de pago informal (coima), aunque el hablante no lo intente. La ambigüedad en contextos éticos es en sí misma un riesgo.", "Incorrecto. No es directa en exceso; es ambigua. La ambigüedad, no la directividad, es el problema.", "Incorrecto. La clasificación entre apertura y cierre no es relevante aquí; el problema es el significado en el contexto cultural."],
+  ["Incorrecto. El cerebro no ignora la palabra contenida en la frase; de hecho, la procesa antes que la negación.", "Incorrecto. Según los principios de neurocomunicación, la negación no cancela la activación del concepto que le sigue.", "¡Correcto! El cerebro procesa el significado literal de las palabras clave ('error') antes de contextualizar la negación ('no pienses en'). Por eso la negación no funciona: el concepto ya fue activado.", "Incorrecto. El cerebro procesa tanto las palabras como el tono; no ignora el contenido semántico."],
+  ["Incorrecto. La frase no muestra agresividad; muestra inseguridad y falta de confianza en el propio trabajo.", "¡Correcto! Esta frase es un formulismo de minimización: antes de que el cliente lea el informe, ya le han dicho que podría no servirle. Esto erosiona la confianza del cliente en el profesional.", "Incorrecto. No hay términos técnicos que generen barrera semántica en esta frase.", "Incorrecto. Esta frase sí representa un problema comunicativo: antepone la duda propia a la entrega del trabajo."],
+  ["Incorrecto. Aunque directa, esta respuesta activa defensividad e invalida al cliente, lo cual no resuelve el problema.", "¡Correcto! Esta respuesta identifica el hallazgo con objetividad, propone colaboración para entender el origen y orienta hacia la solución. Combina precisión técnica con inteligencia emocional.", "Incorrecto. 'No es tan grave' minimiza el hallazgo, lo cual puede generar problemas legales y de ética profesional.", "Incorrecto. 'Habrá que ver' es una frase evasiva que no comunica el hallazgo ni propone acción concreta."]
+];
+
+let exSelected = new Array(8).fill(null);
+
+function selectExOption(el, itemIdx, optIdx) {
+  const item = document.getElementById('ex-item-' + itemIdx);
+  item.querySelectorAll('.exercise-option').forEach(o => o.classList.remove('selected'));
+  el.classList.add('selected');
+  exSelected[itemIdx] = optIdx;
+}
+
+function verifyExercise() {
+  const unanswered = exSelected.map((v, i) => v === null ? i + 1 : null).filter(v => v !== null);
+  if (unanswered.length > 0) {
+    alert('Por favor responde todas las preguntas antes de verificar. Faltan: ' + unanswered.join(', '));
+    return;
+  }
+  let correct = 0;
+  for (let i = 0; i < 8; i++) {
+    const item = document.getElementById('ex-item-' + i);
+    const fb = document.getElementById('ex-feedback-' + i);
+    const isCorrect = exSelected[i] === exAnswers[i];
+    if (isCorrect) { correct++; item.classList.add('correct'); item.classList.remove('incorrect'); }
+    else { item.classList.add('incorrect'); item.classList.remove('correct'); }
+    fb.textContent = (isCorrect ? '✔ Correcto. ' : '✗ Incorrecto. ') + exFeedbacks[i][exSelected[i]];
+    fb.className = 'exercise-feedback ' + (isCorrect ? 'correct' : 'incorrect');
+    fb.style.display = 'block';
+    item.querySelectorAll('.exercise-option').forEach((o, oi) => { o.style.pointerEvents = 'none'; });
+  }
+  const pct = Math.round((correct / 8) * 100);
+  const panel = document.getElementById('exerciseResults');
+  panel.classList.add('visible');
+  document.getElementById('exScore').textContent = correct + '/8';
+  document.getElementById('exLabel').textContent = pct + '% de respuestas correctas';
+  setTimeout(() => { document.getElementById('exProgressBar').style.width = pct + '%'; }, 100);
+  const msgEl = document.getElementById('exMessage');
+  const iconEl = document.getElementById('exResultIcon');
+  if (pct === 100) { iconEl.textContent = '🏆'; msgEl.textContent = '¡Perfecto! Dominas los conceptos de comunicación asertiva de esta semana.'; msgEl.style.background = '#e8fff2'; msgEl.style.color = '#0c6b2a'; }
+  else if (pct >= 75) { iconEl.textContent = '🎯'; msgEl.textContent = 'Muy bien. Tienes una comprensión sólida. Revisa las preguntas incorrectas para reforzar.'; msgEl.style.background = '#eef4ff'; msgEl.style.color = '#003366'; }
+  else if (pct >= 50) { iconEl.textContent = '📘'; msgEl.textContent = 'Buen esfuerzo. Te recomendamos releer los Temas 1 y 2 antes de intentarlo de nuevo.'; msgEl.style.background = '#fffbe6'; msgEl.style.color = '#5a4a00'; }
+  else { iconEl.textContent = '📖'; msgEl.textContent = 'No te desanimes. Revisa el material de todos los temas con calma e inténtalo de nuevo.'; msgEl.style.background = '#fff5f5'; msgEl.style.color = '#8b1c0c'; }
+  panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function resetExercise() {
+  exSelected = new Array(8).fill(null);
+  for (let i = 0; i < 8; i++) {
+    const item = document.getElementById('ex-item-' + i);
+    item.classList.remove('correct', 'incorrect');
+    document.getElementById('ex-feedback-' + i).style.display = 'none';
+    item.querySelectorAll('.exercise-option').forEach(o => { o.classList.remove('selected'); o.style.pointerEvents = ''; });
+    item.querySelectorAll('input[type="radio"]').forEach(r => r.checked = false);
+  }
+  document.getElementById('exerciseResults').classList.remove('visible');
+  document.getElementById('exProgressBar').style.width = '0%';
+}
+
+// ===== QUIZ =====
+const qAnswers = [1, 1, 2, 1, 1, 1, 1, 1, 1, 1];
+const qFeedbacks = [
+  ["Incorrecto. Los actos de habla son unidades de intención comunicativa (Austin, Searle). Concepto diferente.", "¡Correcto! Los formulismos (o fórmulas rituales) son expresiones estereotipadas usadas por costumbre cuyo significado original se ha desgastado.", "Incorrecto. Las metáforas conceptuales estructuran la manera de pensar (Lakoff y Johnson). Es un concepto diferente.", "Incorrecto. La deixis se refiere a las expresiones que señalan personas, lugares o tiempos en el contexto del hablante."],
+  ["Incorrecto. Suavizar o indirectizar el mensaje sin perder la verdad puede ser diplomático, pero no es asertividad si oculta la intención real.", "¡Correcto! La asertividad es el punto intermedio entre pasividad y agresividad: expresa sin agredir ni someterse.", "Incorrecto. Imponer es comunicación agresiva, que logra objetivos a corto plazo pero destruye relaciones.", "Incorrecto. Evitar conflictos cediendo siempre es comunicación pasiva."],
+  ["Incorrecto. Expresar con claridad y respeto es la definición de asertividad, no de pasividad.", "Incorrecto. Imponer la voluntad es agresividad.", "¡Correcto! La comunicación pasiva se caracteriza por la evasión de la expresión propia y el uso de formulismos de disculpa o minimización.", "Incorrecto. La negociación activa es una característica del comunicador asertivo."],
+  ["Incorrecto. El sistema límbico procesa la carga emocional negativa antes de que la corteza prefrontal pueda evaluar la amabilidad de 'disculpe'.", "¡Correcto! El cerebro procesa el significado literal de 'molestar' primero, activando el campo semántico de incomodidad e interrupción, antes de contextualizar la disculpa.", "Incorrecto. El cerebro no evalúa el contexto antes de procesar las palabras; de hecho ocurre al revés: las palabras condicionan la lectura del contexto.", "Incorrecto. El cerebro no ignora la frase introductoria; de hecho, es precisamente esa frase la que establece el marco emocional de toda la conversación."],
+  ["Incorrecto. Reprimir emociones es lo opuesto a la inteligencia emocional; genera problemas comunicativos a largo plazo.", "¡Correcto! Goleman define la IE como la capacidad de reconocer, entender y gestionar las propias emociones y las ajenas, aplicándola en relaciones y comunicación.", "Incorrecto. Expresar emociones sin considerar el contexto puede generar conflictos; la IE implica gestión, no solo expresión.", "Incorrecto. Las habilidades técnicas son parte de la inteligencia cognitiva, no de la emocional."],
+  ["Incorrecto. La formalidad del registro no es el problema; la minimización ocurre en registros informales y formales.", "¡Correcto! Decir 'no fue nada' invalida el reconocimiento del otro (su agradecimiento queda como exagerado) y minimiza el propio esfuerzo, afectando negativamente el vínculo.", "Incorrecto. Aceptar un agradecimiento con naturalidad no es arrogancia; la arrogancia sería presumir o exagerar el propio mérito.", "Incorrecto. La frase es gramaticalmente correcta; el problema es pragmático (lo que produce en el contexto comunicativo), no gramatical."],
+  ["Incorrecto. La gramática normativa no explica por qué ciertas frases limitan o condicionan la percepción de la realidad.", "¡Correcto! La PNL propone que las palabras crean marcos que condicionan la percepción tanto del emisor como del receptor, activando estados emocionales antes de que ocurra el razonamiento consciente.", "Incorrecto. La selección del canal (oral, escrito, digital) corresponde al modelo de Shannon-Weaver y a la teoría de la comunicación general.", "Incorrecto. Aunque la distinción oral/escrita es relevante, no es el enfoque principal de la PNL sobre los marcos lingüísticos."],
+  ["Incorrecto. La frase es más bien ambigua que agresiva; la agresividad implica hostilidad directa.", "¡Correcto! La frase 'cómo hacemos para que esto salga pronto' puede interpretarse como una insinuación de pago informal en el contexto de trámites públicos, aunque el hablante solo busque información sobre plazos regulares. La ambigüedad en contextos de poder es el riesgo.", "Incorrecto. La frase no es pasiva; de hecho expresa una expectativa de acción. El problema es que no especifica qué espera dentro de los canales regulares.", "Incorrecto. La frase sí comunica algo (urgencia), pero lo hace de forma ambigua que abre interpretaciones problemáticas."],
+  ["Incorrecto. Las barreras físicas son ruido, distancia, fallas tecnológicas. No es lo que opera aquí.", "¡Correcto! El sistema límbico del cliente procesa primero el marco emocional de inseguridad generado por 'no sé si estará bien'. Esta respuesta emocional precede al análisis racional del informe, creando desconfianza antes de leer una sola cifra.", "Incorrecto. La confianza no depende del soporte (oral o escrito) sino del marco comunicativo con que se presenta el trabajo.", "Incorrecto. El texto no aporta información sobre la edad de la contadora ni sobre prejuicios del cliente."],
+  ["Incorrecto. La humildad intelectual se expresa diciendo 'podría estar equivocada, pero mi argumento es...' No en desacreditar el aporte antes de darlo.", "¡Correcto! Iniciar siempre con 'no sé si tengo razón' o 'no creo que sea correcto pero...' es un patrón de baja autoestima comunicativa. En el ámbito académico y profesional, esto puede interpretarse como inseguridad técnica, independientemente del valor real del aporte.", "Incorrecto. Hay cero agresividad en la descripción; la conducta descrita es claramente pasiva.", "Incorrecto. Aunque pueden existir variaciones culturales, el patrón descrito (sistemático, autominimizador) va más allá de un simple estilo cultural y revela un mecanismo psicológico de protección ante el posible rechazo."]
+];
+
+let qSelected = new Array(10).fill(null);
+
+function selectQuizOption(el, qIdx, optIdx) {
+  const item = document.getElementById('q-' + qIdx);
+  item.querySelectorAll('.quiz-option').forEach(o => o.classList.remove('selected'));
+  el.classList.add('selected');
+  qSelected[qIdx] = optIdx;
+}
+
+function verifyQuiz() {
+  const unanswered = qSelected.map((v, i) => v === null ? i + 1 : null).filter(v => v !== null);
+  if (unanswered.length > 0) {
+    alert('Por favor responde todas las preguntas. Faltan: ' + unanswered.join(', '));
+    return;
+  }
+  let correct = 0;
+  for (let i = 0; i < 10; i++) {
+    const item = document.getElementById('q-' + i);
+    const fb = document.getElementById('q-feedback-' + i);
+    const isCorrect = qSelected[i] === qAnswers[i];
+    if (isCorrect) { correct++; item.classList.add('correct'); item.classList.remove('incorrect'); }
+    else { item.classList.add('incorrect'); item.classList.remove('correct'); }
+    fb.textContent = (isCorrect ? '✔ Correcto. ' : '✗ Incorrecto. ') + qFeedbacks[i][qSelected[i]];
+    fb.className = 'exercise-feedback ' + (isCorrect ? 'correct' : 'incorrect');
+    fb.style.display = 'block';
+    item.querySelectorAll('.quiz-option').forEach(o => { o.style.pointerEvents = 'none'; });
+  }
+  const pct = Math.round((correct / 10) * 100);
+  const panel = document.getElementById('quizResults');
+  panel.classList.add('visible');
+  document.getElementById('qScore').textContent = correct + '/10';
+  document.getElementById('qLabel').textContent = pct + '% — ' + correct + ' de 10 correctas';
+  setTimeout(() => { document.getElementById('qProgressBar').style.width = pct + '%'; }, 100);
+  const msgEl = document.getElementById('qMessage');
+  const iconEl = document.getElementById('qResultIcon');
+  if (pct === 100) { iconEl.textContent = '🏆'; msgEl.textContent = '¡Excelente! Dominas completamente el contenido de la Semana 3.'; msgEl.style.background = '#e8fff2'; msgEl.style.color = '#0c6b2a'; }
+  else if (pct >= 80) { iconEl.textContent = '🎯'; msgEl.textContent = 'Muy bien logrado. Tienes comprensión sólida. Refuerza los temas donde fallaste.'; msgEl.style.background = '#eef4ff'; msgEl.style.color = '#003366'; }
+  else if (pct >= 60) { iconEl.textContent = '📘'; msgEl.textContent = 'Aprobado con base. Te recomendamos releer los temas señalados e intentarlo nuevamente.'; msgEl.style.background = '#fffbe6'; msgEl.style.color = '#5a4a00'; }
+  else if (pct >= 40) { iconEl.textContent = '⚠️'; msgEl.textContent = 'Necesitas reforzar. Revisa todos los temas del widget antes de volver a intentarlo.'; msgEl.style.background = '#fff8e8'; msgEl.style.color = '#7a4200'; }
+  else { iconEl.textContent = '📖'; msgEl.textContent = 'Es el momento de releer el material con calma. Todo el contenido necesario está en este widget.'; msgEl.style.background = '#fff5f5'; msgEl.style.color = '#8b1c0c'; }
+  panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function resetQuiz() {
+  qSelected = new Array(10).fill(null);
+  for (let i = 0; i < 10; i++) {
+    const item = document.getElementById('q-' + i);
+    item.classList.remove('correct', 'incorrect');
+    document.getElementById('q-feedback-' + i).style.display = 'none';
+    item.querySelectorAll('.quiz-option').forEach(o => { o.classList.remove('selected'); o.style.pointerEvents = ''; });
+    item.querySelectorAll('input[type="radio"]').forEach(r => r.checked = false);
+  }
+  document.getElementById('quizResults').classList.remove('visible');
+  document.getElementById('qProgressBar').style.width = '0%';
+}
+</script>
+</body>
+</html>

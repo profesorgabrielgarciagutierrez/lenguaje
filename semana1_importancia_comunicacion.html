@@ -1,0 +1,1359 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Semana 1 | Importancia de la Comunicación | Lenguaje y Comunicación</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+  /* =============================================
+     VARIABLES Y RESET
+  ============================================= */
+  :root {
+    --azul-ug: #003366;
+    --azul-tab: #87CEEB;
+    --dorado: #FFB81C;
+    --blanco: #ffffff;
+    --gris-claro: #f5f7fa;
+    --gris-borde: #dde3ec;
+    --texto: #2c3e50;
+    --azul-claro-bg: #e8f4fd;
+    --verde: #27ae60;
+    --rojo: #e74c3c;
+    --sombra: 0 2px 12px rgba(0,51,102,0.10);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Source Sans 3', sans-serif;
+    background: var(--gris-claro);
+    color: var(--texto);
+    font-size: 16px;
+    line-height: 1.7;
+  }
+
+  /* =============================================
+     ENCABEZADO
+  ============================================= */
+  header {
+    background: var(--azul-ug);
+    color: var(--blanco);
+    padding: 18px 28px 14px;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.18);
+  }
+
+  header .logo-placeholder {
+    width: 54px; height: 54px;
+    background: var(--blanco);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px; color: var(--azul-ug); font-weight: 700;
+    text-align: center; line-height: 1.2; padding: 4px;
+    flex-shrink: 0;
+  }
+
+  header .header-info h1 {
+    font-family: 'Lora', serif;
+    font-size: 1.18rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+  }
+
+  header .header-info p {
+    font-size: 0.82rem;
+    opacity: 0.88;
+    margin-top: 2px;
+  }
+
+  .semana-badge {
+    margin-left: auto;
+    background: var(--dorado);
+    color: var(--azul-ug);
+    font-weight: 700;
+    font-size: 0.82rem;
+    padding: 6px 14px;
+    border-radius: 20px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  /* =============================================
+     BARRA DE PESTAÑAS
+  ============================================= */
+  .tabs-wrapper {
+    background: var(--azul-tab);
+    overflow-x: auto;
+    white-space: nowrap;
+    border-bottom: 3px solid var(--azul-ug);
+    scrollbar-width: thin;
+    scrollbar-color: var(--azul-ug) var(--azul-tab);
+  }
+
+  .tabs-wrapper::-webkit-scrollbar { height: 5px; }
+  .tabs-wrapper::-webkit-scrollbar-track { background: var(--azul-tab); }
+  .tabs-wrapper::-webkit-scrollbar-thumb { background: var(--azul-ug); border-radius: 3px; }
+
+  .tabs {
+    display: inline-flex;
+    padding: 0 6px;
+    gap: 2px;
+    min-width: 100%;
+  }
+
+  .tab-btn {
+    background: transparent;
+    border: none;
+    padding: 11px 16px;
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 0.84rem;
+    font-weight: 600;
+    color: #1a1a2e;
+    cursor: pointer;
+    transition: all 0.2s;
+    border-radius: 6px 6px 0 0;
+    margin-top: 4px;
+    white-space: nowrap;
+  }
+
+  .tab-btn:hover { background: rgba(255,255,255,0.5); }
+
+  .tab-btn.active {
+    background: var(--blanco);
+    color: var(--azul-ug);
+    font-weight: 700;
+    box-shadow: 0 -2px 0 var(--dorado) inset;
+  }
+
+  /* =============================================
+     CONTENIDO DE PESTAÑAS
+  ============================================= */
+  .tab-content { display: none; padding: 28px 24px 40px; max-width: 960px; margin: 0 auto; }
+  .tab-content.active { display: block; }
+
+  /* =============================================
+     COMPONENTES DE CONTENIDO
+  ============================================= */
+  h2 {
+    font-family: 'Lora', serif;
+    color: var(--azul-ug);
+    font-size: 1.55rem;
+    margin-bottom: 14px;
+    padding-bottom: 8px;
+    border-bottom: 3px solid var(--dorado);
+  }
+
+  h3 {
+    font-family: 'Lora', serif;
+    color: var(--azul-ug);
+    font-size: 1.15rem;
+    margin: 22px 0 10px;
+  }
+
+  p { margin-bottom: 14px; }
+
+  /* Caja de concepto */
+  .caja-concepto {
+    border-left: 5px solid var(--azul-ug);
+    background: #f0f6ff;
+    padding: 16px 20px;
+    margin: 18px 0;
+    border-radius: 0 8px 8px 0;
+  }
+
+  .caja-concepto strong {
+    display: block;
+    color: var(--azul-ug);
+    font-size: 0.88rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 6px;
+  }
+
+  /* Caja de ejemplo */
+  .caja-ejemplo {
+    background: var(--azul-claro-bg);
+    border: 1px solid #c2dff5;
+    border-radius: 10px;
+    padding: 16px 20px;
+    margin: 18px 0;
+  }
+
+  .caja-ejemplo .ejemplo-titulo {
+    font-weight: 700;
+    color: var(--azul-ug);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  /* Caja de idea clave */
+  .caja-idea {
+    background: linear-gradient(135deg, #003366 0%, #005299 100%);
+    color: var(--blanco);
+    border-radius: 10px;
+    padding: 18px 22px;
+    margin: 22px 0;
+    border-left: 6px solid var(--dorado);
+  }
+
+  .caja-idea strong { color: var(--dorado); display: block; margin-bottom: 6px; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.05em; }
+
+  /* Caja positiva / negativa */
+  .caja-positiva { border-left: 5px solid var(--verde); background: #eafaf1; padding: 14px 18px; border-radius: 0 8px 8px 0; margin: 10px 0; }
+  .caja-negativa { border-left: 5px solid var(--rojo); background: #fdf0ef; padding: 14px 18px; border-radius: 0 8px 8px 0; margin: 10px 0; }
+
+  /* Tabla */
+  table { width: 100%; border-collapse: collapse; margin: 18px 0; font-size: 0.95rem; }
+  th { background: var(--azul-ug); color: var(--blanco); padding: 11px 14px; text-align: left; font-family: 'Source Sans 3', sans-serif; }
+  td { padding: 10px 14px; border-bottom: 1px solid var(--gris-borde); vertical-align: top; }
+  tr:nth-child(even) td { background: #f0f6ff; }
+
+  /* Lista visual */
+  ul.lista-visual { list-style: none; padding: 0; margin: 14px 0; }
+  ul.lista-visual li { padding: 8px 12px 8px 36px; position: relative; border-radius: 6px; margin-bottom: 6px; background: #f8f9fc; }
+  ul.lista-visual li::before { content: '▸'; position: absolute; left: 12px; color: var(--dorado); font-weight: 700; }
+
+  /* Grid comparativo */
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 18px 0; }
+  @media (max-width: 600px) { .grid-2 { grid-template-columns: 1fr; } }
+
+  /* Tarjeta */
+  .tarjeta {
+    background: var(--blanco);
+    border-radius: 10px;
+    padding: 18px;
+    box-shadow: var(--sombra);
+    border-top: 4px solid var(--dorado);
+  }
+
+  .tarjeta h4 { font-family: 'Lora', serif; color: var(--azul-ug); margin-bottom: 10px; font-size: 1.05rem; }
+
+  /* =============================================
+     EJERCICIO INTERACTIVO
+  ============================================= */
+  .ejercicio-item {
+    background: var(--blanco);
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: var(--sombra);
+    border-left: 4px solid var(--azul-tab);
+  }
+
+  .ejercicio-item p { font-weight: 600; margin-bottom: 12px; color: var(--azul-ug); }
+
+  .opciones label {
+    display: block;
+    padding: 9px 14px;
+    border-radius: 7px;
+    border: 2px solid var(--gris-borde);
+    margin-bottom: 7px;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 0.95rem;
+  }
+
+  .opciones label:hover { border-color: var(--azul-tab); background: var(--azul-claro-bg); }
+  .opciones input[type="radio"], .opciones input[type="checkbox"] { margin-right: 8px; accent-color: var(--azul-ug); }
+
+  .resultado-item { margin-top: 10px; padding: 10px 14px; border-radius: 7px; font-size: 0.93rem; display: none; }
+  .resultado-correcto { background: #eafaf1; border: 1.5px solid var(--verde); color: #1e8449; }
+  .resultado-incorrecto { background: #fdf0ef; border: 1.5px solid var(--rojo); color: #c0392b; }
+
+  /* =============================================
+     CUESTIONARIO
+  ============================================= */
+  .pregunta-card {
+    background: var(--blanco);
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: var(--sombra);
+  }
+
+  .badge-tipo {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 20px;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .badge-teorica { background: #e8f4fd; color: var(--azul-ug); border: 1px solid var(--azul-tab); }
+  .badge-analisis { background: #fff8e6; color: #7d5a00; border: 1px solid var(--dorado); }
+
+  .pregunta-texto { font-weight: 600; color: var(--azul-ug); margin-bottom: 12px; font-size: 1.02rem; }
+
+  /* =============================================
+     BOTONES
+  ============================================= */
+  .btn {
+    padding: 12px 28px;
+    border: none;
+    border-radius: 8px;
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+    letter-spacing: 0.03em;
+  }
+
+  .btn-primary { background: var(--azul-ug); color: var(--blanco); }
+  .btn-primary:hover { background: #004488; transform: translateY(-1px); }
+  .btn-secondary { background: var(--dorado); color: var(--azul-ug); }
+  .btn-secondary:hover { background: #e6a800; transform: translateY(-1px); }
+
+  .btn-row { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 24px; }
+
+  /* =============================================
+     CALIFICACIÓN
+  ============================================= */
+  .calificacion-box {
+    background: linear-gradient(135deg, #003366, #005299);
+    color: var(--blanco);
+    border-radius: 14px;
+    padding: 28px 24px;
+    text-align: center;
+    margin-top: 28px;
+    display: none;
+  }
+
+  .calificacion-box .score-grande {
+    font-family: 'Lora', serif;
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--dorado);
+    line-height: 1;
+  }
+
+  .barra-progreso-wrapper { background: rgba(255,255,255,0.2); border-radius: 20px; height: 16px; margin: 14px 0; overflow: hidden; }
+  .barra-progreso { height: 100%; border-radius: 20px; background: var(--dorado); transition: width 1s ease; }
+
+  .mensaje-motivacional { font-size: 1.05rem; margin-top: 10px; }
+
+  /* =============================================
+     ACTIVIDAD IA
+  ============================================= */
+  .prompt-box {
+    background: #1e1e2e;
+    color: #e8e8f0;
+    border-radius: 10px;
+    padding: 20px 22px;
+    font-family: 'Courier New', monospace;
+    font-size: 0.9rem;
+    line-height: 1.7;
+    margin: 16px 0;
+    position: relative;
+    border-left: 4px solid var(--dorado);
+  }
+
+  .prompt-label {
+    position: absolute;
+    top: -10px; left: 16px;
+    background: var(--dorado);
+    color: var(--azul-ug);
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 2px 10px;
+    border-radius: 10px;
+    font-family: 'Source Sans 3', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  /* =============================================
+     BIBLIOGRAFÍA
+  ============================================= */
+  .ref-card {
+    background: var(--blanco);
+    border-radius: 10px;
+    padding: 16px 20px;
+    margin-bottom: 14px;
+    box-shadow: var(--sombra);
+    border-left: 4px solid var(--dorado);
+    font-size: 0.95rem;
+  }
+
+  .ref-card .ref-autor { font-weight: 700; color: var(--azul-ug); }
+  .ref-card .ref-titulo { font-style: italic; }
+
+  .nota-bib {
+    background: #fff8e6;
+    border: 1px solid var(--dorado);
+    border-radius: 8px;
+    padding: 14px 18px;
+    font-size: 0.88rem;
+    margin-top: 20px;
+    color: #6b4c00;
+  }
+
+  /* Preguntas reflexivas */
+  .reflexion-item {
+    background: linear-gradient(135deg, #fff8e6, #fffdf0);
+    border: 1.5px solid var(--dorado);
+    border-radius: 10px;
+    padding: 18px 20px;
+    margin-bottom: 16px;
+  }
+
+  .reflexion-item .num {
+    display: inline-block;
+    background: var(--dorado);
+    color: var(--azul-ug);
+    font-weight: 700;
+    border-radius: 50%;
+    width: 28px; height: 28px;
+    text-align: center; line-height: 28px;
+    margin-right: 10px;
+    font-size: 0.9rem;
+  }
+
+  .reflexion-item p { margin-bottom: 0; font-size: 1rem; color: var(--texto); }
+
+  /* =============================================
+     REPASO INICIAL
+  ============================================= */
+  .intro-semana {
+    background: linear-gradient(135deg, var(--azul-ug) 0%, #005299 100%);
+    color: var(--blanco);
+    border-radius: 12px;
+    padding: 24px 26px;
+    margin-bottom: 26px;
+  }
+
+  .intro-semana h2 { color: var(--blanco); border-bottom-color: var(--dorado); font-size: 1.3rem; }
+  .intro-semana p { margin-bottom: 10px; opacity: 0.95; }
+
+  /* =============================================
+     LABEL OPCIONES SELECCIONADAS/CORRECTAS
+  ============================================= */
+  label.seleccionada { border-color: var(--azul-ug); background: var(--azul-claro-bg); }
+  label.correcta { border-color: var(--verde) !important; background: #eafaf1 !important; }
+  label.incorrecta { border-color: var(--rojo) !important; background: #fdf0ef !important; }
+
+</style>
+</head>
+<body>
+
+<!-- ============ ENCABEZADO ============ -->
+<header>
+  <div class="logo-placeholder">UG<br>FCA</div>
+  <div class="header-info">
+    <h1>Lenguaje y Comunicación</h1>
+    <p>Unidad 1: La Comunicación &nbsp;|&nbsp; Carrera en Contabilidad y Auditoría &nbsp;|&nbsp; Facultad de Ciencias Administrativas</p>
+  </div>
+  <span class="semana-badge">📚 Semana 1</span>
+</header>
+
+<!-- ============ PESTAÑAS ============ -->
+<div class="tabs-wrapper">
+  <div class="tabs">
+    <button class="tab-btn active" onclick="mostrarTab('repaso', this)">🔁 Repaso</button>
+    <button class="tab-btn" onclick="mostrarTab('tema1', this)">📖 Tema 1</button>
+    <button class="tab-btn" onclick="mostrarTab('tema2', this)">📖 Tema 2</button>
+    <button class="tab-btn" onclick="mostrarTab('tema3', this)">📖 Tema 3</button>
+    <button class="tab-btn" onclick="mostrarTab('tema4', this)">📖 Tema 4</button>
+    <button class="tab-btn" onclick="mostrarTab('ejercicio', this)">✏️ Ejercicio</button>
+    <button class="tab-btn" onclick="mostrarTab('cuestionario', this)">📝 Cuestionario</button>
+    <button class="tab-btn" onclick="mostrarTab('actividad-ia', this)">🤖 Actividad IA</button>
+    <button class="tab-btn" onclick="mostrarTab('reflexion', this)">💭 Reflexión</button>
+    <button class="tab-btn" onclick="mostrarTab('bibliografia', this)">📚 Bibliografía</button>
+  </div>
+</div>
+
+<!-- ====================================================
+     PESTAÑA: REPASO
+==================================================== -->
+<div id="repaso" class="tab-content active">
+  <div class="intro-semana">
+    <h2>📌 Presentación del Curso — ¿Por qué estudiar comunicación?</h2>
+    <p>Esta es la <strong>primera semana</strong> de Lenguaje y Comunicación. No hay semanas previas que repasar, pero sí existe algo más importante: desafiar lo que crees que ya sabes sobre comunicarte.</p>
+    <p>Antes de comenzar, reflexiona honestamente: <em>¿Cuántas veces en tu vida has hablado mucho… pero no has logrado comunicar nada?</em></p>
+    <p>Este curso no trata sobre hablar bonito. Trata sobre transformar la forma en que te relacionas con el mundo, con tus clientes, con tus colegas, y contigo mismo.</p>
+  </div>
+
+  <h2>🎯 ¿Qué aprenderás esta semana?</h2>
+  <p>En esta primera semana trabajarás dos ideas fundamentales que cambiarán tu perspectiva sobre la comunicación:</p>
+
+  <div class="grid-2">
+    <div class="tarjeta">
+      <h4>💡 ¿Por qué es tan importante comunicarse?</h4>
+      <p>Exploraremos por qué la comunicación no es un "adorno" académico, sino una competencia técnica que define el éxito profesional en la carrera de Contabilidad y Auditoría.</p>
+    </div>
+    <div class="tarjeta">
+      <h4>🗣️ ¿Cuál es la diferencia entre hablar y comunicar?</h4>
+      <p>Aprenderás que pronunciar palabras y lograr que alguien comprenda, sienta e interprete un mensaje son procesos completamente distintos.</p>
+    </div>
+  </div>
+
+  <div class="caja-idea">
+    <strong>🔑 Idea central del curso</strong>
+    La comunicación eficaz no es un talento innato que solo algunos poseen. Es una habilidad técnica, entrenable y medible. Y en el mundo contable-financiero, quien comunica bien, lidera.
+  </div>
+
+  <h3>📋 Estructura de la Unidad 1</h3>
+  <table>
+    <tr><th>Semana</th><th>Tema principal</th></tr>
+    <tr><td>Semana 1</td><td>Importancia de la comunicación. Diferencia entre hablar y comunicar</td></tr>
+    <tr><td>Semana 2</td><td>Lenguaje y comunicación. Procesamiento de mensajes. Tipos de lenguaje</td></tr>
+    <tr><td>Semana 3</td><td>Tipos de comunicación. Neurocomunicación. Autoestima. Inteligencia Emocional</td></tr>
+    <tr><td>Semana 4</td><td>Importancia de la lectura. Proceso de comunicación</td></tr>
+  </table>
+</div>
+
+<!-- ====================================================
+     PESTAÑA: TEMA 1 — Qué es la comunicación
+==================================================== -->
+<div id="tema1" class="tab-content">
+  <h2>Tema 1: ¿Qué es la comunicación? Definición y naturaleza</h2>
+
+  <p>Para hablar de la <em>importancia</em> de la comunicación, primero debemos entender con precisión qué significa. El término viene del latín <strong><em>communis</em></strong>, que significa "lo que es recibido y admitido por todos". Es decir, comunicar implica crear algo en <em>común</em>.</p>
+
+  <div class="caja-concepto">
+    <strong>Definición técnica</strong>
+    La <strong>comunicación</strong> es un proceso dinámico y bidireccional de intercambio de mensajes entre dos o más personas, que involucra la transmisión y recepción de información, emociones, ideas y significados compartidos, con el propósito de generar comprensión mutua y orientar conductas.
+    <br><br>
+    <em>(Davis y Newstrom, 1987; Santos García, 2012)</em>
+  </div>
+
+  <p>Observa los elementos clave de esta definición: es un <em>proceso</em> (no un acto instantáneo), es <em>dinámico</em> (cambia según el contexto), y es <em>bidireccional</em> (no hay comunicación sin respuesta). Si alguien habla y nadie escucha o responde, eso es transmisión de sonidos, no comunicación.</p>
+
+  <h3>¿Qué es y qué no es comunicación?</h3>
+
+  <div class="grid-2">
+    <div class="caja-negativa">
+      <strong>❌ Esto NO es comunicación</strong><br>
+      • Un contador envía un informe de auditoría al cliente sin verificar si fue comprendido.<br>
+      • Un gerente da instrucciones sin permitir preguntas.<br>
+      • Un expositor habla durante 30 minutos sin saber si su audiencia lo sigue.<br>
+      <em>En todos estos casos hay transmisión de información, no comunicación real.</em>
+    </div>
+    <div class="caja-positiva">
+      <strong>✅ Esto SÍ es comunicación</strong><br>
+      • El auditor explica sus hallazgos, verifica comprensión y ajusta su lenguaje según el cliente.<br>
+      • El gerente presenta un plan, recibe retroalimentación y adapta su mensaje.<br>
+      • El expositor monitorea reacciones y responde dudas en tiempo real.<br>
+      <em>Aquí hay intercambio real de significados.</em>
+    </div>
+  </div>
+
+  <h3>La comunicación como necesidad humana</h3>
+  <p>La comunicación no es opcional. Desde antes de nacer —a través de los latidos del corazón que escucha el bebé en el útero— los seres humanos estamos inmersos en procesos comunicativos. Somos, por naturaleza, seres sociales. Y la sociedad se construye sobre la capacidad de compartir significados.</p>
+
+  <div class="caja-ejemplo">
+    <div class="ejemplo-titulo">🇪🇨 Ejemplo — Contexto ecuatoriano</div>
+    <p>Piensa en una pequeña empresa familiar de Guayaquil. El dueño, que lleva 20 años en el negocio, sabe perfectamente cómo funciona todo. Pero si no puede comunicar esos conocimientos a sus empleados, proveedores y clientes de forma clara, el negocio no crece. La comunicación es la sangre que hace circular el conocimiento dentro de cualquier organización.</p>
+  </div>
+
+  <h3>La comunicación y la contabilidad-auditoría</h3>
+  <p>¿Por qué un contador o auditor necesita aprender comunicación? La respuesta es directa: <strong>todo el trabajo técnico de la contabilidad culmina en un acto comunicativo</strong>. Un estado financiero es un mensaje. Un informe de auditoría es un mensaje. Una declaración tributaria ante el SRI es un mensaje. Si ese mensaje no es claro, preciso y comprensible, el trabajo técnico pierde valor.</p>
+
+  <table>
+    <tr><th>Actividad contable-auditora</th><th>Acto comunicativo implícito</th></tr>
+    <tr><td>Informe de auditoría</td><td>Comunicación escrita formal con alto impacto legal</td></tr>
+    <tr><td>Presentación de hallazgos a la gerencia</td><td>Comunicación oral persuasiva</td></tr>
+    <tr><td>Entrevista con el cliente para recabar información</td><td>Comunicación interpersonal y escucha activa</td></tr>
+    <tr><td>Correo al Servicio de Rentas Internas (SRI)</td><td>Comunicación escrita técnica-institucional</td></tr>
+    <tr><td>Dictamen contable</td><td>Síntesis comunicativa de alto rigor</td></tr>
+  </table>
+
+  <div class="caja-idea">
+    <strong>💡 Idea Clave</strong>
+    Ninguna persona, organización ni institución puede existir sin comunicación. La comunicación no es un "extra" del perfil profesional del contador-auditor: es su herramienta más poderosa.
+  </div>
+</div>
+
+<!-- ====================================================
+     PESTAÑA: TEMA 2 — Importancia de la comunicación
+==================================================== -->
+<div id="tema2" class="tab-content">
+  <h2>Tema 2: Importancia de la Comunicación</h2>
+
+  <p>Comprender por qué la comunicación es importante exige ir más allá del sentido común. No se trata simplemente de "hablar bien" —se trata de cómo la comunicación eficaz o deficiente define resultados reales en la vida personal y profesional.</p>
+
+  <h3>2.1 Funciones de la comunicación</h3>
+  <p>La comunicación cumple funciones específicas que operan simultáneamente en cada intercambio. Conocerlas te permite comunicarte con intención, no solo por inercia.</p>
+
+  <table>
+    <tr><th>Función</th><th>¿Qué hace?</th><th>Ejemplo profesional</th></tr>
+    <tr>
+      <td><strong>Informativa</strong></td>
+      <td>Transmite conocimientos, datos e ideas</td>
+      <td>El auditor informa al cliente sobre irregularidades detectadas</td>
+    </tr>
+    <tr>
+      <td><strong>Afectiva</strong></td>
+      <td>Transmite emociones y sentimientos</td>
+      <td>El contador expresa con empatía una mala noticia tributaria</td>
+    </tr>
+    <tr>
+      <td><strong>Reguladora</strong></td>
+      <td>Orienta y controla el comportamiento</td>
+      <td>Las normas de auditoría indican cómo debe actuar el profesional</td>
+    </tr>
+    <tr>
+      <td><strong>Formativa</strong></td>
+      <td>Desarrolla capacidades y conocimientos</td>
+      <td>El supervisor enseña a un junior cómo analizar estados financieros</td>
+    </tr>
+  </table>
+
+  <h3>2.2 La comunicación en cifras</h3>
+  <p>Estudios organizacionales han demostrado que los profesionales dedican entre el <strong>70% y el 80%</strong> de su tiempo laboral a actividades comunicativas: reuniones, correos, llamadas, presentaciones e informes. Esto significa que la comunicación no es un complemento del trabajo —<em>es el trabajo</em>.</p>
+
+  <div class="caja-concepto">
+    <strong>Dato relevante</strong>
+    Según investigaciones en comunicación organizacional (Davis y Newstrom, 1987), los errores de comunicación representan una de las principales causas de pérdidas económicas en las empresas. En auditoría, un malentendido entre auditor y auditado puede derivar en dictámenes incorrectos con consecuencias legales graves.
+  </div>
+
+  <h3>2.3 La comunicación como herramienta de poder profesional</h3>
+  <p>Existe una diferencia notable entre dos contadores con el mismo nivel técnico: el que comunica bien sus resultados y el que no. El primero ascenderá, captará más clientes, liderará equipos y generará confianza. El segundo, aunque sea brillante en sus cálculos, quedará en segundo plano.</p>
+
+  <div class="caja-ejemplo">
+    <div class="ejemplo-titulo">🇪🇨 Caso — Ecuador</div>
+    <p><strong>Situación:</strong> La Contraloría General del Estado del Ecuador emite informes de auditoría gubernamental que deben ser comprendidos por legisladores, funcionarios públicos y ciudadanía en general. Si esos informes usan un lenguaje excesivamente técnico sin adaptación al receptor, la información, por más precisa que sea, pierde impacto y utilidad social.</p>
+    <p>La comunicación eficaz no es solo cuestión de corrección técnica —es cuestión de <em>llegar al receptor</em> con el mensaje adecuado.</p>
+  </div>
+
+  <h3>2.4 La comunicación y el éxito personal</h3>
+  <p>La importancia de la comunicación trasciende lo laboral. En las relaciones personales, en la familia, en la sociedad, quien comunica con claridad, empatía y asertividad construye vínculos más sólidos, resuelve conflictos con mayor facilidad y desarrolla una imagen de liderazgo natural.</p>
+
+  <ul class="lista-visual">
+    <li>Quien comunica bien genera confianza y credibilidad.</li>
+    <li>Quien escucha activamente comprende problemas que otros no ven.</li>
+    <li>Quien adapta su mensaje al receptor multiplica su influencia.</li>
+    <li>Quien es claro y directo ahorra tiempo, malentendidos y recursos.</li>
+  </ul>
+
+  <div class="caja-idea">
+    <strong>💡 Idea Clave</strong>
+    La comunicación no es la capacidad de hablar mucho. Es la capacidad de hacer que tu mensaje llegue, sea comprendido, y genere la respuesta que necesitas. En la carrera contable-auditora, esto puede ser la diferencia entre un profesional mediocre y uno excepcional.
+  </div>
+</div>
+
+<!-- ====================================================
+     PESTAÑA: TEMA 3 — Diferencia entre hablar y comunicar
+==================================================== -->
+<div id="tema3" class="tab-content">
+  <h2>Tema 3: La gran diferencia — Hablar vs. Comunicar</h2>
+
+  <p>Esta es quizás la distinción más importante de todo el curso. Millones de personas en el mundo hablan diariamente, pero una fracción mucho menor logra <em>comunicar</em> de verdad. Entender esta diferencia es el primer paso para transformarte como profesional.</p>
+
+  <div class="grid-2">
+    <div class="tarjeta">
+      <h4>🗣️ HABLAR</h4>
+      <p>Es la <strong>emisión de palabras y sonidos</strong>. Es el acto físico y mecánico de producir lenguaje oral. Hablar no garantiza que el mensaje llegue, sea comprendido ni genere efecto alguno en quien escucha.</p>
+      <br>
+      <em>El loro habla. El anuncio de radio habla. El político que no dice nada concreto, habla.</em>
+    </div>
+    <div class="tarjeta">
+      <h4>💬 COMUNICAR</h4>
+      <p>Es un <strong>proceso completo</strong> que incluye emitir un mensaje, asegurarse de que fue recibido, verificar que fue comprendido correctamente, y recibir retroalimentación. Comunicar implica crear un significado compartido entre dos o más personas.</p>
+      <br>
+      <em>El médico que explica el diagnóstico hasta que el paciente lo entiende, comunica.</em>
+    </div>
+  </div>
+
+  <h3>3.1 El modelo de la diferencia</h3>
+  <p>Imagina una flecha. <strong>Hablar</strong> es lanzar una flecha al aire sin apuntar a ningún blanco. <strong>Comunicar</strong> es apuntar deliberadamente a un blanco, ajustar la dirección según el viento (contexto), lanzar la flecha y verificar que llegó al punto correcto.</p>
+
+  <table>
+    <tr><th>Dimensión</th><th>Hablar</th><th>Comunicar</th></tr>
+    <tr><td>Propósito</td><td>Expresar algo</td><td>Generar comprensión y acción</td></tr>
+    <tr><td>Receptor</td><td>No se considera</td><td>Es el centro del proceso</td></tr>
+    <tr><td>Retroalimentación</td><td>No necesaria</td><td>Indispensable</td></tr>
+    <tr><td>Resultado</td><td>Incierto</td><td>Verificable</td></tr>
+    <tr><td>Adaptación al contexto</td><td>No ocurre</td><td>Siempre presente</td></tr>
+    <tr><td>Responsabilidad</td><td>Solo del emisor</td><td>Compartida entre emisor y receptor</td></tr>
+  </table>
+
+  <h3>3.2 El circuito del habla y el circuito de la comunicación</h3>
+  <p>En el simple acto de hablar, existe solo un circuito: <em>emisor → mensaje → receptor</em>. En la comunicación real, el circuito es cerrado y dinámico: el receptor responde (retroalimentación), el emisor ajusta su mensaje, y los roles se intercambian continuamente. Este concepto se llama <strong>circuito del habla</strong> con retroalimentación efectiva.</p>
+
+  <div class="caja-concepto">
+    <strong>Concepto clave: Retroalimentación (Feedback)</strong>
+    La retroalimentación es la respuesta que el receptor envía al emisor después de recibir un mensaje. Es el elemento que transforma el simple acto de hablar en comunicación real. Sin retroalimentación, no hay certeza de que el mensaje fue comprendido como se pretendía.
+  </div>
+
+  <div class="caja-ejemplo">
+    <div class="ejemplo-titulo">📊 Ejemplo — Auditoría en Ecuador</div>
+    <p><strong>Escenario A (Hablar, no comunicar):</strong> Un auditor entrega un informe de 80 páginas al directorio de una empresa y dice: "Aquí está todo explicado, pueden leerlo." El directorio lee el documento, pero no comprende las implicaciones legales. Nadie pregunta. El problema no se corrige.</p>
+    <br>
+    <p><strong>Escenario B (Comunicar):</strong> El mismo auditor presenta los hallazgos principales en 10 minutos con ejemplos concretos, pregunta si hay dudas, adapta su explicación técnica a términos que los directivos comprenden, y confirma que se tomarán las acciones correctivas. Hay comprensión. Hay acción. Hay comunicación.</p>
+  </div>
+
+  <h3>3.3 El problema del ruido en la comunicación</h3>
+  <p>Uno de los principales obstáculos entre hablar y comunicar es el <strong>ruido</strong>. En comunicación, el ruido no es solo el sonido físico que nos distrae —es cualquier elemento que interfiere con la correcta transmisión o comprensión del mensaje.</p>
+
+  <ul class="lista-visual">
+    <li><strong>Ruido físico:</strong> Sonidos externos, mala conexión en videollamada, espacio inadecuado.</li>
+    <li><strong>Ruido semántico:</strong> Uso de términos técnicos incomprensibles para el receptor. Un contador que habla de "NIIF 15" a un cliente que no tiene formación contable.</li>
+    <li><strong>Ruido psicológico:</strong> Prejuicios, emociones o estados de ánimo que filtran el mensaje. El gerente que no escucha al auditor porque está molesto.</li>
+    <li><strong>Ruido cultural:</strong> Diferencias de valores, creencias o contextos entre emisor y receptor.</li>
+  </ul>
+
+  <div class="caja-idea">
+    <strong>💡 Idea Clave</strong>
+    Hablar es una habilidad biológica. Comunicar es una habilidad profesional. La diferencia entre ambas puede determinar el éxito o fracaso de una empresa, una negociación, una auditoría o una relación humana. Desde hoy, cada vez que vayas a "hablar" con alguien, pregúntate: ¿estoy realmente <em>comunicando</em>?
+  </div>
+</div>
+
+<!-- ====================================================
+     PESTAÑA: TEMA 4 — Datos, información y comunicación
+==================================================== -->
+<div id="tema4" class="tab-content">
+  <h2>Tema 4: Datos, Información y Comunicación — ¿Son lo mismo?</h2>
+
+  <p>Un error muy común es usar estas tres palabras como sinónimos. En comunicación, y especialmente en el contexto contable-auditor, son conceptos distintos con roles distintos. Confundirlos puede tener consecuencias profesionales graves.</p>
+
+  <div class="caja-concepto">
+    <strong>Dato</strong>
+    Un dato es un signo o símbolo aislado que registra una propiedad de un objeto, fenómeno o evento. Por sí solo, el dato no comunica nada: es materia prima.
+    <br><em>Ejemplo: "5.430.000"</em>
+  </div>
+
+  <div class="caja-concepto">
+    <strong>Información</strong>
+    La información es el conjunto de datos organizados y procesados que adquieren sentido en un contexto determinado. La información sirve para reducir la incertidumbre.
+    <br><em>Ejemplo: "Las ventas de la empresa ABC en enero fueron de $5.430.000"</em>
+  </div>
+
+  <div class="caja-concepto">
+    <strong>Comunicación</strong>
+    La comunicación es el proceso por el cual la información se transmite, es recibida, comprendida e interpretada por un receptor, generando una respuesta. La comunicación incluye la interacción entre personas y la creación de significados compartidos.
+    <br><em>Ejemplo: El contador explica al gerente que las ventas de enero fueron $5.430.000, un 12% más que en enero del año anterior, y juntos analizan las causas y decisiones a tomar.</em>
+  </div>
+
+  <h3>4.1 La jerarquía: datos → información → comunicación</h3>
+  <p>Existe una relación de jerarquía y dependencia entre estos tres elementos:</p>
+
+  <table>
+    <tr><th>Nivel</th><th>¿Qué es?</th><th>¿Para qué sirve?</th><th>Ejemplo contable</th></tr>
+    <tr>
+      <td><strong>Dato</strong></td>
+      <td>Símbolo aislado</td>
+      <td>Materia prima</td>
+      <td>Número de una factura: 0001-0023456</td>
+    </tr>
+    <tr>
+      <td><strong>Información</strong></td>
+      <td>Datos organizados con contexto</td>
+      <td>Reduce incertidumbre</td>
+      <td>Estado de cuenta bancaria del mes de febrero</td>
+    </tr>
+    <tr>
+      <td><strong>Comunicación</strong></td>
+      <td>Información transmitida + retroalimentación</td>
+      <td>Genera comprensión y acción</td>
+      <td>Reunión con el cliente para analizar el estado financiero y tomar decisiones</td>
+    </tr>
+  </table>
+
+  <h3>4.2 ¿Por qué importa esta distinción en auditoría?</h3>
+
+  <div class="caja-ejemplo">
+    <div class="ejemplo-titulo">🔍 Caso práctico — Auditoría empresarial</div>
+    <p>Un auditor tiene acceso a <strong>miles de datos</strong> de una empresa: transacciones, fechas, montos, cuentas. Luego transforma esos datos en <strong>información</strong> al identificar patrones, irregularidades o inconsistencias en un informe estructurado.</p>
+    <p>Pero el proceso no termina ahí. Si ese informe llega al directorio y nadie lo entiende, nadie actúa, y los problemas persisten. Solo cuando el auditor <strong>comunica</strong> sus hallazgos de forma comprensible, genera retroalimentación y confirma que se tomarán acciones, el ciclo completo se cumple.</p>
+    <p><strong>Moraleja:</strong> Los datos son el inicio del proceso. La comunicación es su culminación.</p>
+  </div>
+
+  <h3>4.3 La comunicación como sistema</h3>
+  <p>La comunicación no es un acto simple sino un <strong>sistema</strong>. Como en todo sistema, si uno de sus elementos falla, el proceso entero se ve afectado. Los elementos del sistema comunicativo son:</p>
+
+  <ul class="lista-visual">
+    <li><strong>Emisor:</strong> Quien genera y codifica el mensaje</li>
+    <li><strong>Mensaje:</strong> El contenido que se transmite (verbal, escrito, no verbal)</li>
+    <li><strong>Canal:</strong> El medio por el que viaja el mensaje (correo, reunión, informe, llamada)</li>
+    <li><strong>Receptor:</strong> Quien recibe y decodifica el mensaje</li>
+    <li><strong>Retroalimentación:</strong> La respuesta del receptor que cierra el circuito</li>
+    <li><strong>Contexto:</strong> Las condiciones físicas, emocionales y culturales que rodean el proceso</li>
+    <li><strong>Ruido:</strong> Cualquier elemento que distorsiona o interfiere con el mensaje</li>
+  </ul>
+
+  <div class="caja-idea">
+    <strong>💡 Idea Clave</strong>
+    Datos, información y comunicación forman una cadena inseparable. En la carrera contable-auditora, dominar los datos es el requisito mínimo. Transformarlos en información útil es la habilidad técnica. Comunicarlos efectivamente es la habilidad profesional que marca la diferencia.
+  </div>
+</div>
+
+<!-- ====================================================
+     PESTAÑA: EJERCICIO INTERACTIVO
+==================================================== -->
+<div id="ejercicio" class="tab-content">
+  <h2>✏️ Ejercicio Interactivo — Identifica si es Hablar o Comunicar</h2>
+  <p>Lee cada situación y determina si describe un acto de <strong>HABLAR</strong> (sin garantía de comprensión real) o <strong>COMUNICAR</strong> (proceso completo con retroalimentación y comprensión). Responde todas las preguntas y luego presiona "Verificar respuestas".</p>
+
+  <!-- Ítem 1 -->
+  <div class="ejercicio-item" id="ej-item-1">
+    <p>1. Un gerente de empresa convoca una reunión, explica el plan financiero del trimestre, pide preguntas, ajusta su explicación ante las dudas del equipo y confirma que todos comprendieron las acciones a tomar.</p>
+    <div class="opciones" id="ej1">
+      <label><input type="radio" name="ej1" value="a"> A) Hablar</label>
+      <label><input type="radio" name="ej1" value="b"> B) Comunicar</label>
+    </div>
+    <div class="resultado-item" id="res-ej1"></div>
+  </div>
+
+  <!-- Ítem 2 -->
+  <div class="ejercicio-item" id="ej-item-2">
+    <p>2. Una auditora entrega su informe de 60 páginas al cliente y le dice: "Todo está aquí explicado". No verifica si fue comprendido. El cliente no hace preguntas por temor a parecer ignorante.</p>
+    <div class="opciones" id="ej2">
+      <label><input type="radio" name="ej2" value="a"> A) Hablar</label>
+      <label><input type="radio" name="ej2" value="b"> B) Comunicar</label>
+    </div>
+    <div class="resultado-item" id="res-ej2"></div>
+  </div>
+
+  <!-- Ítem 3 -->
+  <div class="ejercicio-item" id="ej-item-3">
+    <p>3. La retroalimentación (feedback) es un elemento que transforma la simple transmisión de palabras en comunicación genuina.</p>
+    <div class="opciones" id="ej3">
+      <label><input type="radio" name="ej3" value="a"> A) Verdadero</label>
+      <label><input type="radio" name="ej3" value="b"> B) Falso</label>
+    </div>
+    <div class="resultado-item" id="res-ej3"></div>
+  </div>
+
+  <!-- Ítem 4 -->
+  <div class="ejercicio-item" id="ej-item-4">
+    <p>4. ¿Cuál de los siguientes ejemplos corresponde a un DATO y no a información ni comunicación?</p>
+    <div class="opciones" id="ej4">
+      <label><input type="radio" name="ej4" value="a"> A) El número 234.500 registrado en el sistema contable, sin ningún contexto</label>
+      <label><input type="radio" name="ej4" value="b"> B) El estado de resultados del primer trimestre de la empresa</label>
+      <label><input type="radio" name="ej4" value="c"> C) La reunión en la que el contador explica los resultados al directorio</label>
+      <label><input type="radio" name="ej4" value="d"> D) El correo electrónico que resume los hallazgos de auditoría</label>
+    </div>
+    <div class="resultado-item" id="res-ej4"></div>
+  </div>
+
+  <!-- Ítem 5 -->
+  <div class="ejercicio-item" id="ej-item-5">
+    <p>5. Un cliente de una firma contable llama furioso porque no entendió una cláusula de su contrato. El contador repite exactamente las mismas palabras del contrato en voz más alta. ¿Qué error está cometiendo?</p>
+    <div class="opciones" id="ej5">
+      <label><input type="radio" name="ej5" value="a"> A) No está adaptando el mensaje al nivel de comprensión del receptor (ruido semántico)</label>
+      <label><input type="radio" name="ej5" value="b"> B) Está hablando demasiado despacio</label>
+      <label><input type="radio" name="ej5" value="c"> C) No tiene suficiente información sobre el contrato</label>
+      <label><input type="radio" name="ej5" value="d"> D) El cliente no quiere entender</label>
+    </div>
+    <div class="resultado-item" id="res-ej5"></div>
+  </div>
+
+  <!-- Ítem 6 -->
+  <div class="ejercicio-item" id="ej-item-6">
+    <p>6. ¿Cuál de las siguientes afirmaciones describe mejor la diferencia entre hablar y comunicar?</p>
+    <div class="opciones" id="ej6">
+      <label><input type="radio" name="ej6" value="a"> A) Hablar requiere solo emitir palabras; comunicar requiere crear comprensión compartida y retroalimentación</label>
+      <label><input type="radio" name="ej6" value="b"> B) Comunicar significa hablar más lentamente y con mejor dicción</label>
+      <label><input type="radio" name="ej6" value="c"> C) Hablar y comunicar son sinónimos en contextos formales</label>
+      <label><input type="radio" name="ej6" value="d"> D) Comunicar es hablar con mucho vocabulario técnico</label>
+    </div>
+    <div class="resultado-item" id="res-ej6"></div>
+  </div>
+
+  <!-- Ítem 7 -->
+  <div class="ejercicio-item" id="ej-item-7">
+    <p>7. Una presentación de resultados financieros en la que el expositor usa solo tecnicismos contables frente a una junta directiva sin formación técnica, sin explicaciones simples, ¿qué tipo de ruido predomina?</p>
+    <div class="opciones" id="ej7">
+      <label><input type="radio" name="ej7" value="a"> A) Ruido semántico</label>
+      <label><input type="radio" name="ej7" value="b"> B) Ruido físico</label>
+      <label><input type="radio" name="ej7" value="c"> C) Ruido cultural</label>
+      <label><input type="radio" name="ej7" value="d"> D) Ruido tecnológico</label>
+    </div>
+    <div class="resultado-item" id="res-ej7"></div>
+  </div>
+
+  <!-- Ítem 8 -->
+  <div class="ejercicio-item" id="ej-item-8">
+    <p>8. Completar: "La comunicación se origina en el latín ________, que significa 'lo que es recibido y admitido por todos', lo que implica la creación de algo en común."</p>
+    <div class="opciones" id="ej8">
+      <label><input type="radio" name="ej8" value="a"> A) communis</label>
+      <label><input type="radio" name="ej8" value="b"> B) communicare</label>
+      <label><input type="radio" name="ej8" value="c"> C) verbum</label>
+      <label><input type="radio" name="ej8" value="d"> D) loquor</label>
+    </div>
+    <div class="resultado-item" id="res-ej8"></div>
+  </div>
+
+  <div class="btn-row">
+    <button class="btn btn-primary" onclick="verificarEjercicio()">✅ Verificar respuestas</button>
+    <button class="btn btn-secondary" onclick="reiniciarEjercicio()">🔄 Reiniciar</button>
+  </div>
+
+  <div class="calificacion-box" id="cal-ejercicio">
+    <div class="score-grande" id="score-ej-texto"></div>
+    <div style="font-size:1rem;margin-top:6px;" id="score-ej-pct"></div>
+    <div class="barra-progreso-wrapper"><div class="barra-progreso" id="barra-ej"></div></div>
+    <div class="mensaje-motivacional" id="msg-ej"></div>
+  </div>
+</div>
+
+<!-- ====================================================
+     PESTAÑA: CUESTIONARIO
+==================================================== -->
+<div id="cuestionario" class="tab-content">
+  <h2>📝 Cuestionario — Semana 1</h2>
+  <p>Responde las 10 preguntas de opción múltiple. Las primeras 7 son teóricas (basadas en el contenido de este widget). Las últimas 3 son de análisis de caso y pueden resolverse con razonamiento lógico. Responde todas y luego presiona "Verificar".</p>
+
+  <!-- Pregunta 1 -->
+  <div class="pregunta-card">
+    <span class="badge-tipo badge-teorica">Teórica</span>
+    <p class="pregunta-texto">1. ¿Cuál es el origen etimológico de la palabra "comunicación" y qué implica ese origen?</p>
+    <div class="opciones" id="q1">
+      <label><input type="radio" name="q1" value="a"> A) Del latín <em>communis</em>, que significa "lo que es recibido y admitido por todos", implicando la creación de algo en común</label>
+      <label><input type="radio" name="q1" value="b"> B) Del griego <em>logos</em>, que significa "discurso", implicando el arte de hablar</label>
+      <label><input type="radio" name="q1" value="c"> C) Del latín <em>verbum</em>, que significa "palabra", implicando el uso del lenguaje verbal</label>
+      <label><input type="radio" name="q1" value="d"> D) Del francés <em>communiqué</em>, que significa "anuncio oficial"</label>
+    </div>
+    <div class="resultado-item" id="res-q1"></div>
+  </div>
+
+  <!-- Pregunta 2 -->
+  <div class="pregunta-card">
+    <span class="badge-tipo badge-teorica">Teórica</span>
+    <p class="pregunta-texto">2. ¿Qué elemento distingue fundamentalmente a la comunicación del simple acto de hablar?</p>
+    <div class="opciones" id="q2">
+      <label><input type="radio" name="q2" value="a"> A) La retroalimentación, que convierte el proceso en bidireccional y verifica la comprensión del mensaje</label>
+      <label><input type="radio" name="q2" value="b"> B) La velocidad con que se emiten las palabras</label>
+      <label><input type="radio" name="q2" value="c"> C) El uso de un vocabulario más amplio y técnico</label>
+      <label><input type="radio" name="q2" value="d"> D) La presencia de un micrófono o amplificador de voz</label>
+    </div>
+    <div class="resultado-item" id="res-q2"></div>
+  </div>
+
+  <!-- Pregunta 3 -->
+  <div class="pregunta-card">
+    <span class="badge-tipo badge-teorica">Teórica</span>
+    <p class="pregunta-texto">3. En el contexto de la comunicación, ¿qué es el "ruido semántico"?</p>
+    <div class="opciones" id="q3">
+      <label><input type="radio" name="q3" value="a"> A) La interferencia causada por el uso de términos técnicos o incomprensibles para el receptor</label>
+      <label><input type="radio" name="q3" value="b"> B) El sonido físico del ambiente que impide escuchar el mensaje</label>
+      <label><input type="radio" name="q3" value="c"> C) La distorsión causada por una mala conexión telefónica</label>
+      <label><input type="radio" name="q3" value="d"> D) El volumen excesivo de la voz del emisor</label>
+    </div>
+    <div class="resultado-item" id="res-q3"></div>
+  </div>
+
+  <!-- Pregunta 4 -->
+  <div class="pregunta-card">
+    <span class="badge-tipo badge-teorica">Teórica</span>
+    <p class="pregunta-texto">4. ¿Cuál es la correcta jerarquía de los elementos del proceso de conocimiento-comunicación?</p>
+    <div class="opciones" id="q4">
+      <label><input type="radio" name="q4" value="a"> A) Datos → Información → Comunicación</label>
+      <label><input type="radio" name="q4" value="b"> B) Información → Datos → Comunicación</label>
+      <label><input type="radio" name="q4" value="c"> C) Comunicación → Información → Datos</label>
+      <label><input type="radio" name="q4" value="d"> D) Datos → Comunicación → Información</label>
+    </div>
+    <div class="resultado-item" id="res-q4"></div>
+  </div>
+
+  <!-- Pregunta 5 -->
+  <div class="pregunta-card">
+    <span class="badge-tipo badge-teorica">Teórica</span>
+    <p class="pregunta-texto">5. ¿Cuál de las siguientes funciones de la comunicación consiste en transmitir y recibir emociones, sentimientos y vivencias?</p>
+    <div class="opciones" id="q5">
+      <label><input type="radio" name="q5" value="a"> A) Función afectiva</label>
+      <label><input type="radio" name="q5" value="b"> B) Función informativa</label>
+      <label><input type="radio" name="q5" value="c"> C) Función reguladora</label>
+      <label><input type="radio" name="q5" value="d"> D) Función organizativa</label>
+    </div>
+    <div class="resultado-item" id="res-q5"></div>
+  </div>
+
+  <!-- Pregunta 6 -->
+  <div class="pregunta-card">
+    <span class="badge-tipo badge-teorica">Teórica</span>
+    <p class="pregunta-texto">6. ¿Cuál de las siguientes opciones describe correctamente la función del "canal" en el proceso comunicativo?</p>
+    <div class="opciones" id="q6">
+      <label><input type="radio" name="q6" value="a"> A) Es el medio por el cual se transmite el mensaje (correo, reunión, llamada, informe escrito)</label>
+      <label><input type="radio" name="q6" value="b"> B) Es la persona que recibe y decodifica el mensaje</label>
+      <label><input type="radio" name="q6" value="c"> C) Es el contenido del mensaje que se quiere transmitir</label>
+      <label><input type="radio" name="q6" value="d"> D) Es la respuesta que da el receptor al emisor</label>
+    </div>
+    <div class="resultado-item" id="res-q6"></div>
+  </div>
+
+  <!-- Pregunta 7 -->
+  <div class="pregunta-card">
+    <span class="badge-tipo badge-teorica">Teórica</span>
+    <p class="pregunta-texto">7. Según los contenidos del curso, ¿por qué la comunicación es una competencia técnica esencial para el contador-auditor?</p>
+    <div class="opciones" id="q7">
+      <label><input type="radio" name="q7" value="a"> A) Porque todo el trabajo técnico contable culmina en un acto comunicativo: informes, presentaciones, entrevistas y dictámenes que deben ser comprendidos por sus destinatarios</label>
+      <label><input type="radio" name="q7" value="b"> B) Porque la normativa contable internacional exige que los contadores hablen inglés</label>
+      <label><input type="radio" name="q7" value="c"> C) Porque los contadores necesitan comunicarse solo con sus colegas en el gremio profesional</label>
+      <label><input type="radio" name="q7" value="d"> D) Porque la comunicación mejora la presentación física de los documentos contables</label>
+    </div>
+    <div class="resultado-item" id="res-q7"></div>
+  </div>
+
+  <!-- Pregunta 8 — Análisis -->
+  <div class="pregunta-card">
+    <span class="badge-tipo badge-analisis">Análisis de caso</span>
+    <p class="pregunta-texto">8. Una empresa de auditoría envía un informe de irregularidades al directorio de una cooperativa de ahorro. El informe usa un lenguaje técnico-contable avanzado. El directorio, compuesto por personas sin formación financiera, no comprende las implicaciones del informe y no toma ninguna acción correctiva. ¿Cuál es el problema comunicativo central?</p>
+    <div class="opciones" id="q8">
+      <label><input type="radio" name="q8" value="a"> A) El emisor no adaptó el mensaje al nivel de comprensión del receptor, generando ruido semántico que impidió la comunicación efectiva</label>
+      <label><input type="radio" name="q8" value="b"> B) El informe era demasiado corto para ser convincente</label>
+      <label><input type="radio" name="q8" value="c"> C) El directorio actuó de mala fe al ignorar el informe</label>
+      <label><input type="radio" name="q8" value="d"> D) El canal elegido (informe escrito) fue inadecuado para cualquier tipo de información financiera</label>
+    </div>
+    <div class="resultado-item" id="res-q8"></div>
+  </div>
+
+  <!-- Pregunta 9 — Análisis -->
+  <div class="pregunta-card">
+    <span class="badge-tipo badge-analisis">Análisis de caso</span>
+    <p class="pregunta-texto">9. Una contadora pública presenta sus estados financieros a un cliente. El cliente asiente con la cabeza durante toda la explicación, pero al terminar no puede responder ninguna pregunta básica sobre los resultados. La contadora cree que comunicó exitosamente porque el cliente escuchó sin interrumpir. ¿Qué error conceptual está cometiendo la contadora?</p>
+    <div class="opciones" id="q9">
+      <label><input type="radio" name="q9" value="a"> A) Confunde el acto de hablar (emisión del mensaje) con el de comunicar (verificación de comprensión con retroalimentación efectiva)</label>
+      <label><input type="radio" name="q9" value="b"> B) Debería haber hablado más tiempo para garantizar la comprensión</label>
+      <label><input type="radio" name="q9" value="c"> C) El problema es que el cliente no tiene formación contable suficiente</label>
+      <label><input type="radio" name="q9" value="d"> D) La contadora usó el canal equivocado para presentar los estados financieros</label>
+    </div>
+    <div class="resultado-item" id="res-q9"></div>
+  </div>
+
+  <!-- Pregunta 10 — Análisis -->
+  <div class="pregunta-card">
+    <span class="badge-tipo badge-analisis">Análisis de caso</span>
+    <p class="pregunta-texto">10. En el Ecuador, la Contraloría General del Estado publica informes de auditoría gubernamental que deben ser leídos por legisladores, funcionarios y ciudadanos. Si esos informes usan exclusivamente lenguaje técnico-legal sin síntesis comprensibles, ¿qué consecuencia comunicativa directa se produce?</p>
+    <div class="opciones" id="q10">
+      <label><input type="radio" name="q10" value="a"> A) La información técnica existe pero no genera comprensión ni acción ciudadana, transformándose en datos sin efecto comunicativo real</label>
+      <label><input type="radio" name="q10" value="b"> B) Los informes ganan más credibilidad por su rigor técnico, mejorando la transparencia</label>
+      <label><input type="radio" name="q10" value="c"> C) Los ciudadanos deberían formarse técnicamente para poder leer esos informes</label>
+      <label><input type="radio" name="q10" value="d"> D) El problema es que los informes son demasiado extensos, no que sean técnicos</label>
+    </div>
+    <div class="resultado-item" id="res-q10"></div>
+  </div>
+
+  <div class="btn-row">
+    <button class="btn btn-primary" onclick="verificarCuestionario()">✅ Verificar respuestas</button>
+    <button class="btn btn-secondary" onclick="reiniciarCuestionario()">🔄 Reiniciar</button>
+  </div>
+
+  <div class="calificacion-box" id="cal-cuestionario">
+    <div class="score-grande" id="score-q-texto"></div>
+    <div style="font-size:1rem;margin-top:6px;" id="score-q-pct"></div>
+    <div class="barra-progreso-wrapper"><div class="barra-progreso" id="barra-q"></div></div>
+    <div class="mensaje-motivacional" id="msg-q"></div>
+  </div>
+</div>
+
+<!-- ====================================================
+     PESTAÑA: ACTIVIDAD IA
+==================================================== -->
+<div id="actividad-ia" class="tab-content">
+  <h2>🤖 Actividad con Inteligencia Artificial</h2>
+
+  <div class="caja-concepto">
+    <strong>Herramienta recomendada</strong>
+    <strong>Claude de Anthropic</strong> — Disponible gratis en <a href="https://claude.ai" target="_blank" style="color:var(--azul-ug);font-weight:700;">claude.ai</a>. También puedes usar ChatGPT (chatgpt.com) o Gemini (gemini.google.com) si lo prefieres.
+  </div>
+
+  <h3>📌 Actividad: Audita tu propia comunicación</h3>
+  <p>En esta actividad no copiarás la respuesta de la IA. La usarás como espejo crítico para analizar un momento real de tu vida donde no lograste comunicar algo, y a partir de la respuesta de la IA, identificarás qué falló y cómo mejorarlo.</p>
+
+  <h3>Paso 1 — Prepara tu situación</h3>
+  <p>Piensa en un momento reciente (en tu trabajo, familia o estudios) en el que intentaste explicar algo importante pero la otra persona no comprendió, o en el que tú recibiste un mensaje y no lo entendiste. Recuerda los detalles: ¿quién hablaba? ¿qué intentaba decir? ¿qué ocurrió?</p>
+
+  <h3>Paso 2 — Usa este prompt exacto con la IA</h3>
+
+  <div class="prompt-box">
+    <span class="prompt-label">📋 PROMPT PARA LA IA</span>
+Actúa como un experto en comunicación interpersonal y organizacional. Voy a describerte una situación comunicativa real que me ocurrió y necesito que la analices aplicando conceptos técnicos de comunicación.
+
+Mi situación fue la siguiente: [DESCRIBE AQUÍ TU SITUACIÓN con el mayor detalle posible: quién era el emisor, qué mensaje quería transmitir, quién era el receptor, qué canal se usó, qué resultó y por qué crees que no funcionó]
+
+Por favor:
+1. Identifica si lo que ocurrió fue un acto de HABLAR o de COMUNICAR, y explica por qué.
+2. Señala cuáles elementos del proceso comunicativo fallaron (emisor, mensaje, canal, receptor, retroalimentación, ruido).
+3. Identifica qué tipo de ruido estuvo presente (físico, semántico, psicológico o cultural).
+4. Propone 3 estrategias concretas para que esa situación hubiera resultado en comunicación efectiva.
+5. Termina con una pregunta reflexiva que me invite a pensar en mi responsabilidad como emisor en esa situación.
+  </div>
+
+  <h3>Paso 3 — Trabaja con la respuesta de la IA</h3>
+  <ul class="lista-visual">
+    <li><strong>Lee el análisis</strong> de la IA detenidamente. ¿Coincide con tu propia lectura de la situación?</li>
+    <li><strong>Escribe en un párrafo</strong> (en tu cuaderno o en un documento) al menos DOS puntos con los que estás de acuerdo y UNO con el que no estás de acuerdo, explicando por qué.</li>
+    <li><strong>Responde la pregunta reflexiva</strong> que la IA te propone. Escribe tu respuesta honestamente.</li>
+    <li><strong>Compara:</strong> ¿La IA identificó el mismo tipo de ruido que tú? ¿Cambió tu perspectiva sobre quién fue responsable de la falla comunicativa?</li>
+  </ul>
+
+  <h3>📊 Criterio de evaluación</h3>
+  <table>
+    <tr><th>Indica pensamiento crítico</th><th>Indica copia simple</th></tr>
+    <tr><td>Discute o cuestiona algún punto del análisis de la IA</td><td>Copia el análisis de la IA sin comentario propio</td></tr>
+    <tr><td>Conecta el análisis con experiencias propias específicas</td><td>Responde con generalidades sin referencia a su situación</td></tr>
+    <tr><td>Propone estrategias adicionales no mencionadas por la IA</td><td>Solo lista las estrategias que la IA propuso</td></tr>
+    <tr><td>Responde la pregunta reflexiva con honestidad y profundidad</td><td>Responde la pregunta reflexiva con una sola oración</td></tr>
+  </table>
+
+  <div class="caja-idea">
+    <strong>🎯 Objetivo de esta actividad</strong>
+    No se trata de obtener una respuesta "correcta" de la IA. Se trata de usar la IA como interlocutor inteligente para analizar tu propia comunicación con herramientas técnicas. El pensamiento crítico aparece cuando tú evalúas, cuestiones y enriqueces lo que la IA propone.
+  </div>
+</div>
+
+<!-- ====================================================
+     PESTAÑA: REFLEXIÓN
+==================================================== -->
+<div id="reflexion" class="tab-content">
+  <h2>💭 Preguntas Reflexivas — La comunicación en tu vida diaria</h2>
+  <p style="margin-bottom:22px;">No hay respuestas correctas ni incorrectas aquí. El objetivo es conectar los conceptos que aprendiste esta semana con situaciones reales de tu vida. La comunicación no es solo una materia universitaria — ocurre en cada momento de tu existencia.</p>
+
+  <div class="reflexion-item">
+    <span class="num">1</span>
+    <p>Piensa en la última discusión o malentendido que tuviste con alguien cercano (familiar, pareja, amigo o compañero). ¿Crees que fue un problema de <em>hablar</em> o de <em>comunicar</em>? ¿Qué hubiera cambiado si hubieras pedido retroalimentación antes de asumir que el otro entendió?</p>
+  </div>
+
+  <div class="reflexion-item">
+    <span class="num">2</span>
+    <p>Cuando te piden que hagas algo en el trabajo o en casa y no lo haces exactamente como esperaban, ¿a quién sueles culpar primero: al que te pidió (emisor) o a ti mismo por no haber preguntado más (receptor)? ¿Qué te dice eso sobre cómo asumes tu rol en la comunicación?</p>
+  </div>
+
+  <div class="reflexion-item">
+    <span class="num">3</span>
+    <p>¿Hay alguna persona en tu vida con quien sientas que "no te entiendes", aunque hablen mucho? ¿Podrías ahora, con lo que aprendiste, identificar qué tipo de ruido (físico, semántico, psicológico o cultural) existe entre ustedes?</p>
+  </div>
+
+  <div class="reflexion-item">
+    <span class="num">4</span>
+    <p>La autoestima influye directamente en cómo nos comunicamos. Las personas con autoestima baja suelen no expresar lo que sienten o piensan por temor al rechazo. ¿Identificas en ti alguna situación en la que la inseguridad te ha impedido comunicar algo importante? ¿Qué consecuencias tuvo ese silencio?</p>
+  </div>
+
+  <div class="reflexion-item">
+    <span class="num">5</span>
+    <p>Piensa en la persona que más admiras por cómo se comunica. ¿Qué características específicas observas en ella? ¿Escucha activamente? ¿Adapta su lenguaje al interlocutor? ¿Genera retroalimentación? ¿Cómo podrías incorporar una de esas características en tu comunicación diaria esta semana?</p>
+  </div>
+
+  <div class="reflexion-item">
+    <span class="num">6</span>
+    <p>En las redes sociales publicas mensajes constantemente. ¿Alguna vez publicaste algo y fue interpretado de una manera completamente distinta a la que querías? ¿Qué elementos del proceso comunicativo fallaron en esa situación digital?</p>
+  </div>
+
+  <div class="caja-idea">
+    <strong>🌱 Para llevar</strong>
+    Durante esta semana, practica un solo cambio: antes de terminar cualquier conversación importante, pregunta: "¿Entendiste lo que quise decir?" o "¿Quedó claro?". Ese pequeño acto convierte el hablar en comunicar. Observa qué pasa.
+  </div>
+</div>
+
+<!-- ====================================================
+     PESTAÑA: BIBLIOGRAFÍA
+==================================================== -->
+<div id="bibliografia" class="tab-content">
+  <h2>📚 Bibliografía</h2>
+  <p style="margin-bottom:20px;">Referencias académicas utilizadas para el desarrollo de los contenidos de esta semana, presentadas en formato APA 7.ª edición.</p>
+
+  <div class="ref-card">
+    <p class="ref-autor">Davis, K., y Newstrom, J. (1987).</p>
+    <p><span class="ref-titulo">El comportamiento humano en el trabajo: Comportamiento organizacional</span> (8.ª ed.). McGraw-Hill.</p>
+  </div>
+
+  <div class="ref-card">
+    <p class="ref-autor">Santos García, D. V. (2012).</p>
+    <p><span class="ref-titulo">Fundamentos de la comunicación</span>. Red Tercer Milenio.</p>
+  </div>
+
+  <div class="ref-card">
+    <p class="ref-autor">Fernández Collado, C. (1997).</p>
+    <p><span class="ref-titulo">La comunicación en las organizaciones</span> (2.ª ed.). Trillas.</p>
+  </div>
+
+  <div class="ref-card">
+    <p class="ref-autor">Zayas Agüero, P. M. (2011).</p>
+    <p><span class="ref-titulo">La comunicación interpersonal</span>. Editorial Académica Española.</p>
+  </div>
+
+  <div class="ref-card">
+    <p class="ref-autor">Bourdieu, P. (1985).</p>
+    <p><span class="ref-titulo">¿Qué significa hablar? Economía de los intercambios lingüísticos</span>. Akal.</p>
+  </div>
+
+  <div class="ref-card">
+    <p class="ref-autor">Freire, P. (1970).</p>
+    <p><span class="ref-titulo">Pedagogía del oprimido</span>. Siglo XXI Editores.</p>
+  </div>
+
+  <div class="ref-card">
+    <p class="ref-autor">Beristáin, H. (2006).</p>
+    <p><span class="ref-titulo">Diccionario de retórica y poética</span> (9.ª ed.). Porrúa.</p>
+  </div>
+
+  <div class="nota-bib">
+    📌 <strong>Nota:</strong> Se recomienda verificar cada referencia en Google Scholar (<a href="https://scholar.google.com" target="_blank" style="color:#6b4c00;">scholar.google.com</a>) o en el repositorio institucional antes de citar en trabajos académicos.
+  </div>
+</div>
+
+<!-- ====================================================
+     JAVASCRIPT
+==================================================== -->
+<script>
+  /* ---- NAVEGACIÓN DE PESTAÑAS ---- */
+  function mostrarTab(id, btn) {
+    document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    btn.classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  /* ---- DATOS DEL EJERCICIO ---- */
+  const ejercicioRespuestas = {
+    ej1: { correcta: 'b', explicacion: 'Correcto: Hay retroalimentación activa, el emisor verifica la comprensión y adapta su mensaje. Esto define la comunicación completa.' },
+    ej2: { correcta: 'a', explicacion: 'Correcto: Se emitió el mensaje, pero no hubo verificación de comprensión ni retroalimentación. Es hablar (transmisión unilateral), no comunicar.' },
+    ej3: { correcta: 'a', explicacion: 'Verdadero: La retroalimentación es el elemento que convierte la transmisión en comunicación bidireccional y genuina.' },
+    ej4: { correcta: 'a', explicacion: 'Correcto: Un número sin contexto es un dato puro. Los estados financieros son información. La reunión de análisis es comunicación.' },
+    ej5: { correcta: 'a', explicacion: 'Correcto: El contador repite el mismo código lingüístico que el cliente no comprendió, sin adaptar el mensaje. Esto es ruido semántico clásico.' },
+    ej6: { correcta: 'a', explicacion: 'Correcto: Hablar requiere solo emisión de palabras. Comunicar requiere comprensión compartida, adaptación al receptor y retroalimentación.' },
+    ej7: { correcta: 'a', explicacion: 'Correcto: El uso de tecnicismos incomprensibles para el receptor genera ruido semántico: el mensaje existe pero no puede ser decodificado correctamente.' },
+    ej8: { correcta: 'a', explicacion: 'Correcto: La palabra "comunicación" viene del latín communis, que significa "lo que es recibido y admitido por todos".' }
+  };
+
+  function verificarEjercicio() {
+    let respondidas = 0;
+    let correctas = 0;
+    const total = Object.keys(ejercicioRespuestas).length;
+
+    for (const [key, datos] of Object.entries(ejercicioRespuestas)) {
+      const seleccion = document.querySelector(`input[name="${key}"]:checked`);
+      const resDiv = document.getElementById(`res-${key}`);
+
+      if (!seleccion) continue;
+      respondidas++;
+
+      const labels = document.querySelectorAll(`#${key} label`);
+      labels.forEach(l => { l.classList.remove('correcta', 'incorrecta', 'seleccionada'); });
+
+      const esCorrecta = seleccion.value === datos.correcta;
+      if (esCorrecta) {
+        correctas++;
+        seleccion.closest('label').classList.add('correcta');
+      } else {
+        seleccion.closest('label').classList.add('incorrecta');
+        // Marcar la correcta
+        const correctaLabel = document.querySelector(`#${key} input[value="${datos.correcta}"]`);
+        if (correctaLabel) correctaLabel.closest('label').classList.add('correcta');
+      }
+
+      resDiv.style.display = 'block';
+      resDiv.className = `resultado-item ${esCorrecta ? 'resultado-correcto' : 'resultado-incorrecto'}`;
+      resDiv.innerHTML = `${esCorrecta ? '✅' : '❌'} <strong>${esCorrecta ? 'Correcto' : 'Incorrecto'}:</strong> ${datos.explicacion}`;
+    }
+
+    if (respondidas < total) {
+      alert(`Por favor responde todas las preguntas antes de verificar. Faltan ${total - respondidas} por responder.`);
+      return;
+    }
+
+    const calBox = document.getElementById('cal-ejercicio');
+    calBox.style.display = 'block';
+    const pct = Math.round((correctas / total) * 100);
+    document.getElementById('score-ej-texto').textContent = `${correctas}/${total}`;
+    document.getElementById('score-ej-pct').textContent = `${pct}% de respuestas correctas`;
+    document.getElementById('barra-ej').style.width = pct + '%';
+
+    let emoji, msg;
+    if (pct === 100) { emoji = '🏆'; msg = '¡Perfecto! Dominas completamente los conceptos de esta semana.'; }
+    else if (pct >= 80) { emoji = '🎯'; msg = '¡Excelente trabajo! Tienes una comprensión sólida del tema.'; }
+    else if (pct >= 60) { emoji = '📘'; msg = 'Buen avance. Repasa los ítems incorrectos y refuerza tu comprensión.'; }
+    else if (pct >= 40) { emoji = '⚠️'; msg = 'Sigue adelante. Te recomendamos releer los temas y volver a intentarlo.'; }
+    else { emoji = '📖'; msg = 'No te desanimes. Regresa a los contenidos con calma y vuelve a intentar.'; }
+
+    document.getElementById('msg-ej').innerHTML = `${emoji} ${msg}`;
+    calBox.scrollIntoView({ behavior: 'smooth' });
+  }
+
+  function reiniciarEjercicio() {
+    document.querySelectorAll('#ejercicio input[type="radio"]').forEach(i => i.checked = false);
+    document.querySelectorAll('#ejercicio .resultado-item').forEach(d => d.style.display = 'none');
+    document.querySelectorAll('#ejercicio label').forEach(l => l.classList.remove('correcta', 'incorrecta', 'seleccionada'));
+    document.getElementById('cal-ejercicio').style.display = 'none';
+  }
+
+  /* ---- DATOS DEL CUESTIONARIO ---- */
+  const cuestionarioRespuestas = {
+    q1: { correcta: 'a', explicacion: 'La palabra comunicación proviene del latín communis ("lo que es admitido por todos"), lo que implica crear algo en común entre emisor y receptor.' },
+    q2: { correcta: 'a', explicacion: 'La retroalimentación (feedback) es el elemento que cierra el circuito comunicativo y garantiza que el mensaje fue recibido y comprendido correctamente.' },
+    q3: { correcta: 'a', explicacion: 'El ruido semántico surge cuando el emisor usa un lenguaje o terminología que el receptor no comprende, impidiendo la correcta decodificación del mensaje.' },
+    q4: { correcta: 'a', explicacion: 'Los datos son la materia prima; la información es el dato organizado con contexto; la comunicación es la transmisión de esa información con retroalimentación entre personas.' },
+    q5: { correcta: 'a', explicacion: 'La función afectiva de la comunicación consiste en transmitir y recibir emociones, sentimientos y vivencias, dimensión fundamental en la comunicación interpersonal.' },
+    q6: { correcta: 'a', explicacion: 'El canal es el medio físico o virtual por el cual viaja el mensaje (correo electrónico, reunión presencial, llamada telefónica, informe escrito, etc.).' },
+    q7: { correcta: 'a', explicacion: 'Todo el trabajo técnico del contador-auditor (informes, dictámenes, presentaciones) culmina en actos comunicativos. Sin comunicación eficaz, ese trabajo pierde impacto y valor.' },
+    q8: { correcta: 'a', explicacion: 'El auditor usó un lenguaje técnico-contable inapropiado para receptores sin formación financiera. El ruido semántico impidió la comprensión y, por tanto, la acción correctiva.' },
+    q9: { correcta: 'a', explicacion: 'La contadora confundió la escucha pasiva del cliente con comprensión real. Comunicar implica verificar activamente que el mensaje fue comprendido, no solo que fue escuchado.' },
+    q10: { correcta: 'a', explicacion: 'Un mensaje técnico que no puede ser comprendido por sus receptores no genera acción ni participación ciudadana real, convirtiendo la información en datos sin efecto comunicativo.' }
+  };
+
+  function verificarCuestionario() {
+    let respondidas = 0;
+    let correctas = 0;
+    const total = Object.keys(cuestionarioRespuestas).length;
+
+    for (const [key, datos] of Object.entries(cuestionarioRespuestas)) {
+      const seleccion = document.querySelector(`input[name="${key}"]:checked`);
+      const resDiv = document.getElementById(`res-${key}`);
+
+      if (!seleccion) continue;
+      respondidas++;
+
+      const labels = document.querySelectorAll(`#${key} label`);
+      labels.forEach(l => { l.classList.remove('correcta', 'incorrecta'); });
+
+      const esCorrecta = seleccion.value === datos.correcta;
+      if (esCorrecta) {
+        correctas++;
+        seleccion.closest('label').classList.add('correcta');
+      } else {
+        seleccion.closest('label').classList.add('incorrecta');
+        const correctaLabel = document.querySelector(`#${key} input[value="${datos.correcta}"]`);
+        if (correctaLabel) correctaLabel.closest('label').classList.add('correcta');
+      }
+
+      resDiv.style.display = 'block';
+      resDiv.className = `resultado-item ${esCorrecta ? 'resultado-correcto' : 'resultado-incorrecto'}`;
+      resDiv.innerHTML = `${esCorrecta ? '✅' : '❌'} <strong>${esCorrecta ? 'Correcto' : 'Incorrecto'}:</strong> ${datos.explicacion}`;
+    }
+
+    if (respondidas < total) {
+      alert(`Por favor responde todas las preguntas. Faltan ${total - respondidas} por contestar.`);
+      return;
+    }
+
+    const calBox = document.getElementById('cal-cuestionario');
+    calBox.style.display = 'block';
+    const pct = Math.round((correctas / total) * 100);
+    document.getElementById('score-q-texto').textContent = `${correctas}/10`;
+    document.getElementById('score-q-pct').textContent = `${pct}%`;
+    document.getElementById('barra-q').style.width = pct + '%';
+
+    let emoji, msg;
+    if (pct === 100) { emoji = '🏆'; msg = '¡Perfecto! Rendimiento excepcional.'; }
+    else if (pct >= 80) { emoji = '🎯'; msg = '¡Muy bien! Comprensión sólida de los contenidos.'; }
+    else if (pct >= 60) { emoji = '📘'; msg = 'Nivel aceptable. Sigue reforzando los conceptos.'; }
+    else if (pct >= 40) { emoji = '⚠️'; msg = 'Necesitas repasar el material antes de avanzar.'; }
+    else { emoji = '📖'; msg = 'Regresa a los temas y vuelve a intentarlo. ¡Tú puedes!'; }
+
+    document.getElementById('msg-q').innerHTML = `${emoji} ${msg}`;
+    calBox.scrollIntoView({ behavior: 'smooth' });
+  }
+
+  function reiniciarCuestionario() {
+    document.querySelectorAll('#cuestionario input[type="radio"]').forEach(i => i.checked = false);
+    document.querySelectorAll('#cuestionario .resultado-item').forEach(d => d.style.display = 'none');
+    document.querySelectorAll('#cuestionario label').forEach(l => l.classList.remove('correcta', 'incorrecta'));
+    document.getElementById('cal-cuestionario').style.display = 'none';
+  }
+</script>
+</body>
+</html>

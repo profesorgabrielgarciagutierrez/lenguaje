@@ -1,0 +1,861 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Semana 2 | Lenguaje, Procesamiento y Tipos | Lenguaje y Comunicación</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --azul-ug:#003366;--azul-tab:#87CEEB;--dorado:#FFB81C;--blanco:#ffffff;
+    --gris-claro:#f5f7fa;--gris-borde:#dde3ec;--texto:#2c3e50;
+    --azul-claro-bg:#e8f4fd;--verde:#27ae60;--rojo:#e74c3c;
+    --sombra:0 2px 12px rgba(0,51,102,0.10);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Source Sans 3',sans-serif;background:var(--gris-claro);color:var(--texto);font-size:16px;line-height:1.7}
+  header{background:var(--azul-ug);color:var(--blanco);padding:18px 28px 14px;display:flex;align-items:center;gap:18px;box-shadow:0 4px 12px rgba(0,0,0,0.18)}
+  .logo-placeholder{width:54px;height:54px;background:var(--blanco);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--azul-ug);font-weight:700;text-align:center;line-height:1.2;padding:4px;flex-shrink:0}
+  .header-info h1{font-family:'Lora',serif;font-size:1.18rem;font-weight:700;letter-spacing:.02em}
+  .header-info p{font-size:.82rem;opacity:.88;margin-top:2px}
+  .semana-badge{margin-left:auto;background:var(--dorado);color:var(--azul-ug);font-weight:700;font-size:.82rem;padding:6px 14px;border-radius:20px;white-space:nowrap;flex-shrink:0}
+  .tabs-wrapper{background:var(--azul-tab);overflow-x:auto;white-space:nowrap;border-bottom:3px solid var(--azul-ug);scrollbar-width:thin;scrollbar-color:var(--azul-ug) var(--azul-tab)}
+  .tabs-wrapper::-webkit-scrollbar{height:5px}.tabs-wrapper::-webkit-scrollbar-track{background:var(--azul-tab)}.tabs-wrapper::-webkit-scrollbar-thumb{background:var(--azul-ug);border-radius:3px}
+  .tabs{display:inline-flex;padding:0 6px;gap:2px;min-width:100%}
+  .tab-btn{background:transparent;border:none;padding:11px 16px;font-family:'Source Sans 3',sans-serif;font-size:.84rem;font-weight:600;color:#1a1a2e;cursor:pointer;transition:all .2s;border-radius:6px 6px 0 0;margin-top:4px;white-space:nowrap}
+  .tab-btn:hover{background:rgba(255,255,255,.5)}
+  .tab-btn.active{background:var(--blanco);color:var(--azul-ug);font-weight:700;box-shadow:0 -2px 0 var(--dorado) inset}
+  .tab-content{display:none;padding:28px 24px 40px;max-width:960px;margin:0 auto}
+  .tab-content.active{display:block}
+  h2{font-family:'Lora',serif;color:var(--azul-ug);font-size:1.55rem;margin-bottom:14px;padding-bottom:8px;border-bottom:3px solid var(--dorado)}
+  h3{font-family:'Lora',serif;color:var(--azul-ug);font-size:1.15rem;margin:22px 0 10px}
+  p{margin-bottom:14px}
+  .caja-concepto{border-left:5px solid var(--azul-ug);background:#f0f6ff;padding:16px 20px;margin:18px 0;border-radius:0 8px 8px 0}
+  .caja-concepto strong{display:block;color:var(--azul-ug);font-size:.88rem;text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px}
+  .caja-ejemplo{background:var(--azul-claro-bg);border:1px solid #c2dff5;border-radius:10px;padding:16px 20px;margin:18px 0}
+  .caja-ejemplo .ej-titulo{font-weight:700;color:var(--azul-ug);font-size:.9rem;text-transform:uppercase;letter-spacing:.05em;margin-bottom:8px}
+  .caja-idea{background:linear-gradient(135deg,#003366,#005299);color:var(--blanco);border-radius:10px;padding:18px 22px;margin:22px 0;border-left:6px solid var(--dorado)}
+  .caja-idea strong{color:var(--dorado);display:block;margin-bottom:6px;font-size:.9rem;text-transform:uppercase;letter-spacing:.05em}
+  .caja-positiva{border-left:5px solid var(--verde);background:#eafaf1;padding:14px 18px;border-radius:0 8px 8px 0;margin:10px 0}
+  .caja-negativa{border-left:5px solid var(--rojo);background:#fdf0ef;padding:14px 18px;border-radius:0 8px 8px 0;margin:10px 0}
+  table{width:100%;border-collapse:collapse;margin:18px 0;font-size:.95rem}
+  th{background:var(--azul-ug);color:var(--blanco);padding:11px 14px;text-align:left}
+  td{padding:10px 14px;border-bottom:1px solid var(--gris-borde);vertical-align:top}
+  tr:nth-child(even) td{background:#f0f6ff}
+  ul.lista-visual{list-style:none;padding:0;margin:14px 0}
+  ul.lista-visual li{padding:8px 12px 8px 36px;position:relative;border-radius:6px;margin-bottom:6px;background:#f8f9fc}
+  ul.lista-visual li::before{content:'▸';position:absolute;left:12px;color:var(--dorado);font-weight:700}
+  .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:18px 0}
+  @media(max-width:600px){.grid-2{grid-template-columns:1fr}}
+  .tarjeta{background:var(--blanco);border-radius:10px;padding:18px;box-shadow:var(--sombra);border-top:4px solid var(--dorado)}
+  .tarjeta h4{font-family:'Lora',serif;color:var(--azul-ug);margin-bottom:10px;font-size:1.05rem}
+  .tipo-card{background:var(--blanco);border-radius:10px;padding:20px;box-shadow:var(--sombra);margin-bottom:16px;border-left:6px solid var(--dorado)}
+  .tipo-card h4{color:var(--azul-ug);font-family:'Lora',serif;font-size:1.1rem;margin-bottom:8px}
+  .badge-tipo{display:inline-block;font-size:.75rem;font-weight:700;padding:3px 10px;border-radius:20px;margin-bottom:10px;text-transform:uppercase;letter-spacing:.05em}
+  .badge-teorica{background:#e8f4fd;color:var(--azul-ug);border:1px solid var(--azul-tab)}
+  .badge-analisis{background:#fff8e6;color:#7d5a00;border:1px solid var(--dorado)}
+  .pregunta-card{background:var(--blanco);border-radius:10px;padding:20px;margin-bottom:20px;box-shadow:var(--sombra)}
+  .pregunta-texto{font-weight:600;color:var(--azul-ug);margin-bottom:12px;font-size:1.02rem}
+  .ejercicio-item{background:var(--blanco);border-radius:10px;padding:20px;margin-bottom:20px;box-shadow:var(--sombra);border-left:4px solid var(--azul-tab)}
+  .ejercicio-item p{font-weight:600;margin-bottom:12px;color:var(--azul-ug)}
+  .opciones label{display:block;padding:9px 14px;border-radius:7px;border:2px solid var(--gris-borde);margin-bottom:7px;cursor:pointer;transition:all .2s;font-size:.95rem}
+  .opciones label:hover{border-color:var(--azul-tab);background:var(--azul-claro-bg)}
+  .opciones input{margin-right:8px;accent-color:var(--azul-ug)}
+  .resultado-item{margin-top:10px;padding:10px 14px;border-radius:7px;font-size:.93rem;display:none}
+  .resultado-correcto{background:#eafaf1;border:1.5px solid var(--verde);color:#1e8449}
+  .resultado-incorrecto{background:#fdf0ef;border:1.5px solid var(--rojo);color:#c0392b}
+  .calificacion-box{background:linear-gradient(135deg,#003366,#005299);color:var(--blanco);border-radius:14px;padding:28px 24px;text-align:center;margin-top:28px;display:none}
+  .score-grande{font-family:'Lora',serif;font-size:3rem;font-weight:700;color:var(--dorado);line-height:1}
+  .barra-progreso-wrapper{background:rgba(255,255,255,.2);border-radius:20px;height:16px;margin:14px 0;overflow:hidden}
+  .barra-progreso{height:100%;border-radius:20px;background:var(--dorado);transition:width 1s ease}
+  .btn{padding:12px 28px;border:none;border-radius:8px;font-family:'Source Sans 3',sans-serif;font-size:1rem;font-weight:700;cursor:pointer;transition:all .2s;letter-spacing:.03em}
+  .btn-primary{background:var(--azul-ug);color:var(--blanco)}
+  .btn-primary:hover{background:#004488;transform:translateY(-1px)}
+  .btn-secondary{background:var(--dorado);color:var(--azul-ug)}
+  .btn-secondary:hover{background:#e6a800;transform:translateY(-1px)}
+  .btn-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px}
+  .prompt-box{background:#1e1e2e;color:#e8e8f0;border-radius:10px;padding:24px 22px 20px;font-family:'Courier New',monospace;font-size:.88rem;line-height:1.7;margin:16px 0;position:relative;border-left:4px solid var(--dorado)}
+  .prompt-label{position:absolute;top:-10px;left:16px;background:var(--dorado);color:var(--azul-ug);font-size:.75rem;font-weight:700;padding:2px 10px;border-radius:10px;font-family:'Source Sans 3',sans-serif;text-transform:uppercase;letter-spacing:.05em}
+  .ref-card{background:var(--blanco);border-radius:10px;padding:16px 20px;margin-bottom:14px;box-shadow:var(--sombra);border-left:4px solid var(--dorado);font-size:.95rem}
+  .ref-autor{font-weight:700;color:var(--azul-ug)}
+  .ref-titulo{font-style:italic}
+  .nota-bib{background:#fff8e6;border:1px solid var(--dorado);border-radius:8px;padding:14px 18px;font-size:.88rem;margin-top:20px;color:#6b4c00}
+  .reflexion-item{background:linear-gradient(135deg,#fff8e6,#fffdf0);border:1.5px solid var(--dorado);border-radius:10px;padding:18px 20px;margin-bottom:16px}
+  .reflexion-item .num{display:inline-block;background:var(--dorado);color:var(--azul-ug);font-weight:700;border-radius:50%;width:28px;height:28px;text-align:center;line-height:28px;margin-right:10px;font-size:.9rem}
+  .intro-repaso{background:linear-gradient(135deg,var(--azul-ug),#005299);color:var(--blanco);border-radius:12px;padding:24px 26px;margin-bottom:26px}
+  .intro-repaso h2{color:var(--blanco);border-bottom-color:var(--dorado);font-size:1.3rem}
+  label.correcta{border-color:var(--verde) !important;background:#eafaf1 !important}
+  label.incorrecta{border-color:var(--rojo) !important;background:#fdf0ef !important}
+  .pct-stat{font-size:.9rem;color:#555;background:#f0f6ff;border-radius:6px;padding:6px 12px;display:inline-block;margin:4px 4px 0 0}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo-placeholder">UG<br>FCA</div>
+  <div class="header-info">
+    <h1>Lenguaje y Comunicación</h1>
+    <p>Unidad 1: La Comunicación &nbsp;|&nbsp; Carrera en Contabilidad y Auditoría &nbsp;|&nbsp; Facultad de Ciencias Administrativas</p>
+  </div>
+  <span class="semana-badge">📚 Semana 2</span>
+</header>
+
+<div class="tabs-wrapper">
+  <div class="tabs">
+    <button class="tab-btn active" onclick="showTab('repaso',this)">🔁 Repaso</button>
+    <button class="tab-btn" onclick="showTab('tema1',this)">📖 Tema 1</button>
+    <button class="tab-btn" onclick="showTab('tema2',this)">📖 Tema 2</button>
+    <button class="tab-btn" onclick="showTab('tema3',this)">📖 Tema 3</button>
+    <button class="tab-btn" onclick="showTab('tema4',this)">📖 Tema 4</button>
+    <button class="tab-btn" onclick="showTab('ejercicio',this)">✏️ Ejercicio</button>
+    <button class="tab-btn" onclick="showTab('cuestionario',this)">📝 Cuestionario</button>
+    <button class="tab-btn" onclick="showTab('actividad-ia',this)">🤖 Actividad IA</button>
+    <button class="tab-btn" onclick="showTab('reflexion',this)">💭 Reflexión</button>
+    <button class="tab-btn" onclick="showTab('bibliografia',this)">📚 Bibliografía</button>
+  </div>
+</div>
+
+<!-- REPASO -->
+<div id="repaso" class="tab-content active">
+  <div class="intro-repaso">
+    <h2>🔁 Repaso — Semana 1</h2>
+    <p>La semana pasada establecimos los cimientos del curso. Revisemos las ideas fundamentales antes de avanzar.</p>
+  </div>
+  <h2>Lo que aprendimos en la Semana 1</h2>
+  <div class="grid-2">
+    <div class="tarjeta">
+      <h4>✅ Qué es comunicación</h4>
+      <p>La comunicación es un proceso dinámico y <strong>bidireccional</strong> que va más allá de emitir palabras. Requiere que el mensaje sea <strong>recibido, decodificado y respondido</strong>. Su raíz latina <em>communis</em> significa "crear algo en común".</p>
+    </div>
+    <div class="tarjeta">
+      <h4>✅ Hablar ≠ Comunicar</h4>
+      <p>Hablar es la emisión de palabras (acto unilateral). Comunicar es el proceso completo que incluye <strong>retroalimentación</strong> y verificación de comprensión. La diferencia es determinante en el ejercicio profesional.</p>
+    </div>
+    <div class="tarjeta">
+      <h4>✅ Los 3 niveles: dato → información → comunicación</h4>
+      <p>Los datos son materia prima. La información es el dato organizado con contexto. La comunicación es la transmisión de información con intercambio real entre personas.</p>
+    </div>
+    <div class="tarjeta">
+      <h4>✅ El ruido en la comunicación</h4>
+      <p>El ruido (físico, semántico, psicológico y cultural) es cualquier elemento que distorsiona el mensaje entre emisor y receptor. Identificarlo es el primer paso para eliminarlo.</p>
+    </div>
+  </div>
+  <div class="caja-idea">
+    <strong>🎯 Enlace con la Semana 2</strong>
+    Ahora que sabemos qué ES la comunicación y cuál es la diferencia entre hablar y comunicar, esta semana vamos un paso más profundo: ¿cómo funciona el lenguaje? ¿Cómo procesamos los mensajes que recibimos? ¿Y cuáles son los distintos tipos de lenguaje que usamos, a veces sin darnos cuenta?
+  </div>
+</div>
+
+<!-- TEMA 1: Lenguaje vs Comunicación -->
+<div id="tema1" class="tab-content">
+  <h2>Tema 1: Lenguaje y Comunicación — Relación y diferencias</h2>
+  <p>Los conceptos de <strong>lenguaje</strong> y <strong>comunicación</strong> están íntimamente relacionados, pero no son sinónimos. Confundirlos lleva a errores conceptuales con consecuencias prácticas reales en el ejercicio profesional.</p>
+
+  <div class="caja-concepto">
+    <strong>Lenguaje</strong>
+    El lenguaje es un sistema de códigos (signos, símbolos, reglas) que los seres humanos utilizamos para representar, organizar y transmitir pensamientos, ideas y emociones. Es la herramienta que hace posible la comunicación, pero no es la comunicación en sí misma.
+    <br><em>(Santos García, 2012; Bourdieu, 1985)</em>
+  </div>
+
+  <div class="caja-concepto">
+    <strong>Comunicación</strong>
+    La comunicación es el proceso mediante el cual el lenguaje (y otros sistemas de signos) se usa para intercambiar significados entre personas, generando comprensión y respuesta. La comunicación es el uso del lenguaje en contexto social.
+  </div>
+
+  <h3>1.1 La triada fundamental del lenguaje: Lengua, Habla y Lenguaje</h3>
+  <p>El lingüista suizo Ferdinand de Saussure propuso una distinción clave que todo comunicador debe conocer:</p>
+
+  <table>
+    <tr><th>Concepto</th><th>Definición</th><th>Ejemplo en contexto contable</th></tr>
+    <tr>
+      <td><strong>Lenguaje</strong></td>
+      <td>Facultad humana universal de usar sistemas simbólicos para comunicarse</td>
+      <td>La capacidad general del contador para expresar ideas con palabras, gráficos o números</td>
+    </tr>
+    <tr>
+      <td><strong>Lengua</strong></td>
+      <td>Sistema concreto de signos compartido por una comunidad (el español, el inglés, el quechua)</td>
+      <td>El vocabulario técnico compartido entre contadores: "activo", "pasivo", "patrimonio", "NIIF"</td>
+    </tr>
+    <tr>
+      <td><strong>Habla</strong></td>
+      <td>El uso individual y concreto que cada persona hace de la lengua en un momento dado</td>
+      <td>La forma específica en que un auditor particular explica un hallazgo a su cliente</td>
+    </tr>
+  </table>
+
+  <div class="caja-ejemplo">
+    <div class="ej-titulo">🇪🇨 Ejemplo — Ecuador contable</div>
+    <p>Cuando una auditora ecuatoriana escribe un dictamen de auditoría, usa la <strong>lengua</strong> española y la <strong>lengua técnica</strong> contable. Pero la manera específica en que redacta ese dictamen —sus palabras elegidas, su tono, su estructura— es su <strong>habla</strong> individual. Si un contador peruano leyera ese dictamen, lo entendería porque comparten la lengua, aunque su habla sea diferente.</p>
+    <p>Sin embargo, si un cliente no tiene formación contable, el lenguaje técnico se convierte en una <strong>barrera</strong>, no en un puente. Ahí está el desafío comunicativo central de la profesión.</p>
+  </div>
+
+  <h3>1.2 El signo lingüístico</h3>
+  <p>Toda comunicación lingüística opera a través de <strong>signos</strong>. El signo lingüístico, según Saussure, tiene dos componentes inseparables:</p>
+
+  <div class="grid-2">
+    <div class="tarjeta">
+      <h4>📌 Significante</h4>
+      <p>Es la imagen acústica o gráfica del signo: la forma sonora o escrita de la palabra. Por ejemplo, la secuencia de letras A-U-D-I-T-O-R-Í-A o su sonido al pronunciarse.</p>
+    </div>
+    <div class="tarjeta">
+      <h4>💡 Significado</h4>
+      <p>Es el concepto mental que evoca el significante. El significado de "auditoría" es el conjunto de ideas, procesos y funciones que cada persona asocia a esa palabra según su contexto y formación.</p>
+    </div>
+  </div>
+
+  <p>Esta distinción es crucial: el significado de una misma palabra puede variar entre emisor y receptor. "Riesgo" para un auditor significa una probabilidad estadística de error. Para un cliente, puede significar "peligro inminente". Esta diferencia de significados produce malentendidos comunicativos graves.</p>
+
+  <div class="caja-idea">
+    <strong>💡 Idea Clave</strong>
+    El lenguaje no transmite ideas puras —transmite signos que cada receptor interpreta según su propio contexto, cultura y formación. Por eso, el mismo mensaje puede tener múltiples interpretaciones. Dominar el lenguaje profesional es fundamental, pero saber cuándo y cómo adaptar ese lenguaje al receptor es el verdadero arte de la comunicación.
+  </div>
+</div>
+
+<!-- TEMA 2: Procesamiento de mensajes -->
+<div id="tema2" class="tab-content">
+  <h2>Tema 2: Procesamiento de Mensajes — Cómo recibimos lo que nos dicen</h2>
+  <p>Cada vez que alguien nos habla o nos envía un mensaje, nuestro cerebro realiza un proceso interno complejo antes de generar una respuesta. Entender ese proceso es clave para comunicar mejor y para identificar dónde ocurren las fallas de comprensión.</p>
+
+  <h3>2.1 Las etapas del procesamiento de mensajes</h3>
+  <p>El proceso de recepción y procesamiento de un mensaje atraviesa estas etapas fundamentales:</p>
+
+  <div class="tipo-card">
+    <h4>1️⃣ Recepción sensorial</h4>
+    <p>El mensaje llega a nuestros sentidos: los oídos reciben el sonido (comunicación oral), los ojos reciben el texto (comunicación escrita) o las expresiones del cuerpo (comunicación no verbal). Esta etapa puede verse afectada por el ruido físico del entorno.</p>
+  </div>
+
+  <div class="tipo-card">
+    <h4>2️⃣ Atención selectiva</h4>
+    <p>No procesamos todo lo que percibimos. Nuestro cerebro selecciona qué información merece atención según nuestros intereses, estado emocional y expectativas previas. Si un informe de auditoría es denso y tedioso, la atención del receptor decae y filtra información importante.</p>
+  </div>
+
+  <div class="tipo-card">
+    <h4>3️⃣ Decodificación</h4>
+    <p>El receptor convierte los signos recibidos (palabras, gestos, imágenes) en significados propios. Esta etapa es donde más se producen malentendidos: el emisor codificó un mensaje con ciertos significados, pero el receptor lo decodifica según su propio marco de referencia. Si los marcos de referencia son distintos (cultura, formación, experiencia), la decodificación será diferente a lo que el emisor quiso decir.</p>
+  </div>
+
+  <div class="tipo-card">
+    <h4>4️⃣ Interpretación y filtros internos</h4>
+    <p>El mensaje decodificado pasa por los filtros personales del receptor: sus <strong>creencias</strong> previas, sus <strong>emociones</strong> en ese momento, sus <strong>prejuicios</strong> y su <strong>experiencia</strong>. Dos personas pueden escuchar el mismo mensaje y construir interpretaciones completamente distintas.</p>
+  </div>
+
+  <div class="tipo-card">
+    <h4>5️⃣ Respuesta (retroalimentación)</h4>
+    <p>El receptor genera una respuesta: puede ser verbal (una pregunta, un comentario), no verbal (asentir con la cabeza, fruncir el ceño) o conductual (tomar una decisión, ejecutar una acción). Esta respuesta es la retroalimentación que convierte el proceso en comunicación real.</p>
+  </div>
+
+  <div class="caja-ejemplo">
+    <div class="ej-titulo">📊 Caso — Reunión de resultados financieros</div>
+    <p><strong>Situación:</strong> El gerente financiero de una empresa guayaquileña presenta los resultados del trimestre. Dice: "Tuvimos una variación negativa del 8% en el margen bruto debido a incrementos en el costo de ventas."</p>
+    <br>
+    <p><strong>Procesamiento del director de ventas</strong> (sin formación financiera): Recepción ✓ → Atención parcial (escucha "negativa" y "costo") → Decodificación errónea ("algo salió mal por culpa de ventas") → Filtro emocional: se pone a la defensiva → Respuesta: "Las ventas crecieron, no es nuestro problema".</p>
+    <br>
+    <p><strong>¿Por qué falló?</strong> El emisor no consideró el marco de referencia del receptor. La falla está en la etapa de decodificación, amplificada por filtros emocionales.</p>
+  </div>
+
+  <h3>2.2 Los filtros que distorsionan la interpretación</h3>
+
+  <table>
+    <tr><th>Tipo de filtro</th><th>¿Qué hace?</th><th>Ejemplo en contexto laboral</th></tr>
+    <tr><td><strong>Emocional</strong></td><td>Las emociones presentes coloran la interpretación del mensaje</td><td>Un empleado recibe retroalimentación negativa mientras está estresado → la interpreta como ataque personal</td></tr>
+    <tr><td><strong>Cognitivo</strong></td><td>Conocimientos previos (o su ausencia) determinan la comprensión</td><td>Un cliente sin formación contable no entiende "EBITDA" en un informe financiero</td></tr>
+    <tr><td><strong>Cultural</strong></td><td>Valores, normas y costumbres sociales influyen en la interpretación</td><td>En culturas de alta distancia de poder, los empleados no cuestionan a su jefe aunque el mensaje sea confuso</td></tr>
+    <tr><td><strong>Perceptual</strong></td><td>Creencias y expectativas previas sobre el emisor condicionan la recepción</td><td>"Como él siempre exagera, este informe de riesgo tampoco será tan grave"</td></tr>
+  </table>
+
+  <div class="caja-idea">
+    <strong>💡 Idea Clave</strong>
+    El mensaje que envías no es necesariamente el mensaje que reciben. Entre lo que dices y lo que el receptor escucha, existe todo un proceso de filtros cognitivos, emocionales y culturales. El comunicador eficaz no solo piensa en su mensaje —piensa en el proceso de procesamiento que hará su receptor.
+  </div>
+</div>
+
+<!-- TEMA 3: Tipos de Lenguaje -->
+<div id="tema3" class="tab-content">
+  <h2>Tema 3: Tipos de Lenguaje — Los canales de la comunicación humana</h2>
+  <p>La comunicación humana no ocurre solo a través de palabras. Somos comunicadores multicanal: usamos simultáneamente el lenguaje verbal, el no verbal, el paraverbal y el escrito. Cada uno tiene características propias y, juntos, determinan el impacto real de un mensaje.</p>
+
+  <div class="caja-concepto">
+    <strong>Dato científico clave</strong>
+    Investigaciones clásicas en comunicación (Mehrabian, 1971) indican que en la comunicación cara a cara, el impacto total del mensaje se distribuye así: <strong>7% palabras</strong> (contenido verbal), <strong>38% voz</strong> (tono, ritmo, volumen — paraverbal) y <strong>55% lenguaje corporal</strong> (no verbal). Aunque esta distribución es orientativa y varía según el contexto, señala algo fundamental: la mayor parte del impacto comunicativo NO viene de las palabras.
+  </div>
+
+  <h3>3.1 Lenguaje Verbal Oral</h3>
+  <div class="tipo-card">
+    <h4>🗣️ Lenguaje Verbal Oral</h4>
+    <p><strong>Definición:</strong> Es la comunicación que se realiza mediante palabras habladas. Es el sistema lingüístico primario y más antiguo. Se apoya en el vocabulario, la gramática y la estructura del idioma.</p>
+    <p><strong>Características:</strong> Inmediatez, permite interacción en tiempo real, pero es efímero (desaparece si no se graba). Requiere que emisor y receptor compartan el mismo idioma y nivel de comprensión léxica.</p>
+
+    <div class="caja-ejemplo" style="margin-top:12px">
+      <div class="ej-titulo">📌 Aplicación profesional</div>
+      <p>Un auditor que presenta sus hallazgos verbalmente ante el directorio de una empresa usa lenguaje verbal oral. Debe elegir palabras que sean precisas técnicamente pero accesibles para receptores no especializados.</p>
+    </div>
+  </div>
+
+  <h3>3.2 Lenguaje Verbal Escrito</h3>
+  <div class="tipo-card">
+    <h4>📝 Lenguaje Verbal Escrito</h4>
+    <p><strong>Definición:</strong> Es la representación gráfica del sistema lingüístico. Permite que el mensaje persista en el tiempo y sea consultado repetidamente. Requiere habilidades específicas de redacción y comprensión lectora.</p>
+    <p><strong>Características:</strong> Permanencia, posibilidad de revisión y edición, mayor precisión posible, pero ausencia de retroalimentación inmediata. En comunicación formal, es el canal más utilizado en la profesión contable-auditora.</p>
+
+    <div class="caja-ejemplo" style="margin-top:12px">
+      <div class="ej-titulo">📌 Aplicación profesional</div>
+      <p>Informes de auditoría, estados financieros, cartas al SRI, actas de reunión, correos electrónicos institucionales: todo el ejercicio formal del contador es, en su mayor parte, comunicación verbal escrita. La claridad, precisión y coherencia son exigencias absolutas.</p>
+    </div>
+  </div>
+
+  <h3>3.3 Lenguaje Paraverbal</h3>
+  <div class="tipo-card">
+    <h4>🎙️ Lenguaje Paraverbal</h4>
+    <p><strong>Definición:</strong> Son todos los elementos que acompañan a la comunicación oral pero que no son las palabras en sí: el <strong>tono de voz</strong>, el <strong>ritmo</strong>, el <strong>volumen</strong>, las <strong>pausas</strong>, la <strong>velocidad</strong>, la <strong>entonación</strong> y las variaciones en la cadencia. También se denomina "paralingüística" o "comunicación vocal".</p>
+    <p><strong>¿Por qué importa?</strong> Las mismas palabras pueden comunicar mensajes completamente distintos según cómo se digan. "Excelente trabajo" dicho con entusiasmo expresa elogio sincero. "Excelente trabajo" dicho con tono irónico y pausas largas puede comunicar lo opuesto.</p>
+
+    <table>
+      <tr><th>Elemento paraverbal</th><th>¿Qué comunica?</th></tr>
+      <tr><td>Tono alto / ascendente</td><td>Pregunta, duda, entusiasmo</td></tr>
+      <tr><td>Tono bajo / descendente</td><td>Afirmación, seriedad, tristeza</td></tr>
+      <tr><td>Velocidad rápida</td><td>Nerviosismo, urgencia, falta de control</td></tr>
+      <tr><td>Velocidad lenta y pausada</td><td>Autoridad, seguridad, solemnidad</td></tr>
+      <tr><td>Volumen alto</td><td>Énfasis, molestia, dominio del espacio</td></tr>
+      <tr><td>Pausas estratégicas</td><td>Reflexión, peso del mensaje, invitación a procesar</td></tr>
+    </table>
+
+    <div class="caja-ejemplo" style="margin-top:12px">
+      <div class="ej-titulo">📌 Aplicación profesional</div>
+      <p>Un auditor que presenta hallazgos graves en una empresa con voz temblorosa, ritmo acelerado y pausas nerviosas comunicará <em>inseguridad</em>, aunque sus datos sean impecables. Dominar el paralenguaje es esencial en presentaciones, entrevistas de auditoría y negociaciones.</p>
+    </div>
+  </div>
+
+  <h3>3.4 Lenguaje No Verbal</h3>
+  <div class="tipo-card">
+    <h4>👁️ Lenguaje No Verbal</h4>
+    <p><strong>Definición:</strong> Son todos los signos y sistemas de comunicación que no involucran palabras escritas u orales. Incluye <strong>gestos</strong>, <strong>expresiones faciales</strong>, <strong>postura corporal</strong>, <strong>contacto visual</strong>, <strong>distancia física</strong> entre las personas (proxémica), <strong>movimientos del cuerpo</strong> (kinésica) y la <strong>apariencia</strong> (vestimenta, arreglo personal).</p>
+    <p>Se calcula que entre el <strong>60 y 70%</strong> de la información que recibimos en una conversación cara a cara proviene de señales no verbales.</p>
+
+    <div class="grid-2" style="margin-top:12px">
+      <div class="caja-positiva">
+        <strong>✅ Señales positivas en entrevista de auditoría</strong><br>
+        • Contacto visual sostenido (transmite honestidad y atención)<br>
+        • Postura erguida (denota seguridad y profesionalismo)<br>
+        • Asentir con la cabeza (indica escucha activa)<br>
+        • Manos visibles sobre la mesa (apertura y transparencia)
+      </div>
+      <div class="caja-negativa">
+        <strong>❌ Señales que generan desconfianza</strong><br>
+        • Evitar contacto visual (puede interpretarse como falta de honestidad)<br>
+        • Brazos cruzados ante preguntas (defensividad)<br>
+        • Mirar el reloj frecuentemente (desinterés)<br>
+        • Inclinarse hacia atrás al recibir preguntas (rechazo)
+      </div>
+    </div>
+  </div>
+
+  <div class="caja-idea">
+    <strong>💡 Idea Clave</strong>
+    Los cuatro tipos de lenguaje funcionan simultáneamente en cada acto comunicativo. El contador o auditor que domina solo el lenguaje verbal técnico —pero descuida el paraverbal y el no verbal— está operando con el 7% de su potencial comunicativo. La excelencia profesional requiere dominio de los cuatro canales.
+  </div>
+</div>
+
+<!-- TEMA 4: Coherencia entre tipos -->
+<div id="tema4" class="tab-content">
+  <h2>Tema 4: Coherencia Comunicativa — Cuando los tipos de lenguaje chocan</h2>
+  <p>Uno de los fenómenos más interesantes —y problemáticos— de la comunicación humana ocurre cuando los tipos de lenguaje se contradicen entre sí. Llamamos a esto <strong>incoherencia comunicativa</strong>, y sus consecuencias pueden ser devastadoras para la credibilidad profesional.</p>
+
+  <h3>4.1 El principio de coherencia comunicativa</h3>
+
+  <div class="caja-concepto">
+    <strong>Coherencia comunicativa</strong>
+    La coherencia comunicativa existe cuando el lenguaje verbal, paraverbal y no verbal transmiten el mismo mensaje. Cuando estos tres canales están alineados, la comunicación es creíble, fluida y eficaz. Cuando se contradicen, el receptor percibe inconsistencia y tiende a creer más en los canales no verbales que en las palabras.
+  </div>
+
+  <p>El cerebro humano, ante una contradicción entre lo que escucha y lo que ve, tiende a dar más peso a la información no verbal. Esto se conoce como el <strong>principio de primacía de lo no verbal</strong>: lo corporal delata lo que las palabras intentan ocultar.</p>
+
+  <div class="grid-2">
+    <div class="caja-negativa">
+      <strong>❌ Incoherencia comunicativa</strong><br>
+      Un contador dice: "Estoy completamente seguro de que estas cifras son correctas" (verbal), pero su voz tiembla (paraverbal) y evita el contacto visual (no verbal). El receptor percibe la contradicción y desconfía del mensaje, independientemente de si las cifras son en efecto correctas.
+    </div>
+    <div class="caja-positiva">
+      <strong>✅ Coherencia comunicativa</strong><br>
+      La misma persona dice: "Estoy completamente seguro de que estas cifras son correctas" (verbal), con voz firme y pausada (paraverbal), mirando directamente al interlocutor y con postura erguida (no verbal). El mensaje es creíble y genera confianza.
+    </div>
+  </div>
+
+  <h3>4.2 La sintonía comunicativa (Rapport)</h3>
+  <p>Cuando dos personas se comunican de manera fluida y armoniosa, sus lenguajes no verbales tienden a sincronizarse de manera espontánea: adoptan posturas similares, ritmos de voz semejantes y expresiones complementarias. A este fenómeno se le llama <strong>rapport</strong> o sintonía comunicativa.</p>
+
+  <p>En el contexto de la Programación Neurolingüística (PNL), el rapport es una herramienta deliberada: los comunicadores efectivos aprenden a generar esta sincronía conscientemente para construir confianza y mejorar la efectividad de su mensaje.</p>
+
+  <div class="caja-ejemplo">
+    <div class="ej-titulo">🇪🇨 Caso — Entrevista de auditoría en Quito</div>
+    <p>Un auditor realiza entrevistas a empleados de una empresa pública para detectar irregularidades. Cuando un empleado dice "Todo está en orden" pero de pronto cruza los brazos, su tono de voz sube ligeramente y su mirada se desvía hacia la derecha (señal asociada a la construcción mental de recuerdos, según PNL), el auditor experimentado detecta una posible incoherencia comunicativa y profundiza sus preguntas. El lenguaje no verbal ha revelado lo que el verbal intentó ocultar.</p>
+  </div>
+
+  <h3>4.3 Estrategias para lograr coherencia comunicativa</h3>
+  <ul class="lista-visual">
+    <li><strong>Practica la congruencia interna:</strong> Antes de comunicar algo importante, asegúrate de que realmente lo crees. La convicción genuina se refleja naturalmente en el cuerpo.</li>
+    <li><strong>Entrena la conciencia corporal:</strong> Aprende a reconocer tus propias señales de tensión, inseguridad o desacuerdo para poder gestionarlas.</li>
+    <li><strong>Prepara tu paralenguaje:</strong> Antes de presentaciones importantes, practica el tono, ritmo y pausas que quieres usar. La voz se puede entrenar.</li>
+    <li><strong>Usa el espejo:</strong> Practica tus presentaciones frente a un espejo o grábate en video para identificar incoherencias entre lo que dices y cómo lo dices.</li>
+    <li><strong>Pide retroalimentación:</strong> Pregunta a personas de confianza si tu lenguaje corporal coincide con tu mensaje verbal en situaciones importantes.</li>
+  </ul>
+
+  <div class="caja-idea">
+    <strong>💡 Idea Clave</strong>
+    En la profesión contable-auditora, la credibilidad lo es todo. Un dictamen puede ser técnicamente perfecto, pero si quien lo presenta comunica inseguridad con su cuerpo o su voz, el impacto se reduce. La coherencia entre tus cuatro tipos de lenguaje es tu activo comunicativo más valioso.
+  </div>
+</div>
+
+<!-- EJERCICIO -->
+<div id="ejercicio" class="tab-content">
+  <h2>✏️ Ejercicio — Clasifica el tipo de lenguaje</h2>
+  <p>Lee cada situación y clasifica el tipo de lenguaje predominante que se describe: <strong>Verbal Oral</strong>, <strong>Verbal Escrito</strong>, <strong>Paraverbal</strong> o <strong>No Verbal</strong>. Responde todo y luego verifica.</p>
+
+  <div class="ejercicio-item">
+    <p>1. Una contadora publica en el portal del SRI una declaración de impuestos a la renta con todos los anexos requeridos.</p>
+    <div class="opciones" id="ej1">
+      <label><input type="radio" name="ej1" value="a"> A) Lenguaje Verbal Escrito</label>
+      <label><input type="radio" name="ej1" value="b"> B) Lenguaje Verbal Oral</label>
+      <label><input type="radio" name="ej1" value="c"> C) Lenguaje Paraverbal</label>
+      <label><input type="radio" name="ej1" value="d"> D) Lenguaje No Verbal</label>
+    </div>
+    <div class="resultado-item" id="res-ej1"></div>
+  </div>
+
+  <div class="ejercicio-item">
+    <p>2. Durante una presentación de resultados, el gerente financiero habla despacio, con pausas deliberadas y voz grave para dar mayor peso a sus palabras.</p>
+    <div class="opciones" id="ej2">
+      <label><input type="radio" name="ej2" value="a"> A) Lenguaje Paraverbal</label>
+      <label><input type="radio" name="ej2" value="b"> B) Lenguaje Verbal Oral</label>
+      <label><input type="radio" name="ej2" value="c"> C) Lenguaje No Verbal</label>
+      <label><input type="radio" name="ej2" value="d"> D) Lenguaje Verbal Escrito</label>
+    </div>
+    <div class="resultado-item" id="res-ej2"></div>
+  </div>
+
+  <div class="ejercicio-item">
+    <p>3. Durante una entrevista de trabajo, el candidato cruza los brazos cuando le preguntan sobre su experiencia en auditorías tributarias.</p>
+    <div class="opciones" id="ej3">
+      <label><input type="radio" name="ej3" value="a"> A) Lenguaje No Verbal</label>
+      <label><input type="radio" name="ej3" value="b"> B) Lenguaje Verbal Oral</label>
+      <label><input type="radio" name="ej3" value="c"> C) Lenguaje Paraverbal</label>
+      <label><input type="radio" name="ej3" value="d"> D) Lenguaje Verbal Escrito</label>
+    </div>
+    <div class="resultado-item" id="res-ej3"></div>
+  </div>
+
+  <div class="ejercicio-item">
+    <p>4. Un auditor explica verbalmente a su equipo los pasos del procedimiento de auditoría en una reunión de trabajo.</p>
+    <div class="opciones" id="ej4">
+      <label><input type="radio" name="ej4" value="a"> A) Lenguaje Verbal Oral</label>
+      <label><input type="radio" name="ej4" value="b"> B) Lenguaje Paraverbal</label>
+      <label><input type="radio" name="ej4" value="c"> C) Lenguaje No Verbal</label>
+      <label><input type="radio" name="ej4" value="d"> D) Lenguaje Verbal Escrito</label>
+    </div>
+    <div class="resultado-item" id="res-ej4"></div>
+  </div>
+
+  <div class="ejercicio-item">
+    <p>5. Según investigaciones en comunicación interpersonal, ¿qué porcentaje aproximado del impacto comunicativo corresponde al lenguaje corporal (no verbal) en una conversación cara a cara?</p>
+    <div class="opciones" id="ej5">
+      <label><input type="radio" name="ej5" value="a"> A) 55%</label>
+      <label><input type="radio" name="ej5" value="b"> B) 7%</label>
+      <label><input type="radio" name="ej5" value="c"> C) 38%</label>
+      <label><input type="radio" name="ej5" value="d"> D) 100%</label>
+    </div>
+    <div class="resultado-item" id="res-ej5"></div>
+  </div>
+
+  <div class="ejercicio-item">
+    <p>6. Una auditora dice "No tengo ningún problema con este procedimiento" pero su voz tiembla y evita el contacto visual. ¿Qué fenómeno comunicativo describe esta situación?</p>
+    <div class="opciones" id="ej6">
+      <label><input type="radio" name="ej6" value="a"> A) Incoherencia comunicativa entre canales verbal y no verbal/paraverbal</label>
+      <label><input type="radio" name="ej6" value="b"> B) Ruido físico que distorsiona el mensaje</label>
+      <label><input type="radio" name="ej6" value="c"> C) Uso correcto del lenguaje técnico contable</label>
+      <label><input type="radio" name="ej6" value="d"> D) Retroalimentación efectiva del receptor</label>
+    </div>
+    <div class="resultado-item" id="res-ej6"></div>
+  </div>
+
+  <div class="ejercicio-item">
+    <p>7. En el procesamiento de mensajes, ¿en qué etapa los filtros personales (creencias, prejuicios, emociones) tienen mayor influencia?</p>
+    <div class="opciones" id="ej7">
+      <label><input type="radio" name="ej7" value="a"> A) En la etapa de interpretación, cuando el receptor da sentido al mensaje decodificado</label>
+      <label><input type="radio" name="ej7" value="b"> B) En la recepción sensorial inicial del mensaje</label>
+      <label><input type="radio" name="ej7" value="c"> C) Solo en la etapa de respuesta o retroalimentación</label>
+      <label><input type="radio" name="ej7" value="d"> D) Los filtros personales no afectan el procesamiento del mensaje</label>
+    </div>
+    <div class="resultado-item" id="res-ej7"></div>
+  </div>
+
+  <div class="ejercicio-item">
+    <p>8. ¿Cuál es la diferencia entre "lengua" y "habla" según la distinción de Saussure?</p>
+    <div class="opciones" id="ej8">
+      <label><input type="radio" name="ej8" value="a"> A) La lengua es el sistema compartido por una comunidad; el habla es el uso individual y concreto que cada persona hace de ese sistema</label>
+      <label><input type="radio" name="ej8" value="b"> B) La lengua es el idioma extranjero y el habla es el idioma nativo</label>
+      <label><input type="radio" name="ej8" value="c"> C) La lengua es la comunicación escrita y el habla es la comunicación oral</label>
+      <label><input type="radio" name="ej8" value="d"> D) Lengua y habla son sinónimos perfectos en lingüística</label>
+    </div>
+    <div class="resultado-item" id="res-ej8"></div>
+  </div>
+
+  <div class="btn-row">
+    <button class="btn btn-primary" onclick="verificarEjercicio()">✅ Verificar respuestas</button>
+    <button class="btn btn-secondary" onclick="reiniciarEjercicio()">🔄 Reiniciar</button>
+  </div>
+  <div class="calificacion-box" id="cal-ejercicio">
+    <div class="score-grande" id="score-ej-texto"></div>
+    <div style="font-size:1rem;margin-top:6px" id="score-ej-pct"></div>
+    <div class="barra-progreso-wrapper"><div class="barra-progreso" id="barra-ej"></div></div>
+    <div style="margin-top:12px;font-size:1rem" id="msg-ej"></div>
+  </div>
+</div>
+
+<!-- CUESTIONARIO -->
+<div id="cuestionario" class="tab-content">
+  <h2>📝 Cuestionario — Semana 2</h2>
+  <p>10 preguntas: 7 teóricas + 3 de análisis. Responde todo y verifica al final.</p>
+
+  <div class="pregunta-card">
+    <span class="badge-tipo badge-teorica">Teórica</span>
+    <p class="pregunta-texto">1. ¿Cuál es la diferencia fundamental entre "lenguaje" y "comunicación"?</p>
+    <div class="opciones" id="q1">
+      <label><input type="radio" name="q1" value="a"> A) El lenguaje es el sistema de signos y códigos; la comunicación es el proceso de uso de ese sistema para intercambiar significados entre personas</label>
+      <label><input type="radio" name="q1" value="b"> B) El lenguaje es solo la comunicación escrita; la comunicación es solo la comunicación oral</label>
+      <label><input type="radio" name="q1" value="c"> C) El lenguaje y la comunicación son sinónimos en el contexto académico</label>
+      <label><input type="radio" name="q1" value="d"> D) La comunicación es el sistema y el lenguaje es el proceso de uso</label>
+    </div>
+    <div class="resultado-item" id="res-q1"></div>
+  </div>
+
+  <div class="pregunta-card">
+    <span class="badge-tipo badge-teorica">Teórica</span>
+    <p class="pregunta-texto">2. ¿Qué son los elementos paralingüísticos en la comunicación?</p>
+    <div class="opciones" id="q2">
+      <label><input type="radio" name="q2" value="a"> A) Las señales vocales no verbales que acompañan al lenguaje oral: tono, ritmo, volumen, pausas y velocidad</label>
+      <label><input type="radio" name="q2" value="b"> B) Los gestos y movimientos corporales del hablante</label>
+      <label><input type="radio" name="q2" value="c"> C) Las palabras técnicas propias de un lenguaje especializado</label>
+      <label><input type="radio" name="q2" value="d"> D) Los elementos gráficos que acompañan a un texto escrito</label>
+    </div>
+    <div class="resultado-item" id="res-q2"></div>
+  </div>
+
+  <div class="pregunta-card">
+    <span class="badge-tipo badge-teorica">Teórica</span>
+    <p class="pregunta-texto">3. ¿Qué fenómeno ocurre cuando el lenguaje verbal contradice al no verbal en un acto comunicativo?</p>
+    <div class="opciones" id="q3">
+      <label><input type="radio" name="q3" value="a"> A) Incoherencia comunicativa, que genera desconfianza en el receptor ya que tiende a creer más en las señales no verbales</label>
+      <label><input type="radio" name="q3" value="b"> B) Ruido semántico, que impide la correcta recepción del mensaje</label>
+      <label><input type="radio" name="q3" value="c"> C) Retroalimentación deficiente del emisor hacia el receptor</label>
+      <label><input type="radio" name="q3" value="d"> D) Sintonía comunicativa entre los interlocutores</label>
+    </div>
+    <div class="resultado-item" id="res-q3"></div>
+  </div>
+
+  <div class="pregunta-card">
+    <span class="badge-tipo badge-teorica">Teórica</span>
+    <p class="pregunta-texto">4. ¿Qué son la kinésica y la proxémica en el contexto del lenguaje no verbal?</p>
+    <div class="opciones" id="q4">
+      <label><input type="radio" name="q4" value="a"> A) La kinésica estudia la comunicación a través de movimientos corporales; la proxémica estudia los significados que surgen de la distancia física entre las personas</label>
+      <label><input type="radio" name="q4" value="b"> B) La kinésica es el estudio del tono de voz; la proxémica es el estudio de los gestos manuales</label>
+      <label><input type="radio" name="q4" value="c"> C) Ambas son ramas del estudio del lenguaje verbal técnico</label>
+      <label><input type="radio" name="q4" value="d"> D) La kinésica y la proxémica son lo mismo: el estudio del movimiento humano</label>
+    </div>
+    <div class="resultado-item" id="res-q4"></div>
+  </div>
+
+  <div class="pregunta-card">
+    <span class="badge-tipo badge-teorica">Teórica</span>
+    <p class="pregunta-texto">5. ¿En qué etapa del procesamiento de mensajes el receptor convierte los signos recibidos en significados propios?</p>
+    <div class="opciones" id="q5">
+      <label><input type="radio" name="q5" value="a"> A) En la etapa de decodificación</label>
+      <label><input type="radio" name="q5" value="b"> B) En la etapa de recepción sensorial</label>
+      <label><input type="radio" name="q5" value="c"> C) En la etapa de atención selectiva</label>
+      <label><input type="radio" name="q5" value="d"> D) En la etapa de retroalimentación</label>
+    </div>
+    <div class="resultado-item" id="res-q5"></div>
+  </div>
+
+  <div class="pregunta-card">
+    <span class="badge-tipo badge-teorica">Teórica</span>
+    <p class="pregunta-texto">6. ¿Cuál de las siguientes opciones describe correctamente el significante y el significado de un signo lingüístico?</p>
+    <div class="opciones" id="q6">
+      <label><input type="radio" name="q6" value="a"> A) El significante es la forma sonora o gráfica de la palabra; el significado es el concepto mental que esa forma evoca</label>
+      <label><input type="radio" name="q6" value="b"> B) El significante es la idea y el significado es la palabra que la expresa</label>
+      <label><input type="radio" name="q6" value="c"> C) Significante y significado son conceptos solo aplicables a la comunicación escrita</label>
+      <label><input type="radio" name="q6" value="d"> D) El significado es la forma visual del signo y el significante es la emoción que provoca</label>
+    </div>
+    <div class="resultado-item" id="res-q6"></div>
+  </div>
+
+  <div class="pregunta-card">
+    <span class="badge-tipo badge-teorica">Teórica</span>
+    <p class="pregunta-texto">7. ¿Cuál es la principal diferencia entre el lenguaje verbal oral y el lenguaje verbal escrito en un contexto profesional?</p>
+    <div class="opciones" id="q7">
+      <label><input type="radio" name="q7" value="a"> A) El oral permite retroalimentación inmediata y es efímero; el escrito es permanente, puede editarse y revisarse, pero carece de retroalimentación instantánea</label>
+      <label><input type="radio" name="q7" value="b"> B) El oral es siempre informal y el escrito es siempre formal, sin excepciones</label>
+      <label><input type="radio" name="q7" value="c"> C) El escrito tiene menos valor legal que el oral en contextos laborales</label>
+      <label><input type="radio" name="q7" value="d"> D) El oral solo se usa en presentaciones y el escrito solo en correos electrónicos</label>
+    </div>
+    <div class="resultado-item" id="res-q7"></div>
+  </div>
+
+  <div class="pregunta-card">
+    <span class="badge-tipo badge-analisis">Análisis de caso</span>
+    <p class="pregunta-texto">8. Una empresa de auditoría envía a sus auditores a hacer entrevistas a empleados sospechosos de fraude. Un empleado responde con voz tranquila: "Yo nunca tomé nada de la empresa." Sin embargo, toca repetidamente su cara, evita el contacto visual y sus pies apuntan hacia la salida. El auditor experimentado pide más documentación. ¿Qué tipo de lenguaje influyó en la decisión del auditor?</p>
+    <div class="opciones" id="q8">
+      <label><input type="radio" name="q8" value="a"> A) El lenguaje no verbal del empleado, que presentó señales de incoherencia con su mensaje verbal, llevando al auditor a profundizar la investigación</label>
+      <label><input type="radio" name="q8" value="b"> B) El lenguaje verbal oral, que fue impreciso en sus afirmaciones</label>
+      <label><input type="radio" name="q8" value="c"> C) El lenguaje paraverbal, ya que el tono de voz fue el elemento determinante</label>
+      <label><input type="radio" name="q8" value="d"> D) El lenguaje escrito previo del empleado en correos internos</label>
+    </div>
+    <div class="resultado-item" id="res-q8"></div>
+  </div>
+
+  <div class="pregunta-card">
+    <span class="badge-tipo badge-analisis">Análisis de caso</span>
+    <p class="pregunta-texto">9. Un gerente recibe un informe de auditoría justo después de una discusión fuerte con su socio de negocios. Lee el informe pero está emocionalmente alterado. Aunque el informe es claro, el gerente lo interpreta de manera más catastrófica de lo que realmente dice. ¿Qué tipo de filtro afectó el procesamiento del mensaje?</p>
+    <div class="opciones" id="q9">
+      <label><input type="radio" name="q9" value="a"> A) Filtro emocional: el estado anímico alterado del receptor coloreó negativamente su interpretación del mensaje</label>
+      <label><input type="radio" name="q9" value="b"> B) Filtro cognitivo: el gerente no tenía suficiente formación contable para interpretar el informe</label>
+      <label><input type="radio" name="q9" value="c"> C) Filtro cultural: diferencias culturales entre el auditor y el gerente generaron malentendidos</label>
+      <label><input type="radio" name="q9" value="d"> D) Ruido físico: el entorno de lectura era inadecuado</label>
+    </div>
+    <div class="resultado-item" id="res-q9"></div>
+  </div>
+
+  <div class="pregunta-card">
+    <span class="badge-tipo badge-analisis">Análisis de caso</span>
+    <p class="pregunta-texto">10. Una firma contable decide que todos sus informes hacia clientes pequeños (microempresarios sin formación técnica) deben ser escritos con lenguaje técnico estándar, por "rigor profesional". Los clientes constantemente no comprenden los informes y toman decisiones equivocadas. ¿Cuál es el error comunicativo central?</p>
+    <div class="opciones" id="q10">
+      <label><input type="radio" name="q10" value="a"> A) No adaptar el código lingüístico (lenguaje) al nivel y contexto del receptor, convirtiendo el lenguaje técnico en barrera en lugar de herramienta</label>
+      <label><input type="radio" name="q10" value="b"> B) Usar lenguaje escrito cuando debería usarse lenguaje oral para este tipo de clientes</label>
+      <label><input type="radio" name="q10" value="c"> C) Los clientes deberían formarse técnicamente para entender los informes</label>
+      <label><input type="radio" name="q10" value="d"> D) El rigor profesional exige siempre usar lenguaje técnico, sin excepciones</label>
+    </div>
+    <div class="resultado-item" id="res-q10"></div>
+  </div>
+
+  <div class="btn-row">
+    <button class="btn btn-primary" onclick="verificarCuestionario()">✅ Verificar respuestas</button>
+    <button class="btn btn-secondary" onclick="reiniciarCuestionario()">🔄 Reiniciar</button>
+  </div>
+  <div class="calificacion-box" id="cal-cuestionario">
+    <div class="score-grande" id="score-q-texto"></div>
+    <div style="font-size:1rem;margin-top:6px" id="score-q-pct"></div>
+    <div class="barra-progreso-wrapper"><div class="barra-progreso" id="barra-q"></div></div>
+    <div style="margin-top:12px;font-size:1rem" id="msg-q"></div>
+  </div>
+</div>
+
+<!-- ACTIVIDAD IA -->
+<div id="actividad-ia" class="tab-content">
+  <h2>🤖 Actividad con Inteligencia Artificial — Semana 2</h2>
+  <div class="caja-concepto">
+    <strong>Herramienta recomendada</strong>
+    <strong>Claude de Anthropic</strong> — <a href="https://claude.ai" target="_blank" style="color:var(--azul-ug);font-weight:700;">claude.ai</a> (gratuito). También puedes usar ChatGPT o Gemini.
+  </div>
+
+  <h3>📌 Actividad: Analiza los tipos de lenguaje en un video real</h3>
+  <p>En esta actividad usarás la IA como analista de comunicación. Buscarás un video corto (1–3 minutos) de un discurso, presentación o entrevista de un líder empresarial o político latinoamericano en YouTube, y usarás la IA para analizar los tipos de lenguaje presentes.</p>
+
+  <h3>Paso 1 — Elige un video</h3>
+  <p>Busca en YouTube: "discurso empresarial Ecuador" o "presentación de resultados CEO latinoamérica" u otro similar. Elige un clip de máximo 3 minutos donde puedas ver al orador con claridad.</p>
+
+  <h3>Paso 2 — Describe el video a la IA con este prompt</h3>
+  <div class="prompt-box">
+    <span class="prompt-label">📋 PROMPT PARA LA IA</span>
+Actúa como un experto en comunicación no verbal y análisis del lenguaje. Voy a describirte un video de comunicación pública y necesito que me ayudes a identificar y analizar los tipos de lenguaje presentes.
+
+Descripción del video: [DESCRIBE lo que ves: ¿quién habla? ¿en qué contexto? ¿cómo es su postura? ¿su tono de voz? ¿sus gestos? ¿su mirada? ¿cómo viste? ¿hay pausas? ¿qué tipo de palabras usa?]
+
+Por favor analiza:
+1. ¿Qué elementos de LENGUAJE VERBAL ORAL identificas? ¿Son técnicos o accesibles? ¿Hay adaptación al receptor?
+2. ¿Qué elementos PARAVERBALES observas (tono, ritmo, volumen, pausas)? ¿Qué comunican?
+3. ¿Qué elementos de LENGUAJE NO VERBAL describe la situación (postura, gestos, contacto visual, vestimenta)?
+4. ¿Existe COHERENCIA COMUNICATIVA entre estos tres tipos de lenguaje, o hay contradicciones?
+5. Si fueras a darle retroalimentación comunicativa a este orador, ¿qué le recomendarías específicamente para mejorar en cada tipo de lenguaje?
+  </div>
+
+  <h3>Paso 3 — Trabaja con la respuesta</h3>
+  <ul class="lista-visual">
+    <li>Lee el análisis de la IA y compáralo con tu propia observación del video. ¿Detectaste las mismas cosas?</li>
+    <li>Elige UNA recomendación de la IA que creas que es la más importante y explica por qué, con argumentos propios.</li>
+    <li>Imagina que ese orador es un contador-auditor presentando resultados. ¿Cambiaría algo tu análisis? ¿Por qué?</li>
+    <li>Añade UNA recomendación propia que la IA no haya mencionado.</li>
+  </ul>
+
+  <h3>📊 Criterios de pensamiento crítico</h3>
+  <table>
+    <tr><th>Indica pensamiento crítico</th><th>Indica copia simple</th></tr>
+    <tr><td>Compara el análisis de la IA con su propia observación</td><td>Copia el análisis sin observar el video</td></tr>
+    <tr><td>Agrega perspectivas propias y ejemplos adicionales</td><td>Parafrasea el análisis de la IA sin añadir nada</td></tr>
+    <tr><td>Conecta el análisis con el contexto contable-auditor</td><td>No contextualiza el análisis en su carrera</td></tr>
+    <tr><td>Propone una recomendación original no mencionada por la IA</td><td>Solo lista las recomendaciones de la IA</td></tr>
+  </table>
+</div>
+
+<!-- REFLEXIÓN -->
+<div id="reflexion" class="tab-content">
+  <h2>💭 Preguntas Reflexivas — El lenguaje de tu vida</h2>
+  <p>Esta semana exploramos cómo nos comunicamos más allá de las palabras. Ahora conectemos esos conceptos con tu experiencia personal y emocional cotidiana.</p>
+
+  <div class="reflexion-item">
+    <span class="num">1</span>
+    <p>¿Alguna vez alguien te dijo "estoy bien" pero su cara, sus ojos o su silencio te decían lo contrario? ¿Qué decidiste creer: las palabras o el cuerpo? ¿Y por qué crees que esa persona eligió ocultar lo que sentía con palabras?</p>
+  </div>
+
+  <div class="reflexion-item">
+    <span class="num">2</span>
+    <p>¿Qué te comunica tu propio cuerpo cuando estás nervioso antes de una presentación, un examen o una reunión importante? ¿Qué hace tu voz? ¿Cómo cambia tu postura? ¿Cuánta conciencia tienes de esas señales en el momento?</p>
+  </div>
+
+  <div class="reflexion-item">
+    <span class="num">3</span>
+    <p>Piensa en una persona que admiras por su forma de hablar. ¿Qué hace específicamente con su voz, su ritmo, sus pausas? ¿Alguna vez has intentado conscientemente imitar alguna de esas características? ¿Crees que el tono de voz se puede entrenar como una habilidad técnica?</p>
+  </div>
+
+  <div class="reflexion-item">
+    <span class="num">4</span>
+    <p>Cuando recibes una crítica —de un docente, un jefe o un familiar—, ¿qué filtro interno predomina en ti: el emocional (te afectas), el cognitivo (analizas el argumento) o el perceptual (dependiendo de quién lo dice, lo crees o no)? ¿Qué dice eso sobre tu proceso de procesamiento de mensajes?</p>
+  </div>
+
+  <div class="reflexion-item">
+    <span class="num">5</span>
+    <p>La programación neurolingüística (PNL) sostiene que las personas con alta autoestima tienen mayor coherencia comunicativa: lo que piensan, lo que dicen y lo que expresa su cuerpo están alineados. ¿Sientes que tu comunicación refleja con fidelidad lo que realmente eres y piensas? ¿O hay una brecha entre tu "yo interior" y la forma en que te comunicas con los demás?</p>
+  </div>
+
+  <div class="reflexion-item">
+    <span class="num">6</span>
+    <p>Si pudieras mejorar solo UNO de tus cuatro tipos de lenguaje esta semana (verbal oral, verbal escrito, paraverbal o no verbal), ¿cuál elegirías? ¿Y cuál acción concreta harías hoy para empezar?</p>
+  </div>
+
+  <div class="caja-idea">
+    <strong>🌱 Reto semanal</strong>
+    Esta semana, durante una conversación importante, dedica 2 minutos después a reflexionar: ¿Mis palabras, mi voz y mi cuerpo dijeron lo mismo? ¿Hubo coherencia? ¿Qué haría diferente? Esa auto-observación es el primer paso hacia la maestría comunicativa.
+  </div>
+</div>
+
+<!-- BIBLIOGRAFÍA -->
+<div id="bibliografia" class="tab-content">
+  <h2>📚 Bibliografía — Semana 2</h2>
+
+  <div class="ref-card">
+    <p class="ref-autor">Santos García, D. V. (2012).</p>
+    <p><span class="ref-titulo">Fundamentos de la comunicación</span>. Red Tercer Milenio.</p>
+  </div>
+
+  <div class="ref-card">
+    <p class="ref-autor">Zayas Agüero, P. M. (2011).</p>
+    <p><span class="ref-titulo">La comunicación interpersonal</span>. Editorial Académica Española.</p>
+  </div>
+
+  <div class="ref-card">
+    <p class="ref-autor">Bourdieu, P. (1985).</p>
+    <p><span class="ref-titulo">¿Qué significa hablar? Economía de los intercambios lingüísticos</span>. Akal.</p>
+  </div>
+
+  <div class="ref-card">
+    <p class="ref-autor">Beristáin, H. (2006).</p>
+    <p><span class="ref-titulo">Diccionario de retórica y poética</span> (9.ª ed.). Porrúa.</p>
+  </div>
+
+  <div class="ref-card">
+    <p class="ref-autor">Mehrabian, A. (1971).</p>
+    <p><span class="ref-titulo">Silent messages: Implicit communication of emotions and attitudes</span>. Wadsworth.</p>
+  </div>
+
+  <div class="ref-card">
+    <p class="ref-autor">Corrales Díaz, E. (2011).</p>
+    <p>El lenguaje no verbal: Un proceso cognitivo superior indispensable para el ser humano. <span class="ref-titulo">Revista Comunicación</span>, <em>20</em>(1), 96–100. Instituto Tecnológico de Costa Rica.</p>
+  </div>
+
+  <div class="ref-card">
+    <p class="ref-autor">Davis, K., y Newstrom, J. (1987).</p>
+    <p><span class="ref-titulo">El comportamiento humano en el trabajo: Comportamiento organizacional</span> (8.ª ed.). McGraw-Hill.</p>
+  </div>
+
+  <div class="nota-bib">
+    📌 <strong>Nota:</strong> Se recomienda verificar cada referencia en Google Scholar (<a href="https://scholar.google.com" target="_blank" style="color:#6b4c00;">scholar.google.com</a>) o en el repositorio institucional antes de citar en trabajos académicos.
+  </div>
+</div>
+
+<script>
+function showTab(id,btn){
+  document.querySelectorAll('.tab-content').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+const ejData={
+  ej1:{c:'a',exp:'Correcto: La declaración tributaria es comunicación verbal ESCRITA — representación gráfica de información en un sistema formal.'},
+  ej2:{c:'a',exp:'Correcto: El ritmo lento, las pausas deliberadas y el tono grave son elementos paraverbales (cómo se dice, no qué se dice).'},
+  ej3:{c:'a',exp:'Correcto: Cruzar los brazos es una señal no verbal clásica de defensividad o incomodidad ante un tema.'},
+  ej4:{c:'a',exp:'Correcto: Explicar verbalmente en una reunión es lenguaje verbal oral — uso de palabras habladas en tiempo real.'},
+  ej5:{c:'a',exp:'Correcto: Según investigaciones en comunicación interpersonal (Mehrabian), el 55% del impacto viene del lenguaje corporal no verbal.'},
+  ej6:{c:'a',exp:'Correcto: Cuando el cuerpo y la voz contradicen las palabras, existe incoherencia comunicativa. El receptor percibe la contradicción y desconfía.'},
+  ej7:{c:'a',exp:'Correcto: La etapa de interpretación es donde los filtros personales (creencias, emociones, prejuicios) tienen mayor influencia sobre el significado final que el receptor construye.'},
+  ej8:{c:'a',exp:'Correcto: Saussure distinguió entre la lengua (sistema colectivo compartido) y el habla (uso individual y concreto de ese sistema en un momento específico).'}
+};
+
+const qData={
+  q1:{c:'a',exp:'El lenguaje es el sistema de signos; la comunicación es el proceso social de uso de ese sistema. El lenguaje es la herramienta; la comunicación es la acción.'},
+  q2:{c:'a',exp:'Los elementos paralingüísticos (o paraverbales) son las señales vocales que acompañan las palabras: tono, ritmo, volumen, velocidad y pausas. Hacen referencia al "cómo se dice".'},
+  q3:{c:'a',exp:'La incoherencia comunicativa ocurre cuando los canales verbal, paraverbal y no verbal transmiten mensajes contradictorios. El receptor tiende a dar más peso a los canales no verbales.'},
+  q4:{c:'a',exp:'La kinésica estudia la comunicación mediante movimientos corporales (gestos, postura, expresiones faciales). La proxémica estudia los significados que emergen de la distancia física entre personas.'},
+  q5:{c:'a',exp:'La decodificación es la etapa en que el receptor convierte los signos del mensaje en significados propios. Es una de las etapas más propensas a malentendidos por diferencias de marcos de referencia.'},
+  q6:{c:'a',exp:'El significante es la forma (sonido o grafía) y el significado es el concepto mental que evoca. La relación entre ambos es arbitraria y puede variar entre culturas y contextos.'},
+  q7:{c:'a',exp:'El oral permite feedback inmediato pero es efímero. El escrito persiste en el tiempo y puede editarse, pero carece de retroalimentación instantánea. Cada uno tiene usos profesionales específicos.'},
+  q8:{c:'a',exp:'El auditor detectó señales no verbales (tocar la cara, evitar el contacto visual, orientación de pies hacia la salida) que contradecían el mensaje verbal, lo que generó sospecha fundada.'},
+  q9:{c:'a',exp:'El filtro emocional alterado por la discusión previa hizo que el receptor interpretara el informe de manera más catastrófica de lo que era. Las emociones presentes colorearon la decodificación.'},
+  q10:{c:'a',exp:'El error es usar un código lingüístico técnico sin adaptarlo al receptor. El lenguaje debe ser un puente de comprensión, no una barrera que excluye al interlocutor.'}
+};
+
+function calcAndShow(data,prefix,calId,scoreId,pctId,barraId,msgId){
+  let resp=0,ok=0,total=Object.keys(data).length;
+  for(const[k,d] of Object.entries(data)){
+    const sel=document.querySelector(`input[name="${k}"]:checked`);
+    const res=document.getElementById(`res-${k}`);
+    if(!sel)continue;
+    resp++;
+    document.querySelectorAll(`#${k} label`).forEach(l=>l.classList.remove('correcta','incorrecta'));
+    const correct=sel.value===d.c;
+    if(correct){ok++;sel.closest('label').classList.add('correcta');}
+    else{sel.closest('label').classList.add('incorrecta');const cl=document.querySelector(`#${k} input[value="${d.c}"]`);if(cl)cl.closest('label').classList.add('correcta');}
+    res.style.display='block';
+    res.className=`resultado-item ${correct?'resultado-correcto':'resultado-incorrecto'}`;
+    res.innerHTML=`${correct?'✅':'❌'} <strong>${correct?'Correcto':'Incorrecto'}:</strong> ${d.exp}`;
+  }
+  if(resp<total){alert(`Faltan ${total-resp} preguntas por responder.`);return;}
+  const box=document.getElementById(calId);
+  box.style.display='block';
+  const p=Math.round(ok/total*100);
+  document.getElementById(scoreId).textContent=`${ok}/${total}`;
+  document.getElementById(pctId).textContent=`${p}%`;
+  document.getElementById(barraId).style.width=p+'%';
+  let e,m;
+  if(p===100){e='🏆';m='¡Perfecto! Dominas completamente los conceptos.';}
+  else if(p>=80){e='🎯';m='¡Excelente! Comprensión muy sólida.';}
+  else if(p>=60){e='📘';m='Bien. Repasa los ítems incorrectos.';}
+  else if(p>=40){e='⚠️';m='Vuelve a revisar los temas antes de avanzar.';}
+  else{e='📖';m='No te desanimes. Regresa al material y vuelve a intentarlo.';}
+  document.getElementById(msgId).innerHTML=`${e} ${m}`;
+  box.scrollIntoView({behavior:'smooth'});
+}
+
+function verificarEjercicio(){calcAndShow(ejData,'ej','cal-ejercicio','score-ej-texto','score-ej-pct','barra-ej','msg-ej');}
+function verificarCuestionario(){calcAndShow(qData,'q','cal-cuestionario','score-q-texto','score-q-pct','barra-q','msg-q');}
+
+function limpiar(prefix,calId){
+  document.querySelectorAll(`#${prefix} input[type="radio"]`).forEach(i=>i.checked=false);
+  document.querySelectorAll(`#${prefix} .resultado-item`).forEach(d=>d.style.display='none');
+  document.querySelectorAll(`#${prefix} label`).forEach(l=>l.classList.remove('correcta','incorrecta'));
+  document.getElementById(calId).style.display='none';
+}
+function reiniciarEjercicio(){limpiar('ejercicio','cal-ejercicio');}
+function reiniciarCuestionario(){limpiar('cuestionario','cal-cuestionario');}
+</script>
+</body>
+</html>
