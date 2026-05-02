@@ -1,0 +1,1138 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Semana 4B – Laboratorio de Puntuación | Universidad de Guayaquil</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --azul:#003366;--azul-m:#0052A3;--celeste:#87CEEB;--cel-c:#E6F1FB;
+  --dorado:#FFB81C;--dor-c:#FFF3CC;--blanco:#fff;--gris-c:#f4f6fa;
+  --verde:#1a7a3c;--ver-c:#e8f5ed;--rojo:#c0392b;--roj-c:#fdecea;
+  --naranja:#e07b00;--morado:#6a0dad;--mor-c:#f3eafd;--texto:#222;--gris-t:#444;
+  --sombra:0 2px 12px rgba(0,51,102,.10);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Source Sans 3',sans-serif;background:var(--gris-c);color:var(--texto);min-height:100vh}
+
+/* HEADER */
+.hdr{background:var(--azul);color:#fff}
+.hdr-top{display:flex;align-items:center;gap:18px;padding:14px 28px}
+.hdr-logo{width:58px;height:58px;background:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:900;color:var(--azul);flex-shrink:0;font-family:'Lora',serif}
+.hdr-info h1{font-family:'Lora',serif;font-size:1.15rem;font-weight:700;line-height:1.25}
+.hdr-info p{font-size:.82rem;opacity:.85;margin-top:2px}
+.hdr-badges{display:flex;gap:10px;padding:0 28px 12px;flex-wrap:wrap}
+.bdg{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);padding:3px 12px;border-radius:20px;font-size:.75rem}
+.bdg.d{background:var(--rojo);color:#fff;border-color:var(--rojo);font-weight:700}
+
+/* TABS */
+.tabs-wrap{background:var(--celeste);overflow-x:auto;white-space:nowrap;border-bottom:3px solid var(--azul);scrollbar-width:thin}
+.tabs-wrap::-webkit-scrollbar{height:5px}
+.tabs-wrap::-webkit-scrollbar-thumb{background:var(--azul);border-radius:3px}
+.tabs-nav{display:inline-flex;padding:0 8px;gap:2px}
+.tb{display:inline-block;padding:10px 16px;font-family:'Source Sans 3',sans-serif;font-size:.82rem;font-weight:600;color:#1a1a2e;background:transparent;border:none;cursor:pointer;border-bottom:3px solid transparent;transition:all .2s;white-space:nowrap;border-radius:6px 6px 0 0;margin-top:4px}
+.tb:hover{background:rgba(255,255,255,.5)}
+.tb.ac{background:#fff;color:var(--azul);font-weight:700;border-bottom:3px solid var(--azul)}
+
+/* CONTENT */
+.tc{display:none;padding:28px;max-width:960px;margin:0 auto;animation:fi .3s ease}
+.tc.ac{display:block}
+@keyframes fi{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+h2.st{font-family:'Lora',serif;font-size:1.5rem;color:var(--azul);margin-bottom:6px;line-height:1.3}
+h3.ss{font-family:'Lora',serif;font-size:1.1rem;color:var(--azul-m);margin:20px 0 8px}
+p{line-height:1.75;margin-bottom:12px;font-size:.97rem;color:var(--gris-t)}
+hr.div{height:2px;background:linear-gradient(to right,var(--azul-m),transparent);margin:22px 0;border:none}
+
+.box-c{border-left:5px solid var(--azul-m);background:var(--cel-c);padding:14px 18px;border-radius:0 8px 8px 0;margin:16px 0}
+.box-c .etq{font-size:.73rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--azul-m);margin-bottom:4px}
+.box-c p{margin:0;font-size:.96rem}
+.box-k{background:var(--dor-c);border-left:5px solid var(--dorado);border-radius:0 8px 8px 0;padding:14px 18px;margin:20px 0 8px}
+.box-k .etq{font-size:.73rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--naranja);margin-bottom:4px}
+.box-k p{margin:0;font-size:.96rem;color:#5a3800}
+.lista{list-style:none;margin:12px 0}
+.lista li{padding:6px 0 6px 24px;position:relative;font-size:.94rem;color:var(--gris-t);border-bottom:1px dashed #dde}
+.lista li:last-child{border-bottom:none}
+.lista li::before{content:'▸';position:absolute;left:4px;color:var(--azul-m)}
+
+/* SIGN REFERENCE TABLE */
+.tw{overflow-x:auto;margin:16px 0;border-radius:8px;box-shadow:var(--sombra)}
+table{width:100%;border-collapse:collapse;font-size:.9rem}
+th{background:var(--azul);color:#fff;padding:10px 14px;text-align:left;font-weight:600}
+td{padding:9px 14px;border-bottom:1px solid #dde4f0;vertical-align:top}
+tr:nth-child(even) td{background:var(--cel-c)}
+tr:last-child td{border-bottom:none}
+
+/* ============= LABORATORIO DE PUNTUACIÓN ============= */
+.lab-intro{background:linear-gradient(135deg,var(--azul) 0%,var(--azul-m) 100%);color:#fff;border-radius:14px;padding:22px 26px;margin-bottom:26px}
+.lab-intro h3{font-family:'Lora',serif;font-size:1.15rem;margin-bottom:8px}
+.lab-intro p{color:rgba(255,255,255,.92);font-size:.92rem;margin:0}
+
+/* Ejercicio de puntuación */
+.pej{background:#fff;border-radius:12px;padding:22px;margin-bottom:18px;box-shadow:var(--sombra);border-left:5px solid var(--celeste)}
+.pej .pej-num{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--azul-m);margin-bottom:4px}
+.pej .pej-title{font-family:'Lora',serif;font-size:1rem;color:var(--azul);margin-bottom:12px;line-height:1.4}
+.pej .oraciones{display:flex;flex-direction:column;gap:10px;margin-bottom:14px}
+.oracion-box{padding:12px 16px;border-radius:8px;font-size:.96rem;border:2px solid #cdd8ea;background:var(--gris-c);line-height:1.7;font-family:'Lora',serif}
+.oracion-box.sin{border-color:#c0392b;background:#fff5f5}
+.oracion-box.con{border-color:#1a7a3c;background:#f0fff4}
+.oracion-label{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;padding:2px 8px;border-radius:10px;display:inline-block;margin-bottom:6px}
+.oracion-label.sin{background:#fdecea;color:#c0392b}
+.oracion-label.con{background:#e8f5ed;color:#1a7a3c}
+
+/* Opciones de interpretación */
+.interp-question{font-weight:600;font-size:.93rem;color:var(--azul);margin:12px 0 8px}
+.interp-opts{display:flex;flex-direction:column;gap:8px}
+.opt{display:flex;align-items:flex-start;gap:10px;padding:10px 14px;border:2px solid #cdd8ea;border-radius:8px;cursor:pointer;font-size:.9rem;transition:all .2s;background:var(--gris-c);line-height:1.5}
+.opt:hover{border-color:var(--azul-m);background:var(--cel-c)}
+.opt input{accent-color:var(--azul-m);width:16px;height:16px;flex-shrink:0;margin-top:2px}
+.opt.ok{border-color:var(--verde);background:var(--ver-c)}
+.opt.fail{border-color:var(--rojo);background:var(--roj-c)}
+.pej-fb{display:none;margin-top:10px;padding:12px 16px;border-radius:8px;font-size:.88rem;line-height:1.6}
+.pej-fb.show{display:block}
+.pej-fb.ok{background:var(--ver-c);color:#145a32;border-left:4px solid var(--verde)}
+.pej-fb.fail{background:var(--roj-c);color:#7b241c;border-left:4px solid var(--rojo)}
+
+/* WhatsApp sim */
+.wa-container{background:#ECE5DD;border-radius:14px;padding:20px;margin:14px 0;font-family:'Source Sans 3',sans-serif}
+.wa-header{background:#075E54;color:#fff;border-radius:10px 10px 0 0;padding:12px 16px;margin:-20px -20px 16px;display:flex;align-items:center;gap:10px}
+.wa-avatar{width:38px;height:38px;background:#128C7E;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.2rem}
+.wa-header-info h4{font-size:.93rem;margin:0;color:#fff}
+.wa-header-info p{font-size:.75rem;margin:0;color:rgba(255,255,255,.8)}
+.wa-msg{max-width:78%;margin-bottom:10px;position:relative}
+.wa-msg.mama{margin-left:0}
+.wa-msg.yo{margin-left:auto}
+.wa-bubble{padding:10px 14px;border-radius:0 10px 10px 10px;font-size:.9rem;line-height:1.55;position:relative}
+.wa-msg.mama .wa-bubble{background:#fff;border-radius:0 10px 10px 10px}
+.wa-msg.yo .wa-bubble{background:#DCF8C6;border-radius:10px 0 10px 10px}
+.wa-time{font-size:.7rem;color:#999;text-align:right;margin-top:3px;padding-right:6px}
+.wa-name{font-size:.75rem;font-weight:700;color:#128C7E;margin-bottom:3px}
+
+/* Botones principales */
+.btn-v{background:var(--azul);color:#fff;border:none;padding:12px 28px;border-radius:8px;font-size:1rem;font-weight:700;cursor:pointer;transition:background .2s;margin-top:8px}
+.btn-v:hover{background:var(--azul-m)}
+.btn-r{background:transparent;color:var(--azul);border:2px solid var(--azul);padding:10px 22px;border-radius:8px;font-size:.93rem;font-weight:700;cursor:pointer;margin-left:10px;transition:all .2s}
+.btn-r:hover{background:var(--azul);color:#fff}
+
+/* Resultado panel */
+.rpanel{display:none;background:#fff;border-radius:12px;padding:22px;margin-top:20px;box-shadow:var(--sombra);text-align:center}
+.rpanel.show{display:block}
+.r-score{font-size:2.5rem;font-weight:700;color:var(--azul);font-family:'Lora',serif}
+.r-pct{font-size:1.1rem;color:#666;margin:4px 0 12px}
+.barra-o{background:#dde4f0;border-radius:20px;height:14px;overflow:hidden;margin:10px 0}
+.barra-i{height:100%;border-radius:20px;transition:width 1s ease;background:var(--azul-m)}
+.r-msg{font-size:1rem;color:var(--gris-t);margin-top:10px}
+
+/* Cuestionario */
+.qi{background:#fff;border-radius:10px;padding:18px;margin-bottom:14px;box-shadow:var(--sombra)}
+.qi .btipo{display:inline-block;padding:2px 10px;border-radius:12px;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;margin-bottom:8px}
+.btipo.t{background:var(--cel-c);color:var(--azul)}
+.btipo.a{background:var(--dor-c);color:#7a4a00}
+.qi .enun{font-weight:600;font-size:.95rem;color:var(--azul);margin-bottom:10px}
+
+/* IA */
+.ia-step{display:flex;gap:14px;align-items:flex-start;margin-bottom:16px;background:#fff;border-radius:10px;padding:16px;box-shadow:var(--sombra)}
+.ia-num{background:var(--dorado);color:var(--azul);width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.9rem;flex-shrink:0}
+.ia-step h4{font-family:'Lora',serif;color:var(--azul);font-size:.95rem;margin-bottom:4px}
+.ia-step p{font-size:.9rem;margin:0;color:#444}
+.prompt-box{background:#1e1e2e;color:#a6e3a1;border-radius:10px;padding:18px 20px;font-family:'Courier New',monospace;font-size:.83rem;line-height:1.7;margin:14px 0;white-space:pre-wrap;word-break:break-word;position:relative}
+.prompt-box .pl{font-family:'Source Sans 3',sans-serif;font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;color:#89b4fa;margin-bottom:10px;display:block}
+
+/* Reflexión */
+.ref-card{background:#fff;border-radius:12px;padding:18px 20px;margin-bottom:14px;box-shadow:var(--sombra);border-left:5px solid var(--morado);transition:transform .2s}
+.ref-card:hover{transform:translateX(4px)}
+.ref-card .rn{font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--morado);margin-bottom:6px}
+.ref-card p{font-size:.95rem;color:#333;line-height:1.7;margin:0}
+.ref-nota{background:var(--mor-c);border-radius:10px;padding:14px 18px;margin-top:20px;font-size:.88rem;color:#4a0080;border-left:4px solid var(--morado)}
+
+/* Biblio */
+.bib-card{background:#fff;border-radius:10px;padding:16px 18px;margin-bottom:14px;box-shadow:var(--sombra);display:flex;gap:14px;align-items:flex-start}
+.bib-ico{background:var(--azul);color:#fff;width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0}
+.bib-card p{font-size:.88rem;margin:0;line-height:1.6;color:#333}
+.bib-nota{background:var(--dor-c);border:1px solid var(--dorado);border-radius:8px;padding:12px 16px;font-size:.84rem;color:#6b4200;margin-top:18px}
+
+@media(max-width:640px){
+  .tc{padding:18px 14px}
+  h2.st{font-size:1.25rem}
+  .hdr-top{padding:12px 16px}
+  .wa-msg{max-width:92%}
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="hdr">
+  <div class="hdr-top">
+    <div class="hdr-logo">UG</div>
+    <div class="hdr-info">
+      <h1>Universidad de Guayaquil · Facultad de Ciencias Administrativas</h1>
+      <p>Carrera en Contabilidad y Auditoría &nbsp;|&nbsp; Materia: Lenguaje y Comunicación</p>
+    </div>
+  </div>
+  <div class="hdr-badges">
+    <span class="bdg d">Semana 4B</span>
+    <span class="bdg">Unidad 1 – La Comunicación</span>
+    <span class="bdg">Primer Ciclo · Laboratorio de Puntuación</span>
+    <span class="bdg">← Continúa desde 4A</span>
+  </div>
+</header>
+
+<!-- TABS -->
+<nav class="tabs-wrap">
+  <div class="tabs-nav">
+    <button class="tb ac" onclick="ST('lab',this)">🔬 Lab. Puntuación</button>
+    <button class="tb" onclick="ST('wa',this)">📱 WhatsApp & Puntuación</button>
+    <button class="tb" onclick="ST('prof',this)">💼 Profesional</button>
+    <button class="tb" onclick="ST('ej',this)">🎯 Ejercicio Final</button>
+    <button class="tb" onclick="ST('cu',this)">📝 Cuestionario</button>
+    <button class="tb" onclick="ST('ia',this)">🤖 Actividad con IA</button>
+    <button class="tb" onclick="ST('re',this)">🪞 Reflexión</button>
+    <button class="tb" onclick="ST('bi',this)">📚 Bibliografía</button>
+  </div>
+</nav>
+
+<!-- ================================================================
+     LABORATORIO DE PUNTUACIÓN
+     ================================================================ -->
+<div id="lab" class="tc ac">
+  <h2 class="st">🔬 Laboratorio de Puntuación</h2>
+  <p>Los signos de puntuación no son decoración tipográfica: son <strong>instrumentos de significado</strong>. Una coma, un signo de exclamación o unos puntos suspensivos pueden invertir completamente el sentido de una oración. En este laboratorio lo comprobarás tú mismo.</p>
+
+  <div class="box-c">
+    <div class="etq">📖 Principio fundamental</div>
+    <p>El sistema de puntuación se desarrolló entre los siglos XIII y XV para "hacer más comprensible la intención y la secuencia propuesta por el autor" (Santos García, 2012). Sin signos de puntuación, el mismo texto puede generar interpretaciones opuestas. El lenguaje escrito necesita los signos de puntuación del mismo modo que la música necesita los silencios: para que el significado emerja.</p>
+  </div>
+
+  <h3 class="ss">📌 Guía de referencia rápida — Signos de puntuación esenciales</h3>
+  <div class="tw">
+    <table>
+      <thead><tr><th>Signo</th><th>Nombre</th><th>Función principal</th></tr></thead>
+      <tbody>
+        <tr><td><strong>.</strong></td><td>Punto</td><td>Cierra una oración; marca pausa total. Separa ideas completas.</td></tr>
+        <tr><td><strong>,</strong></td><td>Coma</td><td>Pausa breve; separa elementos de una lista, aclaraciones y cambios de sujeto. ¡La más decisiva!</td></tr>
+        <tr><td><strong>;</strong></td><td>Punto y coma</td><td>Pausa mayor que la coma; une oraciones relacionadas que podrían ir separadas por punto.</td></tr>
+        <tr><td><strong>:</strong></td><td>Dos puntos</td><td>Introduce una explicación, enumeración, cita o conclusión.</td></tr>
+        <tr><td><strong>¿?</strong></td><td>Signos de interrogación</td><td>Convierten la oración en pregunta. En español se abre y se cierra.</td></tr>
+        <tr><td><strong>¡!</strong></td><td>Signos de exclamación</td><td>Expresan énfasis, sorpresa, orden o emoción intensa.</td></tr>
+        <tr><td><strong>…</strong></td><td>Puntos suspensivos</td><td>Indican pausa de suspenso, idea incompleta o continuación sobreentendida.</td></tr>
+        <tr><td><strong>« »</strong> / <strong>" "</strong></td><td>Comillas</td><td>Citan palabras textuales, marcan ironía o distinguen términos especiales.</td></tr>
+        <tr><td><strong>( )</strong></td><td>Paréntesis</td><td>Incluyen aclaraciones, datos adicionales o referencias que interrumpen el flujo principal.</td></tr>
+        <tr><td><strong>—</strong></td><td>Raya / Guion largo</td><td>Introduce aclaraciones, diálogos o separa comentarios del narrador.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <hr class="div">
+  <h3 class="ss">🧪 Ejercicios 1–6: La misma oración, significados opuestos</h3>
+  <p>En cada ejercicio verás DOS versiones de la misma oración: una <span style="color:var(--rojo);font-weight:700">SIN signos</span> y una <span style="color:var(--verde);font-weight:700">CON signos</span>. Lee ambas con atención y selecciona la interpretación correcta de cada versión.</p>
+
+  <!-- EJERCICIO P1 -->
+  <div class="pej" id="pej1">
+    <div class="pej-num">Ejercicio 1</div>
+    <div class="pej-title">La herencia y los parientes</div>
+    <div class="oraciones">
+      <div class="oracion-box sin"><span class="oracion-label sin">❌ Sin signos de puntuación</span><br>No lo dejes entrar tiene miedo</div>
+      <div class="oracion-box con"><span class="oracion-label con">✅ Con signos de puntuación</span><br>No lo dejes entrar. Tiene miedo.</div>
+    </div>
+    <div class="interp-question">¿Qué significa la versión SIN signos? ¿Quién tiene miedo?</div>
+    <div class="interp-opts">
+      <label class="opt"><input type="radio" name="p1sin" value="a">a) Se le dice a alguien que no deje entrar a una persona porque esa persona tiene miedo</label>
+      <label class="opt"><input type="radio" name="p1sin" value="b">b) Es imposible determinar quién tiene miedo; la oración es ambigua</label>
+      <label class="opt"><input type="radio" name="p1sin" value="c">c) El que no quiere dejarlo entrar es quien tiene miedo</label>
+    </div>
+    <div class="pej-fb" id="fb-p1"></div>
+  </div>
+
+  <!-- EJERCICIO P2 -->
+  <div class="pej" id="pej2">
+    <div class="pej-num">Ejercicio 2</div>
+    <div class="pej-title">El pago de la deuda</div>
+    <div class="oraciones">
+      <div class="oracion-box sin"><span class="oracion-label sin">❌ Sin signos</span><br>No pagues nunca perdona</div>
+      <div class="oracion-box con"><span class="oracion-label con">✅ Versión A con signos</span><br>No pagues, nunca perdona.</div>
+      <div class="oracion-box con"><span class="oracion-label con">✅ Versión B con signos</span><br>No. Pagues, nunca. Perdona.</div>
+    </div>
+    <div class="interp-question">¿Cuál es el significado de la Versión A "No pagues, nunca perdona"?</div>
+    <div class="interp-opts">
+      <label class="opt"><input type="radio" name="p2a" value="a">a) No pagues [la deuda], porque esa persona nunca perdona [a nadie]</label>
+      <label class="opt"><input type="radio" name="p2a" value="b">b) Nunca pagues ni perdones nada</label>
+      <label class="opt"><input type="radio" name="p2a" value="c">c) No, págale; aunque no perdone</label>
+    </div>
+    <div class="pej-fb" id="fb-p2"></div>
+  </div>
+
+  <!-- EJERCICIO P3 -->
+  <div class="pej" id="pej3">
+    <div class="pej-num">Ejercicio 3</div>
+    <div class="pej-title">El testamento famoso</div>
+    <div class="oraciones">
+      <div class="oracion-box sin"><span class="oracion-label sin">❌ Sin signos</span><br>Dejo mis bienes a mis sobrinos no a mis primos tampoco jamás se pagará la deuda al sastre nunca de ningún modo para los jesuitas todo lo dicho es mi deseo</div>
+      <div class="oracion-box con"><span class="oracion-label con">✅ Versión A (favorece sobrinos)</span><br>Dejo mis bienes a mis sobrinos, no a mis primos. Tampoco, jamás, se pagará la deuda al sastre. Nunca, de ningún modo, para los jesuitas. Todo lo dicho es mi deseo.</div>
+      <div class="oracion-box con"><span class="oracion-label con">✅ Versión B (favorece jesuitas)</span><br>Dejo mis bienes a mis sobrinos, no. A mis primos, tampoco. Jamás se pagará la deuda al sastre, nunca, de ningún modo. Para los jesuitas todo. Lo dicho es mi deseo.</div>
+    </div>
+    <div class="interp-question">En la Versión A, ¿quiénes heredan los bienes?</div>
+    <div class="interp-opts">
+      <label class="opt"><input type="radio" name="p3" value="a">a) Los sobrinos heredan los bienes</label>
+      <label class="opt"><input type="radio" name="p3" value="b">b) Los jesuitas heredan todo</label>
+      <label class="opt"><input type="radio" name="p3" value="c">c) Los primos heredan los bienes</label>
+    </div>
+    <div class="pej-fb" id="fb-p3"></div>
+  </div>
+
+  <!-- EJERCICIO P4 -->
+  <div class="pej" id="pej4">
+    <div class="pej-num">Ejercicio 4</div>
+    <div class="pej-title">La orden de ejecutar</div>
+    <div class="oraciones">
+      <div class="oracion-box sin"><span class="oracion-label sin">❌ Sin signos</span><br>Perdonad no ejecutad a estos hombres</div>
+      <div class="oracion-box con"><span class="oracion-label con">✅ Versión A</span><br>Perdonad, no ejecutad a estos hombres.</div>
+      <div class="oracion-box con"><span class="oracion-label con">✅ Versión B</span><br>Perdonad no, ejecutad a estos hombres.</div>
+    </div>
+    <div class="interp-question">¿Cuál es la diferencia clave entre la Versión A y la Versión B?</div>
+    <div class="interp-opts">
+      <label class="opt"><input type="radio" name="p4" value="a">a) En la Versión A se pide que los perdonen (que no los ejecuten); en la Versión B se ordena ejecutarlos (no perdonarlos)</label>
+      <label class="opt"><input type="radio" name="p4" value="b">b) Ambas versiones significan lo mismo: no ejecutar a nadie</label>
+      <label class="opt"><input type="radio" name="p4" value="c">c) En la Versión A se ejecuta a uno y en la B se perdonan todos</label>
+    </div>
+    <div class="pej-fb" id="fb-p4"></div>
+  </div>
+
+  <!-- EJERCICIO P5 -->
+  <div class="pej" id="pej5">
+    <div class="pej-num">Ejercicio 5</div>
+    <div class="pej-title">La nota de amor (¿o de desamor?)</div>
+    <div class="oraciones">
+      <div class="oracion-box con"><span class="oracion-label con">✅ Versión A</span><br>Me gustas mucho, me falta el aliento cuando estás cerca. No puedo vivir sin ti. Creo que eres especial.</div>
+      <div class="oracion-box sin"><span class="oracion-label sin">❌ Versión B</span><br>Me gustas mucho. Me falta el aliento cuando estás cerca, no puedo vivir sin ti, creo. Que eres especial.</div>
+    </div>
+    <div class="interp-question">¿Cuál de las dos versiones declara amor con convicción?</div>
+    <div class="interp-opts">
+      <label class="opt"><input type="radio" name="p5" value="a">a) La Versión A: afirma directamente y con claridad el sentimiento</label>
+      <label class="opt"><input type="radio" name="p5" value="b">b) La Versión B: el uso de "creo" al final enfatiza la seguridad</label>
+      <label class="opt"><input type="radio" name="p5" value="c">c) Las dos versiones son idénticas en su declaración de amor</label>
+    </div>
+    <div class="pej-fb" id="fb-p5"></div>
+  </div>
+
+  <!-- EJERCICIO P6 -->
+  <div class="pej" id="pej6">
+    <div class="pej-num">Ejercicio 6</div>
+    <div class="pej-title">El informe de auditoría</div>
+    <div class="oraciones">
+      <div class="oracion-box sin"><span class="oracion-label sin">❌ Sin signos</span><br>El auditor no afirma que los estados financieros son incorrectos en nuestra opinión son razonables</div>
+      <div class="oracion-box con"><span class="oracion-label con">✅ Versión A</span><br>El auditor no afirma que los estados financieros son incorrectos. En nuestra opinión, son razonables.</div>
+      <div class="oracion-box con"><span class="oracion-label con">✅ Versión B</span><br>El auditor no afirma que los estados financieros son incorrectos en nuestra opinión; son razonables.</div>
+    </div>
+    <div class="interp-question">¿Cuál de las dos versiones con signos es más precisa en un dictamen de auditoría?</div>
+    <div class="interp-opts">
+      <label class="opt"><input type="radio" name="p6" value="a">a) La Versión A: separa claramente la negación del auditor de la opinión favorable del equipo</label>
+      <label class="opt"><input type="radio" name="p6" value="b">b) La Versión B: usa punto y coma, lo cual es inapropiado en documentos contables</label>
+      <label class="opt"><input type="radio" name="p6" value="c">c) Ambas son igualmente válidas y la diferencia es solo estilística</label>
+    </div>
+    <div class="pej-fb" id="fb-p6"></div>
+  </div>
+
+  <div style="margin-top:20px">
+    <button class="btn-v" onclick="verLab()">✅ Verificar Ejercicios 1–6</button>
+    <button class="btn-r" onclick="reinLab()" id="btn-rl" style="display:none">🔄 Reiniciar</button>
+  </div>
+  <div class="rpanel" id="rp-lab">
+    <div class="r-score" id="sc-lab"></div>
+    <div class="r-pct" id="pct-lab"></div>
+    <div class="barra-o"><div class="barra-i" id="bar-lab" style="width:0%"></div></div>
+    <div class="r-msg" id="msg-lab"></div>
+  </div>
+</div>
+
+<!-- ================================================================
+     WHATSAPP & PUNTUACIÓN
+     ================================================================ -->
+<div id="wa" class="tc">
+  <h2 class="st">📱 WhatsApp y Puntuación: La Conversación con Mamá</h2>
+  <p>En la vida cotidiana, escribimos cientos de mensajes por día. Muchos de ellos, por la velocidad con que los enviamos, carecen de signos de puntuación. ¿Importa eso? En los ejercicios siguientes lo descubrirás. Cada respuesta sin puntuación puede cambiar radicalmente lo que tu mamá entiende —¡y lo que terminas comiendo!</p>
+
+  <div class="lab-intro">
+    <h3>El contexto de la conversación</h3>
+    <p>Son las 11:00 de la mañana. Estás en la universidad. Tu mamá te escribe por WhatsApp para saber si quieres que te guarde almuerzo. Tu respuesta puede significar cosas muy distintas según cómo la escribas. ¡Pon atención a cada signo!</p>
+  </div>
+
+  <!-- WA EJERCICIO 7 -->
+  <div class="pej" id="pej7">
+    <div class="pej-num">Ejercicio 7 — WhatsApp 1</div>
+    <div class="pej-title">Pregunta de mamá: "¿Te guardo el almuerzo de hoy? Hice arroz con pollo 🍗"</div>
+
+    <div class="wa-container">
+      <div class="wa-header">
+        <div class="wa-avatar">👩</div>
+        <div class="wa-header-info">
+          <h4>Mamá 💕</h4>
+          <p>en línea</p>
+        </div>
+      </div>
+      <div class="wa-msg mama">
+        <div class="wa-name">Mamá</div>
+        <div class="wa-bubble">¿Te guardo el almuerzo de hoy? Hice arroz con pollo 🍗</div>
+        <div class="wa-time">11:02</div>
+      </div>
+      <div class="wa-msg yo">
+        <div class="wa-bubble" style="background:#ffe4e4">No gracias nada más</div>
+        <div class="wa-time">11:04 ✓✓</div>
+      </div>
+    </div>
+
+    <div class="interp-question">La respuesta enviada fue: "No gracias nada más" (sin puntuación). ¿Qué entendió mamá muy probablemente?</div>
+    <div class="interp-opts">
+      <label class="opt"><input type="radio" name="wa1" value="a">a) Que no quiere que le guarden nada, porque el "no" cancela todo</label>
+      <label class="opt"><input type="radio" name="wa1" value="b">b) Que sí quiere almuerzo, gracias, y que solo quiere arroz con pollo, nada más</label>
+      <label class="opt"><input type="radio" name="wa1" value="c">c) La oración es imposible de interpretar sin más contexto</label>
+    </div>
+    <div class="interp-question" style="margin-top:14px">¿Con signos de puntuación correctos, cuál de estas versiones comunica claramente que SÍ quieres almuerzo?</div>
+    <div class="interp-opts" id="wa1b-opts">
+      <label class="opt"><input type="radio" name="wa1b" value="a">a) No, gracias. Nada más.</label>
+      <label class="opt"><input type="radio" name="wa1b" value="b">b) No. Gracias, nada más.</label>
+      <label class="opt"><input type="radio" name="wa1b" value="c">c) ¡Sí! Gracias, nada más (solo el arroz con pollo).</label>
+    </div>
+    <div class="pej-fb" id="fb-wa7"></div>
+  </div>
+
+  <!-- WA EJERCICIO 8 -->
+  <div class="pej" id="pej8">
+    <div class="pej-num">Ejercicio 8 — WhatsApp 2</div>
+    <div class="pej-title">La misma pregunta, otra respuesta</div>
+
+    <div class="wa-container">
+      <div class="wa-header">
+        <div class="wa-avatar">👩</div>
+        <div class="wa-header-info">
+          <h4>Mamá 💕</h4>
+          <p>en línea</p>
+        </div>
+      </div>
+      <div class="wa-msg mama">
+        <div class="wa-name">Mamá</div>
+        <div class="wa-bubble">¿Te guardo el almuerzo? Hoy también hice postre 🍮</div>
+        <div class="wa-time">11:10</div>
+      </div>
+      <div class="wa-msg yo">
+        <div class="wa-bubble" style="background:#ffe4e4">Claro que no mami gracias</div>
+        <div class="wa-time">11:12 ✓✓</div>
+      </div>
+    </div>
+
+    <div class="interp-question">Respuesta enviada: "Claro que no mami gracias" (sin puntuación). ¿Cuáles son las dos interpretaciones posibles de esta oración?</div>
+    <div class="interp-opts">
+      <label class="opt"><input type="radio" name="wa2" value="a">a) (A) "¡Claro que no!, mami, gracias" = No quiero. / (B) "¡Claro que sí, no mami!" es imposible</label>
+      <label class="opt"><input type="radio" name="wa2" value="b">b) (A) "Claro que no, mami, gracias" = No quiero almuerzo. / (B) "¡Claro que sí!, ¡no mami, gracias!" = Sí quiero</label>
+      <label class="opt"><input type="radio" name="wa2" value="c">c) La oración solo puede significar que sí quiere almuerzo y está agradecida</label>
+    </div>
+    <div class="pej-fb" id="fb-wa8"></div>
+  </div>
+
+  <!-- WA EJERCICIO 9 -->
+  <div class="pej" id="pej9">
+    <div class="pej-num">Ejercicio 9 — WhatsApp 3</div>
+    <div class="pej-title">La respuesta ambigua de los puntos suspensivos</div>
+
+    <div class="wa-container">
+      <div class="wa-header">
+        <div class="wa-avatar">👩</div>
+        <div class="wa-header-info">
+          <h4>Mamá 💕</h4>
+          <p>en línea</p>
+        </div>
+      </div>
+      <div class="wa-msg mama">
+        <div class="wa-name">Mamá</div>
+        <div class="wa-bubble">¿Llegas a almorzar o como sin ti? 🙁</div>
+        <div class="wa-time">12:30</div>
+      </div>
+      <div class="wa-msg yo">
+        <div class="wa-bubble" style="background:#fffde7">Mmm... no sé mami</div>
+        <div class="wa-time">12:31 ✓✓</div>
+      </div>
+      <div class="wa-msg mama">
+        <div class="wa-name">Mamá</div>
+        <div class="wa-bubble">¿Pero vas a venir o no? 😤</div>
+        <div class="wa-time">12:32</div>
+      </div>
+    </div>
+
+    <div class="interp-question">La respuesta "Mmm... no sé mami" usa puntos suspensivos. ¿Qué comunican los puntos suspensivos en este contexto?</div>
+    <div class="interp-opts">
+      <label class="opt"><input type="radio" name="wa3" value="a">a) Comunican duda, indecisión y una idea que queda incompleta; el hablante no ha tomado una decisión</label>
+      <label class="opt"><input type="radio" name="wa3" value="b">b) Comunican que definitivamente no va a llegar</label>
+      <label class="opt"><input type="radio" name="wa3" value="c">c) Los puntos suspensivos no tienen función comunicativa en mensajes de texto</label>
+    </div>
+    <div class="pej-fb" id="fb-wa9"></div>
+  </div>
+
+  <!-- WA EJERCICIO 10 -->
+  <div class="pej" id="pej10">
+    <div class="pej-num">Ejercicio 10 — WhatsApp 4</div>
+    <div class="pej-title">Las mayúsculas como "tono de voz" digital</div>
+
+    <div class="wa-container">
+      <div class="wa-header">
+        <div class="wa-avatar">👩</div>
+        <div class="wa-header-info">
+          <h4>Mamá 💕</h4>
+          <p>en línea</p>
+        </div>
+      </div>
+      <div class="wa-msg mama">
+        <div class="wa-name">Mamá</div>
+        <div class="wa-bubble">¿Ya estás en camino? La comida se enfría 😒</div>
+        <div class="wa-time">13:15</div>
+      </div>
+      <div class="wa-msg yo">
+        <div class="wa-bubble" style="background:#ffe4e4">YA VOY MAMI ESPERA</div>
+        <div class="wa-time">13:16 ✓✓</div>
+      </div>
+    </div>
+
+    <div class="interp-question">El mensaje "YA VOY MAMI ESPERA" está escrito todo en mayúsculas y sin signos. En comunicación digital, ¿qué interpretación es más probable para mamá?</div>
+    <div class="interp-opts">
+      <label class="opt"><input type="radio" name="wa4" value="a">a) Que escribe en mayúsculas porque el mensaje es formal y serio</label>
+      <label class="opt"><input type="radio" name="wa4" value="b">b) Que está gritando / molesto o estresado; las mayúsculas en digital equivalen a elevar la voz</label>
+      <label class="opt"><input type="radio" name="wa4" value="c">c) Las mayúsculas sin signos no tienen ningún efecto en la interpretación del mensaje</label>
+    </div>
+    <div class="interp-question" style="margin-top:14px">¿Cómo se reescribiría el mismo mensaje con tono amable y signos correctos?</div>
+    <div class="interp-opts">
+      <label class="opt"><input type="radio" name="wa4b" value="a">a) ¡Ya voy, mami! Espera un momento. 😊</label>
+      <label class="opt"><input type="radio" name="wa4b" value="b">b) Ya Voy. Mami. Espera.</label>
+      <label class="opt"><input type="radio" name="wa4b" value="c">c) Ya voy mami espera...</label>
+    </div>
+    <div class="pej-fb" id="fb-wa10"></div>
+  </div>
+
+  <div style="margin-top:20px">
+    <button class="btn-v" onclick="verWA()">✅ Verificar WhatsApp</button>
+    <button class="btn-r" onclick="reinWA()" id="btn-rwa" style="display:none">🔄 Reiniciar</button>
+  </div>
+  <div class="rpanel" id="rp-wa">
+    <div class="r-score" id="sc-wa"></div>
+    <div class="r-pct" id="pct-wa"></div>
+    <div class="barra-o"><div class="barra-i" id="bar-wa" style="width:0%"></div></div>
+    <div class="r-msg" id="msg-wa"></div>
+  </div>
+</div>
+
+<!-- ================================================================
+     PROFESIONAL
+     ================================================================ -->
+<div id="prof" class="tc">
+  <h2 class="st">💼 La Puntuación en el Mundo Profesional</h2>
+  <p>Si la puntuación cambia el significado de un mensaje a mamá, imagina lo que puede ocurrir en un contrato, un informe de auditoría o un correo al SRI. Esta sección lleva los ejercicios al terreno donde los errores cuestan dinero, reputación y responsabilidad legal.</p>
+
+  <!-- PROF EJERCICIO 11 -->
+  <div class="pej" id="pej11">
+    <div class="pej-num">Ejercicio 11 — El correo al cliente</div>
+    <div class="pej-title">Un contador envía este correo: "No se preocupe señor Rodríguez su declaración no tiene errores en nuestra revisión encontramos problemas"</div>
+    <div class="oraciones">
+      <div class="oracion-box sin"><span class="oracion-label sin">❌ Sin signos</span><br>No se preocupe señor Rodríguez su declaración no tiene errores en nuestra revisión encontramos problemas</div>
+      <div class="oracion-box con"><span class="oracion-label con">✅ Versión A</span><br>No se preocupe, señor Rodríguez. Su declaración no tiene errores. En nuestra revisión encontramos problemas.</div>
+      <div class="oracion-box con"><span class="oracion-label con">✅ Versión B</span><br>No. Se preocupe, señor Rodríguez: su declaración no tiene errores en nuestra revisión. Encontramos problemas.</div>
+    </div>
+    <div class="interp-question">La Versión A y la Versión B transmiten mensajes OPUESTOS. En la Versión A, ¿cuál es el mensaje para el cliente?</div>
+    <div class="interp-opts">
+      <label class="opt"><input type="radio" name="p11" value="a">a) Que NO debe preocuparse y que su declaración está bien; los problemas vienen de otro lugar</label>
+      <label class="opt"><input type="radio" name="p11" value="b">b) Que SÍ debe preocuparse porque la declaración tiene errores</label>
+      <label class="opt"><input type="radio" name="p11" value="c">c) Que el contador encontró errores y no sabe qué decirle al cliente</label>
+    </div>
+    <div class="pej-fb" id="fb-p11"></div>
+  </div>
+
+  <!-- PROF EJERCICIO 12 -->
+  <div class="pej" id="pej12">
+    <div class="pej-num">Ejercicio 12 — La cláusula del contrato</div>
+    <div class="pej-title">Cláusula escrita sin signos de puntuación en un contrato de servicios profesionales</div>
+    <div class="oraciones">
+      <div class="oracion-box sin"><span class="oracion-label sin">❌ Sin signos</span><br>El auditor no asume responsabilidad por errores en los estados financieros presentados por la gerencia los cuales fueron tomados como base para el dictamen</div>
+      <div class="oracion-box con"><span class="oracion-label con">✅ Versión A (el auditor se exime)</span><br>El auditor no asume responsabilidad por errores en los estados financieros presentados por la gerencia, los cuales fueron tomados como base para el dictamen.</div>
+      <div class="oracion-box con"><span class="oracion-label con">✅ Versión B (ambigua)</span><br>El auditor no asume responsabilidad. Por errores en los estados financieros presentados por la gerencia, los cuales fueron tomados como base para el dictamen.</div>
+    </div>
+    <div class="interp-question">En la Versión A, ¿de qué se exime el auditor específicamente?</div>
+    <div class="interp-opts">
+      <label class="opt"><input type="radio" name="p12" value="a">a) De los errores en los estados financieros que la propia gerencia presentó como base para el dictamen</label>
+      <label class="opt"><input type="radio" name="p12" value="b">b) De todos los errores que puedan existir en el trabajo de auditoría</label>
+      <label class="opt"><input type="radio" name="p12" value="c">c) La Versión A y la Versión B son jurídicamente idénticas</label>
+    </div>
+    <div class="pej-fb" id="fb-p12"></div>
+  </div>
+
+  <div style="margin-top:20px">
+    <button class="btn-v" onclick="verProf()">✅ Verificar Ejercicios Profesionales</button>
+    <button class="btn-r" onclick="reinProf()" id="btn-rp" style="display:none">🔄 Reiniciar</button>
+  </div>
+  <div class="rpanel" id="rp-prof">
+    <div class="r-score" id="sc-prof"></div>
+    <div class="r-pct" id="pct-prof"></div>
+    <div class="barra-o"><div class="barra-i" id="bar-prof" style="width:0%"></div></div>
+    <div class="r-msg" id="msg-prof"></div>
+  </div>
+
+  <div class="box-k" style="margin-top:24px">
+    <div class="etq">💡 Síntesis del laboratorio</div>
+    <p>Has completado 12 ejercicios que demuestran, en situaciones reales —familiares, cotidianas y profesionales— que <strong>la puntuación no es un adorno sino la estructura misma del significado</strong>. Una coma desplazada puede hacer la diferencia entre pagar o no una deuda, entre demostrar amor o indiferencia, entre eximir o imputar responsabilidad a un auditor. Escribir bien es pensar bien, y pensar bien es comunicar bien.</p>
+  </div>
+</div>
+
+<!-- ================================================================
+     EJERCICIO FINAL (integrador)
+     ================================================================ -->
+<div id="ej" class="tc">
+  <h2 class="st">🎯 Ejercicio Final Integrador</h2>
+  <div class="lab-intro">
+    <h3>Verdadero o Falso — Proceso de comunicación y puntuación</h3>
+    <p>Responde TODAS las afirmaciones antes de verificar. Cada afirmación combina los temas de las semanas 4A y 4B. El widget es tu fuente de estudio: confía en lo que aprendiste.</p>
+  </div>
+
+  <div id="final-items">
+    <!-- Item 1 -->
+    <div class="pej">
+      <div class="pej-num">1</div>
+      <p style="font-weight:600;color:var(--azul);margin-bottom:10px">"La retroalimentación (feedback) es optativa en el proceso de comunicación: si el receptor comprende el mensaje, no es necesario que responda."</p>
+      <div class="interp-opts">
+        <label class="opt"><input type="radio" name="f1" value="vf">Verdadero</label>
+        <label class="opt"><input type="radio" name="f1" value="ff">Falso</label>
+      </div>
+      <div class="pej-fb" id="fb-f1"></div>
+    </div>
+    <!-- Item 2 -->
+    <div class="pej">
+      <div class="pej-num">2</div>
+      <p style="font-weight:600;color:var(--azul);margin-bottom:10px">"Según la segunda ley de la comunicación interpersonal, si el receptor malinterpreta el mensaje, la responsabilidad recae en el emisor, no en el receptor."</p>
+      <div class="interp-opts">
+        <label class="opt"><input type="radio" name="f2" value="vf">Verdadero</label>
+        <label class="opt"><input type="radio" name="f2" value="ff">Falso</label>
+      </div>
+      <div class="pej-fb" id="fb-f2"></div>
+    </div>
+    <!-- Item 3 -->
+    <div class="pej">
+      <div class="pej-num">3</div>
+      <p style="font-weight:600;color:var(--azul);margin-bottom:10px">"Los signos de puntuación son elementos decorativos de la escritura que no afectan el significado de una oración."</p>
+      <div class="interp-opts">
+        <label class="opt"><input type="radio" name="f3" value="vf">Verdadero</label>
+        <label class="opt"><input type="radio" name="f3" value="ff">Falso</label>
+      </div>
+      <div class="pej-fb" id="fb-f3"></div>
+    </div>
+    <!-- Item 4 -->
+    <div class="pej">
+      <div class="pej-num">4</div>
+      <p style="font-weight:600;color:var(--azul);margin-bottom:10px">"Covey identifica cuatro pilares de la comunicación: leer, escribir, hablar y escuchar. Afirma que leer libros de calidad es una forma de afinar la mente."</p>
+      <div class="interp-opts">
+        <label class="opt"><input type="radio" name="f4" value="vf">Verdadero</label>
+        <label class="opt"><input type="radio" name="f4" value="ff">Falso</label>
+      </div>
+      <div class="pej-fb" id="fb-f4"></div>
+    </div>
+    <!-- Item 5 -->
+    <div class="pej">
+      <div class="pej-num">5</div>
+      <p style="font-weight:600;color:var(--azul);margin-bottom:10px">"La ruido semántico en la comunicación ocurre cuando emisor y receptor no comparten el mismo significado para los términos utilizados en el mensaje."</p>
+      <div class="interp-opts">
+        <label class="opt"><input type="radio" name="f5" value="vf">Verdadero</label>
+        <label class="opt"><input type="radio" name="f5" value="ff">Falso</label>
+      </div>
+      <div class="pej-fb" id="fb-f5"></div>
+    </div>
+    <!-- Item 6 -->
+    <div class="pej">
+      <div class="pej-num">6</div>
+      <p style="font-weight:600;color:var(--azul);margin-bottom:10px">"En el proceso de comunicación, la etapa de decodificación es responsabilidad exclusiva del emisor."</p>
+      <div class="interp-opts">
+        <label class="opt"><input type="radio" name="f6" value="vf">Verdadero</label>
+        <label class="opt"><input type="radio" name="f6" value="ff">Falso</label>
+      </div>
+      <div class="pej-fb" id="fb-f6"></div>
+    </div>
+  </div>
+
+  <div style="margin-top:20px">
+    <button class="btn-v" onclick="verFinal()">✅ Verificar Ejercicio Final</button>
+    <button class="btn-r" onclick="reinFinal()" id="btn-rf" style="display:none">🔄 Reiniciar</button>
+  </div>
+  <div class="rpanel" id="rp-fin">
+    <div class="r-score" id="sc-fin"></div>
+    <div class="r-pct" id="pct-fin"></div>
+    <div class="barra-o"><div class="barra-i" id="bar-fin" style="width:0%"></div></div>
+    <div class="r-msg" id="msg-fin"></div>
+  </div>
+</div>
+
+<!-- ================================================================
+     CUESTIONARIO
+     ================================================================ -->
+<div id="cu" class="tc">
+  <h2 class="st">📝 Cuestionario — Semana 4 (4A + 4B)</h2>
+  <p>10 preguntas de opción múltiple. Responde TODAS antes de verificar. 7 teóricas + 3 de análisis.</p>
+
+  <div class="qi"><span class="btipo t">Teórica</span>
+    <div class="enun">1. Según Stephen R. Covey, ¿cuáles son los cuatro pilares básicos de la comunicación humana?</div>
+    <div class="interp-opts">
+      <label class="opt"><input type="radio" name="q1" value="a">a) Leer, escribir, hablar y escuchar</label>
+      <label class="opt"><input type="radio" name="q1" value="b">b) Hablar, gesticular, silenciar y escribir</label>
+      <label class="opt"><input type="radio" name="q1" value="c">c) Leer, escuchar, persuadir y argumentar</label>
+      <label class="opt"><input type="radio" name="q1" value="d">d) Comunicar, codificar, transmitir y retroalimentar</label>
+    </div><div class="pej-fb" id="fq1"></div>
+  </div>
+
+  <div class="qi"><span class="btipo t">Teórica</span>
+    <div class="enun">2. ¿En qué etapa del proceso de comunicación ocurre el mayor número de malentendidos?</div>
+    <div class="interp-opts">
+      <label class="opt"><input type="radio" name="q2" value="a">a) En la decodificación: el receptor interpreta el mensaje según sus propios filtros, experiencias y emociones</label>
+      <label class="opt"><input type="radio" name="q2" value="b">b) En la codificación: el emisor siempre elige mal las palabras</label>
+      <label class="opt"><input type="radio" name="q2" value="c">c) En la transmisión: el canal siempre distorsiona el mensaje</label>
+      <label class="opt"><input type="radio" name="q2" value="d">d) En la ideación: el emisor nunca tiene ideas claras</label>
+    </div><div class="pej-fb" id="fq2"></div>
+  </div>
+
+  <div class="qi"><span class="btipo t">Teórica</span>
+    <div class="enun">3. La segunda ley de la comunicación interpersonal establece que:</div>
+    <div class="interp-opts">
+      <label class="opt"><input type="radio" name="q3" value="a">a) Cuando el receptor malinterpreta el mensaje, la responsabilidad recae en el emisor</label>
+      <label class="opt"><input type="radio" name="q3" value="b">b) El receptor siempre tiene razón en su interpretación del mensaje</label>
+      <label class="opt"><input type="radio" name="q3" value="c">c) El emisor no tiene responsabilidad sobre cómo interpreta el receptor</label>
+      <label class="opt"><input type="radio" name="q3" value="d">d) Ambas partes comparten responsabilidad siempre al 50%</label>
+    </div><div class="pej-fb" id="fq3"></div>
+  </div>
+
+  <div class="qi"><span class="btipo t">Teórica</span>
+    <div class="enun">4. ¿Qué tipo de ruido comunicativo se produce cuando el cliente de un contador entiende "provisión" como "ahorro personal" en lugar de "reserva contable obligatoria"?</div>
+    <div class="interp-opts">
+      <label class="opt"><input type="radio" name="q4" value="a">a) Ruido semántico, porque el problema está en el significado del código, no en el canal físico</label>
+      <label class="opt"><input type="radio" name="q4" value="b">b) Ruido físico, porque el cliente no escuchó bien</label>
+      <label class="opt"><input type="radio" name="q4" value="c">c) Ruido fisiológico, porque el cliente tiene problemas de comprensión</label>
+      <label class="opt"><input type="radio" name="q4" value="d">d) Ruido psicológico, porque el cliente no confía en el contador</label>
+    </div><div class="pej-fb" id="fq4"></div>
+  </div>
+
+  <div class="qi"><span class="btipo t">Teórica</span>
+    <div class="enun">5. El sistema de puntuación desarrollado entre los siglos XIII y XV en las instituciones escolásticas tenía como propósito principal:</div>
+    <div class="interp-opts">
+      <label class="opt"><input type="radio" name="q5" value="a">a) Hacer más comprensible la intención del autor y facilitar una lectura más rápida y estandarizada</label>
+      <label class="opt"><input type="radio" name="q5" value="b">b) Separar las obras religiosas de las científicas</label>
+      <label class="opt"><input type="radio" name="q5" value="c">c) Reemplazar el uso de mayúsculas en los manuscritos</label>
+      <label class="opt"><input type="radio" name="q5" value="d">d) Indicar las pausas musicales en los textos litúrgicos</label>
+    </div><div class="pej-fb" id="fq5"></div>
+  </div>
+
+  <div class="qi"><span class="btipo t">Teórica</span>
+    <div class="enun">6. ¿Cuál de las siguientes afirmaciones sobre la lectura es CORRECTA según Covey?</div>
+    <div class="interp-opts">
+      <label class="opt"><input type="radio" name="q6" value="a">a) "La persona que no lee no es mejor que la persona analfabeta"; leer amplía paradigmas y afila la mente</label>
+      <label class="opt"><input type="radio" name="q6" value="b">b) La lectura es importante solo para quienes trabajan en comunicación o educación</label>
+      <label class="opt"><input type="radio" name="q6" value="c">c) Leer mucho puede saturar la mente y volverla menos creativa</label>
+      <label class="opt"><input type="radio" name="q6" value="d">d) La lectura digital es suficiente; no es necesario leer libros físicos</label>
+    </div><div class="pej-fb" id="fq6"></div>
+  </div>
+
+  <div class="qi"><span class="btipo t">Teórica</span>
+    <div class="enun">7. En la clasificación de la comunicación organizacional, ¿cuál es la diferencia entre comunicación simétrica y complementaria?</div>
+    <div class="interp-opts">
+      <label class="opt"><input type="radio" name="q7" value="a">a) La simétrica ocurre entre personas de igual status; la complementaria entre personas de diferente jerarquía o rol</label>
+      <label class="opt"><input type="radio" name="q7" value="b">b) La simétrica es escrita; la complementaria es oral</label>
+      <label class="opt"><input type="radio" name="q7" value="c">c) La simétrica es formal; la complementaria es informal</label>
+      <label class="opt"><input type="radio" name="q7" value="d">d) No existe diferencia real; son sinónimos en la teoría comunicativa</label>
+    </div><div class="pej-fb" id="fq7"></div>
+  </div>
+
+  <div class="qi"><span class="btipo a">Análisis</span>
+    <div class="enun">8. Una empresa ecuatoriana pierde un juicio arbitral porque en el contrato de servicios la cláusula de penalización decía: "No se cobrará penalización en caso de retraso imputable al cliente o a terceros". La contraparte argumenta que una coma antes de "en caso" cambia el significado. ¿Qué tipo de barrera comunicativa originó el problema?</div>
+    <div class="interp-opts">
+      <label class="opt"><input type="radio" name="q8" value="a">a) Ambigüedad sintáctica generada por puntuación deficiente, que es una barrera semántica del mensaje escrito</label>
+      <label class="opt"><input type="radio" name="q8" value="b">b) Ruido físico producido por el papel del contrato</label>
+      <label class="opt"><input type="radio" name="q8" value="c">c) Barrera psicológica: el árbitro tenía prejuicios contra la empresa</label>
+      <label class="opt"><input type="radio" name="q8" value="d">d) Ruido fisiológico: el abogado de la contraparte tenía problemas de comprensión lectora</label>
+    </div><div class="pej-fb" id="fq8"></div>
+  </div>
+
+  <div class="qi"><span class="btipo a">Análisis</span>
+    <div class="enun">9. Un auditor envía el siguiente correo al equipo: "Revisad los archivos que no estén completos mañana presentamos." El equipo entiende que deben revisar hoy los archivos incompletos para presentar mañana. Pero el auditor quería decir: "Revisad los archivos. Que no estén completos mañana [cuando] presentamos." ¿Qué falló en el proceso de comunicación?</div>
+    <div class="interp-opts">
+      <label class="opt"><input type="radio" name="q9" value="a">a) La codificación: el auditor no puntuó correctamente el mensaje, generando una decodificación incorrecta por parte del equipo</label>
+      <label class="opt"><input type="radio" name="q9" value="b">b) El canal: el correo electrónico es inadecuado para instrucciones de auditoría</label>
+      <label class="opt"><input type="radio" name="q9" value="c">c) La recepción: el equipo no leyó el correo completo</label>
+      <label class="opt"><input type="radio" name="q9" value="d">d) La retroalimentación: el equipo debió haber respondido el correo antes de actuar</label>
+    </div><div class="pej-fb" id="fq9"></div>
+  </div>
+
+  <div class="qi"><span class="btipo a">Análisis</span>
+    <div class="enun">10. Una estudiante universitaria lleva tres años en Contabilidad y Auditoría. Lee solo los textos que le exigen en clase, nunca por placer ni por curiosidad profesional. Cuando presenta trabajos escritos, comete errores de puntuación, usa vocabulario limitado y sus argumentos carecen de profundidad. Según lo estudiado esta semana, ¿cuál es la causa raíz de este perfil?</div>
+    <div class="interp-opts">
+      <label class="opt"><input type="radio" name="q10" value="a">a) La falta de hábito lector: no leer voluntariamente impide desarrollar vocabulario, estructuras argumentativas y dominio de la escritura correcta</label>
+      <label class="opt"><input type="radio" name="q10" value="b">b) Los profesores no le han enseñado ortografía correctamente</label>
+      <label class="opt"><input type="radio" name="q10" value="c">c) La contabilidad no requiere habilidades de escritura avanzada</label>
+      <label class="opt"><input type="radio" name="q10" value="d">d) La lectura digital que hace en redes sociales es suficiente sustituto del libro</label>
+    </div><div class="pej-fb" id="fq10"></div>
+  </div>
+
+  <div style="margin-top:20px">
+    <button class="btn-v" onclick="verCuestionario()">✅ Verificar Cuestionario</button>
+    <button class="btn-r" onclick="reinCuestionario()" id="btn-rq" style="display:none">🔄 Reiniciar</button>
+  </div>
+  <div class="rpanel" id="rp-q">
+    <div class="r-score" id="sc-q"></div>
+    <div class="r-pct" id="pct-q"></div>
+    <div class="barra-o"><div class="barra-i" id="bar-q" style="width:0%"></div></div>
+    <div class="r-msg" id="msg-q"></div>
+  </div>
+</div>
+
+<!-- ================================================================
+     ACTIVIDAD CON IA
+     ================================================================ -->
+<div id="ia" class="tc">
+  <h2 class="st">🤖 Actividad con Inteligencia Artificial</h2>
+  <div class="box-c">
+    <div class="etq">📋 Descripción</div>
+    <p><strong>Actividad:</strong> "El contrato que me arruinó" — Reescritura crítica de cláusulas ambiguas con IA.<br>
+    <strong>Herramienta recomendada:</strong> <a href="https://claude.ai" target="_blank" style="color:var(--azul-m);font-weight:700">Claude en claude.ai</a> (Anthropic) · También puedes usar ChatGPT o Gemini gratuitos.<br>
+    <strong>Tiempo estimado:</strong> 50–70 minutos.</p>
+  </div>
+
+  <div class="ia-step">
+    <div class="ia-num">1</div>
+    <div>
+      <h4>Propósito de la actividad</h4>
+      <p>Usarás la IA como herramienta de análisis lingüístico para identificar ambigüedades en textos escritos y proponer versiones más claras y precisas. No se trata de que la IA corrija por ti: se trata de <strong>discutir con ella</strong> las implicaciones de cada decisión de puntuación.</p>
+    </div>
+  </div>
+
+  <div class="ia-step">
+    <div class="ia-num">2</div>
+    <div>
+      <h4>Prompt exacto — Cópialo completo</h4>
+    </div>
+  </div>
+
+  <div class="prompt-box">
+    <span class="pl">📋 PROMPT PARA CLAUDE / CHATGPT / GEMINI</span>Actúa como experto en redacción jurídica y comunicación técnica.
+
+Analiza el siguiente texto tomado de un contrato de servicios de auditoría 
+en Ecuador e identifica TODAS las ambigüedades que existen por falta 
+o uso incorrecto de signos de puntuación.
+
+TEXTO:
+"El auditor no acepta responsabilidad por los errores materiales 
+detectados en los estados financieros entregados por la gerencia 
+que no fueron revelados oportunamente sin embargo el auditor 
+sí asume responsabilidad por las omisiones en su trabajo de campo 
+que hayan sido causadas por falta de diligencia debida del equipo"
+
+Para cada ambigüedad que encuentres:
+1. Identifica exactamente dónde está el problema de puntuación
+2. Explica cuáles son las dos interpretaciones posibles
+3. Escribe DOS versiones del mismo texto con puntuación correcta 
+   que comuniquen significados distintos
+4. Indica cuál de las dos versiones protege mejor al auditor 
+   desde el punto de vista legal, y por qué
+
+Al final, reflexiona brevemente: ¿por qué la redacción precisa 
+en documentos contables y jurídicos es una competencia profesional 
+crítica, no solo un tema académico?</div>
+
+  <div class="ia-step">
+    <div class="ia-num">3</div>
+    <div>
+      <h4>¿Qué hacer con la respuesta?</h4>
+      <ul class="lista">
+        <li><strong>Compara:</strong> ¿La IA encontró las mismas ambigüedades que tú habías identificado al leer el texto?</li>
+        <li><strong>Cuestiona:</strong> ¿Estás de acuerdo con cuál versión "protege mejor" al auditor? Argumenta tu posición por escrito.</li>
+        <li><strong>Crea:</strong> Redacta tú mismo una tercera versión del texto que sea aún más clara que las dos que propuso la IA.</li>
+        <li><strong>Generaliza:</strong> Escribe un párrafo sobre qué aprendiste de esta actividad que vas a aplicar en tus futuros informes y documentos profesionales.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="ia-step">
+    <div class="ia-num">4</div>
+    <div>
+      <h4>Criterio de evaluación</h4>
+      <p>✅ <strong>Pensamiento crítico:</strong> El estudiante discrepa con al menos un punto de la IA, lo argumenta y propone su propia versión mejorada del texto.<br>
+      ❌ <strong>Copia simple:</strong> El estudiante pega la respuesta de la IA sin análisis, sin discrepancia y sin aporte propio.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ================================================================
+     REFLEXIÓN
+     ================================================================ -->
+<div id="re" class="tc">
+  <h2 class="st">🪞 Reflexión Personal — Semana 4</h2>
+  <p>No hay respuestas correctas aquí. Esta sección existe para que el contenido de la semana entre en tu vida cotidiana y no se quede solo en la pantalla.</p>
+
+  <div class="ref-card">
+    <div class="rn">📚 Reflexión 1 — Tu relación con la lectura</div>
+    <p>Sé honesto/a: ¿cuándo fue la última vez que leíste algo por elección propia —no porque te lo exigieron? ¿Qué fue? ¿Lo terminaste? ¿Hubo algún momento de tu vida en que leer fue algo que amabas y luego dejaste de hacerlo? ¿Qué pasó? Y si nunca has sido lector/a habitual, ¿qué imagen tienes de las personas que sí leen mucho? ¿Esa imagen te acerca o te aleja de convertirte en una de ellas?</p>
+  </div>
+
+  <div class="ref-card">
+    <div class="rn">💬 Reflexión 2 — La puntuación y tus mensajes de hoy</div>
+    <p>Abre tu WhatsApp ahora mismo (sí, en este momento). Lee los últimos 5 mensajes que enviaste. ¿Tienen signos de puntuación? ¿Podrían haberse interpretado de otra manera? ¿Hubo alguna vez que un mensaje tuyo —sin la puntuación correcta— fue malentendido y generó un conflicto, una confusión o una situación incómoda? ¿Qué cambiarías en ese mensaje hoy?</p>
+  </div>
+
+  <div class="ref-card">
+    <div class="rn">🎯 Reflexión 3 — El proceso comunicativo en tu vida</div>
+    <p>Piensa en una situación reciente donde sentiste que "no te entendieron" o donde tú no entendiste a alguien. Ahora que conoces el proceso de comunicación con sus etapas, ¿en qué etapa falló esa comunicación? ¿Fue en la codificación (elegiste mal las palabras), el canal (enviaste el mensaje por un medio inadecuado), la decodificación (el otro interpretó con sus propios filtros) o en la retroalimentación (no se confirmó la comprensión)? ¿Qué harías diferente ahora?</p>
+  </div>
+
+  <div class="ref-card">
+    <div class="rn">✍️ Reflexión 4 — La escritura como espejo interno</div>
+    <p>Covey dice que "leer y escribir son formas de comunicarse". Cuando escribes —sea un mensaje, un trabajo, una carta, un diario— ¿qué tan cuidadoso/a eres con las palabras que eliges? ¿Escribes igual cuando nadie te ve (un diario, tus notas personales) que cuando alguien te va a calificar? Si hay diferencia, ¿qué dice esa diferencia sobre cómo te valoras a ti mismo/a como comunicador/a?</p>
+  </div>
+
+  <div class="ref-card">
+    <div class="rn">🏢 Reflexión 5 — El error que te puede costar la carrera</div>
+    <p>Has visto en esta semana que un punto mal puesto puede cambiar el sentido de un contrato, que una coma faltante puede generar un juicio arbitral, que un informe mal escrito puede arruinar la reputación de un profesional. ¿Tienes en este momento las habilidades de escritura que tu profesión va a exigirte? Sé honesto/a. ¿Qué deberías empezar a hacer —esta semana, no "algún día"— para desarrollar esas habilidades?</p>
+  </div>
+
+  <div class="ref-nota">
+    💜 <strong>Nota:</strong> La comunicación escrita precisa no es un talento con el que se nace: es un hábito que se construye leyendo mucho, escribiendo con consciencia y corrigiendo con humildad. Cada uno de ustedes tiene la capacidad de convertirse en un comunicador excepcional. Empieza hoy, con una coma bien puesta.
+  </div>
+</div>
+
+<!-- ================================================================
+     BIBLIOGRAFÍA
+     ================================================================ -->
+<div id="bi" class="tc">
+  <h2 class="st">📚 Bibliografía — Semana 4B</h2>
+  <p>Referencias verificadas del contenido de este widget. Para la bibliografía completa de la semana 4, consultar también el widget 4A.</p>
+
+  <div class="bib-card"><div class="bib-ico">📗</div>
+    <p>Covey, S. R. (1989). <em>The 7 Habits of Highly Effective People</em>. Simon & Schuster. [Ed. española: <em>Los 7 Hábitos de la Gente Altamente Efectiva</em>. Paidós]</p>
+  </div>
+  <div class="bib-card"><div class="bib-ico">📘</div>
+    <p>Santos García, D. V. (2012). <em>Fundamentos de la comunicación</em>. Red Tercer Milenio. Tlalnepantla, México.</p>
+  </div>
+  <div class="bib-card"><div class="bib-ico">📙</div>
+    <p>Real Academia Española. (2010). <em>Ortografía de la lengua española</em>. Espasa Calpe. Madrid.</p>
+  </div>
+  <div class="bib-card"><div class="bib-ico">📕</div>
+    <p>Beristáin, H. (1985). <em>Gramática estructural de la lengua española</em>. Universidad Nacional Autónoma de México (UNAM). México D.F.</p>
+  </div>
+  <div class="bib-card"><div class="bib-ico">📗</div>
+    <p>Martínez de Sousa, J. (2004). <em>Ortografía y ortotipografía del español actual</em>. Trea. Gijón, España.</p>
+  </div>
+  <div class="bib-card"><div class="bib-ico">📘</div>
+    <p>Cassany, D. (1993). <em>La cocina de la escritura</em>. Anagrama. Barcelona.</p>
+  </div>
+  <div class="bib-card"><div class="bib-ico">📄</div>
+    <p>Zavala Rueda, A. (2010). <em>Redacción técnica y elaboración de informes profesionales</em>. Editorial Trillas. México D.F.</p>
+  </div>
+
+  <div class="bib-nota">
+    ⚠️ <strong>Nota académica:</strong> Se recomienda verificar cada referencia en <strong>Google Scholar</strong> (<a href="https://scholar.google.com" target="_blank" style="color:#6b4200">scholar.google.com</a>) o en el repositorio institucional de la Universidad de Guayaquil antes de citar en trabajos académicos.
+  </div>
+</div>
+
+<!-- ================================================================
+     JAVASCRIPT
+     ================================================================ -->
+<script>
+function ST(id,btn){
+  document.querySelectorAll('.tc').forEach(t=>t.classList.remove('ac'));
+  document.querySelectorAll('.tb').forEach(b=>b.classList.remove('ac'));
+  document.getElementById(id).classList.add('ac');
+  btn.classList.add('ac');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+// ---- Datos correctos ----
+const labData={
+  p1sin:{n:'p1sin',c:'b',exp:'✅ Correcto. Sin puntuación la oración es AMBIGUA: no se sabe si quien tiene miedo es la persona que no debe entrar o quien recibe la instrucción. Con el punto ("No lo dejes entrar. Tiene miedo.") queda claro que quien tiene miedo es la persona que quiere entrar.'},
+  p2a:{n:'p2a',c:'a',exp:'✅ Correcto. Versión A: "No pagues [la deuda], porque esa persona nunca perdona [las deudas]." La coma separa la orden de la justificación. Versión B significaría algo radicalmente distinto.'},
+  p3:{n:'p3',c:'a',exp:'✅ Correcto. En la Versión A, los sobrinos heredan los bienes. El punto después de "primos" cancela la herencia de los primos, y lo que sigue son instrucciones de no pago y exclusión de los jesuitas. En la Versión B (sin cambiar una letra, solo signos) ¡los jesuitas reciben todo!'},
+  p4:{n:'p4',c:'a',exp:'✅ Correcto. La diferencia es total: en A se pide perdón (no ejecutar); en B se ordena la ejecución (no perdonar). Una sola coma desplazada marca la diferencia entre la vida y la muerte en este famoso ejemplo histórico.'},
+  p5:{n:'p5',c:'a',exp:'✅ Correcto. La Versión A declara amor con claridad y convicción. La Versión B genera ambigüedad: "sin ti, creo" introduce duda, y "Que eres especial" queda como oración suelta sin sentido claro.'},
+  p6:{n:'p6',c:'a',exp:'✅ Correcto. La Versión A es más precisa en un dictamen porque separa claramente la negación del auditor (no afirma que son incorrectos) de la opinión positiva (en nuestra opinión, son razonables). La Versión B crea ambigüedad sobre si la cláusula "en nuestra opinión" modifica lo anterior o lo siguiente.'}
+};
+const waData={
+  wa1:{n:'wa1',c:'b',exp:'✅ Correcto. Sin puntuación, la interpretación más probable es AMBIGUA: el "No" inicial puede leerse como rechazo total o como saludo informal previo a "gracias". La mamá probablemente interpretó que SÍ quería algo ("Gracias, nada más que arroz con pollo"), dependiendo del contexto.'},
+  wa1b:{n:'wa1b',c:'c',exp:'✅ Correcto. Si SÍ quieres almuerzo, debes decirlo explícitamente. "¡Sí! Gracias, nada más (solo el arroz con pollo)" es la única versión que comunica afirmación con claridad.'},
+  wa2:{n:'wa2',c:'b',exp:'✅ Correcto. La ambigüedad de "Claro que no mami gracias" es real: puede significar "¡Claro que NO quiero!, mami, gracias" (rechazo educado) o leerse como "¡Claro que sí!" con el "no" fuera de lugar. La puntuación correcta elimina toda ambigüedad.'},
+  wa3:{n:'wa3',c:'a',exp:'✅ Correcto. Los puntos suspensivos comunican duda, vacilación e idea incompleta. En este caso informan que la persona aún no ha tomado una decisión. Son un signo de puntuación con función comunicativa precisa: expresar lo que queda sin decir.'},
+  wa4:{n:'wa4',c:'b',exp:'✅ Correcto. En comunicación digital, las mayúsculas sostenidas equivalen a elevar la voz, gritar o expresar estrés/urgencia. La mamá probablemente lo interpretará como impaciencia o molestia, aunque no fuera la intención.'},
+  wa4b:{n:'wa4b',c:'a',exp:'✅ Correcto. "¡Ya voy, mami! Espera un momento. 😊" comunica urgencia positiva, afecto y educación al mismo tiempo. Los signos de exclamación expresan energía sin agresividad; la coma separa el vocativo "mami" con respeto.'}
+};
+const profData={
+  p11:{n:'p11',c:'a',exp:'✅ Correcto. En la Versión A el mensaje es tranquilizador: no debe preocuparse, la declaración está bien; los problemas detectados son de otro origen. En la Versión B (con "No." como oración completa) el mensaje ordena preocuparse, lo cual es lo opuesto. El mismo texto, dos significados antagónicos.'},
+  p12:{n:'p12',c:'a',exp:'✅ Correcto. La Versión A exime al auditor específicamente de los errores en los estados financieros que la propia gerencia entregó como base. La coma antes de "los cuales" hace que la cláusula relativa modifique correctamente a "gerencia", no a "errores". Esta distinción puede tener enorme valor legal.'}
+};
+const finalData={
+  f1:{n:'f1',c:'ff',exp:'❌ FALSO. La retroalimentación NO es optativa: es la condición necesaria para la interactividad y para verificar que el mensaje fue comprendido. Sin retroalimentación, el emisor no puede saber si la comunicación fue exitosa. La segunda ley establece que la responsabilidad de la comprensión recae en el emisor.'},
+  f2:{n:'f2',c:'vf',exp:'✅ VERDADERO. Esta es precisamente la segunda ley de la comunicación interpersonal: "Cuando B interpreta erróneamente un mensaje de A, la responsabilidad es siempre de A." El emisor debe verificar que fue comprendido correctamente.'},
+  f3:{n:'f3',c:'ff',exp:'❌ FALSO. Los signos de puntuación NO son decorativos. Son instrumentos de significado que determinan la estructura, el tono y el sentido de una oración. Como demostraron los 12 ejercicios de este laboratorio, una coma mal colocada puede invertir completamente el significado de un texto.'},
+  f4:{n:'f4',c:'vf',exp:'✅ VERDADERO. Covey identifica exactamente esos cuatro pilares y afirma que leer literatura de calidad —grandes libros, clásicos, ensayos— afila la mente y amplía los paradigmas. Recomienda avanzar de un libro mensual a uno por semana.'},
+  f5:{n:'f5',c:'vf',exp:'✅ VERDADERO. El ruido semántico ocurre precisamente cuando emisor y receptor no comparten el mismo código o cuando los términos tienen significados distintos para cada uno. El ejemplo del contador y la "provisión" es un caso clásico de ruido semántico.'},
+  f6:{n:'f6',c:'ff',exp:'❌ FALSO. La decodificación es responsabilidad del RECEPTOR, no del emisor. El receptor interpreta el mensaje según sus propios filtros, experiencias y conocimientos. Aunque el emisor debe facilitar la comprensión (codificando bien), es el receptor quien decodifica.'}
+};
+const cuData={
+  q1:{c:'a',exp:'Covey identifica cuatro pilares: leer, escribir, hablar y escuchar. Destaca que invertimos enormes recursos en los tres primeros pero casi ninguno en aprender a escuchar activamente, que es el más descuidado.'},
+  q2:{c:'a',exp:'La decodificación es la etapa más vulnerable porque el receptor interpreta el mensaje a través de sus propios filtros: experiencias previas, emociones, cultura, estado de ánimo. El mismo mensaje puede producir interpretaciones radicalmente distintas en receptores distintos.'},
+  q3:{c:'a',exp:'La segunda ley de la comunicación interpersonal establece que cuando hay malentendido, la responsabilidad recae en el emisor. Esto implica que el emisor debe verificar activamente que fue comprendido correctamente.'},
+  q4:{c:'a',exp:'Es ruido semántico porque el problema está en el significado del código: la palabra "provisión" tiene un significado técnico contable (reserva obligatoria) que el cliente desconoce y reemplaza con su significado cotidiano (ahorro). No hay problema en el canal físico ni fisiológico.'},
+  q5:{c:'a',exp:'Santos García (2012) señala que el sistema de puntuación desarrollado entre los siglos XIII y XV tenía exactamente ese propósito: hacer la intención del autor más comprensible y facilitar una lectura más rápida y estandarizada, lo que también preparó el terreno para la imprenta.'},
+  q6:{c:'a',exp:'Covey afirma textualmente que "la persona que no lee no es mejor que la persona analfabeta" y que leer literatura de calidad —clásicos, ensayos, autobiografías, obras de distintos campos— amplía paradigmas y afila la mente.'},
+  q7:{c:'a',exp:'El tercer axioma pragmático establece que la comunicación simétrica ocurre entre personas del mismo status (intercambian criterios en igualdad), mientras que la complementaria ocurre entre personas de diferente jerarquía, donde los roles se complementan.'},
+  q8:{c:'a',exp:'Es una barrera semántica del mensaje escrito: la ambigüedad sintáctica generada por la falta o mala colocación de signos de puntuación en un texto legal. Este tipo de barrera es especialmente grave en documentos jurídicos y contractuales porque puede invalidar cláusulas enteras.'},
+  q9:{c:'a',exp:'Falló la codificación: el auditor eligió mal la puntuación al escribir el mensaje, lo que produjo una oración ambigua. La decodificación del equipo fue lógica dado el mensaje recibido. El error estaba en el origen: la codificación incorrecta.'},
+  q10:{c:'a',exp:'Covey lo dice claramente: no hay mejor modo de informar y ampliar la mente que leer buena literatura habitualmente. La falta de hábito lector impide desarrollar vocabulario, estructuras argumentativas, dominio de la ortografía y capacidad de síntesis, todas competencias clave en la carrera contable.'}
+};
+
+function verGrupo(data,names,panelId,barId,scId,pctId,msgId,btnRId){
+  for(let n of names){
+    if(!document.querySelector(`input[name="${n}"]:checked`)){
+      alert('⚠️ Por favor responde TODAS las preguntas antes de verificar.');return;
+    }
+  }
+  let ok=0;
+  for(let n of names){
+    const sel=document.querySelector(`input[name="${n}"]:checked`).value;
+    const d=data[n];
+    document.querySelectorAll(`input[name="${n}"]`).forEach(op=>{
+      op.disabled=true;
+      const lbl=op.parentElement;
+      if(op.value===d.c)lbl.classList.add('ok');
+      if(op.value===sel&&op.value!==d.c)lbl.classList.add('fail');
+    });
+    // find fb element
+    const fbKey=n.startsWith('q')?'fq'+n.slice(1):(n.startsWith('f')?'fb-'+n:'fb-'+n);
+    const fbEl=document.getElementById('fb-'+n)||document.getElementById('fq'+n.slice(1));
+    if(fbEl){
+      if(sel===d.c){ok++;fbEl.innerHTML=d.exp;fbEl.className='pej-fb show ok';}
+      else{fbEl.innerHTML=`❌ Incorrecto. Respuesta correcta: <strong>${d.c.toUpperCase()}</strong>. ${d.exp.replace('✅ Correcto. ','')}`;fbEl.className='pej-fb show fail';}
+    }
+  }
+  const pct=Math.round(ok/names.length*100);
+  document.getElementById(panelId).classList.add('show');
+  document.getElementById(scId).textContent=ok+' / '+names.length;
+  document.getElementById(pctId).textContent=pct+'%';
+  setTimeout(()=>{document.getElementById(barId).style.width=pct+'%'},100);
+  const msgs=['📖 Revisa el laboratorio nuevamente.','⚠️ Hay conceptos que reforzar.','📘 Buen avance, sigue practicando.','🎯 ¡Muy bien! Revisa los errores.','🏆 ¡Perfecto! Dominio total.'];
+  document.getElementById(msgId).textContent=pct===100?msgs[4]:pct>=80?msgs[3]:pct>=60?msgs[2]:pct>=40?msgs[1]:msgs[0];
+  document.getElementById(btnRId).style.display='inline-block';
+}
+
+function reinGrupo(names,panelId,barId,btnRId){
+  names.forEach(n=>{
+    document.querySelectorAll(`input[name="${n}"]`).forEach(op=>{op.disabled=false;op.checked=false;op.parentElement.classList.remove('ok','fail');});
+    const fbEl=document.getElementById('fb-'+n)||document.getElementById('fq'+n.slice(1));
+    if(fbEl)fbEl.className='pej-fb';
+  });
+  document.getElementById(panelId).classList.remove('show');
+  document.getElementById(barId).style.width='0%';
+  document.getElementById(btnRId).style.display='none';
+}
+
+// Laboratorio
+function verLab(){verGrupo(labData,['p1sin','p2a','p3','p4','p5','p6'],'rp-lab','bar-lab','sc-lab','pct-lab','msg-lab','btn-rl');}
+function reinLab(){reinGrupo(['p1sin','p2a','p3','p4','p5','p6'],'rp-lab','bar-lab','btn-rl');}
+
+// WhatsApp — custom porque tiene dobles preguntas
+function verWA(){
+  const names=['wa1','wa1b','wa2','wa3','wa4','wa4b'];
+  for(let n of names){if(!document.querySelector(`input[name="${n}"]:checked`)){alert('⚠️ Responde TODAS las preguntas.');return;}}
+  let ok=0;
+  names.forEach(n=>{
+    const sel=document.querySelector(`input[name="${n}"]:checked`).value;
+    const d=waData[n];
+    document.querySelectorAll(`input[name="${n}"]`).forEach(op=>{
+      op.disabled=true;const lbl=op.parentElement;
+      if(op.value===d.c)lbl.classList.add('ok');
+      if(op.value===sel&&op.value!==d.c)lbl.classList.add('fail');
+    });
+    let fbEl=null;
+    if(n==='wa1'||n==='wa1b')fbEl=document.getElementById('fb-wa7');
+    else if(n==='wa2')fbEl=document.getElementById('fb-wa8');
+    else if(n==='wa3')fbEl=document.getElementById('fb-wa9');
+    else if(n==='wa4'||n==='wa4b')fbEl=document.getElementById('fb-wa10');
+    if(sel===d.c){ok++;if(fbEl){fbEl.innerHTML=d.exp;fbEl.className='pej-fb show ok';}}
+    else{if(fbEl){fbEl.innerHTML=`❌ Incorrecto. ${d.exp.replace('✅ Correcto. ','')}`;fbEl.className='pej-fb show fail';}}
+  });
+  const pct=Math.round(ok/names.length*100);
+  document.getElementById('rp-wa').classList.add('show');
+  document.getElementById('sc-wa').textContent=ok+' / '+names.length;
+  document.getElementById('pct-wa').textContent=pct+'%';
+  setTimeout(()=>{document.getElementById('bar-wa').style.width=pct+'%'},100);
+  document.getElementById('msg-wa').textContent=pct===100?'🏆 ¡Perfecto!':pct>=70?'🎯 ¡Muy bien!':'📘 Revisa el laboratorio WhatsApp.';
+  document.getElementById('btn-rwa').style.display='inline-block';
+}
+function reinWA(){reinGrupo(['wa1','wa1b','wa2','wa3','wa4','wa4b'],'rp-wa','bar-wa','btn-rwa');['fb-wa7','fb-wa8','fb-wa9','fb-wa10'].forEach(id=>{const el=document.getElementById(id);if(el)el.className='pej-fb';});}
+
+// Profesional
+function verProf(){verGrupo(profData,['p11','p12'],'rp-prof','bar-prof','sc-prof','pct-prof','msg-prof','btn-rp');}
+function reinProf(){reinGrupo(['p11','p12'],'rp-prof','bar-prof','btn-rp');}
+
+// Final
+function verFinal(){
+  const names=['f1','f2','f3','f4','f5','f6'];
+  for(let n of names){if(!document.querySelector(`input[name="${n}"]:checked`)){alert('⚠️ Responde TODAS las afirmaciones.');return;}}
+  let ok=0;
+  names.forEach(n=>{
+    const sel=document.querySelector(`input[name="${n}"]:checked`).value;
+    const d=finalData[n];
+    document.querySelectorAll(`input[name="${n}"]`).forEach(op=>{
+      op.disabled=true;const lbl=op.parentElement;
+      if(op.value===d.c)lbl.classList.add('ok');
+      if(op.value===sel&&op.value!==d.c)lbl.classList.add('fail');
+    });
+    const fbEl=document.getElementById('fb-'+n);
+    if(sel===d.c){ok++;fbEl.innerHTML=d.exp;fbEl.className='pej-fb show ok';}
+    else{fbEl.innerHTML=d.exp.replace('✅ VERDADERO','❌ Incorrecto — era VERDADERO').replace('❌ FALSO','❌ Incorrecto — era FALSO');fbEl.className='pej-fb show fail';}
+  });
+  const pct=Math.round(ok/6*100);
+  document.getElementById('rp-fin').classList.add('show');
+  document.getElementById('sc-fin').textContent=ok+' / 6';
+  document.getElementById('pct-fin').textContent=pct+'%';
+  setTimeout(()=>{document.getElementById('bar-fin').style.width=pct+'%'},100);
+  document.getElementById('msg-fin').textContent=pct===100?'🏆 ¡Perfecto!':pct>=67?'🎯 ¡Muy bien!':'📘 Repasa los temas y vuelve a intentarlo.';
+  document.getElementById('btn-rf').style.display='inline-block';
+}
+function reinFinal(){reinGrupo(['f1','f2','f3','f4','f5','f6'],'rp-fin','bar-fin','btn-rf');}
+
+// Cuestionario
+function verCuestionario(){
+  const names=['q1','q2','q3','q4','q5','q6','q7','q8','q9','q10'];
+  for(let n of names){if(!document.querySelector(`input[name="${n}"]:checked`)){alert('⚠️ Responde TODAS las preguntas.');return;}}
+  let ok=0;
+  names.forEach((n,i)=>{
+    const sel=document.querySelector(`input[name="${n}"]:checked`).value;
+    const d=cuData[n];
+    document.querySelectorAll(`input[name="${n}"]`).forEach(op=>{
+      op.disabled=true;const lbl=op.parentElement;
+      if(op.value===d.c)lbl.classList.add('ok');
+      if(op.value===sel&&op.value!==d.c)lbl.classList.add('fail');
+    });
+    const fbEl=document.getElementById('fq'+(i+1));
+    if(sel===d.c){ok++;fbEl.innerHTML='✅ <strong>Correcto.</strong> '+d.exp;fbEl.className='pej-fb show ok';}
+    else{fbEl.innerHTML='❌ <strong>Incorrecto.</strong> La respuesta correcta es <strong>'+d.c.toUpperCase()+'</strong>. '+d.exp;fbEl.className='pej-fb show fail';}
+  });
+  const pct=Math.round(ok/10*100);
+  document.getElementById('rp-q').classList.add('show');
+  document.getElementById('sc-q').textContent=ok+' / 10';
+  document.getElementById('pct-q').textContent=pct+'%';
+  setTimeout(()=>{document.getElementById('bar-q').style.width=pct+'%'},100);
+  const msg=pct===100?'🏆 ¡Excelente! Dominio total de la semana 4.':pct>=80?'🎯 Muy buen desempeño. Revisa los errores.':pct>=60?'📘 Aprobado. Refuerza los temas con menor dominio.':pct>=40?'⚠️ Necesitas repasar el material.':'📖 Relée los temas y vuelve a intentarlo.';
+  document.getElementById('msg-q').textContent=msg;
+  document.getElementById('btn-rq').style.display='inline-block';
+}
+function reinCuestionario(){
+  const names=['q1','q2','q3','q4','q5','q6','q7','q8','q9','q10'];
+  names.forEach((n,i)=>{
+    document.querySelectorAll(`input[name="${n}"]`).forEach(op=>{op.disabled=false;op.checked=false;op.parentElement.classList.remove('ok','fail');});
+    const fbEl=document.getElementById('fq'+(i+1));if(fbEl)fbEl.className='pej-fb';
+  });
+  document.getElementById('rp-q').classList.remove('show');
+  document.getElementById('bar-q').style.width='0%';
+  document.getElementById('btn-rq').style.display='none';
+}
+</script>
+</body>
+</html>

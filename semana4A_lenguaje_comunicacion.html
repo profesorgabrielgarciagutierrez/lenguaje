@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Semana 4A – Lenguaje y Comunicación | Universidad de Guayaquil</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --azul:#003366;--azul-m:#0052A3;--celeste:#87CEEB;--cel-c:#E6F1FB;
+  --dorado:#FFB81C;--dor-c:#FFF3CC;--blanco:#fff;--gris-c:#f4f6fa;
+  --verde:#1a7a3c;--ver-c:#e8f5ed;--rojo:#c0392b;--roj-c:#fdecea;
+  --naranja:#e07b00;--texto:#222;--gris-t:#444;
+  --sombra:0 2px 12px rgba(0,51,102,.10);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Source Sans 3',sans-serif;background:var(--gris-c);color:var(--texto);min-height:100vh}
+
+/* HEADER */
+.hdr{background:var(--azul);color:#fff;padding:0}
+.hdr-top{display:flex;align-items:center;gap:18px;padding:14px 28px}
+.hdr-logo{width:58px;height:58px;background:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:900;color:var(--azul);flex-shrink:0;font-family:'Lora',serif}
+.hdr-info h1{font-family:'Lora',serif;font-size:1.15rem;font-weight:700;line-height:1.25}
+.hdr-info p{font-size:.82rem;opacity:.85;margin-top:2px}
+.hdr-badges{display:flex;gap:10px;padding:0 28px 12px;flex-wrap:wrap}
+.bdg{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);padding:3px 12px;border-radius:20px;font-size:.75rem}
+.bdg.d{background:var(--dorado);color:var(--azul);border-color:var(--dorado);font-weight:700}
+
+/* TABS */
+.tabs-wrap{background:var(--celeste);overflow-x:auto;white-space:nowrap;border-bottom:3px solid var(--azul);scrollbar-width:thin;scrollbar-color:var(--azul) var(--celeste)}
+.tabs-wrap::-webkit-scrollbar{height:5px}
+.tabs-wrap::-webkit-scrollbar-thumb{background:var(--azul);border-radius:3px}
+.tabs-nav{display:inline-flex;padding:0 8px;gap:2px}
+.tb{display:inline-block;padding:10px 16px;font-family:'Source Sans 3',sans-serif;font-size:.82rem;font-weight:600;color:#1a1a2e;background:transparent;border:none;cursor:pointer;border-bottom:3px solid transparent;transition:all .2s;white-space:nowrap;border-radius:6px 6px 0 0;margin-top:4px}
+.tb:hover{background:rgba(255,255,255,.5)}
+.tb.ac{background:#fff;color:var(--azul);font-weight:700;border-bottom:3px solid var(--azul)}
+
+/* CONTENT */
+.tc{display:none;padding:28px;max-width:960px;margin:0 auto;animation:fi .3s ease}
+.tc.ac{display:block}
+@keyframes fi{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+/* TYPOGRAPHY */
+h2.st{font-family:'Lora',serif;font-size:1.5rem;color:var(--azul);margin-bottom:6px;line-height:1.3}
+h3.ss{font-family:'Lora',serif;font-size:1.1rem;color:var(--azul-m);margin:20px 0 8px}
+p{line-height:1.75;margin-bottom:12px;font-size:.97rem;color:var(--gris-t)}
+
+/* BOXES */
+.box-c{border-left:5px solid var(--azul-m);background:var(--cel-c);padding:14px 18px;border-radius:0 8px 8px 0;margin:16px 0}
+.box-c .etq{font-size:.73rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--azul-m);margin-bottom:4px}
+.box-c p{margin:0;font-size:.96rem}
+.box-e{background:#deeeff;border-radius:10px;padding:14px 18px;margin:14px 0;border-left:4px solid var(--azul-m)}
+.box-e .etq{font-size:.73rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--azul);margin-bottom:6px}
+.box-e p{margin:0;font-size:.95rem}
+.box-k{background:var(--dor-c);border-left:5px solid var(--dorado);border-radius:0 8px 8px 0;padding:14px 18px;margin:20px 0 8px}
+.box-k .etq{font-size:.73rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--naranja);margin-bottom:4px}
+.box-k p{margin:0;font-size:.96rem;color:#5a3800}
+.cita{background:var(--azul);color:#fff;border-radius:12px;padding:22px 26px;margin:20px 0;position:relative}
+.cita::before{content:'"';font-size:5rem;font-family:'Lora',serif;opacity:.15;position:absolute;top:-10px;left:14px}
+.cita p{color:#fff;font-size:1.05rem;font-style:italic;line-height:1.65;margin:0;position:relative}
+.cita .autor{font-style:normal;font-size:.82rem;opacity:.8;margin-top:8px;display:block}
+
+/* TABLES */
+.tw{overflow-x:auto;margin:16px 0;border-radius:8px;box-shadow:var(--sombra)}
+table{width:100%;border-collapse:collapse;font-size:.9rem}
+th{background:var(--azul);color:#fff;padding:10px 14px;text-align:left;font-weight:600}
+td{padding:9px 14px;border-bottom:1px solid #dde4f0;vertical-align:top}
+tr:nth-child(even) td{background:var(--cel-c)}
+tr:last-child td{border-bottom:none}
+
+/* CARDS */
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin:18px 0}
+.card{background:#fff;border-radius:12px;padding:18px;box-shadow:var(--sombra);border-top:4px solid var(--azul-m);transition:transform .2s}
+.card:hover{transform:translateY(-3px)}
+.card .ico{font-size:2rem;margin-bottom:8px}
+.card h4{font-family:'Lora',serif;color:var(--azul);font-size:1rem;margin-bottom:6px}
+.card p{font-size:.88rem;margin:0;color:#555}
+
+/* PROCESO PASOS */
+.pasos{display:flex;flex-direction:column;gap:0;margin:18px 0;position:relative}
+.paso{display:flex;align-items:flex-start;gap:16px;padding:16px;background:#fff;border-radius:10px;box-shadow:var(--sombra);margin-bottom:4px;position:relative}
+.paso-num{background:var(--azul);color:#fff;min-width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.9rem;flex-shrink:0}
+.paso h4{font-family:'Lora',serif;color:var(--azul);font-size:.97rem;margin-bottom:4px}
+.paso p{font-size:.88rem;margin:0;color:#555}
+.paso-conector{width:2px;height:20px;background:var(--azul-m);margin:0 auto 4px;opacity:.4}
+
+/* LISTA */
+.lista{list-style:none;margin:12px 0}
+.lista li{padding:6px 0 6px 24px;position:relative;font-size:.94rem;color:var(--gris-t);border-bottom:1px dashed #dde}
+.lista li:last-child{border-bottom:none}
+.lista li::before{content:'▸';position:absolute;left:4px;color:var(--azul-m)}
+
+/* BENEFITS GRID */
+.ben-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin:16px 0}
+.ben-card{background:#fff;border-radius:10px;padding:16px;box-shadow:var(--sombra);text-align:center}
+.ben-card .bico{font-size:2rem;margin-bottom:8px}
+.ben-card h4{font-family:'Lora',serif;font-size:.9rem;color:var(--azul);margin-bottom:6px}
+.ben-card p{font-size:.82rem;color:#555;margin:0}
+
+/* REPASO */
+.rep-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin:16px 0}
+.rep-card{background:#fff;border-radius:10px;padding:16px;box-shadow:var(--sombra);border-top:3px solid var(--dorado)}
+.rep-card h4{font-family:'Lora',serif;color:var(--azul);font-size:.93rem;margin-bottom:6px}
+.rep-card p{font-size:.85rem;margin:0;color:#555}
+
+/* ALERT BOX */
+.alerta{background:#fff8e1;border-left:5px solid var(--dorado);border-radius:0 8px 8px 0;padding:14px 18px;margin:16px 0}
+.alerta p{margin:0;font-size:.93rem;color:#5a3800}
+
+/* SEMANA4B LINK */
+.link-4b{background:var(--azul);color:#fff;border-radius:12px;padding:20px 24px;margin:24px 0;display:flex;align-items:center;gap:16px}
+.link-4b .ico4b{font-size:2.5rem}
+.link-4b h3{font-family:'Lora',serif;font-size:1.1rem;margin-bottom:4px}
+.link-4b p{font-size:.88rem;opacity:.9;margin:0}
+
+/* DIVIDER */
+hr.div{height:2px;background:linear-gradient(to right,var(--azul-m),transparent);margin:22px 0;border:none}
+
+/* BIBLIO */
+.bib-card{background:#fff;border-radius:10px;padding:16px 18px;margin-bottom:14px;box-shadow:var(--sombra);display:flex;gap:14px;align-items:flex-start}
+.bib-ico{background:var(--azul);color:#fff;width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0}
+.bib-card p{font-size:.88rem;margin:0;line-height:1.6;color:#333}
+.bib-nota{background:var(--dor-c);border:1px solid var(--dorado);border-radius:8px;padding:12px 16px;font-size:.84rem;color:#6b4200;margin-top:18px}
+
+@media(max-width:640px){
+  .tc{padding:18px 14px}
+  h2.st{font-size:1.25rem}
+  .hdr-top{padding:12px 16px}
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="hdr">
+  <div class="hdr-top">
+    <div class="hdr-logo">UG</div>
+    <div class="hdr-info">
+      <h1>Universidad de Guayaquil · Facultad de Ciencias Administrativas</h1>
+      <p>Carrera en Contabilidad y Auditoría &nbsp;|&nbsp; Materia: Lenguaje y Comunicación</p>
+    </div>
+  </div>
+  <div class="hdr-badges">
+    <span class="bdg d">Semana 4A</span>
+    <span class="bdg">Unidad 1 – La Comunicación</span>
+    <span class="bdg">Primer Ciclo</span>
+    <span class="bdg">Modalidad Virtual</span>
+    <span class="bdg">Parte 1 de 2 → continúa en 4B</span>
+  </div>
+</header>
+
+<!-- TABS -->
+<nav class="tabs-wrap">
+  <div class="tabs-nav">
+    <button class="tb ac" onclick="ST('rp',this)">📋 Repaso</button>
+    <button class="tb" onclick="ST('t1',this)">1. Importancia de la Lectura</button>
+    <button class="tb" onclick="ST('t2',this)">2. Leer para Comunicar Mejor</button>
+    <button class="tb" onclick="ST('t3',this)">3. El Proceso de Comunicación</button>
+    <button class="tb" onclick="ST('t4',this)">4. Elementos del Proceso</button>
+    <button class="tb" onclick="ST('t4b',this)">4b. Etapas y Barreras</button>
+    <button class="tb" onclick="ST('bi',this)">5. Bibliografía</button>
+  </div>
+</nav>
+
+<!-- ===== REPASO ===== -->
+<div id="rp" class="tc ac">
+  <h2 class="st">📋 Repaso — Semanas 1, 2 y 3</h2>
+  <p>Este widget es la <strong>Semana 4</strong> de una secuencia. Antes de avanzar, conecta lo que ya sabes con el tema de hoy.</p>
+  <div class="rep-grid">
+    <div class="rep-card">
+      <h4>🗣️ Semanas 1 y 2 — Base comunicativa</h4>
+      <p>Diferenciamos <em>hablar</em> de <em>comunicar</em>. Estudiamos los tipos de lenguaje (verbal, no verbal, paraverbal) y cómo el mensaje se procesa con ruidos y filtros. El 93% del impacto es no verbal.</p>
+    </div>
+    <div class="rep-card">
+      <h4>🧠 Semana 3 — Interior del comunicador</h4>
+      <p>Exploramos el cerebro triúnico (reptiliano, límbico, neocórtex), la PNL, los sistemas sensoriales VAK, la <strong>autoestima</strong> como base de la comunicación y las 5 dimensiones de la <strong>Inteligencia Emocional</strong> de Goleman.</p>
+    </div>
+    <div class="rep-card">
+      <h4>🔗 ¿Qué falta?</h4>
+      <p>Sabemos qué es comunicar y cómo funciona el comunicador internamente. Ahora preguntamos: <strong>¿cómo se desarrolla el proceso de comunicación paso a paso?</strong> Y más importante aún: <strong>¿qué rol juega la lectura en todo esto?</strong></p>
+    </div>
+    <div class="rep-card">
+      <h4>📌 Hilo conductor semana 4</h4>
+      <p>Un mensaje mal escrito por falta de lectura, un proceso comunicativo mal ejecutado por desconocer sus etapas, puede invalidar incluso el trabajo técnico más brillante de un contador o auditor.</p>
+    </div>
+  </div>
+  <div class="box-k">
+    <div class="etq">🔗 Conexión con la semana 4</div>
+    <p>Esta semana estudiamos <strong>la importancia de la lectura</strong> como herramienta de comunicación y desarrollo profesional, y <strong>el proceso de comunicación</strong> como sistema de etapas interdependientes. La Semana 4B profundiza en el poder de la puntuación y la escritura correcta, con ejercicios interactivos. Ambas partes son complementarias.</p>
+  </div>
+</div>
+
+<!-- ===== TEMA 1: IMPORTANCIA DE LA LECTURA ===== -->
+<div id="t1" class="tc">
+  <h2 class="st">📚 Importancia de la Lectura en la Comunicación</h2>
+  <p>La lectura es, sin duda, una de las formas más poderosas de comunicación que existe. Sin embargo, en la era de las redes sociales, el video corto y el mensaje instantáneo, leer se ha convertido en una habilidad que muchas personas ejercen cada vez menos. Esta semana argumentamos por qué esto es un error —especialmente para quienes se forman como contadores y auditores.</p>
+
+  <div class="box-c">
+    <div class="etq">📖 Definición</div>
+    <p>La <strong>lectura</strong> es un proceso activo de decodificación e interpretación de signos escritos (o de cualquier sistema de representación) mediante el cual el lector construye significado a partir del texto, integrando lo que lee con sus conocimientos previos, su contexto y su propósito. No es solo "pasar los ojos por el papel": es un acto comunicativo complejo entre el autor y el lector.</p>
+  </div>
+
+  <h3 class="ss">1.1 Leer y escribir: los cuatro pilares de la comunicación</h3>
+
+  <div class="cita">
+    <p>Leer y escribir son formas de comunicarse. También lo son hablar y escuchar. En realidad, éstos son los cuatro tipos básicos de comunicación. La aptitud para la comunicación es la más importante de la vida. Dedicamos a la comunicación la mayor parte de nuestras horas de vigilia. Pero consideremos esto: pasamos años aprendiendo a leer y escribir, años aprendiendo a hablar. ¿Y a escuchar?</p>
+    <span class="autor">— Stephen R. Covey, <em>Los 7 Hábitos de la Gente Altamente Efectiva</em></span>
+  </div>
+
+  <p>Covey nos plantea una paradoja reveladora: invertimos enormes recursos en aprender a leer, escribir y hablar, pero casi ningún esfuerzo sistemático en aprender a <strong>escuchar</strong> activamente. En el contexto de la comunicación profesional, los cuatro pilares son igualmente vitales:</p>
+
+  <div class="grid2">
+    <div class="card">
+      <div class="ico">👁️</div>
+      <h4>Leer</h4>
+      <p>Recibir e interpretar mensajes escritos. Base para entender normas contables, leyes tributarias, contratos y decretos. Un auditor que no lee con precisión puede malinterpretar una NIIF.</p>
+    </div>
+    <div class="card">
+      <div class="ico">✍️</div>
+      <h4>Escribir</h4>
+      <p>Producir mensajes escritos con claridad y corrección. El informe de auditoría, el dictamen, el memo contable: todos exigen escritura precisa. Un signo de puntuación mal colocado puede cambiar la conclusión de un informe.</p>
+    </div>
+    <div class="card">
+      <div class="ico">🗣️</div>
+      <h4>Hablar</h4>
+      <p>Transmitir ideas oralmente. La presentación ante el directorio, la defensa de hallazgos ante el cliente, la explicación al SRI. Sin lectura previa, el discurso oral pierde solidez y profundidad.</p>
+    </div>
+    <div class="card">
+      <div class="ico">👂</div>
+      <h4>Escuchar</h4>
+      <p>El pilar más descuidado. Escuchar activamente en una entrevista de auditoría permite detectar incoherencias que el papel no muestra. Covey dedica un hábito entero a este arte.</p>
+    </div>
+  </div>
+
+  <hr class="div">
+  <h3 class="ss">1.2 Por qué leer es la raíz de todos los demás pilares</h3>
+  <p>No es una coincidencia que las personas más comunicativas, persuasivas y con mayor vocabulario sean también lectores habituales. La lectura alimenta los otros tres pilares de forma directa:</p>
+
+  <div class="tw">
+    <table>
+      <thead><tr><th>Pilar beneficiado</th><th>¿Cómo lo alimenta la lectura?</th><th>Ejemplo en contabilidad/auditoría</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Hablar</strong></td><td>Amplía el vocabulario técnico y general; aporta argumentos y estructuras lógicas para el discurso oral</td><td>El auditor que lee normas ISA habla con autoridad técnica en reuniones con el cliente</td></tr>
+        <tr><td><strong>Escribir</strong></td><td>Expone al lector a modelos de escritura correcta; mejora ortografía, puntuación y estilo de forma natural</td><td>El contador que lee contratos y resoluciones escribe mejores contratos e informes</td></tr>
+        <tr><td><strong>Escuchar</strong></td><td>Entrena la atención sostenida y la comprensión de ideas complejas; el lector habitual comprende mejor lo que escucha</td><td>El auditor que lee con atención escucha mejor en entrevistas: detecta inconsistencias</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 class="ss">1.3 La recomendación de Covey: un libro por semana</h3>
+  <div class="box-e">
+    <div class="etq">📘 La meta del lector competente</div>
+    <p>Stephen Covey recomienda establecer como meta leer <strong>un libro por mes</strong>, luego avanzar a <strong>uno por quincena</strong>, y finalmente a <strong>uno por semana</strong>. Afirma que "la persona que no lee no es mejor que la persona analfabeta." No se trata de cantidad por vanidad, sino de mantener la mente en constante expansión. Para un contador, leer sobre finanzas, derecho tributario, comunicación y liderazgo es tan importante como dominar los asientos contables.</p>
+  </div>
+
+  <div class="box-k">
+    <div class="etq">💡 Idea clave</div>
+    <p>La lectura no es una actividad de tiempo libre: es una <strong>herramienta de trabajo profesional</strong>. Cada libro leído es una conversación con la mente más preparada que existe sobre ese tema. El contador que lee es el contador que piensa mejor, escribe mejor, habla mejor y escucha mejor. Toda la comunicación humana nace de la lectura.</p>
+  </div>
+</div>
+
+<!-- ===== TEMA 2: LEER PARA COMUNICAR ===== -->
+<div id="t2" class="tc">
+  <h2 class="st">🔍 Leer para Comunicar Mejor: Beneficios y Aplicaciones</h2>
+  <p>La lectura no solo enriquece el vocabulario; transforma la manera en que pensamos, procesamos información y nos relacionamos. Quienes leen con frecuencia desarrollan habilidades comunicativas que los distinguen en el ámbito laboral.</p>
+
+  <h3 class="ss">2.1 Beneficios concretos de la lectura en la comunicación profesional</h3>
+
+  <div class="ben-grid">
+    <div class="ben-card">
+      <div class="bico">🧩</div>
+      <h4>Pensamiento estructurado</h4>
+      <p>Leer textos bien organizados enseña a estructurar las propias ideas. Un auditor que lee informes técnicos aprende a construir argumentos sólidos.</p>
+    </div>
+    <div class="ben-card">
+      <div class="bico">📖</div>
+      <h4>Vocabulario técnico y general</h4>
+      <p>Cada texto introduce nuevos términos en contexto. El contador que lee normas contables domina el lenguaje de la profesión con soltura.</p>
+    </div>
+    <div class="ben-card">
+      <div class="bico">✅</div>
+      <h4>Ortografía y puntuación</h4>
+      <p>La exposición constante a textos correctamente escritos "entrena el ojo" para detectar errores propios. Los grandes escritores son también grandes lectores.</p>
+    </div>
+    <div class="ben-card">
+      <div class="bico">🎯</div>
+      <h4>Capacidad de síntesis</h4>
+      <p>Quien lee mucho aprende a identificar la idea principal de un texto. Fundamental para resumir un informe de 50 páginas en una presentación de 5 minutos.</p>
+    </div>
+    <div class="ben-card">
+      <div class="bico">🌍</div>
+      <h4>Empatía y comprensión</h4>
+      <p>La ficción y la narrativa desarrollan la capacidad de entender otros puntos de vista. Un auditor empático detecta más y mejor que uno que solo lee números.</p>
+    </div>
+    <div class="ben-card">
+      <div class="bico">🏆</div>
+      <h4>Autoridad intelectual</h4>
+      <p>Quien lee tiene argumentos. En una negociación o presentación, la profundidad de conocimiento que da la lectura genera credibilidad y confianza.</p>
+    </div>
+  </div>
+
+  <hr class="div">
+  <h3 class="ss">2.2 Tipos de lectura según el propósito</h3>
+  <p>No toda lectura es igual. Según el propósito del lector, se distinguen diferentes tipos de lectura, y un profesional competente debe dominarlos todos:</p>
+
+  <div class="tw">
+    <table>
+      <thead><tr><th>Tipo de lectura</th><th>Características</th><th>Cuándo la usa el contador/auditor</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Lectora informativa</strong></td><td>Busca datos concretos, hechos, cifras. Rápida y selectiva.</td><td>Revisar el boletín tributario del SRI para verificar fechas de declaración</td></tr>
+        <tr><td><strong>Lectura comprensiva</strong></td><td>Busca entender el significado completo del texto, sus ideas principales y secundarias.</td><td>Estudiar una NIIF completa antes de aplicarla en estados financieros</td></tr>
+        <tr><td><strong>Lectura crítica</strong></td><td>Evalúa la validez, coherencia y veracidad del texto. Cuestiona y compara con otras fuentes.</td><td>Analizar el informe de auditoría interna de una empresa antes de emitir el dictamen externo</td></tr>
+        <tr><td><strong>Lectura recreativa</strong></td><td>Lee por placer. Sin presión ni evaluación. Desarrolla el hábito lector de forma sostenible.</td><td>Leer una novela, un ensayo o una autobiografía de un empresario exitoso</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 class="ss">2.3 La lectura y la escritura: dos caras de la misma moneda</h3>
+  <p>La relación entre leer y escribir es indisoluble. Los mejores escritores técnicos —quienes redactan contratos, informes, dictámenes— son invariablemente lectores compulsivos. ¿Por qué? Porque la lectura ofrece <strong>modelos de escritura correcta</strong> que el cerebro interioriza sin que el lector lo note conscientemente.</p>
+
+  <div class="box-e">
+    <div class="etq">🇪🇨 Caso ecuatoriano — El poder de un punto y coma</div>
+    <p>En 2019, una empresa constructora en Guayaquil perdió un contrato millonario por una ambigüedad en el pliego de condiciones: una coma mal colocada en la cláusula de exclusividad cambió completamente el alcance del contrato. El árbitro dictaminó que la empresa constructora no tenía derecho a la penalización porque la redacción era "gramaticalmente ambigua". El abogado de la contraparte leyó el contrato más cuidadosamente que quien lo redactó. <strong>Un signo de puntuación valió millones de dólares.</strong></p>
+  </div>
+
+  <h3 class="ss">2.4 La escritura es comunicación permanente</h3>
+  <p>A diferencia de la comunicación oral —que existe solo en el momento en que ocurre— la escritura <strong>permanece</strong>. Un correo electrónico enviado puede ser reenviado. Un informe de auditoría puede ser presentado como prueba en un tribunal. Una acta firmada tiene validez legal. Por eso, escribir correctamente no es un lujo académico: es una <strong>responsabilidad profesional y legal</strong>.</p>
+
+  <div class="alerta">
+    <p>⚠️ <strong>Importante:</strong> La Semana 4B de este widget está completamente dedicada al <strong>poder de los signos de puntuación</strong>. Incluye más de 12 ejercicios interactivos donde verás —con tus propios ojos— cómo la misma oración, con o sin signos de puntuación, puede comunicar cosas radicalmente distintas. ¡No te la pierdas!</p>
+  </div>
+
+  <div class="box-k">
+    <div class="etq">💡 Idea clave</div>
+    <p>Leer y escribir son inseparables. Un profesional que no lee no puede escribir bien. Y un profesional que no escribe bien no puede comunicarse con la precisión que exige la contabilidad y la auditoría. La lectura es la <strong>inversión más rentable</strong> que puede hacer un estudiante universitario, porque sus dividendos se cobran durante toda la carrera.</p>
+  </div>
+</div>
+
+<!-- ===== TEMA 3: EL PROCESO DE COMUNICACIÓN ===== -->
+<div id="t3" class="tc">
+  <h2 class="st">⚙️ El Proceso de Comunicación</h2>
+  <p>La comunicación no es un acto instantáneo ni simple: es un <strong>proceso</strong> que ocurre en etapas sucesivas e interdependientes. Comprender este proceso permite identificar en qué punto falla una comunicación y cómo corregirla. Para el contador y auditor, este conocimiento es esencial: cada error comunicativo en el proceso puede traducirse en datos incorrectos, malos entendidos o incluso responsabilidades legales.</p>
+
+  <div class="box-c">
+    <div class="etq">📖 Definición</div>
+    <p>El <strong>proceso de comunicación</strong> es la secuencia de etapas mediante las cuales una idea que existe en la mente del emisor se transforma, transmite, recibe e interpreta hasta convertirse en una respuesta observable en el receptor. Es un sistema dinámico, circular y permanente. (Stoner, 1994; Chen, 2019)</p>
+  </div>
+
+  <h3 class="ss">3.1 La comunicación como sistema circular</h3>
+  <p>Un error conceptual frecuente es pensar en la comunicación como una línea recta: emisor → mensaje → receptor. En realidad, la comunicación es <strong>circular</strong>: el receptor siempre responde (aunque sea con silencio), y esa respuesta convierte al receptor en un nuevo emisor. El proceso nunca termina realmente; se reinicia permanentemente.</p>
+
+  <div class="box-e">
+    <div class="etq">📊 Modelo circular de comunicación</div>
+    <p>
+      <strong>Emisor</strong> (idea) → <strong>Codificación</strong> (lenguaje) → <strong>Canal</strong> (medio) → <strong>Ruido</strong> (interferencias) → <strong>Receptor</strong> (decodificación) → <strong>Interpretación</strong> → <strong>Retroalimentación</strong> → vuelve al <strong>Emisor</strong> como nuevo receptor.<br><br>
+      Cada flecha es una oportunidad de éxito o de fracaso comunicativo.
+    </p>
+  </div>
+
+  <h3 class="ss">3.2 Las etapas del proceso de comunicación (Stoner, 1994 / Chen, 2019)</h3>
+
+  <div class="pasos">
+    <div class="paso">
+      <div class="paso-num">1</div>
+      <div>
+        <h4>Idea del mensaje (Ideación)</h4>
+        <p>El proceso comienza cuando el emisor desarrolla una idea: una información, intención o necesidad que quiere transmitir. <strong>Si la idea es confusa en la mente del emisor, todo lo que sigue será igualmente confuso.</strong> El contador que no entiende bien un asiento contable no podrá explicarlo coherentemente.</p>
+      </div>
+    </div>
+    <div class="paso-conector"></div>
+    <div class="paso">
+      <div class="paso-num">2</div>
+      <div>
+        <h4>Codificación (Cifrado)</h4>
+        <p>La idea se traduce a un sistema de símbolos, signos, palabras, números o gráficos comprensibles para el receptor. La codificación está influenciada por los conocimientos, habilidades y experiencia del emisor. <strong>Un mal código produce un mensaje incomprensible.</strong> Ejemplo: usar jerga contable técnica con un cliente que no sabe de contabilidad.</p>
+      </div>
+    </div>
+    <div class="paso-conector"></div>
+    <div class="paso">
+      <div class="paso-num">3</div>
+      <div>
+        <h4>Transmisión (Canal)</h4>
+        <p>El mensaje codificado se envía por un canal específico: oral, escrito, electrónico, gestual. La elección del canal afecta la recepción. <strong>Un mensaje urgente enviado por carta física llega tarde.</strong> Un informe sensible de auditoría enviado por WhatsApp informal puede perder seriedad o generar filtraciones.</p>
+      </div>
+    </div>
+    <div class="paso-conector"></div>
+    <div class="paso">
+      <div class="paso-num">4</div>
+      <div>
+        <h4>Recepción</h4>
+        <p>El receptor recibe el mensaje a través de sus sentidos. Si hay fallas físicas (sordera, mala conexión, ruido ambiental) o psicológicas (distracción, estado emocional), el mensaje puede no llegar completo. <strong>Recibir no es lo mismo que comprender.</strong></p>
+      </div>
+    </div>
+    <div class="paso-conector"></div>
+    <div class="paso">
+      <div class="paso-num">5</div>
+      <div>
+        <h4>Decodificación (Descifrado)</h4>
+        <p>El receptor interpreta el mensaje según su propio sistema de conocimientos, experiencias, cultura y estado emocional. <strong>Aquí ocurre la mayoría de los malentendidos.</strong> El mismo mensaje puede decodificarse de maneras completamente distintas por receptores distintos. La ley comunicativa dice: "Lo importante es lo que el otro percibe, no lo que tú emites."</p>
+      </div>
+    </div>
+    <div class="paso-conector"></div>
+    <div class="paso">
+      <div class="paso-num">6</div>
+      <div>
+        <h4>Interpretación y respuesta interna</h4>
+        <p>El receptor forma su propia comprensión del mensaje y genera una respuesta interna (emoción, juicio, decisión). Esta respuesta interna puede o no convertirse en retroalimentación visible.</p>
+      </div>
+    </div>
+    <div class="paso-conector"></div>
+    <div class="paso">
+      <div class="paso-num">7</div>
+      <div>
+        <h4>Retroalimentación (Feedback)</h4>
+        <p>El receptor responde al emisor, completando el ciclo y dando inicio a un nuevo proceso. La retroalimentación permite al emisor verificar si el mensaje fue recibido correctamente. <strong>Sin retroalimentación no hay certeza de que la comunicación ocurrió.</strong> La segunda ley de la comunicación interpersonal afirma: "Cuando B interpreta erróneamente un mensaje de A, la responsabilidad es siempre de A."</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="box-k">
+    <div class="etq">💡 Idea clave</div>
+    <p>El proceso de comunicación no termina cuando el emisor habla o escribe: termina cuando el receptor comprende correctamente <em>y confirma esa comprensión</em>. Omitir la retroalimentación es el error más frecuente en la comunicación profesional, y uno de los más costosos.</p>
+  </div>
+</div>
+
+<!-- ===== TEMA 4: ELEMENTOS DEL PROCESO ===== -->
+<div id="t4" class="tc">
+  <h2 class="st">🧩 Elementos del Proceso de Comunicación</h2>
+  <p>Para que el proceso de comunicación funcione, deben estar presentes y operar correctamente todos sus elementos. La ausencia o el mal funcionamiento de cualquiera de ellos distorsiona o interrumpe la comunicación. Estudiaremos cada elemento en profundidad con aplicaciones directas a la vida del contador y auditor.</p>
+
+  <div class="tw">
+    <table>
+      <thead><tr><th>Elemento</th><th>Pregunta que responde</th><th>Definición</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Emisor</strong></td><td>¿Quién lo expresa?</td><td>Persona o entidad que produce, codifica y envía el mensaje. También llamado "fuente" o "codificador".</td></tr>
+        <tr><td><strong>Mensaje</strong></td><td>¿Qué se transmite?</td><td>El contenido de la comunicación: palabras, cifras, gestos, gráficos. Debe estar ordenado conforme reglas para ser comprensible.</td></tr>
+        <tr><td><strong>Código</strong></td><td>¿Cómo lo hacen?</td><td>Sistema de signos compartido por emisor y receptor. Sin código común no hay comunicación posible.</td></tr>
+        <tr><td><strong>Canal</strong></td><td>¿A través de qué?</td><td>El medio físico por el que viaja el mensaje: aire (voz), papel (escritura), cable (Internet), pantalla, etc.</td></tr>
+        <tr><td><strong>Receptor</strong></td><td>¿Quién lo interpreta?</td><td>Quien recibe el mensaje y lo decodifica. Su capacidad de comprensión determina el éxito de la comunicación.</td></tr>
+        <tr><td><strong>Ruido</strong></td><td>¿Qué interfiere?</td><td>Todo elemento que dificulta, distorsiona o impide la correcta transmisión o recepción del mensaje.</td></tr>
+        <tr><td><strong>Retroalimentación</strong></td><td>¿Qué responde el receptor?</td><td>La respuesta del receptor al emisor. Condición necesaria para la interactividad y para verificar la comprensión.</td></tr>
+        <tr><td><strong>Situación/Contexto</strong></td><td>¿En qué circunstancias?</td><td>El entorno emocional, social, cultural y físico que rodea el acto comunicativo y condiciona su interpretación.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 class="ss">4.1 El emisor: más que quien habla</h3>
+  <div class="box-e">
+    <div class="etq">🎯 El emisor en el mundo contable</div>
+    <p>El emisor no solo "suelta" un mensaje: lo <strong>construye, codifica y elige el canal</strong>. Un contador que emite un informe es responsable de que ese informe sea comprensible para quien lo recibe. Si el receptor (cliente, directorio, SRI) no entiende el mensaje, la responsabilidad comunicativa recae en el emisor. Esta es la <strong>segunda ley de la comunicación interpersonal</strong>: cuando hay malentendido, la responsabilidad es del emisor.</p>
+  </div>
+
+  <h3 class="ss">4.2 El código: la clave del entendimiento</h3>
+  <p>El código es el sistema de signos y reglas que emisor y receptor deben <strong>compartir</strong>. Sin código común, no hay comunicación posible. En contabilidad y auditoría existen varios códigos simultáneos:</p>
+  <ul class="lista">
+    <li><strong>Código técnico-contable:</strong> NIIF, NIC, principios de auditoría, terminología del SRI</li>
+    <li><strong>Código lingüístico:</strong> Español formal, con ortografía y sintaxis correctas</li>
+    <li><strong>Código matemático:</strong> Cifras, porcentajes, variaciones, índices</li>
+    <li><strong>Código visual:</strong> Tablas, gráficos, estados financieros en formato estándar</li>
+    <li><strong>Código legal:</strong> Términos jurídicos en contratos, actas y convenios</li>
+  </ul>
+  <p>Un informe de auditoría usa simultáneamente todos estos códigos. Un auditor que domina solo el código técnico-contable pero no el lingüístico producirá informes llenos de errores gramaticales que deterioran su imagen profesional.</p>
+
+  <h3 class="ss">4.3 El ruido: el enemigo silencioso de la comunicación</h3>
+  <div class="tw">
+    <table>
+      <thead><tr><th>Tipo de ruido</th><th>Descripción</th><th>Ejemplo en auditoría/contabilidad</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Físico</strong></td><td>Interferencias en el canal físico</td><td>Mala conexión de video en una reunión virtual con el cliente; documentos escaneados ilegibles</td></tr>
+        <tr><td><strong>Semántico</strong></td><td>Diferencias en el significado del código</td><td>El cliente interpreta "provisión" como "ahorro" y no como "reserva contable obligatoria"</td></tr>
+        <tr><td><strong>Psicológico</strong></td><td>Estados emocionales que distorsionan la recepción</td><td>El gerente rechaza los hallazgos de auditoría no porque sean incorrectos, sino porque está a la defensiva</td></tr>
+        <tr><td><strong>Fisiológico</strong></td><td>Limitaciones físicas del emisor o receptor</td><td>Fatiga extrema en el cierre de año fiscal que hace cometer errores de comprensión</td></tr>
+        <tr><td><strong>Sociocultural</strong></td><td>Diferencias culturales que generan malentendidos</td><td>Un auditor internacional no comprende prácticas contables informales típicas del contexto ecuatoriano</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="box-k">
+    <div class="etq">💡 Idea clave</div>
+    <p>Conocer los elementos del proceso de comunicación permite hacer un <strong>diagnóstico preciso</strong> cuando algo falla: ¿Fue el emisor que codificó mal? ¿El canal inadecuado? ¿El ruido que distorsionó? ¿El receptor que decodificó erróneamente? Solo quien conoce el proceso puede diagnosticar y corregir. El resto simplemente culpa "a la mala comunicación" sin saber dónde estaba el fallo.</p>
+  </div>
+</div>
+
+<!-- ===== TEMA 4B: ETAPAS Y BARRERAS ===== -->
+<div id="t4b" class="tc">
+  <h2 class="st">🚧 Etapas Críticas y Barreras en el Proceso Comunicativo</h2>
+  <p>Comprender el proceso no basta: hay que saber cuáles son sus puntos más vulnerables. Las <strong>barreras de comunicación</strong> son obstáculos que se instalan en cualquier etapa del proceso y que impiden que el mensaje llegue tal como fue concebido. Esta semana identificamos las principales y su impacto en el mundo profesional.</p>
+
+  <h3 class="ss">4b.1 Las leyes fundamentales de la comunicación interpersonal</h3>
+
+  <div class="grid2">
+    <div class="card">
+      <div class="ico">⚖️</div>
+      <h4>Primera Ley</h4>
+      <p>"Lo que dice A no es verdadero, sino lo que entiende B." Lo importante es lo que el receptor percibe, no lo que el emisor emite. La comunicación se mide por su efecto, no por su intención.</p>
+    </div>
+    <div class="card">
+      <div class="ico">📌</div>
+      <h4>Segunda Ley</h4>
+      <p>"Cuando B interpreta erróneamente un mensaje de A, la responsabilidad es siempre de A." El emisor debe verificar que fue comprendido. Si no lo hace, no puede culpar al receptor por el malentendido.</p>
+    </div>
+    <div class="card">
+      <div class="ico">🔄</div>
+      <h4>Primer Axioma Pragmático</h4>
+      <p>"Las personas no pueden vivir sin comunicación." La comunicación es un proceso inherente al ser humano. Incluso el silencio comunica algo.</p>
+    </div>
+    <div class="card">
+      <div class="ico">🎭</div>
+      <h4>Segundo Axioma Pragmático</h4>
+      <p>La comunicación tiene dos niveles: el racional ("lo que se dice") y el afectivo ("cómo se dice"). Ambos son inseparables y el nivel emocional puede invalidar el contenido racional si el ambiente no es favorable.</p>
+    </div>
+  </div>
+
+  <hr class="div">
+  <h3 class="ss">4b.2 Comunicación funcional vs. disfuncional</h3>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:14px 0">
+    <div style="background:var(--ver-c);border-left:4px solid var(--verde);border-radius:0 8px 8px 0;padding:14px 16px">
+      <p style="color:#145a32;font-weight:700;margin-bottom:8px">✅ Comunicación Funcional</p>
+      <ul class="lista">
+        <li>Fluida y clara</li>
+        <li>Fiel al mensaje original</li>
+        <li>Transparente en sus intenciones</li>
+        <li>Satisface las necesidades de los participantes</li>
+        <li>Contribuye al crecimiento personal y organizacional</li>
+      </ul>
+    </div>
+    <div style="background:var(--roj-c);border-left:4px solid var(--rojo);border-radius:0 8px 8px 0;padding:14px 16px">
+      <p style="color:#7b241c;font-weight:700;margin-bottom:8px">❌ Comunicación Disfuncional</p>
+      <ul class="lista">
+        <li>Insuficiente o escasa</li>
+        <li>Distorsionada: llega diferente a como salió</li>
+        <li>Pocas posibilidades de mejora</li>
+        <li>No resuelve conflictos ni problemas</li>
+        <li>Impide el crecimiento personal y organizacional</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3 class="ss">4b.3 ¿Cuándo la comunicación es simétrica y cuándo complementaria?</h3>
+  <p>El tercer axioma pragmático establece que las comunicaciones pueden ser:</p>
+  <div class="tw">
+    <table>
+      <thead><tr><th>Tipo</th><th>Característica</th><th>Ejemplo contable</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Simétrica</strong></td><td>Entre personas del mismo status o jerarquía; intercambian criterios en igualdad</td><td>Dos contadores debaten el tratamiento correcto de un activo diferido</td></tr>
+        <tr><td><strong>Complementaria</strong></td><td>Entre personas de diferente status; los roles son distintos y se complementan</td><td>El auditor externo presenta sus hallazgos al gerente general de la empresa auditada</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 class="ss">4b.4 Barreras que afectan el mensaje escrito</h3>
+  <p>En la comunicación escrita —informes, correos, contratos, dictámenes— existen barreras específicas que el contador y auditor debe conocer y prevenir:</p>
+  <ul class="lista">
+    <li><strong>Ambigüedad sintáctica:</strong> Oraciones que pueden interpretarse de dos formas distintas debido a una puntuación incorrecta o a una estructura gramatical deficiente</li>
+    <li><strong>Tecnicismo excesivo:</strong> Usar términos que el receptor no domina, convirtiendo el mensaje en incomprensible</li>
+    <li><strong>Lenguaje pasivo y burocrático:</strong> Oraciones en voz pasiva interminable que oscurecen quién es responsable de qué</li>
+    <li><strong>Omisión de información clave:</strong> Dar por sabido lo que el receptor no sabe</li>
+    <li><strong>Errores ortográficos:</strong> Generan desconfianza en el emisor, más allá del contenido del mensaje</li>
+  </ul>
+
+  <div class="box-e">
+    <div class="etq">🇪🇨 La puntuación como barrera en el Ecuador</div>
+    <p>En Ecuador, los procesos de contratación pública a través del SERCOP han generado disputas legales por cláusulas redactadas de manera ambigua. En varios casos documentados, la falta de una coma o la mala colocación de un punto y coma en contratos de obra pública ha derivado en ampliaciones de plazo no previstas, costos adicionales millonarios e incluso juicios arbitrales. La escritura precisa no es una materia académica: es una herramienta de protección legal.</p>
+  </div>
+
+  <div class="link-4b">
+    <div class="ico4b">📝</div>
+    <div>
+      <h3>¡Continúa en el Widget Semana 4B!</h3>
+      <p>La Semana 4B está completamente dedicada al laboratorio de puntuación y escritura: más de 12 ejercicios interactivos donde verás —en tiempo real— cómo la misma oración cambia radicalmente de significado con o sin signos de puntuación. Incluye la conversación de WhatsApp con la mamá, el cuestionario, la actividad con IA, reflexión y bibliografía.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ===== BIBLIOGRAFÍA ===== -->
+<div id="bi" class="tc">
+  <h2 class="st">📚 Bibliografía — Semana 4A</h2>
+  <p>Referencias verificadas utilizadas como base del contenido de esta semana.</p>
+
+  <div class="bib-card">
+    <div class="bib-ico">📗</div>
+    <p>Covey, S. R. (1989). <em>The 7 Habits of Highly Effective People</em>. Simon & Schuster. [Edición en español: <em>Los 7 Hábitos de la Gente Altamente Efectiva</em>. Paidós]</p>
+  </div>
+  <div class="bib-card">
+    <div class="bib-ico">📘</div>
+    <p>Santos García, D. V. (2012). <em>Fundamentos de la comunicación</em>. Red Tercer Milenio. Tlalnepantla, México.</p>
+  </div>
+  <div class="bib-card">
+    <div class="bib-ico">📙</div>
+    <p>Stoner, J. A. F., Freeman, R. E., &amp; Gilbert, D. R. (1994). <em>Administración</em> (5.ª ed.). Prentice Hall Hispanoamericana. México.</p>
+  </div>
+  <div class="bib-card">
+    <div class="bib-ico">📕</div>
+    <p>McGraw-Hill España. (s.f.). <em>La importancia de la comunicación en las relaciones sociales</em> [Material educativo universitario]. McGraw-Hill. ISBN: 844818453X.</p>
+  </div>
+  <div class="bib-card">
+    <div class="bib-ico">📄</div>
+    <p>Chen, W. (2019). <em>Introducción a la comunicación humana</em> [Material de estudio]. Universidad Estatal de Milagro (UNEMI). Ecuador.</p>
+  </div>
+  <div class="bib-card">
+    <div class="bib-ico">📗</div>
+    <p>Beristáin, H. (1985). <em>Diccionario de retórica y poética</em>. Editorial Porrúa. México D.F.</p>
+  </div>
+  <div class="bib-card">
+    <div class="bib-ico">📘</div>
+    <p>Fernández Collado, C. (2009). <em>La comunicación humana en el mundo contemporáneo</em> (3.ª ed.). McGraw-Hill. México.</p>
+  </div>
+
+  <div class="bib-nota">
+    ⚠️ <strong>Nota académica:</strong> Se recomienda verificar cada referencia en <strong>Google Scholar</strong> (<a href="https://scholar.google.com" target="_blank" style="color:#6b4200">scholar.google.com</a>) o en el repositorio institucional de la Universidad de Guayaquil antes de citar en trabajos académicos.
+  </div>
+</div>
+
+<script>
+function ST(id, btn) {
+  document.querySelectorAll('.tc').forEach(t => t.classList.remove('ac'));
+  document.querySelectorAll('.tb').forEach(b => b.classList.remove('ac'));
+  document.getElementById(id).classList.add('ac');
+  btn.classList.add('ac');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+</script>
+</body>
+</html>
