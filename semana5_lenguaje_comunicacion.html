@@ -1,0 +1,984 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Semana 5 – Componentes de la Comunicación | Universidad de Guayaquil</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --az:#003366;--azm:#0052A3;--cel:#87CEEB;--celc:#E6F1FB;
+  --do:#FFB81C;--doc:#FFF3CC;--bl:#fff;--gc:#f4f6fa;
+  --ve:#1a7a3c;--vec:#e8f5ed;--ro:#c0392b;--roc:#fdecea;
+  --na:#e07b00;--mo:#6a0dad;--moc:#f3eafd;--tx:#222;--gt:#444;
+  --sh:0 2px 12px rgba(0,51,102,.10);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Source Sans 3',sans-serif;background:var(--gc);color:var(--tx);min-height:100vh}
+
+/* HEADER */
+.hdr{background:var(--az);color:#fff}
+.hdr-t{display:flex;align-items:center;gap:18px;padding:14px 28px}
+.hdr-logo{width:58px;height:58px;background:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:900;color:var(--az);flex-shrink:0;font-family:'Lora',serif}
+.hdr-i h1{font-family:'Lora',serif;font-size:1.15rem;font-weight:700;line-height:1.25}
+.hdr-i p{font-size:.82rem;opacity:.85;margin-top:2px}
+.hdr-b{display:flex;gap:10px;padding:0 28px 12px;flex-wrap:wrap}
+.bdg{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);padding:3px 12px;border-radius:20px;font-size:.75rem}
+.bdg.d{background:var(--do);color:var(--az);border-color:var(--do);font-weight:700}
+.bdg.u2{background:#1a7a3c;color:#fff;border-color:#1a7a3c;font-weight:700}
+
+/* TABS */
+.tw{background:var(--cel);overflow-x:auto;white-space:nowrap;border-bottom:3px solid var(--az);scrollbar-width:thin;scrollbar-color:var(--az) var(--cel)}
+.tw::-webkit-scrollbar{height:5px}
+.tw::-webkit-scrollbar-thumb{background:var(--az);border-radius:3px}
+.tn{display:inline-flex;padding:0 8px;gap:2px}
+.tb{display:inline-block;padding:10px 16px;font-family:'Source Sans 3',sans-serif;font-size:.82rem;font-weight:600;color:#1a1a2e;background:transparent;border:none;cursor:pointer;border-bottom:3px solid transparent;transition:all .2s;white-space:nowrap;border-radius:6px 6px 0 0;margin-top:4px}
+.tb:hover{background:rgba(255,255,255,.5)}
+.tb.ac{background:#fff;color:var(--az);font-weight:700;border-bottom:3px solid var(--az)}
+
+/* CONTENT */
+.tc{display:none;padding:28px;max-width:960px;margin:0 auto;animation:fi .3s ease}
+.tc.ac{display:block}
+@keyframes fi{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+h2.st{font-family:'Lora',serif;font-size:1.5rem;color:var(--az);margin-bottom:6px;line-height:1.3}
+h3.ss{font-family:'Lora',serif;font-size:1.1rem;color:var(--azm);margin:20px 0 8px}
+h4.sh{font-family:'Lora',serif;font-size:.97rem;color:var(--az);margin:14px 0 6px}
+p{line-height:1.75;margin-bottom:12px;font-size:.97rem;color:var(--gt)}
+hr.dv{height:2px;background:linear-gradient(to right,var(--azm),transparent);margin:22px 0;border:none}
+
+/* BOXES */
+.bc{border-left:5px solid var(--azm);background:var(--celc);padding:14px 18px;border-radius:0 8px 8px 0;margin:16px 0}
+.bc .eq{font-size:.73rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--azm);margin-bottom:4px}
+.bc p{margin:0;font-size:.96rem}
+.be{background:#deeeff;border-radius:10px;padding:14px 18px;margin:14px 0;border-left:4px solid var(--azm)}
+.be .eq{font-size:.73rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--az);margin-bottom:6px}
+.be p{margin:0;font-size:.95rem}
+.bk{background:var(--doc);border-left:5px solid var(--do);border-radius:0 8px 8px 0;padding:14px 18px;margin:20px 0 8px}
+.bk .eq{font-size:.73rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--na);margin-bottom:4px}
+.bk p{margin:0;font-size:.96rem;color:#5a3800}
+.cita{background:var(--az);color:#fff;border-radius:12px;padding:22px 26px;margin:20px 0;position:relative;overflow:hidden}
+.cita::before{content:'"';font-size:5rem;font-family:'Lora',serif;opacity:.12;position:absolute;top:-10px;left:14px}
+.cita p{color:#fff;font-size:1.02rem;font-style:italic;line-height:1.65;margin:0;position:relative}
+.cita .au{font-style:normal;font-size:.82rem;opacity:.8;margin-top:8px;display:block}
+
+/* TABLES */
+.tbl{overflow-x:auto;margin:16px 0;border-radius:8px;box-shadow:var(--sh)}
+table{width:100%;border-collapse:collapse;font-size:.9rem}
+th{background:var(--az);color:#fff;padding:10px 14px;text-align:left;font-weight:600}
+td{padding:9px 14px;border-bottom:1px solid #dde4f0;vertical-align:top}
+tr:nth-child(even) td{background:var(--celc)}
+tr:last-child td{border-bottom:none}
+
+/* CARDS */
+.g2{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin:18px 0}
+.g3{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;margin:16px 0}
+.card{background:#fff;border-radius:12px;padding:18px;box-shadow:var(--sh);border-top:4px solid var(--azm);transition:transform .2s}
+.card:hover{transform:translateY(-3px)}
+.card .ic{font-size:2rem;margin-bottom:8px}
+.card h4{font-family:'Lora',serif;color:var(--az);font-size:.97rem;margin-bottom:6px}
+.card p{font-size:.87rem;margin:0;color:#555}
+.card.ve{border-top-color:var(--ve)}
+.card.ro{border-top-color:var(--ro)}
+.card.do{border-top-color:var(--do)}
+.card.mo{border-top-color:var(--mo)}
+
+/* PARALINGÜÍSTICOS */
+.para-row{display:flex;align-items:flex-start;gap:14px;background:#fff;border-radius:10px;padding:14px 16px;margin-bottom:10px;box-shadow:var(--sh);border-left:4px solid var(--cel)}
+.para-ico{font-size:1.6rem;flex-shrink:0;min-width:36px;text-align:center}
+.para-row h4{font-family:'Lora',serif;color:var(--az);font-size:.93rem;margin-bottom:3px}
+.para-row p{font-size:.87rem;margin:0;color:#555}
+
+/* PROXÉMICA visual */
+.prox-stack{display:flex;flex-direction:column;gap:8px;margin:14px 0}
+.prox-item{border-radius:10px;padding:12px 16px;display:flex;align-items:center;gap:14px}
+.prox-item.intima{background:#fff0f0;border-left:5px solid #c0392b}
+.prox-item.personal{background:#fff8e1;border-left:5px solid #e07b00}
+.prox-item.social{background:#e8f5e9;border-left:5px solid #1a7a3c}
+.prox-item.publica{background:#e3f2fd;border-left:5px solid #0052A3}
+.prox-item .pd{font-size:1.4rem;font-weight:700;min-width:90px;flex-shrink:0}
+.prox-item.intima .pd{color:#c0392b}
+.prox-item.personal .pd{color:#e07b00}
+.prox-item.social .pd{color:#1a7a3c}
+.prox-item.publica .pd{color:#0052A3}
+.prox-item p{font-size:.88rem;margin:0;color:#444}
+
+/* COMPETENCIAS STACK */
+.comp-stack{display:flex;flex-direction:column;gap:12px;margin:16px 0}
+.comp-item{background:#fff;border-radius:10px;padding:16px 18px;box-shadow:var(--sh);display:flex;gap:14px;align-items:flex-start}
+.comp-num{background:var(--az);color:#fff;width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.88rem;flex-shrink:0}
+.comp-item h4{font-family:'Lora',serif;color:var(--az);font-size:.95rem;margin-bottom:4px}
+.comp-item p{font-size:.88rem;margin:0;color:#555}
+
+/* REPASO */
+.rg{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin:16px 0}
+.rc{background:#fff;border-radius:10px;padding:16px;box-shadow:var(--sh);border-top:3px solid var(--do)}
+.rc h4{font-family:'Lora',serif;color:var(--az);font-size:.93rem;margin-bottom:6px}
+.rc p{font-size:.85rem;margin:0;color:#555}
+
+/* LISTA */
+.li{list-style:none;margin:12px 0}
+.li li{padding:6px 0 6px 24px;position:relative;font-size:.93rem;color:var(--gt);border-bottom:1px dashed #dde}
+.li li:last-child{border-bottom:none}
+.li li::before{content:'▸';position:absolute;left:4px;color:var(--azm)}
+
+/* EJERCICIO INTERACTIVO */
+.ei{background:var(--az);color:#fff;border-radius:12px;padding:18px 22px;margin-bottom:22px}
+.ei h3{font-family:'Lora',serif;font-size:1.1rem;margin-bottom:6px}
+.ei p{color:rgba(255,255,255,.9);font-size:.9rem;margin:0}
+
+.ej-item{background:#fff;border-radius:10px;padding:18px;margin-bottom:14px;box-shadow:var(--sh);border-left:4px solid var(--cel)}
+.ej-item .preg{font-weight:600;font-size:.95rem;color:var(--az);margin-bottom:12px}
+.opts{display:flex;flex-direction:column;gap:8px}
+.opt{display:flex;align-items:flex-start;gap:10px;padding:9px 14px;border:2px solid #cdd8ea;border-radius:8px;cursor:pointer;font-size:.9rem;transition:all .2s;background:var(--gc);line-height:1.5}
+.opt:hover{border-color:var(--azm);background:var(--celc)}
+.opt input{accent-color:var(--azm);width:16px;height:16px;flex-shrink:0;margin-top:2px}
+.opt.ok{border-color:var(--ve);background:var(--vec)}
+.opt.fail{border-color:var(--ro);background:var(--roc)}
+.ej-fb{display:none;margin-top:10px;padding:10px 14px;border-radius:8px;font-size:.88rem;line-height:1.6}
+.ej-fb.show{display:block}
+.ej-fb.ok{background:var(--vec);color:#145a32;border-left:4px solid var(--ve)}
+.ej-fb.fail{background:var(--roc);color:#7b241c;border-left:4px solid var(--ro)}
+
+.btn-v{background:var(--az);color:#fff;border:none;padding:12px 28px;border-radius:8px;font-size:1rem;font-weight:700;cursor:pointer;transition:background .2s;margin-top:8px}
+.btn-v:hover{background:var(--azm)}
+.btn-r{background:transparent;color:var(--az);border:2px solid var(--az);padding:10px 22px;border-radius:8px;font-size:.93rem;font-weight:700;cursor:pointer;margin-left:10px;transition:all .2s}
+.btn-r:hover{background:var(--az);color:#fff}
+
+.rp{display:none;background:#fff;border-radius:12px;padding:22px;margin-top:20px;box-shadow:var(--sh);text-align:center}
+.rp.show{display:block}
+.rs{font-size:2.5rem;font-weight:700;color:var(--az);font-family:'Lora',serif}
+.rpt{font-size:1.1rem;color:#666;margin:4px 0 12px}
+.bo{background:#dde4f0;border-radius:20px;height:14px;overflow:hidden;margin:10px 0}
+.bi{height:100%;border-radius:20px;transition:width 1s ease;background:var(--azm)}
+.rmsg{font-size:1rem;color:var(--gt);margin-top:10px}
+
+/* CUESTIONARIO */
+.qi{background:#fff;border-radius:10px;padding:18px;margin-bottom:14px;box-shadow:var(--sh)}
+.qi .bt{display:inline-block;padding:2px 10px;border-radius:12px;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;margin-bottom:8px}
+.bt.te{background:var(--celc);color:var(--az)}
+.bt.an{background:var(--doc);color:#7a4a00}
+.qi .en{font-weight:600;font-size:.95rem;color:var(--az);margin-bottom:10px}
+
+/* IA */
+.ia-s{display:flex;gap:14px;align-items:flex-start;margin-bottom:16px;background:#fff;border-radius:10px;padding:16px;box-shadow:var(--sh)}
+.ia-n{background:var(--do);color:var(--az);width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.9rem;flex-shrink:0}
+.ia-s h4{font-family:'Lora',serif;color:var(--az);font-size:.95rem;margin-bottom:4px}
+.ia-s p{font-size:.9rem;margin:0;color:#444}
+.pb{background:#1e1e2e;color:#a6e3a1;border-radius:10px;padding:18px 20px;font-family:'Courier New',monospace;font-size:.82rem;line-height:1.7;margin:14px 0;white-space:pre-wrap;word-break:break-word}
+.pb .pl{font-family:'Source Sans 3',sans-serif;font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;color:#89b4fa;margin-bottom:10px;display:block}
+
+/* REFLEXIÓN */
+.ref-c{background:#fff;border-radius:12px;padding:18px 20px;margin-bottom:14px;box-shadow:var(--sh);border-left:5px solid var(--mo);transition:transform .2s}
+.ref-c:hover{transform:translateX(4px)}
+.ref-c .rn{font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--mo);margin-bottom:6px}
+.ref-c p{font-size:.95rem;color:#333;line-height:1.7;margin:0}
+.ref-nota{background:var(--moc);border-radius:10px;padding:14px 18px;margin-top:20px;font-size:.88rem;color:#4a0080;border-left:4px solid var(--mo)}
+
+/* BIBLIO */
+.bib{background:#fff;border-radius:10px;padding:16px 18px;margin-bottom:14px;box-shadow:var(--sh);display:flex;gap:14px;align-items:flex-start}
+.bib-i{background:var(--az);color:#fff;width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0}
+.bib p{font-size:.88rem;margin:0;line-height:1.6;color:#333}
+.bib-n{background:var(--doc);border:1px solid var(--do);border-radius:8px;padding:12px 16px;font-size:.84rem;color:#6b4200;margin-top:18px}
+
+/* Señal de impacto */
+.impact-bar{display:flex;gap:12px;margin:16px 0;flex-wrap:wrap}
+.impact-seg{border-radius:10px;padding:14px 16px;text-align:center;flex:1;min-width:120px}
+.impact-seg.wrd{background:#e3f2fd;border:2px solid #0052A3}
+.impact-seg.voc{background:#fff8e1;border:2px solid var(--na)}
+.impact-seg.vis{background:#e8f5e9;border:2px solid var(--ve)}
+.impact-seg .pct{font-size:2rem;font-weight:700;font-family:'Lora',serif}
+.impact-seg.wrd .pct{color:#0052A3}
+.impact-seg.voc .pct{color:var(--na)}
+.impact-seg.vis .pct{color:var(--ve)}
+.impact-seg h5{font-size:.85rem;margin:3px 0 4px;color:#333}
+.impact-seg p{font-size:.78rem;margin:0;color:#555}
+
+/* Tag pills */
+.pill{display:inline-block;background:var(--celc);color:var(--az);font-size:.75rem;font-weight:700;padding:3px 10px;border-radius:12px;margin:3px 3px 3px 0}
+.pill.ve{background:var(--vec);color:#145a32}
+.pill.do{background:var(--doc);color:#7a4a00}
+
+@media(max-width:640px){
+  .tc{padding:18px 14px}
+  h2.st{font-size:1.25rem}
+  .hdr-t{padding:12px 16px}
+  .impact-bar{flex-direction:column}
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="hdr">
+  <div class="hdr-t">
+    <div class="hdr-logo">UG</div>
+    <div class="hdr-i">
+      <h1>Universidad de Guayaquil · Facultad de Ciencias Administrativas</h1>
+      <p>Carrera en Contabilidad y Auditoría &nbsp;|&nbsp; Materia: Lenguaje y Comunicación</p>
+    </div>
+  </div>
+  <div class="hdr-b">
+    <span class="bdg d">Semana 5</span>
+    <span class="bdg u2">Unidad 2 — Habilidades para comunicar y producir</span>
+    <span class="bdg">Primer Ciclo</span>
+    <span class="bdg">Modalidad Virtual</span>
+  </div>
+</header>
+
+<!-- TABS -->
+<nav class="tw">
+  <div class="tn">
+    <button class="tb ac" onclick="ST('rp',this)">📋 Repaso</button>
+    <button class="tb" onclick="ST('t1',this)">1. Componentes Verbales</button>
+    <button class="tb" onclick="ST('t2',this)">2. Comunicación No Verbal</button>
+    <button class="tb" onclick="ST('t3',this)">3. Kinésica y Proxémica</button>
+    <button class="tb" onclick="ST('t4',this)">4. Escucha Activa</button>
+    <button class="tb" onclick="ST('t5',this)">5. Competencias Comunicativas</button>
+    <button class="tb" onclick="ST('ej',this)">6. Ejercicio Interactivo</button>
+    <button class="tb" onclick="ST('cu',this)">7. Cuestionario</button>
+    <button class="tb" onclick="ST('ia',this)">8. Actividad con IA</button>
+    <button class="tb" onclick="ST('re',this)">9. Reflexión</button>
+    <button class="tb" onclick="ST('bi',this)">10. Bibliografía</button>
+  </div>
+</nav>
+
+<!-- ===== REPASO ===== -->
+<div id="rp" class="tc ac">
+  <h2 class="st">📋 Repaso — Unidad 1 completa (Semanas 1–4)</h2>
+  <p>Arrancamos la <strong>Unidad 2</strong>. Todo lo que hemos construido en la Unidad 1 es el fundamento de lo que estudiaremos ahora. Esta semana ya no solo preguntamos <em>qué</em> es la comunicación, sino <em>cómo</em> se ejecuta con maestría.</p>
+  <div class="rg">
+    <div class="rc"><h4>🗣️ Semanas 1–2 — Fundamentos</h4><p>Diferencia entre hablar y comunicar. Los 4 tipos de lenguaje (verbal, no verbal, paraverbal, escrito). El procesamiento del mensaje con ruidos y filtros. El 7-38-55 de Mehrabian.</p></div>
+    <div class="rc"><h4>🧠 Semana 3 — El interior del comunicador</h4><p>Cerebro triúnico. PNL y sistemas VAK. Autoestima como base de la comunicación. Las 5 dimensiones de la Inteligencia Emocional de Goleman. La IE para comunicar con claridad y empatía.</p></div>
+    <div class="rc"><h4>📚 Semana 4 — Proceso y escritura</h4><p>Las 7 etapas del proceso de comunicación. La importancia de la lectura (Covey). El poder de la puntuación: cómo un signo cambia el significado completo de un texto.</p></div>
+    <div class="rc"><h4>🔗 ¿Qué sigue ahora?</h4><p>Esta semana profundizamos en los <strong>componentes internos</strong> de la comunicación: los elementos verbales y no verbales, las habilidades para escuchar, las competencias para comunicar con eficacia y las técnicas para producir mensajes de calidad.</p></div>
+  </div>
+  <div class="bk">
+    <div class="eq">🔗 Hilo conductor — Unidad 2</div>
+    <p>La Unidad 1 nos dio el <em>mapa</em> de la comunicación. La Unidad 2 nos da las <em>herramientas</em>. Conocer que existe la comunicación no verbal no basta: hay que saber usarla. Saber que la escucha es importante no es suficiente: hay que dominar la escucha activa. Esta semana pasamos de la teoría al dominio aplicado.</p>
+  </div>
+</div>
+
+<!-- ===== TEMA 1: COMPONENTES VERBALES ===== -->
+<div id="t1" class="tc">
+  <h2 class="st">🗣️ Componentes de la Comunicación Verbal</h2>
+  <p>La comunicación verbal es aquella que se refiere al uso del lenguaje: un sistema de códigos con los cuales se designan objetos del mundo exterior (McGraw-Hill, s.f.). Aunque intuitivamente pensamos que "hablar es comunicar", la comunicación verbal tiene dos capas que debemos distinguir y dominar.</p>
+
+  <div class="impact-bar">
+    <div class="impact-seg wrd"><div class="pct">7%</div><h5>Palabras</h5><p>El contenido literal de lo que se dice</p></div>
+    <div class="impact-seg voc"><div class="pct">38%</div><h5>Voz (Paraverbal)</h5><p>Cómo se dice: tono, ritmo, volumen, pausa</p></div>
+    <div class="impact-seg vis"><div class="pct">55%</div><h5>Lenguaje Corporal</h5><p>Gestos, postura, mirada, proximidad</p></div>
+  </div>
+  <p style="font-size:.88rem;color:#777;text-align:center;margin-top:-8px">Fuente: Mehrabian, A. / Zayas, P. (2006) — Regla 7-38-55</p>
+
+  <h3 class="ss">1.1 Dos dimensiones de lo verbal</h3>
+  <div class="g2">
+    <div class="card">
+      <div class="ic">📝</div>
+      <h4>Elementos Lingüísticos</h4>
+      <p>Son los elementos <strong>verbales propiamente dichos</strong>: las palabras, la gramática, la sintaxis, el vocabulario. Son el <em>qué</em> de la comunicación. Requieren corrección ortográfica, coherencia lógica y adecuación al contexto.</p>
+    </div>
+    <div class="card">
+      <div class="ic">🎙️</div>
+      <h4>Elementos Paralingüísticos</h4>
+      <p>Son las <strong>señales vocales no verbales</strong> que acompañan a las palabras. Hacen referencia a <em>cómo se dice algo</em>, no al contenido. Incluyen volumen, tono, velocidad, pausas, perturbaciones del habla.</p>
+    </div>
+  </div>
+
+  <hr class="dv">
+  <h3 class="ss">1.2 Los elementos paralingüísticos en detalle</h3>
+  <p>El dominio de los elementos paralingüísticos es lo que separa a un <em>buen orador</em> de uno <em>excelente</em>. Representan el 38% del impacto comunicativo. Veamos cada uno:</p>
+
+  <div class="para-row"><div class="para-ico">🔊</div><div><h4>Volumen</h4><p>La intensidad con que se emite la voz. <strong>Alto:</strong> puede transmitir dominio, seguridad o agresividad. <strong>Bajo:</strong> puede indicar timidez, tristeza o falta de convicción. Lo ideal es variar el volumen estratégicamente para enfatizar puntos clave.</p></div></div>
+
+  <div class="para-row"><div class="para-ico">🎵</div><div><h4>Entonación</h4><p>Los matices de subida y bajada de la voz. Con la entonación se distingue si una oración es afirmación, pregunta o exclamación. <strong>Ejemplo profesional:</strong> "El informe está listo" (afirmación tranquila) vs. "¿El informe está listo?" (pregunta que puede expresar duda o urgencia). La misma frase, otra entonación, otro mensaje.</p></div></div>
+
+  <div class="para-row"><div class="para-ico">💧</div><div><h4>Claridad (Dicción)</h4><p>La precisión con la que se articulan los sonidos. Una dicción deficiente genera ruido físico en el proceso comunicativo. En una presentación ante el directorio de una empresa auditada, la mala dicción puede hacer que se pierdan conclusiones clave.</p></div></div>
+
+  <div class="para-row"><div class="para-ico">〰️</div><div><h4>Fluidez verbal</h4><p>La capacidad de expresar con agilidad ideas de manera clara y entendible. Es diferente de velocidad: se puede hablar rápido sin fluidez (con muletillas) o despacio con fluidez perfecta. Zayas (2006) la considera una competencia comunicativa fundamental.</p></div></div>
+
+  <div class="para-row"><div class="para-ico">⏱️</div><div><h4>Velocidad del habla</h4><p>La velocidad normal es entre <strong>125 y 190 palabras por minuto</strong> (Knapp). La comprensión disminuye por encima de 275-300 ppm. <strong>Habla lenta:</strong> puede indicar tristeza, afecto o aburrimiento. <strong>Habla rápida:</strong> alegría, nerviosismo o urgencia.</p></div></div>
+
+  <div class="para-row"><div class="para-ico">⏸️</div><div><h4>Pausas y Silencios</h4><p>El tiempo que se tarda en retomar la palabra después de que el interlocutor termina. Las pausas bien colocadas enfatizan lo que viene o lo que acaba de decirse. El silencio activo comunica respeto, procesamiento y calma. Un auditor que sabe guardar silencio en una entrevista obtiene más información que uno que habla sin parar.</p></div></div>
+
+  <div class="para-row"><div class="para-ico">🎭</div><div><h4>Tono o Timbre</h4><p>La calidad vocal de la voz. Voces resonantes y graves son percibidas como más maduras y confiables; las nasales o agudas como más inmaduras. El cambio de tono ayuda a enfatizar o a mantener la atención. No se trata de cambiar la voz, sino de usarla con consciencia.</p></div></div>
+
+  <div class="para-row"><div class="para-ico">🔁</div><div><h4>Perturbaciones del habla</h4><p>Incluyen: repeticiones, tartamudeos, palabras sin sentido, omisiones, pronunciaciones erróneas y <strong>muletillas</strong> ("o sea", "eh", "este", "básicamente"). Las muletillas indican, según Knapp: nerviosismo, poco interés o inseguridad. En una presentación formal, más de 3 muletillas por minuto deterioran la credibilidad del orador.</p></div></div>
+
+  <div class="be">
+    <div class="eq">🇪🇨 Aplicación en auditoría ecuatoriana</div>
+    <p>Un auditor senior de Quito presentó ante la Contraloría General del Estado los hallazgos de una auditoría de gestión a una entidad pública. Habló rápido (nerviosismo), con volumen bajo (se le pedía repetir), usó muletillas ("o sea" repetidamente) y su tono fue monótono. Aunque los hallazgos eran sólidos, la delegada de Contraloría cuestionó la seriedad del informe. Los componentes paralingüísticos sabotearon el contenido técnico. <strong>Dominar el qué no basta: hay que dominar el cómo.</strong></p>
+  </div>
+
+  <div class="bk"><div class="eq">💡 Idea clave</div><p>Los elementos paralingüísticos no son accesorios: son el 38% del impacto de tu mensaje. Un contador que domina el contenido técnico pero descuida cómo lo dice, comunica solo el 7% de su potencial. El entrenamiento paralingüístico —practicar el tono, la velocidad y las pausas— es tan importante como estudiar las NIIF.</p></div>
+</div>
+
+<!-- ===== TEMA 2: COMUNICACIÓN NO VERBAL ===== -->
+<div id="t2" class="tc">
+  <h2 class="st">🤲 La Comunicación No Verbal</h2>
+  <p>Entre el <strong>60% y el 70%</strong> de la información que recibimos en una conversación cara a cara proviene del lenguaje no verbal (McGraw-Hill, s.f.). Esto significa que podemos estar recibiendo o enviando mensajes completamente distintos a los que creemos, simplemente por nuestra postura, mirada o expresión facial.</p>
+
+  <div class="bc">
+    <div class="eq">📖 Definición</div>
+    <p>Con <strong>comunicación no verbal</strong> nos referimos a todos aquellos signos y sistemas de signos no lingüísticos que comunican o se utilizan para comunicar: gestos, posturas, miradas, distancias físicas, vestimenta, expresiones faciales. Una parte es innata; la mayor parte se aprende por imitación de códigos socialmente establecidos.</p>
+  </div>
+
+  <div class="cita">
+    <p>Mantén tu mente en "lo que se dice" y tus ojos y oídos en "cómo se dice". Cuando hay incoherencia entre el lenguaje verbal y el no verbal, el receptor generalmente confía más en el segundo, porque suele ser inconsciente e involuntario.</p>
+    <span class="au">— Zayas Agüero, P. M. — <em>La Comunicación Interpersonal</em></span>
+  </div>
+
+  <h3 class="ss">2.1 ¿Por qué es tan poderosa la comunicación no verbal?</h3>
+  <p>El lenguaje no verbal opera fundamentalmente a nivel <strong>inconsciente e involuntario</strong>. Mientras podemos controlar cuidadosamente cada palabra que decimos, nuestro cuerpo "se escapa" permanentemente: el microgestos de incomodidad cuando alguien miente, la postura cerrada cuando nos sentimos amenazados, la mirada que se desvía cuando estamos inseguros. Por eso los auditores entrenados aprenden a leer el lenguaje no verbal de sus entrevistados.</p>
+
+  <h3 class="ss">2.2 Funciones del mensaje no verbal</h3>
+  <div class="g3">
+    <div class="card do"><div class="ic">✅</div><h4>Reforzar</h4><p>Acompaña y fortalece el mensaje verbal: decir "sí" asintiendo con la cabeza.</p></div>
+    <div class="card ve"><div class="ic">➕</div><h4>Complementar</h4><p>Añade matiz al mensaje verbal: la velocidad al hablar complementa la urgencia expresada en palabras.</p></div>
+    <div class="card"><div class="ic">🎯</div><h4>Acentuar</h4><p>Enfatiza parte del mensaje: golpear levemente la mesa para subrayar un punto clave.</p></div>
+    <div class="card mo"><div class="ic">❌</div><h4>Contradecir</h4><p>El receptor siempre cree el mensaje no verbal cuando contradice al verbal: "Estoy bien" dicho con voz temblorosa y ojos húmedos.</p></div>
+    <div class="card ro"><div class="ic">🔄</div><h4>Sustituir</h4><p>Reemplaza completamente las palabras: un encogimiento de hombros que dice "no sé".</p></div>
+    <div class="card"><div class="ic">🚦</div><h4>Regular</h4><p>Administra el flujo de la conversación: las señales no verbales indican cuándo ceder el turno de habla.</p></div>
+  </div>
+
+  <h3 class="ss">2.3 Los tres canales del lenguaje no verbal</h3>
+  <div class="tbl">
+    <table>
+      <thead><tr><th>Canal</th><th>¿Qué estudia?</th><th>Ejemplo profesional</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Kinésica</strong></td><td>Movimientos corporales: gestos, postura, expresión facial, mirada, sonrisa</td><td>El gerente cruza los brazos cuando el auditor presenta los hallazgos → señal de actitud defensiva</td></tr>
+        <tr><td><strong>Proxémica</strong></td><td>Los significados que surgen de la distancia entre personas</td><td>El contador que se sienta muy lejos del cliente durante una reunión puede generar frialdad percibida</td></tr>
+        <tr><td><strong>Paralingüística</strong></td><td>Las variaciones vocales no verbales: tono, timbre, ritmo, pausas, carraspeo</td><td>Una voz que tiembla al presentar resultados negativos transmite inseguridad aunque las palabras sean firmes</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="bk"><div class="eq">💡 Idea clave</div><p>La comunicación no verbal no es un lujo de los actores o los políticos: es el lenguaje que todos hablamos permanentemente sin darnos cuenta. Aprender a <strong>leerlo en los demás</strong> es una habilidad de auditoría; aprender a <strong>controlarlo en uno mismo</strong> es una habilidad de liderazgo. Ambas son competencias que se desarrollan con práctica consciente.</p></div>
+</div>
+
+<!-- ===== TEMA 3: KINÉSICA Y PROXÉMICA ===== -->
+<div id="t3" class="tc">
+  <h2 class="st">🧍 Kinésica, Proxémica y Lenguaje del Cuerpo</h2>
+  <p>Vamos ahora al detalle de los dos componentes más ricos de la comunicación no verbal. La kinésica estudia todo lo que el cuerpo dice en movimiento; la proxémica estudia lo que dice en el espacio. Ambas son lecturas permanentes que hacemos sin saberlo.</p>
+
+  <h3 class="ss">3.1 Kinésica — El movimiento que habla</h3>
+  <p>La kinésica estudia los <strong>movimientos corporales</strong>: gestos de manos, posturas, expresiones faciales, mímica y contacto visual. El movimiento realizado con las manos enriquece las expresiones y denota los estados vividos. Sin embargo, un uso excesivo puede demostrar nerviosismo o resultar molesto (Corrales, E., 2011).</p>
+
+  <h4 class="sh">La mirada — El componente más estudiado</h4>
+  <div class="tbl">
+    <table>
+      <thead><tr><th>Dirección de la mirada</th><th>Significado asociado (PNL)</th><th>¿Qué puede indicar en una entrevista de auditoría?</th></tr></thead>
+      <tbody>
+        <tr><td>Arriba y a la izquierda</td><td>Imagen construida (inventada)</td><td>Posible señal de que el entrevistado está fabricando información</td></tr>
+        <tr><td>Arriba y a la derecha</td><td>Recuerdo visual (real)</td><td>El entrevistado está tratando de recordar algo que realmente ocurrió</td></tr>
+        <tr><td>Horizontal izquierda</td><td>Sonido construido</td><td>Puede estar imaginando cómo sonaría algo que no ocurrió</td></tr>
+        <tr><td>Horizontal derecha</td><td>Recuerdo auditivo</td><td>Trata de recordar algo que escuchó realmente</td></tr>
+        <tr><td>Abajo y a la izquierda</td><td>Sensaciones/emociones</td><td>El tema le genera una emoción fuerte; puede estar recordando con carga afectiva</td></tr>
+        <tr><td>Abajo y a la derecha</td><td>Diálogo interno</td><td>Está procesando internamente; puede estar evaluando qué decir</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p style="font-size:.83rem;color:#777">⚠️ Importante: La PNL presenta estos patrones como tendencias generales, no como reglas absolutas. Deben interpretarse en contexto y como parte de un patrón de conducta, nunca aisladamente.</p>
+
+  <h4 class="sh">Posturas corporales — Lo que el cuerpo confiesa</h4>
+  <div class="g2">
+    <div class="card ve"><div class="ic">💪</div><h4>Expansión</h4><p>Pecho expandido, tronco erecto o inclinado hacia atrás, cabeza erguida, hombros elevados. Comunica <strong>orgullo, seguridad o dominio</strong>. El orador que asume esta postura al iniciar una presentación genera credibilidad inmediata.</p></div>
+    <div class="card ro"><div class="ic">🙇</div><h4>Contracción</h4><p>Cuerpo encorvado, hombros caídos, cabeza baja, ocupar poco espacio. Comunica <strong>inseguridad, sumisión o derrota</strong>. Un auditor con esta postura durante la presentación de hallazgos pierde autoridad técnica instantáneamente.</p></div>
+    <div class="card"><div class="ic">🤝</div><h4>Acercamiento</h4><p>Inclinarse hacia adelante, abrir el cuerpo hacia el interlocutor. Comunica <strong>interés, confianza y disponibilidad</strong>. Ideal para crear rapport en una entrevista.</p></div>
+    <div class="card mo"><div class="ic">🚫</div><h4>Retirada</h4><p>Inclinarse hacia atrás, cruzar brazos o piernas, girar el cuerpo. Comunica <strong>rechazo, desacuerdo o incomodidad</strong>. Cuando el cliente adopta esta postura, es señal de que algo en el mensaje generó resistencia.</p></div>
+  </div>
+
+  <hr class="dv">
+  <h3 class="ss">3.2 Proxémica — El espacio como mensaje</h3>
+  <p>La proxémica estudia los significados que surgen de la <strong>distancia entre personas</strong>. Edward Hall definió cuatro zonas de distancia, cada una con reglas sociales implícitas que varían según la cultura:</p>
+
+  <div class="prox-stack">
+    <div class="prox-item intima">
+      <div class="pd">0–45 cm</div>
+      <div><strong style="color:#c0392b">Zona Íntima</strong><p>Reservada para relaciones muy cercanas: pareja, familia, amigos íntimos. En el trabajo, invadirla sin permiso genera incomodidad inmediata. Un auditor que acorta demasiado esta distancia con el entrevistado puede generar desconfianza o sensación de intimidación.</p></div>
+    </div>
+    <div class="prox-item personal">
+      <div class="pd">45–120 cm</div>
+      <div><strong style="color:#e07b00">Zona Personal</strong><p>La distancia cómoda entre amigos y colegas en conversación fluida. Es la zona ideal para reuniones de trabajo entre personas que ya se conocen. El contador y su cliente en una reunión de revisión deberían operar en esta zona.</p></div>
+    </div>
+    <div class="prox-item social">
+      <div class="pd">120–360 cm</div>
+      <div><strong style="color:#1a7a3c">Zona Social</strong><p>Interacciones formales entre personas que no tienen relación cercana. El profesor en el aula, la atención en ventanilla del SRI, la primera reunión con un cliente nuevo. Es la zona de la cortesía profesional.</p></div>
+    </div>
+    <div class="prox-item publica">
+      <div class="pd">&gt; 360 cm</div>
+      <div><strong style="color:#0052A3">Zona Pública</strong><p>Para dirigirse a grupos grandes: conferencias, presentaciones, actos públicos. La distancia reduce la intimidad pero aumenta la visibilidad. Un auditor presentando resultados a todo el personal de una empresa opera en esta zona.</p></div>
+    </div>
+  </div>
+
+  <div class="be">
+    <div class="eq">🇪🇨 Caso ecuatoriano — El espacio importa</div>
+    <p>En Ecuador, las distancias sociales en contextos laborales tienden a ser menores que en culturas del norte de Europa. Un auditor extranjero que mantiene siempre distancia "europea" (más de 1,5 metros en conversación informal) puede ser percibido como frío y distante, lo que dificulta la comunicación con el cliente auditado. Adaptar la proxémica al contexto cultural es una competencia intercultural que el profesional ecuatoriano debe dominar al trabajar con empresas internacionales, y viceversa.</p>
+  </div>
+
+  <div class="bk"><div class="eq">💡 Idea clave</div><p>El cuerpo siempre habla, quieras o no. La diferencia entre un comunicador amateur y uno profesional no está en si usan el lenguaje no verbal —todos lo usan— sino en si lo hacen de forma consciente e intencional. El profesional de contabilidad y auditoría que domina su kinésica y respeta la proxémica proyecta autoridad, confianza y respeto sin pronunciar una sola palabra adicional.</p></div>
+</div>
+
+<!-- ===== TEMA 4: ESCUCHA ACTIVA ===== -->
+<div id="t4" class="tc">
+  <h2 class="st">👂 La Escucha Activa</h2>
+  <p>Covey nos preguntó en la Semana 4: "Pasamos años aprendiendo a leer y escribir, años aprendiendo a hablar. ¿Y a escuchar?" La escucha activa es la habilidad comunicativa más descuidada y, paradójicamente, la más poderosa. Esta semana le dedicamos la atención que merece.</p>
+
+  <div class="bc">
+    <div class="eq">📖 Definición</div>
+    <p>La <strong>escucha activa</strong> significa escuchar y entender la comunicación desde el punto de vista del otro. No se refiere solo a oír lo que la persona dice directamente, sino también los sentimientos, ideas y pensamientos subyacentes que quiere transmitir. Requiere empatía: ponerse en el lugar del otro.</p>
+  </div>
+
+  <div class="cita">
+    <p>La verdadera comunicación no comienza hablando, sino escuchando. Las personas tienen dos oídos y una sola boca, lo que indica que hay que escuchar más que hablar. Saber escuchar no es escuchar solamente datos, hechos y sucesos, sino estar atentos también a los gestos, la mímica, el tono: la situación comunicativa integradora.</p>
+    <span class="au">— Zayas Agüero, P. M. — <em>La Comunicación Interpersonal</em></span>
+  </div>
+
+  <h3 class="ss">4.1 Los 5 niveles de escucha (Covey)</h3>
+  <p>Covey identifica que cuando otra persona habla, podemos estar en uno de cinco niveles:</p>
+  <div class="comp-stack">
+    <div class="comp-item"><div class="comp-num" style="background:#c0392b">0</div><div><h4>Ignorar</h4><p>No escuchar en absoluto. Se puede dar físicamente presente pero mentalmente ausente.</p></div></div>
+    <div class="comp-item"><div class="comp-num" style="background:#e07b00">1</div><div><h4>Fingir</h4><p>"Sí, claro, ya." El receptor da señales de escucha sin procesar nada. Muy frecuente en reuniones largas.</p></div></div>
+    <div class="comp-item"><div class="comp-num" style="background:#e6b800">2</div><div><h4>Escucha Selectiva</h4><p>Se oyen solo las partes que interesan o que confirman lo que ya se piensa. Se filtran las partes incómodas.</p></div></div>
+    <div class="comp-item"><div class="comp-num" style="background:#1a7a3c">3</div><div><h4>Escucha Atenta</h4><p>Concentrar toda la energía en las palabras que se pronuncian. Mejor nivel que los anteriores, pero todavía incompleto.</p></div></div>
+    <div class="comp-item"><div class="comp-num">4</div><div><h4>🏆 Escucha Empática</h4><p>El nivel más alto. Escuchar con la <strong>intención de comprender</strong>: no solo las palabras sino los sentimientos e ideas subyacentes. "Entrar en el marco de referencia del otro y ver el mundo como lo ve esa persona." (Covey)</p></div></div>
+  </div>
+
+  <hr class="dv">
+  <h3 class="ss">4.2 Las 4 fases del proceso de saber escuchar</h3>
+  <div class="tbl">
+    <table>
+      <thead><tr><th>Fase</th><th>¿Qué ocurre?</th><th>Aplicación en auditoría</th></tr></thead>
+      <tbody>
+        <tr><td><strong>1. Percepción</strong></td><td>El receptor capta las palabras, números, frases e ideas completas emitidas por el emisor</td><td>El auditor registra mentalmente (y en notas) cada dato que el entrevistado menciona, sin interrumpir</td></tr>
+        <tr><td><strong>2. Interpretación</strong></td><td>El receptor trata de entender lo que el emisor le dice, relacionándolo con el contexto</td><td>El auditor conecta lo que escucha con la información financiera que ya revisó y detecta inconsistencias</td></tr>
+        <tr><td><strong>3. Evaluación</strong></td><td>El receptor realiza una valoración crítica de lo escuchado: ¿es coherente? ¿es completo? ¿es verdadero?</td><td>El auditor evalúa si la explicación del contador auditado es plausible o evasiva</td></tr>
+        <tr><td><strong>4. Respuesta</strong></td><td>El receptor responde a lo escuchado, completando el ciclo</td><td>El auditor formula preguntas de profundización basadas en lo que escuchó, no en un guion preestablecido</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 class="ss">4.3 Habilidades para desarrollar la escucha activa</h3>
+  <div class="g2">
+    <div class="card ve"><div class="ic">❤️</div><h4>Mostrar empatía</h4><p>Ponerse en el lugar del otro. Usar expresiones como "entiendo", "noto que…", "comprendo que esto es difícil". Es la destreza básica de la comunicación interpersonal.</p></div>
+    <div class="card"><div class="ic">🔁</div><h4>Parafrasear</h4><p>Verificar la comprensión repitiendo con las propias palabras lo que el emisor dijo: "Lo que pasaba era que…", "¿Quieres decir que…?". Evita malentendidos antes de que ocurran.</p></div>
+    <div class="card do"><div class="ic">⏰</div><h4>Sentido del tiempo</h4><p>Saber cuándo intervenir y cuándo guardar silencio. Dar tiempo para que las personas expresen sus ideas completas. El silencio activo es una herramienta poderosa.</p></div>
+    <div class="card mo"><div class="ic">📋</div><h4>Resumir</h4><p>Informar periódicamente al emisor del grado de comprensión alcanzado: "Si no te he entendido mal…", "Entonces lo que me dices es que…". Genera confianza y corrige errores a tiempo.</p></div>
+    <div class="card ro"><div class="ic">💬</div><h4>Palabras de refuerzo</h4><p>Verbalizaciones que animan al interlocutor a continuar: "Me parece interesante", "Entiendo", "Continúe por favor". Demuestran que se está escuchando activamente.</p></div>
+    <div class="card"><div class="ic">🎯</div><h4>Análisis integral</h4><p>Prestar atención no solo a las palabras sino también a los gestos, el tono, las pausas y las expresiones faciales. La escucha activa es una escucha de todo el mensaje.</p></div>
+  </div>
+
+  <h3 class="ss">4.4 Hábitos negativos que bloquean la escucha</h3>
+  <ul class="li">
+    <li>Ir con ideas preconcebidas y adaptar todo a los propios conocimientos o conveniencias</li>
+    <li>Pensar en la respuesta mientras el otro todavía habla (Covey lo llama "autobiografía proyectada")</li>
+    <li>Interrumpir antes de que el interlocutor termine su idea</li>
+    <li>Fijarse demasiado en la imagen del interlocutor (prejuzgar por apariencia)</li>
+    <li>Escuchar selectivamente: solo lo que interesa o confirma lo que ya se piensa</li>
+    <li>Permitir que las emociones propias bloqueen la recepción del mensaje</li>
+    <li>Mostrar actitud pasiva (sin feedback no verbal: sin asentir, sin contacto visual)</li>
+  </ul>
+
+  <div class="bk"><div class="eq">💡 Idea clave</div><p>Un auditor que domina la escucha activa obtiene más información en una entrevista de 30 minutos que uno que no la domina en 2 horas. La escucha activa no es pasividad: es la forma más intensa de participación en una conversación. <strong>Quien escucha bien, detecta lo que no se dice.</strong> Y en auditoría, lo que no se dice frecuentemente es lo más importante.</p></div>
+</div>
+
+<!-- ===== TEMA 5: COMPETENCIAS COMUNICATIVAS ===== -->
+<div id="t5" class="tc">
+  <h2 class="st">🏆 Competencias Comunicativas y Comunicación Eficaz</h2>
+  <p>Las competencias comunicativas son el conjunto de habilidades que permiten a una persona comunicarse con eficacia en distintos contextos. Zayas (2002) las define como <strong>síntesis integradoras de exigencias del cargo</strong>, en las que existe una estrecha interrelación: ninguna puede configurarse sin las demás como base.</p>
+
+  <h3 class="ss">5.1 Las tres competencias comunicativas esenciales</h3>
+  <div class="comp-stack">
+    <div class="comp-item"><div class="comp-num">A</div><div><h4>Saber Escuchar</h4><p>Ya estudiada en el tema anterior. Es la competencia más descuidada y más poderosa. Incluye escucha empática, parafraseo, silencio activo y análisis integral del mensaje verbal y no verbal. <span class="pill ve">Escucha activa</span><span class="pill">Empatía</span><span class="pill do">Pausa</span></p></div></div>
+    <div class="comp-item"><div class="comp-num">B</div><div><h4>Exponer ideas de forma coherente y convencer</h4><p>La capacidad de estructurar y presentar ideas con lógica, claridad y persuasión. Incluye fluidez verbal, argumentación, uso correcto de los elementos paralingüísticos y dominio del lenguaje no verbal. <span class="pill ve">Fluidez verbal</span><span class="pill">Argumentación</span><span class="pill do">Persuasión</span></p></div></div>
+    <div class="comp-item"><div class="comp-num">C</div><div><h4>Capacidad para trabajar en equipo</h4><p>La comunicación no solo ocurre entre dos personas: ocurre en equipos con objetivos comunes. Compartir información sin ocultarla, ver los objetivos como propios, estimular el análisis conjunto, potenciar las nuevas ideas. En un equipo de auditoría, la comunicación interna determina la calidad del trabajo externo. <span class="pill ve">Trabajo en equipo</span><span class="pill">Cohesión</span><span class="pill do">Información compartida</span></p></div></div>
+  </div>
+
+  <hr class="dv">
+  <h3 class="ss">5.2 La fluidez verbal — competencia nuclear</h3>
+  <p>La fluidez verbal es la capacidad de expresar con agilidad ideas de manera clara y entendible en el entorno lingüístico que le da sentido y significado a lo comunicado (McGraw-Hill, s.f.). No es hablar rápido: es hablar con <strong>precisión, coherencia y continuidad</strong>.</p>
+  <div class="g2">
+    <div class="card ve"><div class="ic">✅</div><h4>Fluidez verbal funcional</h4><p>Ideas bien encadenadas, vocabulario adecuado al contexto, ritmo coherente, sin muletillas excesivas, transiciones claras entre ideas. El oyente no tiene que "trabajar" para seguir el hilo.</p></div>
+    <div class="card ro"><div class="ic">❌</div><h4>Fluidez verbal deficiente</h4><p>Ideas fragmentadas, saltos temáticos, muletillas frecuentes ("o sea", "básicamente", "eh"), silencios incómodos, repeticiones innecesarias. El oyente pierde el hilo y desconecta.</p></div>
+  </div>
+
+  <h3 class="ss">5.3 La persuasión — comunicar para influir</h3>
+  <div class="bc">
+    <div class="eq">📖 Definición</div>
+    <p>La <strong>persuasión</strong> es el proceso mediante el cual el emisor busca producir cambios en las convicciones, actitudes o comportamientos del receptor, mediante argumentos lógicos, evidencia y apelaciones emocionales legítimas. No es manipulación: es influencia basada en razones válidas.</p>
+  </div>
+  <p>Los factores que favorecen la persuasión en el emisor son (Zayas, 2006):</p>
+  <div class="g3">
+    <div class="card"><div class="ic">🎯</div><h4>Credibilidad</h4><p>El receptor confía en el emisor porque tiene trayectoria, conocimiento demostrado y coherencia entre lo que dice y lo que hace.</p></div>
+    <div class="card do"><div class="ic">🔍</div><h4>Conocimiento del tema</h4><p>Dominar el contenido profundamente. En auditoría: presentar hallazgos con evidencia sólida, no con suposiciones.</p></div>
+    <div class="card ve"><div class="ic">🗣️</div><h4>Fluidez verbal</h4><p>Expresarse con seguridad y claridad. La inseguridad en la voz sabotea incluso el argumento más sólido.</p></div>
+    <div class="card mo"><div class="ic">🤝</div><h4>Empatía</h4><p>El mensaje persuasivo anticipa las opiniones, puntos de vista y necesidades del receptor. Se persuade mejor cuando el receptor se siente comprendido.</p></div>
+    <div class="card ro"><div class="ic">😊</div><h4>Control emocional</h4><p>Las personas emocionalmente equilibradas son más fácilmente persuadidas que las irritadas. Y el emisor que pierde el control emocional pierde la persuasión.</p></div>
+    <div class="card"><div class="ic">🔒</div><h4>Seguridad</h4><p>Proyectada en el tono de voz, la postura y la mirada. La seguridad no es arrogancia: es la expresión visible de que el emisor cree en lo que dice.</p></div>
+  </div>
+
+  <h3 class="ss">5.4 Comunicación interpersonal eficaz — la suma de todo</h3>
+  <div class="tbl">
+    <table>
+      <thead><tr><th>Atributo</th><th>¿Qué significa?</th><th>Sin este atributo</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Clara</strong></td><td>El mensaje es comprensible para quien lo recibe, no solo para quien lo emite</td><td>El receptor interpreta lo que puede, no lo que se quiso decir</td></tr>
+        <tr><td><strong>Concisa</strong></td><td>Sin palabras ni frases innecesarias</td><td>El mensaje se pierde en el ruido de lo irrelevante</td></tr>
+        <tr><td><strong>Precisa</strong></td><td>Sin detalles que no aporten al propósito del mensaje</td><td>El receptor se distrae y pierde el punto principal</td></tr>
+        <tr><td><strong>Correcta</strong></td><td>Adaptada al nivel y vocabulario del receptor</td><td>El lenguaje técnico con el no especialista genera exclusión</td></tr>
+        <tr><td><strong>Coherente</strong></td><td>Lógica interna: lo que se dice tiene sentido de principio a fin</td><td>El receptor pierde la confianza en el emisor</td></tr>
+        <tr><td><strong>Asertiva</strong></td><td>Educada, directa y respetuosa; ni agresiva ni sumisa</td><td>La comunicación agresiva genera conflicto; la sumisa genera ineficacia</td></tr>
+        <tr><td><strong>Empática</strong></td><td>Anticipa cómo recibirá el receptor el mensaje y adapta la forma</td><td>El mensaje llega sin resonancia emocional y no moviliza al receptor</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="be">
+    <div class="eq">🇪🇨 El auditor que comunicó eficazmente</div>
+    <p>Una auditora de Cuenca presentó los hallazgos de una auditoría ambiental a una empresa textil ante su directorio. Habló con <strong>claridad</strong> (sin jerga técnica innecesaria), fue <strong>concisa</strong> (usó una tabla de 5 líneas en lugar de 20 páginas de texto), fue <strong>precisa</strong> (cada dato tenía su fuente), fue <strong>correcta</strong> (adaptó el lenguaje al directorio no técnico), fue <strong>coherente</strong> (sus argumentos seguían una lógica causal clara), fue <strong>asertiva</strong> (firmó las observaciones sin suavizarlas, pero sin agresividad) y fue <strong>empática</strong> (reconoció primero los avances de la empresa antes de señalar las deficiencias). El directorio aprobó el plan de mejoras en la misma sesión. <strong>Eso es comunicación eficaz.</strong></p>
+  </div>
+
+  <div class="bk"><div class="eq">💡 Idea clave final de la Unidad 2</div><p>Las competencias comunicativas no son adornos: son la diferencia entre un profesional que sabe y uno que puede hacer que los demás actúen con ese saber. El conocimiento técnico sin comunicación eficaz es potencial desperdiciado. El contador y auditor que domina sus componentes verbales, no verbales, la escucha activa y las competencias comunicativas no es solo mejor profesional: es <strong>un profesional más influyente, más confiable y más completo</strong>.</p></div>
+</div>
+
+<!-- ===== EJERCICIO INTERACTIVO ===== -->
+<div id="ej" class="tc">
+  <h2 class="st">🎯 Ejercicio Interactivo</h2>
+  <div class="ei">
+    <h3>Identifica, clasifica y decide — Componentes y habilidades comunicativas</h3>
+    <p>Lee cada situación con atención. Responde TODAS las preguntas antes de verificar. El contenido de los temas anteriores te permite contestar todo correctamente. 📚</p>
+  </div>
+
+  <!-- E1 -->
+  <div class="ej-item">
+    <div class="preg">1. Un contador habla a velocidad muy baja, con voz monótona y sin variar el tono durante toda una presentación de 30 minutos. ¿A qué componente de la comunicación verbal pertenece esta deficiencia?</div>
+    <div class="opts">
+      <label class="opt"><input type="radio" name="e1" value="a">a) Elementos lingüísticos (vocabulario incorrecto)</label>
+      <label class="opt"><input type="radio" name="e1" value="b">b) Elementos paralingüísticos (velocidad y tono deficientes)</label>
+      <label class="opt"><input type="radio" name="e1" value="c">c) Kinésica (movimientos corporales)</label>
+      <label class="opt"><input type="radio" name="e1" value="d">d) Proxémica (distancia inadecuada)</label>
+    </div>
+    <div class="ej-fb" id="fb1"></div>
+  </div>
+
+  <!-- E2 -->
+  <div class="ej-item">
+    <div class="preg">2. Durante una entrevista de auditoría, el entrevistado dice "Todo está en orden" con voz temblorosa, evita la mirada y cruza los brazos. ¿Qué debe concluir el auditor según lo estudiado sobre comunicación no verbal?</div>
+    <div class="opts">
+      <label class="opt"><input type="radio" name="e2" value="a">a) El mensaje verbal es el más confiable; el entrevistado simplemente tiene frío</label>
+      <label class="opt"><input type="radio" name="e2" value="b">b) El mensaje no verbal contradice al verbal; el auditor debe profundizar en la investigación porque el cuerpo puede estar señalando incomodidad o evasión</label>
+      <label class="opt"><input type="radio" name="e2" value="c">c) La comunicación fue completamente eficaz porque el mensaje fue claro</label>
+      <label class="opt"><input type="radio" name="e2" value="d">d) El auditor debe ignorar los gestos y centrarse solo en los documentos</label>
+    </div>
+    <div class="ej-fb" id="fb2"></div>
+  </div>
+
+  <!-- E3 -->
+  <div class="ej-item">
+    <div class="preg">3. Un gerente financiero está reunido con su equipo de contadores. Se sienta con el respaldo de la silla hacia atrás, el pecho expandido y los brazos abiertos sobre la mesa. ¿Qué tipo de postura kinésica está adoptando y qué comunica?</div>
+    <div class="opts">
+      <label class="opt"><input type="radio" name="e3" value="a">a) Postura de contracción: inseguridad y sumisión ante el equipo</label>
+      <label class="opt"><input type="radio" name="e3" value="b">b) Postura de retirada: desacuerdo con lo que se discute</label>
+      <label class="opt"><input type="radio" name="e3" value="c">c) Postura de expansión: dominio, seguridad y control de la situación</label>
+      <label class="opt"><input type="radio" name="e3" value="d">d) Postura de acercamiento: interés y disposición a colaborar</label>
+    </div>
+    <div class="ej-fb" id="fb3"></div>
+  </div>
+
+  <!-- E4 -->
+  <div class="ej-item">
+    <div class="preg">4. Un cliente llega a la oficina de su contador para una primera reunión. El contador lo recibe detrás de un escritorio muy amplio, manteniendo una distancia de aproximadamente 2 metros entre ellos durante toda la reunión. Según la proxémica de Edward Hall, ¿en qué zona están operando?</div>
+    <div class="opts">
+      <label class="opt"><input type="radio" name="e4" value="a">a) Zona íntima: demasiado cercana para una primera reunión</label>
+      <label class="opt"><input type="radio" name="e4" value="b">b) Zona personal: ideal para la relación que tienen</label>
+      <label class="opt"><input type="radio" name="e4" value="c">c) Zona social: adecuada para interacciones formales entre personas que no tienen relación cercana</label>
+      <label class="opt"><input type="radio" name="e4" value="d">d) Zona pública: para grupos grandes, no para reuniones individuales</label>
+    </div>
+    <div class="ej-fb" id="fb4"></div>
+  </div>
+
+  <!-- E5 -->
+  <div class="ej-item">
+    <div class="preg">5. Mientras el gerente de contabilidad explica un proceso, el auditor asiente con la cabeza, mantiene contacto visual, dice "entiendo" y "continúe" ocasionalmente, y cuando el gerente termina, el auditor dice: "Si te entendí bien, lo que me estás diciendo es que el proceso de cierre se hace en dos fases, ¿correcto?" ¿Qué habilidades de escucha activa está aplicando?</div>
+    <div class="opts">
+      <label class="opt"><input type="radio" name="e5" value="a">a) Escucha selectiva y evaluación anticipada</label>
+      <label class="opt"><input type="radio" name="e5" value="b">b) Palabras de refuerzo, análisis integral del mensaje y parafraseo</label>
+      <label class="opt"><input type="radio" name="e5" value="c">c) Persuasión y fluidez verbal exclusivamente</label>
+      <label class="opt"><input type="radio" name="e5" value="d">d) Fingimiento de escucha y evaluación negativa</label>
+    </div>
+    <div class="ej-fb" id="fb5"></div>
+  </div>
+
+  <!-- E6 -->
+  <div class="ej-item">
+    <div class="preg">6. La capacidad comunicativa que permite a una persona exponer ideas con lógica, claridad y argumentación sólida para influir en las decisiones del receptor se denomina:</div>
+    <div class="opts">
+      <label class="opt"><input type="radio" name="e6" value="a">a) Proxémica interpersonal</label>
+      <label class="opt"><input type="radio" name="e6" value="b">b) Escucha empática</label>
+      <label class="opt"><input type="radio" name="e6" value="c">c) Capacidad de exponer ideas de forma coherente y convencer (persuasión)</label>
+      <label class="opt"><input type="radio" name="e6" value="d">d) Perturbaciones del habla</label>
+    </div>
+    <div class="ej-fb" id="fb6"></div>
+  </div>
+
+  <!-- E7 -->
+  <div class="ej-item">
+    <div class="preg">7. Un equipo de auditoría trabaja en un proyecto de tres meses. Algunos miembros ocultan información clave para parecer más indispensables. ¿Qué competencia comunicativa está fallando?</div>
+    <div class="opts">
+      <label class="opt"><input type="radio" name="e7" value="a">a) Fluidez verbal: no saben expresarse claramente</label>
+      <label class="opt"><input type="radio" name="e7" value="b">b) Capacidad para trabajar en equipo: en un verdadero equipo no puede haber información escondida o desviada</label>
+      <label class="opt"><input type="radio" name="e7" value="c">c) Escucha activa: no están escuchando al líder del equipo</label>
+      <label class="opt"><input type="radio" name="e7" value="d">d) Proxémica: la distribución espacial del equipo es inadecuada</label>
+    </div>
+    <div class="ej-fb" id="fb7"></div>
+  </div>
+
+  <!-- E8 -->
+  <div class="ej-item">
+    <div class="preg">8. Una contadora presenta un informe ante el directorio. Al describir un hallazgo importante, baja la voz, mira hacia el piso y dice con rapidez "y también encontramos algunas irregularidades menores". ¿Qué componentes paralingüísticos y no verbales están enviando un mensaje que contradice la importancia del hallazgo?</div>
+    <div class="opts">
+      <label class="opt"><input type="radio" name="e8" value="a">a) El volumen bajo, la mirada hacia abajo y la velocidad alta: señales de inseguridad que restan importancia al hallazgo</label>
+      <label class="opt"><input type="radio" name="e8" value="b">b) El vocabulario técnico excesivo y la distancia con el directorio</label>
+      <label class="opt"><input type="radio" name="e8" value="c">c) El pausado al hablar y el contacto visual excesivo</label>
+      <label class="opt"><input type="radio" name="e8" value="d">d) La postura de expansión que invalida el mensaje verbal</label>
+    </div>
+    <div class="ej-fb" id="fb8"></div>
+  </div>
+
+  <div style="margin-top:20px">
+    <button class="btn-v" onclick="verEj()">✅ Verificar Respuestas</button>
+    <button class="btn-r" onclick="reinEj()" id="btn-re" style="display:none">🔄 Reiniciar</button>
+  </div>
+  <div class="rp" id="rp-ej">
+    <div class="rs" id="sc-ej"></div>
+    <div class="rpt" id="pct-ej"></div>
+    <div class="bo"><div class="bi" id="bar-ej" style="width:0%"></div></div>
+    <div class="rmsg" id="msg-ej"></div>
+  </div>
+</div>
+
+<!-- ===== CUESTIONARIO ===== -->
+<div id="cu" class="tc">
+  <h2 class="st">📝 Cuestionario — Semana 5</h2>
+  <p>10 preguntas: 7 teóricas + 3 de análisis. Responde TODAS antes de verificar. 🎓</p>
+
+  <div class="qi"><span class="bt te">Teórica</span>
+    <div class="en">1. ¿Cuál de las siguientes opciones representa correctamente el impacto de los componentes comunicativos según la regla 7-38-55?</div>
+    <div class="opts">
+      <label class="opt"><input type="radio" name="q1" value="a">a) Palabras 7%, tono de voz 38%, lenguaje corporal 55%</label>
+      <label class="opt"><input type="radio" name="q1" value="b">b) Palabras 55%, tono 38%, cuerpo 7%</label>
+      <label class="opt"><input type="radio" name="q1" value="c">c) Palabras 38%, cuerpo 38%, tono 24%</label>
+      <label class="opt"><input type="radio" name="q1" value="d">d) Palabras 50%, tono 30%, cuerpo 20%</label>
+    </div><div class="ej-fb" id="fq1"></div>
+  </div>
+
+  <div class="qi"><span class="bt te">Teórica</span>
+    <div class="en">2. Los elementos paralingüísticos de la comunicación verbal se refieren a:</div>
+    <div class="opts">
+      <label class="opt"><input type="radio" name="q2" value="a">a) Las señales vocales no verbales que acompañan las palabras y hacen referencia al "cómo se dice algo"</label>
+      <label class="opt"><input type="radio" name="q2" value="b">b) El vocabulario técnico utilizado en contextos profesionales</label>
+      <label class="opt"><input type="radio" name="q2" value="c">c) Los gestos y movimientos corporales que acompañan el discurso</label>
+      <label class="opt"><input type="radio" name="q2" value="d">d) Las reglas gramaticales que estructuran los mensajes orales</label>
+    </div><div class="ej-fb" id="fq2"></div>
+  </div>
+
+  <div class="qi"><span class="bt te">Teórica</span>
+    <div class="en">3. Según la proxémica de Edward Hall, ¿cuál es la distancia de la zona social y cuándo se usa?</div>
+    <div class="opts">
+      <label class="opt"><input type="radio" name="q3" value="a">a) Entre 120 y 360 cm; para interacciones formales entre personas sin relación cercana, como la primera reunión con un cliente</label>
+      <label class="opt"><input type="radio" name="q3" value="b">b) Entre 0 y 45 cm; para relaciones muy cercanas como la pareja o familia</label>
+      <label class="opt"><input type="radio" name="q3" value="c">c) Entre 45 y 120 cm; para conversaciones entre amigos o colegas que ya se conocen</label>
+      <label class="opt"><input type="radio" name="q3" value="d">d) Más de 360 cm; para cualquier reunión de trabajo formal</label>
+    </div><div class="ej-fb" id="fq3"></div>
+  </div>
+
+  <div class="qi"><span class="bt te">Teórica</span>
+    <div class="en">4. ¿Cuál de los siguientes NO es un componente de la escucha activa según los textos estudiados?</div>
+    <div class="opts">
+      <label class="opt"><input type="radio" name="q4" value="a">a) Mostrar empatía con expresiones como "entiendo" o "noto que..."</label>
+      <label class="opt"><input type="radio" name="q4" value="b">b) Parafrasear: verificar con propias palabras lo que el emisor dijo</label>
+      <label class="opt"><input type="radio" name="q4" value="c">c) Pensar en la respuesta mientras el otro todavía habla para ganar tiempo</label>
+      <label class="opt"><input type="radio" name="q4" value="d">d) Resumir periódicamente el grado de comprensión alcanzado</label>
+    </div><div class="ej-fb" id="fq4"></div>
+  </div>
+
+  <div class="qi"><span class="bt te">Teórica</span>
+    <div class="en">5. Zayas (2002) identifica tres competencias comunicativas esenciales. ¿Cuál de las siguientes las recoge correctamente?</div>
+    <div class="opts">
+      <label class="opt"><input type="radio" name="q5" value="a">a) Saber escuchar; exponer ideas de forma coherente y convencer; capacidad para trabajar en equipo</label>
+      <label class="opt"><input type="radio" name="q5" value="b">b) Hablar rápido; escribir sin errores; hacer buenas presentaciones visuales</label>
+      <label class="opt"><input type="radio" name="q5" value="c">c) Kinésica, proxémica y paralingüística</label>
+      <label class="opt"><input type="radio" name="q5" value="d">d) Leer, escribir, hablar y escuchar</label>
+    </div><div class="ej-fb" id="fq5"></div>
+  </div>
+
+  <div class="qi"><span class="bt te">Teórica</span>
+    <div class="en">6. ¿Cuál es la diferencia entre la kinésica y la proxémica como componentes de la comunicación no verbal?</div>
+    <div class="opts">
+      <label class="opt"><input type="radio" name="q6" value="a">a) La kinésica estudia los movimientos corporales; la proxémica estudia los significados que surgen de la distancia entre personas</label>
+      <label class="opt"><input type="radio" name="q6" value="b">b) La kinésica es verbal; la proxémica es paraverbal</label>
+      <label class="opt"><input type="radio" name="q6" value="c">c) La kinésica estudia la voz; la proxémica estudia los gestos de las manos</label>
+      <label class="opt"><input type="radio" name="q6" value="d">d) Ambas estudian lo mismo: la distancia física entre comunicadores</label>
+    </div><div class="ej-fb" id="fq6"></div>
+  </div>
+
+  <div class="qi"><span class="bt te">Teórica</span>
+    <div class="en">7. ¿Qué ocurre cuando hay incoherencia entre el mensaje verbal y el no verbal de un emisor, según Zayas?</div>
+    <div class="opts">
+      <label class="opt"><input type="radio" name="q7" value="a">a) El receptor siempre creerá el mensaje verbal porque es más explícito</label>
+      <label class="opt"><input type="radio" name="q7" value="b">b) El receptor generalmente confiará más en el mensaje no verbal, porque suele ser inconsciente e involuntario</label>
+      <label class="opt"><input type="radio" name="q7" value="c">c) El receptor ignorará ambos mensajes por la confusión generada</label>
+      <label class="opt"><input type="radio" name="q7" value="d">d) La incoherencia mejora la comunicación al dar más opciones de interpretación</label>
+    </div><div class="ej-fb" id="fq7"></div>
+  </div>
+
+  <div class="qi"><span class="bt an">Análisis</span>
+    <div class="en">8. En una reunión del comité directivo, el contador presenta los estados financieros del trimestre. Habla mirando solo sus papeles, con voz baja, dice "básicamente... o sea... bueno, los números son... más o menos favorables" y termina su presentación sin establecer contacto visual con nadie. ¿Cuántos componentes comunicativos están fallando y cuáles son?</div>
+    <div class="opts">
+      <label class="opt"><input type="radio" name="q8" value="a">a) Al menos cuatro: mirada (kinésica), volumen (paralingüístico), fluidez verbal (muletillas) y credibilidad/persuasión afectadas por todos los anteriores</label>
+      <label class="opt"><input type="radio" name="q8" value="b">b) Solo uno: el contador no conoce el contenido del informe</label>
+      <label class="opt"><input type="radio" name="q8" value="c">c) Solo falla la proxémica: debería estar más cerca del directorio</label>
+      <label class="opt"><input type="radio" name="q8" value="d">d) Ninguno: la presentación fue adecuada porque los datos son correctos</label>
+    </div><div class="ej-fb" id="fq8"></div>
+  </div>
+
+  <div class="qi"><span class="bt an">Análisis</span>
+    <div class="en">9. Un auditor senior en una entrevista de campo hace las preguntas de su guión exactamente en el orden planificado, sin detenerse en ninguna respuesta interesante, sin variar el ritmo y sin permitir que el entrevistado amplíe ningún punto. Cuando el entrevistado menciona de pasada "aunque claro, el año pasado tuvimos ese problema con el proveedor X...", el auditor pasa inmediatamente a la siguiente pregunta. ¿Qué habilidad comunicativa está ausente?</div>
+    <div class="opts">
+      <label class="opt"><input type="radio" name="q9" value="a">a) Escucha activa y empática: el auditor está en nivel 2 (selectiva) o nivel 1 (fingida), perdiendo información valiosa no solicitada que podría ser relevante para los hallazgos</label>
+      <label class="opt"><input type="radio" name="q9" value="b">b) Proxémica: debería sentarse más cerca del entrevistado</label>
+      <label class="opt"><input type="radio" name="q9" value="c">c) Fluidez verbal: el auditor habla con demasiadas muletillas</label>
+      <label class="opt"><input type="radio" name="q9" value="d">d) Paralingüística: el tono de voz del auditor es demasiado formal</label>
+    </div><div class="ej-fb" id="fq9"></div>
+  </div>
+
+  <div class="qi"><span class="bt an">Análisis</span>
+    <div class="en">10. Una firma de auditoría tiene dos socios: el primero domina técnicamente las NIIF pero tiene una comunicación deficiente (voz monótona, no escucha, comunicación no verbal negativa, lenguaje oscuro). El segundo es técnicamente sólido Y domina las competencias comunicativas estudiadas esta semana. ¿Cuál de las dos afirmaciones sobre el impacto de esta diferencia es correcta?</div>
+    <div class="opts">
+      <label class="opt"><input type="radio" name="q10" value="a">a) El segundo socio probablemente genera mayor confianza en los clientes, resuelve conflictos con mayor eficacia, persuade mejor al directorio y obtiene más y mejor información en entrevistas, aunque ambos tengan el mismo nivel técnico</label>
+      <label class="opt"><input type="radio" name="q10" value="b">b) En auditoría solo importa el dominio técnico; la comunicación es irrelevante para los resultados</label>
+      <label class="opt"><input type="radio" name="q10" value="c">c) El primer socio es mejor porque su frialdad comunicativa lo hace más objetivo</label>
+      <label class="opt"><input type="radio" name="q10" value="d">d) Ambos socios tendrán exactamente los mismos resultados profesionales</label>
+    </div><div class="ej-fb" id="fq10"></div>
+  </div>
+
+  <div style="margin-top:20px">
+    <button class="btn-v" onclick="verCu()">✅ Verificar Cuestionario</button>
+    <button class="btn-r" onclick="reinCu()" id="btn-rc" style="display:none">🔄 Reiniciar</button>
+  </div>
+  <div class="rp" id="rp-cu">
+    <div class="rs" id="sc-cu"></div>
+    <div class="rpt" id="pct-cu"></div>
+    <div class="bo"><div class="bi" id="bar-cu" style="width:0%"></div></div>
+    <div class="rmsg" id="msg-cu"></div>
+  </div>
+</div>
+
+<!-- ===== ACTIVIDAD CON IA ===== -->
+<div id="ia" class="tc">
+  <h2 class="st">🤖 Actividad con Inteligencia Artificial</h2>
+  <div class="bc">
+    <div class="eq">📋 Descripción</div>
+    <p><strong>Actividad:</strong> "El espejo que no miente" — Diagnóstico comunicativo propio con ayuda de IA.<br>
+    <strong>Herramienta recomendada:</strong> <a href="https://claude.ai" target="_blank" style="color:var(--azm);font-weight:700">Claude en claude.ai</a> (Anthropic) · También ChatGPT o Gemini gratuitos.<br>
+    <strong>Tiempo estimado:</strong> 50–70 minutos.</p>
+  </div>
+
+  <div class="ia-s"><div class="ia-n">1</div><div>
+    <h4>Propósito</h4>
+    <p>Esta actividad no es teórica: es <strong>autodiagnóstico aplicado</strong>. Vas a usar la IA como un coach de comunicación que analiza, con base en lo que tú le describes, tus fortalezas y debilidades comunicativas reales. Luego cuestionarás su análisis con tu propio criterio.</p>
+  </div></div>
+
+  <div class="ia-s"><div class="ia-n">2</div><div>
+    <h4>Prompt exacto — Cópialo completo</h4>
+  </div></div>
+
+  <div class="pb">
+    <span class="pl">📋 PROMPT PARA CLAUDE / CHATGPT / GEMINI</span>Actúa como coach especialista en comunicación profesional para 
+estudiantes universitarios de Contabilidad y Auditoría.
+
+Voy a describirte cómo me comunico habitualmente en situaciones 
+importantes (exposiciones, reuniones, conversaciones difíciles). 
+Necesito que, basándote en los siguientes componentes comunicativos, 
+me hagas un DIAGNÓSTICO HONESTO de mis fortalezas y debilidades:
+
+COMPONENTES A EVALUAR:
+1. Elementos paralingüísticos (volumen, tono, velocidad, pausas, fluidez)
+2. Comunicación no verbal (mirada, postura, gestos)
+3. Escucha activa (nivel según Covey: ignoro / finjo / selectiva / atenta / empática)
+4. Competencias comunicativas (saber escuchar, exponer con coherencia, trabajo en equipo)
+5. Comunicación eficaz (clara, concisa, precisa, correcta, coherente, asertiva, empática)
+
+MI DESCRIPCIÓN DE CÓMO ME COMUNICO:
+[AQUÍ ESCRIBE HONESTAMENTE cómo te comportas cuando tienes que 
+hablar en público, en reuniones, o en conversaciones difíciles. 
+Por ejemplo: ¿tiembla la voz? ¿evitas el contacto visual? 
+¿hablas rápido por nerviosismo? ¿escuchas o piensas en tu respuesta 
+mientras el otro habla? ¿te cuesta decir "no"? Sé específico/a.]
+
+Con base en mi descripción:
+A) Identifica mis 3 principales FORTALEZAS comunicativas
+B) Identifica mis 3 principales ÁREAS DE MEJORA con su causa raíz
+C) Para cada área de mejora, propón UNA acción concreta y practicable 
+   que pueda implementar esta semana
+D) Dame una calificación honesta del 1 al 10 de mi perfil comunicativo 
+   actual y explica qué necesito para llegar a 10</div>
+
+  <div class="ia-s"><div class="ia-n">3</div><div>
+    <h4>¿Qué hacer con la respuesta?</h4>
+    <ul class="li">
+      <li><strong>Llena primero:</strong> Antes de usar el prompt, completa la sección "[MI DESCRIPCIÓN]" con honestidad real sobre cómo te comunicas. Sin honestidad, el ejercicio no sirve.</li>
+      <li><strong>Evalúa:</strong> ¿El diagnóstico de la IA coincide con lo que tú ya sabías de ti mismo/a? ¿Hay algo que te sorprendió?</li>
+      <li><strong>Discrepa:</strong> Identifica al menos UN aspecto donde no estés de acuerdo con el análisis de la IA y argumenta por qué.</li>
+      <li><strong>Compromete:</strong> De las 3 acciones concretas que propuso la IA, elige UNA y escribe cómo vas a aplicarla específicamente esta semana (dónde, cuándo, con quién).</li>
+    </ul>
+  </div></div>
+
+  <div class="ia-s"><div class="ia-n">4</div><div>
+    <h4>Criterio de evaluación</h4>
+    <p>✅ <strong>Pensamiento crítico:</strong> El estudiante se describe con honestidad, cuestiona al menos un punto del diagnóstico con argumento propio, y elabora un plan de acción específico y realista para la semana.<br>
+    ❌ <strong>Copia simple:</strong> Copiar el prompt sin completar la descripción personal, o pegar la respuesta de la IA sin ningún análisis ni compromiso propio.</p>
+  </div></div>
+</div>
+
+<!-- ===== REFLEXIÓN ===== -->
+<div id="re" class="tc">
+  <h2 class="st">🪞 Reflexión Personal — Semana 5</h2>
+  <p>Esta sección conecta los componentes de la comunicación con tu experiencia diaria. No hay respuestas correctas. Hay respuestas honestas.</p>
+
+  <div class="ref-c">
+    <div class="rn">🎙️ Reflexión 1 — Tu voz como instrumento</div>
+    <p>¿Alguna vez has escuchado tu propia voz grabada y te ha sorprendido (o incomodado) cómo suenas? ¿Crees que hablas demasiado rápido, demasiado bajo, con demasiadas muletillas? Los elementos paralingüísticos que estudiamos esta semana no son defectos de fábrica: son hábitos que se pueden cambiar con práctica consciente. ¿Cuál es el hábito paralingüístico que más te gustaría mejorar? ¿Por qué lo has tolerado hasta ahora?</p>
+  </div>
+
+  <div class="ref-c">
+    <div class="rn">🤲 Reflexión 2 — Lo que tu cuerpo dice sin permiso</div>
+    <p>Piensa en la última vez que estabas incómodo/a en una situación social o profesional. ¿Cómo reaccionó tu cuerpo? ¿Cruzaste los brazos? ¿Desviaste la mirada? ¿Ocupaste menos espacio? ¿Qué mensaje crees que enviaste a los demás con esas señales, aunque tus palabras dijeran otra cosa? ¿Cuándo fue la última vez que conscientemente usaste tu postura o tu mirada para comunicar confianza, incluso cuando no la sentías completamente?</p>
+  </div>
+
+  <div class="ref-c">
+    <div class="rn">👂 Reflexión 3 — ¿En qué nivel de escucha vives?</div>
+    <p>Covey describe 5 niveles de escucha: ignorar, fingir, selectiva, atenta y empática. Sé completamente honesto/a: ¿en qué nivel estás la mayor parte del tiempo cuando alguien te habla —en casa, en clase, con tus amigos? ¿Hay personas específicas a quienes realmente escuchas en nivel 4 (empático) y otras a quienes casi ignoras? ¿Qué determina la diferencia? ¿Tiene que ver con la persona o con cómo te sientes tú en ese momento?</p>
+  </div>
+
+  <div class="ref-c">
+    <div class="rn">🏆 Reflexión 4 — ¿Sabes convencer con respeto?</div>
+    <p>La asertividad es comunicar lo que necesitas, sin agredir y sin someterte. ¿Cuál es tu estilo predominante cuando tienes que decir algo difícil? ¿Tiendes a ser agresivo/a (dices lo que piensas aunque hiera), pasivo/a (te callas para evitar conflicto) o asertivo/a (dices la verdad con respeto)? ¿Hay contextos donde cambias de estilo según con quién estás? ¿Qué dice eso de cómo te relacionas con tu propia autoestima?</p>
+  </div>
+
+  <div class="ref-c">
+    <div class="rn">🌍 Reflexión 5 — El comunicador que quieres ser</div>
+    <p>Al cierre de la Unidad 1 y el inicio de la Unidad 2, ¿cuál es la imagen del comunicador/a que quieres ser en 5 años como contador o auditor? No en términos técnicos, sino en términos comunicativos: ¿cómo quieres que te perciban cuando presentas un informe? ¿Qué quieres que digan de ti cuando sales de una reunión? ¿Qué tendría que cambiar en ti —empezando esta semana— para acercarte a esa imagen?</p>
+  </div>
+
+  <div class="ref-nota">💜 <strong>Nota:</strong> Las competencias comunicativas que estudiaste esta semana no se adquieren en una clase: se construyen en cada conversación, cada presentación, cada vez que decides escuchar de verdad en lugar de esperar tu turno para hablar. La comunicación eficaz es una práctica diaria, no un examen que se aprueba una vez.</div>
+</div>
+
+<!-- ===== BIBLIOGRAFÍA ===== -->
+<div id="bi" class="tc">
+  <h2 class="st">📚 Bibliografía — Semana 5</h2>
+  <p>Referencias verificadas utilizadas como base para el contenido de esta semana.</p>
+
+  <div class="bib"><div class="bib-i">📗</div><p>Zayas Agüero, P. M. (2006). <em>La comunicación interpersonal</em>. [Material académico]. Cuba. Disponible en repositorios académicos latinoamericanos.</p></div>
+  <div class="bib"><div class="bib-i">📘</div><p>McGraw-Hill España. (s.f.). <em>La importancia de la comunicación en las relaciones sociales</em> [Material educativo universitario]. McGraw-Hill. ISBN: 844818453X.</p></div>
+  <div class="bib"><div class="bib-i">📙</div><p>Corrales Díaz, E. (2011). El lenguaje no verbal: un proceso cognitivo superior indispensable para el ser humano. <em>Revista Comunicación</em>, 20(1), 46–51. Instituto Tecnológico de Costa Rica.</p></div>
+  <div class="bib"><div class="bib-i">📕</div><p>Covey, S. R. (1989). <em>The 7 Habits of Highly Effective People</em>. Simon & Schuster. [Ed. española: <em>Los 7 Hábitos de la Gente Altamente Efectiva</em>. Paidós]</p></div>
+  <div class="bib"><div class="bib-i">📗</div><p>Goleman, D. (1995). <em>Inteligencia emocional</em>. Kairós. [Título original: <em>Emotional Intelligence</em>. Bantam Books]</p></div>
+  <div class="bib"><div class="bib-i">📘</div><p>Knapp, M. L. (1980). <em>La comunicación no verbal: el cuerpo y el entorno</em>. Paidós. Barcelona. [Título original: <em>Essentials of Nonverbal Communication</em>. Holt, Rinehart and Winston]</p></div>
+  <div class="bib"><div class="bib-i">📄</div><p>O'Connor, J., &amp; Seymour, J. (2007). <em>Introducción a la Programación Neurolingüística</em>. Urano. Barcelona.</p></div>
+  <div class="bib"><div class="bib-i">📙</div><p>Fernández Collado, C. (2009). <em>La comunicación humana en el mundo contemporáneo</em> (3.ª ed.). McGraw-Hill. México D.F.</p></div>
+
+  <div class="bib-n">⚠️ <strong>Nota académica:</strong> Se recomienda verificar cada referencia en <strong>Google Scholar</strong> (<a href="https://scholar.google.com" target="_blank" style="color:#6b4200">scholar.google.com</a>) o en el repositorio institucional de la Universidad de Guayaquil antes de citar en trabajos académicos.</div>
+</div>
+
+<!-- JAVASCRIPT -->
+<script>
+function ST(id,btn){
+  document.querySelectorAll('.tc').forEach(t=>t.classList.remove('ac'));
+  document.querySelectorAll('.tb').forEach(b=>b.classList.remove('ac'));
+  document.getElementById(id).classList.add('ac');
+  btn.classList.add('ac');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+const ejD={
+  e1:{c:'b',exp:'✅ Correcto. La velocidad y el tono de la voz son elementos paralingüísticos: señales vocales no verbales que hacen referencia al "cómo se dice" y no al contenido. Un tono monótono y velocidad baja son deficiencias paralingüísticas que afectan el 38% del impacto del mensaje.'},
+  e2:{c:'b',exp:'✅ Correcto. Cuando hay incoherencia entre el mensaje verbal y el no verbal, el receptor generalmente confía más en el no verbal, porque es inconsciente e involuntario. La combinación de voz temblorosa, evasión de mirada y brazos cruzados son señales kinésicas y paralingüísticas que contradice el "todo está en orden".'},
+  e3:{c:'c',exp:'✅ Correcto. La postura descrita (pecho expandido, tronco erecto o inclinado hacia atrás, cabeza erguida, hombros elevados) corresponde a la postura de expansión, que comunica dominio, seguridad y control de la situación.'},
+  e4:{c:'c',exp:'✅ Correcto. Según Edward Hall, la zona social va de 120 a 360 cm. Es la distancia adecuada para interacciones formales entre personas sin relación previa cercana, como una primera reunión con un cliente. 2 metros cae dentro de esta zona.'},
+  e5:{c:'b',exp:'✅ Correcto. El auditor aplica varias habilidades de escucha activa simultáneamente: palabras de refuerzo ("entiendo", "continúe"), análisis integral del mensaje (prestando atención) y parafraseo ("si te entendí bien..."). Esta combinación representa el nivel más alto de escucha.'},
+  e6:{c:'c',exp:'✅ Correcto. La capacidad de exponer ideas de forma coherente y convencer (persuasión) es la segunda competencia comunicativa esencial según Zayas (2002). Incluye fluidez verbal, argumentación lógica y uso de evidencia para influir legítimamente en el receptor.'},
+  e7:{c:'b',exp:'✅ Correcto. Zayas (2006) establece que "en un verdadero equipo no puede haber información desviada o escondida, todos deben compartirla e intercambiarla." La capacidad para trabajar en equipo es la tercera competencia comunicativa esencial, y su ausencia aquí es precisamente la información ocultada.'},
+  e8:{c:'a',exp:'✅ Correcto. Los tres componentes comunicativos que están fallando simultáneamente son: el volumen bajo (paralingüístico: el hallazgo no recibe la relevancia que merece), la mirada hacia el piso (kinésica: proyecta inseguridad), y la velocidad alta al mencionar algo importante (paralingüístico: minimiza el impacto). Juntos, generan una comunicación no verbal que contradice la seriedad del hallazgo.'}
+};
+
+const cuD={
+  q1:{c:'a',exp:'La regla 7-38-55 establece: palabras 7%, tono de voz 38%, lenguaje corporal 55%. Esto significa que el 93% del impacto comunicativo proviene de elementos no verbales y paraverbales, lo cual tiene enorme implicación para cualquier presentación profesional.'},
+  q2:{c:'a',exp:'Los elementos paralingüísticos son señales vocales no verbales que acompañan a las palabras y hacen referencia al "cómo se dice algo", no al contenido mismo. Incluyen volumen, entonación, claridad, velocidad, pausas, tono/timbre y perturbaciones del habla.'},
+  q3:{c:'a',exp:'La zona social (120–360 cm) es para interacciones formales entre personas sin relación cercana previa. La zona íntima (0-45 cm) es para relaciones muy cercanas; la personal (45-120 cm) para amigos y colegas que ya se conocen; la pública (>360 cm) para grupos grandes.'},
+  q4:{c:'c',exp:'Pensar en la respuesta mientras el otro todavía habla es precisamente uno de los hábitos NEGATIVOS que bloquean la escucha activa según Zayas (2006). Covey lo llama "autobiografía proyectada": proyectar la propia experiencia e interpretación mientras el otro habla.'},
+  q5:{c:'a',exp:'Zayas (2002) identifica exactamente tres competencias comunicativas esenciales: saber escuchar, exponer ideas de forma coherente y convencer, y capacidad para trabajar en equipo. Estas constituyen síntesis integradoras de las exigencias del cargo.'},
+  q6:{c:'a',exp:'La kinésica estudia los movimientos corporales (gestos, posturas, expresiones faciales, mirada). La proxémica estudia los significados que surgen de la distancia entre personas. Ambas son componentes de la comunicación no verbal, pero estudian aspectos diferentes.'},
+  q7:{c:'b',exp:'Zayas establece que "El receptor percibe una incoherencia entre el lenguaje verbal y el no verbal; generalmente es a este último al que prestará más importancia porque normalmente es inconsciente e involuntario." El cuerpo es más difícil de controlar conscientemente que las palabras.'},
+  q8:{c:'a',exp:'Al menos cuatro componentes están fallando: la mirada (kinésica: falta de contacto visual genera desconfianza), el volumen bajo (paralingüístico: resta importancia al mensaje), las muletillas ("básicamente", "o sea", "bueno") que evidencian falta de fluidez verbal, y la imprecisión lingüística ("más o menos favorable") que afecta la credibilidad. Todo junto deteriora la persuasión.'},
+  q9:{c:'a',exp:'El auditor está operando en escucha selectiva o fingida (niveles 1-2 de Covey): sigue su guión sin prestar atención real a lo que el entrevistado dice espontáneamente. La escucha empática (nivel 4) habría detectado la mención del "problema con el proveedor X" como información valiosa no solicitada que merece profundización.'},
+  q10:{c:'a',exp:'La correlación entre capacidad comunicativa y desempeño laboral es estadísticamente significativa (Zayas, 2006, rs=.630, p<.001). El segundo socio — con igual nivel técnico pero mejores competencias comunicativas — generará mayor confianza, resolverá conflictos más eficazmente, persuadirá mejor al directorio y obtendrá más información de calidad en entrevistas. El dominio técnico sin comunicación eficaz es potencial desperdiciado.'}
+};
+
+function mkVerif(data,names,panelId,barId,scId,pctId,msgId,btnRId,pfx){
+  return function(){
+    for(let n of names){
+      if(!document.querySelector(`input[name="${n}"]:checked`)){
+        alert('⚠️ Por favor responde TODAS las preguntas antes de verificar.');return;
+      }
+    }
+    let ok=0;
+    names.forEach((n,i)=>{
+      const sel=document.querySelector(`input[name="${n}"]:checked`).value;
+      const d=data[n]||data['q'+(i+1)];
+      document.querySelectorAll(`input[name="${n}"]`).forEach(op=>{
+        op.disabled=true;const lbl=op.parentElement;
+        if(op.value===d.c)lbl.classList.add('ok');
+        if(op.value===sel&&op.value!==d.c)lbl.classList.add('fail');
+      });
+      const fbEl=document.getElementById(pfx+(i+1));
+      if(sel===d.c){ok++;if(fbEl){fbEl.innerHTML='✅ '+d.exp;fbEl.className='ej-fb show ok';}}
+      else{if(fbEl){fbEl.innerHTML='❌ Incorrecto. La respuesta correcta es la <strong>'+d.c.toUpperCase()+'</strong>. '+d.exp;fbEl.className='ej-fb show fail';}}
+    });
+    const pct=Math.round(ok/names.length*100);
+    document.getElementById(panelId).classList.add('show');
+    document.getElementById(scId).textContent=ok+' / '+names.length;
+    document.getElementById(pctId).textContent=pct+'%';
+    setTimeout(()=>{document.getElementById(barId).style.width=pct+'%'},100);
+    const msgs=['📖 Repasa el material con calma.','⚠️ Hay conceptos que necesitan refuerzo.','📘 Buen avance, sigue estudiando.','🎯 ¡Muy bien! Revisa los errores.','🏆 ¡Perfecto! Dominio total.'];
+    document.getElementById(msgId).textContent=pct===100?msgs[4]:pct>=80?msgs[3]:pct>=60?msgs[2]:pct>=40?msgs[1]:msgs[0];
+    document.getElementById(btnRId).style.display='inline-block';
+  };
+}
+
+function mkRein(names,panelId,barId,btnRId,pfx,count){
+  return function(){
+    for(let i=0;i<count;i++){
+      const n=names[i];
+      document.querySelectorAll(`input[name="${n}"]`).forEach(op=>{op.disabled=false;op.checked=false;op.parentElement.classList.remove('ok','fail');});
+      const fbEl=document.getElementById(pfx+(i+1));
+      if(fbEl)fbEl.className='ej-fb';
+    }
+    document.getElementById(panelId).classList.remove('show');
+    document.getElementById(barId).style.width='0%';
+    document.getElementById(btnRId).style.display='none';
+  };
+}
+
+const ejNames=['e1','e2','e3','e4','e5','e6','e7','e8'];
+const cuNames=['q1','q2','q3','q4','q5','q6','q7','q8','q9','q10'];
+
+const verEj=mkVerif(ejD,ejNames,'rp-ej','bar-ej','sc-ej','pct-ej','msg-ej','btn-re','fb');
+const reinEj=mkRein(ejNames,'rp-ej','bar-ej','btn-re','fb',8);
+const verCu=mkVerif(cuD,cuNames,'rp-cu','bar-cu','sc-cu','pct-cu','msg-cu','btn-rc','fq');
+const reinCu=mkRein(cuNames,'rp-cu','bar-cu','btn-rc','fq',10);
+</script>
+</body>
+</html>
