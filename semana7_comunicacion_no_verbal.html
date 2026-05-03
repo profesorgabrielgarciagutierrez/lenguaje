@@ -1,0 +1,1520 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Semana 7 | Comunicación No Verbal · Corporativa · Oral Estratégica | Lenguaje y Comunicación</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+/* ===== RESET & BASE ===== */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Source Sans 3',sans-serif;background:#f0f4f8;color:#1a1a2e;min-height:100vh;font-size:16px;line-height:1.7}
+
+/* ===== HEADER ===== */
+#header{background:#003366;color:#fff;padding:0}
+.hdr-top{display:flex;align-items:center;gap:18px;padding:18px 28px 12px}
+.hdr-logo{width:54px;height:54px;background:#fff;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.hdr-logo svg{width:40px;height:40px}
+.hdr-titles h1{font-family:'Lora',serif;font-size:1.15rem;font-weight:700;letter-spacing:.3px;line-height:1.3}
+.hdr-titles p{font-size:.8rem;opacity:.85;margin-top:2px}
+.hdr-badges{display:flex;flex-wrap:wrap;gap:8px;padding:0 28px 14px}
+.badge{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);color:#fff;font-size:.72rem;font-weight:600;padding:4px 12px;border-radius:20px;letter-spacing:.4px;text-transform:uppercase}
+.badge.gold{background:#FFB81C;color:#003366;border-color:#FFB81C}
+
+/* ===== TAB NAVIGATION ===== */
+#tab-nav-wrap{background:#87CEEB;border-bottom:3px solid #003366;overflow-x:auto;-webkit-overflow-scrolling:touch;white-space:nowrap;scrollbar-width:thin;scrollbar-color:#003366 #87CEEB}
+#tab-nav-wrap::-webkit-scrollbar{height:5px}
+#tab-nav-wrap::-webkit-scrollbar-thumb{background:#003366;border-radius:4px}
+#tab-nav{display:inline-flex;min-width:100%}
+.tab-btn{display:inline-block;padding:12px 18px;font-family:'Source Sans 3',sans-serif;font-size:.82rem;font-weight:600;color:#1a1a2e;background:transparent;border:none;cursor:pointer;white-space:nowrap;border-right:1px solid rgba(0,51,102,.2);transition:all .2s;position:relative}
+.tab-btn:hover{background:rgba(255,255,255,.5);color:#003366}
+.tab-btn.active{background:#fff;color:#003366;font-weight:700;box-shadow:inset 0 -3px 0 #003366}
+.tab-btn .tnum{font-size:.7rem;background:#003366;color:#fff;border-radius:10px;padding:1px 6px;margin-right:5px}
+.tab-btn.active .tnum{background:#FFB81C;color:#003366}
+
+/* ===== CONTENT AREA ===== */
+#content{max-width:960px;margin:0 auto;padding:28px 20px 60px}
+.tab-content{display:none;animation:fadeIn .35s ease}
+.tab-content.active{display:block}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+/* ===== TYPOGRAPHY ===== */
+h2{font-family:'Lora',serif;font-size:1.55rem;color:#003366;margin-bottom:18px;padding-bottom:10px;border-bottom:2px solid #87CEEB;line-height:1.3}
+h3{font-family:'Lora',serif;font-size:1.15rem;color:#003366;margin:24px 0 12px}
+h4{font-family:'Source Sans 3',sans-serif;font-size:1rem;font-weight:700;color:#003366;margin:16px 0 8px}
+p{margin-bottom:14px}
+ul,ol{margin:10px 0 14px 22px}
+li{margin-bottom:6px}
+strong{color:#003366}
+em{color:#555}
+
+/* ===== BOXES ===== */
+.concepto{border-left:5px solid #003366;background:#fff;padding:18px 20px;margin:18px 0;border-radius:0 8px 8px 0;box-shadow:0 2px 8px rgba(0,51,102,.1)}
+.concepto .cb-label{font-family:'Lora',serif;font-size:.78rem;font-weight:700;color:#003366;text-transform:uppercase;letter-spacing:.6px;margin-bottom:8px;display:flex;align-items:center;gap:6px}
+.ejemplo{background:#E6F3FB;border:1px solid #87CEEB;padding:18px 20px;margin:18px 0;border-radius:8px}
+.ejemplo .ej-label{font-size:.75rem;font-weight:700;color:#003366;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px;display:flex;align-items:center;gap:5px}
+.clave{border:2px solid #FFB81C;background:#FFFBF0;padding:18px 20px;margin:22px 0;border-radius:8px}
+.clave .cl-label{font-size:.75rem;font-weight:700;color:#8B6914;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px;display:flex;align-items:center;gap:5px}
+.alerta{background:#FFF3CD;border-left:5px solid #FFB81C;padding:14px 18px;margin:16px 0;border-radius:0 8px 8px 0}
+.stat-box{background:linear-gradient(135deg,#003366,#0055AA);color:#fff;border-radius:12px;padding:22px 28px;margin:20px 0;text-align:center}
+.stat-box .num{font-family:'Lora',serif;font-size:3rem;font-weight:700;color:#FFB81C;display:block;line-height:1}
+.stat-box .desc{font-size:.9rem;margin-top:8px;opacity:.9}
+
+/* ===== CARDS GRID ===== */
+.cards-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:16px;margin:18px 0}
+.card{background:#fff;border-radius:10px;padding:18px;box-shadow:0 2px 10px rgba(0,51,102,.1);border-top:4px solid #003366;transition:transform .2s}
+.card:hover{transform:translateY(-3px)}
+.card.gold-top{border-top-color:#FFB81C}
+.card.red-top{border-top-color:#dc3545}
+.card.green-top{border-top-color:#28a745}
+.card-icon{font-size:2rem;margin-bottom:10px}
+.card h4{margin:0 0 8px;font-size:.95rem}
+.card p{font-size:.88rem;color:#555;margin:0}
+
+/* ===== TABLES ===== */
+.table-wrap{overflow-x:auto;margin:18px 0;border-radius:8px;box-shadow:0 2px 8px rgba(0,51,102,.1)}
+table{width:100%;border-collapse:collapse;background:#fff;font-size:.88rem}
+thead{background:#003366;color:#fff}
+th{padding:12px 14px;text-align:left;font-weight:600;font-family:'Source Sans 3',sans-serif}
+td{padding:11px 14px;border-bottom:1px solid #e8eef5;vertical-align:top}
+tr:hover td{background:#f0f7ff}
+tr:last-child td{border-bottom:none}
+.tag{display:inline-block;padding:2px 10px;border-radius:12px;font-size:.72rem;font-weight:700;text-transform:uppercase}
+.tag-blue{background:#003366;color:#fff}
+.tag-gold{background:#FFB81C;color:#003366}
+.tag-green{background:#d4edda;color:#155724}
+.tag-red{background:#f8d7da;color:#721c24}
+
+/* ===== FLOW DIAGRAM ===== */
+.flow{display:flex;flex-wrap:wrap;gap:0;margin:18px 0;align-items:center}
+.flow-step{background:#003366;color:#fff;padding:12px 16px;border-radius:8px;font-size:.83rem;font-weight:600;text-align:center;min-width:110px;flex:1}
+.flow-step span{display:block;font-size:1.3rem;margin-bottom:4px}
+.flow-arrow{font-size:1.4rem;color:#003366;padding:0 6px;flex-shrink:0}
+
+/* ===== PROXEMICA VISUAL ===== */
+.prox-visual{display:flex;flex-direction:column;gap:10px;margin:16px 0}
+.prox-zone{display:flex;align-items:center;gap:12px;border-radius:8px;padding:12px 16px}
+.prox-zone .pz-dist{font-family:'Lora',serif;font-size:1.1rem;font-weight:700;min-width:100px;color:#fff}
+.prox-zone .pz-name{font-weight:700;margin-bottom:3px}
+.prox-zone .pz-desc{font-size:.85rem;opacity:.92}
+.pz1{background:linear-gradient(90deg,#003366,#0055AA)}
+.pz2{background:linear-gradient(90deg,#0066CC,#2288DD)}
+.pz3{background:linear-gradient(90deg,#2288DD,#55AAEE)}
+.pz4{background:linear-gradient(90deg,#55AAEE,#87CEEB);color:#003366}
+.pz4 .pz-dist,.pz4 .pz-name,.pz4 .pz-desc{color:#003366}
+
+/* ===== QUIZ & EXERCISE ===== */
+.q-container{background:#fff;border-radius:10px;padding:20px;margin:16px 0;box-shadow:0 2px 8px rgba(0,51,102,.08);border-left:4px solid #003366}
+.q-header{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.q-num{background:#003366;color:#fff;width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.85rem;flex-shrink:0}
+.q-text{font-weight:600;font-size:.95rem;line-height:1.4;flex:1}
+.q-badge{font-size:.68rem;font-weight:700;padding:3px 10px;border-radius:12px;text-transform:uppercase;flex-shrink:0}
+.badge-teo{background:#003366;color:#fff}
+.badge-ana{background:#FFB81C;color:#003366}
+.options{display:flex;flex-direction:column;gap:8px}
+.opt{display:flex;align-items:flex-start;gap:10px;padding:10px 14px;border:2px solid #dde3ec;border-radius:8px;cursor:pointer;transition:all .2s;font-size:.9rem}
+.opt:hover{border-color:#003366;background:#f0f7ff}
+.opt input[type=radio],.opt input[type=checkbox]{margin-top:3px;flex-shrink:0;accent-color:#003366}
+.opt.correct{border-color:#28a745;background:#d4edda}
+.opt.incorrect{border-color:#dc3545;background:#f8d7da}
+.opt.selected-wrong{border-color:#dc3545;background:#f8d7da}
+.feedback{margin-top:12px;padding:12px 16px;border-radius:8px;font-size:.88rem;display:none}
+.feedback.show{display:block}
+.feedback.ok{background:#d4edda;border-left:4px solid #28a745;color:#155724}
+.feedback.fail{background:#f8d7da;border-left:4px solid #dc3545;color:#721c24}
+
+/* ===== BUTTONS ===== */
+.btn-primary{background:#003366;color:#fff;border:none;padding:13px 28px;border-radius:8px;font-family:'Source Sans 3',sans-serif;font-weight:700;font-size:.95rem;cursor:pointer;transition:all .2s;display:inline-flex;align-items:center;gap:8px}
+.btn-primary:hover{background:#0055AA;transform:translateY(-1px)}
+.btn-secondary{background:#FFB81C;color:#003366;border:none;padding:13px 28px;border-radius:8px;font-family:'Source Sans 3',sans-serif;font-weight:700;font-size:.95rem;cursor:pointer;transition:all .2s}
+.btn-secondary:hover{background:#e0a000;transform:translateY(-1px)}
+.btn-wrap{display:flex;gap:12px;flex-wrap:wrap;margin-top:22px;justify-content:center}
+
+/* ===== SCORE PANEL ===== */
+#score-panel,#score-panel-q{display:none;background:linear-gradient(135deg,#003366,#0055AA);color:#fff;padding:28px;border-radius:12px;margin-top:24px;text-align:center}
+.score-emoji{font-size:3.5rem;display:block;margin-bottom:10px}
+.score-pct{font-family:'Lora',serif;font-size:2.8rem;font-weight:700;color:#FFB81C}
+.score-msg{font-size:1rem;margin-top:8px;opacity:.9}
+.progress-bar-wrap{background:rgba(255,255,255,.2);border-radius:20px;height:14px;margin:16px auto;max-width:400px;overflow:hidden}
+.progress-bar-fill{height:100%;background:#FFB81C;border-radius:20px;transition:width 1s ease}
+
+/* ===== IA ACTIVITY ===== */
+.ia-prompt{background:#1a1a2e;color:#e0e6f0;border-radius:10px;padding:20px;margin:16px 0;font-family:'Courier New',monospace;font-size:.85rem;line-height:1.7;position:relative}
+.ia-prompt::before{content:'PROMPT PARA CLAUDE';position:absolute;top:-10px;left:16px;background:#FFB81C;color:#003366;font-family:'Source Sans 3',sans-serif;font-size:.7rem;font-weight:700;padding:2px 10px;border-radius:10px}
+.steps-list{counter-reset:steps;margin:14px 0}
+.step-item{counter-increment:steps;display:flex;gap:14px;padding:14px;background:#f8faff;border-radius:8px;margin-bottom:10px;border:1px solid #dde3ec}
+.step-item::before{content:counter(steps);background:#003366;color:#fff;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.85rem;flex-shrink:0}
+
+/* ===== REFLEXION ===== */
+.ref-q{background:#fff;border-left:5px solid #FFB81C;padding:16px 20px;margin:14px 0;border-radius:0 8px 8px 0;box-shadow:0 2px 6px rgba(0,51,102,.08)}
+.ref-q .ref-num{font-size:.72rem;font-weight:700;color:#8B6914;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px}
+.ref-q p{margin:0;font-size:.95rem;color:#333}
+
+/* ===== BIBLIOGRAPHY ===== */
+.ref-card{background:#fff;border-radius:8px;padding:18px 20px;margin:12px 0;box-shadow:0 2px 6px rgba(0,51,102,.08);border-left:4px solid #003366;display:flex;gap:14px}
+.ref-icon{font-size:1.8rem;flex-shrink:0}
+.ref-body{}
+.ref-body .ref-aut{font-weight:700;color:#003366;font-size:.88rem}
+.ref-body .ref-tit{font-style:italic;font-size:.88rem;color:#333;margin:3px 0}
+.ref-body .ref-src{font-size:.8rem;color:#666}
+.bib-note{background:#FFF3CD;border:1px solid #FFB81C;border-radius:8px;padding:14px 18px;margin-top:22px;font-size:.85rem;color:#856404}
+
+/* ===== REPASO SEMANAS ===== */
+.semana-card{background:#fff;border-radius:10px;padding:16px 20px;margin:10px 0;border-left:5px solid #003366;box-shadow:0 2px 6px rgba(0,51,102,.08);cursor:pointer;transition:all .2s}
+.semana-card:hover{box-shadow:0 4px 14px rgba(0,51,102,.15)}
+.semana-card .s-header{display:flex;align-items:center;gap:12px}
+.semana-card .s-num{background:#003366;color:#fff;font-family:'Lora',serif;font-weight:700;padding:4px 12px;border-radius:16px;font-size:.8rem}
+.semana-card .s-title{font-weight:700;color:#003366;flex:1}
+.semana-card .s-toggle{font-size:1.2rem;color:#003366;transition:transform .3s}
+.semana-card.open .s-toggle{transform:rotate(180deg)}
+.semana-body{max-height:0;overflow:hidden;transition:max-height .4s ease}
+.semana-body.open{max-height:600px}
+.semana-body-inner{padding:14px 0 4px}
+
+/* ===== EXERCISE TYPES ===== */
+.match-wrap{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:16px 0}
+.match-col h4{font-size:.85rem;text-align:center;background:#003366;color:#fff;padding:8px;border-radius:6px;margin-bottom:10px}
+.match-item{background:#f8faff;border:2px solid #dde3ec;border-radius:8px;padding:10px 14px;margin-bottom:8px;font-size:.88rem;cursor:pointer;transition:all .2s;user-select:none}
+.match-item:hover{border-color:#003366}
+.match-item.selected-a{border-color:#FFB81C;background:#FFFBF0}
+.match-item.matched-ok{border-color:#28a745;background:#d4edda}
+.match-item.matched-fail{border-color:#dc3545;background:#f8d7da}
+.match-item.disabled{pointer-events:none;opacity:.7}
+
+/* ===== DRAG & DROP / SORT ===== */
+.sort-list{list-style:none;margin:14px 0}
+.sort-item{background:#fff;border:2px solid #dde3ec;border-radius:8px;padding:12px 16px;margin-bottom:8px;display:flex;align-items:center;gap:12px;cursor:grab;font-size:.9rem;transition:all .2s}
+.sort-item:active{cursor:grabbing}
+.sort-item.dragging{opacity:.5;border-color:#003366}
+.sort-item .drag-handle{font-size:1.2rem;color:#aaa}
+
+/* ===== MOBILE ===== */
+@media(max-width:600px){
+  .hdr-titles h1{font-size:1rem}
+  h2{font-size:1.25rem}
+  .match-wrap{grid-template-columns:1fr}
+  .flow{flex-direction:column}
+  .flow-arrow{transform:rotate(90deg);text-align:center}
+  .cards-grid{grid-template-columns:1fr}
+  #content{padding:18px 14px 50px}
+}
+</style>
+</head>
+<body>
+
+<!-- ===== HEADER ===== -->
+<header id="header">
+  <div class="hdr-top">
+    <div class="hdr-logo">
+      <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="30" cy="30" r="28" fill="#003366"/>
+        <text x="30" y="37" text-anchor="middle" font-family="serif" font-size="22" font-weight="bold" fill="#FFB81C">UG</text>
+      </svg>
+    </div>
+    <div class="hdr-titles">
+      <h1>Universidad de Guayaquil · Facultad de Ciencias Administrativas</h1>
+      <p>Carrera en Contabilidad y Auditoría | Modalidad Virtual | Lenguaje y Comunicación</p>
+    </div>
+  </div>
+  <div class="hdr-badges">
+    <span class="badge gold">Semana 7</span>
+    <span class="badge">Unidad 2: Habilidades para la comunicación y producción</span>
+    <span class="badge">Comunicación No Verbal · Corporativa · Oral Estratégica</span>
+  </div>
+</header>
+
+<!-- ===== NAVIGATION ===== -->
+<div id="tab-nav-wrap">
+  <div id="tab-nav">
+    <button class="tab-btn active" onclick="showTab('repaso')"><span class="tnum">0</span>Repaso</button>
+    <button class="tab-btn" onclick="showTab('t1')"><span class="tnum">1</span>Com. No Verbal</button>
+    <button class="tab-btn" onclick="showTab('t2')"><span class="tnum">2</span>Kinésica y Proxémica</button>
+    <button class="tab-btn" onclick="showTab('t3')"><span class="tnum">3</span>Paralingüística</button>
+    <button class="tab-btn" onclick="showTab('t4')"><span class="tnum">4</span>Com. Corporativa</button>
+    <button class="tab-btn" onclick="showTab('t5')"><span class="tnum">5</span>Com. Oral Estratégica</button>
+    <button class="tab-btn" onclick="showTab('ejercicio')"><span class="tnum">6</span>Ejercicio</button>
+    <button class="tab-btn" onclick="showTab('cuestionario')"><span class="tnum">7</span>Cuestionario</button>
+    <button class="tab-btn" onclick="showTab('ia')"><span class="tnum">8</span>Actividad IA</button>
+    <button class="tab-btn" onclick="showTab('reflexion')"><span class="tnum">9</span>Reflexión</button>
+    <button class="tab-btn" onclick="showTab('biblio')"><span class="tnum">10</span>Bibliografía</button>
+  </div>
+</div>
+
+<!-- ===== CONTENT ===== -->
+<div id="content">
+
+<!-- ============================================================ REPASO ============================================================ -->
+<div id="tab-repaso" class="tab-content active">
+  <h2>🔄 Repaso: Lo que hemos construido en 6 semanas</h2>
+  <p>Antes de adentrarnos en los temas de la Semana 7, es fundamental consolidar lo aprendido. Haz clic en cada semana para expandir el resumen.</p>
+
+  <div class="semana-card" onclick="toggleSemana(this)">
+    <div class="s-header">
+      <span class="s-num">S1</span>
+      <span class="s-title">Importancia de la Comunicación · Hablar vs. Comunicar</span>
+      <span class="s-toggle">▼</span>
+    </div>
+    <div class="semana-body">
+      <div class="semana-body-inner">
+        <p>Establecimos la diferencia fundamental entre <strong>hablar</strong> (emitir sonidos con sentido) y <strong>comunicar</strong> (producir un efecto real en el receptor). La comunicación no es un adorno: es una competencia técnica que determina el éxito profesional. En contabilidad, un informe financiero brillante que no logra ser comprendido por el directorio no cumple su propósito. Esa fue nuestra provocación inicial: el conocimiento inerte no transforma realidades; solo lo hace el conocimiento comunicado con efectividad.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="semana-card" onclick="toggleSemana(this)">
+    <div class="s-header">
+      <span class="s-num">S2</span>
+      <span class="s-title">Lenguaje · Procesamiento de Mensajes · Tipos de Lenguaje</span>
+      <span class="s-toggle">▼</span>
+    </div>
+    <div class="semana-body">
+      <div class="semana-body-inner">
+        <p>Estudiamos el <strong>lenguaje</strong> como sistema de signos y su rol en la construcción del mensaje. Analizamos los <strong>modelos de procesamiento</strong>: cómo el receptor decodifica lo que recibe según su experiencia, contexto emocional y cultural. Los cuatro tipos de lenguaje — verbal oral, verbal escrito, no verbal y paraverbal — quedaron identificados como los canales a través de los cuales viaja toda comunicación humana. Para un auditor, comprender el procesamiento evita errores de interpretación en entrevistas con testigos o imputados.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="semana-card" onclick="toggleSemana(this)">
+    <div class="s-header">
+      <span class="s-num">S3</span>
+      <span class="s-title">Tipos de Comunicación · Cerebro · Neurocomunicación · Autoestima · IE</span>
+      <span class="s-toggle">▼</span>
+    </div>
+    <div class="semana-body">
+      <div class="semana-body-inner">
+        <p>Exploramos cómo el cerebro procesa la comunicación (hemisferio lógico vs. emocional) y cómo la <strong>neurocomunicación</strong> aplica este conocimiento para mensajes más efectivos. La <strong>autoestima</strong> quedó definida como el cimiento que permite comunicar con autoridad y seguridad, sin agresividad. La <strong>inteligencia emocional</strong> —reconocer y gestionar las propias emociones y las del interlocutor— resultó ser una competencia transversal: el auditor que no controla sus emociones en una entrevista compromete la objetividad de su trabajo.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="semana-card" onclick="toggleSemana(this)">
+    <div class="s-header">
+      <span class="s-num">S4</span>
+      <span class="s-title">Importancia de la Lectura · Proceso de Comunicación</span>
+      <span class="s-toggle">▼</span>
+    </div>
+    <div class="semana-body">
+      <div class="semana-body-inner">
+        <p>La <strong>lectura activa</strong> fue presentada como la fuente primaria de vocabulario, pensamiento crítico y capacidad argumentativa. Sin lectura, no hay fluidez verbal. Estudiamos el <strong>proceso completo de comunicación</strong> con todos sus elementos: emisor, receptor, mensaje, canal, código, ruido y retroalimentación. Aprendimos que cada elemento puede ser punto de falla: un informe de auditoría sin retroalimentación es un monólogo, no comunicación.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="semana-card" onclick="toggleSemana(this)">
+    <div class="s-header">
+      <span class="s-num">S5</span>
+      <span class="s-title">Componentes de la Comunicación</span>
+      <span class="s-toggle">▼</span>
+    </div>
+    <div class="semana-body">
+      <div class="semana-body-inner">
+        <p>Profundizamos en los <strong>componentes internos</strong> de la comunicación: la intención del emisor, la percepción del receptor, el contexto situacional y el marco cultural. Aprendimos que los componentes son un sistema interdependiente: alterar uno afecta a todos los demás. Un contador que envía un correo con lenguaje técnico excesivo a un cliente sin formación contable ha fallado en el componente de "adecuación al receptor".</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="semana-card" onclick="toggleSemana(this)">
+    <div class="s-header">
+      <span class="s-num">S6</span>
+      <span class="s-title">Habilidades Comunicativas</span>
+      <span class="s-toggle">▼</span>
+    </div>
+    <div class="semana-body">
+      <div class="semana-body-inner">
+        <p>Estudiamos las principales <strong>habilidades comunicativas</strong> en contexto profesional: escucha activa, fluidez verbal, explicación, interpretación, valoración y persuasión. La <strong>oratoria</strong> fue posicionada como la piedra angular de la competencia comunicativa oral, basada en la retórica clásica (inventio, dispositio, elocutio, memoria, actio). También exploramos la <strong>asertividad</strong> como equilibrio entre pasividad y agresividad: el auditor asertivo comunica hallazgos delicados sin conflicto ni pérdida de rigor.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="clave">
+    <div class="cl-label">🎯 Idea Integradora</div>
+    <p>Después de seis semanas, tienes claridad sobre <strong>qué</strong> es comunicar, <strong>cómo</strong> funciona el proceso, <strong>qué habilidades</strong> necesitas desarrollar y <strong>por qué</strong> todo eso importa en tu carrera de Contabilidad y Auditoría. Hoy, la Semana 7 te entrega las tres herramientas restantes más poderosas: leer el lenguaje no verbal de las personas, comprender cómo se comunican las organizaciones, y planear estratégicamente cada intervención oral importante.</p>
+  </div>
+</div>
+
+<!-- ============================================================ TEMA 1 ============================================================ -->
+<div id="tab-t1" class="tab-content">
+  <h2>📌 Tema 1: Comunicación No Verbal — El idioma que habla tu cuerpo</h2>
+
+  <div class="stat-box">
+    <span class="num">65–70%</span>
+    <div class="desc">de la información que transmitimos en una conversación cara a cara proviene del lenguaje NO verbal. Las palabras aportan apenas el 35% restante. (McGraw-Hill; Mehrabian, 1967)</div>
+  </div>
+
+  <div class="concepto">
+    <div class="cb-label">📚 Definición Precisa</div>
+    <p>La <strong>comunicación no verbal</strong> (también llamada <em>extraverbal</em>) comprende todos los signos y sistemas de signos no lingüísticos que comunican o se utilizan para comunicar: gestos, posturas, miradas, distancias físicas entre personas, vestimenta, expresiones faciales, tono de voz, silencio. No incluye palabras escritas ni habladas.</p>
+    <p>Una parte de esta comunicación es <strong>innata</strong> (las expresiones básicas de alegría, tristeza o miedo son universales). Otra parte se <strong>aprende por imitación</strong> de códigos socialmente establecidos (cómo saludar, cómo comportarse en una reunión de negocios).</p>
+  </div>
+
+  <h3>¿Por qué el lenguaje no verbal importa más que las palabras?</h3>
+  <p>Cuando existe incoherencia entre lo que alguien <em>dice</em> y lo que su cuerpo <em>expresa</em>, el receptor confía en el lenguaje no verbal. ¿Por qué? Porque el cuerpo es más difícil de controlar conscientemente: revela emociones y actitudes reales que la persona puede intentar ocultar con palabras.</p>
+
+  <div class="alerta">
+    <strong>Regla de oro de la comunicación:</strong> "Mantén tu mente en <em>lo que se dice</em> y tus ojos y oídos en <em>cómo se dice</em>." Esta regla tiene implicaciones cruciales para la auditoría: un testigo puede afirmar verbalmente algo, pero su lenguaje corporal puede revelar evasión o nerviosismo.
+  </div>
+
+  <h3>Funciones del mensaje no verbal</h3>
+  <div class="cards-grid">
+    <div class="card">
+      <div class="card-icon">🔁</div>
+      <h4>Refuerza el verbal</h4>
+      <p>Asentir con la cabeza mientras dices "sí" duplica el impacto del mensaje.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">➕</div>
+      <h4>Complementa</h4>
+      <p>Una sonrisa al terminar una oración agrega calidez al contenido.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">❌</div>
+      <h4>Contradice</h4>
+      <p>Decir "me alegra estar aquí" con cara tensa genera desconfianza inmediata.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">🔄</div>
+      <h4>Sustituye</h4>
+      <p>Un gesto de "siga adelante" con la mano reemplaza completamente a la palabra.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">🎛️</div>
+      <h4>Regula la interacción</h4>
+      <p>El contacto visual indica cuándo es tu turno de hablar y cuándo ceder la palabra.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">📢</div>
+      <h4>Acentúa o disminuye</h4>
+      <p>Un puñetazo suave en la mesa enfatiza urgencia; bajar el tono suaviza una crítica.</p>
+    </div>
+  </div>
+
+  <h3>Los tres grandes sistemas del lenguaje no verbal</h3>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Sistema</th><th>¿Qué estudia?</th><th>Ejemplo cotidiano</th><th>Ejemplo profesional (Auditoría)</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Kinésica</strong></td><td>Movimientos corporales: gestos, posturas, expresiones faciales, contacto visual</td><td>Cruzar los brazos mientras alguien habla</td><td>El auditado que evita el contacto visual cuando se le pregunta sobre una cuenta específica</td></tr>
+        <tr><td><strong>Proxémica</strong></td><td>Las distancias físicas entre personas y su significado cultural</td><td>Alejarse cuando alguien invade tu espacio personal</td><td>Un gerente que conduce la reunión de auditoría sentado detrás de un escritorio grande vs. al frente del escritorio</td></tr>
+        <tr><td><strong>Paralingüística</strong></td><td>Las variaciones de la voz: tono, timbre, ritmo, pausas, silencios, volumen</td><td>Decir "muy bien" en tono sarcástico</td><td>El contador que responde con voz entrecortada y pausas largas al ser interrogado sobre el manejo de caja</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="ejemplo">
+    <div class="ej-label">🇪🇨 Ejemplo en contexto ecuatoriano</div>
+    <p>En una entrevista de trabajo en una empresa de auditoría en Quito, la candidata se presenta puntual, viste de manera formal (traje oscuro), mantiene contacto visual estable, saluda con un apretón de mano firme pero no agresivo y se sienta ligeramente inclinada hacia adelante. Antes de decir una sola palabra, ya ha comunicado: seriedad, respeto, confianza y disposición. Ese es el poder del lenguaje no verbal como <em>primera impresión</em>.</p>
+  </div>
+
+  <div class="clave">
+    <div class="cl-label">💡 Idea Clave</div>
+    <p>En auditoría forense, el dominio de la lectura del lenguaje no verbal es una herramienta de detección de inconsistencias. No sustituye a la evidencia, pero guía al auditor sobre qué preguntas seguir haciendo. Un profesional que sabe leer el cuerpo complementa su análisis técnico con inteligencia interpersonal.</p>
+  </div>
+</div>
+
+<!-- ============================================================ TEMA 2 ============================================================ -->
+<div id="tab-t2" class="tab-content">
+  <h2>🤲 Tema 2: Kinésica y Proxémica — Cuerpo y Espacio como Mensajes</h2>
+
+  <h3>2.1 Kinésica: el lenguaje del movimiento corporal</h3>
+
+  <div class="concepto">
+    <div class="cb-label">📚 Definición</div>
+    <p>La <strong>kinésica</strong> (del griego <em>kinesis</em>, movimiento) es la disciplina que estudia la información transmitida a través de los movimientos del cuerpo humano: gestos de manos, posturas, expresiones faciales, mirada, contacto físico y apariencia.</p>
+  </div>
+
+  <h4>Componentes de la kinésica</h4>
+  <div class="cards-grid">
+    <div class="card gold-top">
+      <div class="card-icon">😊</div>
+      <h4>Expresión facial</h4>
+      <p>El rostro es el mapa emocional más legible. Las seis emociones básicas (alegría, tristeza, ira, miedo, sorpresa, asco) tienen expresiones faciales universales reconocidas en todas las culturas.</p>
+    </div>
+    <div class="card gold-top">
+      <div class="card-icon">👁️</div>
+      <h4>Contacto visual</h4>
+      <p>Sostener la mirada transmite confianza y sinceridad. Evitar la mirada puede indicar evasión, vergüenza o respeto (varía por cultura). Demasiado contacto visual se percibe como agresivo.</p>
+    </div>
+    <div class="card gold-top">
+      <div class="card-icon">🤲</div>
+      <h4>Gestos de manos</h4>
+      <p>Enriquecen y enfatizan el discurso oral. Las manos abiertas y visibles comunican honestidad; las manos ocultas o que tocan el rostro pueden indicar incomodidad o engaño.</p>
+    </div>
+    <div class="card gold-top">
+      <div class="card-icon">🧍</div>
+      <h4>Postura corporal</h4>
+      <p>La postura erguida comunica seguridad y autoridad. Los hombros caídos indican desánimo. Inclinarse hacia el interlocutor demuestra interés; alejarse, rechazo o incomodidad.</p>
+    </div>
+  </div>
+
+  <div class="ejemplo">
+    <div class="ej-label">💼 Caso práctico profesional</div>
+    <p>Un socio de una firma de auditoría en Guayaquil presenta los resultados de un examen especial a la junta directiva de una empresa portuaria. Si durante la presentación: cruza los brazos, evita el contacto visual con los directivos, tiene la espalda encorvada y gesticula con poca energía... el mensaje no verbal saboteará al mensaje verbal, aunque los números sean impecables. Los directivos percibirán inseguridad sobre los propios hallazgos.</p>
+  </div>
+
+  <h3>2.2 Proxémica: el espacio como mensaje</h3>
+
+  <div class="concepto">
+    <div class="cb-label">📚 Definición</div>
+    <p>La <strong>proxémica</strong> (del latín <em>proximus</em>, cercano) es el estudio de cómo el espacio físico entre personas transmite significados. Fue desarrollada por el antropólogo estadounidense Edward T. Hall en la década de 1960. Cada cultura tiene normas implícitas sobre las distancias "apropiadas" en distintos contextos sociales.</p>
+  </div>
+
+  <h4>Las cuatro zonas de distancia interpersonal (Hall, 1966)</h4>
+  <div class="prox-visual">
+    <div class="prox-zone pz1" style="color:#fff">
+      <div class="pz-dist">0 – 45 cm</div>
+      <div>
+        <div class="pz-name">Zona Íntima</div>
+        <div class="pz-desc">Reservada para familia, pareja íntima. Invasión no consentida genera incomodidad o agresión.</div>
+      </div>
+    </div>
+    <div class="prox-zone pz2" style="color:#fff">
+      <div class="pz-dist">45 – 120 cm</div>
+      <div>
+        <div class="pz-name">Zona Personal</div>
+        <div class="pz-desc">Amigos cercanos, conversaciones informales en contextos sociales.</div>
+      </div>
+    </div>
+    <div class="prox-zone pz3" style="color:#fff">
+      <div class="pz-dist">120 – 360 cm</div>
+      <div>
+        <div class="pz-name">Zona Social</div>
+        <div class="pz-desc">Relaciones laborales, reuniones de negocios, entrevistas profesionales. La más usada en auditoría.</div>
+      </div>
+    </div>
+    <div class="prox-zone pz4">
+      <div class="pz-dist">&gt; 360 cm</div>
+      <div>
+        <div class="pz-name">Zona Pública</div>
+        <div class="pz-desc">Discursos, conferencias, actos formales. El orador y la audiencia mantienen esta distancia.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="alerta">
+    <strong>Nota cultural:</strong> En Ecuador y en general en Latinoamérica, las distancias interpersonales suelen ser menores que en culturas del norte de Europa o Norteamérica. Lo que en Quito es una distancia normal de conversación, en Alemania podría percibirse como invasivo. Esta diferencia es crítica en negociaciones internacionales o con firmas de auditoría extranjeras.
+  </div>
+
+  <div class="ejemplo">
+    <div class="ej-label">🔍 Ejemplo en auditoría</div>
+    <p>Un auditor forense del Ecuador visita las instalaciones de una empresa para una inspección sorpresa. Al entrar a la oficina del contador general, el gerente financiero se interpone físicamente entre el auditor y el escritorio del contador, reduciendo la distancia hasta la zona personal del auditor (agresión proxémica). Este comportamiento no verbal comunica algo que las palabras no dicen: hay algo en ese escritorio que no quieren que el auditor vea. La kinésica y la proxémica son fuentes de evidencia indirecta.</p>
+  </div>
+
+  <h3>La apariencia física como comunicación kinésica</h3>
+  <p>La vestimenta, el arreglo personal y la imagen proyectada son formas de comunicación no verbal que preceden a cualquier palabra. En el mundo contable-auditor ecuatoriano:</p>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Contexto</th><th>Comunicación no verbal esperada</th><th>Efecto si no se cumple</th></tr></thead>
+      <tbody>
+        <tr><td>Visita a cliente corporativo</td><td>Traje formal, colores sobrios, calzado formal</td><td>Percepción de poca seriedad o profesionalismo</td></tr>
+        <tr><td>Presentación de informe de auditoría</td><td>Postura erguida, gestos controlados, contacto visual</td><td>Los hallazgos son desacreditados por la imagen del expositor</td></tr>
+        <tr><td>Entrevista a empleados en campo</td><td>Distancia social respetada, tono amigable, postura abierta</td><td>Cierre emocional del entrevistado; información incompleta</td></tr>
+        <tr><td>Reunión virtual (videoconferencia)</td><td>Iluminación, fondo ordenado, encuadre correcto</td><td>El entorno descuidado proyecta desorden mental</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="clave">
+    <div class="cl-label">💡 Idea Clave</div>
+    <p>La kinésica y la proxémica no son ciencias exactas ni ofrecen certezas absolutas. Un gesto aislado no significa nada; lo que importa son los <strong>patrones y congruencias</strong>. El profesional entrenado observa el conjunto: postura + mirada + gestos + distancia + voz, y contrasta con el contenido verbal. Esa lectura integral es la que aporta información valiosa.</p>
+  </div>
+</div>
+
+<!-- ============================================================ TEMA 3 ============================================================ -->
+<div id="tab-t3" class="tab-content">
+  <h2>🎙️ Tema 3: Paralingüística — El poder de la voz más allá de las palabras</h2>
+
+  <div class="concepto">
+    <div class="cb-label">📚 Definición</div>
+    <p>La <strong>paralingüística</strong> (o paralenguaje) es la parte del estudio de la comunicación humana que se interesa por los elementos que acompañan a la comunicación oral, pero que <em>no son palabras</em>. Se refiere al <em>cómo se dice</em>, no al <em>qué se dice</em>. El paralenguaje incluye: tono, timbre, volumen, ritmo, velocidad, pausas, silencios, entonación, muletillas y perturbaciones del habla.</p>
+  </div>
+
+  <h3>Elementos del paralenguaje y su significado</h3>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Elemento</th><th>¿Qué es?</th><th>Señal cuando es excesivo/deficiente</th><th>Implicación profesional</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><strong>Tono</strong></td>
+          <td>La frecuencia de la voz: grave o aguda</td>
+          <td>Tono muy agudo = estrés o nerviosismo. Tono muy grave forzado = afectación</td>
+          <td>Un auditor con tono grave y pausado transmite autoridad y tranquilidad</td>
+        </tr>
+        <tr>
+          <td><strong>Timbre</strong></td>
+          <td>La "textura" o calidad única de la voz de cada persona</td>
+          <td>Voz áspera o nasal persistente = problema de salud o tensión crónica</td>
+          <td>El timbre agradable facilita la escucha y la aceptación del mensaje</td>
+        </tr>
+        <tr>
+          <td><strong>Volumen</strong></td>
+          <td>La intensidad o fuerza de la voz</td>
+          <td>Volumen alto = autoridad o agresividad. Volumen bajo = inseguridad o confidencialidad</td>
+          <td>Variar el volumen mantiene la atención en presentaciones largas</td>
+        </tr>
+        <tr>
+          <td><strong>Velocidad / Ritmo</strong></td>
+          <td>Cuántas palabras por minuto y la regularidad del habla</td>
+          <td>Muy rápido = nerviosismo o querer ocultar. Muy lento = aburrimiento o inseguridad</td>
+          <td>El contador que habla muy rápido en el informe oral pierde al cliente en los primeros 30 segundos</td>
+        </tr>
+        <tr>
+          <td><strong>Pausas y silencios</strong></td>
+          <td>Interrupciones intencionales del flujo verbal</td>
+          <td>Pausas breves = énfasis. Pausas largas no planificadas = duda o tensión</td>
+          <td>Pausa estratégica antes del hallazgo principal genera expectativa y atención</td>
+        </tr>
+        <tr>
+          <td><strong>Entonación</strong></td>
+          <td>Los cambios de tono a lo largo de una frase</td>
+          <td>Entonación plana (monótona) = desinterés. Entonación variable = energía y convicción</td>
+          <td>La monotonía mata cualquier presentación, sin importar lo importante del contenido</td>
+        </tr>
+        <tr>
+          <td><strong>Muletillas</strong></td>
+          <td>Palabras o sonidos repetidos sin valor: "eh", "ok", "o sea", "este"</td>
+          <td>Exceso = falta de preparación o nerviosismo. Percepción de poca solidez</td>
+          <td>Un auditor con muchas muletillas en su informe oral reduce la credibilidad de sus hallazgos</td>
+        </tr>
+        <tr>
+          <td><strong>Perturbaciones</strong></td>
+          <td>Carraspeos, tartamudeos, voz entrecortada</td>
+          <td>Pueden indicar estrés, tensión o evasión</td>
+          <td>En entrevistas de campo, el auditado que carraspea mucho antes de responder genera una señal de alerta</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="ejemplo">
+    <div class="ej-label">🎭 Ejercicio mental: dos versiones de la misma frase</div>
+    <p>Imagine a un auditor que dice a la junta directiva: <em>"Los resultados de nuestro examen especial son... <strong>[pausa de 2 segundos]</strong>... preocupantes."</em></p>
+    <p><strong>Versión A:</strong> Dicho rápidamente, con voz monótona y mirada en el papel. → El mensaje se pierde. Los directivos no dimensionan la gravedad.</p>
+    <p><strong>Versión B:</strong> Dicho con ritmo deliberado, pausa estratégica antes de "preocupantes", mirada directa al presidente de la junta, voz firme y volumen ligeramente reducido. → La sala entera se inclina hacia adelante. El mensaje aterriza con todo su peso.</p>
+    <p>Mismo contenido. Paralenguaje diferente. Impacto radicalmente distinto.</p>
+  </div>
+
+  <h3>La sintonía (rapport) como cima del paralenguaje</h3>
+  <p>En Programación Neurolingüística (PNL), la <strong>sintonía o rapport</strong> es el estado de armonía entre comunicadores donde el lenguaje verbal y no verbal —incluido el paralenguaje— se alinean naturalmente. Cuando hay sintonía, los interlocutores tienden a espejarse (adoptar posturas y ritmos similares), lo cual genera confianza y fluidez comunicativa.</p>
+  <p>Para el profesional contable, construir rapport es fundamental en auditorías: un auditado que confía en el auditor colabora más, responde con mayor apertura y reduce la resistencia al proceso.</p>
+
+  <div class="concepto">
+    <div class="cb-label">📊 Dato científico</div>
+    <p>Investigaciones citadas por el <em>Instituto Tecnológico de Costa Rica</em> indican que <strong>las palabras representan apenas el 7% del impacto comunicativo</strong>, mientras que el lenguaje corporal aporta el 55% y la voz (paralenguaje) el 38%. Esto significa que un orador puede decir exactamente lo correcto, pero si su voz y su cuerpo no acompañan, el mensaje fracasa con el 93% de su potencial desperdiciado.</p>
+  </div>
+
+  <div class="clave">
+    <div class="cl-label">💡 Idea Clave</div>
+    <p>El paralenguaje es <em>educable</em>. A diferencia de algunas limitaciones de vocabulario que tardan años en desarrollarse, el manejo de la voz puede mejorarse con práctica consciente. Leer en voz alta, grabar los propios discursos, practicar pausas y variar la entonación son ejercicios que cualquier estudiante puede hacer desde hoy para transformar su comunicación oral en las próximas semanas.</p>
+  </div>
+</div>
+
+<!-- ============================================================ TEMA 4 ============================================================ -->
+<div id="tab-t4" class="tab-content">
+  <h2>🏢 Tema 4: Comunicación Corporativa — Cómo hablan las organizaciones</h2>
+
+  <div class="concepto">
+    <div class="cb-label">📚 Definición</div>
+    <p>La <strong>comunicación corporativa u organizacional</strong> es el conjunto de procesos, canales y mensajes mediante los cuales una organización gestiona el intercambio de información —tanto internamente entre sus miembros como externamente con su entorno— para cumplir sus objetivos estratégicos, mantener su cultura y proyectar su imagen.</p>
+    <p>Como señala Fernández Collado: la comunicación organizacional es cualitativamente diferente a la comunicación en otros contextos porque la <em>presión institucional</em> modifica tanto el contenido como la forma de comunicarse.</p>
+  </div>
+
+  <h3>¿Por qué una organización no puede existir sin comunicación?</h3>
+  <p>Sin comunicación efectiva, los empleados no saben qué hacer, no pueden coordinarse con sus pares y los directivos no reciben información para tomar decisiones. La comunicación es el sistema nervioso de cualquier organización: cuando falla, la institución enferma.</p>
+
+  <h3>Tipos de comunicación organizacional</h3>
+
+  <h4>1. Comunicación Formal</h4>
+  <p>Es la comunicación <strong>planificada y oficial</strong> que sigue la estructura jerárquica de la organización. Sus mensajes se transmiten por canales establecidos: informes, circulares, reuniones, memorandos, correos institucionales.</p>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Tipo de flujo</th><th>Dirección</th><th>¿Qué transmite?</th><th>Ejemplo en empresa auditora</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><span class="tag tag-blue">Descendente</span></td>
+          <td>De niveles superiores a inferiores</td>
+          <td>Órdenes, políticas, instrucciones, objetivos</td>
+          <td>El gerente de auditoría envía el plan de trabajo a los auditores júnior</td>
+        </tr>
+        <tr>
+          <td><span class="tag tag-blue">Ascendente</span></td>
+          <td>De niveles inferiores a superiores</td>
+          <td>Reportes, hallazgos, inquietudes, sugerencias</td>
+          <td>El auditor de campo reporta inconsistencias al supervisor</td>
+        </tr>
+        <tr>
+          <td><span class="tag tag-blue">Horizontal</span></td>
+          <td>Entre pares del mismo nivel</td>
+          <td>Coordinación, colaboración, información compartida</td>
+          <td>Dos auditores del mismo equipo coordinan la asignación de muestras</td>
+        </tr>
+        <tr>
+          <td><span class="tag tag-blue">Transversal</span></td>
+          <td>Entre distintas áreas y niveles</td>
+          <td>Integración interfuncional</td>
+          <td>El equipo de auditoría coordina con el área de TI para acceder a los sistemas</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h4>2. Comunicación Informal</h4>
+  <div class="concepto">
+    <div class="cb-label">🔍 Definición</div>
+    <p>La comunicación informal <strong>no sigue la jerarquía oficial</strong>; nace de las relaciones afectivas, la simpatía y los intereses personales entre miembros de la organización, independientemente de su cargo o posición. Su canal más conocido es el "rumor" o <em>grapevine</em>.</p>
+  </div>
+  <div class="cards-grid">
+    <div class="card green-top">
+      <h4>Beneficios bien gestionada</h4>
+      <p>Humaniza la organización, acelera la información, reduce la incertidumbre, mejora el clima laboral.</p>
+    </div>
+    <div class="card red-top">
+      <h4>Riesgos si se ignora</h4>
+      <p>Genera rumores malsanos, distorsiona información oficial, deteriora la moral y la confianza.</p>
+    </div>
+  </div>
+
+  <div class="alerta">
+    <strong>Principio clave:</strong> La comunicación formal e informal se complementan y se necesitan mutuamente. Una empresa que solo tiene comunicación formal es rígida y deshumanizada. Una que solo tiene comunicación informal carece de dirección y orden. El equilibrio es la clave.
+  </div>
+
+  <h3>Las principales actividades de comunicación en el trabajo</h3>
+  <div class="cards-grid">
+    <div class="card">
+      <div class="card-icon">📋</div>
+      <h4>Reuniones</h4>
+      <p>Requieren preparación: agenda, objetivos claros, roles (moderador, secretario, participantes), desarrollo estructurado y conclusiones documentadas.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">🤝</div>
+      <h4>Entrevistas</h4>
+      <p>Pueden ser de selección, evaluación, control o investigación. Cada tipo tiene objetivos y estructura diferente.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">💬</div>
+      <h4>Despachos y contactos</h4>
+      <p>Comunicaciones breves sobre coordinaciones y cuestiones de trabajo. Se gestionan por importancia y urgencia.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">🤜🤛</div>
+      <h4>Negociaciones</h4>
+      <p>Surge ante conflicto de intereses. El objetivo es encontrar soluciones donde todos ganen (ganar-ganar).</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">🎤</div>
+      <h4>Discursos</h4>
+      <p>Presentaciones formales para persuadir o informar. Requieren preparación, estructura y manejo del paralenguaje.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">💬</div>
+      <h4>Conversaciones informales</h4>
+      <p>Aunque informales, requieren estructura implícita: saludo, desarrollo y cierre. Son poderosas para construir relaciones.</p>
+    </div>
+  </div>
+
+  <div class="ejemplo">
+    <div class="ej-label">🇪🇨 Caso en empresa ecuatoriana</div>
+    <p>La Contraloría General del Estado de Ecuador tiene un sistema de comunicación corporativa formal muy definido: los informes de auditoría gubernamental siguen un flujo ascendente (auditor → supervisor → director → Contralor) y también horizontal (coordinación entre equipos). Cuando este sistema funciona bien, los hallazgos de corrupción o malversación escalan rápidamente a quienes pueden actuar. Cuando hay bloqueos en la comunicación —por miedo, por jerarquías rígidas, por cultura del silencio— los problemas se esconden hasta hacerse sistémicos.</p>
+  </div>
+
+  <div class="clave">
+    <div class="cl-label">💡 Idea Clave</div>
+    <p>La comunicación corporativa no es solo "hablar dentro de la empresa". Es el sistema que determina si la organización aprende, si sus decisiones son oportunas, si sus equipos colaboran y si su imagen interna y externa es coherente. Para un contador o auditor, entender los flujos de comunicación es entender el sistema nervioso de la empresa que está examinando.</p>
+  </div>
+</div>
+
+<!-- ============================================================ TEMA 5 ============================================================ -->
+<div id="tab-t5" class="tab-content">
+  <h2>🎯 Tema 5: La Comunicación Oral Estratégica — Etapas y Planeación</h2>
+
+  <div class="concepto">
+    <div class="cb-label">📚 Definición</div>
+    <p>La <strong>comunicación oral estratégica</strong> es aquella que se planifica deliberadamente antes de ejecutarse, con objetivos claros, adaptación al público específico y estructura definida. No es improvisación: es el resultado de un proceso ordenado de <em>análisis, diseño y ensayo</em> orientado a producir un efecto concreto en el receptor.</p>
+    <p>Se diferencia de la comunicación espontánea en que se pregunta: ¿para qué hablo?, ¿a quién?, ¿qué quiero que haga/sienta/piense el receptor después de escucharme?</p>
+  </div>
+
+  <h3>Las preguntas estratégicas previas (la matriz de planeación)</h3>
+  <p>Antes de cualquier comunicación oral importante —presentación de informe, reunión con cliente, entrevista de auditoría, discurso— el profesional debe responder:</p>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Pregunta estratégica</th><th>Lo que revela</th><th>Opciones posibles</th></tr></thead>
+      <tbody>
+        <tr><td><strong>¿Cuál es el problema a tratar?</strong></td><td>El motivo real de la comunicación</td><td>Problema técnico / relacional / organizativo / familiar</td></tr>
+        <tr><td><strong>¿Qué quiero lograr?</strong></td><td>El objetivo de la comunicación</td><td>Informar / persuadir / sancionar / motivar / aclarar / negociar</td></tr>
+        <tr><td><strong>¿Qué tipo de actividad comunicativa es?</strong></td><td>El formato más adecuado</td><td>Reunión / entrevista / discurso / negociación / conversación</td></tr>
+        <tr><td><strong>¿Qué urgencia e importancia tiene?</strong></td><td>La prioridad en la agenda</td><td>Matriz Importancia / Urgencia</td></tr>
+        <tr><td><strong>¿Cuáles son las condiciones ambientales?</strong></td><td>El contexto físico y emocional</td><td>Favorable / Desfavorable / Neutro</td></tr>
+        <tr><td><strong>¿Con qué tipo de personas?</strong></td><td>El perfil del receptor</td><td>Clientes / empleados / directivos / autoridades / familia</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>La estructura del discurso: las etapas fundamentales</h3>
+  <p>El discurso —en sentido amplio, cualquier presentación oral formal— tiene una estructura que optimiza el impacto sobre el receptor:</p>
+
+  <div class="flow">
+    <div class="flow-step"><span>🎬</span>Presentación<br><small>Breve, impacta</small></div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step"><span>🔥</span>Introducción<br><small>Motiva e involucra</small></div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step"><span>📊</span>Desarrollo<br><small>El núcleo del mensaje</small></div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step"><span>🏁</span>Conclusiones<br><small>Qué retener y hacer</small></div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step"><span>🙏</span>Cierre<br><small>Agradecer y cerrar</small></div>
+  </div>
+
+  <h4>Distribución del tiempo recomendada</h4>
+  <div class="cards-grid">
+    <div class="card">
+      <div class="card-icon">🎬</div>
+      <h4>Presentación (5–10%)</h4>
+      <p>Quien presenta al orador. Breve. Genera expectativa. Nunca debe robar protagonismo al orador ni revelar el contenido.</p>
+    </div>
+    <div class="card gold-top">
+      <div class="card-icon">🔥</div>
+      <h4>Introducción (15–20%)</h4>
+      <p>La motivación que dará sentido al discurso. Debe responder: ¿por qué debo escuchar esto? Puede ser una pregunta, una estadística impactante, una historia.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">📊</div>
+      <h4>Desarrollo (60–70%)</h4>
+      <p>El contenido central. Debe ser asequible, organizado en subtemas, con ejemplos concretos y datos verificables. No sobrecargues: 3–5 ideas principales máximo.</p>
+    </div>
+    <div class="card gold-top">
+      <div class="card-icon">🏁</div>
+      <h4>Cierre (15–20%)</h4>
+      <p>Las conclusiones fundamentales y el agradecimiento al auditorio. El receptor recuerda mejor lo último que escucha. Este momento es estratégicamente crucial.</p>
+    </div>
+  </div>
+
+  <h3>Factores que determinan el impacto de un discurso</h3>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Factor</th><th>¿Por qué importa?</th></tr></thead>
+      <tbody>
+        <tr><td><strong>El objetivo claro</strong></td><td>Sin objetivo definido, el discurso divaga y el receptor no sabe qué se espera de él</td></tr>
+        <tr><td><strong>El tiempo disponible</strong></td><td>Respetar el tiempo es una forma de respeto al auditorio; pasarse del tiempo destruye la credibilidad</td></tr>
+        <tr><td><strong>El tipo de público</strong></td><td>El lenguaje, los ejemplos y la profundidad deben adaptarse al receptor, no al emisor</td></tr>
+        <tr><td><strong>Las condiciones ambientales</strong></td><td>Temperatura, ruido, iluminación, disposición del espacio afectan la recepción del mensaje</td></tr>
+        <tr><td><strong>El prestigio y congruencia del orador</strong></td><td>Lo que dices debe coincidir con lo que eres y haces; la incoherencia destruye la credibilidad</td></tr>
+        <tr><td><strong>La autenticidad</strong></td><td>El público detecta cuando alguien "actúa" vs. cuando habla desde la convicción genuina</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>La retórica clásica como fundamento</h3>
+  <p>La oratoria moderna descansa en los cinco pilares de la retórica greco-romana:</p>
+  <div class="cards-grid">
+    <div class="card">
+      <div class="card-icon">💡</div>
+      <h4>Inventio</h4>
+      <p>Encontrar y definir el tema: ¿sobre qué voy a hablar? ¿qué argumento voy a desarrollar?</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">📐</div>
+      <h4>Dispositio</h4>
+      <p>La disposición u organización de las partes: introducción, desarrollo, conclusión.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">✍️</div>
+      <h4>Elocutio</h4>
+      <p>La elección de las palabras: elegancia, precisión, figuras retóricas que hacen el mensaje memorable.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">🧠</div>
+      <h4>Memoria</h4>
+      <p>La memorización del discurso: no de memoria literal, sino de la estructura y los puntos clave.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">🎭</div>
+      <h4>Actio</h4>
+      <p>La puesta en escena: voz, cuerpo, gestos, mirada. Toda la dimensión no verbal del discurso.</p>
+    </div>
+  </div>
+
+  <div class="ejemplo">
+    <div class="ej-label">💼 Aplicación práctica: Presentación de informe de auditoría</div>
+    <p>Un auditor ecuatoriano debe presentar ante la junta directiva de una empresa agroindustrial los hallazgos de un examen especial. Aplicando comunicación oral estratégica:</p>
+    <ul>
+      <li><strong>Inventio:</strong> Selecciona los 4 hallazgos más relevantes de los 12 encontrados. No los presenta todos; prioriza por impacto.</li>
+      <li><strong>Dispositio:</strong> Estructura: contexto del examen (2 min) → hallazgos críticos (12 min) → recomendaciones (5 min) → cierre con disposición a preguntas (3 min).</li>
+      <li><strong>Elocutio:</strong> Usa lenguaje claro para directivos no contables; evita jerga técnica sin explicación. "Partidas sin respaldo documental" en lugar de "movimientos sin evidencia suficiente de liquidación".</li>
+      <li><strong>Memoria:</strong> Conoce su informe a profundidad; no lee el documento, lo presenta con fluidez natural.</li>
+      <li><strong>Actio:</strong> Mantiene contacto visual con los directivos, gesticula moderadamente, usa pausas antes de los hallazgos más graves, proyecta confianza y certeza.</li>
+    </ul>
+  </div>
+
+  <div class="clave">
+    <div class="cl-label">💡 Idea Clave</div>
+    <p>La comunicación oral estratégica es la diferencia entre un contador que tiene la información correcta y uno que <em>logra que esa información produzca acción</em>. En un informe de auditoría, los hallazgos solo generan cambio si el directorio los comprende, los cree y los asume. Eso no lo hace el documento escrito solo: lo hace el auditor que sabe comunicar.</p>
+  </div>
+</div>
+
+<!-- ============================================================ EJERCICIO ============================================================ -->
+<div id="tab-ejercicio" class="tab-content">
+  <h2>✏️ Ejercicio Interactivo — Clasifica y Empareja</h2>
+  <p>Este ejercicio evalúa tu comprensión de los conceptos de la Semana 7. <strong>Responde todas las preguntas primero</strong> y luego presiona <em>Verificar respuestas</em>. El material de los temas anteriores tiene todo lo que necesitas para responder correctamente.</p>
+
+  <!-- Pregunta 1 -->
+  <div class="q-container">
+    <div class="q-header">
+      <div class="q-num">1</div>
+      <div class="q-text">Un auditor detecta que el contador de una empresa habla muy rápido, carraspea frecuentemente y evita el contacto visual cuando se le pregunta sobre las cuentas por cobrar. ¿A qué sistemas del lenguaje no verbal corresponden estas señales, respectivamente?</div>
+    </div>
+    <div class="options">
+      <label class="opt"><input type="radio" name="ej1" value="a"> Paralingüística → Paralingüística → Kinésica</label>
+      <label class="opt"><input type="radio" name="ej1" value="b"> Kinésica → Kinésica → Proxémica</label>
+      <label class="opt"><input type="radio" name="ej1" value="c"> Proxémica → Kinésica → Paralingüística</label>
+      <label class="opt"><input type="radio" name="ej1" value="d"> Paralingüística → Proxémica → Kinésica</label>
+    </div>
+    <div id="ej1-fb" class="feedback"></div>
+  </div>
+
+  <!-- Pregunta 2 -->
+  <div class="q-container">
+    <div class="q-header">
+      <div class="q-num">2</div>
+      <div class="q-text">Un gerente conduce la reunión con el equipo auditor sentado detrás de un escritorio grande y situado a más de 2 metros de distancia. ¿En cuál zona proxémica se ubica esta interacción y qué comunica?</div>
+    </div>
+    <div class="options">
+      <label class="opt"><input type="radio" name="ej2" value="a"> Zona personal (45–120 cm); comunica camaradería y cercanía</label>
+      <label class="opt"><input type="radio" name="ej2" value="b"> Zona social (120–360 cm); comunica relación formal y diferencia de roles</label>
+      <label class="opt"><input type="radio" name="ej2" value="c"> Zona íntima (0–45 cm); comunica confianza máxima</label>
+      <label class="opt"><input type="radio" name="ej2" value="d"> Zona pública (>360 cm); comunica indiferencia hacia los auditores</label>
+    </div>
+    <div id="ej2-fb" class="feedback"></div>
+  </div>
+
+  <!-- Pregunta 3 -->
+  <div class="q-container">
+    <div class="q-header">
+      <div class="q-num">3</div>
+      <div class="q-text">El informe que viaja desde los auditores de campo hasta el Director de Auditoría y de este al Contralor General es un ejemplo de comunicación:</div>
+    </div>
+    <div class="options">
+      <label class="opt"><input type="radio" name="ej3" value="a"> Comunicación informal descendente</label>
+      <label class="opt"><input type="radio" name="ej3" value="b"> Comunicación formal ascendente</label>
+      <label class="opt"><input type="radio" name="ej3" value="c"> Comunicación informal horizontal</label>
+      <label class="opt"><input type="radio" name="ej3" value="d"> Comunicación formal transversal</label>
+    </div>
+    <div id="ej3-fb" class="feedback"></div>
+  </div>
+
+  <!-- Pregunta 4 -->
+  <div class="q-container">
+    <div class="q-header">
+      <div class="q-num">4</div>
+      <div class="q-text">¿Cuál es la distribución de tiempo recomendada para la introducción de un discurso formal?</div>
+    </div>
+    <div class="options">
+      <label class="opt"><input type="radio" name="ej4" value="a"> 60–70% del tiempo total</label>
+      <label class="opt"><input type="radio" name="ej4" value="b"> 15–20% del tiempo total</label>
+      <label class="opt"><input type="radio" name="ej4" value="c"> 5% del tiempo total</label>
+      <label class="opt"><input type="radio" name="ej4" value="d"> 50% del tiempo total</label>
+    </div>
+    <div id="ej4-fb" class="feedback"></div>
+  </div>
+
+  <!-- Pregunta 5 -->
+  <div class="q-container">
+    <div class="q-header">
+      <div class="q-num">5</div>
+      <div class="q-text">Según la retórica clásica, el pilar que corresponde a la organización de las partes del discurso (introducción, desarrollo, conclusión) se denomina:</div>
+    </div>
+    <div class="options">
+      <label class="opt"><input type="radio" name="ej5" value="a"> Inventio</label>
+      <label class="opt"><input type="radio" name="ej5" value="b"> Elocutio</label>
+      <label class="opt"><input type="radio" name="ej5" value="c"> Dispositio</label>
+      <label class="opt"><input type="radio" name="ej5" value="d"> Actio</label>
+    </div>
+    <div id="ej5-fb" class="feedback"></div>
+  </div>
+
+  <!-- Pregunta 6 -->
+  <div class="q-container">
+    <div class="q-header">
+      <div class="q-num">6</div>
+      <div class="q-text">¿Cuál de las siguientes afirmaciones es INCORRECTA respecto a la comunicación no verbal?</div>
+    </div>
+    <div class="options">
+      <label class="opt"><input type="radio" name="ej6" value="a"> La comunicación no verbal puede contradecir al mensaje verbal</label>
+      <label class="opt"><input type="radio" name="ej6" value="b"> Cuando el mensaje verbal y no verbal son incoherentes, el receptor suele creer al verbal</label>
+      <label class="opt"><input type="radio" name="ej6" value="c"> El lenguaje no verbal puede sustituir completamente al verbal</label>
+      <label class="opt"><input type="radio" name="ej6" value="d"> Una parte de la comunicación no verbal es innata y otra se aprende</label>
+    </div>
+    <div id="ej6-fb" class="feedback"></div>
+  </div>
+
+  <!-- Pregunta 7 -->
+  <div class="q-container">
+    <div class="q-header">
+      <div class="q-num">7</div>
+      <div class="q-text">Un directivo de una empresa envía circulares a todos los departamentos comunicando la nueva política de gastos. Esto es un ejemplo de:</div>
+    </div>
+    <div class="options">
+      <label class="opt"><input type="radio" name="ej7" value="a"> Comunicación formal descendente</label>
+      <label class="opt"><input type="radio" name="ej7" value="b"> Comunicación informal ascendente</label>
+      <label class="opt"><input type="radio" name="ej7" value="c"> Comunicación formal ascendente</label>
+      <label class="opt"><input type="radio" name="ej7" value="d"> Comunicación transversal informal</label>
+    </div>
+    <div id="ej7-fb" class="feedback"></div>
+  </div>
+
+  <div class="btn-wrap">
+    <button class="btn-primary" onclick="verificarEjercicio()">✅ Verificar respuestas</button>
+    <button class="btn-secondary" onclick="reiniciarEjercicio()">🔄 Reiniciar</button>
+  </div>
+
+  <div id="score-panel">
+    <span class="score-emoji" id="ej-emoji">🎯</span>
+    <div class="score-pct" id="ej-pct">0%</div>
+    <div id="ej-score-txt"></div>
+    <div class="progress-bar-wrap"><div class="progress-bar-fill" id="ej-bar" style="width:0%"></div></div>
+    <div class="score-msg" id="ej-msg"></div>
+  </div>
+</div>
+
+<!-- ============================================================ CUESTIONARIO ============================================================ -->
+<div id="tab-cuestionario" class="tab-content">
+  <h2>📝 Cuestionario — Semana 7</h2>
+  <p>Responde las <strong>10 preguntas</strong> y luego presiona <em>Verificar respuestas</em> para ver tu calificación. Las preguntas tienen badge <span class="tag tag-blue">Teórica</span> o <span class="tag tag-gold">Análisis</span> según su tipo.</p>
+
+  <!-- P1 -->
+  <div class="q-container">
+    <div class="q-header">
+      <div class="q-num">1</div>
+      <div class="q-text">¿Cuál de los siguientes enunciados define correctamente la comunicación no verbal?</div>
+      <span class="q-badge badge-teo">Teórica</span>
+    </div>
+    <div class="options">
+      <label class="opt"><input type="radio" name="q1" value="a"> Es el conjunto de signos y sistemas no lingüísticos que transmiten información sobre estados, intenciones y relaciones entre personas</label>
+      <label class="opt"><input type="radio" name="q1" value="b"> Es exclusivamente la comunicación gestual realizada con las manos</label>
+      <label class="opt"><input type="radio" name="q1" value="c"> Es la comunicación escrita cuando no se acompaña de palabras habladas</label>
+      <label class="opt"><input type="radio" name="q1" value="d"> Es la comunicación que ocurre solo en contextos íntimos o privados</label>
+    </div>
+    <div id="q1-fb" class="feedback"></div>
+  </div>
+
+  <!-- P2 -->
+  <div class="q-container">
+    <div class="q-header">
+      <div class="q-num">2</div>
+      <div class="q-text">La paralingüística estudia principalmente:</div>
+      <span class="q-badge badge-teo">Teórica</span>
+    </div>
+    <div class="options">
+      <label class="opt"><input type="radio" name="q2" value="a"> Las distancias físicas entre personas y su significado cultural</label>
+      <label class="opt"><input type="radio" name="q2" value="b"> Los movimientos corporales y expresiones faciales</label>
+      <label class="opt"><input type="radio" name="q2" value="c"> Las variaciones vocales no verbales que acompañan al habla: tono, timbre, ritmo, pausas</label>
+      <label class="opt"><input type="radio" name="q2" value="d"> La elección de palabras y el estilo de escritura</label>
+    </div>
+    <div id="q2-fb" class="feedback"></div>
+  </div>
+
+  <!-- P3 -->
+  <div class="q-container">
+    <div class="q-header">
+      <div class="q-num">3</div>
+      <div class="q-text">Según Edward T. Hall, ¿cuál es la distancia correspondiente a la zona social, la más frecuente en contextos profesionales?</div>
+      <span class="q-badge badge-teo">Teórica</span>
+    </div>
+    <div class="options">
+      <label class="opt"><input type="radio" name="q3" value="a"> 0 a 45 cm</label>
+      <label class="opt"><input type="radio" name="q3" value="b"> 45 a 120 cm</label>
+      <label class="opt"><input type="radio" name="q3" value="c"> 120 a 360 cm</label>
+      <label class="opt"><input type="radio" name="q3" value="d"> Más de 360 cm</label>
+    </div>
+    <div id="q3-fb" class="feedback"></div>
+  </div>
+
+  <!-- P4 -->
+  <div class="q-container">
+    <div class="q-header">
+      <div class="q-num">4</div>
+      <div class="q-text">¿Cuál de las siguientes NO es una función del lenguaje no verbal?</div>
+      <span class="q-badge badge-teo">Teórica</span>
+    </div>
+    <div class="options">
+      <label class="opt"><input type="radio" name="q4" value="a"> Substituir completamente el mensaje verbal</label>
+      <label class="opt"><input type="radio" name="q4" value="b"> Codificar gramaticalmente la sintaxis de una oración</label>
+      <label class="opt"><input type="radio" name="q4" value="c"> Reforzar y complementar el mensaje verbal</label>
+      <label class="opt"><input type="radio" name="q4" value="d"> Regular el flujo de la interacción entre personas</label>
+    </div>
+    <div id="q4-fb" class="feedback"></div>
+  </div>
+
+  <!-- P5 -->
+  <div class="q-container">
+    <div class="q-header">
+      <div class="q-num">5</div>
+      <div class="q-text">En la comunicación organizacional, la comunicación ascendente se caracteriza porque:</div>
+      <span class="q-badge badge-teo">Teórica</span>
+    </div>
+    <div class="options">
+      <label class="opt"><input type="radio" name="q5" value="a"> Transmite instrucciones y políticas de los directivos hacia los empleados</label>
+      <label class="opt"><input type="radio" name="q5" value="b"> Fluye desde los niveles operativos hacia los niveles superiores, transmitiendo reportes, hallazgos e inquietudes</label>
+      <label class="opt"><input type="radio" name="q5" value="c"> Se produce entre personas del mismo nivel jerárquico para coordinar actividades</label>
+      <label class="opt"><input type="radio" name="q5" value="d"> Es exclusivamente de tipo informal y no sigue la jerarquía institucional</label>
+    </div>
+    <div id="q5-fb" class="feedback"></div>
+  </div>
+
+  <!-- P6 -->
+  <div class="q-container">
+    <div class="q-header">
+      <div class="q-num">6</div>
+      <div class="q-text">En la estructura del discurso, ¿a qué parte le corresponde aproximadamente el 60–70% del tiempo total?</div>
+      <span class="q-badge badge-teo">Teórica</span>
+    </div>
+    <div class="options">
+      <label class="opt"><input type="radio" name="q6" value="a"> A la introducción, porque es donde se capta la atención del público</label>
+      <label class="opt"><input type="radio" name="q6" value="b"> Al cierre, porque es lo que mejor recuerda el auditorio</label>
+      <label class="opt"><input type="radio" name="q6" value="c"> Al desarrollo, porque contiene el núcleo del mensaje y la información central</label>
+      <label class="opt"><input type="radio" name="q6" value="d"> A la presentación del orador, porque es lo que genera credibilidad inicial</label>
+    </div>
+    <div id="q6-fb" class="feedback"></div>
+  </div>
+
+  <!-- P7 -->
+  <div class="q-container">
+    <div class="q-header">
+      <div class="q-num">7</div>
+      <div class="q-text">¿Cuál de los cinco pilares de la retórica clásica corresponde a la "puesta en escena": voz, cuerpo, gestos y mirada durante el discurso?</div>
+      <span class="q-badge badge-teo">Teórica</span>
+    </div>
+    <div class="options">
+      <label class="opt"><input type="radio" name="q7" value="a"> Inventio</label>
+      <label class="opt"><input type="radio" name="q7" value="b"> Dispositio</label>
+      <label class="opt"><input type="radio" name="q7" value="c"> Elocutio</label>
+      <label class="opt"><input type="radio" name="q7" value="d"> Actio</label>
+    </div>
+    <div id="q7-fb" class="feedback"></div>
+  </div>
+
+  <!-- P8 ANÁLISIS -->
+  <div class="q-container">
+    <div class="q-header">
+      <div class="q-num">8</div>
+      <div class="q-text">Una auditora presenta sus hallazgos al gerente general de una empresa. Mientras explica las irregularidades detectadas, el gerente cruza los brazos, inclina ligeramente el cuerpo hacia atrás y evita el contacto visual. ¿Cuál es la interpretación más apropiada de estos signos no verbales?</div>
+      <span class="q-badge badge-ana">Análisis</span>
+    </div>
+    <div class="options">
+      <label class="opt"><input type="radio" name="q8" value="a"> El gerente está en postura defensiva o de rechazo, posiblemente incómodo con la información recibida</label>
+      <label class="opt"><input type="radio" name="q8" value="b"> El gerente está completamente de acuerdo con los hallazgos presentados</label>
+      <label class="opt"><input type="radio" name="q8" value="c"> El gerente tiene frío en la oficina y esto explica todos los gestos</label>
+      <label class="opt"><input type="radio" name="q8" value="d"> El gerente demuestra autoridad y dominio sobre la auditora con esa postura</label>
+    </div>
+    <div id="q8-fb" class="feedback"></div>
+  </div>
+
+  <!-- P9 ANÁLISIS -->
+  <div class="q-container">
+    <div class="q-header">
+      <div class="q-num">9</div>
+      <div class="q-text">En una empresa del sector financiero ecuatoriano, los empleados comparten rumores sobre un posible recorte de personal, generando ansiedad generalizada. La gerencia no ha comunicado nada oficialmente. ¿Qué problema de comunicación organizacional refleja esta situación?</div>
+      <span class="q-badge badge-ana">Análisis</span>
+    </div>
+    <div class="options">
+      <label class="opt"><input type="radio" name="q9" value="a"> Un exceso de comunicación formal descendente que ha saturado a los empleados</label>
+      <label class="opt"><input type="radio" name="q9" value="b"> Un vacío en la comunicación formal descendente que ha sido llenado por la comunicación informal (rumores)</label>
+      <label class="opt"><input type="radio" name="q9" value="c"> Una disfunción en la comunicación ascendente porque los empleados no pueden reportar sus inquietudes</label>
+      <label class="opt"><input type="radio" name="q9" value="d"> Un problema exclusivo de comunicación no verbal en la empresa</label>
+    </div>
+    <div id="q9-fb" class="feedback"></div>
+  </div>
+
+  <!-- P10 ANÁLISIS -->
+  <div class="q-container">
+    <div class="q-header">
+      <div class="q-num">10</div>
+      <div class="q-text">Un contador debe presentar el cierre financiero del trimestre a inversionistas extranjeros. Antes de la reunión, define claramente qué quiere lograr, adapta su lenguaje a personas no contables, estructura la presentación en 3 partes con tiempos definidos y ensaya su discurso dos veces. ¿Qué principio de comunicación está aplicando?</div>
+      <span class="q-badge badge-ana">Análisis</span>
+    </div>
+    <div class="options">
+      <label class="opt"><input type="radio" name="q10" value="a"> Comunicación espontánea adaptada al público</label>
+      <label class="opt"><input type="radio" name="q10" value="b"> Comunicación informal organizacional</label>
+      <label class="opt"><input type="radio" name="q10" value="c"> Comunicación oral estratégica, con planeación deliberada orientada al objetivo y al receptor</label>
+      <label class="opt"><input type="radio" name="q10" value="d"> Comunicación no verbal con énfasis en la kinésica</label>
+    </div>
+    <div id="q10-fb" class="feedback"></div>
+  </div>
+
+  <div class="btn-wrap">
+    <button class="btn-primary" onclick="verificarCuestionario()">✅ Verificar respuestas</button>
+    <button class="btn-secondary" onclick="reiniciarCuestionario()">🔄 Reiniciar</button>
+  </div>
+
+  <div id="score-panel-q">
+    <span class="score-emoji" id="q-emoji">🎯</span>
+    <div class="score-pct" id="q-pct">0%</div>
+    <div id="q-score-txt"></div>
+    <div class="progress-bar-wrap"><div class="progress-bar-fill" id="q-bar" style="width:0%"></div></div>
+    <div class="score-msg" id="q-msg"></div>
+  </div>
+</div>
+
+<!-- ============================================================ ACTIVIDAD IA ============================================================ -->
+<div id="tab-ia" class="tab-content">
+  <h2>🤖 Actividad con Inteligencia Artificial</h2>
+
+  <div class="concepto">
+    <div class="cb-label">🎯 Objetivo de la actividad</div>
+    <p>Usar la Inteligencia Artificial como <strong>interlocutor crítico</strong> para analizar un caso real de comunicación no verbal en contexto profesional contable-auditor. No se trata de copiar la respuesta de la IA: se trata de <em>dialogar con ella</em>, cuestionar sus análisis y producir tu propia reflexión fundamentada.</p>
+  </div>
+
+  <h3>Herramienta principal recomendada</h3>
+  <div class="cards-grid">
+    <div class="card gold-top">
+      <div class="card-icon">🏆</div>
+      <h4>Claude (claude.ai) — Primera opción</h4>
+      <p>Accede gratis en <strong>claude.ai</strong>. Tiene alta capacidad de análisis de casos complejos, razonamiento contextual y respuestas estructuradas. Ideal para esta actividad.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">💬</div>
+      <h4>ChatGPT (chat.openai.com)</h4>
+      <p>Alternativa válida. Versión gratuita disponible. Útil para el mismo análisis si no puedes acceder a Claude.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">✨</div>
+      <h4>Gemini (gemini.google.com)</h4>
+      <p>Tercera opción gratuita de Google. También puede procesar el prompt propuesto.</p>
+    </div>
+  </div>
+
+  <h3>El Prompt que debes usar</h3>
+  <div class="ia-prompt">
+Actúa como experto en comunicación no verbal y psicología organizacional.
+
+Analiza el siguiente caso:
+
+"Durante una auditoría forense a una empresa distribuidora en Ecuador, el auditor solicita al contador jefe que le muestre los registros de caja chica del último semestre. El contador jefe responde verbalmente que 'todo está en orden y disponible'. Sin embargo, el auditor observa lo siguiente:
+- El contador habla con velocidad inusualmente alta
+- Hace gestos repetitivos con la mano izquierda (toca su cuello)
+- Se aleja físicamente del escritorio cuando el auditor se acerca
+- Hace una pausa de 4 segundos antes de responder sobre el mes de marzo específicamente
+- Su tono de voz sube levemente al mencionar las fechas de los últimos tres meses"
+
+Por favor:
+1. Identifica qué sistema del lenguaje no verbal corresponde a cada comportamiento observado (kinésica, proxémica o paralingüística)
+2. Analiza qué podría estar comunicando cada señal no verbal de forma independiente
+3. Explica si el patrón conjunto de señales es congruente o incongruente con el mensaje verbal ("todo está en orden")
+4. Sugiere qué debería hacer el auditor a continuación, desde una perspectiva comunicacional (no legal)
+
+Responde de forma estructurada y usa terminología de la comunicación no verbal.
+  </div>
+
+  <h3>¿Qué hacer con la respuesta de la IA?</h3>
+  <div class="steps-list">
+    <div class="step-item">
+      <div>
+        <strong>Lee la respuesta completa de la IA.</strong> No la copies. Léela con atención crítica y marca los puntos con los que estás de acuerdo y los que te generan dudas o desacuerdo.
+      </div>
+    </div>
+    <div class="step-item">
+      <div>
+        <strong>Contrasta con el material del widget.</strong> ¿La IA usó la misma clasificación de zonas proxémicas que estudiaste? ¿Mencionó correctamente los componentes de la kinésica? ¿Qué añadió que no estaba en el material?
+      </div>
+    </div>
+    <div class="step-item">
+      <div>
+        <strong>Haz al menos una pregunta de seguimiento a la IA.</strong> Por ejemplo: "¿Podría el auditor estar equivocado en su lectura de las señales no verbales? ¿Qué limitaciones tiene este análisis?" Registra la respuesta.
+      </div>
+    </div>
+    <div class="step-item">
+      <div>
+        <strong>Escribe tu propia conclusión</strong> (mínimo 150 palabras) respondiendo: ¿Coincides con el análisis de la IA? ¿Qué agregarías tú basándote en lo que aprendiste esta semana? ¿En qué aspectos difiere tu perspectiva de la de la IA?
+      </div>
+    </div>
+    <div class="step-item">
+      <div>
+        <strong>Reflexión final:</strong> ¿Podría un auditor confiar únicamente en el lenguaje no verbal para tomar decisiones? Argumenta con lo aprendido en el widget y en tu diálogo con la IA.
+      </div>
+    </div>
+  </div>
+
+  <h3>Criterio de evaluación</h3>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Indicador</th><th>Demuestra pensamiento crítico ✅</th><th>Es copia simple ❌</th></tr></thead>
+      <tbody>
+        <tr><td>Uso de la respuesta IA</td><td>La parafrasea, la contrasta y la cuestiona con argumentos propios</td><td>La copia literalmente o la parafrasea sin cuestionarla</td></tr>
+        <tr><td>Conexión con el material</td><td>Cita explícitamente conceptos del widget (kinésica, proxémica, paralenguaje) para argumentar</td><td>No conecta la respuesta de la IA con el material del curso</td></tr>
+        <tr><td>Pregunta de seguimiento</td><td>Hace una pregunta que desafía o profundiza el análisis inicial de la IA</td><td>No hace preguntas de seguimiento o hace preguntas superficiales</td></tr>
+        <tr><td>Conclusión propia</td><td>Es original, está fundamentada y reconoce limitaciones del análisis</td><td>Es una copia reformulada de la IA sin posición personal</td></tr>
+        <tr><td>Reconocimiento de limitaciones</td><td>Acepta que el lenguaje no verbal no es evidencia suficiente por sí solo</td><td>Acepta sin crítica que el análisis no verbal es concluyente</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="clave">
+    <div class="cl-label">💡 Nota pedagógica importante</div>
+    <p>La IA puede cometer errores, simplificar en exceso o pasar por alto matices culturales ecuatorianos. Tú, como estudiante con acceso al material de este curso y a tu propia experiencia profesional, tienes elementos que la IA no tiene. Tu tarea es <strong>aportar lo que la IA no puede</strong>: contexto humano, criterio profesional y pensamiento crítico situado.</p>
+  </div>
+</div>
+
+<!-- ============================================================ REFLEXIÓN ============================================================ -->
+<div id="tab-reflexion" class="tab-content">
+  <h2>🪞 Reflexión — Tu cuerpo también habla de ti</h2>
+  <p style="font-style:italic;color:#555;margin-bottom:24px">Esta sección no tiene respuestas correctas ni incorrectas. Su propósito es conectar lo aprendido con tu experiencia personal, para que lo comprendas desde adentro, no solo desde la teoría.</p>
+
+  <div class="ref-q">
+    <div class="ref-num">Reflexión 1 · Lenguaje no verbal en tu vida diaria</div>
+    <p>Piensa en una conversación reciente (con un familiar, amigo, compañero de trabajo o docente) donde sentiste que algo "no cuadraba": la persona decía una cosa, pero algo en su expresión, su tono o su postura te generó duda. ¿Qué señales específicas detectaste? ¿Confiaste más en las palabras o en el cuerpo? ¿Qué te dice esto sobre cómo procesas la información en tu vida cotidiana?</p>
+  </div>
+
+  <div class="ref-q">
+    <div class="ref-num">Reflexión 2 · Tu propio lenguaje no verbal y la autoestima</div>
+    <p>¿Cómo habla tu cuerpo cuando estás seguro de algo? ¿Y cuando tienes inseguridad? Describe físicamente la diferencia: postura, mirada, velocidad de la voz, gesticulación. La autoestima no es solo lo que piensas de ti mismo: también es cómo tu cuerpo se posiciona en el espacio. ¿Qué dice tu lenguaje corporal sobre cómo te percibes a ti mismo cuando estás en clase, en una exposición o en una reunión importante?</p>
+  </div>
+
+  <div class="ref-q">
+    <div class="ref-num">Reflexión 3 · Las distancias en tus relaciones personales</div>
+    <p>La proxémica nos dice que manejamos diferentes distancias según la intimidad de la relación. Ahora que conoces las zonas (íntima, personal, social, pública), ¿puedes identificar a qué zona pertenece cada persona importante en tu vida? ¿Hay alguien con quien la distancia física que mantienes no refleja el tipo de relación que desearías tener? ¿Hay casos donde alguien invade tu zona íntima y eso te genera incomodidad, aunque no sabías explicar por qué?</p>
+  </div>
+
+  <div class="ref-q">
+    <div class="ref-num">Reflexión 4 · Tu voz como herramienta de vida</div>
+    <p>La paralingüística nos enseña que el tono, el ritmo y las pausas de la voz comunican más que las palabras. Piensa en las personas que más te han influido en la vida: un maestro memorable, un padre o madre, un líder que admiras. ¿Cómo era su voz? ¿Su tono, su ritmo, sus pausas? ¿Qué cualidades de su voz habrían contribuido a ese impacto? Ahora pregúntate: ¿cómo describirías tu propia voz? ¿Es un instrumento que cuidas o uno que dejás al azar?</p>
+  </div>
+
+  <div class="ref-q">
+    <div class="ref-num">Reflexión 5 · Comunicación corporativa y tu experiencia laboral o familiar</div>
+    <p>Toda familia es también una organización con flujos de comunicación. ¿Puedes identificar flujos ascendentes (hijos comunicando algo a los padres), descendentes (padres dando instrucciones a hijos), horizontales (entre hermanos) o informales (rumores y comentarios que circulan entre familiares) en tu propia familia? ¿Qué problemas de comunicación organizacional —vacíos de información, rumores, falta de retroalimentación— has vivido en tu hogar o en algún lugar donde has trabajado?</p>
+  </div>
+
+  <div class="ref-q">
+    <div class="ref-num">Reflexión 6 · Inteligencia emocional y lenguaje no verbal</div>
+    <p>La inteligencia emocional implica reconocer las emociones propias y ajenas. El lenguaje no verbal es la principal fuente de información emocional en una conversación. ¿Hay situaciones donde te cuesta "leer" lo que siente la otra persona? ¿Hay emociones tuyas propias que tu cuerpo delata antes de que puedas controlarlas? ¿Qué pasaría si pudieras desarrollar mayor conciencia de tu propio lenguaje corporal? ¿Qué cambiaría en tus relaciones personales y profesionales?</p>
+  </div>
+
+  <div class="ref-q">
+    <div class="ref-num">Reflexión 7 · Planeación y espontaneidad: ¿cuándo eres estratégico?</div>
+    <p>La comunicación oral estratégica implica planear antes de hablar. ¿En qué situaciones de tu vida planeas con anticipación lo que vas a decir y cómo lo vas a decir? ¿Y en cuáles simplemente improvisas? ¿Ha habido alguna ocasión en que la improvisación te costó cara: una conversación con alguien importante, una exposición, una entrevista? ¿Qué habrías hecho diferente si hubieras aplicado los principios de la comunicación oral estratégica que aprendiste hoy?</p>
+  </div>
+
+  <div class="clave">
+    <div class="cl-label">🌱 Invitación final</div>
+    <p>La comunicación no verbal, la corporativa y la oral estratégica no son materias de texto: son herramientas de vida que usas —consciente o inconscientemente— cada día. La diferencia entre usarlas al azar y usarlas con intención es la diferencia entre comunicar y simplemente hablar. Esta semana, observa tu propio cuerpo, escucha tu propia voz y nota los flujos de comunicación a tu alrededor. La teoría se vuelve real cuando la ves en tu vida.</p>
+  </div>
+</div>
+
+<!-- ============================================================ BIBLIOGRAFÍA ============================================================ -->
+<div id="tab-biblio" class="tab-content">
+  <h2>📚 Bibliografía — Semana 7</h2>
+  <p>Referencias en formato APA 7.ª edición. Solo se incluyen obras verificables y de autores reconocidos en el campo.</p>
+
+  <div class="ref-card">
+    <div class="ref-icon">📖</div>
+    <div class="ref-body">
+      <div class="ref-aut">Knapp, M. L., & Hall, J. A. (2010).</div>
+      <div class="ref-tit">Nonverbal communication in human interaction (7th ed.).</div>
+      <div class="ref-src">Wadsworth Cengage Learning. — Obra clásica y referencia mundial del lenguaje no verbal; cubre kinésica, proxémica y paralenguaje de manera sistemática.</div>
+    </div>
+  </div>
+
+  <div class="ref-card">
+    <div class="ref-icon">📖</div>
+    <div class="ref-body">
+      <div class="ref-aut">Hall, E. T. (1966).</div>
+      <div class="ref-tit">The hidden dimension.</div>
+      <div class="ref-src">Doubleday. — Obra fundacional donde Hall desarrolla el concepto de proxémica y las cuatro zonas de distancia interpersonal.</div>
+    </div>
+  </div>
+
+  <div class="ref-card">
+    <div class="ref-icon">📖</div>
+    <div class="ref-body">
+      <div class="ref-aut">Fernández Collado, C. (2002).</div>
+      <div class="ref-tit">La comunicación en las organizaciones (2.ª ed.).</div>
+      <div class="ref-src">Editorial Trillas. — Texto de referencia latinoamericano en comunicación organizacional; ampliamente utilizado en universidades de México, Ecuador y Colombia.</div>
+    </div>
+  </div>
+
+  <div class="ref-card">
+    <div class="ref-icon">📖</div>
+    <div class="ref-body">
+      <div class="ref-aut">Robbins, S. P., & Coulter, M. (2018).</div>
+      <div class="ref-tit">Administración (13.ª ed.).</div>
+      <div class="ref-src">Pearson Educación. — Capítulo sobre comunicación organizacional: flujos formales e informales, barreras y gestión de la información en organizaciones.</div>
+    </div>
+  </div>
+
+  <div class="ref-card">
+    <div class="ref-icon">📖</div>
+    <div class="ref-body">
+      <div class="ref-aut">Mehrabian, A. (1971).</div>
+      <div class="ref-tit">Silent messages: Implicit communication of emotions and attitudes.</div>
+      <div class="ref-src">Wadsworth Publishing. — Obra que da origen a la investigación sobre el peso relativo de las palabras (7%), la voz (38%) y el cuerpo (55%) en la comunicación emocional.</div>
+    </div>
+  </div>
+
+  <div class="ref-card">
+    <div class="ref-icon">📖</div>
+    <div class="ref-body">
+      <div class="ref-aut">Corrales, E. (2011).</div>
+      <div class="ref-tit">El lenguaje no verbal: un proceso cognitivo superior indispensable para el ser humano.</div>
+      <div class="ref-src"><em>Revista Comunicación</em>, 20(1), 96–100. Instituto Tecnológico de Costa Rica. — Artículo académico indexado que analiza el lenguaje no verbal desde la perspectiva cognitiva y de la PNL.</div>
+    </div>
+  </div>
+
+  <div class="ref-card">
+    <div class="ref-icon">📖</div>
+    <div class="ref-body">
+      <div class="ref-aut">Murphy, J. J. (1989).</div>
+      <div class="ref-tit">Sinopsis histórica de la retórica clásica.</div>
+      <div class="ref-src">Editorial Gredos. — Referencia para la retórica clásica y sus cinco pilares (inventio, dispositio, elocutio, memoria, actio), base histórica de la oratoria estratégica moderna.</div>
+    </div>
+  </div>
+
+  <div class="ref-card">
+    <div class="ref-icon">🌐</div>
+    <div class="ref-body">
+      <div class="ref-aut">Contraloría General del Estado del Ecuador. (2022).</div>
+      <div class="ref-tit">Manual de auditoría de gestión.</div>
+      <div class="ref-src">CGE Ecuador. Disponible en: www.contraloria.gob.ec — Documento institucional que regula los procedimientos de auditoría, incluyendo entrevistas e informes orales a directivos.</div>
+    </div>
+  </div>
+
+  <div class="bib-note">
+    📌 <strong>Nota:</strong> Se recomienda verificar cada referencia en <strong>Google Scholar</strong> (scholar.google.com) o en el repositorio institucional de la Universidad de Guayaquil antes de citar en trabajos académicos. Algunos títulos pueden tener ediciones más recientes disponibles.
+  </div>
+</div>
+
+</div><!-- end #content -->
+
+<!-- ===== JAVASCRIPT ===== -->
+<script>
+// ---- TAB NAVIGATION ----
+function showTab(id) {
+  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + id).classList.add('active');
+  const btns = document.querySelectorAll('.tab-btn');
+  btns.forEach(b => { if (b.getAttribute('onclick').includes("'" + id + "'")) b.classList.add('active'); });
+  window.scrollTo({top: 0, behavior: 'smooth'});
+}
+
+// ---- REPASO TOGGLE ----
+function toggleSemana(card) {
+  const body = card.querySelector('.semana-body');
+  const isOpen = body.classList.contains('open');
+  document.querySelectorAll('.semana-body').forEach(b => { b.classList.remove('open'); b.parentElement.classList.remove('open'); });
+  if (!isOpen) { body.classList.add('open'); card.classList.add('open'); }
+}
+
+// ---- EJERCICIO INTERACTIVO ----
+const ejRespuestas = { ej1:'a', ej2:'b', ej3:'b', ej4:'b', ej5:'c', ej6:'b', ej7:'a' };
+const ejFeedback = {
+  ej1: { ok: '✅ Correcto. Hablar rápido y carraspear son elementos paralingüísticos (voz). Evitar el contacto visual es kinésico (movimiento ocular).', fail: '❌ Incorrecto. La velocidad y el carraspeo pertenecen a la paralingüística; evitar la mirada es un elemento kinésico (expresión ocular).' },
+  ej2: { ok: '✅ Correcto. Entre 120 y 360 cm corresponde a la zona social, usada en relaciones laborales, reuniones y entrevistas profesionales.', fail: '❌ Incorrecto. Más de 2 metros (200 cm) cae en la zona social (120–360 cm), que comunica formalidad y diferencia de roles.' },
+  ej3: { ok: '✅ Correcto. Los informes que escalan desde niveles operativos hasta la máxima autoridad siguen un flujo formal ascendente.', fail: '❌ Incorrecto. Este flujo va de abajo hacia arriba (de auditores a directivos), por lo tanto es formal ascendente.' },
+  ej4: { ok: '✅ Correcto. La introducción debe ocupar el 15–20% del tiempo, motivar al auditorio y responder "¿por qué debo escuchar esto?".', fail: '❌ Incorrecto. El 60–70% corresponde al desarrollo. La introducción toma el 15–20%.' },
+  ej5: { ok: '✅ Correcto. Dispositio es el pilar de la retórica clásica que se ocupa de la organización y disposición de las partes del discurso.', fail: '❌ Incorrecto. Dispositio es la organización de las partes. Inventio es el tema; Elocutio es la elección de palabras; Actio es la puesta en escena.' },
+  ej6: { ok: '✅ Correcto. Esa afirmación es la INCORRECTA: cuando hay incoherencia entre verbal y no verbal, el receptor suele creer al NO VERBAL, no al verbal.', fail: '❌ Incorrecto. La afirmación incorrecta es la B: cuando hay incoherencia, el receptor cree al lenguaje NO VERBAL (es inconsciente e involuntario), no al verbal.' },
+  ej7: { ok: '✅ Correcto. Las circulares emitidas por un directivo hacia todos los departamentos siguen la jerarquía oficial de arriba hacia abajo: comunicación formal descendente.', fail: '❌ Incorrecto. Una circular de directivo a empleados es comunicación formal descendente: sigue la jerarquía oficial de niveles superiores a inferiores.' }
+};
+
+function verificarEjercicio() {
+  const names = ['ej1','ej2','ej3','ej4','ej5','ej6','ej7'];
+  for (let n of names) {
+    if (!document.querySelector(`input[name="${n}"]:checked`)) {
+      alert('⚠️ Por favor responde TODAS las preguntas antes de verificar.');
+      return;
+    }
+  }
+  let correctas = 0;
+  names.forEach(n => {
+    const sel = document.querySelector(`input[name="${n}"]:checked`).value;
+    const esCorrecta = sel === ejRespuestas[n];
+    if (esCorrecta) correctas++;
+    const fb = document.getElementById(n + '-fb');
+    fb.textContent = ejFeedback[n][esCorrecta ? 'ok' : 'fail'];
+    fb.className = 'feedback show ' + (esCorrecta ? 'ok' : 'fail');
+    document.querySelectorAll(`input[name="${n}"]`).forEach(inp => {
+      const lbl = inp.closest('.opt');
+      if (inp.value === ejRespuestas[n]) lbl.classList.add('correct');
+      else if (inp.value === sel && !esCorrecta) lbl.classList.add('selected-wrong');
+      inp.disabled = true;
+    });
+  });
+  const pct = Math.round((correctas / names.length) * 100);
+  mostrarScore('score-panel', 'ej-emoji', 'ej-pct', 'ej-score-txt', 'ej-bar', 'ej-msg', correctas, names.length, pct);
+}
+
+function reiniciarEjercicio() {
+  document.querySelectorAll('[name^="ej"]').forEach(i => { i.checked = false; i.disabled = false; i.closest('.opt').className = 'opt'; });
+  document.querySelectorAll('[id$="-fb"]').forEach(f => { if (f.id.startsWith('ej')) { f.className='feedback'; f.textContent=''; } });
+  document.getElementById('score-panel').style.display = 'none';
+}
+
+// ---- CUESTIONARIO ----
+const qRespuestas = { q1:'a', q2:'c', q3:'c', q4:'b', q5:'b', q6:'c', q7:'d', q8:'a', q9:'b', q10:'c' };
+const qFeedback = {
+  q1: { ok:'✅ Correcto. La comunicación no verbal comprende todos los signos no lingüísticos: gestos, posturas, miradas, distancias, vestimenta y expresiones faciales.', fail:'❌ Incorrecto. La comunicación no verbal incluye todos los signos no lingüísticos, no solo los gestos de manos ni se limita a contextos íntimos.' },
+  q2: { ok:'✅ Correcto. La paralingüística estudia las señales vocales no verbales: tono, timbre, volumen, ritmo, pausas y silencios.', fail:'❌ Incorrecto. Las distancias corresponden a la proxémica; los movimientos corporales a la kinésica. La paralingüística estudia la voz y sus variaciones.' },
+  q3: { ok:'✅ Correcto. La zona social (120–360 cm) es la utilizada en reuniones de negocios, entrevistas y contextos profesionales formales.', fail:'❌ Incorrecto. La zona social de Hall es de 120 a 360 cm. La íntima es 0–45 cm, la personal 45–120 cm, y la pública >360 cm.' },
+  q4: { ok:'✅ Correcto. La "codificación gramatical de una oración" NO es función del lenguaje no verbal; corresponde a la lingüística y la gramática.', fail:'❌ Incorrecto. Sustituir el verbal, reforzarlo y regular la interacción SÍ son funciones del lenguaje no verbal. Codificar gramaticalmente corresponde a la lingüística.' },
+  q5: { ok:'✅ Correcto. La comunicación ascendente va de niveles bajos a altos, transmitiendo reportes, hallazgos, inquietudes y sugerencias.', fail:'❌ Incorrecto. Lo que fluye de directivos a empleados (órdenes, políticas) es comunicación descendente. La ascendente va de abajo hacia arriba.' },
+  q6: { ok:'✅ Correcto. El 60–70% del tiempo corresponde al desarrollo, que contiene el núcleo argumental e informativo del discurso.', fail:'❌ Incorrecto. El 60–70% corresponde al desarrollo. La introducción ocupa 15–20%, el cierre 15–20% y la presentación del orador solo 5–10%.' },
+  q7: { ok:'✅ Correcto. Actio (del latín "acción") es el pilar retórico que abarca la ejecución física del discurso: voz, gestos, mirada y postura.', fail:'❌ Incorrecto. Actio es la puesta en escena. Inventio define el tema, Dispositio organiza las partes, Elocutio selecciona las palabras, Memoria es la memorización.' },
+  q8: { ok:'✅ Correcto. Los brazos cruzados, el cuerpo inclinado hacia atrás y la evitación del contacto visual forman un patrón kinésico de postura defensiva o de rechazo.', fail:'❌ Incorrecto. Este conjunto de señales kinésicas (brazos cruzados, inclinación hacia atrás, evasión visual) configura una postura defensiva o de rechazo, no de acuerdo.' },
+  q9: { ok:'✅ Correcto. El vacío de comunicación formal descendente (silencio de la gerencia) genera un espacio que la comunicación informal (rumores) ocupa inevitablemente.', fail:'❌ Incorrecto. El problema es que la gerencia no comunicó nada formalmente, creando un vacío que la comunicación informal llenó con rumores no verificados.' },
+  q10: { ok:'✅ Correcto. Definir objetivos, adaptar el lenguaje al receptor, estructurar con tiempos definidos y ensayar son exactamente los elementos de la comunicación oral estratégica.', fail:'❌ Incorrecto. La planeación previa, la adaptación al receptor y el ensayo caracterizan la comunicación oral estratégica, diferenciándola de la improvisación o la comunicación informal.' }
+};
+
+function verificarCuestionario() {
+  const names = ['q1','q2','q3','q4','q5','q6','q7','q8','q9','q10'];
+  for (let n of names) {
+    if (!document.querySelector(`input[name="${n}"]:checked`)) {
+      alert('⚠️ Por favor responde TODAS las preguntas antes de verificar.');
+      return;
+    }
+  }
+  let correctas = 0;
+  names.forEach(n => {
+    const sel = document.querySelector(`input[name="${n}"]:checked`).value;
+    const esCorrecta = sel === qRespuestas[n];
+    if (esCorrecta) correctas++;
+    const fb = document.getElementById(n + '-fb');
+    fb.textContent = qFeedback[n][esCorrecta ? 'ok' : 'fail'];
+    fb.className = 'feedback show ' + (esCorrecta ? 'ok' : 'fail');
+    document.querySelectorAll(`input[name="${n}"]`).forEach(inp => {
+      const lbl = inp.closest('.opt');
+      if (inp.value === qRespuestas[n]) lbl.classList.add('correct');
+      else if (inp.value === sel && !esCorrecta) lbl.classList.add('selected-wrong');
+      inp.disabled = true;
+    });
+  });
+  const pct = Math.round((correctas / names.length) * 100);
+  mostrarScore('score-panel-q', 'q-emoji', 'q-pct', 'q-score-txt', 'q-bar', 'q-msg', correctas, names.length, pct);
+}
+
+function reiniciarCuestionario() {
+  document.querySelectorAll('[name^="q"]').forEach(i => { i.checked = false; i.disabled = false; i.closest('.opt').className = 'opt'; });
+  document.querySelectorAll('[id^="q"][id$="-fb"]').forEach(f => { f.className='feedback'; f.textContent=''; });
+  document.getElementById('score-panel-q').style.display = 'none';
+}
+
+// ---- SCORE DISPLAY ----
+function mostrarScore(panelId, emojiId, pctId, txtId, barId, msgId, correctas, total, pct) {
+  const panel = document.getElementById(panelId);
+  panel.style.display = 'block';
+  let emoji, msg;
+  if (pct === 100) { emoji = '🏆'; msg = '¡Perfecto! Dominas completamente los contenidos de esta semana. Excelente trabajo.'; }
+  else if (pct >= 80) { emoji = '🎯'; msg = 'Muy buen desempeño. Tienes una comprensión sólida. Revisa las preguntas incorrectas para consolidar.'; }
+  else if (pct >= 60) { emoji = '📘'; msg = 'Desempeño aceptable. Te recomendamos revisar los temas donde fallaste antes de continuar.'; }
+  else if (pct >= 40) { emoji = '⚠️'; msg = 'Necesitas reforzar los contenidos. Vuelve a los temas y vuelve a intentarlo.'; }
+  else { emoji = '📖'; msg = 'Es necesario repasar toda la semana. No te desanimes: lee cada tema con calma y vuelve a intentarlo.'; }
+  document.getElementById(emojiId).textContent = emoji;
+  document.getElementById(pctId).textContent = pct + '%';
+  document.getElementById(txtId).textContent = correctas + ' de ' + total + ' correctas';
+  document.getElementById(msgId).textContent = msg;
+  setTimeout(() => { document.getElementById(barId).style.width = pct + '%'; }, 100);
+  panel.scrollIntoView({ behavior: 'smooth' });
+}
+</script>
+</body>
+</html>

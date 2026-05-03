@@ -1,0 +1,1063 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Repaso Examen | Lenguaje y Comunicación | Semanas 5–7 + Simulacro Final</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --azul:#003366; --celeste:#87CEEB; --celeste-light:#d4eaf7;
+  --blanco:#ffffff; --gold:#C8960C; --gold-light:#fff8e1;
+  --verde:#1a7a3a; --verde-light:#e8f5e9;
+  --rojo:#c0392b; --rojo-light:#fdecea;
+  --gris:#f4f6f9; --gris-texto:#4a4a4a;
+  --sombra:0 2px 8px rgba(0,51,102,.13);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Source Sans 3',sans-serif;background:#eef3f8;color:var(--gris-texto);min-height:100vh}
+.header{background:var(--azul);color:var(--blanco);padding:18px 24px 14px}
+.header-top{display:flex;align-items:center;gap:16px;margin-bottom:6px}
+.header-logo{width:52px;height:52px;background:var(--blanco);border-radius:8px;display:flex;align-items:center;justify-content:center;font-family:'Lora',serif;font-weight:700;color:var(--azul);font-size:18px;flex-shrink:0}
+.header-inst{font-size:12px;opacity:.78;letter-spacing:.3px}
+.header-title{font-family:'Lora',serif;font-size:clamp(17px,3vw,22px);font-weight:700;line-height:1.2}
+.header-sub{font-size:12px;background:rgba(255,255,255,.15);display:inline-block;padding:3px 10px;border-radius:20px;margin-top:4px}
+.tabs-wrapper{background:var(--celeste);overflow-x:auto;white-space:nowrap;border-bottom:3px solid var(--azul);-webkit-overflow-scrolling:touch;scrollbar-width:thin}
+.tabs-wrapper::-webkit-scrollbar{height:4px}
+.tabs-wrapper::-webkit-scrollbar-thumb{background:var(--azul);border-radius:2px}
+.tabs-menu{display:inline-flex;min-width:100%}
+.tab-btn{padding:11px 18px;border:none;background:transparent;color:#111;font-family:'Source Sans 3',sans-serif;font-size:13px;font-weight:600;cursor:pointer;transition:background .2s,color .2s;white-space:nowrap;border-right:1px solid rgba(0,51,102,.15);flex-shrink:0}
+.tab-btn:hover{background:rgba(255,255,255,.5)}
+.tab-btn.active{background:var(--blanco);color:var(--azul);font-weight:700;border-bottom:3px solid var(--azul);margin-bottom:-3px}
+.content-area{padding:20px 16px 40px;max-width:900px;margin:0 auto}
+.tab-content{display:none;animation:fadeIn .3s ease}
+.tab-content.active{display:block}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.semana-header{background:var(--azul);color:white;border-radius:10px 10px 0 0;padding:16px 20px}
+.semana-header h2{font-family:'Lora',serif;font-size:18px;margin-bottom:3px}
+.semana-header p{font-size:13px;opacity:.82}
+.preguntas-container{background:white;border-radius:0 0 10px 10px;padding:20px;box-shadow:var(--sombra);margin-bottom:20px}
+.pregunta-item{border:2px solid #e0e7f0;border-radius:10px;padding:18px;margin-bottom:16px;transition:border-color .2s}
+.pregunta-item.respondida{border-color:var(--celeste)}
+.pregunta-item.correcta{border-color:var(--verde);background:var(--verde-light)}
+.pregunta-item.incorrecta{border-color:var(--rojo);background:var(--rojo-light)}
+.pregunta-top{display:flex;align-items:flex-start;gap:12px;margin-bottom:12px}
+.pregunta-num{background:var(--azul);color:white;font-weight:700;font-size:13px;padding:3px 9px;border-radius:20px;flex-shrink:0;margin-top:2px}
+.badge-tipo{font-size:11px;font-weight:700;padding:2px 8px;border-radius:10px;flex-shrink:0;margin-top:4px;text-transform:uppercase;letter-spacing:.3px}
+.badge-teorica{background:#dde8f7;color:var(--azul)}
+.badge-aplicacion{background:#e8f5e0;color:#1a5c2a}
+.badge-caso{background:#fff3e0;color:#7a4500}
+.pregunta-texto{font-size:14.5px;line-height:1.55;color:#222;font-weight:600;flex:1}
+.caso-box{background:var(--celeste-light);border-left:4px solid var(--celeste);border-radius:6px;padding:12px 14px;margin-bottom:12px;font-size:13.5px;line-height:1.5;color:#1a3a5c;font-style:italic}
+.opciones{list-style:none}
+.opciones li{margin-bottom:7px}
+.opcion-label{display:flex;align-items:flex-start;gap:10px;padding:10px 12px;border:1.5px solid #cdd5e0;border-radius:8px;cursor:pointer;transition:background .15s,border-color .15s;font-size:14px;line-height:1.4}
+.opcion-label:hover{background:var(--celeste-light);border-color:var(--celeste)}
+.opcion-label input{margin-top:2px;flex-shrink:0;accent-color:var(--azul)}
+.opcion-label.seleccionada{background:#dde8f7;border-color:var(--azul)}
+.opcion-label.correcta-marcada{background:var(--verde-light);border-color:var(--verde);font-weight:700}
+.opcion-label.incorrecta-op{background:var(--rojo-light);border-color:var(--rojo);opacity:.75}
+.feedback-box{display:none;margin-top:12px;padding:12px 14px;border-radius:8px;font-size:13.5px;line-height:1.55}
+.feedback-box.show{display:block}
+.feedback-box.correcto{background:var(--verde-light);border-left:4px solid var(--verde);color:#0d3d1a}
+.feedback-box.incorrecto{background:var(--rojo-light);border-left:4px solid var(--rojo);color:#5c1010}
+.feedback-box .fb-titulo{font-weight:700;margin-bottom:6px;font-size:14px}
+.btn-verificar{background:var(--azul);color:white;border:none;padding:13px 32px;border-radius:8px;font-size:15px;font-weight:700;cursor:pointer;font-family:'Source Sans 3',sans-serif;transition:background .2s,transform .1s;display:block;margin:20px auto 0}
+.btn-verificar:hover{background:#004a99;transform:translateY(-1px)}
+.btn-reiniciar{background:white;color:var(--azul);border:2px solid var(--azul);padding:10px 26px;border-radius:8px;font-size:14px;font-weight:700;cursor:pointer;font-family:'Source Sans 3',sans-serif;transition:background .2s;display:none;margin:12px auto 0}
+.btn-reiniciar:hover{background:var(--celeste-light)}
+.btn-group{text-align:center}
+.resultado-panel{display:none;background:white;border-radius:12px;padding:24px;margin-top:16px;box-shadow:var(--sombra);text-align:center}
+.resultado-panel.show{display:block}
+.resultado-emoji{font-size:48px;margin-bottom:8px}
+.resultado-score{font-family:'Lora',serif;font-size:32px;font-weight:700;color:var(--azul)}
+.resultado-pct{font-size:18px;color:var(--gris-texto);margin-bottom:14px}
+.barra-wrapper{background:#e0e7f0;border-radius:20px;height:18px;margin:12px 0 16px;overflow:hidden}
+.barra-fill{height:100%;border-radius:20px;transition:width 1s ease;background:var(--azul)}
+.resultado-msg{font-size:15px;color:#333;max-width:480px;margin:0 auto;line-height:1.5}
+.alerta{display:none;background:#fff3cd;border:1px solid #ffc107;color:#7a5000;border-radius:8px;padding:12px 16px;font-size:14px;font-weight:600;text-align:center;margin-top:12px}
+.alerta.show{display:block}
+
+/* SIMULACRO */
+.sim-header{background:linear-gradient(135deg,#003366 0%,#005599 100%);color:white;border-radius:12px;padding:24px;text-align:center;margin-bottom:18px}
+.sim-header h2{font-family:'Lora',serif;font-size:22px;margin-bottom:8px}
+.sim-header p{font-size:14px;opacity:.88;max-width:600px;margin:0 auto}
+.cronometro-box{background:white;border-radius:10px;padding:14px 20px;display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;box-shadow:var(--sombra);border-left:4px solid var(--gold)}
+.cron-label{font-size:13px;color:var(--gris-texto);font-weight:600}
+.cron-tiempo{font-family:'Lora',serif;font-size:28px;font-weight:700;color:var(--azul);letter-spacing:2px}
+.btn-iniciar-cron{background:var(--gold);color:white;border:none;padding:8px 20px;border-radius:8px;font-size:14px;font-weight:700;cursor:pointer;font-family:'Source Sans 3',sans-serif}
+.btn-iniciar-cron:hover{background:#a07800}
+.sim-desglose{background:white;border-radius:10px;padding:18px;margin-top:16px;box-shadow:var(--sombra)}
+.sim-desglose h3{font-family:'Lora',serif;font-size:16px;color:var(--azul);margin-bottom:12px}
+.desglose-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px}
+.desglose-card{background:var(--gris);border-radius:8px;padding:12px;text-align:center}
+.desglose-card .dc-sem{font-size:12px;font-weight:700;color:var(--azul);text-transform:uppercase;letter-spacing:.3px}
+.desglose-card .dc-score{font-size:22px;font-weight:700;color:var(--azul);font-family:'Lora',serif}
+.desglose-card .dc-max{font-size:12px;color:var(--gris-texto)}
+
+.portada-hero{background:linear-gradient(135deg,var(--azul) 0%,#005599 100%);color:white;border-radius:12px;padding:36px 28px;text-align:center;margin-bottom:20px}
+.portada-hero h1{font-family:'Lora',serif;font-size:clamp(20px,4vw,28px);margin-bottom:10px}
+.portada-hero p{font-size:15px;opacity:.88;max-width:560px;margin:0 auto 18px;line-height:1.55}
+.badge-portada{display:inline-block;background:var(--gold);color:#fff;font-weight:700;padding:6px 18px;border-radius:20px;font-size:13px;margin:4px}
+.nav-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;margin-bottom:18px}
+.nav-card{background:white;border-radius:10px;padding:18px;border-left:4px solid var(--azul);box-shadow:var(--sombra);cursor:pointer;transition:transform .15s,box-shadow .15s}
+.nav-card:hover{transform:translateY(-3px);box-shadow:0 6px 18px rgba(0,51,102,.18)}
+.nav-card h3{font-family:'Lora',serif;font-size:14px;color:var(--azul);margin-bottom:6px}
+.nav-card p{font-size:13px;color:var(--gris-texto);line-height:1.4}
+.nav-card .num{font-size:28px;font-weight:700;color:var(--celeste);opacity:.6;float:right;line-height:1}
+
+@media(max-width:600px){.content-area{padding:14px 10px 30px}.preguntas-container{padding:14px 12px}.pregunta-item{padding:14px 12px}}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-top">
+    <div class="header-logo">UG</div>
+    <div>
+      <div class="header-inst">Universidad de Guayaquil · Facultad de Ciencias Administrativas · Contabilidad y Auditoría</div>
+      <div class="header-title">Repaso para Examen — Lenguaje y Comunicación</div>
+      <span class="header-sub">📚 Archivo 8B · Semanas 5–7 + Simulacro Final · Primer Ciclo · Virtual</span>
+    </div>
+  </div>
+</div>
+
+<div class="tabs-wrapper">
+  <div class="tabs-menu">
+    <button class="tab-btn active" onclick="showTab('portada')">🏠 Inicio</button>
+    <button class="tab-btn" onclick="showTab('s5')">Semana 5</button>
+    <button class="tab-btn" onclick="showTab('s6')">Semana 6</button>
+    <button class="tab-btn" onclick="showTab('s7')">Semana 7</button>
+    <button class="tab-btn" onclick="showTab('sim')">🏁 Simulacro Final</button>
+  </div>
+</div>
+
+<div class="content-area">
+
+<!-- PORTADA -->
+<div id="tab-portada" class="tab-content active">
+  <div class="portada-hero">
+    <h1>📚 Archivo 8B — Semanas 5 a 7 + Simulacro Final</h1>
+    <p>Continúa tu preparación con las semanas finales del curso. El <strong>Simulacro Final</strong> tiene 30 preguntas mezcladas de todas las semanas, cronómetro visible y desglose de resultados por semana.</p>
+    <span class="badge-portada">45 preguntas en semanas 5–7</span>
+    <span class="badge-portada">🏁 30 preguntas en el Simulacro Final</span>
+  </div>
+  <div class="nav-grid">
+    <div class="nav-card" onclick="showTab('s5')">
+      <span class="num">15</span>
+      <h3>Semana 5</h3>
+      <p>Kinésica, proxémica, paralingüística. Escucha activa. Competencias comunicativas.</p>
+    </div>
+    <div class="nav-card" onclick="showTab('s6')">
+      <span class="num">15</span>
+      <h3>Semana 6</h3>
+      <p>Oratoria y retórica. Fluidez, persuasión. Autoboicot (Stamateas).</p>
+    </div>
+    <div class="nav-card" onclick="showTab('s7')">
+      <span class="num">15</span>
+      <h3>Semana 7</h3>
+      <p>Comunicación organizacional. Flujos formales e informales. Comunicación escrita profesional.</p>
+    </div>
+    <div class="nav-card" onclick="showTab('sim')">
+      <span class="num">30</span>
+      <h3>🏁 Simulacro Final</h3>
+      <p>30 preguntas de todas las semanas. Cronómetro. Desglose por semana.</p>
+    </div>
+  </div>
+  <div style="background:white;border-radius:10px;padding:18px;box-shadow:var(--sombra);border-top:4px solid var(--gold)">
+    <p style="font-size:14px;line-height:1.6;color:#333"><strong>💡 Para el Simulacro Final:</strong> Activa el cronómetro al comenzar y deja que cuente hacia arriba. Al terminar sabrás exactamente cuánto tiempo tardaste. El desglose al final indica en qué semana fallaste más. Úsalo para decidir cuánto tiempo dedicar al repaso antes del examen.</p>
+  </div>
+</div>
+
+<!-- ===== SEMANA 5 ===== -->
+<div id="tab-s5" class="tab-content">
+  <div class="semana-header">
+    <h2>Semana 5 · Kinésica · Proxémica · Paralingüística · Escucha Activa · Competencias Comunicativas</h2>
+    <p>15 preguntas · 7 Teóricas · 5 Aplicación · 3 Análisis de caso · Responde todo antes de verificar</p>
+  </div>
+  <div class="preguntas-container" id="form-s5">
+
+    <div class="pregunta-item" id="pi-s5p1">
+      <div class="pregunta-top"><span class="pregunta-num">1</span><span class="badge-tipo badge-teorica">Teórica</span><span class="pregunta-texto">La kinésica estudia la comunicación a través de:</span></div>
+      <ul class="opciones">
+        <li><label class="opcion-label"><input type="radio" name="s5p1" value="a"> A. Los movimientos corporales, gestos, expresiones faciales, postura y contacto visual como portadores de significado en el proceso comunicativo.</label></li>
+        <li><label class="opcion-label"><input type="radio" name="s5p1" value="b"> B. El uso del espacio físico y las distancias que las personas mantienen entre sí durante la comunicación interpersonal.</label></li>
+        <li><label class="opcion-label"><input type="radio" name="s5p1" value="c"> C. Las variaciones de tono, volumen, timbre y velocidad de la voz que acompañan al mensaje verbal.</label></li>
+        <li><label class="opcion-label"><input type="radio" name="s5p1" value="d"> D. El conjunto de señales táctiles y olfativas que las personas intercambian durante la interacción cara a cara.</label></li>
+      </ul>
+      <div class="feedback-box" id="fb-s5p1"></div>
+    </div>
+
+    <div class="pregunta-item" id="pi-s5p2">
+      <div class="pregunta-top"><span class="pregunta-num">2</span><span class="badge-tipo badge-teorica">Teórica</span><span class="pregunta-texto">Según Edward Hall, la "zona social o consultiva" en la proxémica corresponde a una distancia aproximada de:</span></div>
+      <ul class="opciones">
+        <li><label class="opcion-label"><input type="radio" name="s5p2" value="a"> A. Entre 1 metro y 3 metros; es la distancia típica de las relaciones laborales formales, reuniones profesionales y atención al cliente.</label></li>
+        <li><label class="opcion-label"><input type="radio" name="s5p2" value="b"> B. Entre 0 y 50 centímetros; es la distancia reservada para relaciones íntimas y de máxima confianza entre las personas.</label></li>
+        <li><label class="opcion-label"><input type="radio" name="s5p2" value="c"> C. Entre 50 centímetros y 1 metro; es la distancia apropiada para conversaciones entre amigos cercanos y compañeros de equipo.</label></li>
+        <li><label class="opcion-label"><input type="radio" name="s5p2" value="d"> D. Mayor a 3 metros; es la distancia utilizada en conferencias públicas y discursos ante audiencias numerosas.</label></li>
+      </ul>
+      <div class="feedback-box" id="fb-s5p2"></div>
+    </div>
+
+    <div class="pregunta-item" id="pi-s5p3">
+      <div class="pregunta-top"><span class="pregunta-num">3</span><span class="badge-tipo badge-teorica">Teórica</span><span class="pregunta-texto">La paralingüística estudia los elementos vocales no verbales de la comunicación. ¿Cuál de los siguientes es un elemento paraverbal?</span></div>
+      <ul class="opciones">
+        <li><label class="opcion-label"><input type="radio" name="s5p3" value="a"> A. El tono de voz, la velocidad del habla, las pausas y el volumen, que modifican el significado del mensaje sin ser palabras en sí mismas.</label></li>
+        <li><label class="opcion-label"><input type="radio" name="s5p3" value="b"> B. La postura corporal y los gestos de las manos que el hablante utiliza para enfatizar sus afirmaciones durante el discurso.</label></li>
+        <li><label class="opcion-label"><input type="radio" name="s5p3" value="c"> C. La elección del vocabulario técnico o coloquial que el emisor selecciona según el perfil de su interlocutor.</label></li>
+        <li><label class="opcion-label"><input type="radio" name="s5p3" value="d"> D. La distancia física que el hablante mantiene respecto a su interlocutor durante una conversación de trabajo.</label></li>
+      </ul>
+      <div class="feedback-box" id="fb-s5p3"></div>
+    </div>
+
+    <div class="pregunta-item" id="pi-s5p4">
+      <div class="pregunta-top"><span class="pregunta-num">4</span><span class="badge-tipo badge-teorica">Teórica</span><span class="pregunta-texto">La "escucha activa" se diferencia de la "escucha superficial" en que:</span></div>
+      <ul class="opciones">
+        <li><label class="opcion-label"><input type="radio" name="s5p4" value="a"> A. La escucha activa implica atención plena, disposición psicológica, análisis de los mensajes verbales y no verbales, y generación de retroalimentación que demuestre comprensión; va más allá de simplemente oír los sonidos del habla.</label></li>
+        <li><label class="opcion-label"><input type="radio" name="s5p4" value="b"> B. La escucha activa requiere tomar notas escritas de todo lo que el emisor dice, mientras que la superficial solo procesa la idea central del mensaje.</label></li>
+        <li><label class="opcion-label"><input type="radio" name="s5p4" value="c"> C. La escucha activa es una habilidad innata que solo poseen las personas con alta inteligencia emocional, mientras que la superficial puede desarrollarse mediante entrenamiento.</label></li>
+        <li><label class="opcion-label"><input type="radio" name="s5p4" value="d"> D. La escucha activa aplica solo a comunicaciones orales formales, mientras que la superficial es suficiente para conversaciones cotidianas informales.</label></li>
+      </ul>
+      <div class="feedback-box" id="fb-s5p4"></div>
+    </div>
+
+    <div class="pregunta-item" id="pi-s5p5">
+      <div class="pregunta-top"><span class="pregunta-num">5</span><span class="badge-tipo badge-teorica">Teórica</span><span class="pregunta-texto">Un gesto de "brazos cruzados" en la comunicación kinésica generalmente comunica:</span></div>
+      <ul class="opciones">
+        <li><label class="opcion-label"><input type="radio" name="s5p5" value="a"> A. Frialdad, pasividad o barrera de defensa personal; el receptor está creando una distancia psicológica respecto al emisor o al mensaje recibido.</label></li>
+        <li><label class="opcion-label"><input type="radio" name="s5p5" value="b"> B. Autoridad y liderazgo; quien cruza los brazos señala control sobre la situación y dominio del espacio de interacción.</label></li>
+        <li><label class="opcion-label"><input type="radio" name="s5p5" value="c"> C. Disposición positiva y apertura hacia el interlocutor; es una postura de escucha concentrada típica de personas reflexivas.</label></li>
+        <li><label class="opcion-label"><input type="radio" name="s5p5" value="d"> D. Cansancio físico; el hablante adoptó esa postura por fatiga muscular y no tiene implicación comunicativa relevante.</label></li>
+      </ul>
+      <div class="feedback-box" id="fb-s5p5"></div>
+    </div>
+
+    <div class="pregunta-item" id="pi-s5p6">
+      <div class="pregunta-top"><span class="pregunta-num">6</span><span class="badge-tipo badge-teorica">Teórica</span><span class="pregunta-texto">Las competencias comunicativas en el ámbito organizacional incluyen principalmente:</span></div>
+      <ul class="opciones">
+        <li><label class="opcion-label"><input type="radio" name="s5p6" value="a"> A. Saber escuchar, capacidad de exponer ideas de forma coherente y convencer, y capacidad para trabajar en equipo; tres competencias que determinan la efectividad comunicativa en las organizaciones.</label></li>
+        <li><label class="opcion-label"><input type="radio" name="s5p6" value="b"> B. Velocidad de lectura, redacción sin errores ortográficos y dominio de varios idiomas extranjeros para la comunicación global.</label></li>
+        <li><label class="opcion-label"><input type="radio" name="s5p6" value="c"> C. Carisma personal, inteligencia verbal y capacidad de memorización de discursos extensos para presentaciones formales.</label></li>
+        <li><label class="opcion-label"><input type="radio" name="s5p6" value="d"> D. Uso de herramientas digitales de comunicación, diseño de presentaciones visuales y gestión de redes sociales corporativas.</label></li>
+      </ul>
+      <div class="feedback-box" id="fb-s5p6"></div>
+    </div>
+
+    <div class="pregunta-item" id="pi-s5p7">
+      <div class="pregunta-top"><span class="pregunta-num">7</span><span class="badge-tipo badge-teorica">Teórica</span><span class="pregunta-texto">¿Cuál de las siguientes afirmaciones sobre la comunicación no verbal es más precisa?</span></div>
+      <ul class="opciones">
+        <li><label class="opcion-label"><input type="radio" name="s5p7" value="a"> A. La comunicación no verbal incluye todos los signos y sistemas de signos no lingüísticos que comunican, y su interpretación varía según el contexto cultural, por lo que no es universalmente decodificable.</label></li>
+        <li><label class="opcion-label"><input type="radio" name="s5p7" value="b"> B. La comunicación no verbal es universal e innata en todos los seres humanos: los mismos gestos significan lo mismo en cualquier cultura del mundo.</label></li>
+        <li><label class="opcion-label"><input type="radio" name="s5p7" value="c"> C. La comunicación no verbal solo es relevante en contextos informales; en situaciones profesionales el lenguaje verbal es el único componente que genera impacto real.</label></li>
+        <li><label class="opcion-label"><input type="radio" name="s5p7" value="d"> D. La comunicación no verbal reemplaza completamente a la verbal en situaciones de alta tensión emocional porque el receptor ignora las palabras.</label></li>
+      </ul>
+      <div class="feedback-box" id="fb-s5p7"></div>
+    </div>
+
+    <div class="pregunta-item" id="pi-s5p8">
+      <div class="pregunta-top"><span class="pregunta-num">8</span><span class="badge-tipo badge-aplicacion">Aplicación</span><span class="pregunta-texto">Un auditor entra a la sala de reuniones, se sienta en el extremo de la mesa alejado del cliente, no hace contacto visual y responde con monosílabos. ¿Qué mensaje proxémico y kinésico está emitiendo?</span></div>
+      <ul class="opciones">
+        <li><label class="opcion-label"><input type="radio" name="s5p8" value="a"> A. Distancia social excesiva más señales de cierre kinésico: el conjunto de señales comunica desconexión, incomodidad o desinterés, lo que puede afectar negativamente la percepción del cliente sobre la calidad del servicio.</label></li>
+        <li><label class="opcion-label"><input type="radio" name="s5p8" value="b"> B. Profesionalismo y objetividad: mantener distancia física y respuestas breves refleja la neutralidad técnica que debe tener un auditor durante sus actuaciones profesionales.</label></li>
+        <li><label class="opcion-label"><input type="radio" name="s5p8" value="c"> C. Autoridad y liderazgo situacional: la posición alejada del auditor en la mesa indica que tiene control sobre la reunión y el proceso de auditoría.</label></li>
+        <li><label class="opcion-label"><input type="radio" name="s5p8" value="d"> D. El comportamiento del auditor no tiene implicaciones comunicativas porque los clientes solo evalúan la calidad técnica del informe escrito.</label></li>
+      </ul>
+      <div class="feedback-box" id="fb-s5p8"></div>
+    </div>
+
+    <div class="pregunta-item" id="pi-s5p9">
+      <div class="pregunta-top"><span class="pregunta-num">9</span><span class="badge-tipo badge-aplicacion">Aplicación</span><span class="pregunta-texto">Durante una entrevista de auditoría, el entrevistado habla rápidamente, su voz se vuelve más aguda y toca repetidamente su cuello. Desde la paralingüística y la kinésica, ¿qué debe registrar el auditor?</span></div>
+      <ul class="opciones">
+        <li><label class="opcion-label"><input type="radio" name="s5p9" value="a"> A. Señales paraverbales (velocidad acelerada, voz más aguda) y kinésicas (automanipulación del cuello) asociadas a ansiedad o incomodidad, que no necesariamente implican mentira pero justifican profundizar la investigación con evidencia adicional.</label></li>
+        <li><label class="opcion-label"><input type="radio" name="s5p9" value="b"> B. Nada relevante: el nerviosismo es una respuesta normal ante cualquier proceso de auditoría y no tiene valor diagnóstico para la investigación.</label></li>
+        <li><label class="opcion-label"><input type="radio" name="s5p9" value="c"> C. Evidencia de culpabilidad: las señales no verbales descritas prueban científicamente que el entrevistado está ocultando información relevante.</label></li>
+        <li><label class="opcion-label"><input type="radio" name="s5p9" value="d"> D. Un problema de canal: el ambiente de la entrevista genera ruido fisiológico que distorsiona la comunicación del entrevistado sin relación con el contenido del mensaje.</label></li>
+      </ul>
+      <div class="feedback-box" id="fb-s5p9"></div>
+    </div>
+
+    <div class="pregunta-item" id="pi-s5p10">
+      <div class="pregunta-top"><span class="pregunta-num">10</span><span class="badge-tipo badge-aplicacion">Aplicación</span><span class="pregunta-texto">¿Por qué un contador que practica la escucha activa con sus clientes tiene ventaja competitiva sobre uno que no la practica?</span></div>
+      <ul class="opciones">
+        <li><label class="opcion-label"><input type="radio" name="s5p10" value="a"> A. Porque capta información que el cliente transmite implícitamente (necesidades no dichas, preocupaciones, contextos), lo que le permite ofrecer un servicio más personalizado y detectar riesgos que una escucha superficial ignoraría.</label></li>
+        <li><label class="opcion-label"><input type="radio" name="s5p10" value="b"> B. Porque puede recordar con mayor precisión todas las cifras y datos numéricos que el cliente menciona durante la reunión de trabajo.</label></li>
+        <li><label class="opcion-label"><input type="radio" name="s5p10" value="c"> C. Porque la escucha activa reduce el tiempo de las reuniones, lo que permite al contador atender a más clientes por día.</label></li>
+        <li><label class="opcion-label"><input type="radio" name="s5p10" value="d"> D. Porque demuestra ante el cliente que ha recibido formación universitaria en comunicación, lo que mejora su percepción del nivel académico del profesional.</label></li>
+      </ul>
+      <div class="feedback-box" id="fb-s5p10"></div>
+    </div>
+
+    <div class="pregunta-item" id="pi-s5p11">
+      <div class="pregunta-top"><span class="pregunta-num">11</span><span class="badge-tipo badge-aplicacion">Aplicación</span><span class="pregunta-texto">Un supervisor de auditoría habla en tono monótono, sin pausas y a velocidad constante durante toda su presentación de resultados. ¿Qué efecto paraverbal produce?</span></div>
+      <ul class="opciones">
+        <li><label class="opcion-label"><input type="radio" name="s5p11" value="a"> A. Genera pérdida de atención y desconexión emocional en el receptor: la ausencia de variación paraverbal impide que el cerebro del oyente identifique qué información es más importante que otra.</label></li>
+        <li><label class="opcion-label"><input type="radio" name="s5p11" value="b"> B. Transmite objetividad y rigor técnico: la monotonía vocal indica que el presentador no tiene sesgos emocionales sobre los resultados que presenta.</label></li>
+        <li><label class="opcion-label"><input type="radio" name="s5p11" value="c"> C. Aumenta la credibilidad del mensaje: una voz uniforme y constante genera mayor confianza que un tono expresivo que puede interpretarse como parcialidad.</label></li>
+        <li><label class="opcion-label"><input type="radio" name="s5p11" value="d"> D. El efecto paraverbal es neutro en contextos técnicos: en presentaciones de auditoría el contenido verbal es el único factor que impacta en la recepción del mensaje.</label></li>
+      </ul>
+      <div class="feedback-box" id="fb-s5p11"></div>
+    </div>
+
+    <div class="pregunta-item" id="pi-s5p12">
+      <div class="pregunta-top"><span class="pregunta-num">12</span><span class="badge-tipo badge-aplicacion">Aplicación</span><span class="pregunta-texto">Un auditor, al ingresar a las oficinas de una empresa cliente en Guayaquil, saluda con un apretón de manos firme, hace contacto visual, se ubica en el lado opuesto de la mesa (distancia social) y mantiene una postura erguida. ¿Qué conjunto de señales no verbales transmite?</span></div>
+      <ul class="opciones">
+        <li><label class="opcion-label"><input type="radio" name="s5p12" value="a"> A. Confianza, profesionalismo y respeto hacia el interlocutor: el conjunto de señales kinésicas y proxémicas corresponde a la zona social formal y comunica apertura con límites profesionales claros.</label></li>
+        <li><label class="opcion-label"><input type="radio" name="s5p12" value="b"> B. Agresividad y dominación: el apretón de manos firme y la postura erguida son señales de intentar imponer autoridad sobre el cliente desde el inicio.</label></li>
+        <li><label class="opcion-label"><input type="radio" name="s5p12" value="c"> C. Nerviosismo controlado: el exceso de señales positivas simultáneas indica que el auditor está siguiendo un protocolo memorizado sin naturalidad real.</label></li>
+        <li><label class="opcion-label"><input type="radio" name="s5p12" value="d"> D. Distancia excesiva: ubicarse en el lado opuesto de la mesa comunica desinterés en el cliente y reduce la posibilidad de establecer un rapport efectivo.</label></li>
+      </ul>
+      <div class="feedback-box" id="fb-s5p12"></div>
+    </div>
+
+    <div class="pregunta-item" id="pi-s5p13">
+      <div class="pregunta-top"><span class="pregunta-num">13</span><span class="badge-tipo badge-caso">Análisis de caso</span><span class="pregunta-texto">Lea el caso y responda:</span></div>
+      <div class="caso-box">Durante una reunión de cierre de auditoría en Cuenca, el auditor presentó los hallazgos al gerente. Mientras el gerente escuchaba, asentía repetidamente, pero el auditor notó que el gerente miraba constantemente su teléfono, sus respuestas eran breves y al final preguntó por el mismo punto que se había explicado 10 minutos antes.</div>
+      <span class="pregunta-texto" style="font-size:14px;display:block;margin-bottom:10px">¿Qué tipo de escucha estaba realizando el gerente y qué consecuencia comunicativa tuvo?</span>
+      <ul class="opciones">
+        <li><label class="opcion-label"><input type="radio" name="s5p13" value="a"> A. Escucha superficial o fingida: el gerente enviaba señales kinésicas de atención (asentir) mientras su conducta real revelaba desconexión. La consecuencia fue que no procesó el mensaje y el auditor debió repetir información ya explicada.</label></li>
+        <li><label class="opcion-label"><input type="radio" name="s5p13" value="b"> B. Escucha proyectiva: el gerente anticipaba las respuestas del auditor y por eso no necesitaba escuchar con atención cada punto desarrollado durante la presentación.</label></li>
+        <li><label class="opcion-label"><input type="radio" name="s5p13" value="c"> C. Escucha selectiva eficaz: el gerente filtró correctamente la información relevante para su cargo y descartó los detalles técnicos irrelevantes para la toma de decisiones.</label></li>
+        <li><label class="opcion-label"><input type="radio" name="s5p13" value="d"> D. El problema es del auditor: una presentación que requiere 10 minutos para explicar un solo punto es excesivamente larga y genera desconexión inevitable en cualquier receptor.</label></li>
+      </ul>
+      <div class="feedback-box" id="fb-s5p13"></div>
+    </div>
+
+    <div class="pregunta-item" id="pi-s5p14">
+      <div class="pregunta-top"><span class="pregunta-num">14</span><span class="badge-tipo badge-caso">Análisis de caso</span><span class="pregunta-texto">Lea el caso y responda:</span></div>
+      <div class="caso-box">Una funcionaria de una empresa estatal en Quito fue a reclamar por un error en su liquidación. El funcionario de RRHH la atendió desde detrás de un escritorio grande, sin levantarse, desde una distancia de más de 2 metros, hablando en voz baja y sin mirarla directamente. La funcionaria salió de la reunión sintiéndose "ignorada" aunque técnicamente recibió toda la información.</div>
+      <span class="pregunta-texto" style="font-size:14px;display:block;margin-bottom:10px">¿Qué explica la experiencia de la funcionaria desde la teoría de la comunicación no verbal?</span>
+      <ul class="opciones">
+        <li><label class="opcion-label"><input type="radio" name="s5p14" value="a"> A. El contenido del mensaje fue transmitido, pero el conjunto de señales proxémicas (distancia excesiva, barrera física del escritorio), paraverbales (voz baja) y kinésicas (no mirar) comunicó desinterés e invalidación, generando una experiencia emocional negativa que contradijo el mensaje verbal.</label></li>
+        <li><label class="opcion-label"><input type="radio" name="s5p14" value="b"> B. La experiencia negativa es subjetiva: si la funcionaria recibió toda la información necesaria, la comunicación fue exitosa independientemente de cómo se sintió durante el proceso.</label></li>
+        <li><label class="opcion-label"><input type="radio" name="s5p14" value="c"> C. El problema fue de canal: las reclamaciones laborales deben tratarse por escrito y no en reuniones presenciales para evitar las interferencias emocionales del receptor.</label></li>
+        <li><label class="opcion-label"><input type="radio" name="s5p14" value="d"> D. La funcionaria tiene una barrera psicológica que le impide separar la forma de la comunicación de su contenido, lo que generó una interpretación distorsionada del mensaje recibido.</label></li>
+      </ul>
+      <div class="feedback-box" id="fb-s5p14"></div>
+    </div>
+
+    <div class="pregunta-item" id="pi-s5p15">
+      <div class="pregunta-top"><span class="pregunta-num">15</span><span class="badge-tipo badge-caso">Análisis de caso</span><span class="pregunta-texto">Lea el caso y responda:</span></div>
+      <div class="caso-box">Un equipo de auditores de una firma de Guayaquil trabaja en conjunto hace tres años. Durante las reuniones internas, se interrumpen constantemente, hablan todos al mismo tiempo, no registran los acuerdos y al finalizar cada reunión hay distintas versiones de lo que se decidió.</div>
+      <span class="pregunta-texto" style="font-size:14px;display:block;margin-bottom:10px">¿Qué competencias comunicativas específicas necesita desarrollar urgentemente este equipo?</span>
+      <ul class="opciones">
+        <li><label class="opcion-label"><input type="radio" name="s5p15" value="a"> A. Escucha activa (para no interrumpirse y procesar correctamente lo que el otro dice), capacidad de exponer ideas de forma coherente (para estructurar su turno de habla) y trabajo en equipo comunicativo (para construir acuerdos que todos compartan).</label></li>
+        <li><label class="opcion-label"><input type="radio" name="s5p15" value="b"> B. Habilidades de redacción: si documentaran todo por escrito antes de reunirse, eliminarían la necesidad de coordinar verbalmente durante las reuniones.</label></li>
+        <li><label class="opcion-label"><input type="radio" name="s5p15" value="c"> C. Liderazgo: si hubiera un líder fuerte que controlara las intervenciones, el problema desaparecería sin necesidad de desarrollar habilidades comunicativas individuales.</label></li>
+        <li><label class="opcion-label"><input type="radio" name="s5p15" value="d"> D. Fluidez verbal: el problema es que ningún miembro del equipo se expresa con suficiente claridad y rapidez, lo que genera la superposición de intervenciones durante las reuniones.</label></li>
+      </ul>
+      <div class="feedback-box" id="fb-s5p15"></div>
+    </div>
+
+  </div>
+  <div class="btn-group">
+    <button class="btn-verificar" onclick="verificar('s5')">✅ Verificar Respuestas</button>
+    <div class="alerta" id="alerta-s5">⚠️ Debes responder todas las preguntas antes de verificar.</div>
+    <button class="btn-reiniciar" id="reiniciar-s5" onclick="reiniciar('s5')">🔄 Reiniciar Semana 5</button>
+  </div>
+  <div class="resultado-panel" id="resultado-s5">
+    <div class="resultado-emoji" id="emoji-s5"></div>
+    <div class="resultado-score" id="score-s5"></div>
+    <div class="resultado-pct" id="pct-s5"></div>
+    <div class="barra-wrapper"><div class="barra-fill" id="barra-s5" style="width:0%"></div></div>
+    <div class="resultado-msg" id="msg-s5"></div>
+  </div>
+</div>
+
+<!-- ===== SEMANA 6 ===== -->
+<div id="tab-s6" class="tab-content">
+  <div class="semana-header">
+    <h2>Semana 6 · Oratoria · Retórica · Fluidez · Persuasión · Autoboicot (Stamateas)</h2>
+    <p>15 preguntas · 7 Teóricas · 5 Aplicación · 3 Análisis de caso · Responde todo antes de verificar</p>
+  </div>
+  <div class="preguntas-container" id="form-s6">
+
+    <div class="pregunta-item" id="pi-s6p1">
+      <div class="pregunta-top"><span class="pregunta-num">1</span><span class="badge-tipo badge-teorica">Teórica</span><span class="pregunta-texto">La oratoria se define como "la retórica hablada". ¿Cuál es la relación correcta entre oratoria y retórica?</span></div>
+      <ul class="opciones">
+        <li><label class="opcion-label"><input type="radio" name="s6p1" value="a"> A. La retórica establece los principios y reglas que rigen el discurso persuasivo (escrito u oral), mientras que la oratoria es la aplicación práctica de esos principios en el discurso oral para influir en la opinión o los sentimientos de la audiencia.</label></li>
+        <li><label class="opcion-label"><input type="radio" name="s6p1" value="b"> B. La oratoria es más amplia que la retórica: incluye tanto el discurso oral como el escrito, mientras que la retórica se limita exclusivamente al ámbito de la argumentación filosófica.</label></li>
+        <li><label class="opcion-label"><input type="radio" name="s6p1" value="c"> C. Oratoria y retórica son términos sinónimos que pueden usarse indistintamente para referirse a la habilidad de hablar correctamente en público.</label></li>
+        <li><label class="opcion-label"><input type="radio" name="s6p1" value="d"> D. La retórica es una habilidad innata que se tiene o no se tiene, mientras que la oratoria es una técnica que puede aprenderse mediante entrenamiento sistemático.</label></li>
+      </ul>
+      <div class="feedback-box" id="fb-s6p1"></div>
+    </div>
+
+    <div class="pregunta-item" id="pi-s6p2">
+      <div class="pregunta-top"><span class="pregunta-num">2</span><span class="badge-tipo badge-teorica">Teórica</span><span class="pregunta-texto">Las cinco fases clásicas de la retórica aristotélica son: inventio, dispositio, elocutio, memoria y actio. ¿Cuál de ellas se considera más relevante para la comunicación escrita profesional?</span></div>
+      <ul class="opciones">
+        <li><label class="opcion-label"><input type="radio" name="s6p2" value="a"> A. Inventio (definir el tema), dispositio (organizar las partes) y elocutio (seleccionar las palabras y el estilo) son las tres fases fundamentales para la producción de textos escritos de calidad.</label></li>
+        <li><label class="opcion-label"><input type="radio" name="s6p2" value="b"> B. La memoria (memorización del discurso) es la más relevante porque sin ella no es posible producir textos escritos de forma autónoma sin consultar fuentes externas.</label></li>
+        <li><label class="opcion-label"><input type="radio" name="s6p2" value="c"> C. La actio (acto de emisión del discurso) es la más relevante porque toda comunicación, incluyendo la escrita, tiene un momento de emisión que determina su efectividad.</label></li>
+        <li><label class="opcion-label"><input type="radio" name="s6p2" value="d"> D. Las cinco fases tienen igual peso en la comunicación escrita: omitir cualquiera de ellas genera automáticamente un texto de calidad inferior al esperado.</label></li>
+      </ul>
+      <div class="feedback-box" id="fb-s6p2"></div>
+    </div>
+
+    <div class="pregunta-item" id="pi-s6p3">
+      <div class="pregunta-top"><span class="pregunta-num">3</span><span class="badge-tipo badge-teorica">Teórica</span><span class="pregunta-texto">La fluidez verbal, como habilidad comunicativa, se define como:</span></div>
+      <ul class="opciones">
+        <li><label class="opcion-label"><input type="radio" name="s6p3" value="a"> A. La capacidad de expresar ideas con agilidad, claridad y coherencia lingüística en el contexto comunicativo apropiado; se adquiere a través de la cultura, la lectura y la participación activa en intercambios sociales y profesionales.</label></li>
+        <li><label class="opcion-label"><input type="radio" name="s6p3" value="b"> B. La velocidad con que una persona es capaz de hablar en público sin cometer errores gramaticales o detenerse para buscar palabras durante su discurso.</label></li>
+        <li><label class="opcion-label"><input type="radio" name="s6p3" value="c"> C. El dominio de múltiples idiomas que permite al profesional comunicarse sin barreras lingüísticas en contextos internacionales de negocios.</label></li>
+        <li><label class="opcion-label"><input type="radio" name="s6p3" value="d"> D. La capacidad de hablar sin notas de apoyo y con perfecta dicción durante presentaciones formales ante audiencias numerosas.</label></li>
+      </ul>
+      <div class="feedback-box" id="fb-s6p3"></div>
+    </div>
+
+    <div class="pregunta-item" id="pi-s6p4">
+      <div class="pregunta-top"><span class="pregunta-num">4</span><span class="badge-tipo badge-teorica">Teórica</span><span class="pregunta-texto">Según Bernardo Stamateas en "Autoboicot", ¿cuáles son los dos componentes fundamentales de la autoestima que determinan las trampas mentales que nos autolimitan?</span></div>
+      <ul class="opciones">
+        <li><label class="opcion-label"><input type="radio" name="s6p4" value="a"> A. El valor (convicción de ser digno y merecer la felicidad) y la eficacia (confianza en la propia capacidad de lograr lo que se propone); cuando uno o ambos fallan, surgen las trampas mentales del autoboicot.</label></li>
+        <li><label class="opcion-label"><input type="radio" name="s6p4" value="b"> B. La inteligencia y la voluntad: las personas que se autosabotean tienen baja inteligencia emocional y poca determinación para superar los obstáculos del entorno.</label></li>
+        <li><label class="opcion-label"><input type="radio" name="s6p4" value="c"> C. La autoimagen física y la autoimagen profesional: el autoboicot surge cuando hay discrepancia entre cómo nos vemos físicamente y cómo nos perciben en el trabajo.</label></li>
+        <li><label class="opcion-label"><input type="radio" name="s6p4" value="d"> D. La motivación extrínseca y la motivación intrínseca: Stamateas sostiene que el autoboicot ocurre cuando dependemos de la aprobación externa para actuar.</label></li>
+      </ul>
+      <div class="feedback-box" id="fb-s6p4"></div>
+    </div>
+
+    <div class="pregunta-item" id="pi-s6p5">
+      <div class="pregunta-top"><span class="pregunta-num">5</span><span class="badge-tipo badge-teorica">Teórica</span><span class="pregunta-texto">La persuasión, como habilidad comunicativa, se diferencia de la manipulación en que:</span></div>
+      <ul class="opciones">
+        <li><label class="opcion-label"><input type="radio" name="s6p5" value="a"> A. La persuasión se basa en la fundamentación lógica, evidencias y argumentos válidos que respetan la capacidad racional del receptor; la manipulación apela a emociones, sesgos o información falsa para lograr que el receptor actúe contra su propio criterio.</label></li>
+        <li><label class="opcion-label"><input type="radio" name="s6p5" value="b"> B. La persuasión es siempre oral, mientras que la manipulación se ejerce principalmente a través de mensajes escritos que el receptor no puede cuestionarle directamente.</label></li>
+        <li><label class="opcion-label"><input type="radio" name="s6p5" value="c"> C. La persuasión es una habilidad directiva legítima en cualquier contexto, mientras que la manipulación es exclusiva de contextos publicitarios y políticos.</label></li>
+        <li><label class="opcion-label"><input type="radio" name="s6p5" value="d"> D. No existe diferencia práctica: ambas buscan cambiar el comportamiento del receptor y los medios que utilizan son equivalentes en contextos profesionales.</label></li>
+      </ul>
+      <div class="feedback-box" id="fb-s6p5"></div>
+    </div>
+
+    <div class="pregunta-item" id="pi-s6p6">
+      <div class="pregunta-top"><span class="pregunta-num">6</span><span class="badge-tipo badge-teorica">Teórica</span><span class="pregunta-texto">El concepto de "autoboicot" de Stamateas describe un patrón en el que:</span></div>
+      <ul class="opciones">
+        <li><label class="opcion-label"><input type="radio" name="s6p6" value="a"> A. La persona se pone obstáculos a sí misma a través de trampas mentales (creencias limitantes, mandatos internalizados, miedo al fracaso) que la impiden avanzar y desarrollar su potencial real.</label></li>
+        <li><label class="opcion-label"><input type="radio" name="s6p6" value="b"> B. El entorno social y laboral impone barreras externas que la persona no puede superar sin intervención de un coach o terapeuta especializado en desarrollo personal.</label></li>
+        <li><label class="opcion-label"><input type="radio" name="s6p6" value="c"> C. Las personas con alta inteligencia coeficiente se autolimitan inconscientemente para no destacar demasiado y evitar la envidia de su entorno social y laboral.</label></li>
+        <li><label class="opcion-label"><input type="radio" name="s6p6" value="d"> D. El fracaso repetido en situaciones de comunicación pública genera un condicionamiento negativo que impide al individuo hablar en público en el futuro.</label></li>
+      </ul>
+      <div class="feedback-box" id="fb-s6p6"></div>
+    </div>
+
+    <div class="pregunta-item" id="pi-s6p7">
+      <div class="pregunta-top"><span class="pregunta-num">7</span><span class="badge-tipo badge-teorica">Teórica</span><span class="pregunta-texto">La interpretación de la comunicación, como habilidad profesional, consiste en:</span></div>
+      <ul class="opciones">
+        <li><label class="opcion-label"><input type="radio" name="s6p7" value="a"> A. La capacidad del receptor de comprender el mensaje más allá de su literalidad, decodificando el contexto, las intenciones implícitas, el tono y los elementos no verbales para obtener el significado completo del intercambio.</label></li>
+        <li><label class="opcion-label"><input type="radio" name="s6p7" value="b"> B. La habilidad de traducir mensajes de un idioma a otro con precisión terminológica en contextos profesionales especializados como la auditoría internacional.</label></li>
+        <li><label class="opcion-label"><input type="radio" name="s6p7" value="c"> C. El proceso de resumir y parafrasear el mensaje del emisor para confirmar que fue comprendido, técnica también conocida como "reformulación activa".</label></li>
+        <li><label class="opcion-label"><input type="radio" name="s6p7" value="d"> D. La capacidad del emisor de anticipar cómo el receptor interpretará el mensaje antes de enviarlo, para ajustar el lenguaje y minimizar los riesgos de malentendido.</label></li>
+      </ul>
+      <div class="feedback-box" id="fb-s6p7"></div>
+    </div>
+
+    <div class="pregunta-item" id="pi-s6p8">
+      <div class="pregunta-top"><span class="pregunta-num">8</span><span class="badge-tipo badge-aplicacion">Aplicación</span><span class="pregunta-texto">Un contador debe presentar ante el directorio de una empresa en Manta los resultados del año, que son negativos. Aplicando principios de oratoria, ¿cuál es la estrategia más efectiva para estructurar su discurso?</span></div>
+      <ul class="opciones">
+        <li><label class="opcion-label"><input type="radio" name="s6p8" value="a"> A. Inventio: identificar claramente el contexto y las causas de los resultados. Dispositio: comenzar con los factores externos y de mercado, luego los internos, y cerrar con el plan de acción. Elocutio: usar lenguaje claro y directo que no minimice ni exagere los datos.</label></li>
+        <li><label class="opcion-label"><input type="radio" name="s6p8" value="b"> B. Presentar primero todas las cifras negativas para demostrar transparencia, y luego dedicar el 80% de la presentación a explicar por qué los responsables no son los directivos.</label></li>
+        <li><label class="opcion-label"><input type="radio" name="s6p8" value="c"> C. Comenzar directamente con el plan de acción sin presentar los datos negativos, para evitar que el directorio reaccione emocionalmente antes de escuchar las soluciones.</label></li>
+        <li><label class="opcion-label"><input type="radio" name="s6p8" value="d"> D. Memorizar el discurso completo para poder mantener contacto visual constante con el directorio: la memorización es la fase más importante de la retórica en presentaciones de alto riesgo.</label></li>
+      </ul>
+      <div class="feedback-box" id="fb-s6p8"></div>
+    </div>
+
+    <div class="pregunta-item" id="pi-s6p9">
+      <div class="pregunta-top"><span class="pregunta-num">9</span><span class="badge-tipo badge-aplicacion">Aplicación</span><span class="pregunta-texto">Un auditor junior siempre revisa tres veces su trabajo antes de entregarlo porque teme que, aunque esté correcto, "le encontrarán un error". Esto le genera retrasos constantes. Desde el concepto de autoboicot, ¿cómo se diagnostica esta situación?</span></div>
+      <ul class="opciones">
+        <li><label class="opcion-label"><input type="radio" name="s6p9" value="a"> A. Es una trampa mental de autoboicot por déficit de eficacia: el auditor no confía en su propia competencia a pesar de sus resultados, lo que genera comportamientos compulsivos de verificación que deterioran su productividad y autoestima profesional.</label></li>
+        <li><label class="opcion-label"><input type="radio" name="s6p9" value="b"> B. Es un comportamiento profesional responsable: revisar el trabajo tres veces demuestra rigor y es una práctica recomendable en auditoría para garantizar la calidad de los informes.</label></li>
+        <li><label class="opcion-label"><input type="radio" name="s6p9" value="c"> C. Es un problema de gestión del tiempo que necesita resolverse con técnicas de productividad y organización del trabajo, no con conceptos de autoestima o psicología.</label></li>
+        <li><label class="opcion-label"><input type="radio" name="s6p9" value="d"> D. Es una señal de que el auditor junior necesita más experiencia: una vez que lleve más años trabajando, la inseguridad desaparecerá naturalmente sin necesidad de intervención.</label></li>
+      </ul>
+      <div class="feedback-box" id="fb-s6p9"></div>
+    </div>
+
+    <div class="pregunta-item" id="pi-s6p10">
+      <div class="pregunta-top"><span class="pregunta-num">10</span><span class="badge-tipo badge-aplicacion">Aplicación</span><span class="pregunta-texto">¿Cuál de las siguientes situaciones ilustra mejor el uso legítimo de la persuasión en un contexto contable?</span></div>
+      <ul class="opciones">
+        <li><label class="opcion-label"><input type="radio" name="s6p10" value="a"> A. Un contador presenta al cliente evidencias financieras concretas, las analiza en conjunto y le propone con argumentos fundamentados por qué la reorganización de sus pasivos a largo plazo mejoraría su posición crediticia.</label></li>
+        <li><label class="opcion-label"><input type="radio" name="s6p10" value="b"> B. Un auditor enfatiza repetidamente los riesgos más alarmantes de los hallazgos para que el cliente, por miedo a sanciones, firme inmediatamente el plan de corrección propuesto.</label></li>
+        <li><label class="opcion-label"><input type="radio" name="s6p10" value="c"> C. Un contador omite deliberadamente las desventajas de una estrategia fiscal para que el cliente la apruebe sin cuestionarla durante la reunión de presentación.</label></li>
+        <li><label class="opcion-label"><input type="radio" name="s6p10" value="d"> D. Un auditor elogia excesivamente el trabajo del departamento financiero antes de presentar los hallazgos negativos para que el cliente esté emocionalmente predispuesto a aceptarlos.</label></li>
+      </ul>
+      <div class="feedback-box" id="fb-s6p10"></div>
+    </div>
+
+    <div class="pregunta-item" id="pi-s6p11">
+      <div class="pregunta-top"><span class="pregunta-num">11</span><span class="badge-tipo badge-aplicacion">Aplicación</span><span class="pregunta-texto">Stamateas propone la "autoafirmación" como antídoto al autoboicot. ¿Cómo se diferencia la autoafirmación sana de la arrogancia?</span></div>
+      <ul class="opciones">
+        <li><label class="opcion-label"><input type="radio" name="s6p11" value="a"> A. La autoafirmación sana es reconocer y comunicar los propios logros y capacidades con convicción interior, sin necesitar disminuir a los demás; la arrogancia requiere compararse superiormente con otros para validar la propia autoestima.</label></li>
+        <li><label class="opcion-label"><input type="radio" name="s6p11" value="b"> B. La autoafirmación sana es silenciosa e interna; la arrogancia es su expresión externa, por lo que Stamateas recomienda nunca verbalizar los logros propios para no parecer arrogante.</label></li>
+        <li><label class="opcion-label"><input type="radio" name="s6p11" value="c"> C. No existe diferencia real: cualquier expresión de confianza propia es percibida como arrogancia por el entorno, por lo que es mejor adoptar una postura de humildad comunicativa permanente.</label></li>
+        <li><label class="opcion-label"><input type="radio" name="s6p11" value="d"> D. La autoafirmación es apropiada en contextos personales pero inapropiada en contextos profesionales donde la objetividad y la neutralidad deben primar sobre la expresión de la propia valía.</label></li>
+      </ul>
+      <div class="feedback-box" id="fb-s6p11"></div>
+    </div>
+
+    <div class="pregunta-item" id="pi-s6p12">
+      <div class="pregunta-top"><span class="pregunta-num">12</span><span class="badge-tipo badge-aplicacion">Aplicación</span><span class="pregunta-texto">¿Por qué la fluidez verbal es una competencia que puede "educarse" o desarrollarse, según los principios del curso?</span></div>
+      <ul class="opciones">
+        <li><label class="opcion-label"><input type="radio" name="s6p12" value="a"> A. Porque la fluidez verbal depende de la cultura acumulada (lectura, conversación, participación social) y del entrenamiento deliberado; no es un talento fijo sino una habilidad que se expande con la práctica y la exposición a distintos contextos comunicativos.</label></li>
+        <li><label class="opcion-label"><input type="radio" name="s6p12" value="b"> B. Porque es una habilidad exclusivamente fonológica que puede mejorarse con ejercicios de dicción, respiración y vocalización guiados por un fonoaudiólogo.</label></li>
+        <li><label class="opcion-label"><input type="radio" name="s6p12" value="c"> C. Porque la fluidez verbal está directamente relacionada con el coeficiente intelectual, el cual puede aumentarse mediante ejercicios cognitivos específicos en personas jóvenes.</label></li>
+        <li><label class="opcion-label"><input type="radio" name="s6p12" value="d"> D. Porque las personas naturalmente fluidas han desarrollado esa habilidad en la infancia y el entrenamiento adulto solo puede compensar parcialmente esa ventaja temprana.</label></li>
+      </ul>
+      <div class="feedback-box" id="fb-s6p12"></div>
+    </div>
+
+    <div class="pregunta-item" id="pi-s6p13">
+      <div class="pregunta-top"><span class="pregunta-num">13</span><span class="badge-tipo badge-caso">Análisis de caso</span><span class="pregunta-texto">Lea el caso y responda:</span></div>
+      <div class="caso-box">Jorge es contador con 8 años de experiencia en Quito. Cuando su jefe le dice que lo propone para liderar el equipo de auditoría en un cliente importante, Jorge responde: "No sé si estoy listo, hay otros más preparados que yo." Su jefe insiste; Jorge acepta a regañadientes pero durante la presentación inaugural al cliente habla en voz baja, no mira a los asistentes y termina la reunión sin cerrar ningún acuerdo claro.</div>
+      <span class="pregunta-texto" style="font-size:14px;display:block;margin-bottom:10px">¿Qué patrón de autoboicot ilustra Jorge y cómo afecta su comunicación profesional?</span>
+      <ul class="opciones">
+        <li><label class="opcion-label"><input type="radio" name="s6p13" value="a"> A. Jorge presenta una trampa de déficit de valor y eficacia simultáneos: no se siente digno del rol (valor) ni capaz de ejecutarlo bien (eficacia), lo que se traduce en señales no verbales de inseguridad que comunican al cliente exactamente lo contrario de lo que un líder de equipo debe proyectar.</label></li>
+        <li><label class="opcion-label"><input type="radio" name="s6p13" value="b"> B. Jorge tiene un problema de habilidades técnicas de oratoria: necesita un curso de hablar en público para corregir su voz baja y su falta de contacto visual, que son los únicos factores que afectaron el resultado de la reunión.</label></li>
+        <li><label class="opcion-label"><input type="radio" name="s6p13" value="c"> C. Jorge tiene razón en su autoevaluación: con 8 años de experiencia aún no está preparado para liderar equipos de auditoría ante clientes importantes, y su humildad es un signo de madurez profesional.</label></li>
+        <li><label class="opcion-label"><input type="radio" name="s6p13" value="d"> D. El jefe de Jorge cometió un error al presionarlo a aceptar el rol: el autoboicot de Jorge se debe a la imposición externa, no a un patrón mental interno que él pueda modificar por sí mismo.</label></li>
+      </ul>
+      <div class="feedback-box" id="fb-s6p13"></div>
+    </div>
+
+    <div class="pregunta-item" id="pi-s6p14">
+      <div class="pregunta-top"><span class="pregunta-num">14</span><span class="badge-tipo badge-caso">Análisis de caso</span><span class="pregunta-texto">Lea el caso y responda:</span></div>
+      <div class="caso-box">Una auditora presenta sus hallazgos al directorio de una empresa de Guayaquil. Al finalizar, el presidente del directorio dice: "Muy bien presentado, pero estamos seguros de que esas cifras son producto de una interpretación incorrecta de su parte." La auditora, a pesar de saber que su metodología es correcta, responde: "Claro, es posible que me haya equivocado. Voy a revisarlo." Sin evidencias de error, cede ante la presión del directorio.</div>
+      <span class="pregunta-texto" style="font-size:14px;display:block;margin-bottom:10px">¿Qué combinación de factores explica la respuesta de la auditora?</span>
+      <ul class="opciones">
+        <li><label class="opcion-label"><input type="radio" name="s6p14" value="a"> A. Autoboicot por déficit de valor profesional + comunicación pasiva: la auditora cede a la presión de autoridad sin evidencia de error, comprometiendo la independencia de la auditoría y su credibilidad técnica ante el directorio.</label></li>
+        <li><label class="opcion-label"><input type="radio" name="s6p14" value="b"> B. Flexibilidad profesional apropiada: abrir la posibilidad de revisión ante cuestionamientos del cliente es una muestra de humildad técnica y de orientación al servicio.</label></li>
+        <li><label class="opcion-label"><input type="radio" name="s6p14" value="c"> C. Comunicación asertiva correctamente aplicada: la auditora utilizó la técnica del "banco de niebla" para desactivar el conflicto sin abandonar su posición técnica real.</label></li>
+        <li><label class="opcion-label"><input type="radio" name="s6p14" value="d"> D. El problema no es comunicativo sino ético: la auditora debió referir el caso a su supervisor inmediatamente en lugar de responder al directorio de forma individual.</label></li>
+      </ul>
+      <div class="feedback-box" id="fb-s6p14"></div>
+    </div>
+
+    <div class="pregunta-item" id="pi-s6p15">
+      <div class="pregunta-top"><span class="pregunta-num">15</span><span class="badge-tipo badge-caso">Análisis de caso</span><span class="pregunta-texto">Lea el caso y responda:</span></div>
+      <div class="caso-box">Una firma de auditoría en Quito organizó un taller de oratoria para sus auditores. Después del taller, los auditores que participaron mostraron mayor contacto visual con los clientes, estructuraban mejor sus presentaciones y recibían menos preguntas de aclaración al finalizar. Los que no participaron mantuvieron el mismo nivel de satisfacción de clientes que antes.</div>
+      <span class="pregunta-texto" style="font-size:14px;display:block;margin-bottom:10px">¿Qué conclusión se puede derivar de este caso sobre la relación entre oratoria y efectividad profesional?</span>
+      <ul class="opciones">
+        <li><label class="opcion-label"><input type="radio" name="s6p15" value="a"> A. Las habilidades de oratoria (estructurar el discurso, mejorar el contacto visual, dosificar la información) tienen un impacto medible y directo en la calidad de la comunicación profesional y en la satisfacción percibida por el cliente.</label></li>
+        <li><label class="opcion-label"><input type="radio" name="s6p15" value="b"> B. El taller de oratoria mejoró la confianza personal de los auditores, lo que es suficiente para justificar su costo aunque no se traduzca en beneficios cuantificables para el cliente.</label></li>
+        <li><label class="opcion-label"><input type="radio" name="s6p15" value="c"> C. La diferencia de resultados entre quienes participaron y quienes no se debe a que los auditores que asistieron al taller son intrínsecamente más capaces que sus colegas.</label></li>
+        <li><label class="opcion-label"><input type="radio" name="s6p15" value="d"> D. Recibir menos preguntas de aclaración puede ser una señal negativa: significa que los clientes perdieron el interés de profundizar en los hallazgos presentados.</label></li>
+      </ul>
+      <div class="feedback-box" id="fb-s6p15"></div>
+    </div>
+
+  </div>
+  <div class="btn-group">
+    <button class="btn-verificar" onclick="verificar('s6')">✅ Verificar Respuestas</button>
+    <div class="alerta" id="alerta-s6">⚠️ Debes responder todas las preguntas antes de verificar.</div>
+    <button class="btn-reiniciar" id="reiniciar-s6" onclick="reiniciar('s6')">🔄 Reiniciar Semana 6</button>
+  </div>
+  <div class="resultado-panel" id="resultado-s6">
+    <div class="resultado-emoji" id="emoji-s6"></div>
+    <div class="resultado-score" id="score-s6"></div>
+    <div class="resultado-pct" id="pct-s6"></div>
+    <div class="barra-wrapper"><div class="barra-fill" id="barra-s6" style="width:0%"></div></div>
+    <div class="resultado-msg" id="msg-s6"></div>
+  </div>
+</div>
+
+<!-- ===== SEMANA 7 ===== -->
+<div id="tab-s7" class="tab-content">
+  <div class="semana-header">
+    <h2>Semana 7 · Comunicación Organizacional · Flujos Formales e Informales · Comunicación Escrita Profesional</h2>
+    <p>15 preguntas · 7 Teóricas · 5 Aplicación · 3 Análisis de caso · Responde todo antes de verificar</p>
+  </div>
+  <div class="preguntas-container" id="form-s7">
+
+    <div class="pregunta-item" id="pi-s7p1">
+      <div class="pregunta-top"><span class="pregunta-num">1</span><span class="badge-tipo badge-teorica">Teórica</span><span class="pregunta-texto">La comunicación descendente en una organización se caracteriza por:</span></div>
+      <ul class="opciones">
+        <li><label class="opcion-label"><input type="radio" name="s7p1" value="a"> A. Transmitir información desde los niveles jerárquicos superiores hacia los inferiores, con el objetivo de informar, dirigir, orientar tareas, controlar y motivar el comportamiento de los subordinados.</label></li>
+        <li><label class="opcion-label"><input type="radio" name="s7p1" value="b"> B. Fluir entre personas del mismo nivel jerárquico para coordinar actividades, compartir información y mantener relaciones de colaboración entre áreas.</label></li>
+        <li><label class="opcion-label"><input type="radio" name="s7p1" value="c"> C. Transmitir información desde los niveles inferiores hacia los superiores, permitiendo que la gerencia conozca la situación operativa real de la organización.</label></li>
+        <li><label class="opcion-label"><input type="radio" name="s7p1" value="d"> D. Circular entre miembros de distintos departamentos en el mismo nivel, facilitando la coordinación transversal sin pasar por la cadena jerárquica.</label></li>
+      </ul>
+      <div class="feedback-box" id="fb-s7p1"></div>
+    </div>
+
+    <div class="pregunta-item" id="pi-s7p2">
+      <div class="pregunta-top"><span class="pregunta-num">2</span><span class="badge-tipo badge-teorica">Teórica</span><span class="pregunta-texto">¿Por qué la comunicación ascendente es considerada la más usada por los directivos actuales, según la teoría de la comunicación organizacional?</span></div>
+      <ul class="opciones">
+        <li><label class="opcion-label"><input type="radio" name="s7p2" value="a"> A. Porque proporciona a los directivos la información necesaria para tomar decisiones basadas en la realidad operativa: les permite conocer los problemas, el estado de ánimo del equipo, las iniciativas y los riesgos antes de que escalen.</label></li>
+        <li><label class="opcion-label"><input type="radio" name="s7p2" value="b"> B. Porque es el tipo de comunicación que genera mayor volumen de mensajes diarios en las organizaciones, superando a la descendente y la horizontal en frecuencia.</label></li>
+        <li><label class="opcion-label"><input type="radio" name="s7p2" value="c"> C. Porque las normativas laborales vigentes obligan a las empresas a documentar todas las comunicaciones que parten de los empleados hacia la dirección.</label></li>
+        <li><label class="opcion-label"><input type="radio" name="s7p2" value="d"> D. Porque los directivos modernos prefieren escuchar antes que hablar, siguiendo el principio de liderazgo transformacional que prioriza la participación sobre la instrucción.</label></li>
+      </ul>
+      <div class="feedback-box" id="fb-s7p2"></div>
+    </div>
+
+    <div class="pregunta-item" id="pi-s7p3">
+      <div class="pregunta-top"><span class="pregunta-num">3</span><span class="badge-tipo badge-teorica">Teórica</span><span class="pregunta-texto">La comunicación informal en las organizaciones (incluyendo el rumor) se considera:</span></div>
+      <ul class="opciones">
+        <li><label class="opcion-label"><input type="radio" name="s7p3" value="a"> A. Un canal inevitable que, bien gestionado, puede aportar beneficios (colaboración espontánea, información rápida); pero si se propaga en forma de rumores malsanos o información inexacta, puede deteriorar la moral y el clima organizacional.</label></li>
+        <li><label class="opcion-label"><input type="radio" name="s7p3" value="b"> B. Siempre negativa y disfuncional: debe eliminarse completamente de las organizaciones mediante políticas de comunicación exclusivamente formal y documentada.</label></li>
+        <li><label class="opcion-label"><input type="radio" name="s7p3" value="c"> C. Más confiable que la comunicación formal porque no está filtrada por la jerarquía y refleja la realidad de la organización con mayor autenticidad.</label></li>
+        <li><label class="opcion-label"><input type="radio" name="s7p3" value="d"> D. Exclusiva de organizaciones pequeñas; las empresas grandes y bien estructuradas eliminan naturalmente la comunicación informal a través de sus sistemas de gestión.</label></li>
+      </ul>
+      <div class="feedback-box" id="fb-s7p3"></div>
+    </div>
+
+    <div class="pregunta-item" id="pi-s7p4">
+      <div class="pregunta-top"><span class="pregunta-num">4</span><span class="badge-tipo badge-teorica">Teórica</span><span class="pregunta-texto">La comunicación transversal en una organización se distingue de la horizontal en que:</span></div>
+      <ul class="opciones">
+        <li><label class="opcion-label"><input type="radio" name="s7p4" value="a"> A. La transversal ocurre entre personas de distintos departamentos o niveles jerárquicos que no necesariamente son homólogos, cruzando las líneas de autoridad formal para facilitar coordinación rápida y directa entre quienes más necesitan comunicarse.</label></li>
+        <li><label class="opcion-label"><input type="radio" name="s7p4" value="b"> B. La horizontal es informal y espontánea, mientras que la transversal sigue un protocolo institucional formal que debe ser autorizado por la gerencia.</label></li>
+        <li><label class="opcion-label"><input type="radio" name="s7p4" value="c"> C. La transversal se realiza exclusivamente a través de medios tecnológicos (correo electrónico, sistemas ERP), mientras que la horizontal ocurre cara a cara en reuniones presenciales.</label></li>
+        <li><label class="opcion-label"><input type="radio" name="s7p4" value="d"> D. No existe diferencia práctica: transversal y horizontal son sinónimos que describen el mismo tipo de intercambio comunicativo dentro de las organizaciones modernas.</label></li>
+      </ul>
+      <div class="feedback-box" id="fb-s7p4"></div>
+    </div>
+
+    <div class="pregunta-item" id="pi-s7p5">
+      <div class="pregunta-top"><span class="pregunta-num">5</span><span class="badge-tipo badge-teorica">Teórica</span><span class="pregunta-texto">Un problema clásico de la comunicación ascendente es la "filtración". ¿En qué consiste?</span></div>
+      <ul class="opciones">
+        <li><label class="opcion-label"><input type="radio" name="s7p5" value="a"> A. Los empleados tienden a transmitir a sus superiores solo la información que creen que estos desean escuchar, omitiendo noticias negativas o problemáticas para evitar consecuencias, lo que distorsiona la información que llega a la dirección.</label></li>
+        <li><label class="opcion-label"><input type="radio" name="s7p5" value="b"> B. El exceso de información que sube hacia los directivos sin clasificación previa, generando sobrecarga de mensajes que dificulta la identificación de los temas realmente prioritarios.</label></li>
+        <li><label class="opcion-label"><input type="radio" name="s7p5" value="c"> C. El proceso de codificación deficiente de los mensajes escritos que los empleados envían a sus superiores, generando malentendidos frecuentes en la cadena jerárquica.</label></li>
+        <li><label class="opcion-label"><input type="radio" name="s7p5" value="d"> D. La interceptación de mensajes por parte de mandos intermedios que modifican el contenido antes de que llegue a los niveles superiores de la organización.</label></li>
+      </ul>
+      <div class="feedback-box" id="fb-s7p5"></div>
+    </div>
+
+    <div class="pregunta-item" id="pi-s7p6">
+      <div class="pregunta-top"><span class="pregunta-num">6</span><span class="badge-tipo badge-teorica">Teórica</span><span class="pregunta-texto">La comunicación eficaz en el ámbito laboral genera, entre otras ventajas:</span></div>
+      <ul class="opciones">
+        <li><label class="opcion-label"><input type="radio" name="s7p6" value="a"> A. Mayor satisfacción laboral, mejor desempeño, mayor compromiso organizacional, reducción de rumores, facilita la toma de decisiones y promueve la participación activa de todos los miembros de la organización.</label></li>
+        <li><label class="opcion-label"><input type="radio" name="s7p6" value="b"> B. Principalmente reducción de costos operativos: las empresas con comunicación eficaz necesitan menos reuniones y menos recursos para coordinar el trabajo entre sus áreas.</label></li>
+        <li><label class="opcion-label"><input type="radio" name="s7p6" value="c"> C. Eliminación de los conflictos interpersonales: una organización con comunicación eficaz no tiene conflictos porque todos comparten la misma interpretación de los mensajes.</label></li>
+        <li><label class="opcion-label"><input type="radio" name="s7p6" value="d"> D. Aumento de la autoridad del directivo: cuando la comunicación fluye correctamente, los directivos obtienen mayor respeto y obediencia de sus subordinados.</label></li>
+      </ul>
+      <div class="feedback-box" id="fb-s7p6"></div>
+    </div>
+
+    <div class="pregunta-item" id="pi-s7p7">
+      <div class="pregunta-top"><span class="pregunta-num">7</span><span class="badge-tipo badge-teorica">Teórica</span><span class="pregunta-texto">¿Qué característica tiene la información transmitida horizontalmente en comparación con la transmitida verticalmente?</span></div>
+      <ul class="opciones">
+        <li><label class="opcion-label"><input type="radio" name="s7p7" value="a"> A. Está menos filtrada porque no debe recorrer los distintos niveles jerárquicos, lo que hace que llegue con mayor rapidez y fidelidad entre personas del mismo nivel de la organización.</label></li>
+        <li><label class="opcion-label"><input type="radio" name="s7p7" value="b"> B. Está más filtrada porque los pares tienden a proteger sus áreas y seleccionan estratégicamente qué comparten con sus colegas del mismo nivel jerárquico.</label></li>
+        <li><label class="opcion-label"><input type="radio" name="s7p7" value="c"> C. Tiene mayor formalidad y documentación que la vertical porque se produce entre personas que no tienen relación de autoridad directa y deben dejar evidencia escrita.</label></li>
+        <li><label class="opcion-label"><input type="radio" name="s7p7" value="d"> D. Es más lenta que la vertical porque requiere la aprobación de un superior antes de que dos personas del mismo nivel puedan intercambiar información entre sus áreas.</label></li>
+      </ul>
+      <div class="feedback-box" id="fb-s7p7"></div>
+    </div>
+
+    <div class="pregunta-item" id="pi-s7p8">
+      <div class="pregunta-top"><span class="pregunta-num">8</span><span class="badge-tipo badge-aplicacion">Aplicación</span><span class="pregunta-texto">El gerente financiero de una empresa en Quito envía un correo a todos los empleados contables diciendo: "A partir del próximo mes se implementarán nuevas políticas de archivo." Sin más detalles. Dos semanas después, cada empleado tiene una versión diferente de lo que debe cambiar. ¿Qué falla de comunicación organizacional se produjo?</span></div>
+      <ul class="opciones">
+        <li><label class="opcion-label"><input type="radio" name="s7p8" value="a"> A. Falla de comunicación descendente por imprecisión: el mensaje no definió qué políticas, qué procedimientos ni qué plazos, dejando un vacío de información que cada empleado llenó según su propio criterio generando interpretaciones divergentes.</label></li>
+        <li><label class="opcion-label"><input type="radio" name="s7p8" value="b"> B. Falla de canal: el correo electrónico es inadecuado para comunicar cambios de políticas; debió usarse una reunión presencial obligatoria con presentación de los cambios.</label></li>
+        <li><label class="opcion-label"><input type="radio" name="s7p8" value="c"> C. Falla de comunicación ascendente: los empleados debieron solicitar aclaración inmediatamente al recibir el correo en lugar de esperar dos semanas.</label></li>
+        <li><label class="opcion-label"><input type="radio" name="s7p8" value="d"> D. Falla de comunicación horizontal: los empleados no coordinaron entre sí para unificar su interpretación del mensaje antes de aplicar los cambios en sus áreas respectivas.</label></li>
+      </ul>
+      <div class="feedback-box" id="fb-s7p8"></div>
+    </div>
+
+    <div class="pregunta-item" id="pi-s7p9">
+      <div class="pregunta-top"><span class="pregunta-num">9</span><span class="badge-tipo badge-aplicacion">Aplicación</span><span class="pregunta-texto">Un auditor detecta en su empresa que los auditores juniors nunca reportan directamente los problemas graves a los socios sino que los "suavizan" o dilatan al comunicarlos a sus supervisores intermedios. Aplicando el concepto de filtración ascendente, ¿qué debe hacer la firma para corregir este patrón?</span></div>
+      <ul class="opciones">
+        <li><label class="opcion-label"><input type="radio" name="s7p9" value="a"> A. Crear canales formales de comunicación ascendente directa (política de puertas abiertas, reuniones periódicas de reporte), desarrollar un clima psicológicamente seguro donde el error sea visto como información útil y no como motivo de sanción.</label></li>
+        <li><label class="opcion-label"><input type="radio" name="s7p9" value="b"> B. Sancionar a los auditores juniors que filtren información: las consecuencias negativas son el único mecanismo eficaz para eliminar la filtración en organizaciones jerárquicas.</label></li>
+        <li><label class="opcion-label"><input type="radio" name="s7p9" value="c"> C. Eliminar los niveles intermedios de supervisión: la filtración ocurre en los mandos medios, por lo que suprimirlos garantiza que la información llegue directa y completa a los socios.</label></li>
+        <li><label class="opcion-label"><input type="radio" name="s7p9" value="d"> D. Exigir que todo reporte sea escrito y firmado: la documentación formal obliga a los juniors a incluir toda la información sin filtrarla por temor a que conste evidencia de su omisión.</label></li>
+      </ul>
+      <div class="feedback-box" id="fb-s7p9"></div>
+    </div>
+
+    <div class="pregunta-item" id="pi-s7p10">
+      <div class="pregunta-top"><span class="pregunta-num">10</span><span class="badge-tipo badge-aplicacion">Aplicación</span><span class="pregunta-texto">Una empresa de auditoría nota que sus informes escritos contienen muchos párrafos largos sin estructura, términos técnicos sin explicación y conclusiones enterradas al final del documento. ¿Qué principios de comunicación escrita profesional están siendo ignorados?</span></div>
+      <ul class="opciones">
+        <li><label class="opcion-label"><input type="radio" name="s7p10" value="a"> A. Claridad (vocabulario accesible al lector), estructura lógica (ideas jerarquizadas y visible), síntesis ejecutiva (conclusiones al inicio) y orientación al receptor (el documento debe estar diseñado para quien lo lee, no para quien lo escribe).</label></li>
+        <li><label class="opcion-label"><input type="radio" name="s7p10" value="b"> B. Solo el principio de brevedad: los informes largos son el único problema real; si se acortaran, todos los demás defectos mencionados desaparecerían automáticamente.</label></li>
+        <li><label class="opcion-label"><input type="radio" name="s7p10" value="c"> C. El principio de formalidad: un informe de auditoría debe usar lenguaje técnico especializado para demostrar el rigor profesional de la firma ante el cliente.</label></li>
+        <li><label class="opcion-label"><input type="radio" name="s7p10" value="d"> D. El principio de confidencialidad: los informes con demasiados detalles estructurados facilitan que personas no autorizadas comprendan el alcance completo de la auditoría.</label></li>
+      </ul>
+      <div class="feedback-box" id="fb-s7p10"></div>
+    </div>
+
+    <div class="pregunta-item" id="pi-s7p11">
+      <div class="pregunta-top"><span class="pregunta-num">11</span><span class="badge-tipo badge-aplicacion">Aplicación</span><span class="pregunta-texto">¿Por qué las redes de comunicación informales (como el "chisme de pasillo") son especialmente activas cuando la organización atraviesa cambios importantes?</span></div>
+      <ul class="opciones">
+        <li><label class="opcion-label"><input type="radio" name="s7p11" value="a"> A. Porque la incertidumbre ante cambios (fusiones, despidos, reestructuraciones) genera ansiedad que las personas intentan reducir buscando información informal; cuando los canales formales no comunican a tiempo, el rumor llena el vacío con versiones propias.</label></li>
+        <li><label class="opcion-label"><input type="radio" name="s7p11" value="b"> B. Porque los directivos activan deliberadamente las redes informales durante los cambios para medir el estado de ánimo del equipo antes de hacer anuncios oficiales.</label></li>
+        <li><label class="opcion-label"><input type="radio" name="s7p11" value="c"> C. Porque los cambios organizacionales generan más tiempo libre en los empleados, lo que aumenta naturalmente la frecuencia de conversaciones informales entre compañeros.</label></li>
+        <li><label class="opcion-label"><input type="radio" name="s7p11" value="d"> D. Porque la comunicación informal es siempre más rápida que la formal en cualquier contexto, independientemente de si la organización está en cambio o en situación de estabilidad.</label></li>
+      </ul>
+      <div class="feedback-box" id="fb-s7p11"></div>
+    </div>
+
+    <div class="pregunta-item" id="pi-s7p12">
+      <div class="pregunta-top"><span class="pregunta-num">12</span><span class="badge-tipo badge-aplicacion">Aplicación</span><span class="pregunta-texto">¿Cuál de las siguientes acciones ilustra mejor la aplicación de la comunicación horizontal efectiva en un equipo de auditoría?</span></div>
+      <ul class="opciones">
+        <li><label class="opcion-label"><input type="radio" name="s7p12" value="a"> A. Dos auditores de distinta área (tributaria y financiera) se reúnen semanalmente para compartir hallazgos que pueden cruzarse entre sus áreas de revisión, mejorando la calidad de ambos informes sin necesitar aprobación previa de sus supervisores.</label></li>
+        <li><label class="opcion-label"><input type="radio" name="s7p12" value="b"> B. El auditor senior envía un memo a todos los juniors explicando los criterios de evaluación de su desempeño para el trimestre, con copia al gerente de recursos humanos.</label></li>
+        <li><label class="opcion-label"><input type="radio" name="s7p12" value="c"> C. Un auditor junior reporta directamente al socio director un hallazgo grave que normalmente debería reportar a su supervisor inmediato para agilizar la resolución.</label></li>
+        <li><label class="opcion-label"><input type="radio" name="s7p12" value="d"> D. El equipo de auditoría pide al cliente un organigrama de la empresa para comprender mejor los flujos de comunicación formal antes de iniciar la revisión documental.</label></li>
+      </ul>
+      <div class="feedback-box" id="fb-s7p12"></div>
+    </div>
+
+    <div class="pregunta-item" id="pi-s7p13">
+      <div class="pregunta-top"><span class="pregunta-num">13</span><span class="badge-tipo badge-caso">Análisis de caso</span><span class="pregunta-texto">Lea el caso y responda:</span></div>
+      <div class="caso-box">En una empresa de Guayaquil con 120 empleados, la gerencia decidió implementar un nuevo sistema de control de horarios. La decisión se comunicó en un email de tres líneas enviado a las 5 PM del viernes. El lunes siguiente, el 60% de los empleados no sabía que debía registrarse con el nuevo sistema, y los que sí sabían tenían distintas versiones de cómo funcionaba. La gerencia culpó a los empleados de "no leer los correos".</div>
+      <span class="pregunta-texto" style="font-size:14px;display:block;margin-bottom:10px">Aplicando los principios de comunicación organizacional descendente, ¿quién tiene mayor responsabilidad y por qué?</span>
+      <ul class="opciones">
+        <li><label class="opcion-label"><input type="radio" name="s7p13" value="a"> A. La gerencia: la responsabilidad del emisor en la comunicación descendente es garantizar que el mensaje llegue, sea comprendido y produzca la conducta esperada. Un email de tres líneas enviado un viernes a las 5 PM no cumple ninguno de esos criterios para un cambio de esta magnitud.</label></li>
+        <li><label class="opcion-label"><input type="radio" name="s7p13" value="b"> B. Los empleados: la lectura de comunicaciones oficiales es una obligación profesional básica y la hora o el día de envío no exime de esa responsabilidad en una relación laboral formal.</label></li>
+        <li><label class="opcion-label"><input type="radio" name="s7p13" value="c"> C. El departamento de TI: debió haber enviado una notificación técnica con instrucciones detalladas antes de que la gerencia comunicara el cambio de política.</label></li>
+        <li><label class="opcion-label"><input type="radio" name="s7p13" value="d"> D. La responsabilidad es compartida equitativamente: la gerencia eligió mal el canal y el momento, pero los empleados también fallaron al no solicitar aclaración antes del lunes.</label></li>
+      </ul>
+      <div class="feedback-box" id="fb-s7p13"></div>
+    </div>
+
+    <div class="pregunta-item" id="pi-s7p14">
+      <div class="pregunta-top"><span class="pregunta-num">14</span><span class="badge-tipo badge-caso">Análisis de caso</span><span class="pregunta-texto">Lea el caso y responda:</span></div>
+      <div class="caso-box">Una auditora recibe del cliente un correo con un archivo adjunto de 60 páginas y el asunto: "Información solicitada". Sin más contexto. La auditora no sabe si debe revisar todo el documento, qué parte es relevante para su área, ni para cuándo necesita procesarlo. Responde confirmando recepción pero sin pedir aclaración para no "molestar" al cliente.</div>
+      <span class="pregunta-texto" style="font-size:14px;display:block;margin-bottom:10px">¿Cuántos problemas comunicativos identificas en esta situación y en quién recaen?</span>
+      <ul class="opciones">
+        <li><label class="opcion-label"><input type="radio" name="s7p14" value="a"> A. Al menos tres: (1) El cliente emitió un mensaje sin contexto (falla del emisor). (2) La auditora no solicitó la retroalimentación clarificadora necesaria por autoboicot (miedo a molestar). (3) El proceso comunicativo quedó abierto sin acuerdo sobre qué hacer con la información recibida.</label></li>
+        <li><label class="opcion-label"><input type="radio" name="s7p14" value="b"> B. Solo uno: el cliente no siguió el protocolo correcto de comunicación. La auditora actuó correctamente al confirmar recepción y esperar una aclaración espontánea del cliente.</label></li>
+        <li><label class="opcion-label"><input type="radio" name="s7p14" value="c"> C. Dos: el cliente envió demasiada información y la auditora no tiene las herramientas tecnológicas para procesar documentos de 60 páginas con eficiencia.</label></li>
+        <li><label class="opcion-label"><input type="radio" name="s7p14" value="d"> D. El problema es del canal: el correo electrónico no es adecuado para transferir documentos de más de 20 páginas en el contexto de una auditoría profesional.</label></li>
+      </ul>
+      <div class="feedback-box" id="fb-s7p14"></div>
+    </div>
+
+    <div class="pregunta-item" id="pi-s7p15">
+      <div class="pregunta-top"><span class="pregunta-num">15</span><span class="badge-tipo badge-caso">Análisis de caso</span><span class="pregunta-texto">Lea el caso y responda:</span></div>
+      <div class="caso-box">En una firma de auditoría de Quito, los socios comenzaron a notar que varios clientes importantes estaban cancelando contratos sin dar una razón clara. Al investigar, descubrieron que los clientes percibían a la firma como "fría e impersonal": recibían informes correctos técnicamente, pero nunca una llamada proactiva, nunca un seguimiento verbal, nunca una felicitación o un aviso anticipado de cambios regulatorios relevantes para su industria.</div>
+      <span class="pregunta-texto" style="font-size:14px;display:block;margin-bottom:10px">¿Qué dimensión de la comunicación organizacional había descuidado la firma?</span>
+      <ul class="opciones">
+        <li><label class="opcion-label"><input type="radio" name="s7p15" value="a"> A. La comunicación relacional y proactiva con el cliente externo: la firma dominaba la comunicación técnica (informes), pero descuidó la comunicación que construye confianza y percepción de valor más allá del documento entregado.</label></li>
+        <li><label class="opcion-label"><input type="radio" name="s7p15" value="b"> B. La comunicación interna: si los socios no detectaron el problema hasta que los clientes cancelaron, es señal de que la comunicación ascendente interna de la firma estaba fallando.</label></li>
+        <li><label class="opcion-label"><input type="radio" name="s7p15" value="c"> C. La comunicación digital: los clientes modernos esperan comunicación a través de redes sociales y aplicaciones de mensajería instantánea, no solo correos y reuniones formales.</label></li>
+        <li><label class="opcion-label"><input type="radio" name="s7p15" value="d"> D. La comunicación horizontal: los auditores de distintas áreas no coordinaban sus comunicaciones con los mismos clientes, lo que generaba mensajes contradictorios que desconfiaron a los clientes.</label></li>
+      </ul>
+      <div class="feedback-box" id="fb-s7p15"></div>
+    </div>
+
+  </div>
+  <div class="btn-group">
+    <button class="btn-verificar" onclick="verificar('s7')">✅ Verificar Respuestas</button>
+    <div class="alerta" id="alerta-s7">⚠️ Debes responder todas las preguntas antes de verificar.</div>
+    <button class="btn-reiniciar" id="reiniciar-s7" onclick="reiniciar('s7')">🔄 Reiniciar Semana 7</button>
+  </div>
+  <div class="resultado-panel" id="resultado-s7">
+    <div class="resultado-emoji" id="emoji-s7"></div>
+    <div class="resultado-score" id="score-s7"></div>
+    <div class="resultado-pct" id="pct-s7"></div>
+    <div class="barra-wrapper"><div class="barra-fill" id="barra-s7" style="width:0%"></div></div>
+    <div class="resultado-msg" id="msg-s7"></div>
+  </div>
+</div>
+
+<!-- ===== SIMULACRO FINAL ===== -->
+<div id="tab-sim" class="tab-content">
+  <div class="sim-header">
+    <h2>🏁 Simulacro Final — 30 Preguntas de Todas las Semanas</h2>
+    <p>Activa el cronómetro, responde todas las preguntas y verifica al final. Al terminar verás tu puntaje total y desglose por semana.</p>
+  </div>
+
+  <div class="cronometro-box">
+    <div>
+      <div class="cron-label">⏱ Tiempo transcurrido</div>
+      <div class="cron-tiempo" id="cron-display">00:00:00</div>
+    </div>
+    <button class="btn-iniciar-cron" id="btn-cron" onclick="toggleCron()">▶ Iniciar</button>
+  </div>
+
+  <div class="preguntas-container" id="form-sim">
+    <!-- 30 preguntas del simulacro - 4-5 por semana (semanas 1-7) -->
+    <!-- SEM1: P1-P4 -->
+    <div class="pregunta-item" id="pi-simq1"><div class="pregunta-top"><span class="pregunta-num">S1·1</span><span class="badge-tipo badge-teorica">Teórica</span><span class="pregunta-texto">El principal criterio para distinguir "hablar" de "comunicar" es que comunicar implica:</span></div><ul class="opciones"><li><label class="opcion-label"><input type="radio" name="simq1" value="a"> A. Que el mensaje generó un efecto comprensible y verificable en el receptor.</label></li><li><label class="opcion-label"><input type="radio" name="simq1" value="b"> B. Que se usó el canal más apropiado para el contexto de la interacción.</label></li><li><label class="opcion-label"><input type="radio" name="simq1" value="c"> C. Que el emisor tiene intención consciente de transmitir información al receptor.</label></li><li><label class="opcion-label"><input type="radio" name="simq1" value="d"> D. Que el mensaje fue codificado correctamente según las reglas de la lengua compartida.</label></li></ul><div class="feedback-box" id="fb-simq1"></div></div>
+    <div class="pregunta-item" id="pi-simq2"><div class="pregunta-top"><span class="pregunta-num">S1·2</span><span class="badge-tipo badge-aplicacion">Aplicación</span><span class="pregunta-texto">En una reunión de auditoría, el silencio de un gerente ante una pregunta directa debe interpretarse como:</span></div><ul class="opciones"><li><label class="opcion-label"><input type="radio" name="simq2" value="a"> A. Un mensaje ambiguo que requiere verificación activa; el axioma de Watzlawick indica que es imposible no comunicar.</label></li><li><label class="opcion-label"><input type="radio" name="simq2" value="b"> B. Ausencia de comunicación: si no hay palabras no hay mensaje y el auditor debe reformular la pregunta.</label></li><li><label class="opcion-label"><input type="radio" name="simq2" value="c"> C. Señal de acuerdo tácito: en contextos profesionales, el silencio equivale a aprobación del planteamiento.</label></li><li><label class="opcion-label"><input type="radio" name="simq2" value="d"> D. Ruido físico: el gerente no escuchó correctamente la pregunta y el auditor debe repetirla en voz más alta.</label></li></ul><div class="feedback-box" id="fb-simq2"></div></div>
+    <div class="pregunta-item" id="pi-simq3"><div class="pregunta-top"><span class="pregunta-num">S1·3</span><span class="badge-tipo badge-caso">Caso</span><span class="pregunta-texto">Un contador envía un informe de 60 páginas sin resumen. El cliente no lo entiende. La falla es:</span></div><ul class="opciones"><li><label class="opcion-label"><input type="radio" name="simq3" value="a"> A. Del emisor: no consideró las condiciones del receptor al diseñar el mensaje.</label></li><li><label class="opcion-label"><input type="radio" name="simq3" value="b"> B. Del receptor: la lectura de informes técnicos es obligación profesional del cliente.</label></li><li><label class="opcion-label"><input type="radio" name="simq3" value="c"> C. Del canal: el correo electrónico no es adecuado para documentos de esa extensión.</label></li><li><label class="opcion-label"><input type="radio" name="simq3" value="d"> D. Del código: el lenguaje contable es intrínsecamente difícil para no especialistas.</label></li></ul><div class="feedback-box" id="fb-simq3"></div></div>
+    <div class="pregunta-item" id="pi-simq4"><div class="pregunta-top"><span class="pregunta-num">S1·4</span><span class="badge-tipo badge-teorica">Teórica</span><span class="pregunta-texto">El "ruido semántico" en la comunicación ocurre cuando:</span></div><ul class="opciones"><li><label class="opcion-label"><input type="radio" name="simq4" value="a"> A. Los términos usados tienen significados distintos para el emisor y el receptor, generando interpretaciones divergentes del mismo mensaje.</label></li><li><label class="opcion-label"><input type="radio" name="simq4" value="b"> B. Hay interferencias acústicas en el ambiente físico que impiden que el receptor escuche claramente las palabras del emisor.</label></li><li><label class="opcion-label"><input type="radio" name="simq4" value="c"> C. El emisor no puede encontrar las palabras correctas para expresar su intención comunicativa con precisión.</label></li><li><label class="opcion-label"><input type="radio" name="simq4" value="d"> D. El canal tecnológico falla y el mensaje no llega completo o con retraso al destinatario.</label></li></ul><div class="feedback-box" id="fb-simq4"></div></div>
+    <!-- SEM2: P5-P8 -->
+    <div class="pregunta-item" id="pi-simq5"><div class="pregunta-top"><span class="pregunta-num">S2·5</span><span class="badge-tipo badge-teorica">Teórica</span><span class="pregunta-texto">El lenguaje paraverbal se refiere a:</span></div><ul class="opciones"><li><label class="opcion-label"><input type="radio" name="simq5" value="a"> A. Los elementos vocales no lingüísticos (tono, volumen, velocidad, pausas) que acompañan al mensaje verbal modificando su significado.</label></li><li><label class="opcion-label"><input type="radio" name="simq5" value="b"> B. Los gestos, posturas y expresiones faciales que complementan las palabras durante la comunicación oral.</label></li><li><label class="opcion-label"><input type="radio" name="simq5" value="c"> C. Los signos escritos que se ubican entre el lenguaje formal y el coloquial, como los emojis en mensajes de texto.</label></li><li><label class="opcion-label"><input type="radio" name="simq5" value="d"> D. La comunicación que ocurre entre dos personas que hablan idiomas distintos y usan señas para entenderse.</label></li></ul><div class="feedback-box" id="fb-simq5"></div></div>
+    <div class="pregunta-item" id="pi-simq6"><div class="pregunta-top"><span class="pregunta-num">S2·6</span><span class="badge-tipo badge-aplicacion">Aplicación</span><span class="pregunta-texto">Un auditor nota incongruencia entre lo verbal y lo no verbal del entrevistado. Debe:</span></div><ul class="opciones"><li><label class="opcion-label"><input type="radio" name="simq6" value="a"> A. Registrar la incongruencia y profundizar la investigación con evidencia adicional, sin concluir automáticamente que hay ocultamiento.</label></li><li><label class="opcion-label"><input type="radio" name="simq6" value="b"> B. Ignorar las señales no verbales porque en contextos profesionales solo el contenido verbal tiene valor probatorio.</label></li><li><label class="opcion-label"><input type="radio" name="simq6" value="c"> C. Concluir que el entrevistado miente y documentar esta conclusión en el informe de auditoría.</label></li><li><label class="opcion-label"><input type="radio" name="simq6" value="d"> D. Reformular la pregunta en términos más sencillos porque la incongruencia indica que el entrevistado no comprendió bien.</label></li></ul><div class="feedback-box" id="fb-simq6"></div></div>
+    <div class="pregunta-item" id="pi-simq7"><div class="pregunta-top"><span class="pregunta-num">S2·7</span><span class="badge-tipo badge-teorica">Teórica</span><span class="pregunta-texto">Cuando el contexto modifica el significado del mensaje, se demuestra que:</span></div><ul class="opciones"><li><label class="opcion-label"><input type="radio" name="simq7" value="a"> A. El significado no reside solo en las palabras sino en la interacción entre el mensaje, el emisor, el receptor y las circunstancias que rodean el intercambio.</label></li><li><label class="opcion-label"><input type="radio" name="simq7" value="b"> B. El lenguaje es ambiguo por naturaleza y por eso los contratos y normas deben redactarse en lenguaje jurídico preciso que no dependa del contexto.</label></li><li><label class="opcion-label"><input type="radio" name="simq7" value="c"> C. Solo el emisor tiene la capacidad de determinar el significado real de un mensaje, independientemente de cómo lo interprete el receptor.</label></li><li><label class="opcion-label"><input type="radio" name="simq7" value="d"> D. El lenguaje escrito es superior al oral porque su significado no cambia con el contexto físico en que es leído.</label></li></ul><div class="feedback-box" id="fb-simq7"></div></div>
+    <div class="pregunta-item" id="pi-simq8"><div class="pregunta-top"><span class="pregunta-num">S2·8</span><span class="badge-tipo badge-caso">Caso</span><span class="pregunta-texto">La SRI publica una norma con término ambiguo y dos empresas la interpretan diferente. El origen principal del problema es:</span></div><ul class="opciones"><li><label class="opcion-label"><input type="radio" name="simq8" value="a"> A. La imprecisión léxica del emisor: el término sin referente objetivo deja un vacío que cada receptor llena con su propio criterio.</label></li><li><label class="opcion-label"><input type="radio" name="simq8" value="b"> B. La distinta formación jurídica de los asesores de cada empresa, que aplican criterios interpretativos opuestos al mismo texto.</label></li><li><label class="opcion-label"><input type="radio" name="simq8" value="c"> C. El canal: las resoluciones normativas deben publicarse acompañadas de videos explicativos para eliminar la ambigüedad textual.</label></li><li><label class="opcion-label"><input type="radio" name="simq8" value="d"> D. La falta de retroalimentación: si las empresas hubieran consultado directamente al SRI, la ambigüedad no habría generado el problema.</label></li></ul><div class="feedback-box" id="fb-simq8"></div></div>
+    <!-- SEM3: P9-P12 -->
+    <div class="pregunta-item" id="pi-simq9"><div class="pregunta-top"><span class="pregunta-num">S3·9</span><span class="badge-tipo badge-teorica">Teórica</span><span class="pregunta-texto">El "secuestro amigdalino" afecta la comunicación profesional porque:</span></div><ul class="opciones"><li><label class="opcion-label"><input type="radio" name="simq9" value="a"> A. La amígdala toma el control de la respuesta antes de que el neocórtex la procese racionalmente, generando reacciones impulsivas que deterioran la comunicación en momentos de alta tensión.</label></li><li><label class="opcion-label"><input type="radio" name="simq9" value="b"> B. El sistema límbico bloquea el lenguaje verbal en situaciones de estrés extremo, por lo que las personas no pueden comunicarse verbalmente cuando están bajo presión.</label></li><li><label class="opcion-label"><input type="radio" name="simq9" value="c"> C. El cerebro reptiliano activa mecanismos de supervivencia que aumentan la fluidez verbal y la velocidad de pensamiento bajo presión.</label></li><li><label class="opcion-label"><input type="radio" name="simq9" value="d"> D. La corteza prefrontal anula las emociones para permitir una comunicación exclusivamente racional durante las situaciones de crisis.</label></li></ul><div class="feedback-box" id="fb-simq9"></div></div>
+    <div class="pregunta-item" id="pi-simq10"><div class="pregunta-top"><span class="pregunta-num">S3·10</span><span class="badge-tipo badge-aplicacion">Aplicación</span><span class="pregunta-texto">Un auditor con alta IE, al recibir una crítica agresiva del cliente durante la reunión de cierre, debería:</span></div><ul class="opciones"><li><label class="opcion-label"><input type="radio" name="simq10" value="a"> A. Regular su propia reacción emocional (no responder impulsivamente), reconocer el estado emocional del cliente y adaptar su respuesta para mantener el control profesional de la situación.</label></li><li><label class="opcion-label"><input type="radio" name="simq10" value="b"> B. Responder con igual firmeza para establecer que su posición técnica no está sujeta a presiones emocionales del cliente.</label></li><li><label class="opcion-label"><input type="radio" name="simq10" value="c"> C. Retirarse de la reunión para que ambas partes se calmen antes de continuar con la presentación de hallazgos.</label></li><li><label class="opcion-label"><input type="radio" name="simq10" value="d"> D. Ceder en los puntos técnicos cuestionados para reducir la tensión emocional y mantener la relación con el cliente.</label></li></ul><div class="feedback-box" id="fb-simq10"></div></div>
+    <div class="pregunta-item" id="pi-simq11"><div class="pregunta-top"><span class="pregunta-num">S3·11</span><span class="badge-tipo badge-teorica">Teórica</span><span class="pregunta-texto">Las narrativas activan mayor atención en el receptor que los datos fríos porque:</span></div><ul class="opciones"><li><label class="opcion-label"><input type="radio" name="simq11" value="a"> A. Activan el sistema límbico (emocional) antes de que el neocórtex procese la información racional, generando conexión e interés que mejora la receptividad del mensaje.</label></li><li><label class="opcion-label"><input type="radio" name="simq11" value="b"> B. Son gramaticalmente más simples que los informes técnicos, por lo que requieren menos esfuerzo cognitivo del receptor durante los primeros minutos.</label></li><li><label class="opcion-label"><input type="radio" name="simq11" value="c"> C. El cerebro reptiliano solo responde positivamente a narrativas y rechaza los datos numéricos como amenazas al instinto de supervivencia.</label></li><li><label class="opcion-label"><input type="radio" name="simq11" value="d"> D. Las historias son más cortas que los informes técnicos y la brevedad siempre genera mayor atención en cualquier tipo de receptor.</label></li></ul><div class="feedback-box" id="fb-simq11"></div></div>
+    <div class="pregunta-item" id="pi-simq12"><div class="pregunta-top"><span class="pregunta-num">S3·12</span><span class="badge-tipo badge-caso">Caso</span><span class="pregunta-texto">Una contadora evita reportar errores por miedo a la reacción de su jefe. Este patrón genera:</span></div><ul class="opciones"><li><label class="opcion-label"><input type="radio" name="simq12" value="a"> A. Un clima de baja seguridad psicológica que deteriora la comunicación ascendente y perjudica la calidad de la información que llega a la dirección.</label></li><li><label class="opcion-label"><input type="radio" name="simq12" value="b"> B. Eficiencia organizacional: si solo se reportan los problemas importantes, los directivos pueden concentrarse en lo realmente relevante.</label></li><li><label class="opcion-label"><input type="radio" name="simq12" value="c"> C. Comunicación asertiva indirecta: la contadora está seleccionando el momento apropiado para reportar cuando el ambiente sea más favorable.</label></li><li><label class="opcion-label"><input type="radio" name="simq12" value="d"> D. Un problema de canal: si hubiera un sistema formal de reporte anónimo, la contadora informaría sin miedo a las consecuencias.</label></li></ul><div class="feedback-box" id="fb-simq12"></div></div>
+    <!-- SEM4: P13-P16 -->
+    <div class="pregunta-item" id="pi-simq13"><div class="pregunta-top"><span class="pregunta-num">S4·13</span><span class="badge-tipo badge-teorica">Teórica</span><span class="pregunta-texto">La puntuación en la comunicación escrita tiene valor semántico porque:</span></div><ul class="opciones"><li><label class="opcion-label"><input type="radio" name="simq13" value="a"> A. Puede cambiar radicalmente el significado de una oración, establecer jerarquías de ideas y regular el ritmo de lectura, siendo un componente activo del mensaje y no solo un elemento decorativo.</label></li><li><label class="opcion-label"><input type="radio" name="simq13" value="b"> B. Indica al lector dónde realizar pausas respiratorias durante la lectura en voz alta, facilitando la correcta dicción del texto.</label></li><li><label class="opcion-label"><input type="radio" name="simq13" value="c"> C. Es un elemento exclusivamente estilístico que varía según el género textual y las preferencias personales del autor.</label></li><li><label class="opcion-label"><input type="radio" name="simq13" value="d"> D. Solo afecta el significado en textos literarios; en documentos técnicos y contables la puntuación cumple una función meramente estructural.</label></li></ul><div class="feedback-box" id="fb-simq13"></div></div>
+    <div class="pregunta-item" id="pi-simq14"><div class="pregunta-top"><span class="pregunta-num">S4·14</span><span class="badge-tipo badge-aplicacion">Aplicación</span><span class="pregunta-texto">Un informe incluye: "El gerente, autorizó los pagos sin respaldo." ¿Qué problema presenta?</span></div><ul class="opciones"><li><label class="opcion-label"><input type="radio" name="simq14" value="a"> A. La coma entre el sujeto y el predicado es incorrecta y puede crear ambigüedad sobre si "autorizó" es un hecho establecido o una afirmación parentética.</label></li><li><label class="opcion-label"><input type="radio" name="simq14" value="b"> B. La oración es gramaticalmente correcta; la coma después del sujeto es un recurso retórico para enfatizar la acción del gerente.</label></li><li><label class="opcion-label"><input type="radio" name="simq14" value="c"> C. El problema es de vocabulario: "autorizó" es un término demasiado técnico para un informe dirigido a directivos no especializados.</label></li><li><label class="opcion-label"><input type="radio" name="simq14" value="d"> D. La oración no tiene sujeto explícito, lo que genera ambigüedad sobre quién realizó la acción descrita.</label></li></ul><div class="feedback-box" id="fb-simq14"></div></div>
+    <div class="pregunta-item" id="pi-simq15"><div class="pregunta-top"><span class="pregunta-num">S4·15</span><span class="badge-tipo badge-teorica">Teórica</span><span class="pregunta-texto">La lectura habitual aumenta la competencia comunicativa porque:</span></div><ul class="opciones"><li><label class="opcion-label"><input type="radio" name="simq15" value="a"> A. Amplía el vocabulario activo, expone a diversas estructuras argumentativas y desarrolla la capacidad analítica y productiva del profesional.</label></li><li><label class="opcion-label"><input type="radio" name="simq15" value="b"> B. Permite memorizar estándares y normas contables con mayor rapidez y precisión que la revisión directa de los documentos oficiales.</label></li><li><label class="opcion-label"><input type="radio" name="simq15" value="c"> C. Aumenta la velocidad lectora, lo que permite procesar informes de auditoría en menor tiempo durante las jornadas de trabajo.</label></li><li><label class="opcion-label"><input type="radio" name="simq15" value="d"> D. Desarrolla la capacidad matemática del contador al exponer repetidamente cifras y datos numéricos de distintos contextos.</label></li></ul><div class="feedback-box" id="fb-simq15"></div></div>
+    <div class="pregunta-item" id="pi-simq16"><div class="pregunta-top"><span class="pregunta-num">S4·16</span><span class="badge-tipo badge-caso">Caso</span><span class="pregunta-texto">Un memorando dice "cierres oportunos" sin fecha. Tres contadores entregan en fechas distintas. El origen es:</span></div><ul class="opciones"><li><label class="opcion-label"><input type="radio" name="simq16" value="a"> A. Imprecisión léxica del emisor: "oportuno" carece de referente objetivo y cada receptor lo decodificó según su propio criterio.</label></li><li><label class="opcion-label"><input type="radio" name="simq16" value="b"> B. Falta de seguimiento del emisor: si hubiera enviado un recordatorio, los contadores habrían unificado la fecha.</label></li><li><label class="opcion-label"><input type="radio" name="simq16" value="c"> C. Ruido físico: el memorando no llegó al mismo tiempo a los tres contadores, generando diferentes momentos de referencia para el plazo.</label></li><li><label class="opcion-label"><input type="radio" name="simq16" value="d"> D. Falta de protocolo: la empresa no tiene un manual de procedimientos que defina los plazos estándar de los cierres contables.</label></li></ul><div class="feedback-box" id="fb-simq16"></div></div>
+    <!-- SEM5: P17-P20 -->
+    <div class="pregunta-item" id="pi-simq17"><div class="pregunta-top"><span class="pregunta-num">S5·17</span><span class="badge-tipo badge-teorica">Teórica</span><span class="pregunta-texto">La proxémica estudia:</span></div><ul class="opciones"><li><label class="opcion-label"><input type="radio" name="simq17" value="a"> A. El uso del espacio físico y las distancias que las personas mantienen entre sí como elementos portadores de significado en la comunicación.</label></li><li><label class="opcion-label"><input type="radio" name="simq17" value="b"> B. Los movimientos corporales y gestos que acompañan el discurso oral modificando el impacto del mensaje verbal.</label></li><li><label class="opcion-label"><input type="radio" name="simq17" value="c"> C. Las variaciones de tono, volumen y ritmo de la voz que dan énfasis a distintas partes del mensaje oral.</label></li><li><label class="opcion-label"><input type="radio" name="simq17" value="d"> D. Los sistemas de comunicación táctil y olfativa que las personas utilizan en situaciones de alta proximidad física.</label></li></ul><div class="feedback-box" id="fb-simq17"></div></div>
+    <div class="pregunta-item" id="pi-simq18"><div class="pregunta-top"><span class="pregunta-num">S5·18</span><span class="badge-tipo badge-aplicacion">Aplicación</span><span class="pregunta-texto">Un auditor habla en tono monótono durante toda la presentación. El efecto paraverbal principal es:</span></div><ul class="opciones"><li><label class="opcion-label"><input type="radio" name="simq18" value="a"> A. El cerebro del receptor pierde la capacidad de identificar qué información es más importante, generando desconexión y pérdida de atención.</label></li><li><label class="opcion-label"><input type="radio" name="simq18" value="b"> B. La objetividad técnica del auditor queda reforzada porque la monotonía vocal indica ausencia de sesgos emocionales.</label></li><li><label class="opcion-label"><input type="radio" name="simq18" value="c"> C. El cliente interpreta el tono monótono como señal de confianza y dominio del tema por parte del auditor.</label></li><li><label class="opcion-label"><input type="radio" name="simq18" value="d"> D. El efecto es neutro en presentaciones técnicas: el contenido del informe es el único factor que impacta la percepción del cliente.</label></li></ul><div class="feedback-box" id="fb-simq18"></div></div>
+    <div class="pregunta-item" id="pi-simq19"><div class="pregunta-top"><span class="pregunta-num">S5·19</span><span class="badge-tipo badge-teorica">Teórica</span><span class="pregunta-texto">La escucha activa se distingue de la escucha superficial porque:</span></div><ul class="opciones"><li><label class="opcion-label"><input type="radio" name="simq19" value="a"> A. Implica atención plena al contenido verbal y no verbal del mensaje, disposición psicológica para comprender y retroalimentación que demuestra al emisor que fue correctamente recibido.</label></li><li><label class="opcion-label"><input type="radio" name="simq19" value="b"> B. Requiere tomar notas de todo lo que el emisor dice para poder reproducir el mensaje con exactitud cuando sea necesario.</label></li><li><label class="opcion-label"><input type="radio" name="simq19" value="c"> C. Solo puede realizarse en contextos formales y silenciosos; en ambientes ruidosos solo es posible la escucha superficial.</label></li><li><label class="opcion-label"><input type="radio" name="simq19" value="d"> D. Es una habilidad exclusiva de psicólogos y terapeutas entrenados para procesar el discurso del otro con profundidad clínica.</label></li></ul><div class="feedback-box" id="fb-simq19"></div></div>
+    <div class="pregunta-item" id="pi-simq20"><div class="pregunta-top"><span class="pregunta-num">S5·20</span><span class="badge-tipo badge-caso">Caso</span><span class="pregunta-texto">Un gerente asiente durante la presentación pero luego pregunta sobre algo ya explicado. Esto indica:</span></div><ul class="opciones"><li><label class="opcion-label"><input type="radio" name="simq20" value="a"> A. Escucha superficial o fingida: las señales kinésicas de atención (asentir) no coincidían con el nivel real de procesamiento del mensaje.</label></li><li><label class="opcion-label"><input type="radio" name="simq20" value="b"> B. Escucha proyectiva: el gerente ya conocía la respuesta y asentía porque anticipó lo que el auditor iba a decir antes de que lo dijera.</label></li><li><label class="opcion-label"><input type="radio" name="simq20" value="c"> C. Escucha crítica eficiente: el gerente seleccionó los puntos de mayor relevancia para su rol y descartó los detalles técnicos innecesarios.</label></li><li><label class="opcion-label"><input type="radio" name="simq20" value="d"> D. Falla del presentador: si el punto preguntado ya fue explicado y el gerente no lo recuerda, la explicación fue deficiente desde el inicio.</label></li></ul><div class="feedback-box" id="fb-simq20"></div></div>
+    <!-- SEM6: P21-P24 -->
+    <div class="pregunta-item" id="pi-simq21"><div class="pregunta-top"><span class="pregunta-num">S6·21</span><span class="badge-tipo badge-teorica">Teórica</span><span class="pregunta-texto">La fluidez verbal se adquiere principalmente a través de:</span></div><ul class="opciones"><li><label class="opcion-label"><input type="radio" name="simq21" value="a"> A. La cultura acumulada: lectura, conversación activa, participación en eventos sociales y exposición deliberada a distintos contextos comunicativos.</label></li><li><label class="opcion-label"><input type="radio" name="simq21" value="b"> B. El entrenamiento fonológico específico: ejercicios de dicción, respiración y vocalización guiados por especialistas en fonoaudiología.</label></li><li><label class="opcion-label"><input type="radio" name="simq21" value="c"> C. El coeficiente intelectual hereditario que determina desde la infancia la capacidad de asociar y relacionar ideas con agilidad.</label></li><li><label class="opcion-label"><input type="radio" name="simq21" value="d"> D. La memorización de discursos modelo de grandes oradores para incorporar sus estructuras argumentativas al propio repertorio.</label></li></ul><div class="feedback-box" id="fb-simq21"></div></div>
+    <div class="pregunta-item" id="pi-simq22"><div class="pregunta-top"><span class="pregunta-num">S6·22</span><span class="badge-tipo badge-aplicacion">Aplicación</span><span class="pregunta-texto">Según Stamateas, una persona que siempre dice "no fue nada" cuando logra algo está practicando:</span></div><ul class="opciones"><li><label class="opcion-label"><input type="radio" name="simq22" value="a"> A. La autorrebaja automática: un patrón de autoboicot que erosiona la autoestima al no reconocer el propio valor y los propios logros.</label></li><li><label class="opcion-label"><input type="radio" name="simq22" value="b"> B. Humildad sana: reconocer que los logros no son solo propios sino el resultado de circunstancias favorables es una actitud madura.</label></li><li><label class="opcion-label"><input type="radio" name="simq22" value="c"> C. Comunicación asertiva: la persona expresa con honestidad que el logro no representó un desafío significativo para sus capacidades.</label></li><li><label class="opcion-label"><input type="radio" name="simq22" value="d"> D. Inteligencia emocional: reconocer los límites de los propios logros demuestra autoconciencia y sentido de la realidad.</label></li></ul><div class="feedback-box" id="fb-simq22"></div></div>
+    <div class="pregunta-item" id="pi-simq23"><div class="pregunta-top"><span class="pregunta-num">S6·23</span><span class="badge-tipo badge-teorica">Teórica</span><span class="pregunta-texto">La persuasión como habilidad comunicativa legítima se basa en:</span></div><ul class="opciones"><li><label class="opcion-label"><input type="radio" name="simq23" value="a"> A. La fundamentación lógica mediante evidencias, argumentos y demostraciones que respetan la capacidad racional del receptor para decidir libremente.</label></li><li><label class="opcion-label"><input type="radio" name="simq23" value="b"> B. La capacidad de generar emociones positivas en el receptor antes de presentar los argumentos para reducir su resistencia crítica.</label></li><li><label class="opcion-label"><input type="radio" name="simq23" value="c"> C. El dominio de técnicas de programación neurolingüística que permiten influir en el subconsciente del receptor sin que este lo perciba.</label></li><li><label class="opcion-label"><input type="radio" name="simq23" value="d"> D. La combinación de autoridad profesional y presión social para que el receptor adopte el punto de vista del emisor sin cuestionarlo.</label></li></ul><div class="feedback-box" id="fb-simq23"></div></div>
+    <div class="pregunta-item" id="pi-simq24"><div class="pregunta-top"><span class="pregunta-num">S6·24</span><span class="badge-tipo badge-caso">Caso</span><span class="pregunta-texto">Una auditora cede ante la presión del directorio aunque su metodología es correcta. Esto es:</span></div><ul class="opciones"><li><label class="opcion-label"><input type="radio" name="simq24" value="a"> A. Autoboicot por déficit de valor profesional + comunicación pasiva que compromete la independencia de la auditoría.</label></li><li><label class="opcion-label"><input type="radio" name="simq24" value="b"> B. Flexibilidad profesional: abrir la revisión ante cuestionamientos del cliente demuestra humildad técnica y orientación al servicio.</label></li><li><label class="opcion-label"><input type="radio" name="simq24" value="c"> C. Comunicación asertiva correctamente aplicada: la auditora usó el "banco de niebla" para desactivar el conflicto sin abandonar su posición.</label></li><li><label class="opcion-label"><input type="radio" name="simq24" value="d"> D. Un error exclusivamente ético que no tiene implicaciones en la teoría de la comunicación estudiada en el curso.</label></li></ul><div class="feedback-box" id="fb-simq24"></div></div>
+    <!-- SEM7: P25-P30 -->
+    <div class="pregunta-item" id="pi-simq25"><div class="pregunta-top"><span class="pregunta-num">S7·25</span><span class="badge-tipo badge-teorica">Teórica</span><span class="pregunta-texto">La comunicación ascendente se ve afectada principalmente por:</span></div><ul class="opciones"><li><label class="opcion-label"><input type="radio" name="simq25" value="a"> A. La filtración: los empleados transmiten a sus superiores solo lo que creen que estos desean escuchar, distorsionando la información que llega a la dirección.</label></li><li><label class="opcion-label"><input type="radio" name="simq25" value="b"> B. La saturación: demasiados mensajes simultáneos desde distintos niveles impiden que los directivos procesen con calidad toda la información recibida.</label></li><li><label class="opcion-label"><input type="radio" name="simq25" value="c"> C. La velocidad: los mensajes que suben por la jerarquía tardan más que los que bajan, lo que genera retrasos críticos en la toma de decisiones.</label></li><li><label class="opcion-label"><input type="radio" name="simq25" value="d"> D. La formalidad excesiva: los protocolos rígidos de comunicación ascendente hacen que los empleados prefieran no reportar para evitar el proceso burocrático.</label></li></ul><div class="feedback-box" id="fb-simq25"></div></div>
+    <div class="pregunta-item" id="pi-simq26"><div class="pregunta-top"><span class="pregunta-num">S7·26</span><span class="badge-tipo badge-aplicacion">Aplicación</span><span class="pregunta-texto">Un rumor se expande en una empresa durante una reestructuración. La causa principal es:</span></div><ul class="opciones"><li><label class="opcion-label"><input type="radio" name="simq26" value="a"> A. La incertidumbre generada por la falta de comunicación formal oportuna: cuando los canales formales no informan, el rumor llena el vacío con versiones propias.</label></li><li><label class="opcion-label"><input type="radio" name="simq26" value="b"> B. La naturaleza maliciosa de algunos empleados que intencionalmente difunden información falsa para generar inestabilidad en la organización.</label></li><li><label class="opcion-label"><input type="radio" name="simq26" value="c"> C. La ausencia de tecnología de comunicación interna adecuada: sin plataformas digitales, la información informal circula más rápido que la oficial.</label></li><li><label class="opcion-label"><input type="radio" name="simq26" value="d"> D. La comunicación horizontal excesiva: cuando los empleados hablan demasiado entre sí sin filtro jerárquico, el rumor es un resultado inevitable.</label></li></ul><div class="feedback-box" id="fb-simq26"></div></div>
+    <div class="pregunta-item" id="pi-simq27"><div class="pregunta-top"><span class="pregunta-num">S7·27</span><span class="badge-tipo badge-teorica">Teórica</span><span class="pregunta-texto">La comunicación horizontal en una organización resulta menos filtrada que la vertical porque:</span></div><ul class="opciones"><li><label class="opcion-label"><input type="radio" name="simq27" value="a"> A. No debe recorrer los distintos niveles jerárquicos, lo que elimina los intermediarios que usualmente seleccionan o modifican la información en tránsito.</label></li><li><label class="opcion-label"><input type="radio" name="simq27" value="b"> B. Los pares son más honestos entre sí que con sus superiores porque no temen consecuencias negativas al compartir información completa.</label></li><li><label class="opcion-label"><input type="radio" name="simq27" value="c"> C. Las comunicaciones horizontales siempre se realizan oralmente, lo que reduce la posibilidad de que sean interceptadas o modificadas.</label></li><li><label class="opcion-label"><input type="radio" name="simq27" value="d"> D. Los protocolos formales de comunicación horizontal son menos rígidos que los verticales, lo que facilita el intercambio natural y completo de información.</label></li></ul><div class="feedback-box" id="fb-simq27"></div></div>
+    <div class="pregunta-item" id="pi-simq28"><div class="pregunta-top"><span class="pregunta-num">S7·28</span><span class="badge-tipo badge-caso">Caso</span><span class="pregunta-texto">Una empresa pierde clientes porque entrega informes correctos pero sin comunicación proactiva. ¿Qué descuidó?</span></div><ul class="opciones"><li><label class="opcion-label"><input type="radio" name="simq28" value="a"> A. La dimensión relacional de la comunicación con el cliente externo: dominaba la comunicación técnica pero descuidó la que construye confianza y percepción de valor.</label></li><li><label class="opcion-label"><input type="radio" name="simq28" value="b"> B. La comunicación interna ascendente: los socios no sabían del problema porque los auditores no lo reportaban oportunamente hacia arriba.</label></li><li><label class="opcion-label"><input type="radio" name="simq28" value="c"> C. La comunicación digital: los clientes modernos esperan WhatsApp y redes sociales, no solo correos y reuniones presenciales.</label></li><li><label class="opcion-label"><input type="radio" name="simq28" value="d"> D. La comunicación horizontal entre áreas: la falta de coordinación interna generaba mensajes contradictorios que desconfiaron al cliente.</label></li></ul><div class="feedback-box" id="fb-simq28"></div></div>
+    <div class="pregunta-item" id="pi-simq29"><div class="pregunta-top"><span class="pregunta-num">S7·29</span><span class="badge-tipo badge-aplicacion">Aplicación</span><span class="pregunta-texto">Para corregir la filtración ascendente en una firma de auditoría, la acción más efectiva es:</span></div><ul class="opciones"><li><label class="opcion-label"><input type="radio" name="simq29" value="a"> A. Crear un clima psicológicamente seguro donde el error sea visto como información útil, combinado con canales formales de reporte directo y periódico.</label></li><li><label class="opcion-label"><input type="radio" name="simq29" value="b"> B. Sancionar a quienes omitan información: las consecuencias negativas son el único mecanismo eficaz para eliminar la filtración en organizaciones jerárquicas.</label></li><li><label class="opcion-label"><input type="radio" name="simq29" value="c"> C. Eliminar los mandos intermedios: la filtración ocurre en ese nivel jerárquico, por lo que suprimirlos garantiza que la información fluya sin distorsión.</label></li><li><label class="opcion-label"><input type="radio" name="simq29" value="d"> D. Exigir comunicación exclusivamente escrita: el registro formal obliga a los empleados a incluir toda la información sin omitir detalles relevantes.</label></li></ul><div class="feedback-box" id="fb-simq29"></div></div>
+    <div class="pregunta-item" id="pi-simq30"><div class="pregunta-top"><span class="pregunta-num">S7·30</span><span class="badge-tipo badge-caso">Caso</span><span class="pregunta-texto">Un email de 3 líneas enviado el viernes a las 5 PM anuncia un cambio de políticas. El lunes hay caos. La mayor responsabilidad recae en:</span></div><ul class="opciones"><li><label class="opcion-label"><input type="radio" name="simq30" value="a"> A. La gerencia: la responsabilidad del emisor es garantizar que el mensaje sea comprendido y produzca la conducta esperada; este mensaje no cumplió esos criterios para un cambio de esta magnitud.</label></li><li><label class="opcion-label"><input type="radio" name="simq30" value="b"> B. Los empleados: leer comunicaciones oficiales es obligación profesional independientemente de la hora o el día de envío.</label></li><li><label class="opcion-label"><input type="radio" name="simq30" value="c"> C. El departamento de TI: debió programar el correo para enviarse el lunes por la mañana cuando los empleados están más receptivos.</label></li><li><label class="opcion-label"><input type="radio" name="simq30" value="d"> D. La responsabilidad es equitativa: la gerencia eligió mal el canal pero los empleados debieron solicitar aclaración el mismo viernes.</label></li></ul><div class="feedback-box" id="fb-simq30"></div></div>
+  </div>
+
+  <div class="btn-group">
+    <button class="btn-verificar" onclick="verificarSim()">✅ Verificar Simulacro</button>
+    <div class="alerta" id="alerta-sim">⚠️ Debes responder todas las preguntas antes de verificar.</div>
+    <button class="btn-reiniciar" id="reiniciar-sim" onclick="reiniciarSim()" style="display:none">🔄 Reiniciar Simulacro</button>
+  </div>
+
+  <div class="resultado-panel" id="resultado-sim">
+    <div class="resultado-emoji" id="emoji-sim"></div>
+    <div class="resultado-score" id="score-sim"></div>
+    <div class="resultado-pct" id="pct-sim"></div>
+    <div class="barra-wrapper"><div class="barra-fill" id="barra-sim" style="width:0%"></div></div>
+    <div class="resultado-msg" id="msg-sim"></div>
+    <div class="sim-desglose" id="desglose-sim" style="display:none">
+      <h3>📊 Desglose por Semana</h3>
+      <div class="desglose-grid" id="desglose-grid"></div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /content-area -->
+
+<script>
+// === NAVEGACIÓN ===
+function showTab(id){
+  document.querySelectorAll('.tab-content').forEach(function(el){el.classList.remove('active')});
+  document.querySelectorAll('.tab-btn').forEach(function(el){el.classList.remove('active')});
+  document.getElementById('tab-'+id).classList.add('active');
+  document.querySelectorAll('.tab-btn').forEach(function(b){if(b.getAttribute('onclick')&&b.getAttribute('onclick').includes("'"+id+"'"))b.classList.add('active')});
+}
+
+// === DATOS CORRECTOS ===
+var DATA={
+  s5:{
+    p1:{r:'a',fb:'<div class="fb-titulo">✅ Correcta: A</div>La kinésica estudia los movimientos corporales (gestos, expresiones, postura, contacto visual). <strong>B</strong> describe la proxémica. <strong>C</strong> describe la paralingüística. <strong>D</strong> describe la hapésica (comunicación táctil) y la olfativa, que son distintas a la kinésica.'},
+    p2:{r:'a',fb:'<div class="fb-titulo">✅ Correcta: A</div>La zona social según Hall es 1-3 metros, propia de relaciones laborales formales. <strong>B</strong> (0-50 cm) es la zona íntima. <strong>C</strong> (50 cm-1 m) es la zona personal/casual. <strong>D</strong> (más de 3 m) corresponde a la zona pública de conferencias.'},
+    p3:{r:'a',fb:'<div class="fb-titulo">✅ Correcta: A</div>Lo paraverbal son los elementos vocales no lingüísticos (tono, volumen, velocidad, pausas). <strong>B</strong> describe la kinésica. <strong>C</strong> describe la elección del registro léxico, que es parte del lenguaje verbal. <strong>D</strong> describe la proxémica.'},
+    p4:{r:'a',fb:'<div class="fb-titulo">✅ Correcta: A</div>La escucha activa implica atención plena, disposición psicológica y retroalimentación. <strong>B</strong> confunde escucha activa con tomar notas. <strong>C</strong> es incorrecta: la escucha activa no es innata sino una habilidad desarrollable. <strong>D</strong> es incorrecta: aplica tanto a contextos formales como informales.'},
+    p5:{r:'a',fb:'<div class="fb-titulo">✅ Correcta: A</div>Brazos cruzados = frialdad, pasividad o barrera de defensa (Zayas, 2002). <strong>B</strong> confunde con posturas de autoridad (manos detrás de la cabeza, barbilla levantada). <strong>C</strong> es incorrecta: es una postura de cierre, no de apertura. <strong>D</strong> es incorrecta: los gestos tienen significado comunicativo independientemente de su causa física.'},
+    p6:{r:'a',fb:'<div class="fb-titulo">✅ Correcta: A</div>Las tres competencias clave son saber escuchar, exponer ideas coherentemente y trabajar en equipo. <strong>B</strong> mezcla habilidades lingüísticas con competencias comunicativas. <strong>C</strong> confunde competencias con atributos de personalidad no desarrollables. <strong>D</strong> confunde competencias comunicativas con habilidades digitales.'},
+    p7:{r:'a',fb:'<div class="fb-titulo">✅ Correcta: A</div>La comunicación no verbal incluye todos los signos no lingüísticos y su interpretación varía culturalmente. <strong>B</strong> es incorrecta: el lenguaje no verbal no es universal; muchos gestos varían culturalmente. <strong>C</strong> es incorrecta: lo no verbal es relevante también en contextos profesionales. <strong>D</strong> exagera: lo no verbal modifica pero no reemplaza completamente lo verbal.'},
+    p8:{r:'a',fb:'<div class="fb-titulo">✅ Correcta: A</div>La combinación de distancia excesiva + señales kinésicas de cierre comunica desconexión que afecta la percepción del cliente. <strong>B</strong> malinterpreta la neutralidad técnica como distancia física y kinésica. <strong>C</strong> confunde posición alejada con señal de autoridad; en proxémica la distancia excesiva no es dominancia sino inaccesibilidad. <strong>D</strong> ignora el impacto de la comunicación no verbal en la relación con el cliente.'},
+    p9:{r:'a',fb:'<div class="fb-titulo">✅ Correcta: A</div>Las señales paraverbales y kinésicas descritas son indicadores de ansiedad que merecen investigación adicional, no conclusiones automáticas. <strong>B</strong> ignora el valor diagnóstico de las señales no verbales. <strong>C</strong> sobrepasa la evidencia: las señales no verbales no prueban ocultamiento, solo justifican mayor investigación. <strong>D</strong> confunde las señales de ansiedad con ruido fisiológico del canal.'},
+    p10:{r:'a',fb:'<div class="fb-titulo">✅ Correcta: A</div>La escucha activa permite captar información implícita y necesidades no verbalizadas, ventaja cualitativa directa. <strong>B</strong> confunde escucha activa con memoria fotográfica para datos numéricos. <strong>C</strong> no hay evidencia de que la escucha activa reduzca el tiempo de las reuniones. <strong>D</strong> reduce el beneficio a imagen académica, ignorando el valor diagnóstico real.'},
+    p11:{r:'a',fb:'<div class="fb-titulo">✅ Correcta: A</div>La monotonía paraverbal impide al cerebro identificar la jerarquía de la información, generando desconexión. <strong>B</strong> malinterpreta la monotonía como objetividad. <strong>C</strong> es incorrecta: la monotonía genera aburrimiento, no confianza. <strong>D</strong> es incorrecta: lo paraverbal impacta directamente en la recepción del mensaje incluso en contextos técnicos.'},
+    p12:{r:'a',fb:'<div class="fb-titulo">✅ Correcta: A</div>El conjunto de señales (apretón firme + contacto visual + postura erguida + distancia social) comunica confianza y profesionalismo. <strong>B</strong> malinterpreta señales de confianza como agresividad. <strong>C</strong> es una interpretación excesivamente psicologizante sin base en el caso. <strong>D</strong> confunde distancia social apropiada con distancia excesiva.'},
+    p13:{r:'a',fb:'<div class="fb-titulo">✅ Correcta: A</div>El gerente enviaba señales kinésicas de atención (asentir) mientras su conducta real (teléfono, monosílabos) revelaba escucha superficial. <strong>B</strong> describe la escucha proyectiva, que implica anticipar activamente lo que el otro dirá. <strong>C</strong> malinterpreta la desconexión como filtrado eficiente de información. <strong>D</strong> culpa al auditor sin evidencia de que la explicación fuera deficiente.'},
+    p14:{r:'a',fb:'<div class="fb-titulo">✅ Correcta: A</div>El contenido llegó pero las señales no verbales (proxémica, paraverbal, kinésica) contradijeron el mensaje verbal generando una experiencia de invalidación. <strong>B</strong> separa artificialmente el contenido de la experiencia comunicativa: la comunicación eficaz requiere que ambos sean coherentes. <strong>C</strong> introduce un problema de canal que el caso no evidencia. <strong>D</strong> patologiza al receptor en lugar de analizar las señales no verbales del funcionario.'},
+    p15:{r:'a',fb:'<div class="fb-titulo">✅ Correcta: A</div>El equipo necesita escucha activa, exposición coherente de ideas y trabajo en equipo comunicativo: las tres competencias clave del curso. <strong>B</strong> propone una solución parcial (redacción) que no aborda el problema comunicativo oral. <strong>C</strong> reduce a liderazgo lo que es un problema de competencias comunicativas individuales desarrollables. <strong>D</strong> confunde el síntoma (superposición de habla) con la causa (falta de escucha activa y turnos de habla).'}
+  },
+  s6:{
+    p1:{r:'a',fb:'<div class="fb-titulo">✅ Correcta: A</div>La retórica son las reglas del discurso persuasivo; la oratoria es su aplicación en el habla. <strong>B</strong> invierte la relación: es la retórica la más amplia (escrita y oral); la oratoria es su aplicación oral. <strong>C</strong> es incorrecta: son conceptualmente distintos aunque relacionados. <strong>D</strong> es incorrecta: la retórica también puede aprenderse; la oratoria también tiene componentes innatos.'},
+    p2:{r:'a',fb:'<div class="fb-titulo">✅ Correcta: A</div>Inventio, dispositio y elocutio son las tres fases relevantes para la escritura; así lo establece la teoría retórica clásica. <strong>B</strong> la memoria se refiere a la memorización del discurso oral, no a la producción escrita. <strong>C</strong> la actio es la emisión oral del discurso; no aplica directamente a la comunicación escrita. <strong>D</strong> es incorrecta: la teoría clásica distingue claramente las fases más relevantes para la escritura.'},
+    p3:{r:'a',fb:'<div class="fb-titulo">✅ Correcta: A</div>La fluidez verbal es expresar ideas con agilidad y claridad; se adquiere a través de la cultura y la práctica. <strong>B</strong> confunde fluidez con velocidad: la rapidez sin claridad no es fluidez. <strong>C</strong> confunde fluidez verbal con multilingüismo. <strong>D</strong> reduce la fluidez a hablar sin notas, que es solo una de sus manifestaciones.'},
+    p4:{r:'a',fb:'<div class="fb-titulo">✅ Correcta: A</div>Stamateas define la autoestima con dos componentes: valor (soy digno) y eficacia (soy capaz). <strong>B</strong> introduce inteligencia y voluntad, que no son los componentes que Stamateas identifica. <strong>C</strong> introduce autoimagen física/profesional, que no corresponde al modelo de Stamateas. <strong>D</strong> introduce motivación extrínseca/intrínseca, que tampoco es el marco de Stamateas en este libro.'},
+    p5:{r:'a',fb:'<div class="fb-titulo">✅ Correcta: A</div>La persuasión usa evidencias y argumentos válidos; la manipulación apela a sesgos o información falsa sin respetar la racionalidad del receptor. <strong>B</strong> es incorrecta en su distinción por modalidad. <strong>C</strong> relativiza incorrectamente la manipulación como técnica válida en publicidad y política. <strong>D</strong> es incorrecta: existen diferencias éticas y técnicas sustanciales entre ambas.'},
+    p6:{r:'a',fb:'<div class="fb-titulo">✅ Correcta: A</div>El autoboicot son las trampas mentales internas que la persona se genera a sí misma. <strong>B</strong> describe barreras externas, que Stamateas distingue claramente del autoboicot interno. <strong>C</strong> introduce la idea de ocultamiento del talento, que no es el concepto central de Stamateas. <strong>D</strong> describe el miedo escénico específico, que es solo una manifestación del autoboicot.'},
+    p7:{r:'a',fb:'<div class="fb-titulo">✅ Correcta: A</div>La interpretación es decodificar más allá de la literalidad: captar el contexto, la intención implícita y los elementos no verbales. <strong>B</strong> describe la traducción o interpretación de idiomas, no la habilidad comunicativa del curso. <strong>C</strong> describe la técnica de la reformulación, que es una herramienta dentro de la escucha activa. <strong>D</strong> describe la anticipación del emisor, que es más cercana a la codificación que a la interpretación.'},
+    p8:{r:'a',fb:'<div class="fb-titulo">✅ Correcta: A</div>Aplicar inventio (contexto/causas), dispositio (estructura lógica) y elocutio (lenguaje claro) es la estrategia retórica correcta. <strong>B</strong> es contraproducente: dedicar el 80% a exculpaciones genera desconfianza. <strong>C</strong> omitir los datos negativos compromete la transparencia y la credibilidad profesional. <strong>D</strong> la memorización (actio) es útil pero no es "la fase más importante"; la estructura del discurso es lo central.'},
+    p9:{r:'a',fb:'<div class="fb-titulo">✅ Correcta: A</div>Es una trampa de déficit de eficacia: el auditor no confía en su propia competencia comprobada, generando comportamientos compulsivos de verificación. <strong>B</strong> normaliza un comportamiento que ya está afectando la productividad, ignorando su dimensión de autoboicot. <strong>C</strong> reduce a gestión del tiempo lo que tiene una dimensión emocional y de autoestima que la productividad por sí sola no resuelve. <strong>D</strong> confunde experiencia con autoestima: más años no garantizan automáticamente mayor confianza en uno mismo.'},
+    p10:{r:'a',fb:'<div class="fb-titulo">✅ Correcta: A</div>Presentar evidencias y argumentar fundamentadamente con respeto a la capacidad racional del cliente es persuasión legítima. <strong>B</strong> describe manipulación mediante miedo. <strong>C</strong> describe manipulación mediante omisión de información. <strong>D</strong> describe manipulación mediante elogios instrumentales.'},
+    p11:{r:'a',fb:'<div class="fb-titulo">✅ Correcta: A</div>La autoafirmación sana reconoce los propios logros sin necesitar disminuir a los demás; la arrogancia requiere compararse favorablemente. <strong>B</strong> contradice la propuesta de Stamateas: él recomienda verbalizar los logros como práctica de autoafirmación. <strong>C</strong> es incorrecta y desmotivadora: Stamateas distingue claramente autoafirmación de arrogancia. <strong>D</strong> es incorrecta: la autoafirmación es apropiada también en contextos profesionales donde la confianza es una competencia.'},
+    p12:{r:'a',fb:'<div class="fb-titulo">✅ Correcta: A</div>La fluidez verbal se desarrolla mediante la cultura acumulada: lectura, conversación y participación activa en distintos contextos. <strong>B</strong> reduce la fluidez a su dimensión fonológica, ignorando su componente cognitivo-cultural. <strong>C</strong> confunde fluidez con inteligencia, que son constructos independientes. <strong>D</strong> es parcialmente correcta pero introduce una limitación (ventaja temprana insuperable) que la teoría del curso no sostiene.'},
+    p13:{r:'a',fb:'<div class="fb-titulo">✅ Correcta: A</div>Jorge presenta el patrón clásico de Stamateas: no se siente digno (valor) ni capaz (eficacia), lo que se traduce en señales no verbales que refuerzan la percepción de inseguridad. <strong>B</strong> reduce el problema a habilidades técnicas de oratoria, ignorando la dimensión de autoboicot. <strong>C</strong> valida la trampa mental de Jorge como si fuera una evaluación objetiva correcta. <strong>D</strong> externaliza la causa del autoboicot, ignorando que es un patrón interno modificable.'},
+    p14:{r:'a',fb:'<div class="fb-titulo">✅ Correcta: A</div>Ceder sin evidencia de error = autoboicot por déficit de valor + comunicación pasiva que compromete la independencia. <strong>B</strong> normaliza una cesión sin fundamento técnico como humildad, cuando en realidad compromete la integridad profesional. <strong>C</strong> malinterpreta el "banco de niebla": esa técnica permite disminuir el conflicto sin abandonar la posición real, algo que la auditora sí hizo. <strong>D</strong> separa artificialmente lo ético de lo comunicativo cuando el problema tiene ambas dimensiones.'},
+    p15:{r:'a',fb:'<div class="fb-titulo">✅ Correcta: A</div>Los resultados medibles (menos preguntas de aclaración, mejor contacto visual, mejor estructura) demuestran impacto directo de la oratoria en la calidad comunicativa. <strong>B</strong> reduce el beneficio a la confianza personal sin evidencia cuantificable, ignorando los datos del caso. <strong>C</strong> atribuye el resultado a capacidades previas de los participantes, lo que no está respaldado por el caso. <strong>D</strong> malinterpreta "menos preguntas" como desinterés cuando es evidencia de mejor comprensión inicial del mensaje.'}
+  },
+  s7:{
+    p1:{r:'a',fb:'<div class="fb-titulo">✅ Correcta: A</div>La descendente fluye de niveles superiores a inferiores con objetivos de dirección y control. <strong>B</strong> describe la comunicación horizontal. <strong>C</strong> describe la comunicación ascendente. <strong>D</strong> describe la comunicación transversal.'},
+    p2:{r:'a',fb:'<div class="fb-titulo">✅ Correcta: A</div>La ascendente provee a la dirección información real sobre problemas, estado de ánimo e iniciativas. <strong>B</strong> es incorrecta: la frecuencia no es el criterio citado en la teoría. <strong>C</strong> introduce una obligación legal que no existe en esos términos. <strong>D</strong> es parcialmente cierta pero no es la explicación técnica del curso.'},
+    p3:{r:'a',fb:'<div class="fb-titulo">✅ Correcta: A</div>La comunicación informal bien gestionada puede aportar beneficios; mal gestionada deteriora el clima. <strong>B</strong> es incorrecta: eliminarla completamente es imposible y contraproducente. <strong>C</strong> exagera su confiabilidad: la informal está más sujeta a distorsión y rumor. <strong>D</strong> es incorrecta: la comunicación informal existe en organizaciones de cualquier tamaño.'},
+    p4:{r:'a',fb:'<div class="fb-titulo">✅ Correcta: A</div>La transversal cruza niveles y departamentos distintos; la horizontal es entre homólogos del mismo nivel. <strong>B</strong> invierte las características de formalidad. <strong>C</strong> introduce un criterio tecnológico sin base teórica. <strong>D</strong> es incorrecta: existen diferencias conceptuales relevantes entre ambas.'},
+    p5:{r:'a',fb:'<div class="fb-titulo">✅ Correcta: A</div>La filtración es omitir o suavizar mensajes para decir al directivo lo que se cree que quiere escuchar. <strong>B</strong> describe la sobrecarga de información (saturación), distinta a la filtración. <strong>C</strong> describe errores de codificación, no filtración selectiva intencional. <strong>D</strong> describe modificación por intermediarios, que es parte de la filtración pero no la define en su totalidad.'},
+    p6:{r:'a',fb:'<div class="fb-titulo">✅ Correcta: A</div>La comunicación eficaz genera satisfacción, desempeño, compromiso, reduce rumores y facilita decisiones. <strong>B</strong> reduce las ventajas a costo operativo, ignorando las dimensiones humanas y organizacionales. <strong>C</strong> exagera: la comunicación eficaz reduce conflictos pero no los elimina. <strong>D</strong> confunde efectividad comunicativa con obediencia jerárquica.'},
+    p7:{r:'a',fb:'<div class="fb-titulo">✅ Correcta: A</div>La horizontal no pasa por los filtros jerárquicos, llegando con mayor fidelidad entre pares. <strong>B</strong> exagera la posible protección territorial entre pares. <strong>C</strong> no hay evidencia teórica de que la horizontal sea siempre más formal. <strong>D</strong> es incorrecta: la horizontal es generalmente más rápida que la vertical precisamente porque evita los intermediarios.'},
+    p8:{r:'a',fb:'<div class="fb-titulo">✅ Correcta: A</div>La falla es de comunicación descendente deficiente: mensaje impreciso que no garantizó comprensión ni conducta uniforme. <strong>B</strong> puede ser un factor pero no es la falla principal: el problema está en el diseño del mensaje. <strong>C</strong> traslada la responsabilidad al receptor sin analizar el diseño del mensaje del emisor. <strong>D</strong> introduce la horizontal como causa cuando el problema es la calidad del mensaje descendente.'},
+    p9:{r:'a',fb:'<div class="fb-titulo">✅ Correcta: A</div>La filtración se combate con seguridad psicológica + canales formales de reporte directo, no con sanciones ni reestructuración orgánica. <strong>B</strong> genera más miedo y por tanto más filtración, efecto opuesto al deseado. <strong>C</strong> es una medida drástica que puede generar otros problemas y no aborda la causa raíz. <strong>D</strong> puede ser complementario pero no soluciona el problema de seguridad psicológica que origina la filtración.'},
+    p10:{r:'a',fb:'<div class="fb-titulo">✅ Correcta: A</div>Los principios ignorados son claridad, estructura lógica, síntesis ejecutiva y orientación al receptor. <strong>B</strong> reduce todos los problemas a la extensión, ignorando los de estructura, vocabulario y jerarquía de ideas. <strong>C</strong> confunde formalidad con lenguaje técnico: los informes de auditoría deben ser técnicamente precisos pero accesibles para su destinatario. <strong>D</strong> introduce la confidencialidad como argumento, lo cual no está relacionado con la estructura interna del documento.'},
+    p11:{r:'a',fb:'<div class="fb-titulo">✅ Correcta: A</div>La incertidumbre ante cambios genera ansiedad; cuando los canales formales no informan a tiempo, el rumor llena el vacío. <strong>B</strong> invierte la causa: los directivos no activan deliberadamente el rumor. <strong>C</strong> confunde tiempo libre con generación de conversación; el motor del rumor es la incertidumbre, no el tiempo disponible. <strong>D</strong> es incorrecta: la velocidad del rumor es consecuencia de la incertidumbre, no de la comunicación horizontal per se.'},
+    p12:{r:'a',fb:'<div class="fb-titulo">✅ Correcta: A</div>Dos auditores del mismo nivel que comparten hallazgos transversales para mejorar ambos informes es comunicación horizontal efectiva. <strong>B</strong> describe comunicación descendente del senior a los juniors. <strong>C</strong> describe comunicación ascendente directa que saltaría niveles jerárquicos. <strong>D</strong> describe una acción de recolección de información del cliente, no comunicación horizontal interna del equipo.'},
+    p13:{r:'a',fb:'<div class="fb-titulo">✅ Correcta: A</div>La responsabilidad del emisor en la descendente es garantizar comprensión y conducta esperada; este mensaje no lo hizo. <strong>B</strong> traslada toda la responsabilidad al receptor sin analizar el diseño del mensaje. <strong>C</strong> introduce al departamento de TI sin justificación en el caso. <strong>D</strong> distribuye equitativamente cuando la mayor responsabilidad corresponde claramente al emisor.'},
+    p14:{r:'a',fb:'<div class="fb-titulo">✅ Correcta: A</div>Hay tres fallas: mensaje sin contexto (cliente), autoboicot de la auditora (no pide aclaración por miedo) y proceso sin cierre. <strong>B</strong> traslada toda la responsabilidad al cliente ignorando el autoboicot de la auditora. <strong>C</strong> reduce a dos factores ignorando el problema del proceso comunicativo incompleto. <strong>D</strong> introduce el canal como causa principal cuando el problema es el diseño del mensaje y la autocensura de la auditora.'},
+    p15:{r:'a',fb:'<div class="fb-titulo">✅ Correcta: A</div>La firma dominaba la comunicación técnica pero descuidó la relacional con el cliente externo, que construye confianza y fidelización. <strong>B</strong> puede ser un efecto secundario pero no es lo que el caso describe como causa de la pérdida de clientes. <strong>C</strong> introduce las redes sociales como causa sin evidencia en el caso. <strong>D</strong> introduce la falta de coordinación horizontal sin evidencia de mensajes contradictorios en el caso.'}
+  }
+};
+
+// DATOS SIMULACRO
+var SIM_DATA={
+  simq1:{r:'a',sem:'S1',fb:'Correcta A: comunicar requiere efecto verificable en el receptor. B describe canal apropiado. C describe intención (que puede existir sin que haya comunicación). D describe codificación correcta pero no el criterio principal.'},
+  simq2:{r:'a',sem:'S1',fb:'Correcta A: axioma de Watzlawick — el silencio es mensaje ambiguo que requiere verificación. B niega el axioma. C asume significado fijo al silencio. D confunde silencio con problema de canal.'},
+  simq3:{r:'a',sem:'S1',fb:'Correcta A: el emisor no consideró las condiciones del receptor al diseñar el mensaje. B culpa al receptor ignorando la responsabilidad del emisor. C y D introducen variables no centrales al problema.'},
+  simq4:{r:'a',sem:'S2',fb:'Correcta A: ruido semántico = términos con significados distintos para emisor y receptor. B es ruido físico. C es dificultad de codificación del emisor. D es ruido tecnológico del canal.'},
+  simq5:{r:'a',sem:'S2',fb:'Correcta A: lo paraverbal son los elementos vocales no lingüísticos. B describe la kinésica. C describe emojis/registros escritos. D describe comunicación interlingüística.'},
+  simq6:{r:'a',sem:'S2',fb:'Correcta A: registrar e investigar más, sin concluir automáticamente. B ignora el valor de lo no verbal. C sobrepasa la evidencia; las señales no verbales no prueban ocultamiento. D malinterpreta la incongruencia como problema de comprensión.'},
+  simq7:{r:'a',sem:'S2',fb:'Correcta A: el significado reside en la interacción entre mensaje, emisor, receptor y circunstancias. B introduce el lenguaje jurídico como solución parcial sin capturar el principio. C atribuye el significado solo al emisor. D sobrestima la estabilidad del escrito.'},
+  simq8:{r:'a',sem:'S2',fb:'Correcta A: la imprecisión léxica del emisor dejó un vacío que cada receptor llenó por su cuenta. B introduce la formación de asesores como causa principal. C propone una solución de canal sin diagnosticar la imprecisión léxica. D introduce la falta de retroalimentación como causa, cuando el origen está en el texto mismo.'},
+  simq9:{r:'a',sem:'S3',fb:'Correcta A: la amígdala toma el control antes que el neocórtex, generando reacciones impulsivas. B exagera el efecto del secuestro: no bloquea el lenguaje verbal completamente. C invierte el efecto: el secuestro amigdalino reduce, no aumenta, la capacidad racional. D describe el efecto opuesto al secuestro amigdalino.'},
+  simq10:{r:'a',sem:'S3',fb:'Correcta A: autorregular la propia emoción y reconocer la del cliente es IE aplicada. B es comunicación agresiva. C es evitación que puede deteriorar la situación. D compromete la independencia técnica por razones emocionales.'},
+  simq11:{r:'a',sem:'S3',fb:'Correcta A: las narrativas activan el sistema límbico antes que el neocórtex generando conexión emocional. B es parcialmente cierto pero no es el principio neurológico central. C malinterpreta la función del cerebro reptiliano. D confunde brevedad con activación emocional.'},
+  simq12:{r:'a',sem:'S3',fb:'Correcta A: el miedo genera baja seguridad psicológica que deteriora la comunicación ascendente. B normaliza una filtración peligrosa para la organización. C es incorrecta: esperar no es comunicación asertiva indirecta sino evasión pasiva. D introduce el canal como causa principal cuando la causa es el clima emocional.'},
+  simq13:{r:'a',sem:'S4',fb:'Correcta A: la puntuación organiza, jerarquiza y puede cambiar radicalmente el significado. B reduce la puntuación a función respiratoria. C la reduce a elemento estilístico opcional. D la excluye incorrectamente de los documentos técnicos.'},
+  simq14:{r:'a',sem:'S4',fb:'Correcta A: la coma entre sujeto y predicado es incorrecta y crea ambigüedad semántica. B es incorrecta: la coma después del sujeto rompe la fluidez y no es un recurso retórico válido. C el término "autorizó" es apropiado en documentos de auditoría. D es incorrecta: el sujeto "el gerente financiero" está explícitamente presente en la oración.'},
+  simq15:{r:'a',sem:'S4',fb:'Correcta A: la lectura amplía vocabulario activo y desarrolla capacidad analítica y productiva. B confunde lectura con memorización de normas. C confunde velocidad lectora con competencia comunicativa. D asocia lectura con capacidad matemática sin base teórica.'},
+  simq16:{r:'a',sem:'S4',fb:'Correcta A: "oportuno" es un término vago sin referente objetivo. B introduce el seguimiento como solución sin diagnosticar el origen. C introduce ruido físico que el caso no evidencia. D introduce la falta de manual como causa cuando el origen es la imprecisión léxica.'},
+  simq17:{r:'a',sem:'S5',fb:'Correcta A: la proxémica estudia el uso del espacio y las distancias como elementos comunicativos. B describe la kinésica. C describe la paralingüística. D describe la hapésica y la olfativa.'},
+  simq18:{r:'a',sem:'S5',fb:'Correcta A: la monotonía impide identificar la jerarquía de la información. B malinterpreta la monotonía como señal de objetividad. C es incorrecta: la monotonía genera aburrimiento, no confianza. D es incorrecta: lo paraverbal impacta incluso en contextos técnicos.'},
+  simq19:{r:'a',sem:'S5',fb:'Correcta A: atención plena + disposición psicológica + retroalimentación que confirma comprensión. B reduce la escucha activa a tomar notas. C restringe la escucha activa a ambientes silenciosos. D la reserva exclusivamente para profesionales clínicos.'},
+  simq20:{r:'a',sem:'S5',fb:'Correcta A: señales kinésicas de atención (asentir) incompatibles con el nivel real de procesamiento = escucha superficial. B la escucha proyectiva implica anticipar activamente lo que el otro dirá, no desentenderse. C malinterpreta la desconexión como filtrado eficiente. D culpa al presentador sin evidencia de que la explicación fuera deficiente.'},
+  simq21:{r:'a',sem:'S6',fb:'Correcta A: la fluidez verbal se adquiere a través de la cultura acumulada. B reduce a dimensión fonológica. C la vincula incorrectamente con herencia genética. D confunde memorización de discursos ajenos con fluidez propia.'},
+  simq22:{r:'a',sem:'S6',fb:'Correcta A: la autorrebaja automática es un patrón de autoboicot que erosiona la autoestima (Stamateas). B reencuadra el autoboicot como humildad sana, lo que Stamateas explícitamente contradice. C malinterpreta el autoboicot como asertividad. D confunde autorrebaja con autoconciencia.'},
+  simq23:{r:'a',sem:'S6',fb:'Correcta A: la persuasión legítima usa evidencias y argumentos que respetan la racionalidad del receptor. B describe manipulación emocional. C describe manipulación mediante PNL sin consentimiento. D describe coerción social, no persuasión.'},
+  simq24:{r:'a',sem:'S6',fb:'Correcta A: ceder sin evidencia = autoboicot + comunicación pasiva que compromete la independencia. B normaliza la cesión sin fundamento como humildad. C malinterpreta el banco de niebla: esa técnica mantiene la posición real. D separa artificialmente lo ético de lo comunicativo.'},
+  simq25:{r:'a',sem:'S7',fb:'Correcta A: la filtración es el problema principal de la comunicación ascendente. B describe saturación, un problema diferente. C describe retraso, que es consecuencia pero no el problema principal. D introduce la formalidad como causa sin base teórica sólida.'},
+  simq26:{r:'a',sem:'S7',fb:'Correcta A: la incertidumbre ante cambios genera rumor cuando los canales formales no informan a tiempo. B atribuye el rumor a malicia intencional. C introduce la tecnología como causa cuando la causa es la incertidumbre. D malinterpreta la comunicación horizontal como causa del rumor.'},
+  simq27:{r:'a',sem:'S7',fb:'Correcta A: sin pasar por niveles jerárquicos, la información llega con mayor fidelidad. B introduce la honestidad entre pares como factor, que puede ser cierto pero no es el principio teórico central. C introduce un criterio de modalidad (oral vs. escrita) sin base teórica. D introduce protocolos menos rígidos sin evidencia teórica directa.'},
+  simq28:{r:'a',sem:'S7',fb:'Correcta A: la empresa descuidó la dimensión relacional y proactiva de la comunicación con el cliente externo. B introduce la ascendente interna como causa principal cuando el caso describe pérdida de clientes externos. C introduce redes sociales sin evidencia en el caso. D introduce la horizontal sin evidencia de mensajes contradictorios.'},
+  simq29:{r:'a',sem:'S7',fb:'Correcta A: seguridad psicológica + canales formales de reporte directo es la combinación más efectiva. B genera más miedo y más filtración. C es medida drástica con efectos secundarios no controlados. D puede ser complementario pero no aborda la causa raíz emocional.'},
+  simq30:{r:'a',sem:'S7',fb:'Correcta A: el emisor debe garantizar comprensión y conducta esperada; este mensaje no lo hizo. B traslada la responsabilidad al receptor. C introduce al departamento de TI sin base en el caso. D distribuye equitativamente cuando la responsabilidad mayor es del emisor.'}
+};
+
+// === VERIFICAR SEMANAS ===
+function verificar(sem){
+  var d=DATA[sem];
+  var total=Object.keys(d).length;
+  var sinR=[];
+  Object.keys(d).forEach(function(p){if(!document.querySelector('input[name="'+sem+p+'"]:checked'))sinR.push(p)});
+  if(sinR.length>0){document.getElementById('alerta-'+sem).classList.add('show');document.getElementById('pi-'+sem+sinR[0]).scrollIntoView({behavior:'smooth',block:'center'});return}
+  document.getElementById('alerta-'+sem).classList.remove('show');
+  var correctas=0;
+  Object.keys(d).forEach(function(p){
+    var info=d[p];var name=sem+p;
+    var sel=document.querySelector('input[name="'+name+'"]:checked');
+    var item=document.getElementById('pi-'+sem+p);
+    var fbEl=document.getElementById('fb-'+sem+p);
+    document.querySelectorAll('input[name="'+name+'"]').forEach(function(inp){inp.disabled=true;inp.parentElement.classList.remove('seleccionada');if(inp.value===info.r)inp.parentElement.classList.add('correcta-marcada')});
+    if(sel.value===info.r){correctas++;item.classList.add('correcta');fbEl.className='feedback-box correcto show';fbEl.innerHTML=info.fb}
+    else{item.classList.add('incorrecta');sel.parentElement.classList.add('incorrecta-op');fbEl.className='feedback-box incorrecto show';fbEl.innerHTML='<div class="fb-titulo">❌ Incorrecto — Correcta: opción '+info.r.toUpperCase()+'</div>'+info.fb.replace('<div class="fb-titulo">✅ Correcta: '+info.r.toUpperCase()+'</div>','')}
+  });
+  var pct=Math.round(correctas/total*100);
+  var emojis=['📖','⚠️','📘','🎯','🏆'];
+  var msgs=['Necesitas reforzar los conceptos. Vuelve al material y reinténtalo.','Vas bien, pero hay conceptos que necesitan más atención.','Buen progreso. Con más repaso estarás listo.','Muy bien. Dominas los conceptos centrales.','¡Excelente! Dominio completo. ¡Listo para el examen!'];
+  var idx=pct===100?4:pct>=80?3:pct>=60?2:pct>=40?1:0;
+  document.getElementById('emoji-'+sem).textContent=emojis[idx];
+  document.getElementById('score-'+sem).textContent=correctas+' / '+total;
+  document.getElementById('pct-'+sem).textContent=pct+'% de respuestas correctas';
+  document.getElementById('msg-'+sem).textContent=msgs[idx];
+  var res=document.getElementById('resultado-'+sem);res.classList.add('show');
+  setTimeout(function(){document.getElementById('barra-'+sem).style.width=pct+'%'},100);
+  document.getElementById('reiniciar-'+sem).style.display='block';
+  res.scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+function reiniciar(sem){
+  var d=DATA[sem];
+  Object.keys(d).forEach(function(p){
+    var name=sem+p;
+    document.querySelectorAll('input[name="'+name+'"]').forEach(function(inp){inp.disabled=false;inp.checked=false;inp.parentElement.classList.remove('seleccionada','correcta-op','incorrecta-op','correcta-marcada')});
+    var item=document.getElementById('pi-'+sem+p);item.classList.remove('correcta','incorrecta','respondida');
+    var fb=document.getElementById('fb-'+sem+p);fb.className='feedback-box';fb.innerHTML='';
+  });
+  document.getElementById('resultado-'+sem).classList.remove('show');
+  document.getElementById('reiniciar-'+sem).style.display='none';
+  document.getElementById('alerta-'+sem).classList.remove('show');
+  document.getElementById('barra-'+sem).style.width='0%';
+  document.querySelector('#tab-'+sem+' .semana-header').scrollIntoView({behavior:'smooth'});
+}
+
+// === SIMULACRO ===
+function verificarSim(){
+  var qs=Object.keys(SIM_DATA);var sinR=[];
+  qs.forEach(function(q){if(!document.querySelector('input[name="'+q+'"]:checked'))sinR.push(q)});
+  if(sinR.length>0){document.getElementById('alerta-sim').classList.add('show');document.getElementById('pi-'+sinR[0]).scrollIntoView({behavior:'smooth',block:'center'});return}
+  document.getElementById('alerta-sim').classList.remove('show');
+  detenerCron();
+  var correctas=0;var bySem={};
+  qs.forEach(function(q){
+    var info=SIM_DATA[q];var sem=info.sem;
+    if(!bySem[sem])bySem[sem]={c:0,t:0};bySem[sem].t++;
+    var sel=document.querySelector('input[name="'+q+'"]:checked');
+    var item=document.getElementById('pi-'+q);
+    var fbEl=document.getElementById('fb-'+q);
+    document.querySelectorAll('input[name="'+q+'"]').forEach(function(inp){inp.disabled=true;inp.parentElement.classList.remove('seleccionada');if(inp.value===info.r)inp.parentElement.classList.add('correcta-marcada')});
+    if(sel.value===info.r){correctas++;item.classList.add('correcta');bySem[sem].c++;fbEl.className='feedback-box correcto show';fbEl.innerHTML='<div class="fb-titulo">✅ Correcta: '+info.r.toUpperCase()+'</div>'+info.fb}
+    else{item.classList.add('incorrecta');sel.parentElement.classList.add('incorrecta-op');fbEl.className='feedback-box incorrecto show';fbEl.innerHTML='<div class="fb-titulo">❌ Incorrecto — Correcta: '+info.r.toUpperCase()+'</div>'+info.fb}
+  });
+  var total=qs.length;var pct=Math.round(correctas/total*100);
+  var emojis=['📖','⚠️','📘','🎯','🏆'];
+  var msgs=['Necesitas repasar todo el material antes del examen.','Hay semanas que requieren atención especial. Usa el desglose.','Buen nivel. Refuerza las semanas con menor puntaje.','Muy bien preparado. Revisa los errores puntuales.','¡Perfecto! Dominio total del curso. ¡Éxito en el examen!'];
+  var idx=pct===100?4:pct>=80?3:pct>=60?2:pct>=40?1:0;
+  document.getElementById('emoji-sim').textContent=emojis[idx];
+  document.getElementById('score-sim').textContent=correctas+' / '+total;
+  document.getElementById('pct-sim').textContent=pct+'% — Tiempo: '+document.getElementById('cron-display').textContent;
+  document.getElementById('msg-sim').textContent=msgs[idx];
+  var res=document.getElementById('resultado-sim');res.classList.add('show');
+  setTimeout(function(){document.getElementById('barra-sim').style.width=pct+'%'},100);
+  // Desglose
+  var grid=document.getElementById('desglose-grid');grid.innerHTML='';
+  var semOrder=['S1','S2','S3','S4','S5','S6','S7'];
+  semOrder.forEach(function(s){
+    if(bySem[s]){var d=bySem[s];var card=document.createElement('div');card.className='desglose-card';var p=Math.round(d.c/d.t*100);card.innerHTML='<div class="dc-sem">'+s+'</div><div class="dc-score">'+d.c+'/'+d.t+'</div><div class="dc-max">'+p+'%</div>';grid.appendChild(card)}
+  });
+  document.getElementById('desglose-sim').style.display='block';
+  document.getElementById('reiniciar-sim').style.display='block';
+  res.scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+function reiniciarSim(){
+  Object.keys(SIM_DATA).forEach(function(q){
+    document.querySelectorAll('input[name="'+q+'"]').forEach(function(inp){inp.disabled=false;inp.checked=false;inp.parentElement.classList.remove('seleccionada','correcta-op','incorrecta-op','correcta-marcada')});
+    var item=document.getElementById('pi-'+q);item.classList.remove('correcta','incorrecta','respondida');
+    var fb=document.getElementById('fb-'+q);fb.className='feedback-box';fb.innerHTML='';
+  });
+  document.getElementById('resultado-sim').classList.remove('show');
+  document.getElementById('desglose-sim').style.display='none';
+  document.getElementById('reiniciar-sim').style.display='none';
+  document.getElementById('alerta-sim').classList.remove('show');
+  document.getElementById('barra-sim').style.width='0%';
+  reiniciarCron();
+  document.querySelector('.sim-header').scrollIntoView({behavior:'smooth'});
+}
+
+// === CRONÓMETRO ===
+var cronInterval=null;var cronSeg=0;var cronActivo=false;
+function toggleCron(){
+  if(cronActivo){detenerCron()}else{iniciarCron()}
+}
+function iniciarCron(){
+  cronActivo=true;document.getElementById('btn-cron').textContent='⏸ Pausar';
+  cronInterval=setInterval(function(){cronSeg++;actualizarCron()},1000);
+}
+function detenerCron(){
+  cronActivo=false;document.getElementById('btn-cron').textContent='▶ Continuar';
+  clearInterval(cronInterval);
+}
+function reiniciarCron(){
+  detenerCron();cronSeg=0;actualizarCron();document.getElementById('btn-cron').textContent='▶ Iniciar';
+}
+function actualizarCron(){
+  var h=Math.floor(cronSeg/3600);var m=Math.floor((cronSeg%3600)/60);var s=cronSeg%60;
+  document.getElementById('cron-display').textContent=(h<10?'0':'')+h+':'+(m<10?'0':'')+m+':'+(s<10?'0':'')+s;
+}
+
+// === SELECCIÓN VISUAL ===
+document.addEventListener('change',function(e){
+  if(e.target.type==='radio'){
+    var name=e.target.name;
+    document.querySelectorAll('input[name="'+name+'"]').forEach(function(inp){inp.parentElement.classList.remove('seleccionada')});
+    e.target.parentElement.classList.add('seleccionada');
+    var el=document.getElementById('pi-'+name);
+    if(el)el.classList.add('respondida');
+  }
+});
+</script>
+</body>
+</html>

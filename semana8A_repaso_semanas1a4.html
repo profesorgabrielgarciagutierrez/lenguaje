@@ -1,0 +1,1695 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Repaso Examen | Lenguaje y Comunicación | Semanas 1–4</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+/* ===== VARIABLES ===== */
+:root {
+  --azul: #003366;
+  --celeste: #87CEEB;
+  --celeste-light: #d4eaf7;
+  --blanco: #ffffff;
+  --gold: #C8960C;
+  --gold-light: #fff8e1;
+  --verde: #1a7a3a;
+  --verde-light: #e8f5e9;
+  --rojo: #c0392b;
+  --rojo-light: #fdecea;
+  --gris: #f4f6f9;
+  --gris-texto: #4a4a4a;
+  --sombra: 0 2px 8px rgba(0,51,102,0.13);
+}
+
+/* ===== RESET ===== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Source Sans 3', sans-serif;
+  background: #eef3f8;
+  color: var(--gris-texto);
+  min-height: 100vh;
+}
+
+/* ===== HEADER ===== */
+.header {
+  background: var(--azul);
+  color: var(--blanco);
+  padding: 18px 24px 14px;
+}
+.header-top {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 6px;
+}
+.header-logo {
+  width: 52px;
+  height: 52px;
+  background: var(--blanco);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Lora', serif;
+  font-weight: 700;
+  color: var(--azul);
+  font-size: 18px;
+  flex-shrink: 0;
+}
+.header-inst { font-size: 12px; opacity: .78; letter-spacing: .3px; }
+.header-title {
+  font-family: 'Lora', serif;
+  font-size: clamp(17px, 3vw, 22px);
+  font-weight: 700;
+  line-height: 1.2;
+}
+.header-sub {
+  font-size: 12px;
+  background: rgba(255,255,255,.15);
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 20px;
+  margin-top: 4px;
+}
+
+/* ===== TABS MENU ===== */
+.tabs-wrapper {
+  background: var(--celeste);
+  overflow-x: auto;
+  white-space: nowrap;
+  border-bottom: 3px solid var(--azul);
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+}
+.tabs-wrapper::-webkit-scrollbar { height: 4px; }
+.tabs-wrapper::-webkit-scrollbar-thumb { background: var(--azul); border-radius: 2px; }
+.tabs-menu { display: inline-flex; min-width: 100%; }
+.tab-btn {
+  padding: 11px 18px;
+  border: none;
+  background: transparent;
+  color: #111;
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background .2s, color .2s;
+  white-space: nowrap;
+  border-right: 1px solid rgba(0,51,102,.15);
+  flex-shrink: 0;
+}
+.tab-btn:hover { background: rgba(255,255,255,.5); }
+.tab-btn.active {
+  background: var(--blanco);
+  color: var(--azul);
+  font-weight: 700;
+  border-bottom: 3px solid var(--azul);
+  margin-bottom: -3px;
+}
+
+/* ===== CONTENT ===== */
+.content-area { padding: 20px 16px 40px; max-width: 900px; margin: 0 auto; }
+.tab-content { display: none; animation: fadeIn .3s ease; }
+.tab-content.active { display: block; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+
+/* ===== PORTADA ===== */
+.portada-hero {
+  background: linear-gradient(135deg, var(--azul) 0%, #005599 100%);
+  color: white;
+  border-radius: 12px;
+  padding: 36px 28px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+.portada-hero h1 { font-family: 'Lora', serif; font-size: clamp(20px,4vw,28px); margin-bottom: 10px; }
+.portada-hero p { font-size: 15px; opacity: .88; max-width: 560px; margin: 0 auto 18px; line-height: 1.55; }
+.badge-portada {
+  display: inline-block;
+  background: var(--gold);
+  color: #fff;
+  font-weight: 700;
+  padding: 6px 18px;
+  border-radius: 20px;
+  font-size: 13px;
+  margin: 4px;
+}
+
+.portada-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; margin-bottom: 18px; }
+.portada-card {
+  background: white;
+  border-radius: 10px;
+  padding: 18px;
+  border-left: 4px solid var(--azul);
+  box-shadow: var(--sombra);
+  cursor: pointer;
+  transition: transform .15s, box-shadow .15s;
+}
+.portada-card:hover { transform: translateY(-3px); box-shadow: 0 6px 18px rgba(0,51,102,.18); }
+.portada-card h3 { font-family: 'Lora', serif; font-size: 14px; color: var(--azul); margin-bottom: 6px; }
+.portada-card p { font-size: 13px; color: var(--gris-texto); line-height: 1.4; }
+.portada-card .num { font-size: 28px; font-weight: 700; color: var(--celeste); opacity: .6; float: right; line-height: 1; }
+
+.instrucciones-box {
+  background: var(--gold-light);
+  border: 1px solid var(--gold);
+  border-radius: 10px;
+  padding: 18px 20px;
+  margin-bottom: 16px;
+}
+.instrucciones-box h3 { color: var(--azul); font-family: 'Lora', serif; font-size: 16px; margin-bottom: 10px; }
+.instrucciones-box ul { padding-left: 20px; }
+.instrucciones-box li { margin-bottom: 7px; font-size: 14px; line-height: 1.45; }
+
+/* ===== PREGUNTA ===== */
+.semana-header {
+  background: var(--azul);
+  color: white;
+  border-radius: 10px 10px 0 0;
+  padding: 16px 20px;
+  margin-bottom: 0;
+}
+.semana-header h2 { font-family: 'Lora', serif; font-size: 18px; margin-bottom: 3px; }
+.semana-header p { font-size: 13px; opacity: .82; }
+
+.preguntas-container {
+  background: white;
+  border-radius: 0 0 10px 10px;
+  padding: 20px;
+  box-shadow: var(--sombra);
+  margin-bottom: 20px;
+}
+
+.pregunta-item {
+  border: 2px solid #e0e7f0;
+  border-radius: 10px;
+  padding: 18px;
+  margin-bottom: 16px;
+  transition: border-color .2s;
+}
+.pregunta-item.respondida { border-color: var(--celeste); }
+.pregunta-item.correcta { border-color: var(--verde); background: var(--verde-light); }
+.pregunta-item.incorrecta { border-color: var(--rojo); background: var(--rojo-light); }
+
+.pregunta-top {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+.pregunta-num {
+  background: var(--azul);
+  color: white;
+  font-weight: 700;
+  font-size: 13px;
+  padding: 3px 9px;
+  border-radius: 20px;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.badge-tipo {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 10px;
+  flex-shrink: 0;
+  margin-top: 4px;
+  text-transform: uppercase;
+  letter-spacing: .3px;
+}
+.badge-teorica { background: #dde8f7; color: var(--azul); }
+.badge-aplicacion { background: #e8f5e0; color: #1a5c2a; }
+.badge-caso { background: #fff3e0; color: #7a4500; }
+
+.pregunta-texto {
+  font-size: 14.5px;
+  line-height: 1.55;
+  color: #222;
+  font-weight: 600;
+  flex: 1;
+}
+
+.caso-box {
+  background: var(--celeste-light);
+  border-left: 4px solid var(--celeste);
+  border-radius: 6px;
+  padding: 12px 14px;
+  margin-bottom: 12px;
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: #1a3a5c;
+  font-style: italic;
+}
+
+.opciones { list-style: none; }
+.opciones li { margin-bottom: 7px; }
+.opcion-label {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 10px 12px;
+  border: 1.5px solid #cdd5e0;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background .15s, border-color .15s;
+  font-size: 14px;
+  line-height: 1.4;
+}
+.opcion-label:hover { background: var(--celeste-light); border-color: var(--celeste); }
+.opcion-label input { margin-top: 2px; flex-shrink: 0; accent-color: var(--azul); }
+.opcion-label.seleccionada { background: #dde8f7; border-color: var(--azul); }
+.opcion-label.correcta-op { background: var(--verde-light); border-color: var(--verde); }
+.opcion-label.incorrecta-op { background: var(--rojo-light); border-color: var(--rojo); opacity: .75; }
+.opcion-label.correcta-marcada { background: var(--verde-light); border-color: var(--verde); font-weight: 700; }
+
+.feedback-box {
+  display: none;
+  margin-top: 12px;
+  padding: 12px 14px;
+  border-radius: 8px;
+  font-size: 13.5px;
+  line-height: 1.55;
+}
+.feedback-box.show { display: block; }
+.feedback-box.correcto { background: var(--verde-light); border-left: 4px solid var(--verde); color: #0d3d1a; }
+.feedback-box.incorrecto { background: var(--rojo-light); border-left: 4px solid var(--rojo); color: #5c1010; }
+.feedback-box .fb-titulo { font-weight: 700; margin-bottom: 6px; font-size: 14px; }
+
+/* ===== BOTONES ===== */
+.btn-verificar {
+  background: var(--azul);
+  color: white;
+  border: none;
+  padding: 13px 32px;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: 'Source Sans 3', sans-serif;
+  transition: background .2s, transform .1s;
+  display: block;
+  margin: 20px auto 0;
+}
+.btn-verificar:hover { background: #004a99; transform: translateY(-1px); }
+.btn-reiniciar {
+  background: white;
+  color: var(--azul);
+  border: 2px solid var(--azul);
+  padding: 10px 26px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: 'Source Sans 3', sans-serif;
+  transition: background .2s;
+  display: none;
+  margin: 12px auto 0;
+}
+.btn-reiniciar:hover { background: var(--celeste-light); }
+.btn-group { text-align: center; }
+
+/* ===== RESULTADO ===== */
+.resultado-panel {
+  display: none;
+  background: white;
+  border-radius: 12px;
+  padding: 24px;
+  margin-top: 16px;
+  box-shadow: var(--sombra);
+  text-align: center;
+}
+.resultado-panel.show { display: block; }
+.resultado-emoji { font-size: 48px; margin-bottom: 8px; }
+.resultado-score { font-family: 'Lora', serif; font-size: 32px; font-weight: 700; color: var(--azul); }
+.resultado-pct { font-size: 18px; color: var(--gris-texto); margin-bottom: 14px; }
+.barra-wrapper { background: #e0e7f0; border-radius: 20px; height: 18px; margin: 12px 0 16px; overflow: hidden; }
+.barra-fill { height: 100%; border-radius: 20px; transition: width 1s ease; background: var(--azul); }
+.resultado-msg { font-size: 15px; color: #333; max-width: 480px; margin: 0 auto; line-height: 1.5; }
+
+/* ===== ALERTA ===== */
+.alerta {
+  display: none;
+  background: #fff3cd;
+  border: 1px solid #ffc107;
+  color: #7a5000;
+  border-radius: 8px;
+  padding: 12px 16px;
+  font-size: 14px;
+  font-weight: 600;
+  text-align: center;
+  margin-top: 12px;
+}
+.alerta.show { display: block; }
+
+/* ===== RESPONSIVE ===== */
+@media(max-width: 600px) {
+  .content-area { padding: 14px 10px 30px; }
+  .portada-hero { padding: 24px 16px; }
+  .preguntas-container { padding: 14px 12px; }
+  .pregunta-item { padding: 14px 12px; }
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-top">
+    <div class="header-logo">UG</div>
+    <div>
+      <div class="header-inst">Universidad de Guayaquil · Facultad de Ciencias Administrativas · Contabilidad y Auditoría</div>
+      <div class="header-title">Repaso para Examen — Lenguaje y Comunicación</div>
+      <span class="header-sub">📚 Archivo 8A · Semanas 1 a 4 · Primer Ciclo · Virtual</span>
+    </div>
+  </div>
+</div>
+
+<!-- TABS MENU -->
+<div class="tabs-wrapper">
+  <div class="tabs-menu">
+    <button class="tab-btn active" onclick="showTab('portada')">🏠 Portada</button>
+    <button class="tab-btn" onclick="showTab('s1')">Semana 1</button>
+    <button class="tab-btn" onclick="showTab('s2')">Semana 2</button>
+    <button class="tab-btn" onclick="showTab('s3')">Semana 3</button>
+    <button class="tab-btn" onclick="showTab('s4')">Semana 4</button>
+  </div>
+</div>
+
+<!-- CONTENT -->
+<div class="content-area">
+
+  <!-- ============ PORTADA ============ -->
+  <div id="tab-portada" class="tab-content active">
+    <div class="portada-hero">
+      <h1>🎯 Repaso Integral para el Examen Final</h1>
+      <p>Este widget contiene <strong>60 preguntas</strong> de alta dificultad distribuidas en las primeras 4 semanas del curso. Las preguntas exigen pensamiento crítico, análisis y aplicación de conceptos, no simple memorización.</p>
+      <span class="badge-portada">Archivo 8A — Semanas 1 a 4</span>
+      <span class="badge-portada">📄 Continúa en Archivo 8B: Semanas 5–7 + Simulacro Final</span>
+    </div>
+
+    <div class="instrucciones-box">
+      <h3>📋 Instrucciones de uso</h3>
+      <ul>
+        <li><strong>Responde TODAS las preguntas</strong> de cada semana antes de presionar "Verificar Respuestas". El sistema no te mostrará los resultados hasta que termines.</li>
+        <li>Cada pregunta tiene <strong>4 opciones plausibles</strong>. Todas parecen razonables: debes pensar con cuidado para distinguir la más correcta.</li>
+        <li>Tras verificar, verás retroalimentación detallada por pregunta: <strong>por qué la correcta es correcta y por qué las otras no lo son.</strong></li>
+        <li>Usa el botón <strong>"Reiniciar"</strong> para volver a intentar la misma semana.</li>
+        <li>Las preguntas llevan badges: <span class="badge-tipo badge-teorica">Teórica</span> <span class="badge-tipo badge-aplicacion">Aplicación</span> <span class="badge-tipo badge-caso">Análisis de caso</span></li>
+        <li>El <strong>Simulacro Final con cronómetro</strong> se encuentra en el Archivo 8B.</li>
+      </ul>
+    </div>
+
+    <div class="portada-grid">
+      <div class="portada-card" onclick="showTab('s1')">
+        <span class="num">15</span>
+        <h3>Semana 1</h3>
+        <p>Importancia de la comunicación. Diferencia entre hablar y comunicar.</p>
+      </div>
+      <div class="portada-card" onclick="showTab('s2')">
+        <span class="num">15</span>
+        <h3>Semana 2</h3>
+        <p>Lenguaje y comunicación. Procesamiento de mensajes. Tipos de lenguaje.</p>
+      </div>
+      <div class="portada-card" onclick="showTab('s3')">
+        <span class="num">15</span>
+        <h3>Semana 3</h3>
+        <p>Neurocomunicación. Cerebro triúnico. Autoestima. Inteligencia Emocional.</p>
+      </div>
+      <div class="portada-card" onclick="showTab('s4')">
+        <span class="num">15</span>
+        <h3>Semana 4</h3>
+        <p>Importancia de la lectura. Proceso de comunicación. Poder de la puntuación.</p>
+      </div>
+    </div>
+
+    <div style="background:white;border-radius:10px;padding:18px;box-shadow:var(--sombra);border-top:4px solid var(--gold);">
+      <p style="font-size:14px;line-height:1.6;color:#333;"><strong>💡 Consejo estratégico para el examen:</strong> Cada pregunta incorrecta es una oportunidad de aprendizaje. Lee detenidamente la retroalimentación de las respuestas erróneas, no solo de las correctas. Las opciones incorrectas de este widget representan errores conceptuales reales que un estudiante puede cometer: entenderlos es tan valioso como saber la respuesta correcta.</p>
+    </div>
+  </div>
+
+  <!-- ============ SEMANA 1 ============ -->
+  <div id="tab-s1" class="tab-content">
+    <div class="semana-header">
+      <h2>Semana 1 · Importancia de la comunicación · Hablar vs. Comunicar</h2>
+      <p>15 preguntas · 7 Teóricas · 5 Aplicación · 3 Análisis de caso · Responde todo antes de verificar</p>
+    </div>
+    <div class="preguntas-container" id="form-s1">
+
+      <!-- P1 -->
+      <div class="pregunta-item" id="pi-s1p1">
+        <div class="pregunta-top">
+          <span class="pregunta-num">1</span>
+          <span class="badge-tipo badge-teorica">Teórica</span>
+          <span class="pregunta-texto">¿Cuál es la distinción más precisa entre "hablar" y "comunicar" según los fundamentos del curso?</span>
+        </div>
+        <ul class="opciones">
+          <li><label class="opcion-label"><input type="radio" name="s1p1" value="a"> A. Hablar es la emisión de sonidos articulados con intención, mientras que comunicar implica que el mensaje generó un efecto comprensible y verificable en el receptor.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s1p1" value="b"> B. Hablar es exclusivamente oral, mientras que comunicar incluye también formas escritas y no verbales.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s1p1" value="c"> C. Hablar es un acto individual sin destinatario, mientras que comunicar requiere al menos dos personas presentes físicamente.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s1p1" value="d"> D. Hablar y comunicar son sinónimos en la práctica profesional, aunque difieren en contextos académicos.</label></li>
+        </ul>
+        <div class="feedback-box" id="fb-s1p1"></div>
+      </div>
+
+      <!-- P2 -->
+      <div class="pregunta-item" id="pi-s1p2">
+        <div class="pregunta-top">
+          <span class="pregunta-num">2</span>
+          <span class="badge-tipo badge-teorica">Teórica</span>
+          <span class="pregunta-texto">La comunicación es considerada una competencia técnica en el ámbito contable porque:</span>
+        </div>
+        <ul class="opciones">
+          <li><label class="opcion-label"><input type="radio" name="s1p2" value="a"> A. Determina la calidad de informes de auditoría, la detección de irregularidades y la gestión de clientes, afectando directamente los resultados profesionales.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s1p2" value="b"> B. Es exigida por los reglamentos universitarios como parte del perfil de egreso de todas las carreras.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s1p2" value="c"> C. Permite al contador expresarse con mayor seguridad en presentaciones públicas y mejorar su imagen personal.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s1p2" value="d"> D. Facilita el aprendizaje de otros idiomas necesarios para auditores que trabajan con empresas multinacionales.</label></li>
+        </ul>
+        <div class="feedback-box" id="fb-s1p2"></div>
+      </div>
+
+      <!-- P3 -->
+      <div class="pregunta-item" id="pi-s1p3">
+        <div class="pregunta-top">
+          <span class="pregunta-num">3</span>
+          <span class="badge-tipo badge-teorica">Teórica</span>
+          <span class="pregunta-texto">El concepto de "retroalimentación" (feedback) en el proceso comunicativo cumple la función de:</span>
+        </div>
+        <ul class="opciones">
+          <li><label class="opcion-label"><input type="radio" name="s1p3" value="a"> A. Confirmar o corregir si el mensaje fue recibido e interpretado conforme a la intención del emisor, convirtiendo la comunicación en un proceso circular dinámico.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s1p3" value="b"> B. Evaluar la calidad gramatical y estilística del mensaje emitido por el hablante.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s1p3" value="c"> C. Proporcionar al emisor información sobre las características del canal utilizado para transmitir el mensaje.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s1p3" value="d"> D. Repetir el mensaje con otras palabras para asegurar que el receptor lo memorice correctamente.</label></li>
+        </ul>
+        <div class="feedback-box" id="fb-s1p3"></div>
+      </div>
+
+      <!-- P4 -->
+      <div class="pregunta-item" id="pi-s1p4">
+        <div class="pregunta-top">
+          <span class="pregunta-num">4</span>
+          <span class="badge-tipo badge-teorica">Teórica</span>
+          <span class="pregunta-texto">¿Por qué se afirma que "es imposible no comunicar" (axioma de Watzlawick)?</span>
+        </div>
+        <ul class="opciones">
+          <li><label class="opcion-label"><input type="radio" name="s1p4" value="a"> A. Porque todo comportamiento humano —incluso el silencio, la inmovilidad o la ausencia— transmite información que el otro interpreta como mensaje.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s1p4" value="b"> B. Porque el cerebro humano procesa constantemente estímulos sensoriales del entorno sin pausas durante las horas de vigilia.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s1p4" value="c"> C. Porque el lenguaje no verbal es más frecuente que el verbal y siempre acompaña al hablante en situaciones sociales.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s1p4" value="d"> D. Porque la comunicación escrita genera registros permanentes que siguen transmitiendo información después de que el emisor ha dejado de actuar.</label></li>
+        </ul>
+        <div class="feedback-box" id="fb-s1p4"></div>
+      </div>
+
+      <!-- P5 -->
+      <div class="pregunta-item" id="pi-s1p5">
+        <div class="pregunta-top">
+          <span class="pregunta-num">5</span>
+          <span class="badge-tipo badge-teorica">Teórica</span>
+          <span class="pregunta-texto">El "ruido" en la comunicación se define como:</span>
+        </div>
+        <ul class="opciones">
+          <li><label class="opcion-label"><input type="radio" name="s1p5" value="a"> A. Todo factor —físico, psicológico, semántico o cultural— que interfiere en la transmisión o interpretación fiel del mensaje.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s1p5" value="b"> B. Exclusivamente las interferencias acústicas del entorno físico que impiden que el receptor escuche el mensaje oral.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s1p5" value="c"> C. El exceso de información en un mensaje que hace que el receptor pierda la idea central del emisor.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s1p5" value="d"> D. La distorsión intencional que el emisor introduce para proteger información confidencial en el mensaje.</label></li>
+        </ul>
+        <div class="feedback-box" id="fb-s1p5"></div>
+      </div>
+
+      <!-- P6 -->
+      <div class="pregunta-item" id="pi-s1p6">
+        <div class="pregunta-top">
+          <span class="pregunta-num">6</span>
+          <span class="badge-tipo badge-teorica">Teórica</span>
+          <span class="pregunta-texto">Según el modelo lineal clásico (Shannon y Weaver), el proceso de comunicación es criticado porque:</span>
+        </div>
+        <ul class="opciones">
+          <li><label class="opcion-label"><input type="radio" name="s1p6" value="a"> A. Concibe al receptor como sujeto pasivo, ignora la retroalimentación y no considera el contexto cultural ni emocional del proceso comunicativo.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s1p6" value="b"> B. Se diseñó para comunicaciones técnicas entre máquinas y no puede aplicarse a la comunicación humana en ningún contexto.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s1p6" value="c"> C. Sobreestima el papel del emisor y no define con claridad los conceptos de canal y código en la comunicación verbal.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s1p6" value="d"> D. Incluye demasiadas variables simultáneas, lo que lo hace inaplicable en situaciones comunicativas reales y complejas.</label></li>
+        </ul>
+        <div class="feedback-box" id="fb-s1p6"></div>
+      </div>
+
+      <!-- P7 -->
+      <div class="pregunta-item" id="pi-s1p7">
+        <div class="pregunta-top">
+          <span class="pregunta-num">7</span>
+          <span class="badge-tipo badge-teorica">Teórica</span>
+          <span class="pregunta-texto">La diferencia entre "información" y "comunicación" radica en que:</span>
+        </div>
+        <ul class="opciones">
+          <li><label class="opcion-label"><input type="radio" name="s1p7" value="a"> A. La información es unidireccional (datos enviados sin confirmar recepción), mientras que la comunicación es bidireccional e implica intercambio y comprensión compartida.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s1p7" value="b"> B. La información siempre es objetiva y verificable, mientras que la comunicación puede contener elementos subjetivos o emocionales del emisor.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s1p7" value="c"> C. La información requiere un canal tecnológico, mientras que la comunicación puede ocurrir cara a cara sin ningún medio auxiliar.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s1p7" value="d"> D. La información es responsabilidad del emisor, mientras que la comunicación depende exclusivamente de la capacidad interpretativa del receptor.</label></li>
+        </ul>
+        <div class="feedback-box" id="fb-s1p7"></div>
+      </div>
+
+      <!-- P8 APLICACIÓN -->
+      <div class="pregunta-item" id="pi-s1p8">
+        <div class="pregunta-top">
+          <span class="pregunta-num">8</span>
+          <span class="badge-tipo badge-aplicacion">Aplicación</span>
+          <span class="pregunta-texto">Un contador envía por correo el informe de estados financieros a su cliente. El cliente responde: "Recibido". ¿En qué nivel del proceso comunicativo se detuvo esta interacción?</span>
+        </div>
+        <ul class="opciones">
+          <li><label class="opcion-label"><input type="radio" name="s1p8" value="a"> A. En el nivel de confirmación de recepción, pero no alcanza comunicación plena porque no hay evidencia de comprensión ni de efecto del mensaje en el receptor.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s1p8" value="b"> B. Alcanzó comunicación completa porque el receptor acusó recibo y eso demuestra que el mensaje fue procesado exitosamente.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s1p8" value="c"> C. El proceso quedó incompleto porque el contador no verificó previamente si el cliente tenía el software para abrir el archivo adjunto.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s1p8" value="d"> D. La comunicación fracasó porque el canal (correo electrónico) es inadecuado para transmitir información financiera compleja.</label></li>
+        </ul>
+        <div class="feedback-box" id="fb-s1p8"></div>
+      </div>
+
+      <!-- P9 APLICACIÓN -->
+      <div class="pregunta-item" id="pi-s1p9">
+        <div class="pregunta-top">
+          <span class="pregunta-num">9</span>
+          <span class="badge-tipo badge-aplicacion">Aplicación</span>
+          <span class="pregunta-texto">En una reunión de auditoría, el gerente dice: "Los números están bien". El auditor asiente sin pedir más detalles. ¿Qué falla comunicativa se ilustra?</span>
+        </div>
+        <ul class="opciones">
+          <li><label class="opcion-label"><input type="radio" name="s1p9" value="a"> A. Ambigüedad semántica: "bien" carece de referente preciso y el auditor no solicitó retroalimentación clarificadora, lo que puede generar interpretaciones divergentes con consecuencias profesionales.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s1p9" value="b"> B. Ruido físico: el entorno de la reunión no permitió una escucha activa adecuada entre los participantes.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s1p9" value="c"> C. Falta de canal: debió utilizarse un soporte escrito para que el mensaje quedara documentado formalmente.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s1p9" value="d"> D. Emisión redundante: el gerente repitió información que el auditor ya conocía, lo que generó desinterés en la escucha.</label></li>
+        </ul>
+        <div class="feedback-box" id="fb-s1p9"></div>
+      </div>
+
+      <!-- P10 APLICACIÓN -->
+      <div class="pregunta-item" id="pi-s1p10">
+        <div class="pregunta-top">
+          <span class="pregunta-num">10</span>
+          <span class="badge-tipo badge-aplicacion">Aplicación</span>
+          <span class="pregunta-texto">¿Cuál de las siguientes situaciones representa con mayor precisión "hablar sin comunicar" en el ámbito contable?</span>
+        </div>
+        <ul class="opciones">
+          <li><label class="opcion-label"><input type="radio" name="s1p10" value="a"> A. Un contador explica el balance general usando jerga técnica avanzada ante un cliente sin formación financiera, que asiente pero no comprende nada de lo expuesto.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s1p10" value="b"> B. Un auditor redacta un informe escrito muy breve que omite el contexto necesario para que el lector entienda las observaciones.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s1p10" value="c"> C. Un contador llega tarde a la reunión y no puede presentar el informe completo al equipo directivo de la empresa.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s1p10" value="d"> D. Un auditor senior corrige en voz alta el trabajo de un junior frente al cliente, generando una situación de incomodidad profesional.</label></li>
+        </ul>
+        <div class="feedback-box" id="fb-s1p10"></div>
+      </div>
+
+      <!-- P11 APLICACIÓN -->
+      <div class="pregunta-item" id="pi-s1p11">
+        <div class="pregunta-top">
+          <span class="pregunta-num">11</span>
+          <span class="badge-tipo badge-aplicacion">Aplicación</span>
+          <span class="pregunta-texto">La comunicación se considera una competencia "de umbral" en la carrera de Contabilidad y Auditoría porque:</span>
+        </div>
+        <ul class="opciones">
+          <li><label class="opcion-label"><input type="radio" name="s1p11" value="a"> A. Sin un nivel mínimo de competencia comunicativa no es posible ejercer eficazmente la profesión, independientemente del dominio técnico-contable que se tenga.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s1p11" value="b"> B. Es el primer requisito que exigen las empresas en sus ofertas de empleo, antes que cualquier habilidad técnica o certificación profesional.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s1p11" value="c"> C. Permite a los contadores acceder a cargos directivos desde el inicio de su carrera profesional sin experiencia adicional.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s1p11" value="d"> D. Es la única competencia que no puede desarrollarse durante el ejercicio profesional y debe adquirirse exclusivamente en la universidad.</label></li>
+        </ul>
+        <div class="feedback-box" id="fb-s1p11"></div>
+      </div>
+
+      <!-- P12 APLICACIÓN -->
+      <div class="pregunta-item" id="pi-s1p12">
+        <div class="pregunta-top">
+          <span class="pregunta-num">12</span>
+          <span class="badge-tipo badge-aplicacion">Aplicación</span>
+          <span class="pregunta-texto">Si un auditor evita mencionar un hallazgo relevante en su presentación oral por temor a la reacción del cliente, ¿qué tipo de falla comunicativa se produce?</span>
+        </div>
+        <ul class="opciones">
+          <li><label class="opcion-label"><input type="radio" name="s1p12" value="a"> A. Autocensura comunicativa motivada por un factor psicológico (miedo), que constituye un tipo de ruido interno que distorsiona la integridad del mensaje profesional.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s1p12" value="b"> B. Ruido semántico, porque el auditor no encontró las palabras técnicas precisas para expresar el hallazgo con claridad suficiente.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s1p12" value="c"> C. Falla de canal, porque la presentación oral no es el medio adecuado para comunicar hallazgos de auditoría de alto riesgo.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s1p12" value="d"> D. Exceso de feedback, porque el auditor anticipó demasiadas respuestas posibles del cliente antes de emitir el mensaje.</label></li>
+        </ul>
+        <div class="feedback-box" id="fb-s1p12"></div>
+      </div>
+
+      <!-- P13 CASO -->
+      <div class="pregunta-item" id="pi-s1p13">
+        <div class="pregunta-top">
+          <span class="pregunta-num">13</span>
+          <span class="badge-tipo badge-caso">Análisis de caso</span>
+          <span class="pregunta-texto">Lea el caso y responda:</span>
+        </div>
+        <div class="caso-box">La empresa auditora "Ríos & Asociados" de Guayaquil envió a su cliente un correo con el informe de auditoría de 48 páginas sin resumen ejecutivo, sin índice y sin indicación de qué secciones eran críticas. El cliente respondió tres semanas después con preguntas sobre puntos que estaban explícitamente explicados en el informe.</div>
+        <span class="pregunta-texto" style="font-size:14px;display:block;margin-bottom:10px;">¿Cuál es el diagnóstico comunicativo más preciso de esta situación?</span>
+        <ul class="opciones">
+          <li><label class="opcion-label"><input type="radio" name="s1p13" value="a"> A. El mensaje fue transmitido pero no comunicado: el emisor no consideró las condiciones del receptor (tiempo, capacidad de procesamiento, contexto), lo que generó una comunicación fallida a pesar del envío exitoso del documento.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s1p13" value="b"> B. El cliente es el responsable de la falla comunicativa por no leer el informe con la atención necesaria dentro de un plazo razonable.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s1p13" value="c"> C. El problema es de canal: el correo electrónico es inadecuado para documentos extensos y debió usarse un sistema de gestión documental especializado.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s1p13" value="d"> D. La comunicación fue incompleta porque el auditor no hizo seguimiento telefónico inmediato para confirmar la recepción del correo por parte del cliente.</label></li>
+        </ul>
+        <div class="feedback-box" id="fb-s1p13"></div>
+      </div>
+
+      <!-- P14 CASO -->
+      <div class="pregunta-item" id="pi-s1p14">
+        <div class="pregunta-top">
+          <span class="pregunta-num">14</span>
+          <span class="badge-tipo badge-caso">Análisis de caso</span>
+          <span class="pregunta-texto">Lea el caso y responda:</span>
+        </div>
+        <div class="caso-box">María, contadora de una empresa importadora en Quito, presenta el cierre del trimestre al directorio. Al finalizar su exposición de 30 minutos, ningún directivo hace preguntas. Ella interpreta el silencio como señal de aprobación y satisfacción con el informe.</div>
+        <span class="pregunta-texto" style="font-size:14px;display:block;margin-bottom:10px;">¿Cuál de las siguientes afirmaciones evalúa mejor la situación de María?</span>
+        <ul class="opciones">
+          <li><label class="opcion-label"><input type="radio" name="s1p14" value="a"> A. María comete un error interpretativo al asumir que la ausencia de preguntas equivale a comprensión y aprobación; el silencio es un mensaje ambiguo que requería verificación activa de la retroalimentación.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s1p14" value="b"> B. María actuó correctamente: si los directivos tuvieran dudas, era su responsabilidad profesional plantearlas durante la presentación.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s1p14" value="c"> C. El problema es que la presentación fue demasiado larga: 30 minutos genera fatiga en el receptor y explica la falta de interacción.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s1p14" value="d"> D. La comunicación fue exitosa porque el mensaje llegó sin interrupciones y el directorio recibió la información necesaria para tomar decisiones.</label></li>
+        </ul>
+        <div class="feedback-box" id="fb-s1p14"></div>
+      </div>
+
+      <!-- P15 CASO -->
+      <div class="pregunta-item" id="pi-s1p15">
+        <div class="pregunta-top">
+          <span class="pregunta-num">15</span>
+          <span class="badge-tipo badge-caso">Análisis de caso</span>
+          <span class="pregunta-texto">Lea el caso y responda:</span>
+        </div>
+        <div class="caso-box">Una firma de auditoría en Cuenca implementó reuniones semanales de 15 minutos donde los auditores reportan verbalmente sus avances. Desde su implementación, los errores por malentendidos internos disminuyeron un 40%, según datos del propio equipo.</div>
+        <span class="pregunta-texto" style="font-size:14px;display:block;margin-bottom:10px;">¿Qué principio de la comunicación eficaz explica mejor este resultado?</span>
+        <ul class="opciones">
+          <li><label class="opcion-label"><input type="radio" name="s1p15" value="a"> A. La retroalimentación frecuente y oportuna permite corregir malentendidos antes de que se conviertan en errores, lo que demuestra que la comunicación bidireccional reduce el costo organizacional del ruido.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s1p15" value="b"> B. La reducción de errores se explica por el efecto de la supervisión directa: los empleados trabajan mejor cuando saben que serán evaluados periódicamente.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s1p15" value="c"> C. La comunicación oral es intrínsecamente más efectiva que la escrita en cualquier contexto profesional porque activa más sentidos simultáneamente.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s1p15" value="d"> D. La brevedad de la reunión (15 minutos) es el factor clave del éxito, ya que mensajes cortos generan menor distorsión que los mensajes extensos.</label></li>
+        </ul>
+        <div class="feedback-box" id="fb-s1p15"></div>
+      </div>
+
+    </div><!-- /preguntas-container -->
+    <div class="btn-group">
+      <button class="btn-verificar" onclick="verificar('s1')">✅ Verificar Respuestas</button>
+      <div class="alerta" id="alerta-s1">⚠️ Debes responder todas las preguntas antes de verificar.</div>
+      <button class="btn-reiniciar" id="reiniciar-s1" onclick="reiniciar('s1')">🔄 Reiniciar Semana 1</button>
+    </div>
+    <div class="resultado-panel" id="resultado-s1">
+      <div class="resultado-emoji" id="emoji-s1"></div>
+      <div class="resultado-score" id="score-s1"></div>
+      <div class="resultado-pct" id="pct-s1"></div>
+      <div class="barra-wrapper"><div class="barra-fill" id="barra-s1" style="width:0%"></div></div>
+      <div class="resultado-msg" id="msg-s1"></div>
+    </div>
+  </div><!-- /tab-s1 -->
+
+  <!-- ============ SEMANA 2 ============ -->
+  <div id="tab-s2" class="tab-content">
+    <div class="semana-header">
+      <h2>Semana 2 · Lenguaje y Comunicación · Procesamiento de Mensajes · Tipos de Lenguaje</h2>
+      <p>15 preguntas · 7 Teóricas · 5 Aplicación · 3 Análisis de caso · Responde todo antes de verificar</p>
+    </div>
+    <div class="preguntas-container" id="form-s2">
+
+      <!-- P1 -->
+      <div class="pregunta-item" id="pi-s2p1">
+        <div class="pregunta-top">
+          <span class="pregunta-num">1</span>
+          <span class="badge-tipo badge-teorica">Teórica</span>
+          <span class="pregunta-texto">¿Cuál es la diferencia fundamental entre "lenguaje" y "lengua" en la teoría lingüística?</span>
+        </div>
+        <ul class="opciones">
+          <li><label class="opcion-label"><input type="radio" name="s2p1" value="a"> A. El lenguaje es la capacidad humana universal de comunicarse mediante sistemas de signos, mientras que la lengua es el sistema concreto y convencional compartido por una comunidad específica (español, kichwa, etc.).</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s2p1" value="b"> B. El lenguaje es exclusivamente oral, mientras que la lengua abarca tanto las formas orales como las escritas de comunicación humana.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s2p1" value="c"> C. El lenguaje es una habilidad aprendida culturalmente, mientras que la lengua es una capacidad innata que todos los seres humanos poseen al nacer.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s2p1" value="d"> D. El lenguaje requiere un interlocutor para existir, mientras que la lengua puede usarse de forma individual en el monólogo interior.</label></li>
+        </ul>
+        <div class="feedback-box" id="fb-s2p1"></div>
+      </div>
+
+      <!-- P2 -->
+      <div class="pregunta-item" id="pi-s2p2">
+        <div class="pregunta-top">
+          <span class="pregunta-num">2</span>
+          <span class="badge-tipo badge-teorica">Teórica</span>
+          <span class="pregunta-texto">El lenguaje paraverbal se refiere a:</span>
+        </div>
+        <ul class="opciones">
+          <li><label class="opcion-label"><input type="radio" name="s2p2" value="a"> A. Los elementos que acompañan al habla oral sin ser palabras: tono, volumen, velocidad, pausas, timbre y ritmo, que modifican el significado del mensaje verbal.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s2p2" value="b"> B. La comunicación gestual y corporal que complementa el mensaje verbal cuando las palabras resultan insuficientes para expresar una idea.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s2p2" value="c"> C. El conjunto de idiomas auxiliares internacionales (como el Esperanto) diseñados para facilitar la comunicación entre comunidades lingüísticas distintas.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s2p2" value="d"> D. Las formas de comunicación escritas que se ubican entre la escritura formal y el lenguaje coloquial, como los mensajes de texto y los correos informales.</label></li>
+        </ul>
+        <div class="feedback-box" id="fb-s2p2"></div>
+      </div>
+
+      <!-- P3 -->
+      <div class="pregunta-item" id="pi-s2p3">
+        <div class="pregunta-top">
+          <span class="pregunta-num">3</span>
+          <span class="badge-tipo badge-teorica">Teórica</span>
+          <span class="pregunta-texto">Según los estudios de Albert Mehrabian sobre el impacto de los componentes del mensaje, ¿qué proporción aproximada del impacto emocional en la comunicación cara a cara proviene del lenguaje verbal?</span>
+        </div>
+        <ul class="opciones">
+          <li><label class="opcion-label"><input type="radio" name="s2p3" value="a"> A. Solo un 7%, ya que el 93% restante proviene del tono de voz (38%) y del lenguaje corporal (55%), lo que subraya la importancia decisiva de los canales no verbales.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s2p3" value="b"> B. Aproximadamente el 50%, porque en situaciones formales las palabras y la expresión corporal tienen un peso similar en la percepción del receptor.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s2p3" value="c"> C. Alrededor del 35%, siendo el factor más relevante después del lenguaje corporal pero antes del componente paraverbal.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s2p3" value="d"> D. El 62%, porque en contextos profesionales las palabras tienen mayor peso que en situaciones informales o emocionales.</label></li>
+        </ul>
+        <div class="feedback-box" id="fb-s2p3"></div>
+      </div>
+
+      <!-- P4 -->
+      <div class="pregunta-item" id="pi-s2p4">
+        <div class="pregunta-top">
+          <span class="pregunta-num">4</span>
+          <span class="badge-tipo badge-teorica">Teórica</span>
+          <span class="pregunta-texto">El procesamiento del mensaje por parte del receptor implica, en orden correcto:</span>
+        </div>
+        <ul class="opciones">
+          <li><label class="opcion-label"><input type="radio" name="s2p4" value="a"> A. Recepción sensorial → decodificación (interpretación del código) → procesamiento cognitivo → respuesta afectiva → generación de retroalimentación.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s2p4" value="b"> B. Decodificación → recepción → evaluación → almacenamiento en memoria → formulación de respuesta verbal.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s2p4" value="c"> C. Percepción → memorización inmediata → análisis lógico → comparación con conocimientos previos → retroalimentación.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s2p4" value="d"> D. Recepción → filtrado emocional → decodificación semántica → síntesis → respuesta intencional al emisor.</label></li>
+        </ul>
+        <div class="feedback-box" id="fb-s2p4"></div>
+      </div>
+
+      <!-- P5 -->
+      <div class="pregunta-item" id="pi-s2p5">
+        <div class="pregunta-top">
+          <span class="pregunta-num">5</span>
+          <span class="badge-tipo badge-teorica">Teórica</span>
+          <span class="pregunta-texto">¿Qué distingue al lenguaje no verbal "icónico" del lenguaje no verbal "simbólico"?</span>
+        </div>
+        <ul class="opciones">
+          <li><label class="opcion-label"><input type="radio" name="s2p5" value="a"> A. El signo icónico guarda semejanza física con lo que representa (una foto, un pictograma), mientras que el símbolo es una convención arbitraria sin relación visual con su referente (la cruz roja, una bandera).</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s2p5" value="b"> B. El icónico es exclusivamente visual, mientras que el simbólico puede ser visual, auditivo o táctil dependiendo del contexto cultural en que se usa.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s2p5" value="c"> C. El icónico es universal y comprensible en todas las culturas, mientras que el simbólico varía según el contexto lingüístico de cada comunidad hablante.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s2p5" value="d"> D. El icónico se usa en comunicación digital, mientras que el simbólico es propio de sistemas de comunicación analógicos o tradicionales.</label></li>
+        </ul>
+        <div class="feedback-box" id="fb-s2p5"></div>
+      </div>
+
+      <!-- P6 -->
+      <div class="pregunta-item" id="pi-s2p6">
+        <div class="pregunta-top">
+          <span class="pregunta-num">6</span>
+          <span class="badge-tipo badge-teorica">Teórica</span>
+          <span class="pregunta-texto">La "codificación" en el proceso de comunicación es la operación mediante la cual:</span>
+        </div>
+        <ul class="opciones">
+          <li><label class="opcion-label"><input type="radio" name="s2p6" value="a"> A. El emisor transforma su intención o pensamiento en señales (palabras, gestos, imágenes) que pueden ser transmitidas a través de un canal hasta el receptor.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s2p6" value="b"> B. El receptor interpreta y asigna significado a las señales recibidas según su bagaje cultural y experiencia comunicativa previa.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s2p6" value="c"> C. El mensaje se protege mediante encriptación para garantizar que solo el destinatario autorizado pueda acceder a su contenido.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s2p6" value="d"> D. El canal filtra las señales innecesarias para que solo el núcleo informativo del mensaje llegue al receptor sin distorsiones.</label></li>
+        </ul>
+        <div class="feedback-box" id="fb-s2p6"></div>
+      </div>
+
+      <!-- P7 -->
+      <div class="pregunta-item" id="pi-s2p7">
+        <div class="pregunta-top">
+          <span class="pregunta-num">7</span>
+          <span class="badge-tipo badge-teorica">Teórica</span>
+          <span class="pregunta-texto">En comunicación, el "contexto" afecta el significado de un mensaje porque:</span>
+        </div>
+        <ul class="opciones">
+          <li><label class="opcion-label"><input type="radio" name="s2p7" value="a"> A. El mismo conjunto de palabras puede significar cosas completamente distintas según la situación, la relación entre los interlocutores, el momento y el entorno cultural en que se produce el intercambio.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s2p7" value="b"> B. El contexto determina exclusivamente el canal más adecuado para transmitir el mensaje, sin modificar su contenido ni su interpretación.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s2p7" value="c"> C. Solo el contexto físico (lugar, temperatura, iluminación) tiene impacto real en cómo se recibe e interpreta un mensaje comunicativo.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s2p7" value="d"> D. El contexto afecta únicamente los mensajes no verbales, ya que los mensajes verbales tienen un significado fijo dado por el diccionario de la lengua.</label></li>
+        </ul>
+        <div class="feedback-box" id="fb-s2p7"></div>
+      </div>
+
+      <!-- P8 APLICACIÓN -->
+      <div class="pregunta-item" id="pi-s2p8">
+        <div class="pregunta-top">
+          <span class="pregunta-num">8</span>
+          <span class="badge-tipo badge-aplicacion">Aplicación</span>
+          <span class="pregunta-texto">Un auditor presenta su informe con voz monótona, mirando solo al papelería, sin contacto visual. ¿Qué tipo de lenguaje está descuidando y qué consecuencia genera?</span>
+        </div>
+        <ul class="opciones">
+          <li><label class="opcion-label"><input type="radio" name="s2p8" value="a"> A. Descuida el lenguaje paraverbal y no verbal: la falta de variación tonal y de contacto visual reduce la credibilidad del mensaje y desconecta emocionalmente al receptor del contenido presentado.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s2p8" value="b"> B. Descuida el lenguaje verbal: no usa vocabulario técnico preciso, lo que hace que el mensaje parezca impreciso ante el directorio.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s2p8" value="c"> C. Descuida el lenguaje escrito: debió preparar un resumen visual en lugar de leer el documento completo durante la presentación.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s2p8" value="d"> D. Descuida el lenguaje icónico: la ausencia de gráficos e imágenes hace que el mensaje no llegue adecuadamente a receptores con perfil visual.</label></li>
+        </ul>
+        <div class="feedback-box" id="fb-s2p8"></div>
+      </div>
+
+      <!-- P9 APLICACIÓN -->
+      <div class="pregunta-item" id="pi-s2p9">
+        <div class="pregunta-top">
+          <span class="pregunta-num">9</span>
+          <span class="badge-tipo badge-aplicacion">Aplicación</span>
+          <span class="pregunta-texto">Un contador debe comunicar a un pequeño empresario de Ambato que su empresa tiene un problema de liquidez. ¿Qué tipo de lenguaje es prioritario adaptar para esta comunicación?</span>
+        </div>
+        <ul class="opciones">
+          <li><label class="opcion-label"><input type="radio" name="s2p9" value="a"> A. El lenguaje verbal: debe sustituir términos técnicos (liquidez, ratio, solvencia) por expresiones comprensibles para alguien sin formación financiera, sin perder la precisión del mensaje.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s2p9" value="b"> B. El lenguaje no verbal: un tono corporal serio y directo transmitirá la gravedad del problema mejor que cualquier explicación verbal.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s2p9" value="c"> C. El lenguaje escrito: un informe formal con datos numéricos es la única forma válida de comunicar problemas financieros a un empresario.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s2p9" value="d"> D. El lenguaje paraverbal: hablar despacio y en voz baja generará en el empresario la seriedad necesaria para procesar el mensaje.</label></li>
+        </ul>
+        <div class="feedback-box" id="fb-s2p9"></div>
+      </div>
+
+      <!-- P10 APLICACIÓN -->
+      <div class="pregunta-item" id="pi-s2p10">
+        <div class="pregunta-top">
+          <span class="pregunta-num">10</span>
+          <span class="badge-tipo badge-aplicacion">Aplicación</span>
+          <span class="pregunta-texto">Cuando decimos que un mensaje puede ser "denotativo" o "connotativo", ¿qué implicación práctica tiene esto para un auditor que redacta informes?</span>
+        </div>
+        <ul class="opciones">
+          <li><label class="opcion-label"><input type="radio" name="s2p10" value="a"> A. Debe privilegiar el lenguaje denotativo (significado literal, objetivo y verificable) en sus informes para evitar interpretaciones subjetivas que puedan comprometer la validez técnica del documento.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s2p10" value="b"> B. Debe alternar entre lenguaje denotativo en la introducción y connotativo en las conclusiones para lograr mayor impacto persuasivo en el lector del informe.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s2p10" value="c"> C. El lenguaje connotativo es más efectivo en informes de auditoría porque activa la dimensión emocional del receptor y facilita la aceptación de hallazgos negativos.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s2p10" value="d"> D. La distinción entre denotación y connotación solo aplica a la comunicación literaria y carece de relevancia en contextos de comunicación técnica o profesional.</label></li>
+        </ul>
+        <div class="feedback-box" id="fb-s2p10"></div>
+      </div>
+
+      <!-- P11 APLICACIÓN -->
+      <div class="pregunta-item" id="pi-s2p11">
+        <div class="pregunta-top">
+          <span class="pregunta-num">11</span>
+          <span class="badge-tipo badge-aplicacion">Aplicación</span>
+          <span class="pregunta-texto">¿Por qué el lenguaje no verbal es frecuentemente más confiable que el verbal para evaluar la veracidad de lo que alguien comunica?</span>
+        </div>
+        <ul class="opciones">
+          <li><label class="opcion-label"><input type="radio" name="s2p11" value="a"> A. Porque gran parte del lenguaje no verbal es involuntario y difícilmente controlable conscientemente, lo que hace que sea percibido como más auténtico que las palabras elegidas deliberadamente.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s2p11" value="b"> B. Porque el lenguaje no verbal tiene una gramática universal que todos los seres humanos comparten independientemente de su cultura de origen.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s2p11" value="c"> C. Porque el lenguaje verbal es más susceptible al ruido físico del entorno, mientras que el lenguaje corporal siempre llega intacto al receptor.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s2p11" value="d"> D. Porque el cerebro humano procesa el lenguaje no verbal en el hemisferio derecho, que es más rápido y eficiente que el hemisferio izquierdo responsable del lenguaje verbal.</label></li>
+        </ul>
+        <div class="feedback-box" id="fb-s2p11"></div>
+      </div>
+
+      <!-- P12 APLICACIÓN -->
+      <div class="pregunta-item" id="pi-s2p12">
+        <div class="pregunta-top">
+          <span class="pregunta-num">12</span>
+          <span class="badge-tipo badge-aplicacion">Aplicación</span>
+          <span class="pregunta-texto">¿Cuál de los siguientes ejemplos ilustra mejor el fenómeno de la "polisemia" y su riesgo en la comunicación profesional?</span>
+        </div>
+        <ul class="opciones">
+          <li><label class="opcion-label"><input type="radio" name="s2p12" value="a"> A. El término "cargo" puede significar "puesto de trabajo", "débito contable" o "responsabilidad asumida"; si un auditor lo usa sin precisarlo, el receptor puede interpretar un significado distinto al intencionado.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s2p12" value="b"> B. La palabra "balance" tiene el mismo significado en contabilidad que en física, lo que genera confusión cuando auditores y ingenieros trabajan juntos en proyectos empresariales.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s2p12" value="c"> C. El uso de sinónimos en un informe de auditoría es polisémico porque introduce variación innecesaria que puede confundir al lector sobre el objeto referido.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s2p12" value="d"> D. La polisemia ocurre cuando dos personas de distintas regiones del Ecuador pronuncian la misma palabra con diferente acento, generando ruido fonológico en la comunicación.</label></li>
+        </ul>
+        <div class="feedback-box" id="fb-s2p12"></div>
+      </div>
+
+      <!-- P13 CASO -->
+      <div class="pregunta-item" id="pi-s2p13">
+        <div class="pregunta-top">
+          <span class="pregunta-num">13</span>
+          <span class="badge-tipo badge-caso">Análisis de caso</span>
+          <span class="pregunta-texto">Lea el caso y responda:</span>
+        </div>
+        <div class="caso-box">Andrés es auditor y durante una entrevista al gerente financiero de una empresa en Guayaquil, nota que el gerente responde "todo está en orden" con voz firme, pero sus brazos están cruzados, evita el contacto visual y frecuentemente toca su cuello. Andrés registra todo esto mentalmente.</div>
+        <span class="pregunta-texto" style="font-size:14px;display:block;margin-bottom:10px;">¿Qué debe concluir Andrés sobre el procesamiento de este mensaje?</span>
+        <ul class="opciones">
+          <li><label class="opcion-label"><input type="radio" name="s2p13" value="a"> A. Existe incongruencia entre el mensaje verbal y el no verbal: los gestos de cierre y ansiedad contradicen la afirmación verbal, lo que justifica que Andrés profundice su investigación con evidencia adicional.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s2p13" value="b"> B. El gerente está siendo honesto: la tensión física se explica por el estrés natural que genera una auditoría, sin relación con el contenido del mensaje verbal.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s2p13" value="c"> C. Andrés debe ignorar el lenguaje no verbal porque en un contexto profesional formal solo el contenido verbal tiene validez como fuente de información.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s2p13" value="d"> D. La incongruencia es señal de que el gerente no comprende bien las preguntas del auditor y necesita que se las reformule con mayor claridad.</label></li>
+        </ul>
+        <div class="feedback-box" id="fb-s2p13"></div>
+      </div>
+
+      <!-- P14 CASO -->
+      <div class="pregunta-item" id="pi-s2p14">
+        <div class="pregunta-top">
+          <span class="pregunta-num">14</span>
+          <span class="badge-tipo badge-caso">Análisis de caso</span>
+          <span class="pregunta-texto">Lea el caso y responda:</span>
+        </div>
+        <div class="caso-box">Una empresa multinacional con sede en Quito envía un memorando al equipo contable usando la frase: "Se espera que los cierres se realicen de forma oportuna". Al final del mes, tres contadores entregaron el cierre en fechas distintas: uno el día 25, otro el último día hábil y el tercero el día 5 del mes siguiente.</div>
+        <span class="pregunta-texto" style="font-size:14px;display:block;margin-bottom:10px;">¿Qué falla lingüística explica este problema?</span>
+        <ul class="opciones">
+          <li><label class="opcion-label"><input type="radio" name="s2p14" value="a"> A. El término "oportuna" es ambiguo e impreciso: carece de referente objetivo y cada receptor lo interpretó según su propio criterio, lo que evidencia que un mensaje sin precisión léxica no puede garantizar conductas homogéneas.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s2p14" value="b"> B. El problema es de canal: un memorando escrito es inadecuado para instrucciones operativas que requieren inmediatez y verificación de comprensión en tiempo real.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s2p14" value="c"> C. Los contadores fallaron en el procesamiento del mensaje porque no solicitaron aclaración al emisor antes de ejecutar la tarea indicada.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s2p14" value="d"> D. La frase en voz pasiva ("se espera") genera distancia entre el emisor y el mensaje, lo que reduce el sentido de obligatoriedad percibido por los receptores.</label></li>
+        </ul>
+        <div class="feedback-box" id="fb-s2p14"></div>
+      </div>
+
+      <!-- P15 CASO -->
+      <div class="pregunta-item" id="pi-s2p15">
+        <div class="pregunta-top">
+          <span class="pregunta-num">15</span>
+          <span class="badge-tipo badge-caso">Análisis de caso</span>
+          <span class="pregunta-texto">Lea el caso y responda:</span>
+        </div>
+        <div class="caso-box">La SRI (Servicio de Rentas Internas) de Ecuador lanzó una campaña para que los pequeños contribuyentes entiendan sus obligaciones tributarias. La primera versión, redactada en lenguaje jurídico-técnico, tuvo muy baja comprensión. La segunda versión, con lenguaje cotidiano, ejemplos visuales e infografías, logró un 78% de comprensión según encuestas posteriores.</div>
+        <span class="pregunta-texto" style="font-size:14px;display:block;margin-bottom:10px;">¿Qué principio de la teoría del lenguaje explica el éxito de la segunda versión?</span>
+        <ul class="opciones">
+          <li><label class="opcion-label"><input type="radio" name="s2p15" value="a"> A. La adecuación del código al receptor: el emisor debe seleccionar el tipo de lenguaje (verbal, icónico) y el nivel de complejidad según el perfil y el contexto del destinatario para que la decodificación sea exitosa.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s2p15" value="b"> B. El principio de redundancia: repetir la misma información en múltiples formatos garantiza que al menos uno de los canales logre superar el ruido y llegar al receptor.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s2p15" value="c"> C. La superioridad del lenguaje visual sobre el verbal: las infografías son intrínsecamente más efectivas que el texto para cualquier tipo de mensaje informativo.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s2p15" value="d"> D. El principio de simplicidad: los mensajes cortos siempre generan mayor comprensión que los mensajes largos, independientemente del perfil del receptor.</label></li>
+        </ul>
+        <div class="feedback-box" id="fb-s2p15"></div>
+      </div>
+
+    </div>
+    <div class="btn-group">
+      <button class="btn-verificar" onclick="verificar('s2')">✅ Verificar Respuestas</button>
+      <div class="alerta" id="alerta-s2">⚠️ Debes responder todas las preguntas antes de verificar.</div>
+      <button class="btn-reiniciar" id="reiniciar-s2" onclick="reiniciar('s2')">🔄 Reiniciar Semana 2</button>
+    </div>
+    <div class="resultado-panel" id="resultado-s2">
+      <div class="resultado-emoji" id="emoji-s2"></div>
+      <div class="resultado-score" id="score-s2"></div>
+      <div class="resultado-pct" id="pct-s2"></div>
+      <div class="barra-wrapper"><div class="barra-fill" id="barra-s2" style="width:0%"></div></div>
+      <div class="resultado-msg" id="msg-s2"></div>
+    </div>
+  </div><!-- /tab-s2 -->
+
+  <!-- ============ SEMANA 3 ============ -->
+  <div id="tab-s3" class="tab-content">
+    <div class="semana-header">
+      <h2>Semana 3 · Tipos de Comunicación · Neurocomunicación · Cerebro Triúnico · Autoestima · IE</h2>
+      <p>15 preguntas · 7 Teóricas · 5 Aplicación · 3 Análisis de caso · Responde todo antes de verificar</p>
+    </div>
+    <div class="preguntas-container" id="form-s3">
+
+      <!-- P1 -->
+      <div class="pregunta-item" id="pi-s3p1">
+        <div class="pregunta-top">
+          <span class="pregunta-num">1</span>
+          <span class="badge-tipo badge-teorica">Teórica</span>
+          <span class="pregunta-texto">El modelo del "cerebro triúnico" de Paul MacLean distingue tres niveles cerebrales. ¿Cuál de las siguientes descripciones es la más precisa?</span>
+        </div>
+        <ul class="opciones">
+          <li><label class="opcion-label"><input type="radio" name="s3p1" value="a"> A. El cerebro reptiliano regula las funciones de supervivencia e instinto; el sistema límbico gestiona las emociones y la memoria emocional; y el neocórtex es responsable del pensamiento racional, el lenguaje y la creatividad.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s3p1" value="b"> B. El cerebro reptiliano controla las emociones básicas; el sistema límbico procesa el lenguaje y la lógica; y el neocórtex regula las funciones automáticas del cuerpo como la respiración y el ritmo cardíaco.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s3p1" value="c"> C. El cerebro reptiliano es exclusivo de reptiles y mamíferos inferiores; el sistema límbico es el responsable del razonamiento moral; y el neocórtex procesa únicamente la información visual del entorno.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s3p1" value="d"> D. Los tres cerebros actúan de forma completamente independiente y no interactúan entre sí durante el procesamiento de información comunicativa.</label></li>
+        </ul>
+        <div class="feedback-box" id="fb-s3p1"></div>
+      </div>
+
+      <!-- P2 -->
+      <div class="pregunta-item" id="pi-s3p2">
+        <div class="pregunta-top">
+          <span class="pregunta-num">2</span>
+          <span class="badge-tipo badge-teorica">Teórica</span>
+          <span class="pregunta-texto">La "neurocomunicación" estudia la relación entre cerebro y comunicación con el propósito de:</span>
+        </div>
+        <ul class="opciones">
+          <li><label class="opcion-label"><input type="radio" name="s3p2" value="a"> A. Comprender cómo el cerebro procesa, interpreta y responde a los mensajes comunicativos para diseñar estrategias que mejoren la efectividad de la comunicación humana.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s3p2" value="b"> B. Desarrollar tecnologías de comunicación directa cerebro-cerebro que eliminen los intermediarios del proceso comunicativo tradicional.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s3p2" value="c"> C. Identificar las zonas del cerebro afectadas por enfermedades que deterioran la capacidad lingüística de los pacientes para su tratamiento médico.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s3p2" value="d"> D. Medir la actividad eléctrica del cerebro durante el habla para determinar el nivel de inteligencia lingüística de cada individuo.</label></li>
+        </ul>
+        <div class="feedback-box" id="fb-s3p2"></div>
+      </div>
+
+      <!-- P3 -->
+      <div class="pregunta-item" id="pi-s3p3">
+        <div class="pregunta-top">
+          <span class="pregunta-num">3</span>
+          <span class="badge-tipo badge-teorica">Teórica</span>
+          <span class="pregunta-texto">Según Daniel Goleman, la inteligencia emocional (IE) se compone principalmente de:</span>
+        </div>
+        <ul class="opciones">
+          <li><label class="opcion-label"><input type="radio" name="s3p3" value="a"> A. Autoconciencia, autorregulación, motivación, empatía y habilidades sociales; cinco competencias que determinan cómo gestionamos nuestras emociones y las relaciones con los demás.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s3p3" value="b"> B. Coeficiente intelectual, memoria emocional, creatividad, liderazgo e inteligencia lingüística como factores integrados del funcionamiento emocional humano.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s3p3" value="c"> C. Autoestima, resiliencia, asertividad, pensamiento positivo y manejo del estrés como componentes del bienestar emocional individual.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s3p3" value="d"> D. Empatía, persuasión, carisma, liderazgo transformacional e inteligencia interpersonal como habilidades exclusivamente sociales.</label></li>
+        </ul>
+        <div class="feedback-box" id="fb-s3p3"></div>
+      </div>
+
+      <!-- P4 -->
+      <div class="pregunta-item" id="pi-s3p4">
+        <div class="pregunta-top">
+          <span class="pregunta-num">4</span>
+          <span class="badge-tipo badge-teorica">Teórica</span>
+          <span class="pregunta-texto">¿Por qué la autoestima es considerada un factor determinante en la calidad de la comunicación?</span>
+        </div>
+        <ul class="opciones">
+          <li><label class="opcion-label"><input type="radio" name="s3p4" value="a"> A. Porque quien tiene una autoestima sana se permite expresar sus ideas con claridad y seguridad, establece límites asertivos y escucha sin perder su identidad, mientras que la autoestima baja genera patrones de comunicación evasivos o agresivos.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s3p4" value="b"> B. Porque la autoestima alta garantiza que el contenido del mensaje sea técnicamente correcto y socialmente aceptado por cualquier tipo de receptor.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s3p4" value="c"> C. Porque las personas con alta autoestima hablan más y con mayor velocidad, lo que les permite transmitir mayor cantidad de información en menos tiempo.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s3p4" value="d"> D. Porque la autoestima determina el coeficiente intelectual, que a su vez es el predictor más preciso de la capacidad comunicativa de un individuo.</label></li>
+        </ul>
+        <div class="feedback-box" id="fb-s3p4"></div>
+      </div>
+
+      <!-- P5 -->
+      <div class="pregunta-item" id="pi-s3p5">
+        <div class="pregunta-top">
+          <span class="pregunta-num">5</span>
+          <span class="badge-tipo badge-teorica">Teórica</span>
+          <span class="pregunta-texto">La comunicación intrapersonal se refiere al proceso de:</span>
+        </div>
+        <ul class="opciones">
+          <li><label class="opcion-label"><input type="radio" name="s3p5" value="a"> A. El diálogo interno del individuo consigo mismo: el monólogo interior, la reflexión, la autoevaluación y el procesamiento emocional que ocurre antes de emitir un mensaje al exterior.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s3p5" value="b"> B. La comunicación que ocurre dentro de un grupo pequeño de personas que comparten un espacio físico y un objetivo común.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s3p5" value="c"> C. El proceso mediante el cual una persona expresa sus emociones más íntimas a un interlocutor de confianza en un contexto privado.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s3p5" value="d"> D. La comunicación que un profesional mantiene consigo mismo mientras revisa sus propios documentos para detectar errores antes de su presentación.</label></li>
+        </ul>
+        <div class="feedback-box" id="fb-s3p5"></div>
+      </div>
+
+      <!-- P6 -->
+      <div class="pregunta-item" id="pi-s3p6">
+        <div class="pregunta-top">
+          <span class="pregunta-num">6</span>
+          <span class="badge-tipo badge-teorica">Teórica</span>
+          <span class="pregunta-texto">El "secuestro amigdalino" (amygdala hijack) de Goleman explica que en situaciones de alta tensión emocional:</span>
+        </div>
+        <ul class="opciones">
+          <li><label class="opcion-label"><input type="radio" name="s3p6" value="a"> A. La amígdala cerebral toma el control de la respuesta antes de que el neocórtex pueda procesar racionalmente la situación, generando reacciones impulsivas que pueden deteriorar la comunicación profesional.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s3p6" value="b"> B. El sistema límbico bloquea completamente el procesamiento del lenguaje verbal, razón por la cual las personas en estado de estrés extremo no pueden hablar con fluidez.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s3p6" value="c"> C. El cerebro reptiliano inhibe la actividad del sistema límbico para que la persona pueda reaccionar con mayor calma y eficiencia ante situaciones de conflicto.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s3p6" value="d"> D. La corteza prefrontal anula temporalmente las emociones para permitir una comunicación exclusivamente racional durante las situaciones de crisis profesional.</label></li>
+        </ul>
+        <div class="feedback-box" id="fb-s3p6"></div>
+      </div>
+
+      <!-- P7 -->
+      <div class="pregunta-item" id="pi-s3p7">
+        <div class="pregunta-top">
+          <span class="pregunta-num">7</span>
+          <span class="badge-tipo badge-teorica">Teórica</span>
+          <span class="pregunta-texto">La diferencia entre comunicación asertiva, agresiva y pasiva radica en:</span>
+        </div>
+        <ul class="opciones">
+          <li><label class="opcion-label"><input type="radio" name="s3p7" value="a"> A. La asertividad expresa necesidades y opiniones con firmeza y respeto hacia el interlocutor; la agresividad impone sin respetar al otro; y la pasividad omite o minimiza las propias necesidades por temor o inseguridad.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s3p7" value="b"> B. La asertividad es la forma más eficaz en contextos formales; la agresividad funciona mejor en negociaciones bajo presión; y la pasividad es ideal cuando el objetivo es mantener la armonía del grupo.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s3p7" value="c"> C. La asertividad usa lenguaje no verbal abierto; la agresividad usa lenguaje verbal intenso; y la pasividad se caracteriza por el uso exclusivo del lenguaje escrito para evitar el conflicto.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s3p7" value="d"> D. La asertividad requiere alta IE; la agresividad requiere baja IE pero alta autoestima; y la pasividad es el resultado natural de personas con alta empatía y poca experiencia profesional.</label></li>
+        </ul>
+        <div class="feedback-box" id="fb-s3p7"></div>
+      </div>
+
+      <!-- P8 APLICACIÓN -->
+      <div class="pregunta-item" id="pi-s3p8">
+        <div class="pregunta-top">
+          <span class="pregunta-num">8</span>
+          <span class="badge-tipo badge-aplicacion">Aplicación</span>
+          <span class="pregunta-texto">Un cliente de auditoría reacciona con enojo cuando se le presentan hallazgos negativos. El auditor, en lugar de responder defensivamente, hace una pausa, respira y dice: "Entiendo que esta información es difícil. Revisémosla juntos para encontrar la mejor solución." ¿Qué competencia de la IE está aplicando?</span>
+        </div>
+        <ul class="opciones">
+          <li><label class="opcion-label"><input type="radio" name="s3p8" value="a"> A. Autorregulación emocional y empatía simultáneamente: gestionó su propia respuesta emocional (no reaccionó impulsivamente) y reconoció el estado emocional del cliente para adaptar su comunicación.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s3p8" value="b"> B. Motivación intrínseca: el auditor mostró compromiso con su trabajo al no rendirse ante la reacción negativa del cliente.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s3p8" value="c"> C. Autoconciencia: reconoció sus propias limitaciones técnicas en la presentación de hallazgos negativos y buscó una salida colaborativa.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s3p8" value="d"> D. Habilidades sociales básicas: usó fórmulas de cortesía aprendidas para desactivar un conflicto potencial con el cliente.</label></li>
+        </ul>
+        <div class="feedback-box" id="fb-s3p8"></div>
+      </div>
+
+      <!-- P9 APLICACIÓN -->
+      <div class="pregunta-item" id="pi-s3p9">
+        <div class="pregunta-top">
+          <span class="pregunta-num">9</span>
+          <span class="badge-tipo badge-aplicacion">Aplicación</span>
+          <span class="pregunta-texto">Según la neurocomunicación, ¿por qué una presentación contable que incluye una historia o caso real al inicio genera mayor atención en el receptor que una que comienza directamente con datos numéricos?</span>
+        </div>
+        <ul class="opciones">
+          <li><label class="opcion-label"><input type="radio" name="s3p9" value="a"> A. Porque las narrativas activan el sistema límbico (emocional) del receptor, generando conexión e interés antes de que el neocórtex procese la información racional; el cerebro está neurológicamente más receptivo a la historia que al dato frío.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s3p9" value="b"> B. Porque las historias tienen una estructura gramatical más simple que los informes técnicos, lo que reduce el esfuerzo cognitivo del receptor durante los primeros minutos de la presentación.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s3p9" value="c"> C. Porque el cerebro reptiliano es el primero en activarse durante cualquier presentación y solo responde positivamente a narrativas, rechazando los datos numéricos desde el inicio.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s3p9" value="d"> D. Porque las historias permiten al presentador ganar tiempo para organizar sus ideas mientras el receptor está distraído con el relato introductorio.</label></li>
+        </ul>
+        <div class="feedback-box" id="fb-s3p9"></div>
+      </div>
+
+      <!-- P10 APLICACIÓN -->
+      <div class="pregunta-item" id="pi-s3p10">
+        <div class="pregunta-top">
+          <span class="pregunta-num">10</span>
+          <span class="badge-tipo badge-aplicacion">Aplicación</span>
+          <span class="pregunta-texto">Un jefe de área contable, al recibir un error de su equipo, reacciona gritando: "¡Siempre cometen los mismos errores! ¡Son un desastre!" ¿Qué patrón comunicativo y qué consecuencia organizacional produce?</span>
+        </div>
+        <ul class="opciones">
+          <li><label class="opcion-label"><input type="radio" name="s3p10" value="a"> A. Comunicación agresiva que daña la autoestima del equipo, genera un clima de miedo que inhibe la comunicación ascendente y reduce la probabilidad de que futuros errores sean reportados oportunamente.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s3p10" value="b"> B. Comunicación directa y eficaz que, aunque emocionalmente intensa, logra que el equipo comprenda claramente que no deben repetir el error.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s3p10" value="c"> C. Comunicación pasiva-agresiva que mezcla señales contradictorias y confunde al equipo sobre las expectativas reales del jefe de área.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s3p10" value="d"> D. Comunicación asertiva disfuncional: el jefe expresa su frustración con honestidad, lo cual es correcto, pero usa un tono inadecuado que lo diferencia de la asertividad ideal.</label></li>
+        </ul>
+        <div class="feedback-box" id="fb-s3p10"></div>
+      </div>
+
+      <!-- P11 APLICACIÓN -->
+      <div class="pregunta-item" id="pi-s3p11">
+        <div class="pregunta-top">
+          <span class="pregunta-num">11</span>
+          <span class="badge-tipo badge-aplicacion">Aplicación</span>
+          <span class="pregunta-texto">¿Por qué un auditor con baja autoestima puede comprometer la calidad de su trabajo, incluso si tiene excelente formación técnica?</span>
+        </div>
+        <ul class="opciones">
+          <li><label class="opcion-label"><input type="radio" name="s3p11" value="a"> A. Porque puede omitir hallazgos importantes por miedo a enfrentarse con el cliente, ceder ante presiones que comprometan su independencia o ser incapaz de defender sus conclusiones con firmeza ante cuestionamientos.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s3p11" value="b"> B. Porque la baja autoestima afecta directamente la memoria a largo plazo, lo que le impide recordar con precisión los procedimientos y normas técnicas de auditoría.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s3p11" value="c"> C. Porque los clientes detectan la inseguridad del auditor e intentan aprovecharse de ella para obtener informes favorables que no reflejen la realidad financiera.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s3p11" value="d"> D. Porque el auditor con baja autoestima tiende a trabajar de manera excesivamente perfeccionista, lo que ralentiza los procesos y encarece el costo de la auditoría.</label></li>
+        </ul>
+        <div class="feedback-box" id="fb-s3p11"></div>
+      </div>
+
+      <!-- P12 APLICACIÓN -->
+      <div class="pregunta-item" id="pi-s3p12">
+        <div class="pregunta-top">
+          <span class="pregunta-num">12</span>
+          <span class="badge-tipo badge-aplicacion">Aplicación</span>
+          <span class="pregunta-texto">¿Cuál de las siguientes acciones representa mejor el uso de la IE como herramienta de comunicación profesional en auditoría?</span>
+        </div>
+        <ul class="opciones">
+          <li><label class="opcion-label"><input type="radio" name="s3p12" value="a"> A. El auditor adapta el tono, el vocabulario y la estructura de su presentación según el estado emocional y la capacidad de recepción que percibe en el cliente durante la reunión.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s3p12" value="b"> B. El auditor oculta sus propias emociones durante la presentación para proyectar una imagen de objetividad y frialdad técnica ante el cliente.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s3p12" value="c"> C. El auditor utiliza técnicas de persuasión emocional para que el cliente acepte los hallazgos sin cuestionarlos durante la reunión de cierre.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s3p12" value="d"> D. El auditor prioriza siempre la comunicación escrita sobre la oral para mantener distancia emocional y garantizar la imparcialidad de su trabajo.</label></li>
+        </ul>
+        <div class="feedback-box" id="fb-s3p12"></div>
+      </div>
+
+      <!-- P13 CASO -->
+      <div class="pregunta-item" id="pi-s3p13">
+        <div class="pregunta-top">
+          <span class="pregunta-num">13</span>
+          <span class="badge-tipo badge-caso">Análisis de caso</span>
+          <span class="pregunta-texto">Lea el caso y responda:</span>
+        </div>
+        <div class="caso-box">Sofía es contadora senior en una empresa de Guayaquil. Cada vez que su jefe la interrumpe durante sus presentaciones, ella se queda en silencio, asienta y no termina sus argumentos. Al salir de las reuniones, se siente frustrada y convencida de que "nunca la escuchan". Sus colegas, en cambio, la describen como "muy inteligente pero muy callada".</div>
+        <span class="pregunta-texto" style="font-size:14px;display:block;margin-bottom:10px;">¿Cuál es la combinación de factores que explica la situación de Sofía?</span>
+        <ul class="opciones">
+          <li><label class="opcion-label"><input type="radio" name="s3p13" value="a"> A. Patrón comunicativo pasivo + baja autoestima situacional: Sofía posee el conocimiento pero no se permite expresarlo por miedo al conflicto, lo que genera frustración interna y una percepción externa que no refleja su capacidad real.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s3p13" value="b"> B. Déficit de habilidades técnicas de comunicación: Sofía no ha desarrollado las estrategias orales necesarias para interrumpir apropiadamente a un superior durante una presentación formal.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s3p13" value="c"> C. Inteligencia emocional mal aplicada: Sofía gestiona bien sus emociones pero sobreestima las del jefe, lo que la lleva a priorizar el bienestar del otro sobre el suyo.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s3p13" value="d"> D. Contexto organizacional tóxico: el problema es del jefe que interrumpe, no de Sofía; ella reacciona correctamente ante una conducta que no puede controlar.</label></li>
+        </ul>
+        <div class="feedback-box" id="fb-s3p13"></div>
+      </div>
+
+      <!-- P14 CASO -->
+      <div class="pregunta-item" id="pi-s3p14">
+        <div class="pregunta-top">
+          <span class="pregunta-num">14</span>
+          <span class="badge-tipo badge-caso">Análisis de caso</span>
+          <span class="pregunta-texto">Lea el caso y responda:</span>
+        </div>
+        <div class="caso-box">En una empresa auditora de Quito, cuando los auditores juniors detectan un problema grave, prefieren no reportarlo directamente y lo mencionan "de paso" o lo envían por mensaje informal al supervisor. El supervisor frecuentemente dice que "nadie le informa de nada" hasta que los problemas ya son grandes.</div>
+        <span class="pregunta-texto" style="font-size:14px;display:block;margin-bottom:10px;">Aplicando los conceptos de autoestima, IE y comunicación, ¿qué explica este patrón organizacional?</span>
+        <ul class="opciones">
+          <li><label class="opcion-label"><input type="radio" name="s3p14" value="a"> A. Un clima de baja autoestima colectiva y bajo sentido de seguridad psicológica: los juniors temen la reacción emocional del supervisor, lo que genera comunicación evasiva, informal e incompleta que perjudica la calidad de la auditoría.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s3p14" value="b"> B. Un problema de canales: los auditores juniors no tienen acceso a los canales formales de comunicación de la empresa, lo que los obliga a usar vías informales para reportar sus hallazgos.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s3p14" value="c"> C. Un déficit de formación técnica: los juniors no están capacitados para identificar cuándo un hallazgo es lo suficientemente grave como para reportarlo formalmente al supervisor.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s3p14" value="d"> D. Un problema de liderazgo: el supervisor no ha establecido reuniones periódicas de seguimiento, razón por la cual los juniors no encuentran el espacio adecuado para sus reportes.</label></li>
+        </ul>
+        <div class="feedback-box" id="fb-s3p14"></div>
+      </div>
+
+      <!-- P15 CASO -->
+      <div class="pregunta-item" id="pi-s3p15">
+        <div class="pregunta-top">
+          <span class="pregunta-num">15</span>
+          <span class="badge-tipo badge-caso">Análisis de caso</span>
+          <span class="pregunta-texto">Lea el caso y responda:</span>
+        </div>
+        <div class="caso-box">Un equipo de auditores debe comunicar al directorio de una empresa mediana en Machala que encontraron evidencia de posibles irregularidades. El auditor líder, antes de la reunión, ensaya la presentación, evalúa el estado de ánimo del directorio basándose en información previa, y decide comenzar con los puntos positivos, luego contextualizar el hallazgo, y recién al final proponer el plan de acción.</div>
+        <span class="pregunta-texto" style="font-size:14px;display:block;margin-bottom:10px;">¿Qué combinación de competencias explica la estrategia del auditor líder?</span>
+        <ul class="opciones">
+          <li><label class="opcion-label"><input type="radio" name="s3p15" value="a"> A. Inteligencia emocional (empatía + autogestión), neurocomunicación (considera cómo el cerebro receptivo procesa información negativa) y planificación comunicativa estratégica para maximizar la receptividad del directorio.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s3p15" value="b"> B. Comunicación pasiva: al comenzar con puntos positivos y dejar el hallazgo para el final, el auditor evita la confrontación directa que el código deontológico de la auditoría exige.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s3p15" value="c"> C. Manipulación emocional: usar el estado de ánimo del directorio para seleccionar la estructura de la presentación compromete la objetividad y la independencia del auditor.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s3p15" value="d"> D. Alta autoestima profesional: la seguridad con que el auditor prepara la presentación garantiza que el directorio acepte los hallazgos sin necesidad de argumentación adicional.</label></li>
+        </ul>
+        <div class="feedback-box" id="fb-s3p15"></div>
+      </div>
+
+    </div>
+    <div class="btn-group">
+      <button class="btn-verificar" onclick="verificar('s3')">✅ Verificar Respuestas</button>
+      <div class="alerta" id="alerta-s3">⚠️ Debes responder todas las preguntas antes de verificar.</div>
+      <button class="btn-reiniciar" id="reiniciar-s3" onclick="reiniciar('s3')">🔄 Reiniciar Semana 3</button>
+    </div>
+    <div class="resultado-panel" id="resultado-s3">
+      <div class="resultado-emoji" id="emoji-s3"></div>
+      <div class="resultado-score" id="score-s3"></div>
+      <div class="resultado-pct" id="pct-s3"></div>
+      <div class="barra-wrapper"><div class="barra-fill" id="barra-s3" style="width:0%"></div></div>
+      <div class="resultado-msg" id="msg-s3"></div>
+    </div>
+  </div><!-- /tab-s3 -->
+
+  <!-- ============ SEMANA 4 ============ -->
+  <div id="tab-s4" class="tab-content">
+    <div class="semana-header">
+      <h2>Semana 4 · Importancia de la Lectura · Proceso de Comunicación · Poder de la Puntuación</h2>
+      <p>15 preguntas · 7 Teóricas · 5 Aplicación · 3 Análisis de caso · Responde todo antes de verificar</p>
+    </div>
+    <div class="preguntas-container" id="form-s4">
+
+      <!-- P1 -->
+      <div class="pregunta-item" id="pi-s4p1">
+        <div class="pregunta-top">
+          <span class="pregunta-num">1</span>
+          <span class="badge-tipo badge-teorica">Teórica</span>
+          <span class="pregunta-texto">¿Por qué la lectura se considera una competencia de comunicación y no únicamente una habilidad de recepción de información?</span>
+        </div>
+        <ul class="opciones">
+          <li><label class="opcion-label"><input type="radio" name="s4p1" value="a"> A. Porque leer activa un diálogo activo entre el texto y el lector: el lector no solo decodifica palabras sino que interpreta, cuestiona, relaciona con su conocimiento previo y construye significado, lo que es un proceso comunicativo complejo.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s4p1" value="b"> B. Porque la lectura es la principal fuente de vocabulario nuevo que permite al individuo mejorar su capacidad de expresión oral y escrita en contextos profesionales.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s4p1" value="c"> C. Porque leer en voz alta desarrolla las habilidades paraverbales del lector, incluyendo el tono, el ritmo y la modulación de la voz durante la comunicación oral.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s4p1" value="d"> D. Porque la velocidad de lectura es el indicador más preciso de la inteligencia lingüística de un individuo y de su capacidad para procesar mensajes complejos.</label></li>
+        </ul>
+        <div class="feedback-box" id="fb-s4p1"></div>
+      </div>
+
+      <!-- P2 -->
+      <div class="pregunta-item" id="pi-s4p2">
+        <div class="pregunta-top">
+          <span class="pregunta-num">2</span>
+          <span class="badge-tipo badge-teorica">Teórica</span>
+          <span class="pregunta-texto">La "lectura crítica" se distingue de la "lectura comprensiva" en que:</span>
+        </div>
+        <ul class="opciones">
+          <li><label class="opcion-label"><input type="radio" name="s4p2" value="a"> A. La lectura comprensiva busca entender el contenido explícito del texto, mientras que la lectura crítica va más allá: evalúa la validez de los argumentos, identifica supuestos implícitos y cuestiona la intención del autor.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s4p2" value="b"> B. La lectura crítica es más lenta y requiere tomar notas, mientras que la lectura comprensiva permite al lector procesar el texto a mayor velocidad sin interrupciones.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s4p2" value="c"> C. La lectura comprensiva aplica únicamente a textos literarios, mientras que la lectura crítica es la apropiada para textos técnicos y científicos en el ámbito universitario.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s4p2" value="d"> D. La lectura crítica requiere la participación de dos lectores que contrasten sus interpretaciones, mientras que la comprensiva es un proceso exclusivamente individual.</label></li>
+        </ul>
+        <div class="feedback-box" id="fb-s4p2"></div>
+      </div>
+
+      <!-- P3 -->
+      <div class="pregunta-item" id="pi-s4p3">
+        <div class="pregunta-top">
+          <span class="pregunta-num">3</span>
+          <span class="badge-tipo badge-teorica">Teórica</span>
+          <span class="pregunta-texto">¿Cuál es el papel de la puntuación en la comunicación escrita según los fundamentos del lenguaje?</span>
+        </div>
+        <ul class="opciones">
+          <li><label class="opcion-label"><input type="radio" name="s4p3" value="a"> A. La puntuación organiza el discurso escrito, regula el ritmo de lectura, establece jerarquías de ideas y puede cambiar radicalmente el significado de una oración, siendo por tanto un componente semántico y no solo ortográfico.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s4p3" value="b"> B. La puntuación es un elemento estilístico que varía según el género textual y las preferencias del autor, sin reglas fijas que afecten el significado del mensaje.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s4p3" value="c"> C. La puntuación cumple únicamente una función respiratoria: indica al lector dónde debe hacer pausas durante la lectura en voz alta del texto.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s4p3" value="d"> D. La puntuación es relevante solo en textos literarios y jurídicos; en documentos contables y de auditoría, el significado lo aportan los números y no las palabras.</label></li>
+        </ul>
+        <div class="feedback-box" id="fb-s4p3"></div>
+      </div>
+
+      <!-- P4 -->
+      <div class="pregunta-item" id="pi-s4p4">
+        <div class="pregunta-top">
+          <span class="pregunta-num">4</span>
+          <span class="badge-tipo badge-teorica">Teórica</span>
+          <span class="pregunta-texto">La frase "Vamos a comer, niños" frente a "Vamos a comer niños" es un ejemplo clásico que demuestra que:</span>
+        </div>
+        <ul class="opciones">
+          <li><label class="opcion-label"><input type="radio" name="s4p4" value="a"> A. Una coma puede cambiar completamente el significado de una oración, lo que prueba que la puntuación tiene valor semántico directo y no es un elemento decorativo o secundario del texto.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s4p4" value="b"> B. El orden de las palabras es el factor más importante en la construcción del significado en español, más que cualquier signo de puntuación utilizado.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s4p4" value="c"> C. La coma es el único signo de puntuación que tiene valor semántico; los demás signos (punto, punto y coma, dos puntos) tienen función exclusivamente estructural.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s4p4" value="d"> D. El significado de los textos escritos depende principalmente del contexto en que se leen y no de la puntuación ni del orden de las palabras.</label></li>
+        </ul>
+        <div class="feedback-box" id="fb-s4p4"></div>
+      </div>
+
+      <!-- P5 -->
+      <div class="pregunta-item" id="pi-s4p5">
+        <div class="pregunta-top">
+          <span class="pregunta-num">5</span>
+          <span class="badge-tipo badge-teorica">Teórica</span>
+          <span class="pregunta-texto">¿Qué se entiende por "comprensión inferencial" en el proceso de lectura?</span>
+        </div>
+        <ul class="opciones">
+          <li><label class="opcion-label"><input type="radio" name="s4p5" value="a"> A. La capacidad del lector para deducir información implícita no explicitada en el texto, a partir de indicios, contexto y conocimiento previo; va más allá de lo que el texto dice literalmente.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s4p5" value="b"> B. La habilidad del lector para seleccionar las ideas principales del texto y descartar los detalles secundarios durante la lectura rápida de documentos extensos.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s4p5" value="c"> C. El proceso mediante el cual el lector infiere el nivel cultural del autor a partir del vocabulario y la estructura gramatical del texto leído.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s4p5" value="d"> D. La capacidad de relacionar dos textos de un mismo autor para identificar la evolución de su pensamiento a lo largo del tiempo.</label></li>
+        </ul>
+        <div class="feedback-box" id="fb-s4p5"></div>
+      </div>
+
+      <!-- P6 -->
+      <div class="pregunta-item" id="pi-s4p6">
+        <div class="pregunta-top">
+          <span class="pregunta-num">6</span>
+          <span class="badge-tipo badge-teorica">Teórica</span>
+          <span class="pregunta-texto">En el proceso de comunicación, los "filtros" del receptor son:</span>
+        </div>
+        <ul class="opciones">
+          <li><label class="opcion-label"><input type="radio" name="s4p6" value="a"> A. Las creencias, experiencias previas, emociones, valores culturales y expectativas del receptor que condicionan cómo interpreta e incorpora el mensaje recibido.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s4p6" value="b"> B. Los mecanismos neurológicos del oído y la visión que seleccionan qué información sensorial entra al cerebro y cuál es descartada antes de ser procesada.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s4p6" value="c"> C. Las normas gramaticales y ortográficas que el receptor aplica para evaluar la corrección formal del mensaje antes de darle significado.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s4p6" value="d"> D. Los mecanismos tecnológicos que filtran el spam y los mensajes no deseados en los sistemas de comunicación digital corporativa.</label></li>
+        </ul>
+        <div class="feedback-box" id="fb-s4p6"></div>
+      </div>
+
+      <!-- P7 -->
+      <div class="pregunta-item" id="pi-s4p7">
+        <div class="pregunta-top">
+          <span class="pregunta-num">7</span>
+          <span class="badge-tipo badge-teorica">Teórica</span>
+          <span class="pregunta-texto">¿Por qué se dice que la lectura aumenta la "competencia comunicativa" del profesional contable?</span>
+        </div>
+        <ul class="opciones">
+          <li><label class="opcion-label"><input type="radio" name="s4p7" value="a"> A. Porque amplía el vocabulario activo, expone al lector a distintas estructuras argumentativas, desarrolla la capacidad analítica y mejora la habilidad para producir textos profesionales con mayor precisión y coherencia.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s4p7" value="b"> B. Porque la lectura de normativa contable y tributaria es requisito legal para ejercer la profesión de contador público en Ecuador según la SENESCYT.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s4p7" value="c"> C. Porque los contadores que leen más tienen mayor capacidad de memorizar estándares y normas contables internacionales en menor tiempo.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s4p7" value="d"> D. Porque la lectura de literatura en general activa la imaginación del contador, lo que le permite generar soluciones creativas a problemas financieros complejos.</label></li>
+        </ul>
+        <div class="feedback-box" id="fb-s4p7"></div>
+      </div>
+
+      <!-- P8 APLICACIÓN -->
+      <div class="pregunta-item" id="pi-s4p8">
+        <div class="pregunta-top">
+          <span class="pregunta-num">8</span>
+          <span class="badge-tipo badge-aplicacion">Aplicación</span>
+          <span class="pregunta-texto">Un informe de auditoría incluye esta oración: "No se encontraron irregularidades en los registros no obstante se recomienda revisar el área de cuentas por cobrar." ¿Qué problema de puntuación presenta esta oración y qué consecuencia comunicativa tiene?</span>
+        </div>
+        <ul class="opciones">
+          <li><label class="opcion-label"><input type="radio" name="s4p8" value="a"> A. La ausencia de coma o punto y coma antes de "no obstante" hace que la oración sea ambigua: el lector puede interpretar que "no obstante" refuerza la ausencia de irregularidades en lugar de introducir una salvedad crítica, lo que distorsiona el mensaje.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s4p8" value="b"> B. La oración es demasiado larga y debe dividirse en dos oraciones independientes con punto final; el conector "no obstante" no es válido en documentos de auditoría.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s4p8" value="c"> C. El problema no es de puntuación sino de redundancia: "no se encontraron irregularidades" y "se recomienda revisar" son afirmaciones contradictorias que no deberían coexistir en el mismo párrafo.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s4p8" value="d"> D. La oración presenta un error de sintaxis porque el sujeto implícito cambia entre la primera y la segunda cláusula, lo que la hace gramaticalmente incorrecta en español.</label></li>
+        </ul>
+        <div class="feedback-box" id="fb-s4p8"></div>
+      </div>
+
+      <!-- P9 APLICACIÓN -->
+      <div class="pregunta-item" id="pi-s4p9">
+        <div class="pregunta-top">
+          <span class="pregunta-num">9</span>
+          <span class="badge-tipo badge-aplicacion">Aplicación</span>
+          <span class="pregunta-texto">Un contador que ha desarrollado el hábito de leer habitualmente textos variados (noticias, normas, artículos) tiene mayor ventaja comunicativa porque:</span>
+        </div>
+        <ul class="opciones">
+          <li><label class="opcion-label"><input type="radio" name="s4p9" value="a"> A. Ha sido expuesto a múltiples registros lingüísticos y estructuras argumentativas, lo que le permite adaptar su comunicación a distintos interlocutores y contextos con mayor naturalidad y precisión.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s4p9" value="b"> B. Ha memorizado mayor cantidad de palabras técnicas del ámbito contable, lo que le permite redactar informes más extensos y detallados que sus colegas.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s4p9" value="c"> C. Puede leer los informes de auditoría más rápidamente durante las reuniones de trabajo, lo que le ahorra tiempo y mejora su productividad laboral.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s4p9" value="d"> D. Conoce más autores de libros de autoayuda que le proporcionan estrategias de motivación personal para mantener su rendimiento profesional durante situaciones de estrés.</label></li>
+        </ul>
+        <div class="feedback-box" id="fb-s4p9"></div>
+      </div>
+
+      <!-- P10 APLICACIÓN -->
+      <div class="pregunta-item" id="pi-s4p10">
+        <div class="pregunta-top">
+          <span class="pregunta-num">10</span>
+          <span class="badge-tipo badge-aplicacion">Aplicación</span>
+          <span class="pregunta-texto">¿Cuál de los siguientes usos del punto y coma refleja correctamente su función en un texto contable?</span>
+        </div>
+        <ul class="opciones">
+          <li><label class="opcion-label"><input type="radio" name="s4p10" value="a"> A. "Los ingresos aumentaron un 12%; sin embargo, los costos operativos crecieron un 18%, lo que generó una reducción neta del margen de utilidad." — Separa dos cláusulas independientes relacionadas lógicamente.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s4p10" value="b"> B. "El auditor revisó; los libros contables del periodo." — Separa el sujeto del predicado para dar énfasis a la acción realizada.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s4p10" value="c"> C. "Se identificaron tres áreas de riesgo; en cuentas por cobrar; en inventarios; y en caja." — Reemplaza la coma en una enumeración simple de elementos del mismo nivel.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s4p10" value="d"> D. "El balance; general; muestra un patrimonio positivo de $45.000." — Indica una pausa dramática para resaltar el dato numérico ante el lector del informe.</label></li>
+        </ul>
+        <div class="feedback-box" id="fb-s4p10"></div>
+      </div>
+
+      <!-- P11 APLICACIÓN -->
+      <div class="pregunta-item" id="pi-s4p11">
+        <div class="pregunta-top">
+          <span class="pregunta-num">11</span>
+          <span class="badge-tipo badge-aplicacion">Aplicación</span>
+          <span class="pregunta-texto">¿Por qué se considera que un profesional contable que no lee regularmente tiene una "deuda comunicativa" que afecta su ejercicio profesional?</span>
+        </div>
+        <ul class="opciones">
+          <li><label class="opcion-label"><input type="radio" name="s4p11" value="a"> A. Porque su vocabulario activo se estanca, pierde contacto con los cambios en normas y regulaciones, y su capacidad para argumentar por escrito se deteriora, lo que debilita la calidad de sus informes y comunicaciones profesionales.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s4p11" value="b"> B. Porque el Reglamento de la FENACOP (Federación Nacional de Contadores) exige un mínimo de horas de lectura como parte de la formación continua del profesional contable.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s4p11" value="c"> C. Porque sin lectura constante no es posible actualizar el coeficiente intelectual necesario para resolver los problemas matemáticos de la contabilidad moderna.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s4p11" value="d"> D. Porque la lectura es el único medio por el que un contador puede conocer las estrategias de comunicación de sus competidores en el mercado profesional.</label></li>
+        </ul>
+        <div class="feedback-box" id="fb-s4p11"></div>
+      </div>
+
+      <!-- P12 APLICACIÓN -->
+      <div class="pregunta-item" id="pi-s4p12">
+        <div class="pregunta-top">
+          <span class="pregunta-num">12</span>
+          <span class="badge-tipo badge-aplicacion">Aplicación</span>
+          <span class="pregunta-texto">Identifica cuál de las siguientes oraciones de un informe de auditoría tiene un error de puntuación que podría generar una interpretación contraria a la intención del auditor:</span>
+        </div>
+        <ul class="opciones">
+          <li><label class="opcion-label"><input type="radio" name="s4p12" value="a"> A. "El gerente financiero, autorizó los pagos sin respaldo documental." — La coma separa incorrectamente sujeto y predicado, generando ambigüedad sobre si la autorización es un hecho establecido o una acusación.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s4p12" value="b"> B. "Se realizaron 47 transacciones en el período; de las cuales 12 presentaron inconsistencias." — El punto y coma crea una separación excesiva entre dos ideas que deberían estar unidas por una coma simple.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s4p12" value="c"> C. "Los estados financieros reflejan, razonablemente, la situación financiera de la empresa." — Las comas que enmarcan "razonablemente" crean una ambigüedad innecesaria en un documento técnico.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s4p12" value="d"> D. "La auditoría cubrió el período comprendido entre enero y diciembre de 2024." — La ausencia de punto al final indica que la oración continúa, aunque es la última del párrafo.</label></li>
+        </ul>
+        <div class="feedback-box" id="fb-s4p12"></div>
+      </div>
+
+      <!-- P13 CASO -->
+      <div class="pregunta-item" id="pi-s4p13">
+        <div class="pregunta-top">
+          <span class="pregunta-num">13</span>
+          <span class="badge-tipo badge-caso">Análisis de caso</span>
+          <span class="pregunta-texto">Lea el caso y responda:</span>
+        </div>
+        <div class="caso-box">Una empresa ecuatoriana recibió una carta de su abogado que decía: "El contrato no incluye penalidades por retraso el cliente no podrá reclamar daños." La empresa entendió que no había penalidades y que el cliente no podía reclamar. El cliente, al leer la misma carta, entendió que "sí hay penalidades, pero que el cliente no puede reclamar daños adicionales".</div>
+        <span class="pregunta-texto" style="font-size:14px;display:block;margin-bottom:10px;">¿Cuál es el origen del problema y qué solución de puntuación lo habría evitado?</span>
+        <ul class="opciones">
+          <li><label class="opcion-label"><input type="radio" name="s4p13" value="a"> A. La falta de puntuación entre las dos oraciones independientes: "El contrato no incluye penalidades por retraso. El cliente no podrá reclamar daños" habría eliminado la ambigüedad al establecer claramente dos ideas separadas.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s4p13" value="b"> B. El problema es de vocabulario jurídico: "penalidades" y "daños" son términos que los lectores no especializados no pueden diferenciar, independientemente de la puntuación usada.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s4p13" value="c"> C. El abogado debió usar comillas para delimitar cada cláusula contractual y evitar que el lector mezcle los conceptos durante la lectura del documento.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s4p13" value="d"> D. El origen es la falta de un índice al inicio de la carta que orientara al lector sobre el contenido y la estructura del documento legal.</label></li>
+        </ul>
+        <div class="feedback-box" id="fb-s4p13"></div>
+      </div>
+
+      <!-- P14 CASO -->
+      <div class="pregunta-item" id="pi-s4p14">
+        <div class="pregunta-top">
+          <span class="pregunta-num">14</span>
+          <span class="badge-tipo badge-caso">Análisis de caso</span>
+          <span class="pregunta-texto">Lea el caso y responda:</span>
+        </div>
+        <div class="caso-box">Un estudiante universitario de contabilidad en Guayaquil lee exclusivamente los textos mínimos obligatorios del curso. Al egresar, tiene dificultades para redactar correos formales, sus informes son breves y poco argumentados, y en entrevistas de trabajo siente que "no encuentra las palabras" para responder preguntas abiertas.</div>
+        <span class="pregunta-texto" style="font-size:14px;display:block;margin-bottom:10px;">Desde la teoría de la comunicación del curso, ¿cuál es el diagnóstico más preciso?</span>
+        <ul class="opciones">
+          <li><label class="opcion-label"><input type="radio" name="s4p14" value="a"> A. El estudiante tiene un "vocabulario pasivo" amplio (comprende cuando lee) pero un "vocabulario activo" limitado (no puede producir), porque la escasa lectura voluntaria no activó suficientes estructuras lingüísticas para la producción comunicativa.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s4p14" value="b"> B. El problema es de autoestima: el estudiante sabe cómo expresarse pero la ansiedad ante situaciones evaluativas bloquea su producción comunicativa en contextos de presión.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s4p14" value="c"> C. El estudiante necesita un curso de oratoria: las dificultades orales y escritas que presenta se resuelven con técnicas de hablar en público y no con hábitos de lectura.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s4p14" value="d"> D. El déficit comunicativo se debe a que la malla curricular de contabilidad no incluye suficientes materias de redacción y comunicación en los primeros ciclos de la carrera.</label></li>
+        </ul>
+        <div class="feedback-box" id="fb-s4p14"></div>
+      </div>
+
+      <!-- P15 CASO -->
+      <div class="pregunta-item" id="pi-s4p15">
+        <div class="pregunta-top">
+          <span class="pregunta-num">15</span>
+          <span class="badge-tipo badge-caso">Análisis de caso</span>
+          <span class="pregunta-texto">Lea el caso y responda:</span>
+        </div>
+        <div class="caso-box">El Servicio Nacional de Aduana del Ecuador (SENAE) publicó una resolución que incluía la siguiente oración: "Los importadores que no cumplan los requisitos establecidos no recibirán sanciones adicionales a las ya previstas." Dos empresas importadoras interpretaron la norma de formas contrarias: una creyó que estaba exonerada de toda sanción; la otra entendió que solo recibiría las sanciones ya establecidas, no nuevas.</div>
+        <span class="pregunta-texto" style="font-size:14px;display:block;margin-bottom:10px;">¿Qué explica esta doble interpretación desde la teoría del lenguaje?</span>
+        <ul class="opciones">
+          <li><label class="opcion-label"><input type="radio" name="s4p15" value="a"> A. La oración presenta ambigüedad sintáctica: el alcance del modificador "adicionales a las ya previstas" puede interpretarse como exoneración total o como limitación del tipo de sanción, según cómo el lector segmente la oración durante su lectura.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s4p15" value="b"> B. El problema es de vocabulario jurídico especializado: "sanciones adicionales" y "sanciones previstas" son términos con significados técnicos distintos que las empresas no estaban capacitadas para diferenciar.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s4p15" value="c"> C. La doble interpretación se debe a que las empresas tienen abogados con diferentes escuelas de interpretación jurídica, no a un defecto comunicativo del texto de la resolución.</label></li>
+          <li><label class="opcion-label"><input type="radio" name="s4p15" value="d"> D. El problema es de canal: las resoluciones normativas deben comunicarse oralmente con aclaraciones presenciales para evitar las ambigüedades propias del lenguaje escrito.</label></li>
+        </ul>
+        <div class="feedback-box" id="fb-s4p15"></div>
+      </div>
+
+    </div>
+    <div class="btn-group">
+      <button class="btn-verificar" onclick="verificar('s4')">✅ Verificar Respuestas</button>
+      <div class="alerta" id="alerta-s4">⚠️ Debes responder todas las preguntas antes de verificar.</div>
+      <button class="btn-reiniciar" id="reiniciar-s4" onclick="reiniciar('s4')">🔄 Reiniciar Semana 4</button>
+    </div>
+    <div class="resultado-panel" id="resultado-s4">
+      <div class="resultado-emoji" id="emoji-s4"></div>
+      <div class="resultado-score" id="score-s4"></div>
+      <div class="resultado-pct" id="pct-s4"></div>
+      <div class="barra-wrapper"><div class="barra-fill" id="barra-s4" style="width:0%"></div></div>
+      <div class="resultado-msg" id="msg-s4"></div>
+    </div>
+  </div><!-- /tab-s4 -->
+
+</div><!-- /content-area -->
+
+<!-- ===== JAVASCRIPT ===== -->
+<script>
+// ---- NAVEGACIÓN DE PESTAÑAS ----
+function showTab(id) {
+  document.querySelectorAll('.tab-content').forEach(function(el) { el.classList.remove('active'); });
+  document.querySelectorAll('.tab-btn').forEach(function(el) { el.classList.remove('active'); });
+  document.getElementById('tab-' + id).classList.add('active');
+  var btns = document.querySelectorAll('.tab-btn');
+  btns.forEach(function(b) { if (b.getAttribute('onclick') && b.getAttribute('onclick').includes("'" + id + "'")) b.classList.add('active'); });
+}
+
+// ---- RESPUESTAS CORRECTAS Y RETROALIMENTACIÓN ----
+var DATA = {
+  s1: {
+    p1: { r:'a', fb:'<div class="fb-titulo">✅ Correcta: A</div>Hablar es la mera emisión de signos orales; comunicar requiere que el mensaje genere un efecto comprensible y verificable en el receptor. <strong>B es incompleta</strong>: la distinción hablar/comunicar no se basa en la modalidad (oral/escrita), sino en la efectividad del proceso. <strong>C es falsa</strong>: comunicar no exige presencia física. <strong>D es errónea</strong>: son conceptualmente distintos, no solo en academia sino en la práctica profesional.' },
+    p2: { r:'a', fb:'<div class="fb-titulo">✅ Correcta: A</div>La comunicación es técnica porque sus fallas tienen consecuencias profesionales directas: informes malentendidos, clientes mal gestionados, hallazgos no reportados. <strong>B</strong> confunde causa con consecuencia. <strong>C</strong> reduce la comunicación a imagen personal. <strong>D</strong> confunde comunicación con idiomas extranjeros.' },
+    p3: { r:'a', fb:'<div class="fb-titulo">✅ Correcta: A</div>La retroalimentación cierra el ciclo comunicativo confirmando si el mensaje fue recibido e interpretado según la intención del emisor. <strong>B</strong> confunde retroalimentación con corrección gramatical. <strong>C</strong> confunde retroalimentación con información sobre el canal. <strong>D</strong> confunde retroalimentación con repetición del mensaje (redundancia).' },
+    p4: { r:'a', fb:'<div class="fb-titulo">✅ Correcta: A</div>El axioma de Watzlawick establece que todo comportamiento —incluido el silencio— es mensaje interpretable. <strong>B</strong> describe el procesamiento cerebral continuo, no el axioma comunicativo. <strong>C</strong> es parcialmente cierta pero no explica el axioma. <strong>D</strong> refiere a la persistencia de documentos escritos, no al principio fundamental.' },
+    p5: { r:'a', fb:'<div class="fb-titulo">✅ Correcta: A</div>El ruido es cualquier interferencia que distorsiona el mensaje: puede ser físico (sonidos), semántico (términos ambiguos), psicológico (prejuicios) o cultural. <strong>B</strong> restringe incorrectamente el ruido solo a lo acústico. <strong>C</strong> describe saturación del mensaje, no ruido en sentido técnico. <strong>D</strong> describe distorsión intencional, que es manipulación, no ruido.' },
+    p6: { r:'a', fb:'<div class="fb-titulo">✅ Correcta: A</div>La crítica central al modelo lineal es que trata al receptor como pasivo e ignora el contexto y la retroalimentación. <strong>B</strong> es falsa: el modelo sí se aplica, aunque con limitaciones, a la comunicación humana. <strong>C</strong> invierte la crítica: el modelo no sobreestima al emisor, sino que lo hace el único agente activo. <strong>D</strong> es lo opuesto: el modelo es criticado por ser demasiado simple, no por incluir demasiadas variables.' },
+    p7: { r:'a', fb:'<div class="fb-titulo">✅ Correcta: A</div>La información es unidireccional (fluye sin confirmar comprensión); la comunicación es bidireccional e implica construcción de significado compartido. <strong>B</strong> confunde objetividad con información. <strong>C</strong> confunde la información con tecnología. <strong>D</strong> divide artificialmente las responsabilidades de emisor y receptor.' },
+    p8: { r:'a', fb:'<div class="fb-titulo">✅ Correcta: A</div>"Recibido" confirma solo la recepción, no la comprensión ni el efecto. La comunicación plena requiere evidencia de procesamiento real del mensaje. <strong>B</strong> es errónea: acusar recibo ≠ comprender. <strong>C</strong> introduce una variable lateral (software) no relevante para el diagnóstico comunicativo. <strong>D</strong> es incorrecta: el correo es un canal válido para informes financieros.' },
+    p9: { r:'a', fb:'<div class="fb-titulo">✅ Correcta: A</div>"Bien" es semánticamente vacío en este contexto; sin retroalimentación clarificadora, el auditor asume un acuerdo que puede no existir. <strong>B</strong> asume un ruido físico no mencionado en el caso. <strong>C</strong> introduce una solución (soporte escrito) sin diagnosticar el problema real. <strong>D</strong> atribuye una causa (redundancia) que el caso no evidencia.' },
+    p10: { r:'a', fb:'<div class="fb-titulo">✅ Correcta: A</div>El contador habla (emite sonidos) pero no comunica porque el receptor no decodifica el mensaje correctamente: el código no es compartido. <strong>B</strong> describe una falla de escritura, no de habla. <strong>C</strong> describe impuntualidad, no una falla comunicativa conceptual. <strong>D</strong> describe un problema de etiqueta profesional, no de la distinción hablar/comunicar.' },
+    p11: { r:'a', fb:'<div class="fb-titulo">✅ Correcta: A</div>La comunicación es una competencia de umbral: sin ella, el conocimiento técnico no puede ser transmitido ni aplicado eficientemente. <strong>B</strong> es una exageración no fundamentada. <strong>C</strong> confunde comunicación con liderazgo. <strong>D</strong> es falsa: la comunicación puede desarrollarse durante toda la vida profesional.' },
+    p12: { r:'a', fb:'<div class="fb-titulo">✅ Correcta: A</div>El miedo es un ruido psicológico interno que distorsiona el mensaje antes de ser emitido (autocensura). <strong>B</strong> confunde la causa: no es falta de vocabulario técnico, sino miedo a la reacción. <strong>C</strong> confunde el canal con la causa del problema. <strong>D</strong> confunde exceso de feedback (que no es una categoría de error reconocida) con la causa real.' },
+    p13: { r:'a', fb:'<div class="fb-titulo">✅ Correcta: A</div>El mensaje fue enviado pero no diseñado para el receptor: la comunicación requiere considerar la capacidad y el contexto del destinatario. <strong>B</strong> traslada la responsabilidad al cliente, ignorando que el emisor debe adaptar el mensaje. <strong>C</strong> introduce el canal como causa, pero el problema es el diseño del mensaje, no el medio. <strong>D</strong> propone una solución (seguimiento) que no aborda el problema de diseño del informe.' },
+    p14: { r:'a', fb:'<div class="fb-titulo">✅ Correcta: A</div>El silencio es ambiguo (puede significar confusión, desacuerdo o aburrimiento) y María debió verificar activamente la retroalimentación del directorio. <strong>B</strong> es incorrecta: quien emite el mensaje es responsable de verificar su comprensión. <strong>C</strong> atribuye el silencio a la duración, no a la ausencia de verificación. <strong>D</strong> asume que recepción = comprensión = satisfacción, error ya analizado en la semana.' },
+    p15: { r:'a', fb:'<div class="fb-titulo">✅ Correcta: A</div>La retroalimentación frecuente permite corregir errores de interpretación antes de que se conviertan en problemas mayores: demostración directa del valor de la comunicación bidireccional. <strong>B</strong> atribuye el éxito a la supervisión (efecto Hawthorne), no al proceso comunicativo. <strong>C</strong> generaliza incorrectamente la superioridad de la comunicación oral. <strong>D</strong> atribuye el éxito a la brevedad cuando el factor determinante fue la bidireccionalidad y la frecuencia.' }
+  },
+  s2: {
+    p1: { r:'a', fb:'<div class="fb-titulo">✅ Correcta: A</div>Lenguaje = capacidad universal; lengua = sistema concreto de una comunidad (español, kichwa). <strong>B</strong> es falsa: el lenguaje incluye modalidades oral, escrita y no verbal. <strong>C</strong> invierte la relación: el lenguaje es innato (capacidad bio-cognitiva); la lengua específica es aprendida culturalmente. <strong>D</strong> confunde monólogo con comunicación intrapersonal y no distingue correctamente los conceptos.' },
+    p2: { r:'a', fb:'<div class="fb-titulo">✅ Correcta: A</div>Paraverbal = elementos que acompañan la voz: tono, volumen, ritmo, pausa. No son palabras, pero modifican radicalmente el significado. <strong>B</strong> describe el lenguaje no verbal (kinésico/gestual), no el paraverbal. <strong>C</strong> describe idiomas auxiliares, que no tienen relación con lo paraverbal. <strong>D</strong> describe registros comunicativos escritos, que no son paraverbales.' },
+    p3: { r:'a', fb:'<div class="fb-titulo">✅ Correcta: A</div>Mehrabian: 7% verbal, 38% tono (paraverbal), 55% corporal (no verbal). Este principio aplica especialmente a comunicación con carga emocional. <strong>B, C y D</strong> presentan proporciones incorrectas: ningún estudio atribuye al lenguaje verbal más del 10% del impacto emocional en comunicación cara a cara.' },
+    p4: { r:'a', fb:'<div class="fb-titulo">✅ Correcta: A</div>El procesamiento del mensaje sigue este orden: recepción sensorial → decodificación → procesamiento cognitivo → respuesta afectiva → retroalimentación. <strong>B</strong> invierte la recepción y la decodificación. <strong>C</strong> inserta "memorización inmediata" como segundo paso, lo cual no corresponde al modelo estándar. <strong>D</strong> sitúa el "filtrado emocional" antes de la decodificación semántica, sin base teórica precisa.' },
+    p5: { r:'a', fb:'<div class="fb-titulo">✅ Correcta: A</div>El icono se asemeja físicamente a su referente (foto, pictograma); el símbolo es arbitrario y convencional (bandera, cruz roja). <strong>B</strong> es incorrecta: los símbolos también pueden ser visuales. <strong>C</strong> es falsa: la supuesta universalidad de los iconos es relativa al contexto cultural. <strong>D</strong> no tiene base teórica: la distinción no se relaciona con lo digital vs. analógico.' },
+    p6: { r:'a', fb:'<div class="fb-titulo">✅ Correcta: A</div>Codificar = transformar la intención en señales transmisibles. <strong>B</strong> describe la decodificación (operación del receptor, no del emisor). <strong>C</strong> describe encriptación de seguridad informática, no el proceso comunicativo. <strong>D</strong> describe una función del canal, no de la codificación.' },
+    p7: { r:'a', fb:'<div class="fb-titulo">✅ Correcta: A</div>El contexto (situacional, cultural, relacional) modifica el significado de cualquier mensaje: las mismas palabras significan cosas distintas en contextos distintos. <strong>B</strong> limita incorrectamente el contexto solo al canal. <strong>C</strong> restringe el contexto al entorno físico. <strong>D</strong> es errónea: el contexto afecta tanto mensajes verbales como no verbales, y las palabras no tienen significados fijos.' },
+    p8: { r:'a', fb:'<div class="fb-titulo">✅ Correcta: A</div>Voz monótona = descuido paraverbal; no contacto visual = descuido no verbal. Ambos reducen credibilidad y desconexión emocional. <strong>B</strong> es incorrecta: el lenguaje verbal no está mencionado como deficiente en el caso. <strong>C</strong> confunde el descuido con un problema de formato escrito. <strong>D</strong> confunde lo icónico (gráficos) con lo no verbal corporal.' },
+    p9: { r:'a', fb:'<div class="fb-titulo">✅ Correcta: A</div>Adaptar el vocabulario al receptor es la acción prioritaria cuando hay brecha de conocimiento técnico. <strong>B</strong> es incompleta: lo no verbal solo refuerza el mensaje; sin claridad verbal, no basta. <strong>C</strong> es inadecuada como única respuesta: un informe sin explicación verbal puede ser igualmente incomprensible para el empresario. <strong>D</strong> es superficial: el paraverbal ayuda a transmitir urgencia pero no resuelve el problema de comprensión léxica.' },
+    p10: { r:'a', fb:'<div class="fb-titulo">✅ Correcta: A</div>En auditoría, el lenguaje denotativo garantiza precisión y evita interpretaciones subjetivas que comprometan la validez del informe. <strong>B</strong> es riesgosa: el lenguaje connotativo en conclusiones puede comprometer la objetividad. <strong>C</strong> es incorrecta: el lenguaje connotativo en auditoría puede crear ambigüedades legales. <strong>D</strong> es falsa: la distinción denotación/connotación es fundamental en cualquier comunicación profesional.' },
+    p11: { r:'a', fb:'<div class="fb-titulo">✅ Correcta: A</div>La involuntariedad del lenguaje no verbal lo hace difícil de controlar y, por ende, más confiable para evaluar autenticidad. <strong>B</strong> es falsa: el lenguaje no verbal no es universal; varía culturalmente. <strong>C</strong> es incorrecta: el lenguaje verbal puede sufrir igual o menos ruido físico dependiendo del canal. <strong>D</strong> es una simplificación neurológica incorrecta.' },
+    p12: { r:'a', fb:'<div class="fb-titulo">✅ Correcta: A</div>"Cargo" tiene múltiples significados que pueden generar interpretaciones divergentes en un mismo contexto. <strong>B</strong> es incorrecta: "balance" en física y en contabilidad tiene significados distintos, no el mismo. <strong>C</strong> confunde polisemia con uso de sinónimos. <strong>D</strong> confunde polisemia con variación dialectal (que sería un fenómeno fonológico o léxico regional).' },
+    p13: { r:'a', fb:'<div class="fb-titulo">✅ Correcta: A</div>La incongruencia verbal/no verbal es un indicador auditivo de posible ocultamiento; el auditor debe profundizar con evidencia adicional. <strong>B</strong> normaliza los gestos sin considerar su función comunicativa. <strong>C</strong> contradice el principio de que el lenguaje no verbal es igualmente válido como fuente de información. <strong>D</strong> atribuye la incongruencia a un problema de comprensión cuando el gerente claramente comprendió la pregunta.' },
+    p14: { r:'a', fb:'<div class="fb-titulo">✅ Correcta: A</div>"Oportuna" es un término vago sin referente temporal objetivo: cada receptor lo decodificó según su propio estándar. La solución es precisión léxica. <strong>B</strong> identifica el canal como problema, pero el problema real es la imprecisión léxica. <strong>C</strong> traslada la responsabilidad al receptor cuando el error está en el diseño del mensaje. <strong>D</strong> es parcialmente válida como causa adicional, pero no es el origen principal de la ambigüedad interpretativa.' },
+    p15: { r:'a', fb:'<div class="fb-titulo">✅ Correcta: A</div>El éxito se explica por la adecuación del código al receptor: se seleccionó el tipo de lenguaje y nivel de complejidad apropiados para los destinatarios. <strong>B</strong> identifica la redundancia, que es un efecto secundario, no el principio explicativo central. <strong>C</strong> generaliza incorrectamente la superioridad del lenguaje visual sobre el verbal. <strong>D</strong> confunde brevedad con adecuación: el principio de simplicidad no es el factor central aquí.' }
+  },
+  s3: {
+    p1: { r:'a', fb:'<div class="fb-titulo">✅ Correcta: A</div>Reptiliano = supervivencia/instinto; límbico = emociones/memoria emocional; neocórtex = razón/lenguaje/creatividad. <strong>B</strong> invierte las funciones del reptiliano y el límbico. <strong>C</strong> es incorrecta en múltiples dimensiones: el reptiliano no es exclusivo de reptiles y el neocórtex no procesa solo información visual. <strong>D</strong> es falsa: los tres cerebros interactúan constantemente y de forma simultánea.' },
+    p2: { r:'a', fb:'<div class="fb-titulo">✅ Correcta: A</div>La neurocomunicación busca comprender el proceso cerebral del mensaje para diseñar estrategias comunicativas más efectivas. <strong>B</strong> describe tecnologías neuronales (BCI), no neurocomunicación. <strong>C</strong> describe neurología clínica o afasiología, no neurocomunicación. <strong>D</strong> describe electroencefalografía aplicada a lingüística, que es una herramienta, no el propósito de la neurocomunicación.' },
+    p3: { r:'a', fb:'<div class="fb-titulo">✅ Correcta: A</div>Goleman define la IE con cinco dominios: autoconciencia, autorregulación, motivación, empatía, habilidades sociales. <strong>B</strong> incluye el coeficiente intelectual (que Goleman diferencia deliberadamente de la IE) y conceptos no parte de su modelo. <strong>C</strong> mezcla conceptos de autoayuda con componentes del modelo sin rigor teórico. <strong>D</strong> reduce la IE a habilidades sociales, omitiendo los componentes intrapersonales del modelo.' },
+    p4: { r:'a', fb:'<div class="fb-titulo">✅ Correcta: A</div>La autoestima sana permite expresar, escuchar, establecer límites y defender posiciones. La baja genera evasión o agresión. <strong>B</strong> confunde autoestima con competencia técnica. <strong>C</strong> es incorrecta: la autoestima no se relaciona directamente con la velocidad del habla. <strong>D</strong> confunde autoestima con coeficiente intelectual: son constructos psicológicos independientes.' },
+    p5: { r:'a', fb:'<div class="fb-titulo">✅ Correcta: A</div>La comunicación intrapersonal es el diálogo interno: monólogo interior, reflexión, autoevaluación. Es la base de toda comunicación externa. <strong>B</strong> describe comunicación grupal, no intrapersonal. <strong>C</strong> describe comunicación interpersonal íntima, que implica al menos dos personas. <strong>D</strong> es una aplicación particular (revisión de documentos) que no captura la definición completa del concepto.' },
+    p6: { r:'a', fb:'<div class="fb-titulo">✅ Correcta: A</div>La amígdala activa la respuesta antes de que el neocórtex procese racionalmente, generando reacciones impulsivas (pelea, huida, bloqueo). <strong>B</strong> no describe el secuestro amigdalino: el bloqueo del habla es un fenómeno diferente. <strong>C</strong> invierte la relación: es la amígdala la que inhibe al neocórtex, no al revés. <strong>D</strong> describe lo opuesto al secuestro amigdalino: en el secuestro, la emoción anula la razón.' },
+    p7: { r:'a', fb:'<div class="fb-titulo">✅ Correcta: A</div>Asertiva = firmeza + respeto; agresiva = imposición sin respeto; pasiva = omisión por miedo. <strong>B</strong> normaliza la agresividad y la pasividad como estrategias válidas en ciertos contextos, lo cual no está respaldado por la teoría comunicativa. <strong>C</strong> reduce los estilos a características de lenguaje superficiales sin capturar su dimensión emocional y relacional. <strong>D</strong> relaciona incorrectamente pasividad con empatía alta.' },
+    p8: { r:'a', fb:'<div class="fb-titulo">✅ Correcta: A</div>El auditor gestionó su propia emoción (autorregulación) y reconoció la del cliente (empatía): dos dimensiones de la IE actuando simultáneamente. <strong>B</strong> la motivación intrínseca refiere al impulso personal interno, no a la adaptación ante la reacción de otro. <strong>C</strong> la autoconciencia refiere a reconocer las propias emociones, no las del cliente. <strong>D</strong> reduce la respuesta del auditor a "cortesía aprendida", ignorando su componente emocional genuino.' },
+    p9: { r:'a', fb:'<div class="fb-titulo">✅ Correcta: A</div>Las narrativas activan el sistema límbico antes que el neocórtex, generando conexión emocional que facilita la recepción de información racional posterior. <strong>B</strong> la simplicidad gramatical puede ayudar pero no es el factor neurológico central. <strong>C</strong> es falsa: el cerebro reptiliano regula supervivencia/instinto y no "rechaza" los números. <strong>D</strong> atribuye al presentador una intención manipuladora que no corresponde al principio comunicativo explicado.' },
+    p10: { r:'a', fb:'<div class="fb-titulo">✅ Correcta: A</div>La comunicación agresiva daña la autoestima del equipo y genera un clima de miedo que inhibe la comunicación ascendente futura. <strong>B</strong> normaliza la agresividad como eficaz, ignorando sus consecuencias sistémicas. <strong>C</strong> la pasivo-agresividad implica mensajes contradictorios no directos; aquí el jefe es explícitamente agresivo. <strong>D</strong> la asertividad nunca incluye generalizaciones ("siempre", "nunca") ni ataques a la identidad del grupo.' },
+    p11: { r:'a', fb:'<div class="fb-titulo">✅ Correcta: A</div>La baja autoestima puede hacer que el auditor omita hallazgos, ceda ante presiones y no defienda sus conclusiones: consecuencias éticas y profesionales directas. <strong>B</strong> confunde autoestima con memoria episódica. <strong>C</strong> traslada la responsabilidad al cliente, lo cual puede ser cierto pero no es la principal consecuencia de la baja autoestima. <strong>D</strong> es incorrecta: el perfeccionismo excesivo se asocia a ansiedad, no necesariamente a baja autoestima.' },
+    p12: { r:'a', fb:'<div class="fb-titulo">✅ Correcta: A</div>Adaptar tono, vocabulario y estructura según el estado emocional percibido en el cliente es IE aplicada a la comunicación. <strong>B</strong> describe supresión emocional, no IE: ocultar emociones puede reducir la conexión con el receptor. <strong>C</strong> describe manipulación emocional, que es éticamente cuestionable y diferente de la IE. <strong>D</strong> es incorrecta: la IE no prescribe evitar el canal oral para garantizar objetividad.' },
+    p13: { r:'a', fb:'<div class="fb-titulo">✅ Correcta: A</div>Sofía tiene el conocimiento pero un patrón comunicativo pasivo (no se permite expresarlo) vinculado a baja autoestima situacional ante su jefe. <strong>B</strong> reduce el problema a habilidades técnicas, ignorando el componente emocional. <strong>C</strong> interpreta la pasividad de Sofía como IE bien aplicada, cuando en realidad es una limitación comunicativa. <strong>D</strong> exculpa a Sofía completamente sin abordar el patrón comunicativo que ella puede modificar.' },
+    p14: { r:'a', fb:'<div class="fb-titulo">✅ Correcta: A</div>El miedo a la reacción del supervisor crea inseguridad psicológica que convierte la comunicación ascendente en comunicación evasiva e informal. <strong>B</strong> introduce una causa estructural (falta de canales) que el caso no evidencia: los canales existen pero no se usan. <strong>C</strong> atribuye el problema a formación técnica cuando el diagnóstico indica que los juniors sí detectan los problemas. <strong>D</strong> es una solución válida pero no el diagnóstico del origen comunicativo del problema.' },
+    p15: { r:'a', fb:'<div class="fb-titulo">✅ Correcta: A</div>El auditor combinó IE (empatía para leer al directorio, autorregulación para planificar), neurocomunicación (estructura que respeta cómo el cerebro procesa información negativa) y estrategia comunicativa. <strong>B</strong> interpreta incorrectamente la estrategia como comunicación pasiva; presentar primero los positivos y contextualizar es una técnica legítima y ética. <strong>C</strong> confunde adaptación estratégica con manipulación: no se alteran los hallazgos, solo la estructura de presentación. <strong>D</strong> atribuye el éxito solo a la autoestima, ignorando las competencias de IE y neurocomunicación aplicadas.' }
+  },
+  s4: {
+    p1: { r:'a', fb:'<div class="fb-titulo">✅ Correcta: A</div>Leer es comunicarse con un texto: el lector no es pasivo sino que interpreta, cuestiona y construye significado activamente. <strong>B</strong> es verdadera pero parcial: el vocabulario es un beneficio, no la razón por la que la lectura es una competencia comunicativa. <strong>C</strong> confunde lectura silenciosa con lectura en voz alta y no capta el proceso communicativo de la lectura. <strong>D</strong> confunde velocidad lectora con inteligencia lingüística: no son equivalentes.' },
+    p2: { r:'a', fb:'<div class="fb-titulo">✅ Correcta: A</div>La lectura comprensiva capta el sentido literal; la lectura crítica evalúa la validez, los supuestos y la intención del autor. <strong>B</strong> describe diferencias de método superficiales sin capturar la distinción conceptual central. <strong>C</strong> es incorrecta: ambos tipos de lectura aplican a cualquier tipo de texto. <strong>D</strong> es falsa: la lectura crítica también es un proceso individual, aunque puede enriquecerse con el debate.' },
+    p3: { r:'a', fb:'<div class="fb-titulo">✅ Correcta: A</div>La puntuación organiza, jerarquiza y puede cambiar el significado de una oración: es un componente semántico, no solo ortográfico. <strong>B</strong> niega la existencia de reglas de puntuación, lo cual es incorrecto. <strong>C</strong> reduce la puntuación a una función fisiológica (pausas respiratorias), ignorando su función semántica. <strong>D</strong> excluye incorrectamente los documentos técnicos del ámbito de la puntuación significativa.' },
+    p4: { r:'a', fb:'<div class="fb-titulo">✅ Correcta: A</div>La coma entre "comer" y "niños" cambia radicalmente el significado: vocativo vs. objeto directo. Demostración directa del valor semántico de la puntuación. <strong>B</strong> atribuye el cambio de significado al orden de palabras, pero ambas oraciones tienen el mismo orden y solo difieren en la coma. <strong>C</strong> es incorrecta: todos los signos de puntuación tienen función semántica (el punto final también delimita el alcance de las ideas). <strong>D</strong> relativiza el rol de la puntuación en favor del contexto, lo cual es incorrecto en este ejemplo tan directo.' },
+    p5: { r:'a', fb:'<div class="fb-titulo">✅ Correcta: A</div>La comprensión inferencial va más allá del texto explícito: deduce lo no dicho usando indicios, contexto y conocimiento previo. <strong>B</strong> describe la lectura selectiva o de extracción de ideas principales, que es diferente de la inferencia. <strong>C</strong> describe una metacognición sobre el autor, no una inferencia sobre el contenido del texto. <strong>D</strong> describe lectura comparativa entre textos, no comprensión inferencial de un texto individual.' },
+    p6: { r:'a', fb:'<div class="fb-titulo">✅ Correcta: A</div>Los filtros del receptor son sus creencias, experiencias, valores y emociones que condicionan la interpretación del mensaje. <strong>B</strong> describe mecanismos sensoriales neurológicos, que son distintos de los filtros cognitivos y culturales. <strong>C</strong> confunde filtros con normas gramaticales del receptor: no es lo mismo. <strong>D</strong> describe filtros tecnológicos anti-spam, concepto ajeno a la teoría de la comunicación humana.' },
+    p7: { r:'a', fb:'<div class="fb-titulo">✅ Correcta: A</div>La lectura amplía vocabulario activo, expone a estructuras argumentativas diversas y desarrolla capacidad analítica y productiva. <strong>B</strong> introduce un requisito legal inexistente (SENESCYT no exige horas de lectura). <strong>C</strong> asocia la lectura con memorización de estándares, lo cual es un beneficio muy limitado que no captura el valor comunicativo. <strong>D</strong> aunque la creatividad puede beneficiarse de la lectura literaria, no es la razón principal de su impacto en la competencia comunicativa profesional.' },
+    p8: { r:'a', fb:'<div class="fb-titulo">✅ Correcta: A</div>La ausencia de coma antes de "no obstante" hace que el conector parezca ampliar (en lugar de contradecir) la afirmación anterior: el lector puede interpretar que no hay irregularidades Y tampoco necesidad de revisar. <strong>B</strong> introduce un problema de extensión y una afirmación sobre el conector que es incorrecta. <strong>C</strong> diagnostica un problema de coherencia lógica, no de puntuación. <strong>D</strong> diagnostica un error sintáctico de sujeto cuando el problema real es de puntuación.' },
+    p9: { r:'a', fb:'<div class="fb-titulo">✅ Correcta: A</div>La exposición a múltiples registros y estructuras permite adaptación comunicativa flexible: es el beneficio central de la lectura habitual y variada. <strong>B</strong> reduce el beneficio a memorización de vocabulario técnico, ignorando el desarrollo de capacidad adaptativa. <strong>C</strong> confunde velocidad lectora con capacidad comunicativa. <strong>D</strong> introduce los libros de autoayuda como fuente de motivación, lo cual no es el beneficio comunicativo principal de la lectura.' },
+    p10: { r:'a', fb:'<div class="fb-titulo">✅ Correcta: A</div>El punto y coma separa correctamente dos cláusulas independientes que comparten una relación lógica de contraste (aumento + crecimiento de costos → reducción de margen). <strong>B</strong> usa el punto y coma incorrectamente para separar sujeto de predicado, error gramatical grave. <strong>C</strong> usa punto y coma donde deberían ir comas en una enumeración simple. <strong>D</strong> usa el punto y coma como pausa dramática, función que no le corresponde.' },
+    p11: { r:'a', fb:'<div class="fb-titulo">✅ Correcta: A</div>Sin lectura habitual, el vocabulario activo se estanca y la capacidad argumentativa escrita se deteriora: consecuencias directas en la calidad profesional. <strong>B</strong> introduce un requisito legal de lectura que la FENACOP no establece. <strong>C</strong> confunde habilidades lingüísticas con capacidades matemáticas: son competencias distintas. <strong>D</strong> confunde la lectura como herramienta de inteligencia competitiva con su función de desarrollo comunicativo.' },
+    p12: { r:'a', fb:'<div class="fb-titulo">✅ Correcta: A</div>La coma entre el sujeto y el predicado ("El gerente financiero, autorizó") es un error de puntuación que puede introducir ambigüedad o parecer un inciso interrumpido, alterando la lectura natural de la oración. <strong>B</strong> el uso de punto y coma en esa oración es técnicamente correcto para separar cláusulas relacionadas. <strong>C</strong> las comas que enmarcan "razonablemente" son un inciso correctamente usado y no crean ambigüedad. <strong>D</strong> la ausencia de punto al final de una oración es un error tipográfico, no semántico de la misma magnitud.' },
+    p13: { r:'a', fb:'<div class="fb-titulo">✅ Correcta: A</div>Dos oraciones independientes sin separación generan fusión de ideas: un punto o punto y coma habría delimitado claramente el alcance de cada afirmación. <strong>B</strong> atribuye el problema al vocabulario jurídico cuando el problema principal es la ausencia de separación entre las dos oraciones. <strong>C</strong> las comillas no son el recurso apropiado para delimitar cláusulas en un documento legal. <strong>D</strong> un índice no habría resuelto el problema de ambigüedad interno de esa oración específica.' },
+    p14: { r:'a', fb:'<div class="fb-titulo">✅ Correcta: A</div>La escasa lectura limita el vocabulario activo: el estudiante comprende cuando lee (vocabulario pasivo) pero no puede producir con la misma riqueza (vocabulario activo limitado). <strong>B</strong> puede ser una causa adicional pero no explica las dificultades de redacción escrita, donde la ansiedad oral no interfiere directamente. <strong>C</strong> la oratoria ayuda con lo oral pero no desarrolla la capacidad de argumentación escrita ni el vocabulario activo de producción. <strong>D</strong> puede ser un factor institucional, pero el diagnóstico del caso apunta a hábitos personales de lectura, no a la malla curricular.' },
+    p15: { r:'a', fb:'<div class="fb-titulo">✅ Correcta: A</div>La ambigüedad sintáctica de la oración (el alcance del modificador "adicionales") permite dos segmentaciones igualmente válidas para lectores distintos. <strong>B</strong> puede ser un factor contribuyente pero no explica por qué lectores igualmente capacitados llegan a conclusiones opuestas. <strong>C</strong> atribuye el problema a las escuelas de interpretación jurídica, ignorando que el origen está en la redacción ambigua del texto. <strong>D</strong> propone un cambio de canal que no necesariamente resuelve la ambigüedad del texto: el mismo enunciado ambiguo dicho oralmente seguiría siendo ambiguo.' }
+  }
+};
+
+// ---- VERIFICAR ----
+function verificar(sem) {
+  var d = DATA[sem];
+  var total = Object.keys(d).length;
+  var sinResponder = [];
+  Object.keys(d).forEach(function(p) {
+    if (!document.querySelector('input[name="' + sem + p + '"]:checked')) sinResponder.push(p);
+  });
+  if (sinResponder.length > 0) {
+    document.getElementById('alerta-' + sem).classList.add('show');
+    var firstItem = document.getElementById('pi-' + sem + sinResponder[0]);
+    if (firstItem) firstItem.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    return;
+  }
+  document.getElementById('alerta-' + sem).classList.remove('show');
+  var correctas = 0;
+  Object.keys(d).forEach(function(p) {
+    var info = d[p];
+    var name = sem + p;
+    var selected = document.querySelector('input[name="' + name + '"]:checked');
+    var item = document.getElementById('pi-' + sem + p);
+    var fbEl = document.getElementById('fb-' + sem + p);
+    // Deshabilitar todas
+    document.querySelectorAll('input[name="' + name + '"]').forEach(function(inp) {
+      inp.disabled = true;
+      var lbl = inp.parentElement;
+      lbl.classList.remove('seleccionada');
+      if (inp.value === info.r) lbl.classList.add('correcta-marcada');
+    });
+    if (selected.value === info.r) {
+      correctas++;
+      item.classList.add('correcta');
+      fbEl.className = 'feedback-box correcto show';
+      fbEl.innerHTML = info.fb;
+    } else {
+      item.classList.add('incorrecta');
+      selected.parentElement.classList.add('incorrecta-op');
+      fbEl.className = 'feedback-box incorrecto show';
+      fbEl.innerHTML = '<div class="fb-titulo">❌ Incorrecto</div>La respuesta correcta es la opción <strong>' + info.r.toUpperCase() + '</strong>. ' + info.fb.replace('<div class="fb-titulo">✅ Correcta: ' + info.r.toUpperCase() + '</div>', '');
+    }
+  });
+  // Mostrar resultado
+  var pct = Math.round((correctas / total) * 100);
+  var emojis = ['📖','⚠️','📘','🎯','🏆'];
+  var msgs = [
+    'Necesitas reforzar los conceptos de esta semana. Vuelve a revisar el material y reinténtalo.',
+    'Vas por buen camino, pero hay conceptos que necesitan más atención. ¡No te rindas!',
+    'Buen progreso. Con un poco más de repaso estarás listo para el examen.',
+    'Muy bien. Dominas los conceptos centrales. Refuerza los puntos que fallaste.',
+    '¡Excelente! Dominio completo de esta semana. ¡Listo para el examen!'
+  ];
+  var idx = pct === 100 ? 4 : pct >= 80 ? 3 : pct >= 60 ? 2 : pct >= 40 ? 1 : 0;
+  document.getElementById('emoji-' + sem).textContent = emojis[idx];
+  document.getElementById('score-' + sem).textContent = correctas + ' / ' + total;
+  document.getElementById('pct-' + sem).textContent = pct + '% de respuestas correctas';
+  document.getElementById('msg-' + sem).textContent = msgs[idx];
+  var resultDiv = document.getElementById('resultado-' + sem);
+  resultDiv.classList.add('show');
+  setTimeout(function() {
+    document.getElementById('barra-' + sem).style.width = pct + '%';
+  }, 100);
+  document.getElementById('reiniciar-' + sem).style.display = 'block';
+  resultDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+// ---- REINICIAR ----
+function reiniciar(sem) {
+  var d = DATA[sem];
+  Object.keys(d).forEach(function(p) {
+    var name = sem + p;
+    document.querySelectorAll('input[name="' + name + '"]').forEach(function(inp) {
+      inp.disabled = false;
+      inp.checked = false;
+      inp.parentElement.classList.remove('seleccionada', 'correcta-op', 'incorrecta-op', 'correcta-marcada');
+    });
+    var item = document.getElementById('pi-' + sem + p);
+    item.classList.remove('correcta', 'incorrecta', 'respondida');
+    document.getElementById('fb-' + sem + p).className = 'feedback-box';
+    document.getElementById('fb-' + sem + p).innerHTML = '';
+  });
+  document.getElementById('resultado-' + sem).classList.remove('show');
+  document.getElementById('reiniciar-' + sem).style.display = 'none';
+  document.getElementById('alerta-' + sem).classList.remove('show');
+  document.getElementById('barra-' + sem).style.width = '0%';
+  document.querySelector('.semana-header').scrollIntoView({ behavior: 'smooth' });
+}
+
+// ---- MARCAR SELECCIÓN VISUAL ----
+document.addEventListener('change', function(e) {
+  if (e.target.type === 'radio') {
+    var name = e.target.name;
+    document.querySelectorAll('input[name="' + name + '"]').forEach(function(inp) {
+      inp.parentElement.classList.remove('seleccionada');
+    });
+    e.target.parentElement.classList.add('seleccionada');
+    var pId = 'pi-' + name;
+    var el = document.getElementById(pId);
+    if (el) el.classList.add('respondida');
+  }
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,911 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Semana 6B – El Autoboicot | Universidad de Guayaquil</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --az:#003366;--azm:#0052A3;--cel:#87CEEB;--celc:#E6F1FB;
+  --do:#FFB81C;--doc:#FFF3CC;--gc:#f4f6fa;
+  --ve:#1a7a3c;--vec:#e8f5ed;--ro:#c0392b;--roc:#fdecea;
+  --na:#e07b00;--mo:#6a0dad;--moc:#f3eafd;--gt:#444;
+  --sh:0 2px 12px rgba(0,51,102,.10);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Source Sans 3',sans-serif;background:var(--gc);color:#222}
+
+.hdr{background:var(--az);color:#fff}
+.hdr-t{display:flex;align-items:center;gap:18px;padding:14px 28px}
+.logo{width:58px;height:58px;background:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:900;color:var(--az);flex-shrink:0;font-family:'Lora',serif}
+.hdr-i h1{font-family:'Lora',serif;font-size:1.1rem;font-weight:700;line-height:1.25}
+.hdr-i p{font-size:.82rem;opacity:.85;margin-top:2px}
+.hdr-b{display:flex;gap:8px;padding:0 28px 12px;flex-wrap:wrap}
+.bdg{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);padding:3px 12px;border-radius:20px;font-size:.75rem}
+.bdg.d{background:var(--mo);color:#fff;border-color:var(--mo);font-weight:700}
+.bdg.u{background:var(--ve);color:#fff;border-color:var(--ve);font-weight:700}
+
+.tw{background:var(--cel);overflow-x:auto;white-space:nowrap;border-bottom:3px solid var(--az);scrollbar-width:thin;scrollbar-color:var(--az) var(--cel)}
+.tw::-webkit-scrollbar{height:5px}
+.tw::-webkit-scrollbar-thumb{background:var(--az);border-radius:3px}
+.tn{display:inline-flex;padding:0 8px;gap:2px}
+.tb{display:inline-block;padding:10px 16px;font-size:.82rem;font-weight:600;color:#1a1a2e;background:transparent;border:none;cursor:pointer;border-bottom:3px solid transparent;transition:all .2s;white-space:nowrap;border-radius:6px 6px 0 0;margin-top:4px;font-family:'Source Sans 3',sans-serif}
+.tb:hover{background:rgba(255,255,255,.5)}
+.tb.ac{background:#fff;color:var(--az);font-weight:700;border-bottom:3px solid var(--az)}
+
+.tc{display:none;padding:28px;max-width:960px;margin:0 auto;animation:fi .3s ease}
+.tc.ac{display:block}
+@keyframes fi{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+h2.st{font-family:'Lora',serif;font-size:1.5rem;color:var(--az);margin-bottom:6px;line-height:1.3}
+h3.ss{font-family:'Lora',serif;font-size:1.1rem;color:var(--azm);margin:20px 0 8px}
+p{line-height:1.75;margin-bottom:12px;font-size:.97rem;color:var(--gt)}
+hr.dv{height:2px;background:linear-gradient(to right,var(--azm),transparent);margin:22px 0;border:none}
+
+.bc{border-left:5px solid var(--azm);background:var(--celc);padding:14px 18px;border-radius:0 8px 8px 0;margin:16px 0}
+.bc .eq{font-size:.73rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--azm);margin-bottom:4px}
+.bc p{margin:0;font-size:.96rem}
+.be{background:#deeeff;border-radius:10px;padding:14px 18px;margin:14px 0;border-left:4px solid var(--azm)}
+.be .eq{font-size:.73rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--az);margin-bottom:6px}
+.be p{margin:0;font-size:.95rem}
+.bk{background:var(--doc);border-left:5px solid var(--do);border-radius:0 8px 8px 0;padding:14px 18px;margin:20px 0 8px}
+.bk .eq{font-size:.73rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--na);margin-bottom:4px}
+.bk p{margin:0;font-size:.96rem;color:#5a3800}
+.bmo{background:var(--moc);border-left:5px solid var(--mo);border-radius:0 8px 8px 0;padding:14px 18px;margin:16px 0}
+.bmo .eq{font-size:.73rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--mo);margin-bottom:4px}
+.bmo p{margin:0;font-size:.96rem;color:#3a006f}
+
+.cita{background:var(--az);color:#fff;border-radius:12px;padding:22px 26px;margin:20px 0;position:relative;overflow:hidden}
+.cita::before{content:'"';font-size:5rem;font-family:'Lora',serif;opacity:.12;position:absolute;top:-10px;left:14px}
+.cita p{color:#fff;font-size:1.02rem;font-style:italic;line-height:1.65;margin:0;position:relative}
+.cita .au{font-style:normal;font-size:.82rem;opacity:.8;margin-top:8px;display:block}
+
+.tbl{overflow-x:auto;margin:16px 0;border-radius:8px;box-shadow:var(--sh)}
+table{width:100%;border-collapse:collapse;font-size:.9rem}
+th{background:var(--az);color:#fff;padding:10px 14px;text-align:left;font-weight:600}
+td{padding:9px 14px;border-bottom:1px solid #dde4f0;vertical-align:top}
+tr:nth-child(even) td{background:var(--celc)}
+tr:last-child td{border-bottom:none}
+
+.g2{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin:18px 0}
+.g3{display:grid;grid-template-columns:repeat(auto-fit,minmax(175px,1fr));gap:14px;margin:16px 0}
+.card{background:#fff;border-radius:12px;padding:18px;box-shadow:var(--sh);border-top:4px solid var(--azm);transition:transform .2s}
+.card:hover{transform:translateY(-3px)}
+.card .ic{font-size:2rem;margin-bottom:8px}
+.card h4{font-family:'Lora',serif;color:var(--az);font-size:.97rem;margin-bottom:6px}
+.card p{font-size:.87rem;margin:0;color:#555}
+.card.ro{border-top-color:var(--ro)}
+.card.ve{border-top-color:var(--ve)}
+.card.mo{border-top-color:var(--mo)}
+.card.do{border-top-color:var(--do)}
+
+/* TRAMPA CARDS */
+.trampa{background:#fff;border-radius:12px;padding:20px;margin-bottom:16px;box-shadow:var(--sh);border-left:5px solid var(--ro)}
+.trampa .t-header{display:flex;align-items:center;gap:12px;margin-bottom:10px}
+.trampa .t-ico{font-size:2rem}
+.trampa .t-titulo{font-family:'Lora',serif;color:var(--ro);font-size:1rem}
+.trampa .t-frase{background:var(--roc);border-radius:8px;padding:8px 14px;font-style:italic;font-size:.92rem;color:#7b241c;margin-bottom:10px;border-left:3px solid var(--ro)}
+.trampa p{font-size:.88rem;margin:0 0 8px;color:#444}
+.trampa .t-salida{background:var(--vec);border-radius:8px;padding:8px 14px;font-size:.88rem;color:#145a32;border-left:3px solid var(--ve)}
+.trampa .t-salida strong{color:#145a32}
+
+/* ZONA DE CONFORT visual */
+.zona-wrap{position:relative;margin:20px 0;padding:20px;background:#fff;border-radius:14px;box-shadow:var(--sh)}
+.zona-anillo{border-radius:50%;display:flex;align-items:center;justify-content:center;text-align:center;margin:0 auto}
+.za4{width:320px;height:320px;background:#f3eafd;border:3px dashed var(--mo);padding:20px}
+.za3{width:240px;height:240px;background:#fff8e1;border:3px dashed var(--na)}
+.za2{width:170px;height:170px;background:#fdecea;border:3px dashed var(--ro)}
+.za1{width:100px;height:100px;background:#e8f5e9;border:3px solid var(--ve);flex-direction:column}
+.zona-label{font-family:'Lora',serif;font-size:.82rem;font-weight:700;margin-bottom:4px}
+.zona-sub{font-size:.72rem;line-height:1.3}
+.za1 .zona-label{color:var(--ve);font-size:.78rem}
+.za1 .zona-sub{color:#145a32}
+.za2 .zona-label{color:var(--ro)}
+.za2 .zona-sub{color:#7b241c;margin-top:4px}
+.za3 .zona-label{color:var(--na)}
+.za3 .zona-sub{color:#7a4a00;margin-top:4px}
+.za4 .zona-label{color:var(--mo)}
+.za4 .zona-sub{color:#3a006f;margin-top:4px}
+
+/* PERSONALIDAD TYPES */
+.pers-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin:16px 0}
+.pers-card{border-radius:12px;padding:18px;box-shadow:var(--sh)}
+.pers-card.a{background:#fff0f0;border-top:4px solid var(--ro)}
+.pers-card.b{background:#fff8e1;border-top:4px solid var(--na)}
+.pers-card.c{background:var(--vec);border-top:4px solid var(--ve)}
+.pers-card h4{font-family:'Lora',serif;font-size:.97rem;margin-bottom:8px}
+.pers-card.a h4{color:var(--ro)}
+.pers-card.b h4{color:var(--na)}
+.pers-card.c h4{color:var(--ve)}
+.pers-card p{font-size:.87rem;margin:0;color:#444}
+
+/* PASOS SALIDA */
+.paso{display:flex;gap:14px;background:#fff;border-radius:10px;padding:14px 16px;box-shadow:var(--sh);margin-bottom:8px;align-items:flex-start}
+.paso-n{background:var(--mo);color:#fff;min-width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.88rem;flex-shrink:0}
+.paso h4{font-family:'Lora',serif;color:var(--az);font-size:.93rem;margin-bottom:3px}
+.paso p{font-size:.87rem;margin:0;color:#555}
+
+/* SEMÁFORO */
+.sem{display:flex;gap:10px;flex-wrap:wrap;margin:14px 0}
+.sem-i{flex:1;min-width:140px;border-radius:10px;padding:12px;text-align:center}
+.sem-i.ve{background:var(--vec);border:2px solid var(--ve)}
+.sem-i.am{background:#fffde7;border:2px solid #f9a825}
+.sem-i.ro{background:var(--roc);border:2px solid var(--ro)}
+.sem-i .sico{font-size:1.4rem}
+.sem-i h5{font-size:.83rem;font-weight:700;margin:4px 0;color:#333}
+.sem-i p{font-size:.76rem;margin:0;color:#555}
+
+.li{list-style:none;margin:12px 0}
+.li li{padding:6px 0 6px 24px;position:relative;font-size:.93rem;color:var(--gt);border-bottom:1px dashed #dde}
+.li li:last-child{border-bottom:none}
+.li li::before{content:'▸';position:absolute;left:4px;color:var(--mo)}
+
+/* REPASO */
+.rg{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin:16px 0}
+.rc{background:#fff;border-radius:10px;padding:16px;box-shadow:var(--sh);border-top:3px solid var(--do)}
+.rc h4{font-family:'Lora',serif;color:var(--az);font-size:.93rem;margin-bottom:6px}
+.rc p{font-size:.85rem;margin:0;color:#555}
+
+/* EJERCICIO/CUESTIONARIO */
+.ei{background:var(--mo);color:#fff;border-radius:12px;padding:18px 22px;margin-bottom:22px}
+.ei h3{font-family:'Lora',serif;font-size:1.1rem;margin-bottom:6px}
+.ei p{color:rgba(255,255,255,.9);font-size:.9rem;margin:0}
+.ej-item{background:#fff;border-radius:10px;padding:18px;margin-bottom:14px;box-shadow:var(--sh);border-left:4px solid var(--cel)}
+.preg{font-weight:600;font-size:.95rem;color:var(--az);margin-bottom:12px}
+.opts{display:flex;flex-direction:column;gap:8px}
+.opt{display:flex;align-items:flex-start;gap:10px;padding:9px 14px;border:2px solid #cdd8ea;border-radius:8px;cursor:pointer;font-size:.9rem;transition:all .2s;background:var(--gc);line-height:1.5}
+.opt:hover{border-color:var(--azm);background:var(--celc)}
+.opt input{accent-color:var(--mo);width:16px;height:16px;flex-shrink:0;margin-top:2px}
+.opt.ok{border-color:var(--ve);background:var(--vec)}
+.opt.fail{border-color:var(--ro);background:var(--roc)}
+.ej-fb{display:none;margin-top:10px;padding:10px 14px;border-radius:8px;font-size:.88rem;line-height:1.6}
+.ej-fb.show{display:block}
+.ej-fb.ok{background:var(--vec);color:#145a32;border-left:4px solid var(--ve)}
+.ej-fb.fail{background:var(--roc);color:#7b241c;border-left:4px solid var(--ro)}
+.btn-v{background:var(--mo);color:#fff;border:none;padding:12px 28px;border-radius:8px;font-size:1rem;font-weight:700;cursor:pointer;transition:background .2s;margin-top:8px}
+.btn-v:hover{background:#8e24aa}
+.btn-r{background:transparent;color:var(--mo);border:2px solid var(--mo);padding:10px 22px;border-radius:8px;font-size:.93rem;font-weight:700;cursor:pointer;margin-left:10px;transition:all .2s}
+.btn-r:hover{background:var(--mo);color:#fff}
+.rp{display:none;background:#fff;border-radius:12px;padding:22px;margin-top:20px;box-shadow:var(--sh);text-align:center}
+.rp.show{display:block}
+.rs{font-size:2.5rem;font-weight:700;color:var(--mo);font-family:'Lora',serif}
+.rpt{font-size:1.1rem;color:#666;margin:4px 0 12px}
+.bo{background:#dde4f0;border-radius:20px;height:14px;overflow:hidden;margin:10px 0}
+.bi{height:100%;border-radius:20px;transition:width 1s ease;background:var(--mo)}
+.rmsg{font-size:1rem;color:var(--gt);margin-top:10px}
+.bt{display:inline-block;padding:2px 10px;border-radius:12px;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;margin-bottom:8px}
+.bt.te{background:var(--celc);color:var(--az)}
+.bt.an{background:var(--moc);color:#4a0080}
+
+/* IA */
+.ia-s{display:flex;gap:14px;background:#fff;border-radius:10px;padding:16px;box-shadow:var(--sh);margin-bottom:16px;align-items:flex-start}
+.ia-n{background:var(--do);color:var(--az);width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.9rem;flex-shrink:0}
+.ia-s h4{font-family:'Lora',serif;color:var(--az);font-size:.95rem;margin-bottom:4px}
+.ia-s p{font-size:.9rem;margin:0;color:#444}
+.pb{background:#1e1e2e;color:#a6e3a1;border-radius:10px;padding:18px 20px;font-family:'Courier New',monospace;font-size:.82rem;line-height:1.7;margin:14px 0;white-space:pre-wrap;word-break:break-word}
+.pb .pl{font-family:'Source Sans 3',sans-serif;font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;color:#89b4fa;margin-bottom:10px;display:block}
+
+/* REFLEXIÓN */
+.ref-c{background:#fff;border-radius:12px;padding:18px 20px;margin-bottom:14px;box-shadow:var(--sh);border-left:5px solid var(--mo);transition:transform .2s}
+.ref-c:hover{transform:translateX(4px)}
+.ref-c .rn{font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--mo);margin-bottom:6px}
+.ref-c p{font-size:.95rem;color:#333;line-height:1.7;margin:0}
+.ref-nota{background:var(--moc);border-radius:10px;padding:14px 18px;margin-top:20px;font-size:.88rem;color:#4a0080;border-left:4px solid var(--mo)}
+
+/* BIBLIO */
+.bib{background:#fff;border-radius:10px;padding:16px 18px;margin-bottom:14px;box-shadow:var(--sh);display:flex;gap:14px;align-items:flex-start}
+.bib-i{background:var(--mo);color:#fff;width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0}
+.bib p{font-size:.88rem;margin:0;line-height:1.6;color:#333}
+.bib-n{background:var(--doc);border:1px solid var(--do);border-radius:8px;padding:12px 16px;font-size:.84rem;color:#6b4200;margin-top:18px}
+
+@media(max-width:640px){.tc{padding:18px 14px}h2.st{font-size:1.25rem}.hdr-t{padding:12px 16px}.za4{width:280px;height:280px}.za3{width:210px;height:210px}.za2{width:148px;height:148px}.za1{width:88px;height:88px}}
+</style>
+</head>
+<body>
+
+<header class="hdr">
+  <div class="hdr-t">
+    <div class="logo">UG</div>
+    <div class="hdr-i">
+      <h1>Universidad de Guayaquil · Facultad de Ciencias Administrativas</h1>
+      <p>Carrera en Contabilidad y Auditoría &nbsp;|&nbsp; Materia: Lenguaje y Comunicación</p>
+    </div>
+  </div>
+  <div class="hdr-b">
+    <span class="bdg d">Semana 6B</span>
+    <span class="bdg u">Unidad 2 — Habilidades para comunicar y producir</span>
+    <span class="bdg">El Autoboicot · Bernardo Stamateas</span>
+    <span class="bdg">← Viene de 6A</span>
+  </div>
+</header>
+
+<nav class="tw">
+  <div class="tn">
+    <button class="tb ac" onclick="ST('rp',this)">📋 Repaso 6A</button>
+    <button class="tb" onclick="ST('t1',this)">1. ¿Qué es el Autoboicot?</button>
+    <button class="tb" onclick="ST('t2',this)">2. Las Trampas Mentales</button>
+    <button class="tb" onclick="ST('t3',this)">3. Zona de Confort</button>
+    <button class="tb" onclick="ST('t4',this)">4. Factores Limitantes</button>
+    <button class="tb" onclick="ST('t5',this)">5. Superar el Autoboicot</button>
+    <button class="tb" onclick="ST('ej',this)">6. Ejercicio Interactivo</button>
+    <button class="tb" onclick="ST('cu',this)">7. Cuestionario</button>
+    <button class="tb" onclick="ST('ia',this)">8. Actividad con IA</button>
+    <button class="tb" onclick="ST('re',this)">9. Reflexión</button>
+    <button class="tb" onclick="ST('bi',this)">10. Bibliografía</button>
+  </div>
+</nav>
+
+<!-- REPASO 6A -->
+<div id="rp" class="tc ac">
+  <h2 class="st">📋 Conexión con la Semana 6A</h2>
+  <p>En la Semana 6A estudiamos las <strong>habilidades comunicativas técnicas</strong>: oratoria, retórica, fluidez verbal, interpretación, evaluación, persuasión y el arte del diálogo eficaz. Ahora surge la pregunta más importante de todo el curso:</p>
+
+  <div class="bmo">
+    <div class="eq">🧠 La pregunta clave</div>
+    <p>Si ya conoces las técnicas de oratoria, la retórica clásica, la persuasión y el diálogo eficaz… ¿por qué hay momentos en que aun así no puedes hablar con seguridad? ¿Por qué hay situaciones donde te quedas callado cuando deberías hablar? ¿Por qué sigues evitando ciertas presentaciones, ciertos clientes, ciertos conflictos? La respuesta no está en el exterior: está adentro. Se llama <strong>Autoboicot</strong>.</p>
+  </div>
+
+  <div class="rg">
+    <div class="rc"><h4>🎤 Oratoria y retórica</h4><p>Las 5 partes del discurso: Inventio, Dispositio, Elocutio, Memoria, Actio. La oratoria como piedra angular de la competencia comunicativa.</p></div>
+    <div class="rc"><h4>〰️ Fluidez e interpretación</h4><p>La fluidez verbal como habilidad adquirida culturalmente. Los cuatro niveles de interpretación: literal, inferencial, crítico e intencional.</p></div>
+    <div class="rc"><h4>⚖️ Persuasión y evaluación</h4><p>La diferencia entre persuadir, sugerir, manipular y coercionar. Las condiciones para el diálogo eficaz. Las conversaciones que no terminan bien.</p></div>
+    <div class="rc"><h4>🔗 ¿Qué conecta todo?</h4><p>El conocimiento técnico sin trabajo interior es conocimiento que no se usa. El <strong>Autoboicot</strong> es el puente —o el abismo— entre saber comunicar y realmente hacerlo.</p></div>
+  </div>
+</div>
+
+<!-- TEMA 1: QUÉ ES EL AUTOBOICOT -->
+<div id="t1" class="tc">
+  <h2 class="st">🧠 ¿Qué es el Autoboicot?</h2>
+  <p>Bernardo Stamateas, psicólogo argentino y uno de los autores de mayor alcance en habla hispana sobre desarrollo personal, identifica en su obra <em>Autoboicot: cuando el tóxico es uno mismo</em> (2008) un patrón de conducta que afecta a millones de personas: la tendencia a <strong>sabotear el propio éxito desde adentro</strong>.</p>
+
+  <div class="bc">
+    <div class="eq">📖 Definición</div>
+    <p>El <strong>autoboicot</strong> es el conjunto de trampas mentales, creencias limitantes, conductas y patrones de pensamiento que una persona se impone a sí misma y que le impiden alcanzar su potencial, sus metas y su felicidad. <strong>No autoboicotearse es:</strong> invertir en ti, superarte a ti mismo, darte permiso para triunfar, mostrar tu verdadero yo. (Stamateas, 2008)</p>
+  </div>
+
+  <div class="cita">
+    <p>Muchas veces somos nosotros quienes nos ponemos palos en las ruedas y no nos permitimos avanzar. En ocasiones caemos en trampas mentales que nos llevan a pensar: "no valgo nada", "sin ti no existo", "lo dejo para después", "es lo que me ha tocado vivir", "no me lo merezco"… La característica más importante que debemos desarrollar para lograr nuestros sueños y nuestras metas es creer en uno mismo.</p>
+    <span class="au">— Bernardo Stamateas, <em>Autoboicot: cuando el tóxico es uno mismo</em> (2008)</span>
+  </div>
+
+  <h3 class="ss">1.1 Los dos componentes de la autoestima que el autoboicot destruye</h3>
+  <div class="g2">
+    <div class="card mo">
+      <div class="ic">💎</div>
+      <h4>El Valor — "Merezco"</h4>
+      <p>Todos somos personas dignas con derecho a ser felices y a liberar nuestro potencial. Las trampas mentales que atacan este componente son: "no me lo merezco", "no sirvo", "no soy digno". Cuando el valor cae, dejamos de intentar.</p>
+    </div>
+    <div class="card ve">
+      <div class="ic">⚡</div>
+      <h4>La Eficacia — "Puedo"</h4>
+      <p>La confianza en nuestras propias capacidades para superar obstáculos. Las trampas que atacan este componente son: "no sé si lo voy a lograr", "es muy difícil para mí", "no estoy preparado". Cuando la eficacia cae, dejamos de intentar aunque queramos.</p>
+    </div>
+  </div>
+
+  <h3 class="ss">1.2 Los tres tipos de personalidad y el autoboicot</h3>
+  <p>Stamateas identifica tres tipos de personalidad en relación con la madurez emocional y el autoboicot:</p>
+  <div class="pers-grid">
+    <div class="pers-card a">
+      <h4>🔴 Personalidad Tipo A</h4>
+      <p>Se vincula con personas que reaccionan infantilmente ante una negativa. Poseen rasgos de inmadurez y no se dejan corregir. El autoboicot opera a través del orgullo herido y la defensividad. <strong>En comunicación:</strong> interrumpen, no escuchan, se ponen a la defensiva ante cualquier observación profesional.</p>
+    </div>
+    <div class="pers-card b">
+      <h4>🟡 Personalidad Tipo B</h4>
+      <p>Personas parcialmente maduras e inmaduras. Avanzan dos pasos y retroceden uno, con reacciones desproporcionadas a los estímulos. <strong>En comunicación:</strong> en algunas situaciones hablan con seguridad; en otras, el miedo o la inseguridad los paralizan sin razón aparente.</p>
+    </div>
+    <div class="pers-card c">
+      <h4>🟢 Personalidad Tipo C</h4>
+      <p>Personas maduras a quienes las circunstancias no alejan del objetivo. Han derrotado a sus "gigantes internos". <strong>En comunicación:</strong> hablan con convicción, escuchan activamente, defienden posiciones con asertividad y aceptan el error como oportunidad de aprendizaje.</p>
+    </div>
+  </div>
+
+  <div class="be">
+    <div class="eq">🎯 Conexión directa con las habilidades comunicativas</div>
+    <p>Una persona con Tipo A de personalidad no puede desarrollar escucha activa (siempre está a la defensiva). Una persona con Tipo B tendrá fluidez verbal brillante en un contexto y se bloqueará en otro. Solo quien trabaja hacia el Tipo C puede desplegar sus habilidades comunicativas de manera consistente y profesional. <strong>Las técnicas de comunicación funcionan sobre una base emocional sana. Sin ella, son herramientas sin mano que las use.</strong></p>
+  </div>
+
+  <div class="bk"><div class="eq">💡 Idea clave</div><p>El autoboicot no es pereza, mala suerte ni falta de inteligencia: es la voz interna que te dice que no puedes antes de que lo intentes. Y la mala noticia es que esa voz habla más fuerte que cualquier técnica de oratoria. La buena noticia: esa voz <strong>se puede cambiar</strong>, porque no es la verdad sobre ti — es un patrón de pensamiento aprendido.</p></div>
+</div>
+
+<!-- TEMA 2: LAS TRAMPAS MENTALES -->
+<div id="t2" class="tc">
+  <h2 class="st">🪤 Las Trampas Mentales del Autoboicot</h2>
+  <p>Stamateas identifica en <em>Autoboicot</em> (2008) nueve trampas mentales principales que funcionan como frenos internos. Cada trampa tiene una frase característica — un "mantra negativo" — que la persona se repite inconscientemente. Aquí las más relevantes para la vida universitaria y profesional del contador y auditor.</p>
+
+  <div class="trampa">
+    <div class="t-header"><div class="t-ico">🪝</div><div class="t-titulo">TRAMPA 1 — "Yo no valgo nada"</div></div>
+    <div class="t-frase">"No tengo condiciones. Nunca lo lograré. No sirvo para esto."</div>
+    <p>Esta es la trampa de la <strong>baja confianza en uno mismo</strong>. La falta de confianza es fe depositada en el fracaso. Quien pierde la fe en sí mismo lo ha perdido todo. Esta trampa lleva a no intentar, a postularse a empleos menores, a no hablar cuando se debería hablar.</p>
+    <p><strong>En comunicación profesional:</strong> el auditor que cree que "no es bueno para hablar" nunca practicará la oratoria. El contador que cree que "sus ideas no valen" no las compartirá en las reuniones. La trampa se convierte en profecía autocumplida.</p>
+    <div class="t-salida"><strong>Salida:</strong> La confianza es acción, movimiento, resultado. Se construye haciendo, no esperando sentirla primero. Comienza con acciones pequeñas: participar en clase, dar una opinión en una reunión, defender una posición con datos.</div>
+  </div>
+
+  <div class="trampa">
+    <div class="t-header"><div class="t-ico">🪝</div><div class="t-titulo">TRAMPA 2 — "Lo dejo para después"</div></div>
+    <div class="t-frase">"Cuando esté listo. Cuando tenga más experiencia. Cuando sea el momento perfecto."</div>
+    <p>La <strong>procrastinación</strong> es una de las formas más sofisticadas de autoboicot porque siempre tiene una justificación razonable. Stamateas señala que detrás de cada "después" hay un miedo disfrazado de prudencia: miedo al fracaso, al juicio ajeno, al esfuerzo real.</p>
+    <p><strong>En comunicación profesional:</strong> el estudiante que "va a practicar oratoria cuando tenga más tiempo" no lo hará. El profesional que "va a hablar con su jefe sobre el problema cuando sea el momento correcto" tampoco. El momento perfecto no existe: solo existe el momento presente.</p>
+    <div class="t-salida"><strong>Salida:</strong> Cuando no tomas una decisión, estás tomando la resolución de no hacer nada. Identifica una acción pequeña que puedas hacer HOY relacionada con la habilidad comunicativa que postergues, y hazla.</div>
+  </div>
+
+  <div class="trampa">
+    <div class="t-header"><div class="t-ico">🪝</div><div class="t-titulo">TRAMPA 3 — "Sin ti no existo" (Codependencia)</div></div>
+    <div class="t-frase">"Solo funciono bien si alguien me aprueba, me valida o me dice que estoy bien."</div>
+    <p>La <strong>codependencia comunicativa</strong> es buscar permanentemente la validación externa antes de actuar. La persona que no habla hasta que alguien le diga que está bien. El auditor que no firma el dictamen hasta que tres personas le confirmen que su criterio es correcto, no por rigor técnico sino por inseguridad.</p>
+    <p><strong>En comunicación:</strong> preferimos ser aceptados por lo que no somos antes que ser rechazados por lo que somos. Así es como el exterior se convierte en una voz tan poderosa que le prestamos más atención que a nuestras propias elecciones. (Stamateas, 2008)</p>
+    <div class="t-salida"><strong>Salida:</strong> La intimidad no es ceder, sino relacionarnos respetando la individualidad propia y de otros. Practica comunicarte desde tu propio criterio, fundamentado en evidencia, aunque no todos estén de acuerdo.</div>
+  </div>
+
+  <div class="trampa">
+    <div class="t-header"><div class="t-ico">🪝</div><div class="t-titulo">TRAMPA 4 — "Es lo que me tocó en la vida"</div></div>
+    <div class="t-frase">"Así soy yo. Siempre he sido tímido/a. No voy a cambiar a esta altura."</div>
+    <p>La trampa de la <strong>autoprivación y la resignación</strong>. Creer que el carácter es inmutable y que por tanto no tiene sentido esforzarse. Stamateas es contundente: <em>a nadie se le ha dado una actitud inalterable. Cuando dejas de crecer, estás en problemas.</em></p>
+    <p><strong>En comunicación:</strong> la frase "yo no sirvo para hablar en público" es una creencia, no un hecho biológico. Nadie nace con miedo escénico: se aprende. Y todo lo que se aprende se puede desaprender.</p>
+    <div class="t-salida"><strong>Salida:</strong> El cambio es indispensable para el crecimiento. Si dejas de cambiar, dejas de crecer. Identifica los pensamientos limitantes, crea nuevos hábitos, deja atrás los rasgos que te impiden avanzar. (Stamateas, 2008)</div>
+  </div>
+
+  <div class="trampa">
+    <div class="t-header"><div class="t-ico">🪝</div><div class="t-titulo">TRAMPA 5 — "No me lo merezco"</div></div>
+    <div class="t-frase">"Si me va bien, es suerte. Si me va mal, es culpa mía. Nunca estoy a la altura."</div>
+    <p>La trampa de la <strong>culpa y la autopunición</strong>. La culpa es la diferencia entre lo que hice y lo que debería haber hecho. En su forma tóxica, es la venganza de uno mismo contra uno mismo. Hace que la persona se autosabotee exactamente cuando está a punto de tener éxito.</p>
+    <p><strong>En comunicación:</strong> el contador que cometió un error en un informe y a partir de ahí evita presentar. El auditor que fue interrumpido en una reunión y decide que "no es su lugar hablar". La culpa distorsiona la autoimagen y bloquea la comunicación eficaz.</p>
+    <div class="t-salida"><strong>Salida:</strong> Para la culpa real: pide perdón y repara el error. Para la culpa falsa: disfruta la vida sin castigo, di "no" más frecuentemente y aléjate de personas manipuladoras que usan la culpa para controlar. (Stamateas, 2008)</div>
+  </div>
+
+  <div class="bk"><div class="eq">💡 Idea clave</div><p>Las trampas mentales no son debilidades personales: son patrones aprendidos que se instalan en la mente a través de experiencias dolorosas, críticas repetidas o entornos poco nutritivos. Reconocerlas es el primer paso para desactivarlas. <strong>No eres tus pensamientos limitantes: los tienes. Y lo que tienes, puedes cambiarlo.</strong></p></div>
+</div>
+
+<!-- TEMA 3: ZONA DE CONFORT -->
+<div id="t3" class="tc">
+  <h2 class="st">🫧 La Zona de Confort y el Crecimiento</h2>
+  <p>Una de las contribuciones más vívidas de Stamateas es su descripción de la <strong>zona de confort</strong> como el territorio más peligroso que existe: no porque sea malo estar cómodo, sino porque la comodidad permanente impide todo crecimiento.</p>
+
+  <div class="bc">
+    <div class="eq">📖 Definición</div>
+    <p>La <strong>zona de confort</strong> es lo conocido, el hábitat propio, lo que ya sé hacer, lo que tengo, el lugar donde sé cómo moverme, qué hacer y qué no, donde tengo el control de todo. Este dominio nunca llevará a lo más extraordinario de la vida. (Stamateas, 2008)</p>
+  </div>
+
+  <h3 class="ss">3.1 Las cuatro zonas del crecimiento personal</h3>
+
+  <div class="zona-wrap">
+    <div class="zona-anillo za4">
+      <div class="zona-label">🌟 ZONA DE CRECIMIENTO</div>
+      <div class="zona-sub">Donde viven tus sueños y metas más grandes. Exige salir de lo conocido.</div>
+      <div class="zona-anillo za3">
+        <div class="zona-label">⚡ ZONA DE APRENDIZAJE</div>
+        <div class="zona-sub">Nuevas habilidades, errores útiles, experiencias que amplían la mente.</div>
+        <div class="zona-anillo za2">
+          <div class="zona-label">😰 ZONA DE MIEDO</div>
+          <div class="zona-sub">Incomodidad, ansiedad positiva, el primer paso hacia lo nuevo.</div>
+          <div class="zona-anillo za1">
+            <div class="zona-label">😴 ZONA DE CONFORT</div>
+            <div class="zona-sub">Lo conocido. Seguro pero estático.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <p style="text-align:center;font-size:.83rem;color:#888;margin-top:-8px">Adaptado de Stamateas, B. (2008). <em>Autoboicot</em>.</p>
+
+  <h3 class="ss">3.2 La ansiedad: positiva vs. negativa</h3>
+  <p>Stamateas hace una distinción fundamental que transforma la manera de entender el miedo:</p>
+
+  <div class="sem">
+    <div class="sem-i ve">
+      <div class="sico">✅</div>
+      <h5>Ansiedad Positiva (Normal)</h5>
+      <p>La tensión natural de lo nuevo y desconocido. Señal de que estás creciendo. Desaparece cuando actúas y llegas al resultado.</p>
+    </div>
+    <div class="sem-i ro">
+      <div class="sico">❌</div>
+      <h5>Ansiedad Negativa (Tóxica)</h5>
+      <p>No tiene que ver con el cansancio sino con pensamientos que generan intranquilidad y ausencia de resultados. Aparece cuando te quedas en la zona de confort sin actuar.</p>
+    </div>
+  </div>
+
+  <div class="cita">
+    <p>La persona que se autoboicotea no se permite ser feliz ni disfrutar, y por eso también vive en una zona de comodidad donde nada sucede, donde el riesgo no es permitido. Estas personas no llegan a lograr sus sueños no por falta de capacidad, sino porque les da pánico salir de la zona de confort; repiten una y otra vez la misma forma de vestirse, dan las mismas respuestas, se mantienen encerradas en los mismos conceptos.</p>
+    <span class="au">— Bernardo Stamateas, <em>Autoboicot</em> (2008)</span>
+  </div>
+
+  <h3 class="ss">3.3 Zona de confort y habilidades comunicativas</h3>
+  <div class="tbl">
+    <table>
+      <thead><tr><th>Zona de confort comunicativa</th><th>Lo que evita</th><th>Lo que pierde</th></tr></thead>
+      <tbody>
+        <tr><td>Solo escribe, nunca habla en reuniones</td><td>El juicio de los demás, la posibilidad de equivocarse oralmente</td><td>Visibilidad profesional, oportunidades de liderazgo, práctica oratoria</td></tr>
+        <tr><td>Solo habla con personas conocidas</td><td>El rechazo de nuevos interlocutores, clientes difíciles</td><td>Expansión de red, nuevas perspectivas, habilidades de negociación</td></tr>
+        <tr><td>Nunca da retroalimentación difícil</td><td>El conflicto, la incomodidad, la posible reacción negativa</td><td>Credibilidad como profesional íntegro, relaciones genuinas</td></tr>
+        <tr><td>Repite siempre el mismo estilo de presentación</td><td>Innovar, adaptar el mensaje a distintas audiencias</td><td>Efectividad comunicativa, adaptabilidad profesional</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="be">
+    <div class="eq">🦅 El halcón que no volaba — Stamateas (2008)</div>
+    <p>Un rey recibió dos pichones de halcón. Uno aprendió a volar perfectamente. El otro nunca se movió de su rama desde el primer día, aunque le llevaban comida hasta allí. Nadie pudo hacer volar al ave hasta que un campesino simple hizo lo único que nadie había intentado: <strong>cortó la rama</strong>. El halcón se dio cuenta de que tenía alas y se lanzó a volar.</p>
+    <p style="margin-top:8px;font-size:.88rem;color:#555"><strong>Reflexión:</strong> ¿Sabes que tienes alas? ¿A qué rama estás aferrado? ¿Quién o qué podría cortar esa rama? ¿Cuáles son las razones que hoy te impiden levantar vuelo como comunicador/a?</p>
+  </div>
+
+  <div class="bk"><div class="eq">💡 Idea clave</div><p>Salir de la zona de confort comunicativa no requiere un discurso perfecto: requiere <strong>el primer paso imperfecto</strong>. La primera vez que levantes la mano en una reunión. La primera vez que llames directamente al cliente difícil. La primera vez que presentes sin leer las diapositivas. Lo más difícil de un desafío es el comienzo. Una vez alineado en la pista, nada podrá detenerte. (Stamateas, 2008)</p></div>
+</div>
+
+<!-- TEMA 4: FACTORES LIMITANTES -->
+<div id="t4" class="tc">
+  <h2 class="st">🔒 Los Tres Factores Limitantes del Autoboicot</h2>
+  <p>Stamateas identifica tres factores principales que actúan como frenos en las personas que quieren avanzar pero no pueden: la culpa, el miedo y la depresión. Los tres afectan directamente la capacidad comunicativa.</p>
+
+  <h3 class="ss">4.1 Primer factor: La Culpa</h3>
+  <div class="bc">
+    <div class="eq">📖 Definición</div>
+    <p>La <strong>culpa</strong> es la diferencia entre lo que hice y lo que debería haber hecho; entre lo que quiero y lo que debería hacer. En su forma tóxica, es <em>la venganza de uno mismo contra uno mismo</em>; una de las mejores herramientas para manipular a alguien. (Stamateas, 2008)</p>
+  </div>
+
+  <div class="g2">
+    <div class="card ro">
+      <div class="ic">❌</div>
+      <h4>Culpa Real</h4>
+      <p>Por un error que realmente cometiste. Tiene solución: pide perdón + reconoce el error + repáralo si está a tu alcance. Este proceso genera paz y credibilidad.</p>
+    </div>
+    <div class="card mo">
+      <div class="ic">⚠️</div>
+      <h4>Culpa Falsa</h4>
+      <p>Generada por manipuladores o por estándares irreales que te impones. No tiene base objetiva. Se combate: disfrutando la vida, diciendo "no" más frecuentemente y alejándose de personas manipuladoras.</p>
+    </div>
+  </div>
+
+  <p><strong>Impacto en la comunicación:</strong> La culpa tóxica lleva al silencio ("mejor no digo nada para no meter la pata"), a la comunicación sumisa ("acepto lo que dices aunque no esté de acuerdo") o a la agresividad compensatoria ("ataco primero antes de que me ataquen"). Las tres son disfuncionales.</p>
+
+  <hr class="dv">
+  <h3 class="ss">4.2 Segundo factor: El Miedo</h3>
+  <p>Stamateas distingue entre el <strong>miedo real</strong> (ante un peligro concreto) y la <strong>fobia</strong> (un miedo persistente, exagerado e irracional que la persona sabe que es desproporcionado pero no puede controlar).</p>
+
+  <div class="tbl">
+    <table>
+      <thead><tr><th>Tipo</th><th>Descripción</th><th>Manifestación en comunicación</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Miedo real</strong></td><td>Ante un peligro concreto y verificable</td><td>Nerviosismo antes de una presentación importante; señal útil que prepara al cuerpo</td></tr>
+        <tr><td><strong>Fobia</strong></td><td>Miedo persistente, excesivo e irracional; la persona sabe que es desproporcionado</td><td>Pánico ante cualquier situación de hablar en público, aunque sea en grupos pequeños</td></tr>
+        <tr><td><strong>Miedo imaginario</strong></td><td>Creencia de que algo terrible pasará sin base real</td><td>"Si doy mi opinión en la reunión, me van a despedir" — sin evidencia real de que eso sucedería</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="bmo">
+    <div class="eq">🧠 El mecanismo del miedo comunicativo</div>
+    <p>Cuando algo te tiene mal es porque tú mismo crees que por causa de ese miedo va a pasar algo terrible. Pero si sacas a la luz todas las fuerzas que están dentro de ti y le haces frente a tus temores, vas a lograr ser libre del sufrimiento, del dolor y de la parálisis emocional. Identifica el patrón de pensamientos que te paraliza y cámbialo rápidamente, antes de que se fije más en tu mente. (Stamateas, 2008)</p>
+  </div>
+
+  <hr class="dv">
+  <h3 class="ss">4.3 Tercer factor: La inseguridad interior</h3>
+  <p>La inseguridad interior puede deberse a varios factores que Stamateas identifica:</p>
+  <ul class="li">
+    <li><strong>Exceso de imaginación:</strong> imaginar el peor escenario posible antes de que ocurra ("y si me quedo en blanco", "y si me ridiculizan")</li>
+    <li><strong>Experiencias de rechazo previas:</strong> quien fue rechazado tiende a rechazarse a sí mismo y a los demás</li>
+    <li><strong>Ausencia de figuras de referencia positivas:</strong> sin modelos de comunicación asertiva en la infancia, es difícil desarrollarla en la adultez</li>
+    <li><strong>Comparación permanente:</strong> comparar las propias debilidades con las fortalezas de los demás, generando siempre una imagen distorsionada a la baja</li>
+  </ul>
+
+  <div class="be">
+    <div class="eq">🇪🇨 Caso ecuatoriano — El auditor que sabía pero callaba</div>
+    <p>Un auditor júnior en una firma de Guayaquil detectó durante el trabajo de campo que el gerente financiero de la empresa auditada estaba soslayando una partida importante. Técnicamente sabía lo que significaba. Tenía los papeles de trabajo que lo respaldaban. Pero calló en la reunión de revisión porque temía equivocarse, porque pensaba que "el socio va a pensar que no sé nada", porque había sido interrumpido antes y eso le había dejado una herida. Ese silencio fue su autoboicot. Semanas después, el socio encontró la misma irregularidad y se preguntó por qué nadie del equipo lo había reportado. El auditor perdió una oportunidad de demostrar su criterio profesional por miedo — no por ignorancia.</p>
+  </div>
+
+  <div class="bk"><div class="eq">💡 Idea clave</div><p>La culpa, el miedo y la inseguridad no son excusas ni debilidades permanentes: son señales de que algo en el sistema interno necesita atención. Reconocerlos sin juzgarlos es el primer paso. Trabajarlos activamente — con herramientas como las que ofrece Stamateas y las que estudiaremos en el Tema 5 — es el segundo. El tercero es actuar, aunque el miedo todavía esté presente.</p></div>
+</div>
+
+<!-- TEMA 5: SUPERAR EL AUTOBOICOT -->
+<div id="t5" class="tc">
+  <h2 class="st">🚀 Cómo Superar el Autoboicot y Comunicar con Todo el Potencial</h2>
+  <p>Stamateas no solo diagnostica el problema: ofrece un camino de salida concreto y aplicable. No es un camino de un día, pero cada paso en la dirección correcta ya es una victoria sobre el propio autoboicot.</p>
+
+  <h3 class="ss">5.1 Los tres pasos para cambiar los patrones limitantes</h3>
+  <div class="paso"><div class="paso-n">1</div><div><h4>Identificar los pensamientos limitantes — la trampa mental</h4><p>No puedes cambiar lo que no reconoces. El primer paso es nombrar el patrón: "Cuando me piden hablar en una reunión grande, pienso que voy a quedarme en blanco y todos se reirán." Eso es la trampa. Nombrarla ya la debilita.</p></div></div>
+  <div class="paso"><div class="paso-n">2</div><div><h4>Crear nuevos hábitos y nuevas actitudes</h4><p>Un hábito comunicativo nuevo no surge de la motivación momentánea: surge de la práctica repetida. Toma de tres a cuatro semanas establecer un nuevo hábito. Elige uno pequeño: levantar la mano una vez en cada reunión. Solo una. Hazlo por cuatro semanas consecutivas.</p></div></div>
+  <div class="paso"><div class="paso-n">3</div><div><h4>Dejar atrás los rasgos de conducta que impiden avanzar</h4><p>Esto no es negar quién eres: es elegir activamente quién quieres ser. El beneficio se obtiene cuando aprendes a sacar ventaja del entrenamiento, cuando asimilas y adaptas lo aprendido y lo incorporas como una nueva conducta. (Stamateas, 2008)</p></div></div>
+
+  <hr class="dv">
+  <h3 class="ss">5.2 La zona de riesgo — donde ocurre el crecimiento real</h3>
+  <p>Stamateas propone que salir de la zona de confort exige ingresar a la <strong>zona de riesgo</strong>. Esta zona tiene sus propias reglas:</p>
+
+  <div class="g3">
+    <div class="card ve">
+      <div class="ic">💡</div>
+      <h4>El error, el mejor aliado</h4>
+      <p>Si al equivocarte lloras, el error es tu enemigo. Si te deja enseñanza y lo usas como trampolín, será tu mejor amigo. Nadie llegó a ser excelente sin atravesar muchos errores. (Stamateas, 2008)</p>
+    </div>
+    <div class="card do">
+      <div class="ic">🎯</div>
+      <h4>Correr riesgos inteligentes</h4>
+      <p>Correr riesgos no significa no tener plan. Arma un plan incluso para los momentos en que te juegues todo. La planificación es clave y te ayuda a concentrarte en la meta. (Stamateas, 2008)</p>
+    </div>
+    <div class="card mo">
+      <div class="ic">🔇</div>
+      <h4>No expliques tu sueño</h4>
+      <p>Nunca pierdas tiempo convenciendo a tu alrededor del sueño que hay dentro de ti. Los amigos no necesitan explicaciones y tus enemigos no se la merecen. (Stamateas, 2008)</p>
+    </div>
+    <div class="card">
+      <div class="ic">🧠</div>
+      <h4>Cambia la percepción</h4>
+      <p>Al cambiar el ángulo desde donde te pares a ver el problema, cambiará la visión de las circunstancias y la forma de solucionarlo. La confianza no niega el error: lo transforma. (Stamateas, 2008)</p>
+    </div>
+  </div>
+
+  <hr class="dv">
+  <h3 class="ss">5.3 Aplicación directa: superar el autoboicot comunicativo en la carrera contable</h3>
+
+  <div class="tbl">
+    <table>
+      <thead><tr><th>Autoboicot comunicativo</th><th>Trampa mental detrás</th><th>Acción concreta para superarlo</th></tr></thead>
+      <tbody>
+        <tr><td>No participo en reuniones aunque tenga ideas</td><td>"Mis ideas no son suficientemente buenas" (trampa 1)</td><td>Prepara UNA idea antes de cada reunión. Compártela aunque tiemble la voz. Una vez. Luego dos.</td></tr>
+        <tr><td>Evito presentar informes ante el directorio</td><td>"No soy bueno hablando en público" + zona de confort (trampa 4)</td><td>Practica la presentación en voz alta frente al espejo o a un amigo. La primera vez no tiene que ser perfecta.</td></tr>
+        <tr><td>No señalo errores de mis superiores aunque los vea</td><td>"Si hablo me van a despedir / rechazar" (miedo imaginario)</td><td>Formula la observación como pregunta: "¿Podría ser que en esta cifra haya una discrepancia?" Reduces el riesgo percibido.</td></tr>
+        <tr><td>Acepto sin cuestionar lo que otros dicen aunque discrepe</td><td>"Sin que me aprueben no existo" (trampa 3 - codependencia)</td><td>Practica el "No" en situaciones de bajo riesgo. Gradúa la asertividad desde contextos seguros hacia los desafiantes.</td></tr>
+        <tr><td>Postulo solo a empleos muy por debajo de mi nivel real</td><td>"No me lo merezco" (trampa 5)</td><td>Escribe en papel 5 fortalezas reales y verificables que tienes como profesional. Léelas antes de postularte.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="cita">
+    <p>Alejándote del camino del autoboicot encontrarás el camino a la excelencia, y todo lo que se hace con excelencia encuentra resultados y recompensas maravillosos. No autoboicotearse es invertir en ti, superarte a ti mismo, darte permiso para triunfar, mostrar tu verdadero yo. Ahora es tu turno. Que nada te impida creer en ti. El éxito te está esperando.</p>
+    <span class="au">— Bernardo Stamateas, <em>Autoboicot</em> (2008)</span>
+  </div>
+
+  <div class="bk"><div class="eq">💡 Idea clave final de la semana 6</div><p>Las habilidades comunicativas de la Semana 6A (oratoria, retórica, fluidez, persuasión, diálogo) son el motor. El trabajo sobre el autoboicot de la Semana 6B es la gasolina que permite que ese motor arranque. Ninguno de los dos es suficiente por sí solo. El comunicador profesional completo domina la técnica <strong>y</strong> trabaja activamente sus bloqueos internos. Ese es el perfil del contador y auditor que deja huella en su carrera.</p></div>
+</div>
+
+<!-- EJERCICIO INTERACTIVO -->
+<div id="ej" class="tc">
+  <h2 class="st">🎯 Ejercicio Interactivo — Semana 6B</h2>
+  <div class="ei"><h3>Identifica las trampas — Autoboicot en situaciones reales</h3><p>Lee cada situación. Selecciona TODAS tus respuestas antes de verificar. El contenido de los temas 1–5 te permite contestar correctamente. 📚</p></div>
+
+  <div class="ej-item"><div class="preg">1. Según Stamateas (2008), ¿qué es el autoboicot?</div>
+    <div class="opts">
+      <label class="opt"><input type="radio" name="e1" value="a">a) Una técnica de marketing personal para gestionar la imagen pública</label>
+      <label class="opt"><input type="radio" name="e1" value="b">b) El conjunto de trampas mentales, creencias limitantes y patrones de pensamiento que una persona se impone a sí misma y que le impiden alcanzar su potencial</label>
+      <label class="opt"><input type="radio" name="e1" value="c">c) Un trastorno psicológico diagnosticable que requiere tratamiento especializado</label>
+      <label class="opt"><input type="radio" name="e1" value="d">d) La influencia negativa que otras personas ejercen sobre nuestra autoestima</label>
+    </div><div class="ej-fb" id="fb1"></div>
+  </div>
+
+  <div class="ej-item"><div class="preg">2. Una estudiante de Contabilidad tiene buenas ideas en clase pero nunca las comparte porque piensa que "sus aportes no son tan buenos como los de sus compañeros". ¿Qué trampa mental describe Stamateas en esta situación?</div>
+    <div class="opts">
+      <label class="opt"><input type="radio" name="e2" value="a">a) Trampa 2 — "Lo dejo para después": procrastinación de sus aportes</label>
+      <label class="opt"><input type="radio" name="e2" value="b">b) Trampa 1 — "Yo no valgo nada": baja confianza en sí misma que la lleva a no intentar</label>
+      <label class="opt"><input type="radio" name="e2" value="c">c) Trampa 5 — "No me lo merezco": culpa por hablar en clase</label>
+      <label class="opt"><input type="radio" name="e2" value="d">d) No hay autoboicot: es prudencia académica esperar antes de hablar</label>
+    </div><div class="ej-fb" id="fb2"></div>
+  </div>
+
+  <div class="ej-item"><div class="preg">3. La zona de confort, según Stamateas, es peligrosa principalmente porque:</div>
+    <div class="opts">
+      <label class="opt"><input type="radio" name="e3" value="a">a) Es un lugar donde se producen errores frecuentes por exceso de confianza</label>
+      <label class="opt"><input type="radio" name="e3" value="b">b) Genera más estrés que la zona de riesgo a largo plazo</label>
+      <label class="opt"><input type="radio" name="e3" value="c">c) Aunque es segura y conocida, impide el crecimiento: nunca llevará a lo más extraordinario de la vida</label>
+      <label class="opt"><input type="radio" name="e3" value="d">d) Reduce la capacidad técnica del profesional con el paso del tiempo</label>
+    </div><div class="ej-fb" id="fb3"></div>
+  </div>
+
+  <div class="ej-item"><div class="preg">4. Stamateas distingue entre culpa real y culpa falsa. ¿Cómo se sale de una culpa REAL según el autor?</div>
+    <div class="opts">
+      <label class="opt"><input type="radio" name="e4" value="a">a) Ignorando el error y enfocándose en el futuro sin mirar atrás</label>
+      <label class="opt"><input type="radio" name="e4" value="b">b) Pidiendo perdón, reconociendo el error y reparándolo si está al alcance; este proceso genera paz y credibilidad</label>
+      <label class="opt"><input type="radio" name="e4" value="c">c) Explicando las razones del error a todas las personas afectadas repetidamente</label>
+      <label class="opt"><input type="radio" name="e4" value="d">d) La culpa real no tiene solución: hay que aprender a vivir con ella</label>
+    </div><div class="ej-fb" id="fb4"></div>
+  </div>
+
+  <div class="ej-item"><div class="preg">5. Un auditor detecta una irregularidad importante pero no la reporta pensando "si lo digo, el socio va a pensar que no soy suficientemente riguroso en mi trabajo de campo". Según Stamateas, ¿qué tipo de miedo está experimentando?</div>
+    <div class="opts">
+      <label class="opt"><input type="radio" name="e5" value="a">a) Miedo real ante un peligro verificable y concreto</label>
+      <label class="opt"><input type="radio" name="e5" value="b">b"> Miedo imaginario: cree que algo terrible pasará sin base real en la evidencia disponible</label>
+      <label class="opt"><input type="radio" name="e5" value="c">c) Fobia clínica diagnosticable que requiere tratamiento</label>
+      <label class="opt"><input type="radio" name="e5" value="d">d) Prudencia profesional justificada: es mejor no reportar sin certeza total</label>
+    </div><div class="ej-fb" id="fb5"></div>
+  </div>
+
+  <div class="ej-item"><div class="preg">6. La fábula del "halcón que no volaba" en Stamateas ilustra que para superar el autoboicot a veces es necesario:</div>
+    <div class="opts">
+      <label class="opt"><input type="radio" name="e6" value="a">a) Esperar pacientemente a que las condiciones mejoren naturalmente</label>
+      <label class="opt"><input type="radio" name="e6" value="b">b) Cortar la rama: eliminar la "comodidad" que impide descubrir y usar las propias capacidades</label>
+      <label class="opt"><input type="radio" name="e6" value="c">c) Buscar el apoyo de muchas personas antes de intentar cualquier cambio</label>
+      <label class="opt"><input type="radio" name="e6" value="d">d) Contentarse con el nivel actual y no soñar con metas muy altas</label>
+    </div><div class="ej-fb" id="fb6"></div>
+  </div>
+
+  <div class="ej-item"><div class="preg">7. Según Stamateas, el error en la zona de riesgo debe verse principalmente como:</div>
+    <div class="opts">
+      <label class="opt"><input type="radio" name="e7" value="a">a) Una señal de que el riesgo tomado no era apropiado y hay que volver a la zona de confort</label>
+      <label class="opt"><input type="radio" name="e7" value="b">b"> Una oportunidad de aprendizaje y trampolín hacia el éxito, si se usa como lección en lugar de como motivo de llanto</label>
+      <label class="opt"><input type="radio" name="e7" value="c">c) Un indicador de baja capacidad intelectual o técnica</label>
+      <label class="opt"><input type="radio" name="e7" value="d">d) Algo que debe ocultarse para proteger la imagen profesional</label>
+    </div><div class="ej-fb" id="fb7"></div>
+  </div>
+
+  <div class="ej-item"><div class="preg">8. ¿Cuál es el primer paso de los tres que propone Stamateas para cambiar patrones de autoboicot?</div>
+    <div class="opts">
+      <label class="opt"><input type="radio" name="e8" value="a">a) Crear nuevos hábitos y actitudes inmediatamente</label>
+      <label class="opt"><input type="radio" name="e8" value="b">b) Dejar atrás todos los rasgos de conducta limitantes de una sola vez</label>
+      <label class="opt"><input type="radio" name="e8" value="c">c) Identificar los pensamientos limitantes — la trampa mental — para poder nombrarla y empezar a debilitarla</label>
+      <label class="opt"><input type="radio" name="e8" value="d">d) Buscar aprobación externa antes de intentar cualquier cambio interno</label>
+    </div><div class="ej-fb" id="fb8"></div>
+  </div>
+
+  <div style="margin-top:20px">
+    <button class="btn-v" onclick="verEj()">✅ Verificar Respuestas</button>
+    <button class="btn-r" onclick="reinEj()" id="btn-re" style="display:none">🔄 Reiniciar</button>
+  </div>
+  <div class="rp" id="rp-ej"><div class="rs" id="sc-ej"></div><div class="rpt" id="pct-ej"></div><div class="bo"><div class="bi" id="bar-ej" style="width:0%"></div></div><div class="rmsg" id="msg-ej"></div></div>
+</div>
+
+<!-- CUESTIONARIO -->
+<div id="cu" class="tc">
+  <h2 class="st">📝 Cuestionario — Semana 6B</h2>
+  <p>10 preguntas: 7 teóricas + 3 de análisis. Responde TODAS antes de verificar. 🎓</p>
+
+  <div class="ej-item"><span class="bt te">Teórica</span><div class="en">1. Según Stamateas (2008), ¿cuáles son los dos componentes de la autoestima que el autoboicot destruye?</div>
+    <div class="opts">
+      <label class="opt"><input type="radio" name="q1" value="a">a) El valor ("merezco ser feliz") y la eficacia ("puedo lograrlo")</label>
+      <label class="opt"><input type="radio" name="q1" value="b">b) La inteligencia y la voluntad</label>
+      <label class="opt"><input type="radio" name="q1" value="c">c) La empatía y la asertividad</label>
+      <label class="opt"><input type="radio" name="q1" value="d">d) La memoria y la fluidez verbal</label>
+    </div><div class="ej-fb" id="fq1"></div>
+  </div>
+
+  <div class="ej-item"><span class="bt te">Teórica</span><div class="en">2. La Personalidad Tipo C descrita por Stamateas se caracteriza por:</div>
+    <div class="opts">
+      <label class="opt"><input type="radio" name="q2" value="a">a) Reaccionar infantilmente ante las negativas y no dejarse corregir</label>
+      <label class="opt"><input type="radio" name="q2" value="b">b) Avanzar dos pasos y retroceder uno, con reacciones desproporcionadas</label>
+      <label class="opt"><input type="radio" name="q2" value="c">c) Personas maduras a quienes las circunstancias no alejan del objetivo; han derrotado a sus gigantes internos</label>
+      <label class="opt"><input type="radio" name="q2" value="d">d) Personas que nunca cometen errores en su vida profesional</label>
+    </div><div class="ej-fb" id="fq2"></div>
+  </div>
+
+  <div class="ej-item"><span class="bt te">Teórica</span><div class="en">3. ¿Cuál es la diferencia entre la ansiedad positiva y la ansiedad negativa según Stamateas?</div>
+    <div class="opts">
+      <label class="opt"><input type="radio" name="q3" value="a">a) La ansiedad positiva desaparece cuando actúas y llegas al resultado; la negativa persiste al quedarse en la zona de confort sin resultados</label>
+      <label class="opt"><input type="radio" name="q3" value="b">b) La ansiedad positiva es médicamente diagnosticable; la negativa no</label>
+      <label class="opt"><input type="radio" name="q3" value="c">c) La ansiedad positiva solo la sienten personas exitosas; la negativa la sienten quienes fracasan</label>
+      <label class="opt"><input type="radio" name="q3" value="d">d"> No hay diferencia real: toda ansiedad es igualmente perjudicial</label>
+    </div><div class="ej-fb" id="fq3"></div>
+  </div>
+
+  <div class="ej-item"><span class="bt te">Teórica</span><div class="en">4. La trampa mental de "sin ti no existo" corresponde a la:</div>
+    <div class="opts">
+      <label class="opt"><input type="radio" name="q4" value="a">a) Codependencia: buscar permanentemente la validación externa antes de actuar; preferir ser aceptado por lo que no eres antes que rechazado por lo que eres</label>
+      <label class="opt"><input type="radio" name="q4" value="b">b) Procrastinación: dejar para después las decisiones importantes</label>
+      <label class="opt"><input type="radio" name="q4" value="c">c) Autoprivación: creer que no tienes derecho a ser feliz</label>
+      <label class="opt"><input type="radio" name="q4" value="d">d) Resignación: creer que el carácter es inmutable</label>
+    </div><div class="ej-fb" id="fq4"></div>
+  </div>
+
+  <div class="ej-item"><span class="bt te">Teórica</span><div class="en">5. Stamateas afirma que "cuando dejas de crecer, estás en problemas". ¿En qué trampa mental se encuadra esta afirmación?</div>
+    <div class="opts">
+      <label class="opt"><input type="radio" name="q5" value="a">a) En la trampa de "es lo que me tocó en la vida": la resignación y la autoprivación que hacen creer que el carácter es inmutable y que el cambio es imposible</label>
+      <label class="opt"><input type="radio" name="q5" value="b">b) En la trampa de "no me lo merezco": la culpa crónica que paraliza</label>
+      <label class="opt"><input type="radio" name="q5" value="c">c) En la trampa de "lo dejo para después": la procrastinación del crecimiento</label>
+      <label class="opt"><input type="radio" name="q5" value="d">d"> En la trampa de "yo no valgo nada": la baja autoconfianza generalizada</label>
+    </div><div class="ej-fb" id="fq5"></div>
+  </div>
+
+  <div class="ej-item"><span class="bt te">Teórica</span><div class="en">6. ¿Por qué la culpa es descrita por Stamateas como "una de las mejores herramientas para manipular a alguien"?</div>
+    <div class="opts">
+      <label class="opt"><input type="radio" name="q6" value="a">a) Porque quien siente culpa está en un estado vulnerable donde acepta las decisiones de otros sin cuestionarlas; le ceden el control a los manipuladores</label>
+      <label class="opt"><input type="radio" name="q6" value="b">b) Porque la culpa aumenta la productividad laboral bajo presión</label>
+      <label class="opt"><input type="radio" name="q6" value="c">c"> Porque la culpa solo la sienten personas con alta inteligencia emocional</label>
+      <label class="opt"><input type="radio" name="q6" value="d">d) Porque generar culpa en otros es una habilidad de liderazgo legítima</label>
+    </div><div class="ej-fb" id="fq6"></div>
+  </div>
+
+  <div class="ej-item"><span class="bt te">Teórica</span><div class="en">7. Stamateas propone que "correr riesgos inteligentes" en la zona de riesgo requiere principalmente:</div>
+    <div class="opts">
+      <label class="opt"><input type="radio" name="q7" value="a">a) Actuar impulsivamente para no dar tiempo al miedo de aparecer</label>
+      <label class="opt"><input type="radio" name="q7" value="b">b"> Tener un plan: la planificación es clave y ayuda a concentrarse en la meta paso a paso</label>
+      <label class="opt"><input type="radio" name="q7" value="c">c) Esperar que alguien más valide el plan antes de ejecutarlo</label>
+      <label class="opt"><input type="radio" name="q7" value="d">d) Evitar contarle a nadie sobre el riesgo para no generar expectativas</label>
+    </div><div class="ej-fb" id="fq7"></div>
+  </div>
+
+  <div class="ej-item"><span class="bt an">Análisis</span><div class="en">8. Una contadora lleva tres años en la misma empresa con el mismo cargo, aunque ha sido invitada a postularse a posiciones superiores. Siempre dice: "Todavía no estoy lista, necesito más experiencia." Sus colegas con menos experiencia ya han ascendido. Aplicando el modelo de Stamateas, ¿qué combinación de trampas está operando?</div>
+    <div class="opts">
+      <label class="opt"><input type="radio" name="q8" value="a">a) Trampa 2 (procrastinación: "lo dejo para después") + Trampa 5 (autoprivación: "no me lo merezco") + Zona de confort: juntas crean el patrón de evasión sistemática del crecimiento</label>
+      <label class="opt"><input type="radio" name="q8" value="b">b) Solo la trampa 1 ("no valgo nada"): tiene baja autoestima global</label>
+      <label class="opt"><input type="radio" name="q8" value="c">c) Ninguna trampa: la prudencia en los ascensos es siempre una virtud</label>
+      <label class="opt"><input type="radio" name="q8" value="d">d) Solo falta de preparación técnica: necesita más estudios antes de ascender</label>
+    </div><div class="ej-fb" id="fq8"></div>
+  </div>
+
+  <div class="ej-item"><span class="bt an">Análisis</span><div class="en">9. En una reunión de equipo, el gerente de auditoría critica duramente frente a todos un informe elaborado por el auditor Rodrigo. Desde ese día, Rodrigo evita presentar informes, habla solo cuando le preguntan directamente y ha pedido no ser asignado a proyectos que requieran exposición ante clientes. Según Stamateas, ¿qué proceso psicológico está actuando?</div>
+    <div class="opts">
+      <label class="opt"><input type="radio" name="q9" value="a">a) Una experiencia de rechazo que instaló inseguridad interior y llevó a Rodrigo a huir de situaciones comunicativas para no revivir el dolor; el autoboicot opera como mecanismo de "protección" que en realidad lo limita</label>
+      <label class="opt"><input type="radio" name="q9" value="b">b) Una decisión racional de especialización: prefiere el trabajo técnico al comunicativo</label>
+      <label class="opt"><input type="radio" name="q9" value="c">c) Alta inteligencia emocional: sabe cuándo no es su turno de presentar</label>
+      <label class="opt"><input type="radio" name="q9" value="d">d) Un conflicto laboral normal que se resuelve solo con el tiempo</label>
+    </div><div class="ej-fb" id="fq9"></div>
+  </div>
+
+  <div class="ej-item"><span class="bt an">Análisis</span><div class="en">10. Integrando la Semana 6A (habilidades comunicativas) y la 6B (autoboicot): un estudiante domina la retórica clásica, tiene buena fluidez verbal y conoce las técnicas de persuasión estudiadas en 6A, pero la trampa "no valgo nada" le impide usar esas habilidades en contextos reales. ¿Cuál es la conclusión más precisa según lo estudiado?</div>
+    <div class="opts">
+      <label class="opt"><input type="radio" name="q10" value="a">a) El conocimiento técnico sin trabajo interior es conocimiento que no se usa: las habilidades de 6A son el motor, pero el autoboicot de 6B es el interruptor que impide que ese motor arranque</label>
+      <label class="opt"><input type="radio" name="q10" value="b">b) Basta con aprender más técnicas de comunicación para superar cualquier bloqueo interno</label>
+      <label class="opt"><input type="radio" name="q10" value="c">c) El autoboicot es una condición permanente que no puede superarse con esfuerzo propio</label>
+      <label class="opt"><input type="radio" name="q10" value="d">d) La técnica es suficiente; el estado emocional no afecta la comunicación profesional</label>
+    </div><div class="ej-fb" id="fq10"></div>
+  </div>
+
+  <div style="margin-top:20px">
+    <button class="btn-v" onclick="verCu()">✅ Verificar Cuestionario</button>
+    <button class="btn-r" onclick="reinCu()" id="btn-rc" style="display:none">🔄 Reiniciar</button>
+  </div>
+  <div class="rp" id="rp-cu"><div class="rs" id="sc-cu"></div><div class="rpt" id="pct-cu"></div><div class="bo"><div class="bi" id="bar-cu" style="width:0%"></div></div><div class="rmsg" id="msg-cu"></div></div>
+</div>
+
+<!-- ACTIVIDAD CON IA -->
+<div id="ia" class="tc">
+  <h2 class="st">🤖 Actividad con Inteligencia Artificial — Semana 6B</h2>
+  <div class="bc"><div class="eq">📋 Descripción</div>
+    <p><strong>Actividad:</strong> "Mi mapa de autoboicot" — Diagnóstico personal con IA aplicado a la comunicación profesional.<br>
+    <strong>Herramienta recomendada:</strong> <a href="https://claude.ai" target="_blank" style="color:var(--azm);font-weight:700">Claude en claude.ai</a> · También ChatGPT o Gemini.<br><strong>Tiempo estimado:</strong> 50–60 minutos.</p>
+  </div>
+
+  <div class="ia-s"><div class="ia-n">1</div><div><h4>Propósito</h4><p>Esta es la actividad más personal del curso. Usarás la IA no como experto técnico sino como <strong>espejo estructurado</strong>: le describirás honestamente tus patrones de conducta comunicativa y la IA te ayudará a identificar qué trampas de Stamateas están operando en ti. Luego cuestionarás su análisis con tu propio criterio.</p></div></div>
+
+  <div class="ia-s"><div class="ia-n">2</div><div><h4>Antes de usar el prompt</h4><p>Escribe durante 5 minutos sin parar sobre esto: "Situaciones comunicativas que evito, que postergue, que me generan miedo o donde siento que no soy suficiente." No lo edites. Solo escribe. Ese texto lo usarás en el prompt.</p></div></div>
+
+  <div class="pb"><span class="pl">📋 PROMPT PARA CLAUDE / CHATGPT / GEMINI</span>Actúa como psicólogo especialista en desarrollo personal y comunicación 
+profesional, familiarizado con el modelo de Bernardo Stamateas 
+sobre el Autoboicot (2008).
+
+Voy a describir honestamente mis patrones de conducta en situaciones 
+comunicativas. Necesito que identifiques qué trampas mentales del 
+autoboicot están operando en mí, basándote en estas categorías:
+- Trampa 1: "Yo no valgo nada" (baja confianza)
+- Trampa 2: "Lo dejo para después" (procrastinación)
+- Trampa 3: "Sin ti no existo" (codependencia/validación externa)
+- Trampa 4: "Es lo que me tocó" (resignación/autoprivación)
+- Trampa 5: "No me lo merezco" (culpa/autopunición)
+
+MI DESCRIPCIÓN HONESTA:
+[PEGA AQUÍ el texto que escribiste en los 5 minutos previos]
+
+Para cada trampa que identifiques en mi descripción:
+A) Cita la frase o conducta específica que la revela
+B) Explica cómo esa trampa me afecta concretamente en 
+   mi comunicación profesional como estudiante de contabilidad
+C) Propón UNA acción pequeña y concreta que pueda hacer 
+   esta semana para debilitarla
+
+Al final:
+D) ¿Qué zona de mi crecimiento estoy evitando (según el 
+   modelo de zonas: confort / miedo / aprendizaje / crecimiento)?
+E) Dame una pregunta que me incomode pero que sea necesaria 
+   responder para avanzar.</div>
+
+  <div class="ia-s"><div class="ia-n">3</div><div><h4>¿Qué hacer con la respuesta?</h4>
+    <ul class="li" style="margin:8px 0">
+      <li><strong>Evalúa:</strong> ¿El análisis de la IA te resulta preciso o te parece que no entendió bien tu situación? ¿Por qué?</li>
+      <li><strong>Discrepa:</strong> Identifica al menos un punto donde el análisis de la IA sea incompleto o inexacto según tu experiencia real. Arguméntalo.</li>
+      <li><strong>Responde la pregunta incómoda:</strong> La IA te habrá dado una pregunta difícil. Escribe una respuesta honesta de al menos 5 líneas.</li>
+      <li><strong>Comprométete:</strong> Elige UNA de las acciones propuestas y escribe exactamente cuándo y cómo la vas a ejecutar esta semana.</li>
+    </ul>
+  </div></div>
+</div>
+
+<!-- REFLEXIÓN -->
+<div id="re" class="tc">
+  <h2 class="st">🪞 Reflexión Personal — Semana 6B</h2>
+  <p>Esta es posiblemente la sección más importante de todo el semestre. No porque sea la más técnica, sino porque toca lo que ninguna técnica puede tocar sin tu participación honesta.</p>
+
+  <div class="ref-c"><div class="rn">🪝 Reflexión 1 — ¿Cuál es tu trampa?</div>
+    <p>De las cinco trampas mentales que describe Stamateas — "no valgo nada", "lo dejo para después", "sin ti no existo", "es lo que me tocó", "no me lo merezco" — ¿cuál reconoces más en ti? No la que debería ser la tuya según lo que otros esperan: la que realmente opera en tu vida cotidiana. ¿En qué situaciones específicas la escuchas hablar más fuerte? ¿Qué te ha costado ya esa trampa en tu vida?</p>
+  </div>
+
+  <div class="ref-c"><div class="rn">🦅 Reflexión 2 — Tu rama</div>
+    <p>Stamateas habla del halcón que no volaba porque estaba aferrado a su rama. Cada persona tiene su rama: algo conocido, cómodo, seguro a lo que se aferra aunque le impida volar. ¿Cuál es la tuya en el ámbito de la comunicación? ¿Es la silla del fondo donde nunca te llaman? ¿Es el silencio en las reuniones? ¿Es la excusa del "todavía no estoy listo"? ¿Quién o qué podría cortar esa rama? ¿Y por qué todavía no ha pasado?</p>
+  </div>
+
+  <div class="ref-c"><div class="rn">😰 Reflexión 3 — El miedo que te comunica algo</div>
+    <p>Stamateas dice que el miedo imaginario nos dice que algo terrible pasará, aunque no haya evidencia de ello. Piensa en una situación comunicativa que evitas actualmente: hablar con alguien, presentar algo, decir algo difícil. ¿Qué es lo peor que imaginas que podría pasar? Escríbelo. Ahora pregúntate: ¿qué probabilidad real tiene de ocurrir? ¿Ha ocurrido antes? ¿Y si ocurriera, sobrevivirías? ¿Aprendería algo de ello?</p>
+  </div>
+
+  <div class="ref-c"><div class="rn">🌱 Reflexión 4 — El primer paso esta semana</div>
+    <p>Stamateas es claro: lo más difícil de un desafío es el comienzo, llegar a la línea de partida. Pero una vez que te alineaste en la pista, nada podrá detenerte. ¿Cuál es el primer paso comunicativo más pequeño que podrías dar esta semana para salir un centímetro de tu zona de confort? No un discurso perfecto — un centímetro. ¿Qué es? ¿Cuándo exactamente lo harás? ¿Qué necesitas para hacerlo?</p>
+  </div>
+
+  <div class="ref-c"><div class="rn">🏆 Reflexión 5 — El comunicador libre de autoboicot</div>
+    <p>Imagina que dentro de dos años has trabajado consistentemente en superar tus trampas mentales. Ya no evitas hablar en reuniones. Defiendes tus posiciones con evidencia y calma. Presentas informes con convicción. Tienes conversaciones difíciles sin miedo paralizante. ¿Cómo cambia tu vida profesional? ¿Y tu vida personal? ¿Qué relaciones mejorarían? ¿A qué oportunidades podrías acceder que hoy cierras antes de intentar? Escribe esa visión. Con detalle. Esa visión es la que debe motivar cada pequeño paso de hoy.</p>
+  </div>
+
+  <div class="ref-nota">💜 <strong>Nota final del curso — Semanas 1 a 6:</strong> Hemos recorrido un camino completo: de entender qué es comunicar, a dominar los tipos de lenguaje, el proceso comunicativo, la lectura, la escritura, los componentes no verbales, las habilidades comunicativas y ahora el trabajo interior para usarlas. Ninguna de estas semanas es un capítulo aislado: son un sistema. El comunicador completo los integra todos. Tú tienes todo lo necesario para serlo. Lo único que falta es la decisión de intentarlo.</div>
+</div>
+
+<!-- BIBLIOGRAFÍA -->
+<div id="bi" class="tc">
+  <h2 class="st">📚 Bibliografía — Semana 6B</h2>
+
+  <div class="bib"><div class="bib-i">📗</div><p>Stamateas, B. (2008). <em>Autoboicot: cuando el tóxico es uno mismo</em>. Ediciones Vergara. Buenos Aires, Argentina.</p></div>
+  <div class="bib"><div class="bib-i">📘</div><p>Stamateas, B. (2012). <em>Quiero un cambio</em>. Ediciones B Argentina. Buenos Aires, Argentina.</p></div>
+  <div class="bib"><div class="bib-i">📙</div><p>Branden, N. (1995). <em>Los seis pilares de la autoestima</em>. Paidós. Barcelona. [Título original: <em>The Six Pillars of Self-Esteem</em>. Bantam Books, 1994]</p></div>
+  <div class="bib"><div class="bib-i">📕</div><p>Goleman, D. (1995). <em>Inteligencia emocional</em>. Kairós. [Título original: <em>Emotional Intelligence</em>. Bantam Books]</p></div>
+  <div class="bib"><div class="bib-i">📗</div><p>Covey, S. R. (1989). <em>The 7 Habits of Highly Effective People</em>. Simon & Schuster. [Ed. española: <em>Los 7 Hábitos de la Gente Altamente Efectiva</em>. Paidós]</p></div>
+  <div class="bib"><div class="bib-i">📘</div><p>Zayas Agüero, P. M. (2006). <em>La comunicación interpersonal</em>. Material académico. Cuba.</p></div>
+  <div class="bib"><div class="bib-i">📄</div><p>Pérez Villalobos, H. (2019). Autoestima, teorías y su relación con el éxito personal. <em>Alternativas en Psicología</em>, (41), 22–31. Universidad ALVART, Puebla, México.</p></div>
+
+  <div class="bib-n">⚠️ <strong>Nota académica:</strong> Se recomienda verificar cada referencia en <strong>Google Scholar</strong> (<a href="https://scholar.google.com" target="_blank" style="color:#6b4200">scholar.google.com</a>) o en el repositorio institucional de la Universidad de Guayaquil antes de citar en trabajos académicos.</div>
+</div>
+
+<script>
+function ST(id,btn){
+  document.querySelectorAll('.tc').forEach(t=>t.classList.remove('ac'));
+  document.querySelectorAll('.tb').forEach(b=>b.classList.remove('ac'));
+  document.getElementById(id).classList.add('ac');
+  btn.classList.add('ac');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+const ejD={
+  e1:{c:'b',exp:'✅ Correcto. El autoboicot es el conjunto de trampas mentales, creencias limitantes y patrones de pensamiento que uno se impone a sí mismo. No es influencia externa ni un trastorno clínico: es el sabotaje que viene desde adentro.'},
+  e2:{c:'b',exp:'✅ Correcto. La trampa 1 ("no valgo nada") opera cuando la persona tiene ideas pero no las comparte porque cree que no son suficientemente buenas. Esta baja confianza en sí misma se convierte en profecía autocumplida: al no participar, no recibe retroalimentación positiva.'},
+  e3:{c:'c',exp:'✅ Correcto. La zona de confort es peligrosa no porque sea dolorosa —al contrario, es cómoda— sino porque es estática. Nunca llevará a lo más extraordinario de la vida porque por definición excluye el riesgo necesario para el crecimiento.'},
+  e4:{c:'b',exp:'✅ Correcto. Para la culpa real: pedir perdón (acto de grandeza), reconocer el error y repararlo si está al alcance. Este proceso, según Stamateas, genera paz interior y construye credibilidad ante los demás.'},
+  e5:{c:'b',exp:'✅ Correcto. Es miedo imaginario: el auditor cree que algo terrible pasará (que el socio lo juzgará negativamente) sin evidencia real de que eso ocurriría. De hecho, reportar la irregularidad probablemente demostraría su criterio profesional.'},
+  e6:{c:'b',exp:'✅ Correcto. El halcón estaba perfectamente capacitado para volar, pero la rama —su zona de confort— le impedía descubrir sus propias capacidades. Cortarla fue el acto que liberó su potencial. En comunicación: a veces hay que eliminar la "comodidad del silencio" para descubrir la propia voz.'},
+  e7:{c:'b',exp:'✅ Correcto. Stamateas es claro: "Si al equivocarte lloras, el error es tu enemigo, pero si te deja una enseñanza y lo usas como trampolín hacia el éxito, será tu mejor amigo." Los planes deben prever los errores, no ignorarlos.'},
+  e8:{c:'c',exp:'✅ Correcto. El primer paso es identificar la trampa mental: nombrarla. "Cambiar los patrones de pensamientos" comienza por reconocer cuáles son. Solo lo que se puede nombrar se puede cambiar.'}
+};
+
+const cuD={
+  q1:{c:'a',exp:'Stamateas identifica dos componentes de la autoestima que el autoboicot destruye: el valor ("merezco ser feliz y liberar mi potencial") y la eficacia ("puedo superar los obstáculos"). Las trampas mentales atacan uno u otro o ambos simultáneamente.'},
+  q2:{c:'c',exp:'La Personalidad Tipo C corresponde a personas maduras a quienes las circunstancias no alejan del objetivo. Han derrotado sus "gigantes internos" y son quienes están listos para el éxito y para alcanzar metas grandes.'},
+  q3:{c:'a',exp:'La ansiedad positiva es la tensión normal de lo nuevo; desaparece cuando actúas y llegas al resultado. La ansiedad negativa persiste al quedarse en la zona de confort porque no tiene que ver con el cansancio sino con los pensamientos de intranquilidad y la ausencia de resultados.'},
+  q4:{c:'a',exp:'La codependencia o trampa "sin ti no existo" consiste en buscar permanentemente validación externa antes de actuar. Como dice Stamateas: "Preferimos ser aceptados por lo que no somos antes que ser rechazados por lo que somos."'},
+  q5:{c:'a',exp:'La trampa "es lo que me tocó en la vida" incluye la resignación, la autoprivación y la creencia de que el carácter es inmutable. Stamateas responde: "A nadie se le ha dado una actitud inalterable. Cuando dejas de cambiar, dejas de crecer."'},
+  q6:{c:'a',exp:'La culpa coloca a la persona en un estado de vulnerabilidad donde acepta las decisiones de otros sin cuestionarlas. Stamateas señala que "todo lo que te haga sentir culpable o te genere miedo es manipulación." El manipulador usa la culpa para mantener el control.'},
+  q7:{c:'b',exp:'Stamateas es explícito: "Correr riesgos no significa no tener un plan. Arma un plan incluso para los momentos en que te juegues todo. La planificación es clave y te ayuda a concentrarte en la meta."'},
+  q8:{c:'a',exp:'La combinación es clásica: trampa 2 (procrastinación: "todavía no estoy lista") + trampa 5 (autoprivación: no se cree merecedora del ascenso) + zona de confort que protege de la incomodidad del crecimiento. Las tres operan juntas reforzándose mutuamente.'},
+  q9:{c:'a',exp:'Una experiencia de rechazo público instaló inseguridad interior. El autoboicot opera como mecanismo de "protección": si no me expongo, no me pueden herir. Pero este mecanismo que protege en el corto plazo limita gravemente en el largo plazo. Stamateas señala que quien fue rechazado reiteradamente tiende también a rechazarse a sí mismo.'},
+  q10:{c:'a',exp:'La integración de ambas semanas: las habilidades de 6A son el motor (técnicas de comunicación, oratoria, persuasión), pero el autoboicot de 6B es el interruptor que puede apagarlo. El conocimiento técnico sin trabajo interior es conocimiento que no se usa en los momentos que más importa.'}
+};
+
+function mkV(data,names,panelId,barId,scId,pctId,msgId,btnRId,pfx){
+  return function(){
+    for(let n of names){if(!document.querySelector(`input[name="${n}"]:checked`)){alert('⚠️ Responde TODAS las preguntas antes de verificar.');return;}}
+    let ok=0;
+    names.forEach((n,i)=>{
+      const sel=document.querySelector(`input[name="${n}"]:checked`).value;
+      const d=data[n]||data['q'+(i+1)];
+      document.querySelectorAll(`input[name="${n}"]`).forEach(op=>{op.disabled=true;const l=op.parentElement;if(op.value===d.c)l.classList.add('ok');if(op.value===sel&&op.value!==d.c)l.classList.add('fail');});
+      const fb=document.getElementById(pfx+(i+1));
+      if(sel===d.c){ok++;if(fb){fb.innerHTML='✅ '+d.exp;fb.className='ej-fb show ok';}}
+      else{if(fb){fb.innerHTML='❌ La respuesta correcta es la <strong>'+d.c.toUpperCase()+'</strong>. '+d.exp;fb.className='ej-fb show fail';}}
+    });
+    const pct=Math.round(ok/names.length*100);
+    document.getElementById(panelId).classList.add('show');
+    document.getElementById(scId).textContent=ok+' / '+names.length;
+    document.getElementById(pctId).textContent=pct+'%';
+    setTimeout(()=>{document.getElementById(barId).style.width=pct+'%'},100);
+    const msg=pct===100?'🏆 ¡Perfecto! Dominio total de la semana.':pct>=80?'🎯 ¡Muy bien! Revisa los errores.':pct>=60?'📘 Buen avance. Repasa los temas débiles.':pct>=40?'⚠️ Necesitas repasar el material.':'📖 Vuelve a los temas con calma.';
+    document.getElementById(msgId).textContent=msg;
+    document.getElementById(btnRId).style.display='inline-block';
+  };
+}
+function mkR(names,panelId,barId,btnRId,pfx,count){
+  return function(){
+    for(let i=0;i<count;i++){const n=names[i];document.querySelectorAll(`input[name="${n}"]`).forEach(op=>{op.disabled=false;op.checked=false;op.parentElement.classList.remove('ok','fail');});const fb=document.getElementById(pfx+(i+1));if(fb)fb.className='ej-fb';}
+    document.getElementById(panelId).classList.remove('show');document.getElementById(barId).style.width='0%';document.getElementById(btnRId).style.display='none';
+  };
+}
+const ejN=['e1','e2','e3','e4','e5','e6','e7','e8'];
+const cuN=['q1','q2','q3','q4','q5','q6','q7','q8','q9','q10'];
+const verEj=mkV(ejD,ejN,'rp-ej','bar-ej','sc-ej','pct-ej','msg-ej','btn-re','fb');
+const reinEj=mkR(ejN,'rp-ej','bar-ej','btn-re','fb',8);
+const verCu=mkV(cuD,cuN,'rp-cu','bar-cu','sc-cu','pct-cu','msg-cu','btn-rc','fq');
+const reinCu=mkR(cuN,'rp-cu','bar-cu','btn-rc','fq',10);
+</script>
+</body>
+</html>
