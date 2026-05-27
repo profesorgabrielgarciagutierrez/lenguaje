@@ -1,0 +1,1457 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Semana 09 | Tipos de textos y funciones del lenguaje</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+  /* ===== RESET Y BASE ===== */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 16px;
+    line-height: 1.7;
+    background: #f0f4f8;
+    color: #1a1a2e;
+  }
+
+  /* ===== ENCABEZADO ===== */
+  header {
+    background: #003366;
+    color: #fff;
+    padding: 18px 24px 14px;
+  }
+  .header-top {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 10px;
+  }
+  .header-logo {
+    width: 56px;
+    height: 56px;
+    border-radius: 8px;
+    object-fit: contain;
+    background: #fff;
+    padding: 4px;
+    flex-shrink: 0;
+  }
+  .header-inst {
+    font-size: 0.78rem;
+    opacity: 0.85;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+  }
+  .header-title {
+    font-family: 'Lora', serif;
+    font-size: 1.35rem;
+    font-weight: 700;
+    line-height: 1.3;
+    margin-top: 2px;
+  }
+  .header-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 10px;
+  }
+  .badge {
+    background: rgba(255,255,255,0.18);
+    border: 1px solid rgba(255,255,255,0.35);
+    border-radius: 20px;
+    padding: 3px 12px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+  }
+
+  /* ===== BARRA DE PESTAÑAS ===== */
+  .tabs-wrapper {
+    background: #87CEEB;
+    overflow-x: auto;
+    white-space: nowrap;
+    border-bottom: 2px solid #003366;
+    -webkit-overflow-scrolling: touch;
+  }
+  .tabs-wrapper::-webkit-scrollbar { height: 4px; }
+  .tabs-wrapper::-webkit-scrollbar-thumb { background: #003366; border-radius: 2px; }
+  .tab-btn {
+    display: inline-block;
+    padding: 11px 18px;
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 0.83rem;
+    font-weight: 600;
+    color: #111;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+    white-space: nowrap;
+    border-bottom: 3px solid transparent;
+    margin-bottom: -2px;
+  }
+  .tab-btn:hover { background: rgba(255,255,255,0.55); }
+  .tab-btn.active {
+    background: #fff;
+    color: #003366;
+    font-weight: 700;
+    border-bottom: 3px solid #003366;
+  }
+
+  /* ===== CONTENIDO ===== */
+  .tab-content { display: none; padding: 28px 20px; max-width: 900px; margin: 0 auto; }
+  .tab-content.active { display: block; }
+
+  h2 {
+    font-family: 'Lora', serif;
+    font-size: 1.45rem;
+    color: #003366;
+    margin-bottom: 16px;
+    border-bottom: 2px solid #87CEEB;
+    padding-bottom: 8px;
+  }
+  h3 {
+    font-family: 'Lora', serif;
+    font-size: 1.12rem;
+    color: #003366;
+    margin: 22px 0 10px;
+  }
+  p { margin-bottom: 14px; }
+
+  /* ===== CAJAS ===== */
+  .box-concept {
+    border-left: 5px solid #003366;
+    background: #f7f9fc;
+    padding: 14px 18px;
+    margin: 18px 0;
+    border-radius: 0 8px 8px 0;
+  }
+  .box-concept strong { color: #003366; }
+
+  .box-example {
+    background: #ddeeff;
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin: 18px 0;
+    border: 1px solid #b3d4f5;
+  }
+  .box-example .ex-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #003366;
+    letter-spacing: 0.06em;
+    margin-bottom: 6px;
+  }
+
+  .box-key {
+    background: #003366;
+    color: #fff;
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin: 22px 0;
+    font-size: 0.97rem;
+  }
+  .box-key strong { color: #87CEEB; }
+
+  .box-warning {
+    background: #fff8e1;
+    border-left: 5px solid #f9a825;
+    padding: 12px 16px;
+    margin: 16px 0;
+    border-radius: 0 8px 8px 0;
+    font-size: 0.93rem;
+  }
+
+  /* ===== TABLAS ===== */
+  .table-wrap { overflow-x: auto; margin: 18px 0; }
+  table { width: 100%; border-collapse: collapse; font-size: 0.92rem; }
+  thead { background: #003366; color: #fff; }
+  thead th { padding: 10px 12px; text-align: left; font-weight: 600; }
+  tbody tr:nth-child(even) { background: #f0f5fb; }
+  tbody tr:nth-child(odd) { background: #fff; }
+  tbody td { padding: 9px 12px; border-bottom: 1px solid #dde4ef; vertical-align: top; }
+
+  /* ===== LISTA VISUAL ===== */
+  .list-visual { list-style: none; padding: 0; margin: 12px 0; }
+  .list-visual li {
+    padding: 8px 12px 8px 38px;
+    position: relative;
+    margin-bottom: 6px;
+    background: #f7f9fc;
+    border-radius: 6px;
+    font-size: 0.94rem;
+  }
+  .list-visual li::before {
+    content: attr(data-icon);
+    position: absolute;
+    left: 12px;
+    font-size: 1rem;
+  }
+
+  /* ===== REPASO ===== */
+  .repaso-card {
+    background: #fff;
+    border-radius: 10px;
+    padding: 16px 18px;
+    margin-bottom: 14px;
+    border-left: 4px solid #87CEEB;
+    box-shadow: 0 1px 4px rgba(0,51,102,0.07);
+  }
+  .repaso-card .semana-tag {
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #003366;
+    background: #ddeeff;
+    display: inline-block;
+    padding: 2px 10px;
+    border-radius: 12px;
+    margin-bottom: 6px;
+    letter-spacing: 0.05em;
+  }
+
+  /* ===== EJERCICIO / CUESTIONARIO ===== */
+  .quiz-question {
+    background: #fff;
+    border-radius: 10px;
+    padding: 18px 20px;
+    margin-bottom: 18px;
+    box-shadow: 0 1px 6px rgba(0,51,102,0.09);
+    border: 1px solid #dde4ef;
+  }
+  .quiz-question .q-number {
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #fff;
+    background: #003366;
+    display: inline-block;
+    padding: 2px 10px;
+    border-radius: 12px;
+    margin-bottom: 8px;
+    letter-spacing: 0.05em;
+  }
+  .quiz-question .q-badge {
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 2px 10px;
+    border-radius: 12px;
+    margin-left: 6px;
+  }
+  .badge-teo { background: #e3f0ff; color: #003366; }
+  .badge-ana { background: #fff3e0; color: #e65100; }
+
+  .quiz-question .q-text { font-weight: 600; margin-bottom: 12px; font-size: 0.97rem; }
+  .option-label {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 8px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-bottom: 6px;
+    transition: background 0.15s;
+    border: 1.5px solid transparent;
+    font-size: 0.93rem;
+  }
+  .option-label:hover { background: #f0f5fb; border-color: #87CEEB; }
+  .option-label input { margin-top: 3px; flex-shrink: 0; accent-color: #003366; }
+  .option-label.correct { background: #e6f9f0; border-color: #27ae60; }
+  .option-label.incorrect { background: #fdf0f0; border-color: #e74c3c; }
+  .option-label.correct-not-chosen { background: #e6f9f0; border-color: #27ae60; border-style: dashed; }
+
+  .feedback-box {
+    margin-top: 10px;
+    padding: 10px 14px;
+    border-radius: 6px;
+    font-size: 0.88rem;
+    display: none;
+  }
+  .feedback-box.correct { background: #e6f9f0; color: #1e7e5a; border-left: 4px solid #27ae60; }
+  .feedback-box.incorrect { background: #fdf0f0; color: #c0392b; border-left: 4px solid #e74c3c; }
+
+  .btn-verify {
+    background: #003366;
+    color: #fff;
+    border: none;
+    padding: 12px 28px;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background 0.2s;
+  }
+  .btn-verify:hover { background: #00509e; }
+  .btn-reset {
+    background: #87CEEB;
+    color: #003366;
+    border: none;
+    padding: 10px 24px;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-weight: 700;
+    cursor: pointer;
+    margin-top: 10px;
+    margin-left: 10px;
+    display: none;
+    transition: background 0.2s;
+  }
+  .btn-reset:hover { background: #5bb8e0; }
+
+  .score-panel {
+    background: #003366;
+    color: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    margin-top: 20px;
+    display: none;
+    text-align: center;
+  }
+  .score-panel .score-number { font-size: 2.4rem; font-weight: 700; color: #87CEEB; }
+  .score-panel .score-label { font-size: 0.9rem; opacity: 0.8; margin-bottom: 10px; }
+  .score-panel .score-msg { font-size: 1.05rem; margin-top: 8px; }
+  .progress-bar-wrap { background: rgba(255,255,255,0.2); border-radius: 20px; height: 12px; margin: 10px auto; max-width: 300px; }
+  .progress-bar-fill { height: 12px; border-radius: 20px; background: #87CEEB; transition: width 0.8s ease; }
+
+  /* ===== ACTIVIDAD IA ===== */
+  .ia-step {
+    display: flex;
+    gap: 14px;
+    margin-bottom: 18px;
+    align-items: flex-start;
+  }
+  .ia-step .step-num {
+    background: #003366;
+    color: #fff;
+    border-radius: 50%;
+    width: 34px;
+    height: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.95rem;
+    flex-shrink: 0;
+  }
+  .ia-step .step-body { flex: 1; }
+  .prompt-box {
+    background: #1a1a2e;
+    color: #e8f0fe;
+    border-radius: 8px;
+    padding: 16px 18px;
+    font-size: 0.88rem;
+    line-height: 1.6;
+    margin: 12px 0;
+    font-family: 'Source Sans 3', sans-serif;
+    border-left: 4px solid #87CEEB;
+    white-space: pre-wrap;
+  }
+
+  /* ===== REFLEXIÓN ===== */
+  .refleja-card {
+    background: #fff;
+    border-radius: 10px;
+    padding: 16px 20px;
+    margin-bottom: 16px;
+    border-left: 5px solid #87CEEB;
+    box-shadow: 0 1px 5px rgba(0,51,102,0.07);
+  }
+  .refleja-card .r-icon { font-size: 1.4rem; margin-bottom: 6px; }
+  .refleja-card .r-text { font-size: 0.97rem; color: #222; }
+
+  /* ===== BIBLIOGRAFÍA ===== */
+  .ref-card {
+    background: #fff;
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin-bottom: 14px;
+    border-left: 4px solid #003366;
+    box-shadow: 0 1px 4px rgba(0,51,102,0.07);
+    font-size: 0.91rem;
+  }
+  .ref-card .ref-type {
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #fff;
+    background: #003366;
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 10px;
+    margin-bottom: 6px;
+    letter-spacing: 0.05em;
+  }
+  .ref-note {
+    background: #fff8e1;
+    border-radius: 8px;
+    padding: 12px 16px;
+    font-size: 0.85rem;
+    margin-top: 20px;
+    border-left: 4px solid #f9a825;
+  }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 600px) {
+    .header-title { font-size: 1.1rem; }
+    .tab-btn { padding: 9px 13px; font-size: 0.78rem; }
+    .tab-content { padding: 18px 12px; }
+    h2 { font-size: 1.2rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== ENCABEZADO ===== -->
+<header>
+  <div class="header-top">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/Escudo_de_la_Universidad_de_Guayaquil.svg/200px-Escudo_de_la_Universidad_de_Guayaquil.svg.png"
+         alt="UG" class="header-logo" onerror="this.style.display='none'">
+    <div>
+      <div class="header-inst">Universidad de Guayaquil · Facultad de Ciencias Administrativas · Contabilidad y Auditoría</div>
+      <div class="header-title">Semana 09 — Tipos de textos y funciones del lenguaje</div>
+    </div>
+  </div>
+  <div class="header-meta">
+    <span class="badge">📚 Materia: Lenguaje y Comunicación</span>
+    <span class="badge">🗂 Unidad 3: Comprensión y análisis de textos</span>
+    <span class="badge">📅 Semana 09</span>
+    <span class="badge">🎯 Inicio del Segundo Parcial</span>
+  </div>
+</header>
+
+<!-- ===== PESTAÑAS ===== -->
+<div class="tabs-wrapper">
+  <button class="tab-btn active" onclick="showTab('repaso')">📋 Repaso</button>
+  <button class="tab-btn" onclick="showTab('tema1')">📝 Tema 1: ¿Qué es un texto?</button>
+  <button class="tab-btn" onclick="showTab('tema2')">🗂 Tema 2: Tipos de textos</button>
+  <button class="tab-btn" onclick="showTab('tema3')">🔤 Tema 3: Funciones del lenguaje</button>
+  <button class="tab-btn" onclick="showTab('tema4')">🔗 Tema 4: Texto, tipo y función</button>
+  <button class="tab-btn" onclick="showTab('ejercicio')">✏️ Ejercicio interactivo</button>
+  <button class="tab-btn" onclick="showTab('cuestionario')">📊 Cuestionario</button>
+  <button class="tab-btn" onclick="showTab('ia')">🤖 Actividad con IA</button>
+  <button class="tab-btn" onclick="showTab('reflexion')">💭 Reflexión</button>
+  <button class="tab-btn" onclick="showTab('biblio')">📖 Bibliografía</button>
+</div>
+
+<!-- ================================================ -->
+<!-- PESTAÑA: REPASO -->
+<!-- ================================================ -->
+<div id="repaso" class="tab-content active">
+  <h2>📋 Repaso de Semanas Anteriores</h2>
+  <p>Esta semana <strong>iniciamos el Segundo Parcial</strong> con la Unidad 3. Antes de avanzar, revisemos los pilares construidos en las ocho semanas previas, pues todo lo que estudiamos hasta aquí nos prepara directamente para comprender los textos con mayor profundidad.</p>
+
+  <div class="repaso-card">
+    <div class="semana-tag">Semanas 01–02 | Unidad 1</div>
+    <strong>La comunicación y el lenguaje</strong>
+    <p>Estudiamos la diferencia fundamental entre <em>hablar</em> (emitir sonidos) y <em>comunicar</em> (transmitir significados con intención). Descubrimos que el lenguaje es el sistema de signos que usamos para codificar mensajes, y que existen distintos tipos: verbal (oral y escrito), no verbal (gestos, posturas, imágenes) y paraverbal (tono, ritmo, volumen). Comprender el lenguaje escrito —es decir, los <em>textos</em>— es, en esencia, el nivel más exigente de la comunicación.</p>
+  </div>
+
+  <div class="repaso-card">
+    <div class="semana-tag">Semanas 03–04 | Unidad 1</div>
+    <strong>El cerebro, la lectura y el proceso comunicativo</strong>
+    <p>Analizamos cómo el cerebro procesa los mensajes en capas: primero la percepción sensorial, luego la decodificación semántica, finalmente la integración con el conocimiento previo. Vimos que <strong>leer no es solo decodificar letras</strong>: es construir significado activamente. El proceso de comunicación (emisor → mensaje → canal → receptor → retroalimentación) nos mostró que el texto es el <em>mensaje escrito más elaborado</em>, con estructura propia.</p>
+  </div>
+
+  <div class="repaso-card">
+    <div class="semana-tag">Semanas 05–06 | Unidad 2</div>
+    <strong>Componentes y habilidades comunicativas</strong>
+    <p>Exploramos las cuatro macro-habilidades: <em>escuchar, hablar, leer y escribir</em>. Cada una exige un procesamiento diferente. La lectura y la escritura, al ser habilidades de código escrito, requieren dominio del sistema de la lengua. La competencia lectora —capacidad de comprender y analizar textos— es la habilidad que desarrollaremos toda la Unidad 3.</p>
+  </div>
+
+  <div class="repaso-card">
+    <div class="semana-tag">Semana 07 | Unidad 2</div>
+    <strong>Comunicación no verbal, corporativa y oral estratégica</strong>
+    <p>Estudiamos que incluso los textos escritos tienen una "dimensión no verbal": el diseño gráfico, la tipografía, los márgenes, los colores y la estructura visual comunican antes de que el lector lea la primera palabra. La comunicación corporativa nos mostró que las organizaciones producen textos con propósitos muy definidos (informes, comunicados, reportes). Reconocer el tipo de texto y su función es el primer paso para comprenderlo correctamente.</p>
+  </div>
+
+  <div class="box-key">
+    <strong>Conexión con la Semana 09:</strong> Todo el recorrido de la Unidad 1 y 2 nos ha entrenado para llegar aquí: si el lenguaje es el sistema, si el proceso comunicativo tiene emisor y receptor, si las habilidades incluyen leer y escribir, entonces <strong>el texto es el producto concreto de ese sistema</strong>. Esta semana aprenderemos a clasificarlo y a reconocer con qué función del lenguaje fue construido.
+  </div>
+</div>
+
+<!-- ================================================ -->
+<!-- PESTAÑA: TEMA 1 -->
+<!-- ================================================ -->
+<div id="tema1" class="tab-content">
+  <h2>📝 Tema 1: ¿Qué es un texto? Definición, propiedades y diferencia con el discurso</h2>
+
+  <div class="box-concept">
+    <strong>Definición de texto:</strong> Un <em>texto</em> es una unidad comunicativa completa, coherente y cohesionada, producida intencionalmente por un emisor para transmitir un significado a un receptor, en un contexto determinado. No es simplemente un conjunto de oraciones: es una totalidad organizada con propósito comunicativo.
+  </div>
+
+  <p>Mucha gente cree que cualquier conjunto de palabras forma un texto. Pero lingüistas como <strong>Teun van Dijk</strong> (1980) y <strong>Beaugrande y Dressler</strong> (1981) demostraron que un texto auténtico debe cumplir siete propiedades. Si falta alguna, lo que tenemos no es realmente un texto, sino una secuencia de palabras o frases sin valor comunicativo completo.</p>
+
+  <h3>Las 7 propiedades del texto (Beaugrande y Dressler)</h3>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Propiedad</th><th>Definición</th><th>Ejemplo en Ecuador</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><strong>1. Cohesión</strong></td>
+          <td>Las oraciones se conectan mediante mecanismos formales: pronombres, conectores, sinónimos, puntuación.</td>
+          <td>"El Banco Central del Ecuador publicó su informe. <em>Éste</em> señala un crecimiento del 2%." (El pronombre "éste" conecta ambas oraciones.)</td>
+        </tr>
+        <tr>
+          <td><strong>2. Coherencia</strong></td>
+          <td>El texto tiene sentido global: sus ideas se relacionan lógicamente y forman un todo con unidad temática.</td>
+          <td>Un informe de auditoría empieza con los objetivos, continúa con hallazgos y termina con recomendaciones. Cada parte contribuye al todo.</td>
+        </tr>
+        <tr>
+          <td><strong>3. Intencionalidad</strong></td>
+          <td>El emisor produce el texto con un propósito claro: informar, persuadir, entretener, ordenar, etc.</td>
+          <td>Una factura electrónica del SRI tiene la intención de documentar una transacción comercial.</td>
+        </tr>
+        <tr>
+          <td><strong>4. Aceptabilidad</strong></td>
+          <td>El receptor reconoce el texto como relevante y adecuado para la situación comunicativa.</td>
+          <td>Un contador acepta recibir un "oficio contable" como formato válido de comunicación interna.</td>
+        </tr>
+        <tr>
+          <td><strong>5. Informatividad</strong></td>
+          <td>El texto aporta información nueva o relevante para el receptor; no es redundante ni vacío.</td>
+          <td>Un boletín de la Superintendencia de Compañías informa cambios normativos desconocidos por el lector.</td>
+        </tr>
+        <tr>
+          <td><strong>6. Situacionalidad</strong></td>
+          <td>El texto responde a un contexto específico: ¿quién escribe?, ¿a quién?, ¿cuándo?, ¿dónde?</td>
+          <td>Una carta de presentación enviada para un cargo en Petroecuador se adapta al contexto institucional petrolífero.</td>
+        </tr>
+        <tr>
+          <td><strong>7. Intertextualidad</strong></td>
+          <td>El texto dialoga con otros textos previos: cita, parafrasea, refuta o amplía textos anteriores.</td>
+          <td>Una tesis universitaria de la UG cita la Ley de Régimen Tributario Interno y artículos del SRI.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Texto vs. Discurso: ¿son lo mismo?</h3>
+  <p>Con frecuencia se usan como sinónimos, pero existe una distinción importante en lingüística:</p>
+
+  <div class="box-example">
+    <div class="ex-label">📌 Diferencia clave</div>
+    <ul class="list-visual">
+      <li data-icon="📄"><strong>Texto</strong> → Es el producto concreto, la materialización escrita u oral del lenguaje. Puede analizarse de forma aislada como objeto lingüístico. Ejemplo: un acta de reunión de la empresa SUPERMAXI.</li>
+      <li data-icon="🗣️"><strong>Discurso</strong> → Es el texto en uso, considerado en su contexto social, histórico e ideológico. Incluye quién habla, desde dónde y con qué poder. Ejemplo: el "discurso" del gobierno ecuatoriano sobre la economía (no solo las palabras, sino el significado político que tienen).</li>
+    </ul>
+    <p style="margin-top:10px; font-size:0.93rem;">En esta materia, usaremos principalmente el concepto de <strong>texto</strong> como unidad de análisis, sin abandonar la idea de que todo texto ocurre en un contexto social concreto.</p>
+  </div>
+
+  <h3>¿Por qué es importante saber qué es un texto?</h3>
+  <p>En Contabilidad y Auditoría, los profesionales producen y analizan textos constantemente: informes de auditoría, estados financieros, comunicados internos, resoluciones legales, correos institucionales. <strong>Reconocer la estructura, las propiedades y la intención de un texto</strong> es una competencia profesional directa, no solo académica.</p>
+
+  <div class="box-key">
+    <strong>💡 Idea clave:</strong> Un texto no es simplemente "palabras escritas". Es una unidad comunicativa compleja que cumple siete propiedades (cohesión, coherencia, intencionalidad, aceptabilidad, informatividad, situacionalidad e intertextualidad). Saber identificar estas propiedades nos permite leer con mayor profundidad y escribir con mayor precisión.
+  </div>
+</div>
+
+<!-- ================================================ -->
+<!-- PESTAÑA: TEMA 2 -->
+<!-- ================================================ -->
+<div id="tema2" class="tab-content">
+  <h2>🗂 Tema 2: Tipos de textos — clasificación y características</h2>
+
+  <p>Existen múltiples formas de clasificar los textos según distintos criterios: por su intención comunicativa, por su estructura, por el ámbito de uso, por su relación con la realidad. Aquí estudiaremos la clasificación más utilizada en lingüística textual y la más funcional para el análisis universitario.</p>
+
+  <div class="box-concept">
+    <strong>¿Por qué clasificar los textos?</strong> Reconocer el tipo de texto antes de leerlo activa esquemas mentales: sabes qué esperar, cómo organizarlo y qué estrategia de lectura aplicar. No se lee igual un contrato que una novela, ni un artículo científico que una publicidad.
+  </div>
+
+  <h3>Clasificación 1: Por la intención comunicativa (la más usada)</h3>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Tipo</th><th>Intención</th><th>Características</th><th>Ejemplos cotidianos</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><strong>Narrativo</strong></td>
+          <td>Contar hechos, reales o ficticios, en una secuencia temporal.</td>
+          <td>Tiene personajes, lugar, tiempo, conflicto y desenlace. Usa verbos de acción en pasado.</td>
+          <td>Novela, cuento, crónica periodística, relato histórico, testimonios.</td>
+        </tr>
+        <tr>
+          <td><strong>Descriptivo</strong></td>
+          <td>Presentar las características de un objeto, persona, lugar o fenómeno.</td>
+          <td>Abundan los adjetivos calificativos y los verbos de estado (ser, estar, parecer). Puede ser técnico o literario.</td>
+          <td>Perfil de empresa, ficha técnica, descripción de un bien en una auditoría, catálogo de productos.</td>
+        </tr>
+        <tr>
+          <td><strong>Expositivo</strong></td>
+          <td>Explicar, informar o aclarar un tema de forma objetiva.</td>
+          <td>Estructura clara: introducción-desarrollo-conclusión. Usa definiciones, clasificaciones, comparaciones.</td>
+          <td>Manuales, enciclopedias, artículos científicos, textos universitarios, informes de organismos (INEC, BCE).</td>
+        </tr>
+        <tr>
+          <td><strong>Argumentativo</strong></td>
+          <td>Defender una tesis o punto de vista mediante razonamientos y evidencias.</td>
+          <td>Tiene tesis, argumentos (de autoridad, de ejemplo, estadísticos) y conclusión. Busca convencer.</td>
+          <td>Ensayo académico, editorial de periódico, discurso político, columna de opinión, carta de reclamación.</td>
+        </tr>
+        <tr>
+          <td><strong>Instructivo / Directivo</strong></td>
+          <td>Guiar al receptor para que realice una acción o procedimiento.</td>
+          <td>Usa verbos en modo imperativo o infinitivo. Numeración secuencial. Lenguaje preciso.</td>
+          <td>Manual de procedimientos contables, instructivo del SRI para declaración del IVA, receta, reglamento.</td>
+        </tr>
+        <tr>
+          <td><strong>Conversacional / Dialógico</strong></td>
+          <td>Reproducir o simular el intercambio entre dos o más hablantes.</td>
+          <td>Turnos de habla, marcadores de cortesía, registro informal o formal según contexto.</td>
+          <td>Entrevista de trabajo, diálogo en una obra de teatro, chat institucional, acta de reunión con intervenciones.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Clasificación 2: Por el ámbito de uso</h3>
+  <ul class="list-visual">
+    <li data-icon="🏛️"><strong>Textos académicos:</strong> producidos en el ámbito universitario o científico. Exigen rigor, citas, objetividad. (Tesis, ensayos, artículos de revistas indexadas.)</li>
+    <li data-icon="🏢"><strong>Textos administrativos/jurídicos:</strong> regulan relaciones institucionales o legales. (Contratos, oficios, resoluciones, decretos, informes de auditoría.)</li>
+    <li data-icon="📰"><strong>Textos periodísticos:</strong> informan sobre hechos de actualidad. (Noticia, crónica, reportaje, editorial.)</li>
+    <li data-icon="📢"><strong>Textos publicitarios:</strong> persuaden para promover productos o servicios. (Anuncios, slóganes, spots.)</li>
+    <li data-icon="📖"><strong>Textos literarios:</strong> crean mundos posibles con valor estético. (Novela, poema, cuento, drama.)</li>
+    <li data-icon="💻"><strong>Textos digitales/multimodales:</strong> combinan texto, imagen, audio y video. (Páginas web, infografías, videos educativos, podcasts.)</li>
+  </ul>
+
+  <div class="box-example">
+    <div class="ex-label">🇪🇨 Ejemplo aplicado — Ecuador</div>
+    <p>Un <strong>informe de auditoría financiera</strong> emitido por la Contraloría General del Estado del Ecuador es un texto <em>expositivo</em> (explica hallazgos de forma objetiva) con rasgos <em>argumentativos</em> (sustenta observaciones con evidencias) y <em>directivos</em> (da recomendaciones de acción). Reconocer esta combinación permite leerlo con la estrategia adecuada: no buscamos una historia ni emociones, buscamos datos, razonamientos y mandatos.</p>
+  </div>
+
+  <h3>Textos puros vs. textos híbridos</h3>
+  <div class="box-warning">
+    ⚠️ <strong>Importante:</strong> En la realidad, la mayoría de textos no son "puros". Un texto puede ser principalmente expositivo pero incluir pasajes narrativos (anécdotas para ilustrar) o argumentativos (defensa de una postura). Lo que define el tipo es la intención <em>predominante</em>, no la única presente.
+  </div>
+
+  <div class="box-key">
+    <strong>💡 Idea clave:</strong> Los textos se clasifican según múltiples criterios. La clasificación por intención comunicativa (narrativo, descriptivo, expositivo, argumentativo, instructivo, dialógico) es la más útil para el análisis. En la práctica profesional, casi todos los textos son híbridos: combinan tipos, pero siempre hay una intención dominante que los define.
+  </div>
+</div>
+
+<!-- ================================================ -->
+<!-- PESTAÑA: TEMA 3 -->
+<!-- ================================================ -->
+<div id="tema3" class="tab-content">
+  <h2>🔤 Tema 3: Funciones del lenguaje — teoría de Jakobson</h2>
+
+  <p>Si los tipos de texto nos dicen <em>qué estructura tiene</em> un texto, las funciones del lenguaje nos dicen <em>para qué sirve</em> el lenguaje en ese texto. La teoría más influyente sobre este tema fue propuesta por el lingüista ruso-americano <strong>Roman Jakobson</strong> (1960), quien identificó seis funciones del lenguaje vinculadas a los seis factores del acto comunicativo.</p>
+
+  <div class="box-concept">
+    <strong>Definición:</strong> Las <em>funciones del lenguaje</em> son los propósitos específicos que cumple el lenguaje en un acto comunicativo concreto. No son excluyentes: en un mismo texto pueden coexistir varias funciones, pero siempre hay una predominante.
+  </div>
+
+  <h3>El modelo de Jakobson: los 6 factores y sus funciones</h3>
+  <p>Jakobson parte del proceso comunicativo y asigna a cada elemento una función:</p>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Factor del acto comunicativo</th><th>Función del lenguaje</th><th>Definición</th><th>Ejemplo</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>🧑 <strong>EMISOR</strong></td>
+          <td><strong>Emotiva o expresiva</strong></td>
+          <td>El lenguaje expresa los sentimientos, actitudes o estados internos del emisor. Centrada en el "yo".</td>
+          <td>"¡Estoy profundamente preocupado por la situación económica del país!" (El emisor revela su estado emocional.)</td>
+        </tr>
+        <tr>
+          <td>👥 <strong>RECEPTOR</strong></td>
+          <td><strong>Conativa o apelativa</strong></td>
+          <td>El lenguaje busca influir en el receptor: ordenar, persuadir, pedir, convencer. Centrada en el "tú".</td>
+          <td>"Presente su declaración de impuestos antes del 28 de marzo." (Instruye al receptor a actuar.)</td>
+        </tr>
+        <tr>
+          <td>🌍 <strong>CONTEXTO</strong></td>
+          <td><strong>Referencial o representativa</strong></td>
+          <td>El lenguaje transmite información objetiva sobre la realidad. Es la función más usada en textos académicos y científicos. Centrada en el "ello".</td>
+          <td>"El PIB del Ecuador creció un 2,4% en el tercer trimestre de 2023, según el BCE." (Informa sobre la realidad.)</td>
+        </tr>
+        <tr>
+          <td>📩 <strong>MENSAJE</strong></td>
+          <td><strong>Poética o estética</strong></td>
+          <td>El lenguaje se centra en su propia forma: el modo en que se dice importa tanto como lo que se dice. Uso de recursos estilísticos.</td>
+          <td>"Ecuador, país de la mitad del mundo, donde el sol besa la tierra dos veces al día." (La forma es trabajada artísticamente.)</td>
+        </tr>
+        <tr>
+          <td>📡 <strong>CANAL</strong></td>
+          <td><strong>Fática o de contacto</strong></td>
+          <td>El lenguaje verifica que el canal esté abierto, establece o mantiene el contacto comunicativo.</td>
+          <td>"¿Me escucha? ¿Está usted en línea? Buenos días, ¿me puede confirmar que recibió el correo?" (Asegura el canal.)</td>
+        </tr>
+        <tr>
+          <td>🗣️ <strong>CÓDIGO</strong></td>
+          <td><strong>Metalingüística</strong></td>
+          <td>El lenguaje habla sobre el propio lenguaje: explica términos, define palabras, aclara el uso del código.</td>
+          <td>"La palabra 'auditoría' proviene del latín <em>audire</em> ('escuchar') y designa el proceso de revisión sistemática de cuentas." (El lenguaje se explica a sí mismo.)</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Representación visual del modelo</h3>
+  <div class="box-example">
+    <div class="ex-label">📐 Esquema de Jakobson</div>
+    <div style="font-family: monospace; font-size: 0.9rem; line-height: 2; text-align: center; padding: 10px; background: #f0f8ff; border-radius: 8px;">
+      <div>🌍 CONTEXTO → Función <strong>Referencial</strong></div>
+      <div>━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</div>
+      <div>🧑 EMISOR → <strong>Emotiva</strong> &nbsp;&nbsp; 📩 MENSAJE → <strong>Poética</strong> &nbsp;&nbsp; 👥 RECEPTOR → <strong>Conativa</strong></div>
+      <div>━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</div>
+      <div>📡 CANAL → Función <strong>Fática</strong></div>
+      <div>🗣️ CÓDIGO → Función <strong>Metalingüística</strong></div>
+    </div>
+  </div>
+
+  <h3>Las funciones en textos profesionales del contador/auditor</h3>
+  <ul class="list-visual">
+    <li data-icon="📊"><strong>Función referencial</strong> → predomina en estados financieros, informes de auditoría, reportes del IESS, declaraciones del SRI. El objetivo es informar con objetividad.</li>
+    <li data-icon="📢"><strong>Función conativa</strong> → predomina en recomendaciones de auditoría, oficios de requerimiento, instructivos normativos.</li>
+    <li data-icon="💬"><strong>Función fática</strong> → presente en saludos formales de correos, apertura de reuniones, confirmaciones de recepción de documentos.</li>
+    <li data-icon="📖"><strong>Función metalingüística</strong> → presente en glosarios de términos, notas al pie explicativas, definiciones de normas NIIF o NIC.</li>
+    <li data-icon="❤️"><strong>Función emotiva</strong> → puede aparecer en cartas de presentación o comunicados de reconocimiento institucional.</li>
+    <li data-icon="✍️"><strong>Función poética</strong> → menos frecuente en textos técnicos, pero puede aparecer en discursos institucionales o mensajes de campaña corporativa.</li>
+  </ul>
+
+  <div class="box-key">
+    <strong>💡 Idea clave:</strong> Jakobson identificó seis funciones del lenguaje (emotiva, conativa, referencial, poética, fática, metalingüística), cada una vinculada a un elemento del acto comunicativo. En todo texto hay una función dominante, pero pueden coexistir varias. Identificar la función predominante es clave para saber <em>cómo leer y cómo producir</em> un texto.
+  </div>
+</div>
+
+<!-- ================================================ -->
+<!-- PESTAÑA: TEMA 4 -->
+<!-- ================================================ -->
+<div id="tema4" class="tab-content">
+  <h2>🔗 Tema 4: Relación entre tipos de texto y funciones del lenguaje</h2>
+
+  <p>Hasta ahora hemos estudiado los tipos de texto y las funciones del lenguaje por separado. En este tema los integramos: <strong>¿qué función predomina en cada tipo de texto?</strong> Esta relación no es arbitraria: cada tipo de texto existe para satisfacer una necesidad comunicativa, y esa necesidad determina qué función del lenguaje se activa con mayor fuerza.</p>
+
+  <div class="box-concept">
+    <strong>Principio fundamental:</strong> El tipo de texto y la función del lenguaje no son lo mismo, pero están íntimamente relacionados. El tipo describe la <em>estructura y la intención</em>; la función describe el <em>efecto comunicativo que se persigue</em>. Un buen lector identifica ambos simultáneamente.
+  </div>
+
+  <h3>Mapa de correspondencias</h3>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Tipo de texto</th><th>Función dominante</th><th>Funciones secundarias posibles</th><th>Ejemplo integrado</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><strong>Narrativo</strong></td>
+          <td>Poética (si es literario) / Referencial (si es histórico o periodístico)</td>
+          <td>Emotiva, fática</td>
+          <td>Una crónica del diario El Universo sobre el terremoto de 2016 narra hechos (referencial) con carga emotiva.</td>
+        </tr>
+        <tr>
+          <td><strong>Descriptivo</strong></td>
+          <td>Referencial</td>
+          <td>Poética (si es literario)</td>
+          <td>La descripción técnica de un bien inmueble en un avalúo notarial es plenamente referencial.</td>
+        </tr>
+        <tr>
+          <td><strong>Expositivo</strong></td>
+          <td>Referencial</td>
+          <td>Metalingüística (define términos), fática (introduce, contextualiza)</td>
+          <td>Un artículo de la revista académica RETOS explica el sistema tributario ecuatoriano con objetividad total.</td>
+        </tr>
+        <tr>
+          <td><strong>Argumentativo</strong></td>
+          <td>Conativa (busca convencer)</td>
+          <td>Referencial (cita datos), emotiva (apela a valores)</td>
+          <td>Un ensayo que defiende la reforma del Código Tributario usa datos del SRI (referencial) para persuadir (conativa).</td>
+        </tr>
+        <tr>
+          <td><strong>Instructivo</strong></td>
+          <td>Conativa</td>
+          <td>Referencial (contextualiza el procedimiento)</td>
+          <td>El instructivo del SRI para el llenado del formulario 104 ordena pasos concretos al receptor.</td>
+        </tr>
+        <tr>
+          <td><strong>Conversacional</strong></td>
+          <td>Fática (mantiene el contacto)</td>
+          <td>Conativa, emotiva</td>
+          <td>El saludo de apertura en una videoconferencia institucional establece el canal antes de la información sustancial.</td>
+        </tr>
+        <tr>
+          <td><strong>Publicitario</strong></td>
+          <td>Conativa</td>
+          <td>Poética (juego de palabras, creatividad), emotiva</td>
+          <td>Un anuncio de Banco Pichincha apela emocionalmente y persuade al cliente a abrir una cuenta.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Estrategia de lectura: identifica primero, lee después</h3>
+  <p>Los lectores expertos no empiezan a leer desde la primera palabra sin más. Antes de leer, hacen un diagnóstico del texto:</p>
+  <ul class="list-visual">
+    <li data-icon="1️⃣"><strong>¿Qué tipo de texto es?</strong> Observa el formato, el título, la fuente, la estructura visual.</li>
+    <li data-icon="2️⃣"><strong>¿Qué función del lenguaje predomina?</strong> ¿Me informa, me ordena, me emociona, me convence?</li>
+    <li data-icon="3️⃣"><strong>¿Cuál es el contexto de producción?</strong> ¿Quién lo escribió, para quién, en qué momento?</li>
+    <li data-icon="4️⃣"><strong>¿Qué espero encontrar?</strong> Activo mis conocimientos previos y mi esquema mental para ese tipo de texto.</li>
+    <li data-icon="5️⃣"><strong>Leo con propósito:</strong> no leo todo igual; ajusto la velocidad y profundidad según el objetivo.</li>
+  </ul>
+
+  <div class="box-example">
+    <div class="ex-label">🇪🇨 Caso integrado — Ecuador</div>
+    <p><strong>Situación:</strong> Eres contador en una empresa exportadora de cacao en Guayaquil y recibes tres documentos en un mismo día:</p>
+    <ol style="margin: 10px 0 10px 20px; font-size: 0.95rem;">
+      <li><strong>Resolución NAC-DGERCGC23-0000001 del SRI</strong> → Texto <em>normativo-instructivo</em>. Función <em>conativa</em>. Lees buscando qué debes hacer.</li>
+      <li><strong>Boletín de prensa del Banco Central del Ecuador sobre inflación</strong> → Texto <em>expositivo</em>. Función <em>referencial</em>. Lees buscando datos y cifras objetivas.</li>
+      <li><strong>Correo del gerente general motivando al equipo</strong> → Texto <em>conversacional con rasgos narrativos</em>. Función <em>emotiva y fática</em>. Lees buscando el tono y el mensaje de cohesión.</li>
+    </ol>
+    <p>Cada texto requiere una estrategia de lectura diferente porque su tipo y función son distintos. Un lector que no distingue estos elementos trata todos los textos igual, y eso genera errores de comprensión costosos en el ámbito profesional.</p>
+  </div>
+
+  <h3>El texto multimodal: un nuevo reto</h3>
+  <p>En la era digital, los textos ya no son solo escritura. Los <strong>textos multimodales</strong> combinan palabras, imágenes, gráficos, colores, sonidos y videos. Un informe financiero digital con gráficas interactivas, una presentación de PowerPoint o una infografía del INEC son textos multimodales. Analizar su tipo y función requiere considerar también los elementos visuales.</p>
+
+  <div class="box-key">
+    <strong>💡 Idea clave:</strong> Los tipos de texto y las funciones del lenguaje no son categorías separadas: se complementan. Cada tipo de texto activa una función dominante del lenguaje. Identificar ambos antes de leer es la base de la comprensión lectora experta. En el ámbito profesional contable, esta habilidad reduce errores de interpretación de documentos normativos, financieros y comunicativos.
+  </div>
+</div>
+
+<!-- ================================================ -->
+<!-- PESTAÑA: EJERCICIO INTERACTIVO -->
+<!-- ================================================ -->
+<div id="ejercicio" class="tab-content">
+  <h2>✏️ Ejercicio Interactivo — Clasifica y analiza</h2>
+  <p>Lee cada fragmento o situación y selecciona la respuesta correcta. Responde <strong>todos los ítems</strong> antes de presionar "Verificar respuestas".</p>
+
+  <!-- Ítem 1 -->
+  <div class="quiz-question" id="ei-q1">
+    <div><span class="q-number">Ítem 1</span> <span class="q-badge badge-teo">Clasificación</span></div>
+    <div class="q-text">"El Servicio de Rentas Internas del Ecuador recaudó 15.672 millones de dólares en 2022, un incremento del 14% respecto al año anterior." ¿Qué tipo de texto es este fragmento y qué función del lenguaje predomina?</div>
+    <label class="option-label"><input type="radio" name="ei1" value="a"> Texto narrativo con función emotiva</label>
+    <label class="option-label"><input type="radio" name="ei1" value="b"> Texto expositivo con función referencial</label>
+    <label class="option-label"><input type="radio" name="ei1" value="c"> Texto argumentativo con función conativa</label>
+    <label class="option-label"><input type="radio" name="ei1" value="d"> Texto instructivo con función metalingüística</label>
+    <div class="feedback-box" id="ef1"></div>
+  </div>
+
+  <!-- Ítem 2 -->
+  <div class="quiz-question" id="ei-q2">
+    <div><span class="q-number">Ítem 2</span> <span class="q-badge badge-teo">Propiedades</span></div>
+    <div class="q-text">Un estudiante entrega un "texto" que dice: "Los activos. La empresa. Ecuador. Normas contables. Resultados." ¿Qué propiedad fundamental del texto está ausente?</div>
+    <label class="option-label"><input type="radio" name="ei2" value="a"> Cohesión y coherencia</label>
+    <label class="option-label"><input type="radio" name="ei2" value="b"> Informatividad</label>
+    <label class="option-label"><input type="radio" name="ei2" value="c"> Situacionalidad</label>
+    <label class="option-label"><input type="radio" name="ei2" value="d"> Intertextualidad</label>
+    <div class="feedback-box" id="ef2"></div>
+  </div>
+
+  <!-- Ítem 3 -->
+  <div class="quiz-question" id="ei-q3">
+    <div><span class="q-number">Ítem 3</span> <span class="q-badge badge-teo">Funciones</span></div>
+    <div class="q-text">Un instructivo del SRI indica: "Complete el casillero 401 con el total de ventas gravadas con tarifa 12% del IVA." ¿Qué función del lenguaje predomina?</div>
+    <label class="option-label"><input type="radio" name="ei3" value="a"> Función poética</label>
+    <label class="option-label"><input type="radio" name="ei3" value="b"> Función fática</label>
+    <label class="option-label"><input type="radio" name="ei3" value="c"> Función conativa o apelativa</label>
+    <label class="option-label"><input type="radio" name="ei3" value="d"> Función emotiva</label>
+    <div class="feedback-box" id="ef3"></div>
+  </div>
+
+  <!-- Ítem 4 -->
+  <div class="quiz-question" id="ei-q4">
+    <div><span class="q-number">Ítem 4</span> <span class="q-badge badge-teo">Funciones</span></div>
+    <div class="q-text">Al inicio de una videoconferencia institucional, el gerente dice: "Buenos días a todos, ¿pueden escucharme bien? ¿Está activo el micrófono?" ¿Qué función del lenguaje está ejerciendo predominantemente?</div>
+    <label class="option-label"><input type="radio" name="ei4" value="a"> Función referencial</label>
+    <label class="option-label"><input type="radio" name="ei4" value="b"> Función metalingüística</label>
+    <label class="option-label"><input type="radio" name="ei4" value="c"> Función fática o de contacto</label>
+    <label class="option-label"><input type="radio" name="ei4" value="d"> Función argumentativa</label>
+    <div class="feedback-box" id="ef4"></div>
+  </div>
+
+  <!-- Ítem 5 -->
+  <div class="quiz-question" id="ei-q5">
+    <div><span class="q-number">Ítem 5</span> <span class="q-badge badge-teo">Jakobson</span></div>
+    <div class="q-text">Una nota al pie en un informe financiero dice: "El término 'pasivo corriente' se refiere a las obligaciones de la empresa con vencimiento menor a un año." ¿Qué función del lenguaje ejerce esta nota?</div>
+    <label class="option-label"><input type="radio" name="ei5" value="a"> Función emotiva</label>
+    <label class="option-label"><input type="radio" name="ei5" value="b"> Función metalingüística</label>
+    <label class="option-label"><input type="radio" name="ei5" value="c"> Función poética</label>
+    <label class="option-label"><input type="radio" name="ei5" value="d"> Función conativa</label>
+    <div class="feedback-box" id="ef5"></div>
+  </div>
+
+  <!-- Ítem 6 -->
+  <div class="quiz-question" id="ei-q6">
+    <div><span class="q-number">Ítem 6</span> <span class="q-badge badge-teo">Tipos de texto</span></div>
+    <div class="q-text">Un informe de auditoría de la Contraloría General del Estado presenta hallazgos con evidencias y concluye con recomendaciones que los responsables deben implementar. Considerando su intención comunicativa predominante, ¿qué tipo de texto es principalmente?</div>
+    <label class="option-label"><input type="radio" name="ei6" value="a"> Narrativo</label>
+    <label class="option-label"><input type="radio" name="ei6" value="b"> Expositivo-argumentativo con elementos directivos</label>
+    <label class="option-label"><input type="radio" name="ei6" value="c"> Literario descriptivo</label>
+    <label class="option-label"><input type="radio" name="ei6" value="d"> Conversacional dialógico</label>
+    <div class="feedback-box" id="ef6"></div>
+  </div>
+
+  <!-- Ítem 7 -->
+  <div class="quiz-question" id="ei-q7">
+    <div><span class="q-number">Ítem 7</span> <span class="q-badge badge-teo">Propiedades</span></div>
+    <div class="q-text">Según Beaugrande y Dressler, ¿cuántas propiedades debe cumplir un texto para ser considerado como tal?</div>
+    <label class="option-label"><input type="radio" name="ei7" value="a"> Cinco propiedades</label>
+    <label class="option-label"><input type="radio" name="ei7" value="b"> Cuatro propiedades</label>
+    <label class="option-label"><input type="radio" name="ei7" value="c"> Siete propiedades</label>
+    <label class="option-label"><input type="radio" name="ei7" value="d"> Tres propiedades</label>
+    <div class="feedback-box" id="ef7"></div>
+  </div>
+
+  <!-- Ítem 8 -->
+  <div class="quiz-question" id="ei-q8">
+    <div><span class="q-number">Ítem 8</span> <span class="q-badge badge-teo">Relación tipo-función</span></div>
+    <div class="q-text">Un anuncio publicitario de un banco ecuatoriano dice: "Crece con nosotros. Tu futuro empieza hoy." ¿Qué función del lenguaje predomina y qué tipo de texto es?</div>
+    <label class="option-label"><input type="radio" name="ei8" value="a"> Función referencial; texto expositivo</label>
+    <label class="option-label"><input type="radio" name="ei8" value="b"> Función conativa con rasgos poéticos; texto publicitario</label>
+    <label class="option-label"><input type="radio" name="ei8" value="c"> Función metalingüística; texto instructivo</label>
+    <label class="option-label"><input type="radio" name="ei8" value="d"> Función emotiva; texto narrativo</label>
+    <div class="feedback-box" id="ef8"></div>
+  </div>
+
+  <div style="margin-top: 20px;">
+    <button class="btn-verify" onclick="verificarEjercicio()">✅ Verificar respuestas</button>
+    <button class="btn-reset" id="btn-reset-ej" onclick="reiniciarEjercicio()">🔄 Reiniciar</button>
+  </div>
+  <div class="score-panel" id="score-ejercicio">
+    <div class="score-number" id="ej-score-num"></div>
+    <div class="score-label">Respuestas correctas</div>
+    <div class="progress-bar-wrap"><div class="progress-bar-fill" id="ej-bar"></div></div>
+    <div class="score-msg" id="ej-msg"></div>
+  </div>
+</div>
+
+<!-- ================================================ -->
+<!-- PESTAÑA: CUESTIONARIO -->
+<!-- ================================================ -->
+<div id="cuestionario" class="tab-content">
+  <h2>📊 Cuestionario — Tipos de textos y funciones del lenguaje</h2>
+  <p>Responde las <strong>10 preguntas</strong> (7 teóricas + 3 de análisis). Selecciona todas tus respuestas y luego presiona "Verificar respuestas".</p>
+
+  <!-- Pregunta 1 -->
+  <div class="quiz-question">
+    <div><span class="q-number">Pregunta 1</span><span class="q-badge badge-teo">Teórica</span></div>
+    <div class="q-text">¿Cuál de las siguientes afirmaciones describe correctamente la propiedad de <em>coherencia</em> según la lingüística textual de Beaugrande y Dressler?</div>
+    <label class="option-label"><input type="radio" name="qi1" value="a"> Es la propiedad por la cual las oraciones se enlazan formalmente mediante conectores, pronombres y sinónimos.</label>
+    <label class="option-label"><input type="radio" name="qi1" value="b"> Es la propiedad por la cual el texto tiene sentido global y sus ideas se relacionan de manera lógica y unitaria en torno a un tema central.</label>
+    <label class="option-label"><input type="radio" name="qi1" value="c"> Es la propiedad que asegura que el texto aporte información nueva y relevante al receptor.</label>
+    <label class="option-label"><input type="radio" name="qi1" value="d"> Es la propiedad que vincula el texto con otros textos previos mediante citas o referencias.</label>
+    <div class="feedback-box" id="qf1"></div>
+  </div>
+
+  <!-- Pregunta 2 -->
+  <div class="quiz-question">
+    <div><span class="q-number">Pregunta 2</span><span class="q-badge badge-teo">Teórica</span></div>
+    <div class="q-text">Roman Jakobson (1960) identificó seis funciones del lenguaje vinculadas a seis factores del acto comunicativo. ¿Cuál es la función asociada al <em>código</em> (el sistema lingüístico utilizado)?</div>
+    <label class="option-label"><input type="radio" name="qi2" value="a"> Función metalingüística</label>
+    <label class="option-label"><input type="radio" name="qi2" value="b"> Función fática</label>
+    <label class="option-label"><input type="radio" name="qi2" value="c"> Función referencial</label>
+    <label class="option-label"><input type="radio" name="qi2" value="d"> Función conativa</label>
+    <div class="feedback-box" id="qf2"></div>
+  </div>
+
+  <!-- Pregunta 3 -->
+  <div class="quiz-question">
+    <div><span class="q-number">Pregunta 3</span><span class="q-badge badge-teo">Teórica</span></div>
+    <div class="q-text">¿Qué diferencia fundamental existe entre un <em>texto</em> y un <em>discurso</em> en la lingüística contemporánea?</div>
+    <label class="option-label"><input type="radio" name="qi3" value="a"> El texto es siempre escrito, mientras que el discurso es siempre oral.</label>
+    <label class="option-label"><input type="radio" name="qi3" value="b"> El texto es el producto lingüístico concreto y analizable, mientras que el discurso es ese texto considerado en su contexto social, histórico e ideológico.</label>
+    <label class="option-label"><input type="radio" name="qi3" value="c"> El discurso tiene más de 500 palabras; el texto es más breve.</label>
+    <label class="option-label"><input type="radio" name="qi3" value="d"> No existe ninguna diferencia; son términos perfectamente intercambiables en todo contexto.</label>
+    <div class="feedback-box" id="qf3"></div>
+  </div>
+
+  <!-- Pregunta 4 -->
+  <div class="quiz-question">
+    <div><span class="q-number">Pregunta 4</span><span class="q-badge badge-teo">Teórica</span></div>
+    <div class="q-text">¿Cuál es la función del lenguaje que predomina en un texto <em>expositivo</em> académico, como un artículo científico sobre sistemas tributarios?</div>
+    <label class="option-label"><input type="radio" name="qi4" value="a"> Función poética, porque el lenguaje tiene valor estético propio.</label>
+    <label class="option-label"><input type="radio" name="qi4" value="b"> Función referencial, porque el texto transmite información objetiva sobre la realidad.</label>
+    <label class="option-label"><input type="radio" name="qi4" value="c"> Función emotiva, porque el autor expresa sus sentimientos hacia el tema.</label>
+    <label class="option-label"><input type="radio" name="qi4" value="d"> Función fática, porque establece el contacto comunicativo entre partes.</label>
+    <div class="feedback-box" id="qf4"></div>
+  </div>
+
+  <!-- Pregunta 5 -->
+  <div class="quiz-question">
+    <div><span class="q-number">Pregunta 5</span><span class="q-badge badge-teo">Teórica</span></div>
+    <div class="q-text">En la clasificación de textos por su intención comunicativa, ¿cuál es la característica principal de un texto <em>argumentativo</em>?</div>
+    <label class="option-label"><input type="radio" name="qi5" value="a"> Describe detalladamente las características físicas de un objeto o persona usando adjetivos calificativos.</label>
+    <label class="option-label"><input type="radio" name="qi5" value="b"> Defiende una tesis o postura mediante razonamientos y evidencias con el propósito de convencer al receptor.</label>
+    <label class="option-label"><input type="radio" name="qi5" value="c"> Narra hechos en secuencia temporal con personajes, conflicto y desenlace.</label>
+    <label class="option-label"><input type="radio" name="qi5" value="d"> Guía al receptor mediante instrucciones secuenciales usando verbos en imperativo o infinitivo.</label>
+    <div class="feedback-box" id="qf5"></div>
+  </div>
+
+  <!-- Pregunta 6 -->
+  <div class="quiz-question">
+    <div><span class="q-number">Pregunta 6</span><span class="q-badge badge-teo">Teórica</span></div>
+    <div class="q-text">La <em>intertextualidad</em>, como propiedad del texto según Beaugrande y Dressler, hace referencia a:</div>
+    <label class="option-label"><input type="radio" name="qi6" value="a"> La relación del texto con su contexto de producción: quién escribe, a quién, cuándo y dónde.</label>
+    <label class="option-label"><input type="radio" name="qi6" value="b"> La propiedad por la cual el texto dialoga con otros textos previos, citando, parafraseando, refutando o ampliando textos anteriores.</label>
+    <label class="option-label"><input type="radio" name="qi6" value="c"> La capacidad del texto de conectar oraciones mediante mecanismos formales como pronombres y conectores.</label>
+    <label class="option-label"><input type="radio" name="qi6" value="d"> La intención del emisor de transmitir un mensaje con un propósito claro y deliberado.</label>
+    <div class="feedback-box" id="qf6"></div>
+  </div>
+
+  <!-- Pregunta 7 -->
+  <div class="quiz-question">
+    <div><span class="q-number">Pregunta 7</span><span class="q-badge badge-teo">Teórica</span></div>
+    <div class="q-text">¿Qué afirmación es correcta sobre la relación entre tipos de texto y funciones del lenguaje?</div>
+    <label class="option-label"><input type="radio" name="qi7" value="a"> Cada texto tiene únicamente una función del lenguaje y es imposible que coexistan varias funciones en un mismo texto.</label>
+    <label class="option-label"><input type="radio" name="qi7" value="b"> Los tipos de texto y las funciones del lenguaje son conceptos idénticos que pueden usarse como sinónimos sin distinción.</label>
+    <label class="option-label"><input type="radio" name="qi7" value="c"> En un texto pueden coexistir varias funciones del lenguaje, pero siempre hay una función dominante que define su propósito comunicativo principal.</label>
+    <label class="option-label"><input type="radio" name="qi7" value="d"> La función poética solo puede aparecer en textos literarios y nunca en textos técnicos o académicos.</label>
+    <div class="feedback-box" id="qf7"></div>
+  </div>
+
+  <!-- Pregunta 8 (Análisis) -->
+  <div class="quiz-question">
+    <div><span class="q-number">Pregunta 8</span><span class="q-badge badge-ana">Análisis de caso</span></div>
+    <div class="q-text">Una empresa de telecomunicaciones envía el siguiente mensaje a sus clientes: "¡Querido cliente! Sentimos profundamente los inconvenientes causados por la interrupción del servicio. Te prometemos trabajar el doble para que esto no vuelva a ocurrir. ¡Gracias por tu confianza!" ¿Cuáles son las funciones del lenguaje presentes, en orden de predominancia?</div>
+    <label class="option-label"><input type="radio" name="qi8" value="a"> Metalingüística (predominante), seguida de referencial y fática.</label>
+    <label class="option-label"><input type="radio" name="qi8" value="b"> Emotiva (predominante, expresa sentimientos de la empresa), seguida de conativa (busca mantener la fidelidad del cliente) y fática (mantiene el vínculo comunicativo).</label>
+    <label class="option-label"><input type="radio" name="qi8" value="c"> Referencial (predominante, informa sobre hechos), seguida de poética.</label>
+    <label class="option-label"><input type="radio" name="qi8" value="d"> Poética (predominante, usa recursos estilísticos), seguida de metalingüística.</label>
+    <div class="feedback-box" id="qf8"></div>
+  </div>
+
+  <!-- Pregunta 9 (Análisis) -->
+  <div class="quiz-question">
+    <div><span class="q-number">Pregunta 9</span><span class="q-badge badge-ana">Análisis de caso</span></div>
+    <div class="q-text">Un contador recibe tres documentos: (1) una resolución del SRI que modifica tarifas, (2) un ensayo de un colega que defiende la simplificación tributaria, y (3) un correo que dice "¿Recibiste los estados financieros que te envié ayer?". ¿Cuál es el orden correcto de funciones del lenguaje predominantes?</div>
+    <label class="option-label"><input type="radio" name="qi9" value="a"> (1) Conativa, (2) Referencial, (3) Poética</label>
+    <label class="option-label"><input type="radio" name="qi9" value="b"> (1) Poética, (2) Emotiva, (3) Metalingüística</label>
+    <label class="option-label"><input type="radio" name="qi9" value="c"> (1) Conativa, (2) Conativa, (3) Fática</label>
+    <label class="option-label"><input type="radio" name="qi9" value="d"> (1) Referencial — informa normas objetivas, (2) Conativa — busca convencer, (3) Fática — verifica el canal de comunicación</label>
+    <div class="feedback-box" id="qf9"></div>
+  </div>
+
+  <!-- Pregunta 10 (Análisis) -->
+  <div class="quiz-question">
+    <div><span class="q-number">Pregunta 10</span><span class="q-badge badge-ana">Análisis de caso</span></div>
+    <div class="q-text">Una estudiante de Contabilidad debe presentar un informe sobre el impacto del impuesto a la renta en las PYMES ecuatorianas. El docente especifica: "debe incluir datos estadísticos objetivos, una defensa de tu postura con argumentos, y un glosario de términos al final." Si cumple estas tres condiciones, ¿qué tipos textuales y funciones habrá combinado?</div>
+    <label class="option-label"><input type="radio" name="qi10" value="a"> Solo texto narrativo con función emotiva, ya que habla de su propia investigación.</label>
+    <label class="option-label"><input type="radio" name="qi10" value="b"> Texto expositivo (datos estadísticos, función referencial) + texto argumentativo (defensa de postura, función conativa) + función metalingüística (glosario). Es un texto académico híbrido.</label>
+    <label class="option-label"><input type="radio" name="qi10" value="c"> Solo texto expositivo con función referencial, porque los informes académicos son siempre objetivos.</label>
+    <label class="option-label"><input type="radio" name="qi10" value="d"> Texto descriptivo (función poética) + texto instructivo (función fática).</label>
+    <div class="feedback-box" id="qf10"></div>
+  </div>
+
+  <div style="margin-top:20px;">
+    <button class="btn-verify" onclick="verificarCuestionario()">✅ Verificar respuestas</button>
+    <button class="btn-reset" id="btn-reset-quiz" onclick="reiniciarCuestionario()">🔄 Reiniciar</button>
+  </div>
+  <div class="score-panel" id="score-quiz">
+    <div class="score-number" id="quiz-score-num"></div>
+    <div class="score-label">Preguntas correctas de 10</div>
+    <div class="progress-bar-wrap"><div class="progress-bar-fill" id="quiz-bar"></div></div>
+    <div class="score-msg" id="quiz-msg"></div>
+  </div>
+</div>
+
+<!-- ================================================ -->
+<!-- PESTAÑA: ACTIVIDAD CON IA -->
+<!-- ================================================ -->
+<div id="ia" class="tab-content">
+  <h2>🤖 Actividad con Inteligencia Artificial</h2>
+  <div class="box-concept">
+    <strong>Herramienta recomendada:</strong> <a href="https://claude.ai" target="_blank" style="color:#003366;">Claude en claude.ai</a> (Anthropic) — versión gratuita. También puedes usar ChatGPT (chatgpt.com) o Gemini (gemini.google.com). Esta actividad <strong>no es copiar</strong> la respuesta de la IA; es usarla como punto de partida para desarrollar tu propio pensamiento crítico.
+  </div>
+
+  <h3>🎯 Actividad: "El texto que te rodea sin que lo notes"</h3>
+  <p>Los tipos de texto y las funciones del lenguaje no son categorías de libro: están presentes en todo lo que lees a diario. En esta actividad, usarás la IA para analizar textos reales de tu entorno y luego <strong>cuestionarás y ampliarás</strong> su análisis con tu propio criterio.</p>
+
+  <div class="ia-step">
+    <div class="step-num">1</div>
+    <div class="step-body">
+      <strong>Busca 3 textos reales en tu entorno inmediato</strong> (pueden ser: la etiqueta de un producto en tu cocina, un mensaje de WhatsApp de tu universidad, un aviso en la calle, un párrafo del silabo de esta materia, una notificación del banco en tu celular, o cualquier texto que tengas a mano). Fotográfialos o cópialos.
+    </div>
+  </div>
+
+  <div class="ia-step">
+    <div class="step-num">2</div>
+    <div class="step-body">
+      <strong>Usa el siguiente prompt con Claude en claude.ai:</strong>
+      <div class="prompt-box">Actúa como un lingüista especialista en análisis textual. Te voy a presentar tres textos breves que encontré en mi entorno cotidiano. Para cada uno, necesito que:
+
+1. Identifiques el tipo de texto según su intención comunicativa (narrativo, descriptivo, expositivo, argumentativo, instructivo o conversacional) y expliques por qué.
+2. Identifiques la función del lenguaje predominante según el modelo de Roman Jakobson (emotiva, conativa, referencial, poética, fática o metalingüística) y expliques cómo lo determinas.
+3. Menciones si hay funciones secundarias presentes y cuáles son.
+4. Indiques qué estrategia de lectura recomendarías para ese tipo de texto.
+
+Texto 1: [COPIA AQUÍ TU PRIMER TEXTO]
+Texto 2: [COPIA AQUÍ TU SEGUNDO TEXTO]
+Texto 3: [COPIA AQUÍ TU TERCER TEXTO]
+
+Sé preciso y pedagógico. Usa ejemplos concretos del texto para justificar cada decisión.</div>
+    </div>
+  </div>
+
+  <div class="ia-step">
+    <div class="step-num">3</div>
+    <div class="step-body">
+      <strong>Analiza críticamente la respuesta de la IA:</strong> Lee con atención lo que Claude te devuelve y responde estas preguntas por escrito (mínimo 5 líneas por texto):
+      <ul class="list-visual" style="margin-top:10px;">
+        <li data-icon="🔍">¿Estás de acuerdo con la clasificación que hace la IA? ¿Por qué sí o por qué no?</li>
+        <li data-icon="❓">¿La IA identificó alguna función que tú no habías notado? ¿O pasó algo por alto?</li>
+        <li data-icon="💡">¿Qué revela este análisis sobre el texto que no eras consciente antes? ¿Cambió tu percepción de ese objeto cotidiano?</li>
+        <li data-icon="🌍">¿Cómo influye el contexto ecuatoriano o latinoamericano en la interpretación de esos textos? ¿La IA consideró ese contexto?</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="ia-step">
+    <div class="step-num">4</div>
+    <div class="step-body">
+      <strong>Escribe tu conclusión:</strong> En un párrafo de no más de 10 líneas, responde: <em>"¿Qué aprendí sobre los textos que me rodean a diario que antes no había notado? ¿En qué medida el dominio de los tipos de texto y las funciones del lenguaje es una herramienta útil para mi vida profesional como contador/auditor?"</em>
+    </div>
+  </div>
+
+  <div class="box-example">
+    <div class="ex-label">📋 Criterio de evaluación</div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Nivel</th><th>Descripción</th></tr></thead>
+        <tbody>
+          <tr><td>✅ <strong>Pensamiento crítico (Excelente)</strong></td><td>El estudiante <em>debate</em> la respuesta de la IA: señala aciertos, identifica errores o puntos débiles, agrega matices que la IA no consideró, conecta el análisis con su realidad profesional concreta.</td></tr>
+          <tr><td>📘 <strong>Comprensión adecuada (Bueno)</strong></td><td>El estudiante comprende la respuesta de la IA, la compara con el material del widget y elabora una reflexión propia, aunque sin profundizar en debates o cuestionamientos.</td></tr>
+          <tr><td>⚠️ <strong>Copia simple (Insuficiente)</strong></td><td>El estudiante copia la respuesta de la IA sin analizar ni cuestionar nada. No hay voz propia ni reflexión. Este nivel no cumple el objetivo de la actividad.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="box-key">
+    <strong>💡 Recuerda:</strong> La IA puede equivocarse o simplificar. Tu valor como profesional está en <em>saber cuándo la IA tiene razón, cuándo no, y por qué</em>. Eso es pensamiento crítico real.
+  </div>
+</div>
+
+<!-- ================================================ -->
+<!-- PESTAÑA: REFLEXIÓN -->
+<!-- ================================================ -->
+<div id="reflexion" class="tab-content">
+  <h2>💭 Preguntas Reflexivas — Los textos en tu vida cotidiana</h2>
+  <p>Esta sección no tiene respuestas correctas ni incorrectas. Su propósito es conectar los conceptos académicos con tu experiencia de vida. Tómate el tiempo necesario para reflexionar con honestidad.</p>
+
+  <div class="box-concept">
+    <strong>¿Por qué reflexionar?</strong> Los tipos de texto y las funciones del lenguaje no son categorías abstractas de un manual: están en cada mensaje que recibes, cada contrato que firmas, cada publicación que ves. Reconocerlos te da poder sobre la información que consumes y produce una consciencia comunicativa que va más allá del aula.
+  </div>
+
+  <div class="refleja-card">
+    <div class="r-icon">📱</div>
+    <div class="r-text"><strong>Reflexión 1 — La pantalla como texto:</strong> Abre tu celular y mira los últimos 10 mensajes o notificaciones que recibiste (WhatsApp, Instagram, correo, banco, universidad). ¿Cuántos de esos mensajes buscan informarte (función referencial), cuántos buscan que hagas algo (función conativa) y cuántos simplemente mantienen el contacto (función fática)? ¿Te habías dado cuenta antes de que cada mensaje tiene un "propósito oculto"? ¿Cómo cambia tu relación con el mensaje cuando lo sabes?</div>
+  </div>
+
+  <div class="refleja-card">
+    <div class="r-icon">🛒</div>
+    <div class="r-text"><strong>Reflexión 2 — Publicidad y poder:</strong> Piensa en la última compra que hiciste o algo que quisiste comprar después de ver un anuncio. ¿Qué tipo de texto era ese anuncio? ¿Qué función del lenguaje usó para influirte? ¿Fue más la información objetiva (referencial) o la emoción y la promesa (conativa y emotiva) lo que te movió? Desde la Programación Neurolingüística (PNL), sabemos que las decisiones humanas son más emocionales que racionales. ¿Coincide eso con tu experiencia de consumidor?</div>
+  </div>
+
+  <div class="refleja-card">
+    <div class="r-icon">🗣️</div>
+    <div class="r-text"><strong>Reflexión 3 — Tu propio lenguaje:</strong> Piensa en cómo te comunicas tú. Cuando hablas con tus amigos, ¿qué función del lenguaje domina en tu conversación? ¿Y cuando hablas con tus padres? ¿Y cuando hablas con un docente o jefe? ¿Cambias instintivamente el tipo de texto que produces según el interlocutor? Esto que haces de manera automática se llama <em>competencia comunicativa</em>. ¿Eres consciente de este cambio? ¿Podrías mejorarlo intencionalmente?</div>
+  </div>
+
+  <div class="refleja-card">
+    <div class="r-icon">💼</div>
+    <div class="r-text"><strong>Reflexión 4 — El texto en tu futuro profesional:</strong> Imagina que eres contador/auditor en una empresa y debes escribir un informe de auditoría que detectó irregularidades financieras. Este informe será leído por el directorio y podría tener consecuencias legales. ¿Qué tipo de texto usarías? ¿Qué función del lenguaje activarías? ¿Cambiaría tu escritura si sabes que el gerente general es amigo de la familia? ¿Cómo se relaciona la ética profesional con la elección de cómo escribes un texto? La <em>inteligencia emocional</em> entra aquí: ¿puedes mantener la objetividad referencial incluso bajo presión?</div>
+  </div>
+
+  <div class="refleja-card">
+    <div class="r-icon">🪞</div>
+    <div class="r-text"><strong>Reflexión 5 — Autoconocimiento y lenguaje interior:</strong> El lenguaje no solo lo usamos para comunicarnos con otros: también nos hablamos a nosotros mismos constantemente (lo que en psicología se llama <em>diálogo interno</em> y en PNL es central para el autoconocimiento). ¿Qué tipo de texto produce tu mente sobre ti mismo? ¿Es más argumentativo (te convences de cosas), descriptivo (te defines de cierta manera) o narrativo (te cuentas historias sobre quién eres)? ¿Esas historias internas te ayudan o te limitan? ¿Qué función del lenguaje interior usas más: la emotiva (te juzgas con emoción) o la referencial (te evalúas con datos objetivos)?</div>
+  </div>
+
+  <div class="refleja-card">
+    <div class="r-icon">❤️</div>
+    <div class="r-text"><strong>Reflexión 6 — Afecto y comunicación:</strong> Piensa en alguien con quien tengas dificultad para comunicarte (puede ser un familiar, amigo, o compañero). ¿Qué tipo de textos predominan en esa relación? ¿Cuándo hay conflictos, qué función del lenguaje se activa más: la emotiva (cada uno expresa su estado), la conativa (cada uno intenta que el otro cambie) o la referencial (intentan hablar de los hechos objetivos)? La inteligencia emocional propone que el primer paso para mejorar una relación es identificar qué función del lenguaje domina en los momentos de tensión. ¿Podrías intentar cambiar esa dinámica conscientemente?</div>
+  </div>
+
+  <div class="box-key">
+    <strong>🌱 Conexión final:</strong> El lenguaje no es solo una herramienta de trabajo: es el medio por el que construyes tu identidad, tus relaciones y tu realidad. Comprender sus tipos y funciones no es una tarea académica: es una forma de vivir con más consciencia, más poder y más responsabilidad sobre las palabras que produces y las que recibes.
+  </div>
+</div>
+
+<!-- ================================================ -->
+<!-- PESTAÑA: BIBLIOGRAFÍA -->
+<!-- ================================================ -->
+<div id="biblio" class="tab-content">
+  <h2>📖 Bibliografía</h2>
+  <p>Referencias en formato APA 7.ª edición. Todas son reales y verificables.</p>
+
+  <div class="ref-card">
+    <div class="ref-type">Libro de texto clásico</div>
+    <p>Beaugrande, R. de, & Dressler, W. (1981). <em>Introduction to text linguistics</em>. Longman.</p>
+  </div>
+
+  <div class="ref-card">
+    <div class="ref-type">Artículo / Ensayo clásico</div>
+    <p>Jakobson, R. (1960). Closing statement: Linguistics and poetics. En T. A. Sebeok (Ed.), <em>Style in language</em> (pp. 350–377). MIT Press.</p>
+  </div>
+
+  <div class="ref-card">
+    <div class="ref-type">Libro de texto universitario</div>
+    <p>Van Dijk, T. A. (1980). <em>Texto y contexto: Semántica y pragmática del discurso</em>. Cátedra.</p>
+  </div>
+
+  <div class="ref-card">
+    <div class="ref-type">Libro de texto universitario</div>
+    <p>Cassany, D., Luna, M., & Sanz, G. (1994). <em>Enseñar lengua</em>. Graó.</p>
+  </div>
+
+  <div class="ref-card">
+    <div class="ref-type">Libro universitario latinoamericano</div>
+    <p>Parodi, G. (2010). <em>Saber leer</em>. Aguilar.</p>
+  </div>
+
+  <div class="ref-card">
+    <div class="ref-type">Libro de lingüística aplicada</div>
+    <p>Bernárdez, E. (1982). <em>Introducción a la lingüística del texto</em>. Espasa-Calpe.</p>
+  </div>
+
+  <div class="ref-card">
+    <div class="ref-type">Recurso institucional</div>
+    <p>Ministerio de Educación del Ecuador. (2016). <em>Lengua y Literatura: Currículo de los niveles de educación obligatoria</em>. Ministerio de Educación del Ecuador. https://educacion.gob.ec/curriculo/</p>
+  </div>
+
+  <div class="ref-note">
+    ⚠️ <strong>Nota académica:</strong> Se recomienda verificar cada referencia en Google Scholar (<a href="https://scholar.google.com" target="_blank">scholar.google.com</a>) o en el repositorio institucional de la Universidad de Guayaquil antes de citar en trabajos académicos.
+  </div>
+</div>
+
+<!-- ===== JAVASCRIPT ===== -->
+<script>
+// ===== NAVEGACIÓN =====
+function showTab(id) {
+  document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  event.currentTarget.classList.add('active');
+}
+
+// ===== EJERCICIO INTERACTIVO =====
+const ejercicioCorrects = {
+  ei1: 'b', ei2: 'a', ei3: 'c', ei4: 'c',
+  ei5: 'b', ei6: 'b', ei7: 'c', ei8: 'b'
+};
+
+const ejercicioFeedbacks = {
+  ei1: {
+    correct: '✅ Correcto. El fragmento presenta datos estadísticos objetivos sobre recaudación tributaria (PIB, porcentajes, cifras). Esto lo hace un texto <strong>expositivo</strong> con <strong>función referencial</strong>: informa sobre la realidad sin intención de emocionar ni persuadir.',
+    incorrect: '❌ Incorrecto. Este fragmento presenta datos cuantitativos objetivos, lo que lo define como texto <strong>expositivo</strong> (informa de manera ordenada y objetiva) con <strong>función referencial</strong> (transmite información sobre la realidad, no busca emocionar ni convencer).'
+  },
+  ei2: {
+    correct: '✅ Correcto. Las cinco frases sueltas ("Los activos. La empresa. Ecuador.") no forman unidades conectadas. Carecen de <strong>cohesión</strong> (no hay mecanismos de enlace formal como conectores o pronombres) ni de <strong>coherencia</strong> (no hay sentido global ni unidad temática). Son la propiedad más básica y más visible en su ausencia.',
+    incorrect: '❌ Incorrecto. El principal problema de esas frases sueltas es la ausencia de <strong>cohesión</strong> (no tienen conectores, pronombres ni mecanismos de enlace) y <strong>coherencia</strong> (no tienen sentido global ni unidad temática). Sin estos, no es posible hablar de un texto.'
+  },
+  ei3: {
+    correct: '✅ Correcto. La instrucción "Complete el casillero 401..." usa verbo en modo imperativo y dirige al receptor para que ejecute una acción específica. Esto es la <strong>función conativa o apelativa</strong> del lenguaje: busca influir en la conducta del receptor.',
+    incorrect: '❌ Incorrecto. El verbo "Complete" en modo imperativo y la dirección al receptor para que actúe caracterizan la <strong>función conativa o apelativa</strong>: el lenguaje tiene como propósito influir en el comportamiento del receptor.'
+  },
+  ei4: {
+    correct: '✅ Correcto. Las preguntas "¿pueden escucharme bien?" y "¿está activo el micrófono?" no informan, no persuaden ni expresan emociones: simplemente verifican que el canal de comunicación (el micrófono, la conexión) esté funcionando. Eso es la <strong>función fática o de contacto</strong>.',
+    incorrect: '❌ Incorrecto. Las preguntas sobre si se escucha bien o si el micrófono funciona no transmiten información nueva sobre la realidad: están verificando que el canal de comunicación está abierto. Eso es exactamente la <strong>función fática o de contacto</strong> identificada por Jakobson.'
+  },
+  ei5: {
+    correct: '✅ Correcto. La nota define el significado de un término técnico ("pasivo corriente") usando el mismo lenguaje para explicarse a sí mismo. Esto es la <strong>función metalingüística</strong>: el lenguaje habla sobre el propio lenguaje o sobre el código que se usa.',
+    incorrect: '❌ Incorrecto. Cuando el lenguaje se usa para definir o explicar términos, el lenguaje habla sobre sí mismo. Eso es la <strong>función metalingüística</strong>, que Jakobson vinculó al factor del "código" en el acto comunicativo.'
+  },
+  ei6: {
+    correct: '✅ Correcto. Un informe de auditoría combina: exposición objetiva de hallazgos (texto <strong>expositivo</strong>), sustentación de observaciones con evidencias (texto <strong>argumentativo</strong>) y recomendaciones que los auditados deben seguir (texto <strong>directivo</strong>). Es un texto institucional híbrido con estas tres características.',
+    incorrect: '❌ Incorrecto. Un informe de auditoría no narra una historia ni tiene personajes. Su función principal es exponer hallazgos (expositivo), sustentarlos con evidencias (argumentativo) y dar recomendaciones (directivo). Es un texto <strong>expositivo-argumentativo con elementos directivos</strong>.'
+  },
+  ei7: {
+    correct: '✅ Correcto. Beaugrande y Dressler (1981) identificaron <strong>siete propiedades</strong> del texto: cohesión, coherencia, intencionalidad, aceptabilidad, informatividad, situacionalidad e intertextualidad. Un texto debe cumplirlas todas para ser considerado como tal.',
+    incorrect: '❌ Incorrecto. Beaugrande y Dressler establecieron <strong>siete propiedades</strong> del texto: cohesión, coherencia, intencionalidad, aceptabilidad, informatividad, situacionalidad e intertextualidad.'
+  },
+  ei8: {
+    correct: '✅ Correcto. El anuncio busca que el receptor actúe (abra una cuenta, confíe en el banco): <strong>función conativa</strong>. Al mismo tiempo usa recursos expresivos como el imperativo poético "Crece con nosotros" que evoca más que informa: rasgos <strong>poéticos</strong>. Es claramente un texto <strong>publicitario</strong>.',
+    incorrect: '❌ Incorrecto. El anuncio no informa datos objetivos (no es referencial). Usa el imperativo "Crece" para mover al receptor a actuar (<strong>función conativa</strong>) y el lenguaje tiene un trabajo expresivo y emotivo que lo acerca a lo <strong>poético</strong>. Es un texto <strong>publicitario</strong>.'
+  }
+};
+
+function verificarEjercicio() {
+  const preguntas = Object.keys(ejercicioCorrects);
+  let todas = true;
+  preguntas.forEach(name => {
+    if (!document.querySelector(`input[name="${name}"]:checked`)) todas = false;
+  });
+  if (!todas) { alert('⚠️ Por favor responde todos los ítems antes de verificar.'); return; }
+
+  let correctas = 0;
+  preguntas.forEach((name, i) => {
+    const num = i + 1;
+    const elegida = document.querySelector(`input[name="${name}"]:checked`).value;
+    const correcta = ejercicioCorrects[name];
+    const fb = ejercicioFeedbacks[name];
+    const fbBox = document.getElementById(`ef${num}`);
+    const labels = document.querySelectorAll(`input[name="${name}"]`);
+
+    labels.forEach(input => {
+      const lbl = input.parentElement;
+      if (input.value === correcta && elegida !== correcta) lbl.classList.add('correct-not-chosen');
+      else if (input.value === elegida && elegida === correcta) lbl.classList.add('correct');
+      else if (input.value === elegida && elegida !== correcta) lbl.classList.add('incorrect');
+      input.disabled = true;
+    });
+
+    if (elegida === correcta) {
+      correctas++;
+      fbBox.className = 'feedback-box correct';
+      fbBox.innerHTML = fb.correct;
+    } else {
+      fbBox.className = 'feedback-box incorrect';
+      fbBox.innerHTML = fb.incorrect;
+    }
+    fbBox.style.display = 'block';
+  });
+
+  const pct = Math.round((correctas / preguntas.length) * 100);
+  const panel = document.getElementById('score-ejercicio');
+  document.getElementById('ej-score-num').textContent = `${correctas}/${preguntas.length}`;
+  document.getElementById('ej-bar').style.width = pct + '%';
+  let msg = '';
+  if (pct === 100) msg = '🏆 ¡Perfecto! Dominas completamente el tema.';
+  else if (pct >= 75) msg = '🎯 ¡Muy bien! Tienes una sólida comprensión del tema.';
+  else if (pct >= 50) msg = '📘 Buen avance. Repasa los ítems marcados en rojo.';
+  else msg = '📖 Sigue estudiando. Revisa el material de cada pestaña con calma.';
+  document.getElementById('ej-msg').innerHTML = msg + ` (${pct}%)`;
+  panel.style.display = 'block';
+  document.getElementById('btn-reset-ej').style.display = 'inline-block';
+}
+
+function reiniciarEjercicio() {
+  const preguntas = Object.keys(ejercicioCorrects);
+  preguntas.forEach((name, i) => {
+    const num = i + 1;
+    document.querySelectorAll(`input[name="${name}"]`).forEach(input => {
+      input.checked = false;
+      input.disabled = false;
+      input.parentElement.classList.remove('correct','incorrect','correct-not-chosen');
+    });
+    const fb = document.getElementById(`ef${num}`);
+    fb.style.display = 'none';
+    fb.className = 'feedback-box';
+  });
+  document.getElementById('score-ejercicio').style.display = 'none';
+  document.getElementById('btn-reset-ej').style.display = 'none';
+  document.getElementById('ej-bar').style.width = '0%';
+}
+
+// ===== CUESTIONARIO =====
+const quizCorrects = {
+  qi1: 'b', qi2: 'a', qi3: 'b', qi4: 'b', qi5: 'b',
+  qi6: 'b', qi7: 'c', qi8: 'b', qi9: 'd', qi10: 'b'
+};
+
+const quizFeedbacks = {
+  qi1: {
+    correct: '✅ Correcto. La <strong>coherencia</strong> es la propiedad de sentido global: las ideas se relacionan lógicamente y forman un todo con unidad temática. No confundirla con cohesión, que es el enlace formal entre oraciones.',
+    incorrect: '❌ Incorrecto. La <strong>coherencia</strong> se refiere al sentido global del texto: sus ideas se relacionan lógicamente y forman una unidad temática. La cohesión, en cambio, es el enlace formal entre oraciones (conectores, pronombres).'
+  },
+  qi2: {
+    correct: '✅ Correcto. Jakobson asoció la función <strong>metalingüística</strong> al factor del <em>código</em>. Esta función ocurre cuando el lenguaje se usa para hablar o explicar el propio código lingüístico: glosarios, definiciones, aclaraciones de uso.',
+    incorrect: '❌ Incorrecto. El <em>código</em> corresponde a la función <strong>metalingüística</strong>: el lenguaje habla sobre el propio código (el sistema de signos). La función fática está relacionada con el canal; la referencial, con el contexto.'
+  },
+  qi3: {
+    correct: '✅ Correcto. El texto es el producto lingüístico concreto y analizable en sí mismo. El discurso es ese texto visto en su contexto social, histórico e ideológico. El discurso considera quién habla, desde qué posición de poder y con qué efectos sociales.',
+    incorrect: '❌ Incorrecto. La distinción no es por extensión ni por canal. El <strong>texto</strong> es el objeto lingüístico analizable aisladamente; el <strong>discurso</strong> es ese texto en su contexto social, histórico e ideológico, que incluye dimensiones de poder, ideología y situación.'
+  },
+  qi4: {
+    correct: '✅ Correcto. Un texto expositivo académico transmite información objetiva sobre la realidad. Jakobson asoció esta tarea con la <strong>función referencial</strong>, orientada al contexto (los hechos externos al emisor y al receptor).',
+    incorrect: '❌ Incorrecto. Un artículo científico sobre sistemas tributarios expone datos, conceptos y explicaciones objetivas. Eso corresponde a la <strong>función referencial</strong>: el lenguaje habla sobre la realidad de manera objetiva. No busca emocionar, ni es estéticamente elaborado, ni establece contacto.'
+  },
+  qi5: {
+    correct: '✅ Correcto. El texto argumentativo defiende una tesis (postura del emisor) mediante argumentos (de autoridad, estadísticos, de ejemplo) y busca <strong>convencer</strong> al receptor. Su función dominante es la conativa.',
+    incorrect: '❌ Incorrecto. El texto argumentativo <strong>defiende una tesis</strong> con argumentos para convencer al receptor. No describe características físicas (eso es descriptivo), no narra hechos en secuencia (narrativo), ni da instrucciones (instructivo).'
+  },
+  qi6: {
+    correct: '✅ Correcto. La <strong>intertextualidad</strong> es la propiedad por la cual un texto se relaciona con otros textos previos: los cita, los parafrasea, los refuta o los amplía. Una tesis universitaria que cita la Ley Tributaria es un ejemplo claro.',
+    incorrect: '❌ Incorrecto. La <strong>intertextualidad</strong> es el diálogo con otros textos: citas, referencias, paráfrasis, refutaciones. La situacionalidad se refiere al contexto de producción; la cohesión, a los mecanismos formales de enlace; la intencionalidad, al propósito del emisor.'
+  },
+  qi7: {
+    correct: '✅ Correcto. En un mismo texto pueden coexistir varias funciones del lenguaje, pero siempre hay una <strong>dominante</strong> que define el propósito comunicativo principal. Los textos son en su mayoría híbridos en la práctica.',
+    incorrect: '❌ Incorrecto. Los textos reales son frecuentemente híbridos: coexisten varias funciones. La afirmación correcta es que hay una función <strong>dominante</strong>, pero pueden aparecer otras secundariamente. Además, la función poética puede aparecer en textos técnicos (eslóganes corporativos, títulos creativos).'
+  },
+  qi8: {
+    correct: '✅ Correcto. El mensaje expresa los sentimientos de la empresa ("sentimos profundamente") → <strong>función emotiva</strong>. Busca retener al cliente y que continúe con el servicio → <strong>función conativa</strong>. Y mantiene el vínculo comunicativo con el cliente → <strong>función fática</strong>. La emotiva es la más visible y dominante.',
+    incorrect: '❌ Incorrecto. El mensaje corporativo expresa los sentimientos de la empresa (<strong>emotiva</strong> — dominante), busca influir en la decisión del cliente de quedarse (<strong>conativa</strong>) y mantiene el canal de comunicación abierto (<strong>fática</strong>). No es metalingüístico ni referencial en su propósito central.'
+  },
+  qi9: {
+    correct: '✅ Correcto. (1) La resolución del SRI ordena al receptor a cumplir una norma → <strong>conativa</strong>. (2) El ensayo defiende una postura → <strong>conativa</strong> (busca convencer). (3) El correo "¿Recibiste...?" verifica que el canal de comunicación funcionó → <strong>fática</strong>. Bien razonado.',
+    incorrect: '❌ Incorrecto. Analicemos: (1) Una resolución del SRI informa sobre normas objetivas y ordena cumplirlas → predomina la función <strong>referencial</strong> (informa la norma) con elementos <strong>conativos</strong>. (2) Un ensayo que defiende una postura busca convencer → <strong>conativa</strong>. (3) "¿Recibiste los documentos?" verifica que el canal funcionó → <strong>fática</strong>. La opción correcta es la (d).'
+  },
+  qi10: {
+    correct: '✅ Correcto. El informe combina: datos estadísticos objetivos → <strong>texto expositivo / función referencial</strong>; defensa de una postura → <strong>texto argumentativo / función conativa</strong>; glosario que define términos → <strong>función metalingüística</strong>. Es un texto académico híbrido, que es la norma en la escritura universitaria.',
+    incorrect: '❌ Incorrecto. Los tres elementos del encargo describen un texto híbrido: los datos estadísticos corresponden a lo <strong>expositivo / referencial</strong>; la defensa de postura a lo <strong>argumentativo / conativo</strong>; el glosario activa la función <strong>metalingüística</strong>. En la universidad, casi todos los textos académicos son híbridos de este tipo.'
+  }
+};
+
+function verificarCuestionario() {
+  const preguntas = Object.keys(quizCorrects);
+  let todas = true;
+  preguntas.forEach(name => {
+    if (!document.querySelector(`input[name="${name}"]:checked`)) todas = false;
+  });
+  if (!todas) { alert('⚠️ Por favor responde todas las preguntas antes de verificar.'); return; }
+
+  let correctas = 0;
+  preguntas.forEach((name, i) => {
+    const num = i + 1;
+    const elegida = document.querySelector(`input[name="${name}"]:checked`).value;
+    const correcta = quizCorrects[name];
+    const fb = quizFeedbacks[name];
+    const fbBox = document.getElementById(`qf${num}`);
+    const labels = document.querySelectorAll(`input[name="${name}"]`);
+
+    labels.forEach(input => {
+      const lbl = input.parentElement;
+      if (input.value === correcta && elegida !== correcta) lbl.classList.add('correct-not-chosen');
+      else if (input.value === elegida && elegida === correcta) lbl.classList.add('correct');
+      else if (input.value === elegida && elegida !== correcta) lbl.classList.add('incorrect');
+      input.disabled = true;
+    });
+
+    if (elegida === correcta) {
+      correctas++;
+      fbBox.className = 'feedback-box correct';
+      fbBox.innerHTML = fb.correct;
+    } else {
+      fbBox.className = 'feedback-box incorrect';
+      fbBox.innerHTML = fb.incorrect;
+    }
+    fbBox.style.display = 'block';
+  });
+
+  const pct = Math.round((correctas / preguntas.length) * 100);
+  const panel = document.getElementById('score-quiz');
+  let emoji = '', msg = '';
+  if (pct === 100) { emoji = '🏆'; msg = '¡Excelente! Dominio total del tema.'; }
+  else if (pct >= 80) { emoji = '🎯'; msg = '¡Muy bien! Comprensión sólida.'; }
+  else if (pct >= 60) { emoji = '📘'; msg = 'Buen progreso. Refuerza los conceptos fallados.'; }
+  else if (pct >= 40) { emoji = '⚠️'; msg = 'Necesitas repasar el material con más detenimiento.'; }
+  else { emoji = '📖'; msg = 'Te recomendamos releer todas las pestañas antes de continuar.'; }
+
+  document.getElementById('quiz-score-num').textContent = `${emoji} ${correctas}/10`;
+  document.getElementById('quiz-bar').style.width = pct + '%';
+  document.getElementById('quiz-msg').innerHTML = `${msg} — ${pct}%`;
+  panel.style.display = 'block';
+  document.getElementById('btn-reset-quiz').style.display = 'inline-block';
+}
+
+function reiniciarCuestionario() {
+  const preguntas = Object.keys(quizCorrects);
+  preguntas.forEach((name, i) => {
+    const num = i + 1;
+    document.querySelectorAll(`input[name="${name}"]`).forEach(input => {
+      input.checked = false;
+      input.disabled = false;
+      input.parentElement.classList.remove('correct','incorrect','correct-not-chosen');
+    });
+    const fb = document.getElementById(`qf${num}`);
+    fb.style.display = 'none';
+    fb.className = 'feedback-box';
+  });
+  document.getElementById('score-quiz').style.display = 'none';
+  document.getElementById('btn-reset-quiz').style.display = 'none';
+  document.getElementById('quiz-bar').style.width = '0%';
+}
+</script>
+</body>
+</html>
