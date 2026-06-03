@@ -1,0 +1,1019 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Semana 10B | Textos Científicos | Lenguaje y Comunicación</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{--azul:#003366;--celeste:#87CEEB;--celeste-claro:#e8f4fb;--blanco:#ffffff;--gris-fondo:#f5f7fa;--gris-borde:#dde3ec;--verde:#1a7a3e;--verde-claro:#e6f4ec;--rojo:#c0392b;--rojo-claro:#fdecea;--naranja:#d4700a;--naranja-claro:#fef3e2;--morado:#5b2d8e;--morado-claro:#f0eafa;--texto:#1a2236;}
+body{font-family:'Source Sans 3',sans-serif;background:var(--gris-fondo);color:var(--texto);min-height:100vh;}
+header{background:var(--azul);color:#fff;padding:18px 24px 14px;}
+.header-inst{font-size:.78rem;font-weight:300;letter-spacing:.04em;opacity:.85;margin-bottom:4px;}
+.header-titulo{font-family:'Lora',serif;font-size:1.35rem;font-weight:700;line-height:1.3;}
+.header-sub{font-size:.82rem;font-weight:300;opacity:.8;margin-top:4px;}
+.header-badges{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px;}
+.badge{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);color:#fff;font-size:.72rem;padding:3px 10px;border-radius:20px;}
+.tabs-wrapper{background:var(--celeste);overflow-x:auto;white-space:nowrap;border-bottom:3px solid #6ab4db;}
+.tabs-wrapper::-webkit-scrollbar{height:4px;}
+.tabs-wrapper::-webkit-scrollbar-thumb{background:#4da3d4;border-radius:2px;}
+.tabs{display:inline-flex;gap:2px;padding:6px 8px 0;}
+.tab-btn{display:inline-block;padding:9px 16px;background:transparent;border:none;border-radius:6px 6px 0 0;font-family:'Source Sans 3',sans-serif;font-size:.82rem;font-weight:600;color:#1a2236;cursor:pointer;white-space:nowrap;transition:background .2s,color .2s;}
+.tab-btn:hover{background:rgba(255,255,255,.5);}
+.tab-btn.active{background:#fff;color:var(--azul);font-weight:700;}
+.content-area{padding:28px 20px 40px;max-width:940px;margin:0 auto;}
+.tab-panel{display:none;}
+.tab-panel.active{display:block;}
+h2.panel-title{font-family:'Lora',serif;font-size:1.45rem;font-weight:700;color:var(--azul);margin-bottom:6px;border-bottom:3px solid var(--celeste);padding-bottom:8px;}
+h3.subtitulo{font-family:'Lora',serif;font-size:1.1rem;font-weight:600;color:var(--azul);margin:22px 0 8px;}
+p{line-height:1.72;margin-bottom:12px;font-size:.97rem;}
+.caja-concepto{border-left:5px solid var(--azul);background:#f0f4ff;padding:14px 18px;border-radius:0 8px 8px 0;margin:16px 0;}
+.caja-concepto strong{color:var(--azul);}
+.caja-ejemplo{background:var(--celeste-claro);border:1px solid #b8d8ef;border-radius:8px;padding:16px 18px;margin:16px 0;}
+.caja-ejemplo .ej-titulo{font-weight:700;color:#0a4d80;font-size:.85rem;text-transform:uppercase;letter-spacing:.05em;margin-bottom:8px;}
+.caja-clave{background:var(--azul);color:#fff;border-radius:8px;padding:16px 18px;margin:20px 0;}
+.caja-clave .clave-titulo{font-family:'Lora',serif;font-size:1rem;font-weight:700;margin-bottom:6px;}
+.caja-clave p{color:#e8eef7;font-size:.93rem;margin:0;}
+.tabla-comp{width:100%;border-collapse:collapse;font-size:.88rem;margin:16px 0;}
+.tabla-comp th{background:var(--azul);color:#fff;padding:10px 12px;text-align:left;font-weight:600;}
+.tabla-comp td{padding:9px 12px;border-bottom:1px solid var(--gris-borde);vertical-align:top;}
+.tabla-comp tr:nth-child(even) td{background:var(--gris-fondo);}
+.tabla-comp tr:hover td{background:var(--celeste-claro);}
+.caract-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px;margin:20px 0;}
+.caract-card{background:#fff;border:1px solid var(--gris-borde);border-top:4px solid var(--azul);border-radius:8px;padding:16px;}
+.caract-card .ic{font-size:1.6rem;margin-bottom:8px;}
+.caract-card h4{font-family:'Lora',serif;color:var(--azul);font-size:1rem;margin-bottom:6px;}
+.caract-card p{font-size:.88rem;color:#3a4a60;line-height:1.65;margin:0;}
+.estructura-paso{display:flex;gap:14px;margin-bottom:14px;align-items:flex-start;}
+.est-num{background:var(--azul);color:#fff;border-radius:50%;width:34px;height:34px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.95rem;flex-shrink:0;margin-top:2px;}
+.est-body h4{font-family:'Lora',serif;color:var(--azul);font-size:1rem;margin-bottom:4px;}
+.est-body p{margin:0;font-size:.9rem;line-height:1.65;}
+.plantilla-wrapper{background:#fff;border:2px solid var(--azul);border-radius:12px;overflow:hidden;margin:20px 0;}
+.plantilla-header{background:var(--azul);color:#fff;padding:14px 20px;font-family:'Lora',serif;font-size:1.1rem;font-weight:700;}
+.plantilla-body{padding:20px;}
+.plantilla-seccion{margin-bottom:22px;}
+.plantilla-seccion-titulo{font-weight:700;color:var(--azul);font-size:.92rem;text-transform:uppercase;letter-spacing:.05em;margin-bottom:8px;border-bottom:2px solid var(--celeste);padding-bottom:4px;}
+.plantilla-field{width:100%;border:1px solid #c0cfe0;border-radius:6px;padding:10px 14px;font-family:'Source Sans 3',sans-serif;font-size:.9rem;color:var(--texto);background:#fafcff;resize:vertical;margin-bottom:8px;line-height:1.6;}
+.plantilla-field:focus{outline:none;border-color:var(--azul);background:#fff;box-shadow:0 0 0 3px rgba(0,51,102,.12);}
+.plantilla-hint{font-size:.78rem;color:#607090;margin-bottom:6px;font-style:italic;}
+.plantilla-inline{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.btn-plantilla{display:inline-block;padding:11px 24px;border:none;border-radius:7px;font-family:'Source Sans 3',sans-serif;font-size:.93rem;font-weight:700;cursor:pointer;margin-right:10px;margin-top:8px;transition:opacity .2s,transform .1s;}
+.btn-azul{background:var(--azul);color:#fff;}
+.btn-azul:hover{opacity:.88;transform:translateY(-1px);}
+.btn-gris{background:#e0e8f4;color:var(--azul);}
+.btn-gris:hover{background:#c8d8ee;}
+.btn-verde{background:var(--verde);color:#fff;}
+.btn-verde:hover{opacity:.88;}
+.eval-resultado{display:none;background:var(--celeste-claro);border:1px solid #b0d8ef;border-radius:8px;padding:14px 18px;margin-top:14px;}
+.eval-item{padding:6px 0;font-size:.9rem;border-bottom:1px dashed #c0d8ee;}
+.eval-item:last-child{border-bottom:none;}
+.eval-ok{color:var(--verde);font-weight:600;}
+.eval-warn{color:var(--naranja);font-weight:600;}
+.eval-mal{color:var(--rojo);font-weight:600;}
+.texto-cient-demo{background:#fffef5;border:2px solid #e8d980;border-radius:8px;padding:18px 20px;margin:16px 0;line-height:1.8;font-size:.95rem;}
+.texto-cient-demo .tc-titulo{font-style:normal;color:var(--azul);font-size:.78rem;font-weight:700;display:block;margin-bottom:8px;text-transform:uppercase;letter-spacing:.05em;}
+.highlight-box{background:#fff3cd;border:1px solid #ffc107;border-radius:6px;padding:8px 12px;margin:6px 0;font-size:.88rem;}
+.highlight-box strong{color:#7a5000;}
+.quiz-pregunta{background:#fff;border:1px solid var(--gris-borde);border-radius:8px;padding:16px 18px;margin-bottom:14px;}
+.quiz-pregunta p{font-weight:600;margin-bottom:10px;font-size:.95rem;}
+.quiz-pregunta label{display:flex;align-items:flex-start;gap:10px;padding:7px 10px;border-radius:6px;cursor:pointer;font-size:.9rem;transition:background .15s;margin-bottom:4px;}
+.quiz-pregunta label:hover{background:var(--celeste-claro);}
+.quiz-pregunta input[type=radio]{margin-top:3px;flex-shrink:0;}
+.feedback-item{border-radius:6px;padding:8px 12px;margin-top:8px;font-size:.87rem;display:none;}
+.feedback-correcto{background:var(--verde-claro);color:var(--verde);border:1px solid #a8d8b8;}
+.feedback-incorrecto{background:var(--rojo-claro);color:var(--rojo);border:1px solid #f0b8b0;}
+.btn-verificar,.btn-reiniciar{display:inline-block;padding:11px 28px;border:none;border-radius:7px;font-family:'Source Sans 3',sans-serif;font-size:.95rem;font-weight:700;cursor:pointer;transition:opacity .2s,transform .1s;margin-top:6px;}
+.btn-verificar{background:var(--azul);color:#fff;}
+.btn-verificar:hover{opacity:.88;transform:translateY(-1px);}
+.btn-reiniciar{background:#e0e8f4;color:var(--azul);margin-left:10px;}
+.btn-reiniciar:hover{background:#c8d8ee;}
+.resultado-box{background:var(--azul);color:#fff;border-radius:10px;padding:20px 24px;margin-top:18px;display:none;text-align:center;}
+.resultado-score{font-family:'Lora',serif;font-size:2rem;font-weight:700;}
+.resultado-msg{font-size:1rem;margin-top:6px;opacity:.9;}
+.barra-prog{width:100%;height:12px;background:rgba(255,255,255,.25);border-radius:10px;margin:12px 0;overflow:hidden;}
+.barra-fill{height:100%;background:#4dd97e;border-radius:10px;transition:width 1s ease;}
+.badge-tipo{display:inline-block;font-size:.68rem;padding:2px 8px;border-radius:12px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;margin-left:8px;vertical-align:middle;}
+.badge-teorica{background:#dbeafe;color:#1e3a8a;}
+.badge-analisis{background:#fce7f3;color:#831843;}
+.ia-box{background:linear-gradient(135deg,#f0f4ff 0%,#e8f0fc 100%);border:2px solid #b8cef0;border-radius:10px;padding:20px 22px;margin:16px 0;}
+.ia-seccion-titulo{font-family:'Lora',serif;font-size:1rem;font-weight:700;color:var(--azul);margin:16px 0 8px;}
+.prompt-box{background:#1a2236;color:#e8eef7;border-radius:8px;padding:16px 18px;font-family:monospace;font-size:.85rem;line-height:1.65;white-space:pre-wrap;margin:10px 0;}
+.reflexion-card{background:#fff;border:1px solid var(--gris-borde);border-left:5px solid var(--naranja);border-radius:0 8px 8px 0;padding:14px 18px;margin:14px 0;}
+.reflexion-card .ref-num{font-weight:700;color:var(--naranja);font-size:.78rem;text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px;}
+.ref-card{background:#fff;border:1px solid var(--gris-borde);border-radius:8px;padding:14px 18px;margin-bottom:12px;font-size:.88rem;line-height:1.6;}
+.ref-card .ref-autor{font-weight:700;color:var(--azul);}
+.ref-card .ref-titulo{font-style:italic;}
+.nota-biblio{background:#fffbe6;border:1px solid #f0d060;border-radius:6px;padding:12px 16px;font-size:.83rem;margin-top:18px;color:#5a4200;}
+ul.lista-simple{padding-left:20px;line-height:1.9;font-size:.93rem;margin-bottom:12px;}
+@media(max-width:600px){.header-titulo{font-size:1.1rem;}.tab-btn{font-size:.76rem;padding:8px 11px;}.content-area{padding:18px 12px 32px;}.caract-grid{grid-template-columns:1fr;}.plantilla-inline{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inst">Universidad de Guayaquil | Facultad de Ciencias Administrativas | Contabilidad y Auditoría · 1.er Ciclo · Modalidad Virtual</div>
+  <div class="header-titulo">Lenguaje y Comunicación</div>
+  <div class="header-sub">Semana 10 — Parte B &nbsp;|&nbsp; Unidad 3: Comprensión y análisis de textos</div>
+  <div class="header-badges">
+    <span class="badge">📄 Sem. 10B</span>
+    <span class="badge">Textos Científicos</span>
+    <span class="badge">Características · Estructura IMRAD · Análisis · Plantilla interactiva</span>
+  </div>
+</header>
+
+<div class="tabs-wrapper">
+  <div class="tabs">
+    <button class="tab-btn active" onclick="showTab('intro',this)">1. ¿Qué es el texto científico?</button>
+    <button class="tab-btn" onclick="showTab('caract',this)">2. Características</button>
+    <button class="tab-btn" onclick="showTab('estructura',this)">3. Estructura IMRAD</button>
+    <button class="tab-btn" onclick="showTab('lenguaje',this)">4. Lenguaje científico</button>
+    <button class="tab-btn" onclick="showTab('tipos',this)">5. Tipos de textos científicos</button>
+    <button class="tab-btn" onclick="showTab('analisis',this)">6. Análisis guiado 🔍</button>
+    <button class="tab-btn" onclick="showTab('plantilla',this)">7. Plantilla interactiva ✍️</button>
+    <button class="tab-btn" onclick="showTab('ejercicio',this)">8. Ejercicio Interactivo</button>
+    <button class="tab-btn" onclick="showTab('cuestionario',this)">9. Cuestionario</button>
+    <button class="tab-btn" onclick="showTab('ia',this)">10. Actividad con IA</button>
+    <button class="tab-btn" onclick="showTab('reflexion',this)">11. Reflexión</button>
+    <button class="tab-btn" onclick="showTab('biblio',this)">12. Bibliografía</button>
+  </div>
+</div>
+
+<div class="content-area">
+
+<!-- 1 -->
+<div id="tab-intro" class="tab-panel active">
+  <h2 class="panel-title">📄 ¿Qué es un texto científico?</h2>
+  <div class="caja-concepto">
+    <strong>Definición:</strong> Un <strong>texto científico</strong> es un tipo de discurso escrito cuya función principal es <em>comunicar conocimiento producido mediante metodología científica</em>. Su propósito es transmitir hallazgos, teorías, procedimientos o resultados de investigación de manera precisa, verificable y replicable, a una comunidad académica o especializada.
+  </div>
+  <p>No todo texto que "habla de ciencia" es un texto científico. Un artículo de revista de divulgación que explica la pandemia al público general es un <em>texto de divulgación científica</em> — distinto del artículo que publicaron los investigadores en una revista indexada con revisión por pares.</p>
+  <h3 class="subtitulo">¿Por qué importa en Contabilidad y Auditoría?</h3>
+  <p>Tu carrera genera y consume textos científicos constantemente:</p>
+  <ul class="lista-simple">
+    <li>Las <strong>Normas Internacionales de Auditoría (ISA/NIA)</strong> son textos técnico-científicos normativos.</li>
+    <li>Los <strong>artículos del Journal of Accounting Research</strong> son textos científicos primarios.</li>
+    <li>Tu futura <strong>tesis de grado</strong> debe cumplir con las características del texto científico.</li>
+    <li>Los <strong>informes de auditoría</strong> adoptan muchas convenciones del texto técnico-científico.</li>
+  </ul>
+  <div class="caja-ejemplo">
+    <div class="ej-titulo">📍 Texto científico vs. texto cotidiano</div>
+    <div style="overflow-x:auto;">
+    <table class="tabla-comp">
+      <thead><tr><th>Aspecto</th><th>Texto científico</th><th>Texto cotidiano</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Propósito</strong></td><td>Comunicar conocimiento verificado</td><td>Informar, entretener, convencer</td></tr>
+        <tr><td><strong>Lenguaje</strong></td><td>Técnico, preciso, impersonal</td><td>Coloquial, subjetivo, flexible</td></tr>
+        <tr><td><strong>Fuentes</strong></td><td>Citas y referencias obligatorias</td><td>Opcionales o ausentes</td></tr>
+        <tr><td><strong>Verificabilidad</strong></td><td>Datos y métodos replicables</td><td>No necesariamente</td></tr>
+        <tr><td><strong>Audiencia</strong></td><td>Comunidad académica/especializada</td><td>Público general</td></tr>
+        <tr><td><strong>Estructura</strong></td><td>Convencional y normalizada</td><td>Variable y libre</td></tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+  <div class="caja-clave">
+    <div class="clave-titulo">🔑 Idea fundamental</div>
+    <p>El texto científico no es solo un formato: es una <em>epistemología</em> (forma de producir y validar conocimiento). Aprender a leerlo y escribirlo es aprender las reglas del juego de la ciencia.</p>
+  </div>
+</div>
+
+<!-- 2 -->
+<div id="tab-caract" class="tab-panel">
+  <h2 class="panel-title">🔬 Características del texto científico</h2>
+  <p>Cada característica tiene una razón epistemológica y comunicativa, no es convención arbitraria.</p>
+  <div class="caract-grid">
+    <div class="caract-card"><div class="ic">🎯</div><h4>1. Objetividad</h4><p>Presenta la realidad tal como fue observada, sin mediación de emociones o preferencias personales. Se usa voz pasiva: "se encontró que" en lugar de "yo encontré que".</p></div>
+    <div class="caract-card"><div class="ic">🔍</div><h4>2. Precisión y exactitud</h4><p>Cada término tiene un significado único y específico. Las cifras se expresan con el nivel de precisión adecuado: "n=234" no "alrededor de 230".</p></div>
+    <div class="caract-card"><div class="ic">✅</div><h4>3. Verificabilidad</h4><p>Toda afirmación puede ser comprobada. Los datos, métodos y procedimientos están descritos con suficiente detalle para que el estudio sea replicable por otro investigador.</p></div>
+    <div class="caract-card"><div class="ic">🔗</div><h4>4. Intertextualidad / citación</h4><p>El texto científico siempre dialoga con trabajos previos. Las citas y referencias son la cadena de evidencia que sustenta cada afirmación.</p></div>
+    <div class="caract-card"><div class="ic">📐</div><h4>5. Estructura normalizada</h4><p>Sigue convenciones reconocidas por la comunidad científica (como IMRAD). Esta estandarización facilita la comunicación entre investigadores de distintos países.</p></div>
+    <div class="caract-card"><div class="ic">🧩</div><h4>6. Coherencia y cohesión</h4><p>Cada parte se conecta lógicamente. Hay una línea argumental clara: del problema al método, del método a los resultados, de los resultados a las conclusiones.</p></div>
+    <div class="caract-card"><div class="ic">🌐</div><h4>7. Universalidad</h4><p>El texto especifica claramente el contexto de su validez, lo que permite a lectores de otras regiones evaluar la aplicabilidad de los hallazgos.</p></div>
+    <div class="caract-card"><div class="ic">⚖️</div><h4>8. Impersonalidad</h4><p>El sujeto central es el conocimiento, no el investigador. Se evita la primera persona singular. Se prefiere "se analizó" sobre "analicé".</p></div>
+    <div class="caract-card"><div class="ic">🔒</div><h4>9. Rigor metodológico explícito</h4><p>El texto describe cómo se obtuvo el conocimiento: diseño, muestra, instrumentos, análisis. Esto permite evaluar la validez y confiabilidad de los hallazgos.</p></div>
+    <div class="caract-card"><div class="ic">⚠️</div><h4>10. Reconocimiento de limitaciones</h4><p>Un texto científico honesto señala qué no pudo hacer, qué variables no controló y qué quedan como preguntas abiertas. Es señal de rigor, no de debilidad.</p></div>
+  </div>
+  <div class="caja-ejemplo">
+    <div class="ej-titulo">📍 Aplicación — ¿Cómo reconocer un texto científico real en Ecuador?</div>
+    <p>Busca en <strong>Google Scholar</strong> o en el repositorio de la Universidad de Guayaquil (<em>repositorio.ug.edu.ec</em>). Verifica que el texto tenga: resumen (abstract), introducción con referencias, metodología descrita, resultados con datos y conclusiones. Si falta alguno, probablemente no sea texto científico estricto.</p>
+  </div>
+  <div class="caja-clave">
+    <div class="clave-titulo">🔑 Conclusión</div>
+    <p>Las características del texto científico son garantías de calidad del conocimiento. Cuando escribas tu tesis o informe de investigación, cada característica es un criterio de evaluación que tu texto debe cumplir.</p>
+  </div>
+</div>
+
+<!-- 3 -->
+<div id="tab-estructura" class="tab-panel">
+  <h2 class="panel-title">🏗️ Estructura del texto científico: el modelo IMRAD</h2>
+  <div class="caja-concepto">
+    <strong>IMRAD</strong> = <strong>I</strong>ntroduction, <strong>M</strong>ethods, <strong>R</strong>esults <strong>A</strong>nd <strong>D</strong>iscussion. Es la estructura estándar internacional para artículos científicos empíricos, adoptada por la mayoría de revistas indexadas del mundo.
+  </div>
+  <p>Cada sección responde a una pregunta fundamental del proceso científico:</p>
+
+  <div class="estructura-paso">
+    <div class="est-num">0</div>
+    <div class="est-body">
+      <h4>Título y Resumen (Abstract)</h4>
+      <p>El <strong>título</strong> identifica el tema con precisión máxima. El <strong>abstract</strong> (100–250 palabras) es el texto en miniatura: contiene el problema, el método, el resultado principal y la conclusión. <em>Pregunta que responde: ¿De qué trata esto y vale la pena leerlo?</em></p>
+    </div>
+  </div>
+  <div class="estructura-paso">
+    <div class="est-num">1</div>
+    <div class="est-body">
+      <h4>Introducción (Introduction)</h4>
+      <p>Presenta el problema de investigación, justifica su relevancia, revisa la literatura previa e indica cuál es el <em>gap</em> (vacío de conocimiento) que el estudio llenará. Termina con la pregunta o hipótesis de investigación. <em>Pregunta: ¿Por qué se hizo este estudio?</em></p>
+    </div>
+  </div>
+  <div class="estructura-paso">
+    <div class="est-num">2</div>
+    <div class="est-body">
+      <h4>Metodología (Methods)</h4>
+      <p>Describe cómo se realizó el estudio: tipo de investigación, población y muestra, instrumentos, procedimiento de análisis. Debe ser tan completa que otro investigador pueda replicar el estudio. <em>Pregunta: ¿Cómo se obtuvo el conocimiento?</em></p>
+    </div>
+  </div>
+  <div class="estructura-paso">
+    <div class="est-num">3</div>
+    <div class="est-body">
+      <h4>Resultados (Results)</h4>
+      <p>Presenta los hallazgos de manera objetiva, con datos, tablas, gráficos y estadísticas. No interpreta: solo reporta. Esta separación entre reportar e interpretar es fundamental para la honestidad científica. <em>Pregunta: ¿Qué se encontró?</em></p>
+    </div>
+  </div>
+  <div class="estructura-paso">
+    <div class="est-num">4</div>
+    <div class="est-body">
+      <h4>Discusión (Discussion)</h4>
+      <p>Interpreta los resultados a la luz de la pregunta de investigación y de la literatura previa. Explica por qué se obtuvieron esos resultados y qué implicaciones tienen. Incluye limitaciones y propone líneas futuras. <em>Pregunta: ¿Qué significan los hallazgos?</em></p>
+    </div>
+  </div>
+  <div class="estructura-paso">
+    <div class="est-num">5</div>
+    <div class="est-body">
+      <h4>Conclusiones (Conclusions)</h4>
+      <p>Sintetiza los hallazgos más importantes y su aporte al conocimiento. No introduce información nueva. Responde directamente a la pregunta planteada en la introducción. <em>Pregunta: ¿A qué se llegó y cuál es su importancia?</em></p>
+    </div>
+  </div>
+  <div class="estructura-paso">
+    <div class="est-num">6</div>
+    <div class="est-body">
+      <h4>Referencias / Bibliografía</h4>
+      <p>Lista todas las fuentes citadas, siguiendo un formato estandarizado (APA, Vancouver, Chicago). <em>Principio: si se cita en el texto, debe estar en la lista; si está en la lista, debe estar citada en el texto.</em></p>
+    </div>
+  </div>
+  <div class="caja-clave">
+    <div class="clave-titulo">🔑 Lectura estratégica con IMRAD</div>
+    <p>Conocer la estructura IMRAD te convierte en lector estratégico: ¿Solo quieres saber qué encontraron? → Resultados. ¿El método es sólido? → Metodología. No tienes que leer todo un artículo de 30 páginas si sabes dónde está la información que necesitas.</p>
+  </div>
+</div>
+
+<!-- 4 -->
+<div id="tab-lenguaje" class="tab-panel">
+  <h2 class="panel-title">🖊️ El lenguaje del texto científico</h2>
+  <p>El lenguaje científico es un sistema comunicativo con reglas propias que sirven a propósitos epistemológicos específicos.</p>
+  <div style="overflow-x:auto;">
+  <table class="tabla-comp">
+    <thead><tr><th>Característica</th><th>Descripción</th><th>Ejemplo en Auditoría</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Tecnicidad</strong></td><td>Terminología especializada con significado preciso y consensuado</td><td>"Materialidad" tiene definición técnica en NIA 320, no es sinónimo libre de "importancia"</td></tr>
+      <tr><td><strong>Denotatividad</strong></td><td>Prevalece el significado directo sobre el figurado</td><td>"Riesgo de auditoría" es un concepto técnico, no una metáfora del miedo</td></tr>
+      <tr><td><strong>Monorreferencia</strong></td><td>Cada término tiene un solo referente preciso en el texto</td><td>No intercambiar "empresa" con "compañía" si la diferencia jurídica importa</td></tr>
+      <tr><td><strong>Impersonalidad</strong></td><td>Se evita la primera persona singular; se prefiere la pasiva</td><td>"Se analizaron 45 estados financieros" en lugar de "Analicé 45 estados"</td></tr>
+      <tr><td><strong>Nominalización</strong></td><td>Los verbos se convierten en sustantivos abstractos</td><td>"La implementación" (de implementar), "el análisis" (de analizar)</td></tr>
+      <tr><td><strong>Conectores lógicos</strong></td><td>Establecen relaciones causales, contrastivas y conclusivas</td><td>"Sin embargo", "por lo tanto", "no obstante", "en consecuencia"</td></tr>
+      <tr><td><strong>Hedging</strong></td><td>Moduladores que matizan certezas sin hacer afirmaciones absolutas</td><td>"Sugieren", "parece indicar", "podría interpretarse como"</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <h3 class="subtitulo">¿Qué es el hedging y por qué es científico?</h3>
+  <div class="caja-concepto">
+    <strong>Hedging</strong> (del inglés: cerco, protección) es el uso de expresiones que modulan la certeza de una afirmación. No es imprecisión: es honestidad epistémica. El científico no afirma más de lo que sus datos le permiten. <em>Ejemplo: "Los resultados sugieren que existe una correlación entre la implementación de NIIF y la calidad reportada de los estados financieros en las PYMES ecuatorianas; sin embargo, se requieren estudios longitudinales para establecer causalidad."</em>
+  </div>
+  <div class="caja-ejemplo">
+    <div class="ej-titulo">📍 Impersonalidad en textos de Auditoría — Ecuador</div>
+    <p>❌ Subjetivo: <em>"Creemos que las empresas ecuatorianas necesitan mejorar sus controles."</em></p>
+    <p>✅ Científico: <em>"Se evidencia que el 67% de las empresas analizadas presentó deficiencias en sus controles internos (García et al., 2022)."</em></p>
+    <br/>
+    <p>❌ Subjetivo: <em>"En mi estudio observé muchos casos de fraude."</em></p>
+    <p>✅ Científico: <em>"Se identificaron 23 casos que cumplieron los criterios de irregularidades contables según los parámetros del COSO (2013)."</em></p>
+  </div>
+  <div class="caja-clave">
+    <div class="clave-titulo">🔑 Para tener en cuenta</div>
+    <p>Aprender el lenguaje científico no es "sonar difícil": es adquirir una forma de comunicación que garantiza precisión, verificabilidad y credibilidad. En tu vida profesional, dominar este lenguaje te dará acceso a la literatura especializada más actualizada.</p>
+  </div>
+</div>
+
+<!-- 5 -->
+<div id="tab-tipos" class="tab-panel">
+  <h2 class="panel-title">📚 Tipos de textos científicos</h2>
+  <p>El "texto científico" es una categoría amplia. Dentro de ella existen varios géneros con propósitos y convenciones específicas:</p>
+  <div style="overflow-x:auto;">
+  <table class="tabla-comp">
+    <thead><tr><th>Tipo</th><th>Propósito</th><th>Extensión</th><th>Ejemplo en Contabilidad/Auditoría</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Artículo de investigación</strong></td><td>Comunicar resultados originales empíricos o teóricos</td><td>5.000–12.000 palabras</td><td>Artículo sobre evasión tributaria en PYMES de Guayaquil en revista indexada</td></tr>
+      <tr><td><strong>Artículo de revisión</strong></td><td>Sistematizar el estado del conocimiento sobre un tema</td><td>8.000–20.000 palabras</td><td>Revisión sistemática sobre auditoría forense en América Latina 2010–2023</td></tr>
+      <tr><td><strong>Informe técnico</strong></td><td>Documentar resultados de un proceso técnico o de evaluación</td><td>Variable</td><td>Informe de auditoría de gestión de una municipalidad ecuatoriana</td></tr>
+      <tr><td><strong>Tesis de grado</strong></td><td>Demostrar capacidad investigativa y aportar nuevo conocimiento</td><td>80–300 páginas</td><td>Tesis sobre impacto de NIIF PYMES en la transparencia financiera en Ecuador</td></tr>
+      <tr><td><strong>Ponencia (paper)</strong></td><td>Presentar avances de investigación en eventos académicos</td><td>3.000–8.000 palabras</td><td>Ponencia en congreso sobre inteligencia artificial en auditoría</td></tr>
+      <tr><td><strong>Monografía</strong></td><td>Exploración exhaustiva de un tema específico</td><td>20–80 páginas</td><td>Monografía sobre evolución de las NIC en el sistema financiero ecuatoriano</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="caja-ejemplo">
+    <div class="ej-titulo">📍 El mismo tema — dos textos diferentes</div>
+    <p><strong>Texto científico (artículo indexado):</strong><br/>"Este estudio examina la relación entre el control interno (COSO 2013) y la detección de fraudes contables en el sector industrial ecuatoriano. Mediante diseño cuantitativo correlacional con n=87, se encontró r=-.62, p&lt;.001."</p>
+    <br/>
+    <p><strong>Texto de divulgación (revista de negocios):</strong><br/>"Según un estudio en Ecuador, las empresas con buenos controles internos tienen muchos menos casos de fraude. El hallazgo confirma lo que los expertos ya sabían."</p>
+    <p style="margin-top:10px;font-size:.88rem;color:#555;"><em>¿La diferencia? El primero tiene muestra exacta, estadísticos y nivel de significancia. El segundo parafrasea sin precisión ni datos verificables.</em></p>
+  </div>
+  <div class="caja-clave">
+    <div class="clave-titulo">🔑 Conclusión</div>
+    <p>Un artículo en una revista indexada con revisión por pares tiene mayor peso científico que una monografía sin revisión externa. Aprende a leer las credenciales del texto antes de citar sus conclusiones.</p>
+  </div>
+</div>
+
+<!-- 6 -->
+<div id="tab-analisis" class="tab-panel">
+  <h2 class="panel-title">🔍 Análisis guiado: Identificando las características en un abstract real</h2>
+  <p>Analiza el siguiente abstract paso a paso. Observa cómo cada sección se conecta y cómo se manifiestan las características del texto científico.</p>
+
+  <div class="texto-cient-demo">
+    <span class="tc-titulo">Texto base — Abstract (adaptado con fines pedagógicos)</span>
+    <strong>Título:</strong> "Control interno y detección de irregularidades contables en PYMES del sector exportador ecuatoriano: un estudio cuantitativo"<br/><br/>
+    <strong>Resumen:</strong> El presente estudio analiza la relación entre el nivel de implementación del control interno basado en el marco COSO 2013 y la incidencia de irregularidades contables en empresas del sector exportador ecuatoriano. Se empleó un diseño cuantitativo no experimental de alcance correlacional. La muestra estuvo conformada por 94 PYMES ubicadas en las provincias de Guayas, Pichincha y Manabí, seleccionadas mediante muestreo estratificado. Los datos se recopilaron a través de un cuestionario validado (α de Cronbach = .87) y revisión de estados financieros auditados correspondientes al período 2019–2022. Los resultados indican que existe una correlación negativa significativa entre el nivel de implementación del control interno y la incidencia de irregularidades contables (r = -.58, p &lt; .001). Se concluye que la mejora sistemática de los componentes del control interno constituye un factor protector frente al riesgo de irregularidades. Limitaciones del estudio y líneas de investigación futura son identificadas.
+  </div>
+
+  <h3 class="subtitulo">✅ Paso 1: Identificar la estructura IMRAD en el abstract</h3>
+  <div class="highlight-box"><strong>Problema/Intro:</strong> "…analiza la relación entre el nivel de implementación del control interno basado en el marco COSO 2013 y la incidencia de irregularidades contables…"</div>
+  <div class="highlight-box"><strong>Metodología:</strong> "…diseño cuantitativo no experimental… 94 PYMES… muestreo estratificado… cuestionario validado (α de Cronbach = .87)…"</div>
+  <div class="highlight-box"><strong>Resultados:</strong> "…correlación negativa significativa… (r = -.58, p &lt; .001)…"</div>
+  <div class="highlight-box"><strong>Conclusión:</strong> "…la mejora sistemática de los componentes del control interno constituye un factor protector… Limitaciones… identificadas."</div>
+
+  <h3 class="subtitulo">✅ Paso 2: Identificar características del texto científico</h3>
+  <div class="highlight-box"><strong>🎯 Objetividad:</strong> No hay expresiones de opinión personal. Todo está formulado en términos de datos y hallazgos.</div>
+  <div class="highlight-box"><strong>🔍 Precisión:</strong> "n=94", "α de Cronbach = .87", "r = -.58", "p &lt; .001" — cada dato tiene exactitud cuantitativa.</div>
+  <div class="highlight-box"><strong>✅ Verificabilidad:</strong> Se describen la muestra, el instrumento y el período. Otro investigador puede replicar el estudio.</div>
+  <div class="highlight-box"><strong>🔗 Intertextualidad:</strong> Cita el "marco COSO 2013", referenciando un documento normativo reconocido.</div>
+  <div class="highlight-box"><strong>⚖️ Impersonalidad:</strong> "Se empleó", "Los datos se recopilaron", "Se concluye" — construcciones pasivas e impersonales.</div>
+  <div class="highlight-box"><strong>⚠️ Limitaciones:</strong> Menciona explícitamente: "Limitaciones del estudio y líneas de investigación futura son identificadas."</div>
+  <div class="highlight-box"><strong>🧩 Hedging:</strong> "Los resultados <em>indican</em> que", "constituye <em>un factor protector</em>" — no afirman causalidad absoluta.</div>
+
+  <h3 class="subtitulo">✅ Paso 3: Los cuatro niveles de lectura aplicados</h3>
+  <div class="caja-ejemplo"><div class="ej-titulo">📄 Nivel Literal</div><p>¿Cuántas empresas participaron? → 94 PYMES. ¿Qué provincias? → Guayas, Pichincha y Manabí. ¿Coeficiente de correlación? → r = -.58.</p></div>
+  <div class="caja-ejemplo" style="background:#fef3e2;border-color:#f0c870;"><div class="ej-titulo" style="color:#7a4a00;">💡 Nivel Inferencial</div><p>Una correlación de -.58 indica relación negativa moderada-fuerte. El texto no afirma que el control interno <em>cause</em> directamente la ausencia de irregularidades (correlación ≠ causalidad).</p></div>
+  <div class="caja-ejemplo" style="background:#fff3e0;border-color:#e0a060;"><div class="ej-titulo" style="color:#7a4000;">🔗 Nivel Analógico</div><p>Este estudio es análogo a los informes de la Contraloría General del Estado ecuatoriana, que también documenta la relación entre debilidades de control interno y hallazgos de auditoría.</p></div>
+  <div class="caja-ejemplo" style="background:#f0eafa;border-color:#b090d8;"><div class="ej-titulo" style="color:#5b2d8e;">🧠 Nivel Crítico-Valorativo</div><p>Limitación no declarada: el estudio excluye la Costa Sur (El Oro) y la Amazonía. ¿Es representativa del "sector exportador ecuatoriano"? Además, el período 2019–2022 incluye la pandemia, que distorsionó los controles internos. ¿Se controló esa variable?</p></div>
+
+  <div class="caja-clave">
+    <div class="clave-titulo">🏁 Síntesis</div>
+    <p>Un abstract de 150 palabras puede generar un análisis de múltiples dimensiones si se aborda con los cuatro niveles de lectura y con conocimiento de las características del texto científico. Así trabajan los lectores expertos.</p>
+  </div>
+</div>
+
+<!-- 7 PLANTILLA -->
+<div id="tab-plantilla" class="tab-panel">
+  <h2 class="panel-title">✍️ Plantilla interactiva: Analiza tu propio texto científico</h2>
+  <p>Usa esta plantilla para practicar el análisis de cualquier texto científico que encuentres. Escribe tus respuestas y presiona <strong>"Autoevaluar mi análisis"</strong> para recibir retroalimentación sobre la completitud de tu trabajo.</p>
+  <p style="font-size:.88rem;color:#607090;"><em>💡 Tip: Busca un abstract sobre contabilidad o auditoría en Google Scholar (scholar.google.com) y utilízalo como texto de práctica.</em></p>
+
+  <div class="plantilla-wrapper">
+    <div class="plantilla-header">📋 Plantilla de Análisis de Texto Científico — Semana 10</div>
+    <div class="plantilla-body">
+
+      <div class="plantilla-seccion">
+        <div class="plantilla-seccion-titulo">📌 Datos del texto analizado</div>
+        <div class="plantilla-inline">
+          <div><div class="plantilla-hint">Autor(es)</div><input type="text" class="plantilla-field" id="p-autores" placeholder="Ej: García, M. y López, R." style="resize:none;height:42px;"/></div>
+          <div><div class="plantilla-hint">Año</div><input type="text" class="plantilla-field" id="p-anio" placeholder="Ej: 2023" style="resize:none;height:42px;"/></div>
+        </div>
+        <div class="plantilla-hint">Título del artículo</div>
+        <input type="text" class="plantilla-field" id="p-titulo" placeholder="Escribe el título completo" style="resize:none;height:42px;"/>
+        <div class="plantilla-hint">Fuente (revista, libro, repositorio)</div>
+        <input type="text" class="plantilla-field" id="p-fuente" placeholder="Ej: Revista de Contabilidad y Finanzas, Vol. 15" style="resize:none;height:42px;"/>
+      </div>
+
+      <div class="plantilla-seccion">
+        <div class="plantilla-seccion-titulo">🏗️ Identificación de la estructura IMRAD</div>
+        <div class="plantilla-hint">¿Cuál es el PROBLEMA o pregunta de investigación? (Introducción)</div>
+        <textarea class="plantilla-field" id="p-problema" rows="3" placeholder="Describe en tus propias palabras cuál es el problema que investiga el texto. ¿Qué vacío de conocimiento pretende llenar?"></textarea>
+        <div class="plantilla-hint">¿Cuál es la METODOLOGÍA utilizada?</div>
+        <textarea class="plantilla-field" id="p-metodo" rows="3" placeholder="Tipo de investigación, muestra, instrumentos de recolección de datos, método de análisis."></textarea>
+        <div class="plantilla-hint">¿Cuáles son los RESULTADOS principales?</div>
+        <textarea class="plantilla-field" id="p-resultados" rows="3" placeholder="Transcribe o parafrasea los hallazgos clave. Incluye datos numéricos si los hay."></textarea>
+        <div class="plantilla-hint">¿Cuáles son las CONCLUSIONES y su alcance?</div>
+        <textarea class="plantilla-field" id="p-conclusiones" rows="3" placeholder="¿A qué llegaron los autores? ¿Para quién aplican? ¿Qué recomiendan?"></textarea>
+      </div>
+
+      <div class="plantilla-seccion">
+        <div class="plantilla-seccion-titulo">🔬 Análisis de características del texto científico</div>
+        <div class="plantilla-hint">Cita UN ejemplo del texto que demuestre OBJETIVIDAD / IMPERSONALIDAD</div>
+        <textarea class="plantilla-field" id="p-objetividad" rows="2" placeholder='"Se analizaron..." / "Los datos indican que..." / uso de voz pasiva'></textarea>
+        <div class="plantilla-hint">Cita UN ejemplo del texto que demuestre PRECISIÓN o uso de TECNICISMOS</div>
+        <textarea class="plantilla-field" id="p-precision" rows="2" placeholder="Un dato estadístico exacto, un término técnico específico del área"></textarea>
+        <div class="plantilla-hint">¿El texto usa HEDGING? Cita un ejemplo.</div>
+        <textarea class="plantilla-field" id="p-hedging" rows="2" placeholder='"Los resultados sugieren...", "podría interpretarse como...", "parece indicar..."'></textarea>
+        <div class="plantilla-hint">¿Reconoce el texto sus LIMITACIONES? ¿Cuáles?</div>
+        <textarea class="plantilla-field" id="p-limitaciones" rows="2" placeholder="Describe si el texto menciona sus limitaciones metodológicas, de muestra o de alcance."></textarea>
+      </div>
+
+      <div class="plantilla-seccion">
+        <div class="plantilla-seccion-titulo">📖 Los cuatro niveles de lectura aplicados al texto</div>
+        <div class="plantilla-hint">📄 NIVEL LITERAL — Una pregunta respondible solo con lo que dice el texto, y su respuesta</div>
+        <textarea class="plantilla-field" id="p-literal" rows="3" placeholder="Pregunta: ¿...? Respuesta: Según el texto, ..."></textarea>
+        <div class="plantilla-hint">💡 NIVEL INFERENCIAL — Una deducción que haces a partir del texto (no está dicho, pero se implica)</div>
+        <textarea class="plantilla-field" id="p-inferencial" rows="3" placeholder="El texto implica que... porque... (pista textual en que te basas)"></textarea>
+        <div class="plantilla-hint">🔗 NIVEL ANALÓGICO — Relaciona el texto con otro que conozcas, con tu experiencia o con otra disciplina</div>
+        <textarea class="plantilla-field" id="p-analogico" rows="3" placeholder="Este texto me recuerda / se relaciona con... porque ambos..."></textarea>
+        <div class="plantilla-hint">🧠 NIVEL CRÍTICO-VALORATIVO — Un juicio fundamentado sobre la calidad, validez o limitaciones del texto</div>
+        <textarea class="plantilla-field" id="p-critico" rows="3" placeholder="El texto tiene fortalezas en... Sin embargo, una limitación es... porque..."></textarea>
+      </div>
+
+      <div class="plantilla-seccion">
+        <div class="plantilla-seccion-titulo">⭐ Valoración global del texto</div>
+        <div class="plantilla-hint">En tu criterio, ¿es este un texto científico de calidad? Justifica tu respuesta.</div>
+        <textarea class="plantilla-field" id="p-valoracion" rows="4" placeholder="Considerando objetividad, precisión, verificabilidad, intertextualidad, estructura, etc., evalúa el texto. Puedes usar una escala de 1 a 10, pero lo importante es la justificación."></textarea>
+      </div>
+
+      <button class="btn-plantilla btn-azul" onclick="autoevaluar()">📊 Autoevaluar mi análisis</button>
+      <button class="btn-plantilla btn-gris" onclick="limpiarPlantilla()">🗑️ Limpiar todo</button>
+      <button class="btn-plantilla btn-verde" onclick="exportarPlantilla()">📋 Copiar al portapapeles</button>
+      <div class="eval-resultado" id="eval-resultado"></div>
+    </div>
+  </div>
+  <div class="caja-clave">
+    <div class="clave-titulo">💡 ¿Cómo usar esta plantilla?</div>
+    <p>Aplica esta plantilla a por lo menos un artículo científico por semana. Con el tiempo el análisis se vuelve automático. Ese es el objetivo: convertirte en un lector crítico de textos científicos.</p>
+  </div>
+</div>
+
+<!-- 8 EJERCICIO -->
+<div id="tab-ejercicio" class="tab-panel">
+  <h2 class="panel-title">✏️ Ejercicio Interactivo — Textos Científicos</h2>
+  <p>Selecciona todas tus respuestas y presiona <strong>"Verificar respuestas"</strong> al final.</p>
+  <div id="ej2-form">
+
+    <div class="quiz-pregunta">
+      <p>1. Un texto dice: "Según mi opinión, la mayoría de contadores ecuatorianos no aplican bien las NIIF". ¿Qué característica del texto científico viola esta oración?</p>
+      <label><input type="radio" name="fi1" value="a"/> a) Intertextualidad, porque no cita otros textos</label>
+      <label><input type="radio" name="fi1" value="b"/> b) Objetividad e impersonalidad: usa primera persona y opina sin datos verificables</label>
+      <label><input type="radio" name="fi1" value="c"/> c) Coherencia, porque la idea no está desarrollada</label>
+      <label><input type="radio" name="fi1" value="d"/> d) Universalidad, porque solo habla de Ecuador</label>
+      <div class="feedback-item" id="fb-fi1"></div>
+    </div>
+
+    <div class="quiz-pregunta">
+      <p>2. El acrónimo IMRAD corresponde a…</p>
+      <label><input type="radio" name="fi2" value="a"/> a) Índice, Marco, Resumen, Análisis, Datos</label>
+      <label><input type="radio" name="fi2" value="b"/> b) Introducción, Metodología, Resultados, Análisis, Discusión</label>
+      <label><input type="radio" name="fi2" value="c"/> c) Introducción, Métodos, Resultados y Discusión</label>
+      <label><input type="radio" name="fi2" value="d"/> d) Investigación, Marco teórico, Referencias, Análisis, Datos</label>
+      <div class="feedback-item" id="fb-fi2"></div>
+    </div>
+
+    <div class="quiz-pregunta">
+      <p>3. Un artículo dice: "Los hallazgos <em>sugieren</em> que existe una asociación entre las variables". ¿Qué característica del lenguaje científico demuestra la palabra "sugieren"?</p>
+      <label><input type="radio" name="fi3" value="a"/> a) Tecnicidad</label>
+      <label><input type="radio" name="fi3" value="b"/> b) Monorreferencia</label>
+      <label><input type="radio" name="fi3" value="c"/> c) Hedging: modulación de la certeza</label>
+      <label><input type="radio" name="fi3" value="d"/> d) Nominalización</label>
+      <div class="feedback-item" id="fb-fi3"></div>
+    </div>
+
+    <div class="quiz-pregunta">
+      <p>4. ¿En qué sección del formato IMRAD se presentan la muestra y los instrumentos utilizados?</p>
+      <label><input type="radio" name="fi4" value="a"/> a) Introducción</label>
+      <label><input type="radio" name="fi4" value="b"/> b) Resultados</label>
+      <label><input type="radio" name="fi4" value="c"/> c) Metodología</label>
+      <label><input type="radio" name="fi4" value="d"/> d) Discusión</label>
+      <div class="feedback-item" id="fb-fi4"></div>
+    </div>
+
+    <div class="quiz-pregunta">
+      <p>5. Un texto de auditoría usa "malversación" siempre con el mismo significado técnico y nunca lo intercambia con "robo" o "hurto". ¿Qué característica del lenguaje científico ilustra esto?</p>
+      <label><input type="radio" name="fi5" value="a"/> a) Hedging</label>
+      <label><input type="radio" name="fi5" value="b"/> b) Monorreferencia</label>
+      <label><input type="radio" name="fi5" value="c"/> c) Nominalización</label>
+      <label><input type="radio" name="fi5" value="d"/> d) Coherencia</label>
+      <div class="feedback-item" id="fb-fi5"></div>
+    </div>
+
+    <div class="quiz-pregunta">
+      <p>6. ¿Cuál es la función principal de la sección "Discusión" en un artículo científico?</p>
+      <label><input type="radio" name="fi6" value="a"/> a) Presentar los datos numéricos y estadísticos del estudio</label>
+      <label><input type="radio" name="fi6" value="b"/> b) Describir cómo se recopiló la información</label>
+      <label><input type="radio" name="fi6" value="c"/> c) Interpretar los resultados a la luz de la pregunta de investigación y de la literatura existente</label>
+      <label><input type="radio" name="fi6" value="d"/> d) Listar todas las fuentes utilizadas</label>
+      <div class="feedback-item" id="fb-fi6"></div>
+    </div>
+
+    <div class="quiz-pregunta">
+      <p>7. Un artículo afirma: "Este estudio tiene limitaciones de generalización al haber sido realizado solo en empresas de Cuenca." ¿Qué característica del texto científico demuestra esta oración?</p>
+      <label><input type="radio" name="fi7" value="a"/> a) Impersonalidad</label>
+      <label><input type="radio" name="fi7" value="b"/> b) Precisión</label>
+      <label><input type="radio" name="fi7" value="c"/> c) Reconocimiento explícito de limitaciones (honestidad epistémica)</label>
+      <label><input type="radio" name="fi7" value="d"/> d) Universalidad</label>
+      <div class="feedback-item" id="fb-fi7"></div>
+    </div>
+
+    <div class="quiz-pregunta">
+      <p>8. "Se analizaron los estados financieros de 50 empresas" versus "Analicé los estados financieros de 50 empresas". ¿Qué característica demuestra el primer enunciado?</p>
+      <label><input type="radio" name="fi8" value="a"/> a) Hedging</label>
+      <label><input type="radio" name="fi8" value="b"/> b) Impersonalidad mediante la construcción pasiva con "se"</label>
+      <label><input type="radio" name="fi8" value="c"/> c) Tecnicidad</label>
+      <label><input type="radio" name="fi8" value="d"/> d) Verificabilidad</label>
+      <div class="feedback-item" id="fb-fi8"></div>
+    </div>
+
+    <button class="btn-verificar" onclick="verificarEj2()">✅ Verificar respuestas</button>
+    <button class="btn-reiniciar" onclick="reiniciarEj2()">🔄 Reiniciar</button>
+  </div>
+  <div class="resultado-box" id="res-ej2">
+    <div class="resultado-score" id="score-ej2"></div>
+    <div class="barra-prog"><div class="barra-fill" id="barra-ej2" style="width:0%"></div></div>
+    <div class="resultado-msg" id="msg-ej2"></div>
+  </div>
+</div>
+
+<!-- 9 CUESTIONARIO -->
+<div id="tab-cuestionario" class="tab-panel">
+  <h2 class="panel-title">📝 Cuestionario — Semana 10B</h2>
+  <p>10 preguntas de opción múltiple. Selecciona todas tus respuestas y presiona <strong>"Verificar respuestas"</strong>.</p>
+  <div id="quiz2-form">
+
+    <div class="quiz-pregunta">
+      <p>1. ¿Cuál es la característica que distingue al texto científico del texto de divulgación científica? <span class="badge-tipo badge-teorica">Teórica</span></p>
+      <label><input type="radio" name="q1" value="a"/> a) El texto científico es más breve</label>
+      <label><input type="radio" name="q1" value="b"/> b) El texto científico usa lenguaje difícil para excluir a los no expertos</label>
+      <label><input type="radio" name="q1" value="c"/> c) El texto científico comunica conocimiento producido con metodología verificable, dirigido a la comunidad académica especializada</label>
+      <label><input type="radio" name="q1" value="d"/> d) El texto científico no necesita citar fuentes porque proviene de investigadores expertos</label>
+      <div class="feedback-item" id="fb-q1"></div>
+    </div>
+
+    <div class="quiz-pregunta">
+      <p>2. La "verificabilidad" como característica del texto científico significa que… <span class="badge-tipo badge-teorica">Teórica</span></p>
+      <label><input type="radio" name="q2" value="a"/> a) El texto ha sido verificado por el propio autor antes de publicarse</label>
+      <label><input type="radio" name="q2" value="b"/> b) Los datos, métodos y procedimientos están descritos con suficiente detalle para que otro investigador pueda replicar el estudio</label>
+      <label><input type="radio" name="q2" value="c"/> c) El texto está disponible en internet para ser consultado</label>
+      <label><input type="radio" name="q2" value="d"/> d) El texto ha sido publicado en una revista reconocida</label>
+      <div class="feedback-item" id="fb-q2"></div>
+    </div>
+
+    <div class="quiz-pregunta">
+      <p>3. ¿Qué diferencia al artículo de investigación del artículo de revisión? <span class="badge-tipo badge-teorica">Teórica</span></p>
+      <label><input type="radio" name="q3" value="a"/> a) El artículo de investigación es más largo</label>
+      <label><input type="radio" name="q3" value="b"/> b) El artículo de investigación comunica resultados originales empíricos; el de revisión sistematiza el estado del conocimiento sobre un tema</label>
+      <label><input type="radio" name="q3" value="c"/> c) El artículo de revisión solo lo pueden escribir doctores</label>
+      <label><input type="radio" name="q3" value="d"/> d) No hay diferencia real entre ambos géneros</label>
+      <div class="feedback-item" id="fb-q3"></div>
+    </div>
+
+    <div class="quiz-pregunta">
+      <p>4. La "nominalización" en el lenguaje científico consiste en… <span class="badge-tipo badge-teorica">Teórica</span></p>
+      <label><input type="radio" name="q4" value="a"/> a) Dar nombres propios a los conceptos del texto</label>
+      <label><input type="radio" name="q4" value="b"/> b) Usar muchos sustantivos abstractos en lugar de nombres concretos</label>
+      <label><input type="radio" name="q4" value="c"/> c) Convertir verbos en sustantivos para lograr mayor objetividad y abstracción: "la implementación" en lugar de "implementar"</label>
+      <label><input type="radio" name="q4" value="d"/> d) Incluir el nombre completo del autor en cada párrafo</label>
+      <div class="feedback-item" id="fb-q4"></div>
+    </div>
+
+    <div class="quiz-pregunta">
+      <p>5. ¿Cuál representa correctamente el principio de integridad entre citas y referencias en un texto científico? <span class="badge-tipo badge-teorica">Teórica</span></p>
+      <label><input type="radio" name="q5" value="a"/> a) Se pueden incluir referencias no citadas si son relevantes para el tema</label>
+      <label><input type="radio" name="q5" value="b"/> b) Si se cita en el texto, debe estar en la lista de referencias; si está en la lista, debe estar citada en el texto</label>
+      <label><input type="radio" name="q5" value="c"/> c) Las referencias son opcionales si el texto proviene de investigación propia</label>
+      <label><input type="radio" name="q5" value="d"/> d) Solo se listan en referencias los textos citados más de una vez</label>
+      <div class="feedback-item" id="fb-q5"></div>
+    </div>
+
+    <div class="quiz-pregunta">
+      <p>6. ¿En qué se diferencia Resultados de Discusión en el modelo IMRAD? <span class="badge-tipo badge-teorica">Teórica</span></p>
+      <label><input type="radio" name="q6" value="a"/> a) Los Resultados interpretan los datos; la Discusión los presenta</label>
+      <label><input type="radio" name="q6" value="b"/> b) Los Resultados presentan datos objetivos sin interpretación; la Discusión interpreta esos datos a la luz de la teoría y la pregunta de investigación</label>
+      <label><input type="radio" name="q6" value="c"/> c) Los Resultados son para el público general; la Discusión, para expertos</label>
+      <label><input type="radio" name="q6" value="d"/> d) No hay diferencia práctica entre ambas secciones</label>
+      <div class="feedback-item" id="fb-q6"></div>
+    </div>
+
+    <div class="quiz-pregunta">
+      <p>7. Un investigador concluye: "Este estudio demuestra concluyentemente que la corrupción destruye todas las economías latinoamericanas." ¿Cuál es el problema de esta afirmación? <span class="badge-tipo badge-teorica">Teórica</span></p>
+      <label><input type="radio" name="q7" value="a"/> a) La afirmación es demasiado breve para un texto científico</label>
+      <label><input type="radio" name="q7" value="b"/> b) Viola el principio de hedging: hace afirmación absoluta ("todas las economías") sin sustento, y usa lenguaje definitivo ("demuestra concluyentemente") inapropiado para la ciencia</label>
+      <label><input type="radio" name="q7" value="c"/> c) No viola ninguna característica; es una conclusión válida</label>
+      <label><input type="radio" name="q7" value="d"/> d) El problema es que usa el término informal "destruye"</label>
+      <div class="feedback-item" id="fb-q7"></div>
+    </div>
+
+    <div class="quiz-pregunta">
+      <p>8. Una estudiante en Guayaquil encuentra un texto sin abstract, sin metodología, sin referencias y escrito en primera persona ("Yo pienso que…"). ¿Cómo debe clasificarlo? <span class="badge-tipo badge-analisis">Análisis</span></p>
+      <label><input type="radio" name="q8" value="a"/> a) Texto científico de bajo rigor</label>
+      <label><input type="radio" name="q8" value="b"/> b) Texto científico si el autor tiene credenciales académicas</label>
+      <label><input type="radio" name="q8" value="c"/> c) Texto no científico: le faltan múltiples características esenciales (verificabilidad, intertextualidad, impersonalidad, estructura)</label>
+      <label><input type="radio" name="q8" value="d"/> d) Texto de divulgación científica</label>
+      <div class="feedback-item" id="fb-q8"></div>
+    </div>
+
+    <div class="quiz-pregunta">
+      <p>9. Un auditor forense lee un informe de la Contraloría General del Estado y lo compara con las NIA para identificar si el procedimiento fue correcto. ¿Qué nivel de lectura predomina? <span class="badge-tipo badge-analisis">Análisis</span></p>
+      <label><input type="radio" name="q9" value="a"/> a) Literal, porque lee los documentos con cuidado</label>
+      <label><input type="radio" name="q9" value="b"/> b) Inferencial, porque deduce el procedimiento seguido</label>
+      <label><input type="radio" name="q9" value="c"/> c) Analógico, porque relaciona dos textos distintos (el informe y las NIA) para identificar correspondencias y diferencias</label>
+      <label><input type="radio" name="q9" value="d"/> d) Crítico-valorativo, porque evalúa la calidad del informe</label>
+      <div class="feedback-item" id="fb-q9"></div>
+    </div>
+
+    <div class="quiz-pregunta">
+      <p>10. Un artículo sobre fraude contable en Ecuador no especifica cómo seleccionó las empresas ni reporta el tamaño de la muestra. ¿Qué conclusión debe sacar un lector crítico? <span class="badge-tipo badge-analisis">Análisis</span></p>
+      <label><input type="radio" name="q10" value="a"/> a) El artículo es válido si sus conclusiones parecen razonables</label>
+      <label><input type="radio" name="q10" value="b"/> b) El artículo viola el principio de verificabilidad y rigor metodológico: sin describir la muestra y el método de selección, sus resultados no pueden evaluarse ni replicarse</label>
+      <label><input type="radio" name="q10" value="c"/> c) Es un defecto menor que no afecta la calidad científica</label>
+      <label><input type="radio" name="q10" value="d"/> d) El artículo no puede considerarse texto científico porque no tiene título</label>
+      <div class="feedback-item" id="fb-q10"></div>
+    </div>
+
+    <button class="btn-verificar" onclick="verificarQuiz2()">✅ Verificar respuestas</button>
+    <button class="btn-reiniciar" onclick="reiniciarQuiz2()">🔄 Reiniciar</button>
+  </div>
+  <div class="resultado-box" id="res-quiz2">
+    <div class="resultado-score" id="score-quiz2"></div>
+    <div class="barra-prog"><div class="barra-fill" id="barra-quiz2" style="width:0%"></div></div>
+    <div class="resultado-msg" id="msg-quiz2"></div>
+  </div>
+</div>
+
+<!-- 10 IA -->
+<div id="tab-ia" class="tab-panel">
+  <h2 class="panel-title">🤖 Actividad con Inteligencia Artificial</h2>
+  <div class="ia-box">
+    <p><strong>Herramienta recomendada:</strong> <a href="https://claude.ai" target="_blank" style="color:var(--azul);font-weight:700;">Claude en claude.ai</a> (Anthropic) — gratuita. También: ChatGPT (chat.openai.com) o Gemini (gemini.google.com).</p>
+  </div>
+  <h3 class="subtitulo">🎯 Objetivo</h3>
+  <p>Simular el proceso de <em>revisión por pares</em> (peer review): el mecanismo que usan las revistas científicas para evaluar un artículo antes de publicarlo. Tú actúas como autor; la IA, como revisor técnico.</p>
+
+  <div class="ia-seccion-titulo">📋 Paso 1: Escribe tu propio abstract científico</div>
+  <p>Crea un abstract breve (80–120 palabras) sobre un tema de tu carrera. Puede ser ficticio pero debe tener: problema, método, resultado y conclusión. Ejemplo de tema: <em>"Análisis del cumplimiento tributario de las microempresas del centro de Guayaquil en 2024"</em>.</p>
+
+  <div class="ia-seccion-titulo">📋 Paso 2: Usa este prompt exacto con la IA</div>
+  <div class="prompt-box">Actúa como un revisor científico experto (peer reviewer) de una revista académica de Contabilidad y Auditoría. Voy a presentarte el abstract de un artículo científico que escribí. Tu tarea es evaluarlo siguiendo estos 7 criterios:
+
+1. ¿Está claramente identificado el PROBLEMA o pregunta de investigación?
+2. ¿Se describe la METODOLOGÍA con suficiente detalle?
+3. ¿Se presentan RESULTADOS concretos (no solo afirmaciones vagas)?
+4. ¿Las CONCLUSIONES se derivan lógicamente de los resultados?
+5. ¿El lenguaje es OBJETIVO e IMPERSONAL?
+6. ¿Hay uso apropiado de HEDGING (moduladores de certeza)?
+7. ¿El abstract cumple con las características de un texto CIENTÍFICO RIGUROSO?
+
+Para cada criterio, califica de 1 a 3 (1=deficiente, 2=aceptable, 3=excelente) y da una sugerencia de mejora específica.
+
+Mi abstract es el siguiente:
+
+[PEGA AQUÍ TU ABSTRACT]</div>
+
+  <div class="ia-seccion-titulo">📋 Paso 3: Trabaja con la retroalimentación</div>
+  <ol style="padding-left:22px;line-height:1.9;font-size:.93rem;">
+    <li>Lee la evaluación criterio por criterio. ¿Estás de acuerdo con cada puntuación?</li>
+    <li>Cuestiona al menos UN criterio con el que no estés de acuerdo con un argumento concreto.</li>
+    <li>Reescribe tu abstract incorporando las mejoras que aceptes como válidas.</li>
+    <li>Pide a la IA que evalúe tu versión mejorada usando el mismo prompt.</li>
+    <li>Compara ambas versiones y redacta un párrafo explicando qué mejoras hiciste y por qué.</li>
+  </ol>
+
+  <div class="ia-seccion-titulo">📊 Criterio de evaluación</div>
+  <table class="tabla-comp">
+    <thead><tr><th>Indicador</th><th>Pensamiento crítico ✅</th><th>Uso pasivo ❌</th></tr></thead>
+    <tbody>
+      <tr><td>Interacción</td><td>Cuestiona al menos una evaluación con argumentos</td><td>Acepta todas sin responder</td></tr>
+      <tr><td>Producto</td><td>Abstract mejorado + párrafo de reflexión</td><td>Solo entrega el abstract original</td></tr>
+      <tr><td>Análisis</td><td>Puede explicar cada cambio en relación a las características estudiadas</td><td>Hizo cambios sin poder justificarlos</td></tr>
+    </tbody>
+  </table>
+  <div class="caja-clave">
+    <div class="clave-titulo">💡 Reflexión metacognitiva</div>
+    <p>¿Cuál fue el criterio más difícil de cumplir en tu abstract? Ese es tu área de crecimiento. Con la IA tienes un revisor disponible las 24 horas. La escritura científica se aprende escribiendo y recibiendo retroalimentación.</p>
+  </div>
+</div>
+
+<!-- 11 REFLEXIÓN -->
+<div id="tab-reflexion" class="tab-panel">
+  <h2 class="panel-title">💭 Reflexión: El texto científico y tu vida</h2>
+
+  <div class="reflexion-card">
+    <div class="ref-num">Reflexión 1 — Objetividad y autoconocimiento</div>
+    <p>El texto científico exige objetividad: describir la realidad sin filtrarla a través de emociones o intereses personales. ¿Eres capaz de verte a ti mismo con esa misma objetividad? ¿Cuándo fue la última vez que evaluaste una de tus propias decisiones con la misma rigurosidad que aplicarías a un informe de auditoría?</p>
+  </div>
+
+  <div class="reflexion-card">
+    <div class="ref-num">Reflexión 2 — Verificabilidad y confianza</div>
+    <p>En ciencia, una afirmación vale solo si puede verificarse. En la vida cotidiana, ¿con qué frecuencia "verificas" la información que recibes antes de creerla y compartirla? ¿Qué pasaría si aplicaras el estándar científico de verificabilidad a las noticias que lees en redes sociales?</p>
+  </div>
+
+  <div class="reflexion-card">
+    <div class="ref-num">Reflexión 3 — Limitaciones y autoestima sana</div>
+    <p>Una señal de madurez científica es reconocer las propias limitaciones de forma explícita y honesta. ¿Puedes hacer lo mismo en tu vida personal? Reconocer tus límites no es debilidad — en ciencia es rigor; en la vida, es inteligencia emocional. ¿Qué "limitaciones" tuyas podrías reconocer hoy de manera constructiva?</p>
+  </div>
+
+  <div class="reflexion-card">
+    <div class="ref-num">Reflexión 4 — Hedging y comunicación asertiva</div>
+    <p>El hedging científico nos enseña a no afirmar más de lo que podemos sostener. ¿Aplicas algo similar en tus relaciones? ¿O tiendes a hablar con certezas absolutas? ¿Qué pasaría si en un conflicto dijeras "me parece que…" o "desde mi perspectiva…" en lugar de "tú siempre…" o "esto es así"?</p>
+  </div>
+
+  <div class="reflexion-card">
+    <div class="ref-num">Reflexión 5 — Intertextualidad y aprendizaje de experiencias</div>
+    <p>El texto científico siempre dialoga con textos previos. Tu vida también es intertextual: estás hecho de conversaciones, libros, películas, personas y experiencias que te precedieron. ¿Cuáles son los "textos" —personas, experiencias, libros— que más han influido en quien eres hoy? ¿Los has reconocido conscientemente?</p>
+  </div>
+
+  <div class="reflexion-card">
+    <div class="ref-num">Reflexión 6 — PNL: ¿lees la realidad como texto científico o como cuento?</div>
+    <p>La Programación Neurolingüística plantea que cada persona "filtra" la realidad de manera diferente. Algunos leen los hechos con objetividad; otros los cargan de interpretaciones emocionales inmediatas. ¿Cómo lees tú la realidad cuando algo sale mal? ¿Con curiosidad investigadora o con narrativa catastrófica?</p>
+  </div>
+
+  <div class="caja-clave">
+    <div class="clave-titulo">✨ Para llevar</div>
+    <p>El texto científico no es solo un género académico: es una <em>actitud ante la realidad</em>. Verificar antes de creer, reconocer las limitaciones propias, modular las certezas, construir sobre el conocimiento de otros. Estas no son solo virtudes científicas: son virtudes humanas. Esta materia no te enseña a escribir textos — te enseña a <em>pensar</em>.</p>
+  </div>
+</div>
+
+<!-- 12 BIBLIO -->
+<div id="tab-biblio" class="tab-panel">
+  <h2 class="panel-title">📚 Bibliografía — APA 7.ª edición</h2>
+
+  <div class="ref-card">
+    <div class="ref-autor">Day, R. A., y Gastel, B. (2008).</div>
+    <div class="ref-titulo">How to write and publish a scientific paper</div> (6.ª ed.). Cambridge University Press.<br/>
+    <em>Referencia clásica internacional sobre la estructura y estilo del artículo científico. Contiene orientaciones detalladas sobre el modelo IMRAD.</em>
+  </div>
+
+  <div class="ref-card">
+    <div class="ref-autor">Swales, J. M. (1990).</div>
+    <div class="ref-titulo">Genre analysis: English in academic and research settings.</div>
+    Cambridge University Press.<br/>
+    <em>Obra fundacional en el análisis del discurso académico. Define el género científico y sus movimientos retóricos.</em>
+  </div>
+
+  <div class="ref-card">
+    <div class="ref-autor">American Psychological Association. (2020).</div>
+    <div class="ref-titulo">Publication manual of the American Psychological Association</div> (7.ª ed.). APA. https://doi.org/10.1037/0000165-000<br/>
+    <em>Manual de estilo APA, referencia obligatoria para la redacción académica en ciencias sociales, incluyendo contabilidad y administración.</em>
+  </div>
+
+  <div class="ref-card">
+    <div class="ref-autor">Cassany, D. (2008).</div>
+    <div class="ref-titulo">Taller de textos: leer, escribir y comentar en el aula.</div>
+    Paidós.<br/>
+    <em>Recurso didáctico que conecta la comprensión lectora con la producción de textos académicos, incluyendo textos científicos.</em>
+  </div>
+
+  <div class="ref-card">
+    <div class="ref-autor">Montolío, E. (Coord.). (2000).</div>
+    <div class="ref-titulo">Manual práctico de escritura académica</div> (3 vols.). Ariel.<br/>
+    <em>Manual completo sobre escritura académica en español. El volumen III trata específicamente el texto científico y el uso de conectores en el discurso especializado.</em>
+  </div>
+
+  <div class="ref-card">
+    <div class="ref-autor">Beke, R. (2005).</div>
+    <div class="ref-titulo">El metadiscurso interpersonal en artículos de investigación.</div>
+    <em>Signos</em>, 38(57), 7–18. https://doi.org/10.4067/S0718-09342005000100001<br/>
+    <em>Artículo académico latinoamericano sobre el hedging y la modalización en textos científicos en español.</em>
+  </div>
+
+  <div class="ref-card">
+    <div class="ref-autor">Contraloría General del Estado del Ecuador. (2023).</div>
+    <div class="ref-titulo">Normas de Control Interno para las Entidades, Organismos del Sector Público y de las Personas Jurídicas de Derecho Privado que dispongan de Recursos Públicos.</div>
+    CGE. https://www.contraloria.gob.ec<br/>
+    <em>Documento normativo institucional que los contadores y auditores ecuatorianos deben leer con competencia lectora científica.</em>
+  </div>
+
+  <div class="nota-biblio">
+    ⚠️ <strong>Nota importante:</strong> Se recomienda verificar cada referencia en Google Scholar (<a href="https://scholar.google.com" target="_blank">scholar.google.com</a>) o en el repositorio institucional de la Universidad de Guayaquil antes de citar en trabajos académicos.
+  </div>
+</div>
+
+</div><!-- fin content-area -->
+
+<script>
+function showTab(id,btn){
+  document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('tab-'+id).classList.add('active');
+  btn.classList.add('active');
+}
+
+/* ── PLANTILLA ── */
+function autoevaluar(){
+  var campos=[
+    {id:'p-autores',label:'Autores',min:3},{id:'p-anio',label:'Año',min:4},
+    {id:'p-titulo',label:'Título',min:10},{id:'p-fuente',label:'Fuente',min:5},
+    {id:'p-problema',label:'Problema/Intro',min:30},{id:'p-metodo',label:'Metodología',min:30},
+    {id:'p-resultados',label:'Resultados',min:30},{id:'p-conclusiones',label:'Conclusiones',min:30},
+    {id:'p-objetividad',label:'Objetividad (ej.)',min:15},{id:'p-precision',label:'Precisión (ej.)',min:15},
+    {id:'p-hedging',label:'Hedging (ej.)',min:15},{id:'p-limitaciones',label:'Limitaciones',min:15},
+    {id:'p-literal',label:'Nivel Literal',min:30},{id:'p-inferencial',label:'Nivel Inferencial',min:30},
+    {id:'p-analogico',label:'Nivel Analógico',min:30},{id:'p-critico',label:'Nivel Crítico',min:30},
+    {id:'p-valoracion',label:'Valoración global',min:40}
+  ];
+  var html='<h4 style="color:var(--azul);font-family:Lora,serif;margin-bottom:12px;">📊 Resultados de la autoevaluación</h4>';
+  var completos=0;
+  campos.forEach(function(c){
+    var el=document.getElementById(c.id);
+    var val=el?el.value.trim():'';
+    var estado,clase;
+    if(val.length===0){estado='❌ Sin completar';clase='eval-mal';}
+    else if(val.length<c.min){estado='⚠️ Muy breve — amplía tu respuesta';clase='eval-warn';}
+    else{estado='✅ Completado';clase='eval-ok';completos++;}
+    html+='<div class="eval-item"><span class="'+clase+'">'+estado+'</span> — <strong>'+c.label+'</strong>'+(val.length>0?' ('+val.length+' caracteres)':'')+'</div>';
+  });
+  var total=campos.length;
+  var pct=Math.round(completos/total*100);
+  var msg=pct===100?'🏆 Análisis completo y detallado. Excelente trabajo.':
+    pct>=70?'🎯 Buen avance. Completa los campos marcados.':
+    pct>=40?'📘 Has empezado bien. Dedica más tiempo a completar todos los campos.':
+    '📖 La plantilla está poco completada. Responde cada sección con al menos 2–3 oraciones.';
+  html+='<div style="margin-top:14px;padding:12px;background:var(--azul);color:#fff;border-radius:8px;text-align:center;"><strong style="font-size:1.1rem;">'+completos+'/'+total+' secciones completas ('+pct+'%)</strong><br/><div class="barra-prog" style="margin:8px 0;"><div class="barra-fill" style="width:'+pct+'%"></div></div><span>'+msg+'</span></div>';
+  var res=document.getElementById('eval-resultado');
+  res.innerHTML=html;res.style.display='block';res.scrollIntoView({behavior:'smooth'});
+}
+function limpiarPlantilla(){
+  if(!confirm('¿Limpiar todo el contenido de la plantilla?'))return;
+  ['p-autores','p-anio','p-titulo','p-fuente','p-problema','p-metodo','p-resultados',
+   'p-conclusiones','p-objetividad','p-precision','p-hedging','p-limitaciones',
+   'p-literal','p-inferencial','p-analogico','p-critico','p-valoracion'].forEach(function(id){
+    var el=document.getElementById(id);if(el)el.value='';
+  });
+  document.getElementById('eval-resultado').style.display='none';
+}
+function exportarPlantilla(){
+  var campos=[
+    ['Autores','p-autores'],['Año','p-anio'],['Título','p-titulo'],['Fuente','p-fuente'],
+    ['Problema/Introducción','p-problema'],['Metodología','p-metodo'],
+    ['Resultados','p-resultados'],['Conclusiones','p-conclusiones'],
+    ['Objetividad (ejemplo)','p-objetividad'],['Precisión (ejemplo)','p-precision'],
+    ['Hedging (ejemplo)','p-hedging'],['Limitaciones','p-limitaciones'],
+    ['Nivel Literal','p-literal'],['Nivel Inferencial','p-inferencial'],
+    ['Nivel Analógico','p-analogico'],['Nivel Crítico-Valorativo','p-critico'],
+    ['Valoración Global','p-valoracion']
+  ];
+  var texto='=== PLANTILLA DE ANÁLISIS DE TEXTO CIENTÍFICO — Semana 10 ===\n\n';
+  campos.forEach(function(c){
+    var el=document.getElementById(c[1]);
+    texto+='['+c[0]+']\n'+(el?el.value.trim()||'(sin completar)':'(sin completar)')+'\n\n';
+  });
+  navigator.clipboard.writeText(texto).then(function(){
+    alert('✅ Contenido copiado al portapapeles. Puedes pegarlo en Word o Google Docs.');
+  }).catch(function(){alert('No fue posible copiar automáticamente. Selecciona el texto manualmente.');});
+}
+
+/* ── EJERCICIO 2 ── */
+var ej2C={fi1:'b',fi2:'c',fi3:'c',fi4:'c',fi5:'b',fi6:'c',fi7:'c',fi8:'b'};
+var ej2F={
+  fi1:{b:'✅ Correcto. "Según mi opinión" viola la objetividad (opina sin datos) y la impersonalidad (usa "mi").',
+    a:'❌ La intertextualidad se refiere a la citación de fuentes; aquí el problema principal es la falta de objetividad e impersonalidad.',
+    c:'❌ La coherencia se refiere a la conexión lógica de las ideas; el problema aquí es más profundo: el lenguaje subjetivo.',
+    d:'❌ La universalidad se refiere al alcance geográfico del conocimiento; no es la característica violada aquí.'},
+  fi2:{c:'✅ Correcto. IMRAD = Introduction, Methods, Results And Discussion. Estándar internacional para artículos científicos empíricos.',
+    a:'❌ "Índice, Marco, Resumen, Análisis, Datos" no es una estructura reconocida en la literatura científica.',
+    b:'❌ El acrónimo correcto usa "Discussion" (Discusión), no simplemente "Análisis".',
+    d:'❌ Esta combinación mezcla elementos reales con términos incorrectos.'},
+  fi3:{c:'✅ Correcto. "Sugieren" es ejemplo clásico de hedging: modera la certeza y no afirma más de lo que los datos permiten.',
+    a:'❌ La tecnicidad se refiere al uso de terminología especializada; "sugieren" es una palabra común.',
+    b:'❌ La monorreferencia se refiere a que un término tenga un solo significado; no describe la función de "sugieren".',
+    d:'❌ La nominalización convierte verbos en sustantivos. "Sugieren" es un verbo conjugado.'},
+  fi4:{c:'✅ Correcto. La Metodología describe cómo se realizó el estudio: muestra, instrumentos, procedimientos.',
+    a:'❌ La Introducción presenta el problema; no los procedimientos metodológicos.',
+    b:'❌ Los Resultados presentan los hallazgos del estudio.',
+    d:'❌ La Discusión interpreta los resultados; no describe cómo se recopiló la información.'},
+  fi5:{b:'✅ Correcto. La monorreferencia: cada término tiene un solo referente preciso. Usar siempre "malversación" con el mismo significado técnico es exactamente eso.',
+    a:'❌ El hedging modera certezas; no describe la consistencia en el uso de términos.',
+    c:'❌ La nominalización convierte verbos en sustantivos abstractos.',
+    d:'❌ La coherencia se refiere a la conexión lógica del texto.'},
+  fi6:{c:'✅ Correcto. La Discusión interpreta los resultados a la luz de la teoría y la pregunta de investigación.',
+    a:'❌ Los datos numéricos corresponden a la sección de Resultados.',
+    b:'❌ La descripción de cómo se recopiló la información corresponde a la Metodología.',
+    d:'❌ Listar las fuentes es función de la sección de Referencias.'},
+  fi7:{c:'✅ Correcto. Señalar limitaciones de generalización es honestidad epistémica, característica del rigor científico.',
+    a:'❌ La impersonalidad se refiere al uso de construcciones sin primera persona.',
+    b:'❌ La precisión se refiere a la exactitud de datos y términos.',
+    d:'❌ La universalidad es lo opuesto: el texto reconoce que sus resultados NO son universales.'},
+  fi8:{b:'✅ Correcto. "Se analizaron" es la construcción pasiva refleja en español que logra impersonalidad, eliminando al sujeto investigador.',
+    a:'❌ El hedging modera la certeza; este cambio no afecta la certeza sino la persona gramatical.',
+    c:'❌ La tecnicidad se refiere al uso de términos especializados.',
+    d:'❌ La verificabilidad se refiere a que el método pueda replicarse.'}
+};
+
+function verificarEj2(){
+  var names=['fi1','fi2','fi3','fi4','fi5','fi6','fi7','fi8'];
+  for(var i=0;i<names.length;i++){
+    if(!document.querySelector('input[name="'+names[i]+'"]:checked')){
+      alert('Por favor, responde todas las preguntas antes de verificar.');return;
+    }
+  }
+  var correctas=0;
+  names.forEach(function(n){
+    var sel=document.querySelector('input[name="'+n+'"]:checked').value;
+    var fb=document.getElementById('fb-'+n);
+    var correct=ej2C[n];
+    var feedbacks=ej2F[n];
+    fb.innerHTML=feedbacks[sel]||'—';
+    if(sel===correct){correctas++;fb.className='feedback-item feedback-correcto';}
+    else{fb.className='feedback-item feedback-incorrecto';fb.innerHTML+='<br/><em>La respuesta correcta era la opción ('+correct+'): '+feedbacks[correct]+'</em>';}
+    fb.style.display='block';
+    document.querySelectorAll('input[name="'+n+'"]').forEach(function(r){r.disabled=true;});
+  });
+  var pct=Math.round(correctas/names.length*100);
+  var res=document.getElementById('res-ej2');res.style.display='block';
+  document.getElementById('score-ej2').textContent=correctas+'/'+names.length+' — '+pct+'%';
+  document.getElementById('barra-ej2').style.width=pct+'%';
+  document.getElementById('msg-ej2').textContent=pct===100?'🏆 ¡Perfecto!':pct>=80?'🎯 ¡Muy bien!':pct>=60?'📘 Bien, repasa lo que fallaste.':pct>=40?'⚠️ Repasa el material.':'📖 Estudia el contenido nuevamente.';
+  res.scrollIntoView({behavior:'smooth'});
+}
+function reiniciarEj2(){
+  ['fi1','fi2','fi3','fi4','fi5','fi6','fi7','fi8'].forEach(function(n){
+    document.querySelectorAll('input[name="'+n+'"]').forEach(function(r){r.checked=false;r.disabled=false;});
+    var fb=document.getElementById('fb-'+n);fb.style.display='none';fb.innerHTML='';
+  });
+  document.getElementById('res-ej2').style.display='none';
+  document.getElementById('barra-ej2').style.width='0%';
+}
+
+/* ── CUESTIONARIO 2 ── */
+var q2C={q1:'c',q2:'b',q3:'b',q4:'c',q5:'b',q6:'b',q7:'b',q8:'c',q9:'c',q10:'b'};
+var q2F={
+  q1:{c:'✅ Correcto. El texto científico se define por comunicar conocimiento producido con metodología verificable, dirigido a comunidad especializada.',
+    a:'❌ La extensión no es el criterio definitorio.',
+    b:'❌ El propósito del lenguaje técnico no es excluir sino garantizar precisión.',
+    d:'❌ Las citas son obligatorias en textos científicos precisamente por la intertextualidad.'},
+  q2:{b:'✅ Correcto. Verificabilidad significa que el método y los datos están descritos con suficiente detalle para que otro investigador pueda replicar el estudio.',
+    a:'❌ El texto puede ser revisado por el autor (estilo) pero la verificabilidad es sobre la replicabilidad externa.',
+    c:'❌ Estar en internet es accesibilidad, no verificabilidad científica.',
+    d:'❌ Publicar en revista reconocida implica revisión por pares, pero no define verificabilidad como concepto.'},
+  q3:{b:'✅ Correcto. El artículo de investigación reporta hallazgos originales de un estudio empírico o teórico propio; el de revisión sintetiza lo que otros han publicado.',
+    a:'❌ La extensión puede variar en ambos tipos.',
+    c:'❌ Cualquier investigador puede escribir artículos de revisión.',
+    d:'❌ Son géneros distintos con propósitos y convenciones diferentes.'},
+  q4:{c:'✅ Correcto. La nominalización convierte verbos en sustantivos: "implementar" → "la implementación"; "analizar" → "el análisis".',
+    a:'❌ Dar nombres propios a conceptos es nomenclatura, no nominalización en sentido lingüístico.',
+    b:'❌ Usar sustantivos abstractos es consecuencia de la nominalización, no su definición.',
+    d:'❌ Incluir el nombre del autor en cada párrafo sería redundante; no describe la nominalización.'},
+  q5:{b:'✅ Correcto. Principio de integridad bidireccional: toda cita debe estar en referencias y toda referencia debe estar citada en el texto.',
+    a:'❌ Incluir referencias no citadas es una falta en la mayoría de estilos bibliográficos.',
+    c:'❌ Las referencias son obligatorias siempre en textos científicos.',
+    d:'❌ Las fuentes se listan independientemente de cuántas veces se citen.'},
+  q6:{b:'✅ Correcto. Resultados reportan sin interpretar; Discusión interpreta. Esta separación es fundamental para la honestidad científica.',
+    a:'❌ Es exactamente al revés.',
+    c:'❌ Ambas secciones van dirigidas a la misma audiencia especializada.',
+    d:'❌ Son secciones claramente distintas en función y contenido.'},
+  q7:{b:'✅ Correcto. "Todas las economías latinoamericanas" es generalización imposible de sostener con un estudio. "Demuestra concluyentemente" viola el hedging científico.',
+    a:'❌ La brevedad no es el problema aquí.',
+    c:'❌ La afirmación viola dos principios: generalización excesiva y ausencia de hedging.',
+    d:'❌ El tono informal puede ser un problema secundario; el defecto principal es la generalización absoluta.'},
+  q8:{c:'✅ Correcto. Sin abstract, metodología, referencias y en primera persona, el texto viola verificabilidad, intertextualidad, impersonalidad y estructura. No es texto científico.',
+    a:'❌ No es un texto científico de bajo rigor; directamente no cumple criterios mínimos.',
+    b:'❌ Las credenciales del autor no hacen científico a un texto; la calidad del texto lo define.',
+    d:'❌ La divulgación científica puede usar primera persona, pero tampoco cumple los criterios del texto analizado.'},
+  q9:{c:'✅ Correcto. Comparar el informe de la Contraloría con las NIA para identificar correspondencias es una operación analógica/intertextual.',
+    a:'❌ Aunque lee con cuidado, la operación central no es extraer datos literales sino comparar dos marcos normativos.',
+    b:'❌ La inferencia deduciría algo no dicho en un texto; aquí se comparan dos documentos.',
+    d:'❌ La lectura crítica evaluaría la calidad; aquí el auditor establece primero la comparación analógica.'},
+  q10:{b:'✅ Correcto. Sin descripción de la muestra ni del método de selección, el estudio no puede evaluarse ni replicarse. Viola verificabilidad y rigor metodológico.',
+    a:'❌ La razonabilidad de las conclusiones no compensa la ausencia de metodología.',
+    c:'❌ La ausencia de descripción metodológica es un defecto grave, no menor.',
+    d:'❌ No tener título sería un problema diferente; el problema central es la falta de descripción metodológica.'}
+};
+
+function verificarQuiz2(){
+  var names=['q1','q2','q3','q4','q5','q6','q7','q8','q9','q10'];
+  for(var i=0;i<names.length;i++){
+    if(!document.querySelector('input[name="'+names[i]+'"]:checked')){
+      alert('Por favor, responde todas las preguntas antes de verificar.');return;
+    }
+  }
+  var correctas=0;
+  names.forEach(function(n){
+    var sel=document.querySelector('input[name="'+n+'"]:checked').value;
+    var fb=document.getElementById('fb-'+n);
+    var correct=q2C[n];
+    var feedbacks=q2F[n];
+    fb.innerHTML=feedbacks[sel]||'—';
+    if(sel===correct){correctas++;fb.className='feedback-item feedback-correcto';}
+    else{fb.className='feedback-item feedback-incorrecto';fb.innerHTML+='<br/><em>La respuesta correcta era la opción ('+correct+'): '+feedbacks[correct]+'</em>';}
+    fb.style.display='block';
+    document.querySelectorAll('input[name="'+n+'"]').forEach(function(r){r.disabled=true;});
+  });
+  var pct=Math.round(correctas/10*100);
+  var res=document.getElementById('res-quiz2');res.style.display='block';
+  document.getElementById('score-quiz2').textContent=correctas+'/10 — '+pct+'%';
+  document.getElementById('barra-quiz2').style.width=pct+'%';
+  document.getElementById('msg-quiz2').textContent=pct===100?'🏆 ¡Excelente! Dominio total.':pct>=80?'🎯 ¡Muy bien!':pct>=60?'📘 Aprobado. Repasa lo que fallaste.':pct>=40?'⚠️ Refuerza los temas.':'📖 Dedica más tiempo al estudio.';
+  res.scrollIntoView({behavior:'smooth'});
+}
+function reiniciarQuiz2(){
+  ['q1','q2','q3','q4','q5','q6','q7','q8','q9','q10'].forEach(function(n){
+    document.querySelectorAll('input[name="'+n+'"]').forEach(function(r){r.checked=false;r.disabled=false;});
+    var fb=document.getElementById('fb-'+n);fb.style.display='none';fb.innerHTML='';
+  });
+  document.getElementById('res-quiz2').style.display='none';
+  document.getElementById('barra-quiz2').style.width='0%';
+}
+</script>
+</body>
+</html>

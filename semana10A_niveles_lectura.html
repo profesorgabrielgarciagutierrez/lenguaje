@@ -1,0 +1,1528 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Semana 10A | Niveles de Lectura | Lenguaje y Comunicación</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet"/>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --azul: #003366;
+    --celeste: #87CEEB;
+    --celeste-claro: #e8f4fb;
+    --blanco: #ffffff;
+    --gris-fondo: #f5f7fa;
+    --gris-borde: #dde3ec;
+    --verde: #1a7a3e;
+    --verde-claro: #e6f4ec;
+    --rojo: #c0392b;
+    --rojo-claro: #fdecea;
+    --naranja: #d4700a;
+    --naranja-claro: #fef3e2;
+    --morado: #5b2d8e;
+    --morado-claro: #f0eafa;
+    --texto: #1a2236;
+  }
+
+  body {
+    font-family: 'Source Sans 3', sans-serif;
+    background: var(--gris-fondo);
+    color: var(--texto);
+    min-height: 100vh;
+  }
+
+  /* ── HEADER ─────────────────────────────── */
+  header {
+    background: var(--azul);
+    color: var(--blanco);
+    padding: 18px 24px 14px;
+  }
+  .header-inst {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 300;
+    letter-spacing: 0.04em;
+    opacity: 0.85;
+    margin-bottom: 4px;
+  }
+  .header-titulo {
+    font-family: 'Lora', serif;
+    font-size: 1.35rem;
+    font-weight: 700;
+    line-height: 1.3;
+  }
+  .header-sub {
+    font-size: 0.82rem;
+    font-weight: 300;
+    opacity: 0.8;
+    margin-top: 4px;
+  }
+  .header-badges {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 10px;
+  }
+  .badge {
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.3);
+    color: #fff;
+    font-size: 0.72rem;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-weight: 400;
+    letter-spacing: 0.03em;
+  }
+
+  /* ── TABS ────────────────────────────────── */
+  .tabs-wrapper {
+    background: var(--celeste);
+    overflow-x: auto;
+    white-space: nowrap;
+    border-bottom: 3px solid #6ab4db;
+  }
+  .tabs-wrapper::-webkit-scrollbar { height: 4px; }
+  .tabs-wrapper::-webkit-scrollbar-thumb { background: #4da3d4; border-radius: 2px; }
+  .tabs {
+    display: inline-flex;
+    gap: 2px;
+    padding: 6px 8px 0;
+  }
+  .tab-btn {
+    display: inline-block;
+    padding: 9px 16px;
+    background: transparent;
+    border: none;
+    border-radius: 6px 6px 0 0;
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: #1a2236;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background 0.2s, color 0.2s;
+  }
+  .tab-btn:hover { background: rgba(255,255,255,0.5); }
+  .tab-btn.active {
+    background: var(--blanco);
+    color: var(--azul);
+    font-weight: 700;
+  }
+
+  /* ── CONTENT ─────────────────────────────── */
+  .content-area {
+    padding: 28px 20px 40px;
+    max-width: 940px;
+    margin: 0 auto;
+  }
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; }
+
+  h2.panel-title {
+    font-family: 'Lora', serif;
+    font-size: 1.45rem;
+    font-weight: 700;
+    color: var(--azul);
+    margin-bottom: 6px;
+    border-bottom: 3px solid var(--celeste);
+    padding-bottom: 8px;
+  }
+  h3.subtitulo {
+    font-family: 'Lora', serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--azul);
+    margin: 22px 0 8px;
+  }
+  p { line-height: 1.72; margin-bottom: 12px; font-size: 0.97rem; }
+
+  /* ── CAJAS ───────────────────────────────── */
+  .caja-concepto {
+    border-left: 5px solid var(--azul);
+    background: #f0f4ff;
+    padding: 14px 18px;
+    border-radius: 0 8px 8px 0;
+    margin: 16px 0;
+  }
+  .caja-concepto strong { color: var(--azul); }
+
+  .caja-ejemplo {
+    background: var(--celeste-claro);
+    border: 1px solid #b8d8ef;
+    border-radius: 8px;
+    padding: 16px 18px;
+    margin: 16px 0;
+  }
+  .caja-ejemplo .ej-titulo {
+    font-weight: 700;
+    color: #0a4d80;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 8px;
+  }
+
+  .caja-clave {
+    background: var(--azul);
+    color: #fff;
+    border-radius: 8px;
+    padding: 16px 18px;
+    margin: 20px 0;
+  }
+  .caja-clave .clave-titulo {
+    font-family: 'Lora', serif;
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+  .caja-clave p { color: #e8eef7; font-size: 0.93rem; margin: 0; }
+
+  /* NIVELES coloreados */
+  .nivel-card {
+    border-radius: 10px;
+    padding: 18px 20px;
+    margin: 18px 0;
+    border-left: 6px solid;
+  }
+  .nivel-literal    { background: #e8f4ec; border-color: var(--verde);   }
+  .nivel-inferencial{ background: var(--celeste-claro); border-color: #1a6fa8; }
+  .nivel-analogico  { background: var(--naranja-claro); border-color: var(--naranja); }
+  .nivel-critico    { background: var(--morado-claro); border-color: var(--morado); }
+
+  .nivel-card h3 {
+    font-family: 'Lora', serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .nivel-literal h3    { color: var(--verde); }
+  .nivel-inferencial h3{ color: #1a6fa8; }
+  .nivel-analogico h3  { color: var(--naranja); }
+  .nivel-critico h3    { color: var(--morado); }
+
+  .nivel-tag {
+    display: inline-block;
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 12px;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  .tag-literal     { background: var(--verde);   color: #fff; }
+  .tag-inferencial { background: #1a6fa8; color: #fff; }
+  .tag-analogico   { background: var(--naranja); color: #fff; }
+  .tag-critico     { background: var(--morado);  color: #fff; }
+
+  /* TABLA */
+  .tabla-comp {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.88rem;
+    margin: 16px 0;
+  }
+  .tabla-comp th {
+    background: var(--azul);
+    color: #fff;
+    padding: 10px 12px;
+    text-align: left;
+    font-family: 'Source Sans 3', sans-serif;
+    font-weight: 600;
+  }
+  .tabla-comp td {
+    padding: 9px 12px;
+    border-bottom: 1px solid var(--gris-borde);
+    vertical-align: top;
+  }
+  .tabla-comp tr:nth-child(even) td { background: var(--gris-fondo); }
+  .tabla-comp tr:hover td { background: var(--celeste-claro); }
+
+  /* PREGUNTAS GUÍA */
+  .preguntas-lista {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0;
+  }
+  .preguntas-lista li {
+    padding: 6px 12px 6px 32px;
+    position: relative;
+    font-size: 0.93rem;
+    border-bottom: 1px dashed #d0dae8;
+  }
+  .preguntas-lista li::before {
+    content: '?';
+    position: absolute;
+    left: 8px;
+    font-weight: 700;
+    color: var(--azul);
+  }
+
+  /* TEXTO GUIADO */
+  .texto-demo {
+    background: #fffef5;
+    border: 2px solid #e8d980;
+    border-radius: 8px;
+    padding: 18px 20px;
+    margin: 16px 0;
+    font-style: italic;
+    line-height: 1.8;
+    font-size: 0.95rem;
+  }
+  .texto-demo strong { font-style: normal; color: var(--azul); font-size: 0.78rem; font-weight: 700; display: block; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.05em; }
+
+  .respuesta-guiada {
+    background: #f8f9fd;
+    border: 1px solid #c8d4e8;
+    border-radius: 6px;
+    padding: 12px 16px;
+    margin: 8px 0;
+    font-size: 0.91rem;
+  }
+  .respuesta-guiada strong { color: var(--azul); }
+
+  /* PIRÁMIDE visual */
+  .piramide-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    margin: 24px auto;
+    max-width: 520px;
+  }
+  .pir-nivel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+    color: #fff;
+    font-weight: 700;
+    font-family: 'Lora', serif;
+    text-align: center;
+    padding: 12px 10px;
+    font-size: 0.9rem;
+    transition: transform 0.2s;
+    cursor: default;
+  }
+  .pir-nivel:hover { transform: scale(1.02); }
+  .pir-1 { width: 100%; background: var(--verde);   }
+  .pir-2 { width: 88%;  background: #1a6fa8; }
+  .pir-3 { width: 74%;  background: var(--naranja); }
+  .pir-4 { width: 60%;  background: var(--morado);  }
+  .pir-label { font-size: 0.75rem; font-weight: 400; opacity: 0.9; }
+
+  /* EJERCICIO */
+  .quiz-pregunta {
+    background: var(--blanco);
+    border: 1px solid var(--gris-borde);
+    border-radius: 8px;
+    padding: 16px 18px;
+    margin-bottom: 14px;
+  }
+  .quiz-pregunta p { font-weight: 600; margin-bottom: 10px; font-size: 0.95rem; }
+  .quiz-pregunta label {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 7px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background 0.15s;
+    margin-bottom: 4px;
+  }
+  .quiz-pregunta label:hover { background: var(--celeste-claro); }
+  .quiz-pregunta input[type=radio] { margin-top: 3px; flex-shrink: 0; }
+
+  .feedback-item { border-radius: 6px; padding: 8px 12px; margin-top: 8px; font-size: 0.87rem; display: none; }
+  .feedback-correcto { background: var(--verde-claro); color: var(--verde); border: 1px solid #a8d8b8; }
+  .feedback-incorrecto { background: var(--rojo-claro); color: var(--rojo); border: 1px solid #f0b8b0; }
+
+  .btn-verificar, .btn-reiniciar {
+    display: inline-block;
+    padding: 11px 28px;
+    border: none;
+    border-radius: 7px;
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: opacity 0.2s, transform 0.1s;
+    margin-top: 6px;
+  }
+  .btn-verificar { background: var(--azul); color: #fff; }
+  .btn-verificar:hover { opacity: 0.88; transform: translateY(-1px); }
+  .btn-reiniciar { background: #e0e8f4; color: var(--azul); margin-left: 10px; }
+  .btn-reiniciar:hover { background: #c8d8ee; }
+
+  .resultado-box {
+    background: var(--azul);
+    color: #fff;
+    border-radius: 10px;
+    padding: 20px 24px;
+    margin-top: 18px;
+    display: none;
+    text-align: center;
+  }
+  .resultado-score { font-family: 'Lora', serif; font-size: 2rem; font-weight: 700; }
+  .resultado-msg { font-size: 1rem; margin-top: 6px; opacity: 0.9; }
+  .barra-prog { width: 100%; height: 12px; background: rgba(255,255,255,0.25); border-radius: 10px; margin: 12px 0; overflow: hidden; }
+  .barra-fill { height: 100%; background: #4dd97e; border-radius: 10px; transition: width 1s ease; }
+
+  /* CUESTIONARIO */
+  .badge-tipo {
+    display: inline-block;
+    font-size: 0.68rem;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-left: 8px;
+    vertical-align: middle;
+  }
+  .badge-teorica  { background: #dbeafe; color: #1e3a8a; }
+  .badge-analisis { background: #fce7f3; color: #831843; }
+
+  /* ACTIVIDAD IA */
+  .ia-box {
+    background: linear-gradient(135deg, #f0f4ff 0%, #e8f0fc 100%);
+    border: 2px solid #b8cef0;
+    border-radius: 10px;
+    padding: 20px 22px;
+    margin: 16px 0;
+  }
+  .ia-seccion-titulo {
+    font-family: 'Lora', serif;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--azul);
+    margin: 16px 0 8px;
+  }
+  .prompt-box {
+    background: #1a2236;
+    color: #e8eef7;
+    border-radius: 8px;
+    padding: 16px 18px;
+    font-family: monospace;
+    font-size: 0.85rem;
+    line-height: 1.65;
+    white-space: pre-wrap;
+    margin: 10px 0;
+  }
+
+  /* REFLEXION */
+  .reflexion-card {
+    background: var(--blanco);
+    border: 1px solid var(--gris-borde);
+    border-left: 5px solid var(--naranja);
+    border-radius: 0 8px 8px 0;
+    padding: 14px 18px;
+    margin: 14px 0;
+  }
+  .reflexion-card .ref-num {
+    font-weight: 700;
+    color: var(--naranja);
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 4px;
+  }
+
+  /* BIBLIO */
+  .ref-card {
+    background: var(--blanco);
+    border: 1px solid var(--gris-borde);
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin-bottom: 12px;
+    font-size: 0.88rem;
+    line-height: 1.6;
+  }
+  .ref-card .ref-autor { font-weight: 700; color: var(--azul); }
+  .ref-card .ref-titulo { font-style: italic; }
+  .nota-biblio {
+    background: #fffbe6;
+    border: 1px solid #f0d060;
+    border-radius: 6px;
+    padding: 12px 16px;
+    font-size: 0.83rem;
+    margin-top: 18px;
+    color: #5a4200;
+  }
+
+  @media (max-width:600px){
+    .header-titulo { font-size: 1.1rem; }
+    .tab-btn { font-size: 0.76rem; padding: 8px 11px; }
+    .content-area { padding: 18px 12px 32px; }
+    .pir-3 { width: 88%; }
+    .pir-4 { width: 76%; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ENCABEZADO -->
+<header>
+  <div class="header-inst">Universidad de Guayaquil | Facultad de Ciencias Administrativas | Contabilidad y Auditoría · 1.er Ciclo · Modalidad Virtual</div>
+  <div class="header-titulo">Lenguaje y Comunicación</div>
+  <div class="header-sub">Semana 10 — Parte A &nbsp;|&nbsp; Unidad 3: Comprensión y análisis de textos</div>
+  <div class="header-badges">
+    <span class="badge">📖 Sem. 10A</span>
+    <span class="badge">Niveles de Lectura</span>
+    <span class="badge">Literal · Inferencial · Analógico · Crítico-Valorativo</span>
+  </div>
+</header>
+
+<!-- PESTAÑAS -->
+<div class="tabs-wrapper">
+  <div class="tabs">
+    <button class="tab-btn active" onclick="showTab('repaso',this)">0. Repaso</button>
+    <button class="tab-btn" onclick="showTab('intro',this)">1. ¿Qué son los niveles?</button>
+    <button class="tab-btn" onclick="showTab('literal',this)">2. Nivel Literal</button>
+    <button class="tab-btn" onclick="showTab('inferencial',this)">3. Nivel Inferencial</button>
+    <button class="tab-btn" onclick="showTab('analogico',this)">4. Nivel Analógico</button>
+    <button class="tab-btn" onclick="showTab('critico',this)">5. Nivel Crítico-Valorativo</button>
+    <button class="tab-btn" onclick="showTab('comparativa',this)">6. Tabla comparativa</button>
+    <button class="tab-btn" onclick="showTab('ejemplo_guiado',this)">7. Ejemplo guiado 🔍</button>
+    <button class="tab-btn" onclick="showTab('ejercicio',this)">8. Ejercicio Interactivo</button>
+    <button class="tab-btn" onclick="showTab('cuestionario',this)">9. Cuestionario</button>
+    <button class="tab-btn" onclick="showTab('ia',this)">10. Actividad con IA</button>
+    <button class="tab-btn" onclick="showTab('reflexion',this)">11. Reflexión</button>
+    <button class="tab-btn" onclick="showTab('biblio',this)">12. Bibliografía</button>
+  </div>
+</div>
+
+<!-- CONTENIDO -->
+<div class="content-area">
+
+<!-- 0. REPASO -->
+<div id="tab-repaso" class="tab-panel active">
+  <h2 class="panel-title">📋 Repaso de semanas anteriores</h2>
+  <p>Esta es la <strong>Semana 10</strong> de una secuencia formativa que nos ha llevado desde los fundamentos de la comunicación hasta las habilidades comunicativas avanzadas. A continuación, un resumen analítico de lo recorrido:</p>
+
+  <div class="caja-ejemplo">
+    <div class="ej-titulo">🔁 Semanas 1–4: Fundamentos de la comunicación</div>
+    <p>Estudiamos la diferencia entre <em>hablar</em> (emitir sonidos) y <em>comunicar</em> (producir sentido compartido). Analizamos el proceso de comunicación con sus elementos clásicos: emisor, receptor, mensaje, canal, código y contexto. Exploramos los tipos de lenguaje (verbal, no verbal, icónico) y la importancia de la lectura como proceso cognitivo activo que transforma la información en conocimiento. Un hallazgo clave fue entender que el <strong>cerebro procesa simultáneamente la forma y el fondo</strong> del mensaje.</p>
+  </div>
+
+  <div class="caja-ejemplo">
+    <div class="ej-titulo">🔁 Semanas 5–7: Habilidades comunicativas y comunicación no verbal</div>
+    <p>La Unidad 2 nos llevó a las <strong>habilidades para comunicar y producir</strong>: escucha activa, expresión oral, lectura y escritura como cuatro pilares interdependientes. Estudiamos la comunicación no verbal (kinésica, proxémica, paralenguaje) y la <strong>comunicación corporativa</strong>, que es la forma en que las organizaciones proyectan su identidad. La comunicación oral estratégica nos mostró que hablar en público no es espontáneo: tiene etapas de planeación, organización y ejecución.</p>
+  </div>
+
+  <div class="caja-ejemplo">
+    <div class="ej-titulo">🔁 Semana 9: Tipos de textos y funciones del lenguaje</div>
+    <p>Iniciamos la Unidad 3 aprendiendo que los textos no son todos iguales: existen textos <em>narrativos, descriptivos, expositivos, argumentativos e instructivos</em>, cada uno con una función comunicativa distinta. Las funciones del lenguaje (referencial, expresiva, conativa, poética, fática y metalingüística) nos enseñaron que detrás de cada enunciado hay una intención. Este conocimiento es la base perfecta para lo que estudiaremos hoy: <strong>¿cómo leer un texto más allá de sus palabras?</strong></p>
+  </div>
+
+  <div class="caja-clave">
+    <div class="clave-titulo">💡 Conexión con la Semana 10</div>
+    <p>Saber que existen tipos de textos y funciones del lenguaje nos prepara para comprender que leer también tiene <em>niveles de profundidad</em>. No es lo mismo entender lo que dice un texto que entender lo que implica, relacionarlo con otros conocimientos, y evaluarlo críticamente. Eso es exactamente lo que exploraremos hoy.</p>
+  </div>
+</div>
+
+<!-- 1. INTRO -->
+<div id="tab-intro" class="tab-panel">
+  <h2 class="panel-title">📚 ¿Qué son los niveles de lectura?</h2>
+
+  <p>Cuando leemos, no todos procesamos el texto de la misma manera ni con la misma profundidad. Dos personas pueden leer el mismo artículo y obtener comprensiones radicalmente distintas. ¿Por qué? Porque la <strong>lectura es un proceso de múltiples capas</strong>, y cada lector activa distintos niveles cognitivos al enfrentarse al texto.</p>
+
+  <div class="caja-concepto">
+    <strong>Definición fundamental:</strong> Los <strong>niveles de lectura</strong> son los diferentes grados de comprensión que un lector puede alcanzar al interactuar con un texto, ordenados de menor a mayor complejidad cognitiva: desde la recuperación de información explícita hasta la evaluación crítica y la creación de relaciones con otros textos y contextos.
+  </div>
+
+  <p>La teoría de los niveles de lectura tiene raíces en los estudios de comprensión lectora de Bloom (Taxonomía de Bloom, 1956), en los aportes de Frank Smith sobre lectura como proceso psicolingüístico, y en los modelos latinoamericanos de competencia lectora desarrollados especialmente en el marco del sistema PISA y del ICFES en Colombia.</p>
+
+  <h3 class="subtitulo">¿Por qué importan los niveles de lectura en Contabilidad y Auditoría?</h3>
+  <p>Un futuro contador o auditor debe leer con distintas profundidades según el contexto:</p>
+  <ul style="padding-left:20px; line-height:1.9;">
+    <li><strong>Normas NIIF / NIC:</strong> requieren lectura literal precisa (no se puede "interpretar libremente" una norma).</li>
+    <li><strong>Informes financieros:</strong> requieren lectura inferencial para detectar lo que no se dice explícitamente.</li>
+    <li><strong>Contratos y dictámenes:</strong> requieren lectura analógica para conectar con casos similares previos.</li>
+    <li><strong>Auditorías y peritajes:</strong> requieren lectura crítico-valorativa para emitir juicios fundamentados.</li>
+  </ul>
+
+  <h3 class="subtitulo">La pirámide de los niveles</h3>
+  <p>Visualiza los cuatro niveles como una pirámide de complejidad creciente. El nivel literal es la base; sin él, los niveles superiores no son posibles:</p>
+
+  <div class="piramide-wrapper">
+    <div class="pir-nivel pir-4">
+      <div>
+        <div>🧠 CRÍTICO-VALORATIVO</div>
+        <div class="pir-label">Juzgar · Evaluar · Posicionarse</div>
+      </div>
+    </div>
+    <div class="pir-nivel pir-3">
+      <div>
+        <div>🔗 ANALÓGICO / INTERTEXTUAL</div>
+        <div class="pir-label">Relacionar · Comparar · Transferir</div>
+      </div>
+    </div>
+    <div class="pir-nivel pir-2">
+      <div>
+        <div>💡 INFERENCIAL</div>
+        <div class="pir-label">Deducir · Interpretar · Completar</div>
+      </div>
+    </div>
+    <div class="pir-nivel pir-1">
+      <div>
+        <div>📄 LITERAL</div>
+        <div class="pir-label">Identificar · Reconocer · Localizar</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="caja-clave">
+    <div class="clave-titulo">🔑 Idea clave</div>
+    <p>Los niveles de lectura no son excluyentes: se <em>superponen y complementan</em>. Un lector experto activa todos los niveles casi simultáneamente. El objetivo de este aprendizaje es que puedas activarlos de forma consciente y deliberada.</p>
+  </div>
+</div>
+
+<!-- 2. LITERAL -->
+<div id="tab-literal" class="tab-panel">
+  <h2 class="panel-title">📄 Nivel 1: Lectura Literal</h2>
+  <span class="nivel-tag tag-literal">Nivel Base</span>
+
+  <div class="caja-concepto">
+    <strong>Definición:</strong> La <strong>lectura literal</strong> es el nivel más básico de comprensión. Consiste en identificar y recuperar la información que el texto expresa de manera <em>explícita y directa</em>, sin necesidad de interpretación. El lector reconoce lo que el texto dice tal como lo dice.
+  </div>
+
+  <p>Ser "básico" no significa ser simple o poco importante. La lectura literal es la <strong>condición sine qua non</strong> (condición sin la cual no es posible) de cualquier otro nivel: si no se comprende lo que el texto dice, tampoco se puede inferir, relacionar ni criticar. Es el fundamento absoluto.</p>
+
+  <h3 class="subtitulo">¿Qué operaciones cognitivas realiza el lector en el nivel literal?</h3>
+  <ul class="preguntas-lista">
+    <li>Identifica personajes, fechas, lugares, datos y hechos mencionados</li>
+    <li>Reconoce el significado de palabras según el contexto inmediato</li>
+    <li>Localiza información específica en el texto</li>
+    <li>Recuerda secuencias y ordenamientos explícitos</li>
+    <li>Parafrasea (reescribe con otras palabras) sin cambiar el sentido</li>
+    <li>Distingue ideas principales de ideas secundarias <em>expresadas directamente</em></li>
+  </ul>
+
+  <div class="nivel-card nivel-literal">
+    <h3>Dos subtipos del nivel literal</h3>
+    <p><strong>Literal primario (reconocimiento):</strong> El lector ubica la información exactamente donde está en el texto. Ejemplo: "¿Qué porcentaje de impuesto se menciona en el párrafo 3?"</p>
+    <p><strong>Literal en profundidad (recuerdo):</strong> El lector reconstruye la información sin tenerla frente a él. Ejemplo: "¿Cuáles son los tres pasos del proceso descrito en el artículo?"</p>
+  </div>
+
+  <h3 class="subtitulo">Preguntas típicas del nivel literal</h3>
+  <ul class="preguntas-lista">
+    <li>¿Quién realizó la acción? / ¿Quiénes son los actores mencionados?</li>
+    <li>¿Qué sucedió según el texto?</li>
+    <li>¿Dónde y cuándo ocurrió lo descrito?</li>
+    <li>¿Cuáles son los datos/cifras que aparecen?</li>
+    <li>¿Qué pasos sigue el proceso descrito?</li>
+    <li>¿Cómo define el autor al concepto X?</li>
+  </ul>
+
+  <div class="caja-ejemplo">
+    <div class="ej-titulo">📍 Ejemplo aplicado — Contexto ecuatoriano</div>
+    <p><strong>Texto:</strong> <em>"Según el informe de la Contraloría General del Estado del Ecuador correspondiente al período 2022, la institución auditó un total de 347 entidades públicas, de las cuales el 23% presentó observaciones relacionadas con el manejo de fondos de caja chica."</em></p>
+    <br/>
+    <p><strong>Preguntas literales y respuestas:</strong></p>
+    <div class="respuesta-guiada"><strong>P:</strong> ¿Cuántas entidades fueron auditadas? <strong>R:</strong> 347 entidades públicas.</div>
+    <div class="respuesta-guiada"><strong>P:</strong> ¿Qué porcentaje presentó observaciones? <strong>R:</strong> El 23%.</div>
+    <div class="respuesta-guiada"><strong>P:</strong> ¿Cuál fue el tema de las observaciones? <strong>R:</strong> El manejo de fondos de caja chica.</div>
+    <div class="respuesta-guiada"><strong>P:</strong> ¿A qué período corresponde el informe? <strong>R:</strong> Al año 2022.</div>
+    <p style="margin-top:10px; font-size:0.88rem; color:#555;"><em>Nota: Todas las respuestas están textualmente en el fragmento. No hay necesidad de deducir nada.</em></p>
+  </div>
+
+  <div class="caja-clave">
+    <div class="clave-titulo">🔑 Conclusión — Nivel Literal</div>
+    <p>La lectura literal es el <em>punto de partida irreemplazable</em>. Un auditor que no lee con precisión literal puede malinterpretar una norma tributaria o pasar por alto un dato crítico en un balance. Antes de opinar sobre un texto, hay que comprenderlo con exactitud.</p>
+  </div>
+</div>
+
+<!-- 3. INFERENCIAL -->
+<div id="tab-inferencial" class="tab-panel">
+  <h2 class="panel-title">💡 Nivel 2: Lectura Inferencial</h2>
+  <span class="nivel-tag tag-inferencial">Nivel Interpretativo</span>
+
+  <div class="caja-concepto">
+    <strong>Definición:</strong> La <strong>lectura inferencial</strong> es el nivel en el que el lector va <em>más allá de lo dicho</em> para reconstruir información implícita: lo que el texto da a entender sin decirlo directamente. El lector usa claves textuales, conocimiento previo y razonamiento lógico para completar los "vacíos" del texto.
+  </div>
+
+  <p>La inferencia es una operación cognitiva fundamental. Cuando leemos, el cerebro constantemente llena brechas de información. Un texto nunca puede decirlo todo; siempre deja espacios que el lector debe completar. La lectura inferencial es el nivel donde ese proceso se vuelve <em>consciente y sistemático</em>.</p>
+
+  <h3 class="subtitulo">Tipos de inferencias</h3>
+  <div class="tabla-comp-wrapper" style="overflow-x:auto;">
+  <table class="tabla-comp">
+    <thead>
+      <tr><th>Tipo de inferencia</th><th>Descripción</th><th>Ejemplo</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>Causal</strong></td><td>Deduce causas o consecuencias no explícitas</td><td>"Si el informe tardó 6 meses, probablemente hubo obstáculos internos"</td></tr>
+      <tr><td><strong>Referencial</strong></td><td>Identifica a qué o quién se refiere una expresión</td><td>"Ellos" en el texto → los auditores externos</td></tr>
+      <tr><td><strong>Léxica</strong></td><td>Deduce el significado de una palabra por contexto</td><td>"Malversación" → uso indebido de fondos públicos</td></tr>
+      <tr><td><strong>Pragmática</strong></td><td>Interpreta la intención comunicativa real</td><td>Un informe "neutral" que en realidad señala irregularidades</td></tr>
+      <tr><td><strong>Predictiva</strong></td><td>Anticipa lo que vendrá en el texto</td><td>Después de "sin embargo", se espera una contrargumentación</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h3 class="subtitulo">Preguntas típicas del nivel inferencial</h3>
+  <ul class="preguntas-lista">
+    <li>¿Qué quiso decir el autor con esta expresión?</li>
+    <li>¿Por qué ocurrió lo descrito en el texto?</li>
+    <li>¿Qué consecuencias pueden derivarse de lo mencionado?</li>
+    <li>¿Cuál es la intención del autor?</li>
+    <li>¿Qué información se sobreentiende aunque no se diga?</li>
+    <li>¿A qué se refiere "este fenómeno" en el párrafo 4?</li>
+  </ul>
+
+  <div class="caja-ejemplo">
+    <div class="ej-titulo">📍 Ejemplo aplicado — Contexto ecuatoriano</div>
+    <p><strong>Texto:</strong> <em>"En el año 2023, el SRI (Servicio de Rentas Internas) reportó un incremento del 18% en la recaudación tributaria respecto al año anterior. Este resultado se obtuvo sin modificaciones en las tasas impositivas vigentes."</em></p>
+    <br/>
+    <p><strong>Preguntas inferenciales y respuestas:</strong></p>
+    <div class="respuesta-guiada"><strong>P:</strong> ¿Qué se puede inferir sobre la gestión del SRI? <strong>R:</strong> Que mejoró su eficiencia de cobro y/o que amplió su base de contribuyentes, ya que recaudó más sin subir impuestos.</div>
+    <div class="respuesta-guiada"><strong>P:</strong> ¿Qué implica la aclaración "sin modificaciones en las tasas"? <strong>R:</strong> El texto implica que el mérito no fue legislativo (no se crearon nuevos impuestos) sino operativo: la institución trabajó mejor.</div>
+    <div class="respuesta-guiada"><strong>P:</strong> ¿Qué se puede predecir sobre el párrafo siguiente? <strong>R:</strong> Probablemente explicará las estrategias concretas que permitieron ese incremento.</div>
+  </div>
+
+  <div class="nivel-card nivel-inferencial">
+    <h3>⚠️ Cuidado con las inferencias incorrectas</h3>
+    <p>Una inferencia debe estar <em>anclada en claves del texto</em>. No toda interpretación es válida. El error más común es <strong>proyectar</strong> ideas propias que el texto no sugiere. Ejemplo: inferir que "el SRI aumentó su personal" es una suposición sin sustento en el fragmento anterior.</p>
+    <p>Regla práctica: una inferencia válida puede ser rastreada hasta alguna pista textual.</p>
+  </div>
+
+  <div class="caja-clave">
+    <div class="clave-titulo">🔑 Conclusión — Nivel Inferencial</div>
+    <p>La lectura inferencial es la que separa al <em>lector competente del pasivo</em>. En auditoría, detectar lo que un informe no dice explícitamente —pero implica— puede ser la diferencia entre aprobar o rechazar un estado financiero. Este nivel requiere entrenamiento deliberado.</p>
+  </div>
+</div>
+
+<!-- 4. ANALÓGICO -->
+<div id="tab-analogico" class="tab-panel">
+  <h2 class="panel-title">🔗 Nivel 3: Lectura Analógica (Intertextual)</h2>
+  <span class="nivel-tag tag-analogico">Nivel Relacional</span>
+
+  <div class="caja-concepto">
+    <strong>Definición:</strong> La <strong>lectura analógica</strong> —también llamada <em>intertextual</em>— es el nivel en el que el lector establece relaciones entre el texto leído y otros textos, experiencias, conocimientos previos o contextos culturales. No se queda en el texto mismo: lo <em>conecta</em> con el mundo más amplio del conocimiento.
+  </div>
+
+  <p>El término <em>analogía</em> viene del griego <em>analogia</em>, que significa "proporción, semejanza de relaciones". En este nivel, el lector pregunta: <em>¿en qué se parece esto a algo que ya conozco? ¿Qué otros textos hablan de lo mismo? ¿Cómo se relaciona esto con mi experiencia profesional o de vida?</em></p>
+
+  <p>La <strong>intertextualidad</strong> es la propiedad de todo texto de estar en diálogo con otros textos. Ningún texto existe en el vacío: siempre retoma, responde, contradice o amplía lo que otros textos han dicho. El lector analógico reconoce esas conexiones.</p>
+
+  <h3 class="subtitulo">¿Qué operaciones realiza el lector analógico?</h3>
+  <ul class="preguntas-lista">
+    <li>Relaciona el texto con otros textos leídos anteriormente</li>
+    <li>Compara posiciones de distintos autores sobre el mismo tema</li>
+    <li>Identifica referencias explícitas o implícitas a otros textos o tradiciones</li>
+    <li>Transfiere los conceptos del texto a nuevas situaciones o contextos</li>
+    <li>Establece semejanzas y diferencias entre lo leído y su experiencia propia</li>
+    <li>Reconoce géneros, estilos y convenciones textuales compartidas</li>
+  </ul>
+
+  <div class="caja-ejemplo">
+    <div class="ej-titulo">📍 Ejemplo aplicado — Contexto ecuatoriano</div>
+    <p><strong>Texto A:</strong> <em>"El Código Orgánico de Planificación y Finanzas Públicas (COPLAFIP) del Ecuador establece que toda entidad pública debe rendir cuentas de manera transparente ante la ciudadanía."</em></p>
+    <p><strong>Texto B (que el lector ya conoce):</strong> <em>La Ley de Acceso a la Información Pública (LOTAIP) obliga a las instituciones del Estado a publicar su información financiera en línea.</em></p>
+    <br/>
+    <p><strong>Lectura analógica:</strong></p>
+    <div class="respuesta-guiada"><strong>Relación:</strong> Ambos textos abordan la rendición de cuentas pública, pero desde ángulos distintos: el COPLAFIP la exige como deber institucional; la LOTAIP la instrumentaliza como derecho ciudadano. Son complementarios.</div>
+    <div class="respuesta-guiada"><strong>Transferencia:</strong> Si un estudiante analiza la gestión de una empresa pública de Guayaquil (EMSA, CNEL), puede aplicar ambos marcos normativos para evaluar si cumple con la transparencia.</div>
+    <div class="respuesta-guiada"><strong>Analogía con experiencia:</strong> El concepto de "rendir cuentas" en el ámbito público es análogo al de "declarar impuestos" en el ámbito privado: ambos implican visibilizar el uso de recursos ante una autoridad.</div>
+  </div>
+
+  <div class="nivel-card nivel-analogico">
+    <h3>La lectura analógica en la academia</h3>
+    <p>Este nivel es esencial para <strong>elaborar trabajos académicos</strong>: cuando citas autores, cuando comparas teorías, cuando relacionas un caso con una norma, estás realizando lectura analógica. También es fundamental en la auditoría forense, donde se comparan casos previos de fraude con el caso actual.</p>
+  </div>
+
+  <h3 class="subtitulo">Preguntas típicas del nivel analógico</h3>
+  <ul class="preguntas-lista">
+    <li>¿Con qué otro texto o teoría se relaciona esta idea?</li>
+    <li>¿Cómo se compara la posición del autor con la de otro autor que conoces?</li>
+    <li>¿Qué situación de tu experiencia profesional o cotidiana ilustra lo que plantea el texto?</li>
+    <li>¿Este fenómeno descrito ocurre también en otro contexto o país?</li>
+    <li>¿Qué disciplina diferente podría llegar a la misma conclusión?</li>
+  </ul>
+
+  <div class="caja-clave">
+    <div class="clave-titulo">🔑 Conclusión — Nivel Analógico</div>
+    <p>El lector analógico construye redes de significado. No lee textos aislados sino <em>ecosistemas de conocimiento</em>. En el mundo profesional, esta habilidad permite <em>aplicar marcos aprendidos a situaciones nuevas</em>, que es precisamente lo que distingue al experto del principiante.</p>
+  </div>
+</div>
+
+<!-- 5. CRÍTICO -->
+<div id="tab-critico" class="tab-panel">
+  <h2 class="panel-title">🧠 Nivel 4: Lectura Crítico-Valorativa</h2>
+  <span class="nivel-tag tag-critico">Nivel Superior</span>
+
+  <div class="caja-concepto">
+    <strong>Definición:</strong> La <strong>lectura crítico-valorativa</strong> es el nivel más alto de comprensión. El lector evalúa el texto: juzga la validez de sus argumentos, identifica sesgos, valora la calidad de la evidencia, cuestiona los supuestos del autor y emite un juicio fundamentado. No se limita a entender o relacionar: <em>toma posición</em>.
+  </div>
+
+  <p>El pensamiento crítico no es sinónimo de criticar negativamente. <em>Crítico</em> viene del griego <em>kritikos</em>: "el que sabe discernir, separar, juzgar". Un lector crítico puede concluir que un texto es excelente —pero esa conclusión estará argumentada, no será una impresión.</p>
+
+  <h3 class="subtitulo">¿Qué operaciones realiza el lector crítico?</h3>
+  <ul class="preguntas-lista">
+    <li>Evalúa la <strong>validez</strong> de los argumentos: ¿son lógicos? ¿tienen evidencia?</li>
+    <li>Identifica <strong>sesgos</strong>: ¿el autor omite información relevante? ¿tiene un interés?</li>
+    <li>Cuestiona los <strong>supuestos</strong>: ¿qué da por sentado el texto sin demostrarlo?</li>
+    <li>Valora la <strong>pertinencia</strong> y <strong>actualidad</strong> de las fuentes citadas</li>
+    <li>Emite juicios sobre la <strong>coherencia interna</strong> del texto</li>
+    <li>Distingue <strong>hechos</strong> de <strong>opiniones</strong> y <strong>datos</strong> de <strong>interpretaciones</strong></li>
+    <li>Reflexiona sobre las <strong>implicaciones éticas</strong> del contenido</li>
+  </ul>
+
+  <div class="nivel-card nivel-critico">
+    <h3>Diferencia crucial: opinión vs. juicio crítico</h3>
+    <p><strong>Opinión:</strong> "Este informe me parece malo." — No requiere argumento.</p>
+    <p><strong>Juicio crítico:</strong> "Este informe tiene una limitación metodológica significativa: sus conclusiones se basan en una muestra de 12 empresas medianas de Quito, lo que impide generalizarlas al sector empresarial ecuatoriano completo." — Está fundamentado en criterios precisos.</p>
+  </div>
+
+  <div class="caja-ejemplo">
+    <div class="ej-titulo">📍 Ejemplo aplicado — Contexto ecuatoriano</div>
+    <p><strong>Texto:</strong> <em>"Un estudio realizado en 2021 por una consultora privada de Guayaquil concluyó que el 70% de las pequeñas empresas ecuatorianas evade impuestos. El estudio encuestó a 50 propietarios de negocios en el mercado artesanal de la ciudad."</em></p>
+    <br/>
+    <p><strong>Lectura crítico-valorativa:</strong></p>
+    <div class="respuesta-guiada"><strong>Evaluación de la muestra:</strong> 50 negocios artesanales de un solo mercado no son representativos de las "pequeñas empresas ecuatorianas" en general. La generalización es ilegítima estadísticamente.</div>
+    <div class="respuesta-guiada"><strong>Sesgo de la fuente:</strong> Una consultora privada puede tener intereses comerciales al publicar datos alarmantes (vender servicios de asesoría fiscal). Esto no invalida el estudio, pero exige verificación con fuentes independientes.</div>
+    <div class="respuesta-guiada"><strong>Método cuestionable:</strong> ¿Los propietarios admitirían libremente evasión en una encuesta? Existe un sesgo de deseabilidad social que subestimaría la evasión real, lo que hace aún más cuestionable el 70%.</div>
+    <div class="respuesta-guiada"><strong>Juicio final:</strong> Los datos no deben descartarse, pero deben compararse con informes del SRI y del Banco Central antes de citarlos en un análisis académico o profesional.</div>
+  </div>
+
+  <h3 class="subtitulo">Preguntas típicas del nivel crítico-valorativo</h3>
+  <ul class="preguntas-lista">
+    <li>¿Los argumentos del autor están debidamente fundamentados?</li>
+    <li>¿Qué intereses podría tener el autor al escribir este texto?</li>
+    <li>¿Hay contradicciones internas en el texto?</li>
+    <li>¿Qué información relevante omite el texto?</li>
+    <li>¿Las conclusiones se desprenden lógicamente de los datos presentados?</li>
+    <li>¿Estoy de acuerdo o en desacuerdo con el autor, y por qué?</li>
+    <li>¿Este texto cambiaría mi práctica profesional?</li>
+  </ul>
+
+  <div class="caja-clave">
+    <div class="clave-titulo">🔑 Conclusión — Nivel Crítico-Valorativo</div>
+    <p>Este es el nivel que define al <em>profesional reflexivo</em>. Un auditor que lee críticamente no acepta ningún informe sin evaluar su metodología. Un contador que lee críticamente no aplica una norma sin entender su propósito y sus límites. El pensamiento crítico <strong>protege del error y del fraude</strong>.</p>
+  </div>
+</div>
+
+<!-- 6. COMPARATIVA -->
+<div id="tab-comparativa" class="tab-panel">
+  <h2 class="panel-title">📊 Tabla comparativa de los cuatro niveles</h2>
+  <p>Esta tabla sintetiza los cuatro niveles para facilitar su memorización y distinción:</p>
+
+  <div style="overflow-x:auto;">
+  <table class="tabla-comp">
+    <thead>
+      <tr>
+        <th>Dimensión</th>
+        <th style="color:#90e8a8;">📄 Literal</th>
+        <th style="color:#90ccf0;">💡 Inferencial</th>
+        <th style="color:#ffd090;">🔗 Analógico</th>
+        <th style="color:#d8b8f8;">🧠 Crítico-Valorativo</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>¿Qué hace el lector?</strong></td><td>Recupera información explícita</td><td>Deduce información implícita</td><td>Relaciona con otros textos/contextos</td><td>Evalúa y emite juicios fundamentados</td></tr>
+      <tr><td><strong>Pregunta clave</strong></td><td>¿Qué dice el texto?</td><td>¿Qué implica el texto?</td><td>¿Con qué se relaciona el texto?</td><td>¿Qué tan válido o valioso es el texto?</td></tr>
+      <tr><td><strong>Fuente de respuesta</strong></td><td>El texto mismo</td><td>El texto + razonamiento</td><td>El texto + otros conocimientos</td><td>El texto + criterios externos</td></tr>
+      <tr><td><strong>Nivel cognitivo (Bloom)</strong></td><td>Recordar / Comprender</td><td>Comprender / Aplicar</td><td>Aplicar / Analizar</td><td>Evaluar / Crear</td></tr>
+      <tr><td><strong>Error típico</strong></td><td>Malinterpretar lo explícito</td><td>Inferir sin base textual</td><td>Hacer analogías forzadas</td><td>Opinar sin argumentar</td></tr>
+      <tr><td><strong>Aplicación en auditoría</strong></td><td>Leer normas NIIF con exactitud</td><td>Detectar lo que un informe sugiere sin decir</td><td>Comparar con casos similares previos</td><td>Evaluar la validez de un dictamen</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h3 class="subtitulo" style="margin-top:24px;">¿Cómo funcionan juntos?</h3>
+  <p>Imagina que como futuro auditor recibes el siguiente informe de gestión de una empresa de Manta:</p>
+
+  <div class="texto-demo">
+    <strong>Fragmento de informe (ficticio con fines pedagógicos):</strong>
+    "La empresa Exportadora del Pacífico S.A. registró en el período 2023 un incremento en sus costos operativos del 34%, mientras que sus ingresos crecieron solo un 8%. La gerencia señala que este resultado se debe a 'factores externos no previstos' y proyecta una recuperación en el siguiente ejercicio."
+  </div>
+
+  <div class="nivel-card nivel-literal">
+    <h3>📄 Lectura literal</h3>
+    <p>Costos operativos: +34%. Ingresos: +8%. La gerencia atribuye la diferencia a "factores externos no previstos" y proyecta recuperación para el siguiente período.</p>
+  </div>
+  <div class="nivel-card nivel-inferencial">
+    <h3>💡 Lectura inferencial</h3>
+    <p>Se infiere que la empresa tiene una brecha creciente entre costos e ingresos que amenaza su viabilidad. La vaguedad de "factores externos no previstos" implica que la gerencia no quiere especificar las causas, lo cual puede indicar problemas de gestión interna.</p>
+  </div>
+  <div class="nivel-card nivel-analogico">
+    <h3>🔗 Lectura analógica</h3>
+    <p>Este patrón es análogo a lo que los auditores llaman "señal de alerta de continuidad del negocio" (going concern) en las NIIF. También recuerda casos documentados de empresas exportadoras ecuatorianas que atribuyeron pérdidas a la variación del precio del petróleo sin detalles.</p>
+  </div>
+  <div class="nivel-card nivel-critico">
+    <h3>🧠 Lectura crítico-valorativa</h3>
+    <p>El informe es técnicamente deficiente: no especifica cuáles son los "factores externos", no presenta proyecciones numéricas para la "recuperación esperada", y no menciona medidas correctivas concretas. Un auditor debería solicitar documentación de respaldo antes de emitir opinión sobre este informe.</p>
+  </div>
+
+  <div class="caja-clave">
+    <div class="clave-titulo">🔑 Síntesis final</div>
+    <p>El mismo texto puede —y debe— leerse en los cuatro niveles. La competencia lectora avanzada consiste en saber <em>cuándo activar cada nivel</em> según el propósito de la lectura. En la vida profesional, quien solo lee en el nivel literal es un receptor pasivo; quien lee en todos los niveles es un <em>agente de conocimiento</em>.</p>
+  </div>
+</div>
+
+<!-- 7. EJEMPLO GUIADO -->
+<div id="tab-ejemplo_guiado" class="tab-panel">
+  <h2 class="panel-title">🔍 Ejemplo guiado completo: Los cuatro niveles en acción</h2>
+  <p>A continuación encontrarás un texto real (adaptado con fines pedagógicos), seguido de un análisis paso a paso en cada uno de los cuatro niveles. Léelo primero con calma; luego sigue el análisis guiado.</p>
+
+  <div class="texto-demo">
+    <strong>Texto base (adaptado de un informe académico ecuatoriano):</strong>
+    La corrupción en el sector público ecuatoriano continúa siendo un desafío estructural. Según el Índice de Percepción de la Corrupción de Transparencia Internacional, Ecuador obtuvo en 2023 una puntuación de 34 sobre 100, ubicándose en el puesto 115 de 180 países evaluados. Esta cifra ha permanecido casi estacionaria durante la última década, a pesar de las reformas legislativas implementadas, como la Ley Orgánica de Transparencia y Acceso a la Información Pública. Los expertos señalan que la impunidad y la debilidad institucional son los principales obstáculos para mejorar los indicadores.
+  </div>
+
+  <h3 class="subtitulo">🟢 Paso 1: Lectura Literal — ¿Qué DICE el texto?</h3>
+  <p>En este paso, extraemos únicamente lo que está escrito, sin añadir nada:</p>
+  <div class="respuesta-guiada">✅ Ecuador obtuvo 34/100 en el Índice de Percepción de la Corrupción 2023.</div>
+  <div class="respuesta-guiada">✅ Ocupa el puesto 115 entre 180 países.</div>
+  <div class="respuesta-guiada">✅ La puntuación ha permanecido casi estacionaria durante una década.</div>
+  <div class="respuesta-guiada">✅ Existe la Ley Orgánica de Transparencia y Acceso a la Información Pública.</div>
+  <div class="respuesta-guiada">✅ Los expertos señalan impunidad y debilidad institucional como obstáculos.</div>
+  <div class="respuesta-guiada">❌ NO se puede afirmar literalmente: "Ecuador es el país más corrupto de América Latina" — eso no está en el texto.</div>
+
+  <h3 class="subtitulo">🔵 Paso 2: Lectura Inferencial — ¿Qué IMPLICA el texto?</h3>
+  <p>Ahora usamos las claves del texto para deducir lo no dicho:</p>
+  <div class="respuesta-guiada"><strong>Inferencia 1 (causal):</strong> Si la puntuación no mejora "a pesar de las reformas legislativas", se infiere que el problema de la corrupción en Ecuador no es principalmente legal (falta de leyes) sino de ejecución y cultura institucional.</div>
+  <div class="respuesta-guiada"><strong>Inferencia 2 (valorativa implícita):</strong> Una puntuación de 34/100 implica que el texto percibe la corrupción como alta (la escala es 0=muy corrupto, 100=muy limpio).</div>
+  <div class="respuesta-guiada"><strong>Inferencia 3 (predictiva):</strong> Si los obstáculos son impunidad y debilidad institucional, el texto probablemente continuará proponiendo reformas en el sistema judicial y en los órganos de control.</div>
+  <div class="respuesta-guiada"><strong>Inferencia 4 (pragmática):</strong> La mención de que la cifra "ha permanecido casi estacionaria" sugiere una crítica implícita a la efectividad de las reformas implementadas.</div>
+
+  <h3 class="subtitulo">🟠 Paso 3: Lectura Analógica — ¿Con qué RELACIONAMOS el texto?</h3>
+  <div class="respuesta-guiada"><strong>Relación intertextual:</strong> El texto dialoga con los informes anuales de Transparencia Internacional y también con estudios del Banco Mundial sobre gobernanza. Un lector analógico reconoce que esta fuente (Transparencia Internacional) es una ONG con metodología propia que ha sido cuestionada por algunos académicos.</div>
+  <div class="respuesta-guiada"><strong>Analogía regional:</strong> Colombia y Perú presentan puntajes similares (36 y 33 respectivamente en 2023), lo que sugiere que el problema es regional, no exclusivamente ecuatoriano. Esto contextualiza el dato.</div>
+  <div class="respuesta-guiada"><strong>Transferencia a Auditoría:</strong> La "debilidad institucional" que menciona el texto es análoga al concepto de "ambiente de control débil" en auditoría (COSO): cuando los controles internos fallan, el fraude prolifera.</div>
+  <div class="respuesta-guiada"><strong>Conexión con la LOTAIP:</strong> El lector analógico conecta la Ley de Transparencia mencionada con lo que aprendió en semanas anteriores sobre comunicación corporativa e institucional: la transparencia es también un acto comunicativo.</div>
+
+  <h3 class="subtitulo">🟣 Paso 4: Lectura Crítico-Valorativa — ¿Qué JUZGAMOS del texto?</h3>
+  <div class="respuesta-guiada"><strong>Evaluación de la fuente:</strong> Transparencia Internacional es una ONG con amplio reconocimiento. Sin embargo, su índice mide <em>percepción</em> de corrupción (basada en encuestas a empresarios y expertos), no corrupción real medida. Esta distinción es crucial y el texto no la explicita.</div>
+  <div class="respuesta-guiada"><strong>Limitación metodológica:</strong> Decir que la cifra "ha permanecido casi estacionaria" requiere datos de los últimos 10 años para sustentarse. El texto los afirma pero no los presenta. El lector crítico exigiría una tabla de evolución histórica.</div>
+  <div class="respuesta-guiada"><strong>Juicio sobre la argumentación:</strong> La causalidad entre "reformas legislativas" y "mejora esperada" es simplista: muchas reformas en América Latina han fallado no por falta de leyes sino por captura del Estado. El texto lo insinúa con "impunidad" pero no lo desarrolla.</div>
+  <div class="respuesta-guiada"><strong>Posición propia fundamentada:</strong> El texto es útil como punto de partida para un análisis de anticorrupción, pero insuficiente como fuente única. Debería complementarse con datos del Banco Central, la Contraloría y estudios cualitativos de campo.</div>
+
+  <div class="caja-clave">
+    <div class="clave-titulo">🏁 Síntesis del ejemplo guiado</div>
+    <p>El mismo párrafo produjo: 5 datos literales, 4 inferencias distintas, 4 conexiones analógicas y 4 juicios críticos. Así funciona la lectura experta. No lees el texto una vez: lo lees cuatro veces, cada vez con una lente diferente. Con práctica, los cuatro procesos ocurren simultáneamente.</p>
+  </div>
+</div>
+
+<!-- 8. EJERCICIO -->
+<div id="tab-ejercicio" class="tab-panel">
+  <h2 class="panel-title">✏️ Ejercicio Interactivo</h2>
+  <p>Lee el siguiente fragmento y luego clasifica cada pregunta/respuesta según el nivel de lectura que corresponde. Selecciona todas tus respuestas y presiona <strong>"Verificar respuestas"</strong>.</p>
+
+  <div class="texto-demo">
+    <strong>Texto para el ejercicio:</strong>
+    "El Banco Central del Ecuador informó que la economía nacional creció un 2,4% en 2023, impulsada principalmente por los sectores de petróleo, camaronicultura y turismo. Sin embargo, el sector manufacturero presentó una contracción del 1,2%. Los analistas económicos advierten que este crecimiento es frágil y dependiente de commodities, lo que expone al país a shocks externos."
+  </div>
+
+  <div id="ejercicio-form">
+
+    <div class="quiz-pregunta">
+      <p>1. La afirmación "La economía ecuatoriana creció un 2,4% en 2023" corresponde a una lectura…</p>
+      <label><input type="radio" name="ei1" value="a"/> a) Inferencial, porque deduce el estado de la economía</label>
+      <label><input type="radio" name="ei1" value="b"/> b) Literal, porque extrae un dato explícitamente mencionado en el texto</label>
+      <label><input type="radio" name="ei1" value="c"/> c) Crítica, porque cuestiona la validez del dato</label>
+      <label><input type="radio" name="ei1" value="d"/> d) Analógica, porque lo relaciona con otros países</label>
+      <div class="feedback-item" id="fb-ei1"></div>
+    </div>
+
+    <div class="quiz-pregunta">
+      <p>2. Decir "El texto implica que el crecimiento económico ecuatoriano es inestable" es una lectura…</p>
+      <label><input type="radio" name="ei2" value="a"/> a) Literal</label>
+      <label><input type="radio" name="ei2" value="b"/> b) Analógica</label>
+      <label><input type="radio" name="ei2" value="c"/> c) Inferencial, porque la inestabilidad se deduce de "frágil y dependiente de commodities"</label>
+      <label><input type="radio" name="ei2" value="d"/> d) Crítico-valorativa</label>
+      <div class="feedback-item" id="fb-ei2"></div>
+    </div>
+
+    <div class="quiz-pregunta">
+      <p>3. Un estudiante dice: "Esto es similar a lo que le pasó a Venezuela cuando dependía del petróleo". Está haciendo una lectura…</p>
+      <label><input type="radio" name="ei3" value="a"/> a) Literal</label>
+      <label><input type="radio" name="ei3" value="b"/> b) Inferencial</label>
+      <label><input type="radio" name="ei3" value="c"/> c) Crítico-valorativa</label>
+      <label><input type="radio" name="ei3" value="d"/> d) Analógica, porque relaciona el texto con otro caso histórico conocido</label>
+      <div class="feedback-item" id="fb-ei3"></div>
+    </div>
+
+    <div class="quiz-pregunta">
+      <p>4. Señalar que "el texto afirma que hubo crecimiento, pero no presenta datos comparativos que sustenten la afirmación de que el crecimiento es frágil" es una lectura…</p>
+      <label><input type="radio" name="ei4" value="a"/> a) Literal, porque cita lo que dice el texto</label>
+      <label><input type="radio" name="ei4" value="b"/> b) Inferencial, porque deduce la fragilidad</label>
+      <label><input type="radio" name="ei4" value="c"/> c) Crítico-valorativa, porque evalúa la solidez de la argumentación del texto</label>
+      <label><input type="radio" name="ei4" value="d"/> d) Analógica, porque conecta con otras fuentes</label>
+      <div class="feedback-item" id="fb-ei4"></div>
+    </div>
+
+    <div class="quiz-pregunta">
+      <p>5. ¿Cuáles son los tres sectores que impulsaron el crecimiento según el texto?</p>
+      <label><input type="radio" name="ei5" value="a"/> a) Agricultura, minería y turismo</label>
+      <label><input type="radio" name="ei5" value="b"/> b) Petróleo, camaronicultura y turismo (dato literal extraído del texto)</label>
+      <label><input type="radio" name="ei5" value="c"/> c) Manufactura, petróleo y exportaciones</label>
+      <label><input type="radio" name="ei5" value="d"/> d) Commodities, finanzas y tecnología</label>
+      <div class="feedback-item" id="fb-ei5"></div>
+    </div>
+
+    <div class="quiz-pregunta">
+      <p>6. Inferir que "la contracción del sector manufacturero podría significar pérdida de empleos urbanos" es una lectura…</p>
+      <label><input type="radio" name="ei6" value="a"/> a) Literal, porque el texto habla de la manufactura</label>
+      <label><input type="radio" name="ei6" value="b"/> b) Inferencial, porque se deduce una consecuencia no explícita a partir del dato de contracción</label>
+      <label><input type="radio" name="ei6" value="c"/> c) Analógica, porque compara con otros sectores</label>
+      <label><input type="radio" name="ei6" value="d"/> d) Crítica, porque cuestiona la política laboral</label>
+      <div class="feedback-item" id="fb-ei6"></div>
+    </div>
+
+    <div class="quiz-pregunta">
+      <p>7. Conectar el concepto de "shock externo" del texto con lo aprendido en Microeconomía sobre "vulnerabilidad a precios internacionales" es una lectura…</p>
+      <label><input type="radio" name="ei7" value="a"/> a) Literal</label>
+      <label><input type="radio" name="ei7" value="b"/> b) Inferencial</label>
+      <label><input type="radio" name="ei7" value="c"/> c) Analógica, porque transfiere el concepto del texto a otro campo disciplinar conocido</label>
+      <label><input type="radio" name="ei7" value="d"/> d) Crítico-valorativa</label>
+      <div class="feedback-item" id="fb-ei7"></div>
+    </div>
+
+    <div class="quiz-pregunta">
+      <p>8. Afirmar que "el informe del Banco Central no puede calificarse de objetivo porque fue elaborado por el mismo Estado que administró la economía en 2023" es una lectura…</p>
+      <label><input type="radio" name="ei8" value="a"/> a) Literal</label>
+      <label><input type="radio" name="ei8" value="b"/> b) Analógica</label>
+      <label><input type="radio" name="ei8" value="c"/> c) Inferencial</label>
+      <label><input type="radio" name="ei8" value="d"/> d) Crítico-valorativa, porque evalúa la imparcialidad de la fuente</label>
+      <div class="feedback-item" id="fb-ei8"></div>
+    </div>
+
+    <button class="btn-verificar" onclick="verificarEjercicio()">✅ Verificar respuestas</button>
+    <button class="btn-reiniciar" onclick="reiniciarEjercicio()">🔄 Reiniciar</button>
+  </div>
+
+  <div class="resultado-box" id="resultado-ejercicio">
+    <div class="resultado-score" id="score-ej"></div>
+    <div class="barra-prog"><div class="barra-fill" id="barra-ej" style="width:0%"></div></div>
+    <div class="resultado-msg" id="msg-ej"></div>
+  </div>
+</div>
+
+<!-- 9. CUESTIONARIO -->
+<div id="tab-cuestionario" class="tab-panel">
+  <h2 class="panel-title">📝 Cuestionario — Semana 10A</h2>
+  <p>10 preguntas de opción múltiple. Selecciona todas tus respuestas y presiona <strong>"Verificar respuestas"</strong> al final.</p>
+
+  <div id="quiz-form">
+
+    <div class="quiz-pregunta">
+      <p>1. ¿Cuál es la característica principal de la lectura literal? <span class="badge-tipo badge-teorica">Teórica</span></p>
+      <label><input type="radio" name="qi1" value="a"/> a) Deduce información no dicha en el texto</label>
+      <label><input type="radio" name="qi1" value="b"/> b) Evalúa la validez de los argumentos del autor</label>
+      <label><input type="radio" name="qi1" value="c"/> c) Recupera información explícita y directamente expresada en el texto</label>
+      <label><input type="radio" name="qi1" value="d"/> d) Relaciona el texto con otras obras o experiencias</label>
+      <div class="feedback-item" id="fb-qi1"></div>
+    </div>
+
+    <div class="quiz-pregunta">
+      <p>2. ¿Qué operación cognitiva caracteriza al nivel inferencial? <span class="badge-tipo badge-teorica">Teórica</span></p>
+      <label><input type="radio" name="qi2" value="a"/> a) Reproducir textualmente lo que dice el autor</label>
+      <label><input type="radio" name="qi2" value="b"/> b) Completar los vacíos del texto usando razonamiento y claves textuales</label>
+      <label><input type="radio" name="qi2" value="c"/> c) Memorizar datos y cifras del texto</label>
+      <label><input type="radio" name="qi2" value="d"/> d) Rechazar la información que contradice las creencias propias</label>
+      <div class="feedback-item" id="fb-qi2"></div>
+    </div>
+
+    <div class="quiz-pregunta">
+      <p>3. La lectura analógica también recibe el nombre de… <span class="badge-tipo badge-teorica">Teórica</span></p>
+      <label><input type="radio" name="qi3" value="a"/> a) Lectura superficial</label>
+      <label><input type="radio" name="qi3" value="b"/> b) Lectura predictiva</label>
+      <label><input type="radio" name="qi3" value="c"/> c) Lectura intertextual</label>
+      <label><input type="radio" name="qi3" value="d"/> d) Lectura denotativa</label>
+      <div class="feedback-item" id="fb-qi3"></div>
+    </div>
+
+    <div class="quiz-pregunta">
+      <p>4. ¿Cuál es la diferencia entre una opinión y un juicio crítico? <span class="badge-tipo badge-teorica">Teórica</span></p>
+      <label><input type="radio" name="qi4" value="a"/> a) La opinión siempre es negativa; el juicio crítico, positivo</label>
+      <label><input type="radio" name="qi4" value="b"/> b) El juicio crítico está fundamentado en criterios y argumentos; la opinión no requiere sustento</label>
+      <label><input type="radio" name="qi4" value="c"/> c) No hay diferencia real; ambos expresan lo mismo</label>
+      <label><input type="radio" name="qi4" value="d"/> d) La opinión proviene de expertos; el juicio crítico, de estudiantes</label>
+      <div class="feedback-item" id="fb-qi4"></div>
+    </div>
+
+    <div class="quiz-pregunta">
+      <p>5. Según la teoría estudiada, ¿cuál es el nivel de lectura más básico e indispensable? <span class="badge-tipo badge-teorica">Teórica</span></p>
+      <label><input type="radio" name="qi5" value="a"/> a) Analógico, porque relaciona con la experiencia</label>
+      <label><input type="radio" name="qi5" value="b"/> b) Inferencial, porque requiere mayor inteligencia</label>
+      <label><input type="radio" name="qi5" value="c"/> c) Crítico-valorativo, porque es el más complejo</label>
+      <label><input type="radio" name="qi5" value="d"/> d) Literal, porque es la base sin la cual los demás niveles no son posibles</label>
+      <div class="feedback-item" id="fb-qi5"></div>
+    </div>
+
+    <div class="quiz-pregunta">
+      <p>6. ¿Qué significa que una inferencia debe estar "anclada en claves textuales"? <span class="badge-tipo badge-teorica">Teórica</span></p>
+      <label><input type="radio" name="qi6" value="a"/> a) Que solo puede hacerse con textos científicos</label>
+      <label><input type="radio" name="qi6" value="b"/> b) Que la deducción debe rastrearse hasta algún elemento real del texto, no ser una proyección subjetiva libre</label>
+      <label><input type="radio" name="qi6" value="c"/> c) Que el texto debe estar en un idioma conocido</label>
+      <label><input type="radio" name="qi6" value="d"/> d) Que la inferencia debe acordar con la opinión del autor</label>
+      <div class="feedback-item" id="fb-qi6"></div>
+    </div>
+
+    <div class="quiz-pregunta">
+      <p>7. ¿Cuál de estos niveles corresponde a la Taxonomía de Bloom en su nivel de "Evaluar"? <span class="badge-tipo badge-teorica">Teórica</span></p>
+      <label><input type="radio" name="qi7" value="a"/> a) Literal</label>
+      <label><input type="radio" name="qi7" value="b"/> b) Inferencial</label>
+      <label><input type="radio" name="qi7" value="c"/> c) Analógico</label>
+      <label><input type="radio" name="qi7" value="d"/> d) Crítico-valorativo</label>
+      <div class="feedback-item" id="fb-qi7"></div>
+    </div>
+
+    <div class="quiz-pregunta">
+      <p>8. Un auditor lee el siguiente pasaje: <em>"La empresa registró 'gastos de representación' por $45.000 en diciembre, sin documentación de respaldo."</em> Al concluir que "esto podría indicar un posible desfalco encubierto", ¿qué nivel de lectura está activando? <span class="badge-tipo badge-analisis">Análisis</span></p>
+      <label><input type="radio" name="qi8" value="a"/> a) Literal, porque leyó los números con exactitud</label>
+      <label><input type="radio" name="qi8" value="b"/> b) Inferencial, porque deduce una posible irregularidad a partir de indicios en el texto</label>
+      <label><input type="radio" name="qi8" value="c"/> c) Analógico, porque compara con otros informes</label>
+      <label><input type="radio" name="qi8" value="d"/> d) Crítico-valorativo, porque emite un juicio moral sobre la empresa</label>
+      <div class="feedback-item" id="fb-qi8"></div>
+    </div>
+
+    <div class="quiz-pregunta">
+      <p>9. Una estudiante de Auditoría lee un caso de fraude corporativo en Perú y lo conecta con el escándalo Odebrecht en Ecuador, reconociendo estructuras similares. ¿Qué nivel de lectura predomina? <span class="badge-tipo badge-analisis">Análisis</span></p>
+      <label><input type="radio" name="qi9" value="a"/> a) Literal</label>
+      <label><input type="radio" name="qi9" value="b"/> b) Inferencial</label>
+      <label><input type="radio" name="qi9" value="c"/> c) Analógico, porque relaciona dos textos/casos de distintos contextos para identificar patrones comunes</label>
+      <label><input type="radio" name="qi9" value="d"/> d) Crítico-valorativo</label>
+      <div class="feedback-item" id="fb-qi9"></div>
+    </div>
+
+    <div class="quiz-pregunta">
+      <p>10. Un docente presenta un artículo periodístico que dice: <em>"Según fuentes anónimas, la empresa X evadió $2 millones en impuestos."</em> Un estudiante señala que las "fuentes anónimas" son metodológicamente débiles para sustentar una afirmación de esa magnitud. ¿Qué nivel de lectura demuestra ese estudiante? <span class="badge-tipo badge-analisis">Análisis</span></p>
+      <label><input type="radio" name="qi10" value="a"/> a) Literal, porque identificó las palabras "fuentes anónimas"</label>
+      <label><input type="radio" name="qi10" value="b"/> b) Inferencial, porque deduce que la empresa sí evadió</label>
+      <label><input type="radio" name="qi10" value="c"/> c) Analógico, porque compara con otras noticias</label>
+      <label><input type="radio" name="qi10" value="d"/> d) Crítico-valorativo, porque evalúa la calidad metodológica de la fuente del texto</label>
+      <div class="feedback-item" id="fb-qi10"></div>
+    </div>
+
+    <button class="btn-verificar" onclick="verificarCuestionario()">✅ Verificar respuestas</button>
+    <button class="btn-reiniciar" onclick="reiniciarCuestionario()">🔄 Reiniciar</button>
+  </div>
+
+  <div class="resultado-box" id="resultado-quiz">
+    <div class="resultado-score" id="score-quiz"></div>
+    <div class="barra-prog"><div class="barra-fill" id="barra-quiz" style="width:0%"></div></div>
+    <div class="resultado-msg" id="msg-quiz"></div>
+  </div>
+</div>
+
+<!-- 10. IA -->
+<div id="tab-ia" class="tab-panel">
+  <h2 class="panel-title">🤖 Actividad con Inteligencia Artificial</h2>
+
+  <div class="ia-box">
+    <p><strong>Herramienta recomendada:</strong> <a href="https://claude.ai" target="_blank" style="color:var(--azul); font-weight:700;">Claude en claude.ai</a> (Anthropic) — gratuita, sin registro requerido en su versión básica. También puedes usar ChatGPT (chat.openai.com) o Gemini (gemini.google.com).</p>
+  </div>
+
+  <h3 class="subtitulo">🎯 Objetivo de la actividad</h3>
+  <p>Usar la IA como <em>interlocutora crítica</em>: tú le proporcionas un texto y le pides que te haga preguntas en los cuatro niveles de lectura. Luego compararás sus preguntas con las que tú mismo generarías, identificando coincidencias y diferencias. El objetivo <strong>NO es copiar la respuesta de la IA</strong>, sino usarla para entrenar tu propio pensamiento lector.</p>
+
+  <div class="ia-seccion-titulo">📋 Paso 1: Selecciona un texto</div>
+  <p>Elige UNO de estos textos cortos (o busca uno propio relacionado con tu carrera):</p>
+  <ul style="padding-left:20px; line-height:1.9; font-size:0.93rem;">
+    <li>Un párrafo de las Normas Internacionales de Auditoría (ISA) de tu elección</li>
+    <li>Un extracto de un informe del Banco Central del Ecuador (disponible en bce.fin.ec)</li>
+    <li>La introducción de un artículo académico sobre contabilidad o finanzas en Ecuador</li>
+    <li>Un párrafo del Código Tributario ecuatoriano</li>
+  </ul>
+
+  <div class="ia-seccion-titulo">📋 Paso 2: Usa este prompt exacto con la IA</div>
+  <div class="prompt-box">Actúa como un experto en didáctica de la comprensión lectora. Te voy a proporcionar un texto corto relacionado con contabilidad, auditoría o finanzas en Ecuador. Tu tarea es generarme exactamente 8 preguntas sobre ese texto: 2 preguntas de nivel literal (que solo requieran extraer información explícita del texto), 2 preguntas de nivel inferencial (que requieran deducir información implícita), 2 preguntas de nivel analógico (que relacionen el texto con otros conocimientos o contextos), y 2 preguntas de nivel crítico-valorativo (que evalúen la validez, sesgo o calidad del texto).
+
+Para cada pregunta, indica claramente: a) el nivel al que pertenece y b) la respuesta esperada.
+
+El texto que te proporciono es el siguiente:
+
+[PEGA AQUÍ TU TEXTO SELECCIONADO]</div>
+
+  <div class="ia-seccion-titulo">📋 Paso 3: Analiza la respuesta de la IA</div>
+  <p>Una vez que tengas las 8 preguntas generadas por la IA, realiza estas acciones:</p>
+  <ol style="padding-left:22px; line-height:1.9; font-size:0.93rem;">
+    <li><strong>Antes de ver las respuestas de la IA:</strong> Intenta responder tú mismo las 8 preguntas.</li>
+    <li><strong>Compara:</strong> ¿Coinciden tus respuestas con las de la IA? ¿En cuáles discrepas?</li>
+    <li><strong>Cuestiona a la IA:</strong> Si encuentras alguna pregunta que no te parece bien clasificada por nivel, díselo: "Creo que tu pregunta 3 es inferencial, no analógica, porque no requiere relacionar con otro texto. ¿Podrías reconsiderarla?" Observa cómo responde.</li>
+    <li><strong>Produce tu propio set:</strong> Con lo aprendido, genera TÚ 4 preguntas adicionales (una por nivel) sobre el mismo texto.</li>
+  </ol>
+
+  <div class="ia-seccion-titulo">📊 Criterio de evaluación</div>
+  <table class="tabla-comp">
+    <thead><tr><th>Indicador</th><th>Pensamiento crítico ✅</th><th>Copia simple ❌</th></tr></thead>
+    <tbody>
+      <tr><td>Uso de la respuesta</td><td>Compara, cuestiona y produce preguntas propias</td><td>Copia y pega las preguntas de la IA</td></tr>
+      <tr><td>Interacción con la IA</td><td>Le corrige errores de clasificación con argumentos</td><td>Acepta todo sin cuestionamiento</td></tr>
+      <tr><td>Producto final</td><td>4 preguntas originales propias por nivel</td><td>Ninguna producción propia</td></tr>
+      <tr><td>Reflexión</td><td>Puede explicar por qué cada pregunta pertenece a su nivel</td><td>No puede justificar las clasificaciones</td></tr>
+    </tbody>
+  </table>
+
+  <div class="caja-clave">
+    <div class="clave-titulo">💡 Recuerda</div>
+    <p>La IA es una herramienta de pensamiento, no una autoridad. Puede equivocarse al clasificar niveles de lectura. Tu capacidad para detectar esos errores y corregirlos demuestra que has comprendido el tema mejor que si simplemente hubieras copiado la información.</p>
+  </div>
+</div>
+
+<!-- 11. REFLEXIÓN -->
+<div id="tab-reflexion" class="tab-panel">
+  <h2 class="panel-title">💭 Reflexión: Los niveles de lectura en tu vida diaria</h2>
+  <p>A continuación encontrarás preguntas que conectan los niveles de lectura con situaciones que probablemente vives cada día. No hay respuestas correctas ni incorrectas. El objetivo es que descubras que leer en profundidad no es una habilidad académica aislada: es la forma en que procesas el mundo.</p>
+
+  <div class="reflexion-card">
+    <div class="ref-num">Reflexión 1 — Nivel Literal en tu vida</div>
+    <p>Piensa en la última vez que malentendiste un mensaje de texto, un correo o una instrucción. ¿Leíste lo que <em>realmente decía</em>, o leíste lo que <em>esperabas que dijera</em>? ¿Cuál fue la consecuencia? ¿Cuántas veces en una semana lees sin detenerte a verificar si entendiste exactamente lo que el texto dice?</p>
+  </div>
+
+  <div class="reflexion-card">
+    <div class="ref-num">Reflexión 2 — Nivel Inferencial y las relaciones humanas</div>
+    <p>En una conversación o en una red social, ¿cuántas veces "lees entre líneas" lo que alguien te dice? ¿Cómo sabes cuándo alguien está enojado, aunque sus palabras digan "estoy bien"? ¿Es esa capacidad de inferir una habilidad emocional o intelectual? ¿Podrías mejorarla conscientemente?</p>
+  </div>
+
+  <div class="reflexion-card">
+    <div class="ref-num">Reflexión 3 — Nivel Analógico y el aprendizaje</div>
+    <p>Cuando aprendes algo nuevo, ¿lo comparas mentalmente con algo que ya sabes? ¿Recuerdas un momento en que entendiste un concepto difícil precisamente porque alguien lo relacionó con algo cotidiano que ya conocías? ¿Qué dice eso sobre cómo funciona tu cerebro para aprender?</p>
+  </div>
+
+  <div class="reflexion-card">
+    <div class="ref-num">Reflexión 4 — Nivel Crítico y las redes sociales</div>
+    <p>¿Cuántas noticias o publicaciones en redes sociales compartes sin verificar la fuente? ¿Cuándo fue la última vez que te preguntaste: "¿Quién publicó esto y por qué?"? ¿Crees que tu capacidad de lectura crítica protege tu salud mental e informativa? ¿O te ha costado tiempo y esfuerzo desarrollarla?</p>
+  </div>
+
+  <div class="reflexion-card">
+    <div class="ref-num">Reflexión 5 — Autoestima y lectura de uno mismo</div>
+    <p>¿Alguna vez te has "leído" a ti mismo con cada nivel? ¿Qué ves literalmente (lo que haces en el día a día)? ¿Qué infieren otros de ti que tú mismo no ves? ¿Con qué personas o modelos te relacionas analógicamente? ¿Y eres crítico contigo mismo de manera constructiva —evaluando para mejorar— o de manera destructiva —juzgándote sin argumentos—?</p>
+  </div>
+
+  <div class="reflexion-card">
+    <div class="ref-num">Reflexión 6 — Inteligencia Emocional y comprensión del "texto" social</div>
+    <p>Daniel Goleman decía que la inteligencia emocional implica "leer" las emociones propias y ajenas. ¿Dirías que la inteligencia emocional es, en parte, una forma de lectura inferencial aplicada a las personas? ¿Qué habilidades comparten? ¿Por qué quienes tienen alta inteligencia emocional son frecuentemente mejores comunicadores?</p>
+  </div>
+
+  <div class="reflexion-card">
+    <div class="ref-num">Reflexión 7 — PNL y los "filtros" de lectura</div>
+    <p>La Programación Neurolingüística (PNL) plantea que cada persona tiene "filtros" perceptivos que determinan qué información recibe y cómo la interpreta. ¿Crees que tus creencias, emociones y experiencias previas afectan el nivel en que lees los textos? ¿Lees de manera diferente cuando estás tranquilo versus cuando estás estresado?</p>
+  </div>
+
+  <div class="caja-clave">
+    <div class="clave-titulo">✨ Para llevar</div>
+    <p>Los cuatro niveles de lectura no son técnicas académicas: son <em>formas de conciencia</em>. El estudiante que aprende a leer literalmente, inferencialmente, analógica y críticamente no solo lee mejor los textos: lee mejor la realidad, a las personas, y a sí mismo. Esa es la promesa de esta materia.</p>
+  </div>
+</div>
+
+<!-- 12. BIBLIO -->
+<div id="tab-biblio" class="tab-panel">
+  <h2 class="panel-title">📚 Bibliografía — APA 7.ª edición</h2>
+
+  <div class="ref-card">
+    <div class="ref-autor">Cassany, D., Luna, M., y Sanz, G. (1994).</div>
+    <div class="ref-titulo">Enseñar lengua.</div>
+    Graó. (Edición revisada 2007).<br/>
+    <em>Referencia canónica en didáctica de la lengua española. Incluye un tratamiento exhaustivo de los procesos de comprensión lectora y los niveles de interpretación textual.</em>
+  </div>
+
+  <div class="ref-card">
+    <div class="ref-autor">Solé, I. (1992).</div>
+    <div class="ref-titulo">Estrategias de lectura.</div>
+    Graó / ICE Universitat de Barcelona.<br/>
+    <em>Obra fundamental sobre las estrategias de comprensión lectora antes, durante y después de la lectura. Base teórica para el trabajo con niveles de comprensión.</em>
+  </div>
+
+  <div class="ref-card">
+    <div class="ref-autor">Goodman, K. S. (1982).</div>
+    <div class="ref-titulo">El proceso de lectura: consideraciones a través de las lenguas y del desarrollo.</div>
+    En E. Ferreiro y M. Gómez Palacios (Eds.), <em>Nuevas perspectivas sobre los procesos de lectura y escritura</em> (pp. 13–28). Siglo XXI.<br/>
+    <em>Pionero en la conceptualización de la lectura como proceso psicolingüístico activo. Establece la base teórica de la inferencia lectora.</em>
+  </div>
+
+  <div class="ref-card">
+    <div class="ref-autor">Jouini, K. (2005).</div>
+    <div class="ref-titulo">Estrategias inferenciales en la comprensión lectora.</div>
+    <em>Glosas Didácticas: Revista Electrónica Internacional de Didáctica de las Lenguas y sus Culturas</em>, 13, 95–114.<br/>
+    <em>Artículo especializado en los mecanismos de inferencia en el proceso lector. Disponible en repositorios de acceso abierto.</em>
+  </div>
+
+  <div class="ref-card">
+    <div class="ref-autor">Smith, F. (1983).</div>
+    <div class="ref-titulo">Comprensión de la lectura: análisis psicolingüístico de la lectura y su aprendizaje.</div>
+    Trillas.<br/>
+    <em>Referencia clásica que explora la lectura como proceso cognitivo de construcción de significados, fundamental para entender los niveles inferenciales y analógicos.</em>
+  </div>
+
+  <div class="ref-card">
+    <div class="ref-autor">ICFES. (2021).</div>
+    <div class="ref-titulo">Marco de referencia para la evaluación, ICFES: módulo de lectura crítica.</div>
+    Instituto Colombiano para la Evaluación de la Educación. https://www.icfes.gov.co<br/>
+    <em>Documento institucional que sistematiza los niveles de comprensión lectora utilizados en evaluaciones masivas de América Latina, con aplicaciones directas al contexto universitario.</em>
+  </div>
+
+  <div class="ref-card">
+    <div class="ref-autor">Bloom, B. S., Engelhart, M. D., Furst, E. J., Hill, W. H., y Krathwohl, D. R. (1956).</div>
+    <div class="ref-titulo">Taxonomy of educational objectives: The classification of educational goals. Handbook I: Cognitive domain.</div>
+    David McKay.<br/>
+    <em>Obra fundacional de la taxonomía de objetivos educativos que sirve de marco para comprender los niveles cognitivos asociados a cada nivel de lectura.</em>
+  </div>
+
+  <div class="nota-biblio">
+    ⚠️ <strong>Nota importante:</strong> Se recomienda verificar cada referencia en Google Scholar (<a href="https://scholar.google.com" target="_blank">scholar.google.com</a>) o en el repositorio institucional de la Universidad de Guayaquil antes de citar en trabajos académicos.
+  </div>
+</div>
+
+</div><!-- fin content-area -->
+
+<script>
+// ── TAB SWITCHING ─────────────────────────────
+function showTab(id, btn) {
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + id).classList.add('active');
+  btn.classList.add('active');
+}
+
+// ── EJERCICIO ─────────────────────────────────
+const ejercicioCorrects = {
+  ei1: 'b', ei2: 'c', ei3: 'd', ei4: 'c',
+  ei5: 'b', ei6: 'b', ei7: 'c', ei8: 'd'
+};
+const ejercicioFeedbacks = {
+  ei1: {
+    correct: 'b',
+    b: '✅ Correcto. Extraer una cifra exactamente mencionada en el texto es la operación característica del nivel literal.',
+    a: '❌ Incorrecto. Deducir el estado de la economía implicaría ir más allá de lo dicho — eso es nivel inferencial.',
+    c: '❌ Incorrecto. Cuestionar la validez del dato corresponde al nivel crítico-valorativo.',
+    d: '❌ Incorrecto. Comparar con otros países es una operación analógica, no literal.'
+  },
+  ei2: {
+    correct: 'c',
+    c: '✅ Correcto. "Inestabilidad" no está escrita así en el texto, pero se deduce de las palabras "frágil" y "dependiente de commodities". Eso es inferencia.',
+    a: '❌ Incorrecto. El texto no usa la palabra "inestable"; el lector la deduce, lo que ya supera el nivel literal.',
+    b: '❌ Incorrecto. Para que sea analógica debería relacionarse con otro texto o contexto externo.',
+    d: '❌ Incorrecto. El nivel crítico implicaría evaluar la afirmación de la inestabilidad, no simplemente deducirla.'
+  },
+  ei3: {
+    correct: 'd',
+    d: '✅ Correcto. Comparar el caso ecuatoriano con el venezolano es una conexión intertextual/analógica: se relaciona el texto con conocimientos externos.',
+    a: '❌ Incorrecto. El nivel literal solo extrae lo que el texto dice; Venezuela no está mencionada.',
+    b: '❌ Incorrecto. La inferencia opera dentro del texto; este ejemplo conecta con información externa.',
+    c: '❌ Incorrecto. El nivel crítico evalúa la calidad del argumento; este ejemplo solo establece una comparación.'
+  },
+  ei4: {
+    correct: 'c',
+    c: '✅ Correcto. Señalar que el texto afirma algo sin datos comparativos suficientes es evaluar su solidez argumentativa — nivel crítico-valorativo.',
+    a: '❌ Incorrecto. Si bien se cita el texto, el núcleo es la evaluación de su argumentación, no la extracción de datos.',
+    b: '❌ Incorrecto. La inferencia deduce información; aquí se está juzgando la calidad de la información presentada.',
+    d: '❌ Incorrecto. Aunque hay una referencia implícita a otras fuentes, el eje de la acción es la evaluación crítica, no la analogía.'
+  },
+  ei5: {
+    correct: 'b',
+    b: '✅ Correcto. El texto dice explícitamente: "petróleo, camaronicultura y turismo". Respuesta literal, exacta.',
+    a: '❌ Incorrecto. "Agricultura" no aparece en el texto como sector impulsor; "minería" tampoco. Confusión con información externa.',
+    c: '❌ Incorrecto. El texto menciona que la manufactura tuvo contracción, no crecimiento. Esta opción mezcla datos incorrectamente.',
+    d: '❌ Incorrecto. "Finanzas" y "tecnología" no aparecen en el texto. Se proyectan categorías externas al fragmento.'
+  },
+  ei6: {
+    correct: 'b',
+    b: '✅ Correcto. La pérdida de empleos no está dicha en el texto, pero se deduce lógicamente de una contracción del sector manufacturero, que es intensivo en mano de obra.',
+    a: '❌ Incorrecto. La lectura literal se limita a los datos explícitos; "pérdida de empleos" no es un dato del texto.',
+    c: '❌ Incorrecto. Para ser analógica, debería compararse con otro texto o caso externo.',
+    d: '❌ Incorrecto. El nivel crítico evaluaría la política laboral; aquí simplemente se deduce una consecuencia lógica.'
+  },
+  ei7: {
+    correct: 'c',
+    c: '✅ Correcto. Conectar "shock externo" del texto con el concepto de "vulnerabilidad a precios internacionales" de Microeconomía es una transferencia analógica entre disciplinas.',
+    a: '❌ Incorrecto. El nivel literal solo trabaja con lo que el texto dice, no con otras disciplinas.',
+    b: '❌ Incorrecto. La inferencia opera dentro del texto; este ejemplo trasciende al texto hacia otra asignatura.',
+    d: '❌ Incorrecto. El nivel crítico evaluaría la validez del argumento, no establecería conexiones disciplinares.'
+  },
+  ei8: {
+    correct: 'd',
+    d: '✅ Correcto. Cuestionar la objetividad de la fuente por su posible conflicto de intereses es una evaluación crítica de la credibilidad del texto.',
+    a: '❌ Incorrecto. La lectura literal extrajo la frase "fuentes anónimas", pero la valoración sobre su debilidad metodológica va mucho más allá.',
+    b: '❌ Incorrecto. La inferencia solo deduciría información implícita; aquí se evalúa la validez metodológica de la fuente.',
+    c: '❌ Incorrecto. La analogía relacionaría este texto con otros; aquí se juzga la calidad de la fuente en sí.'
+  }
+};
+
+function verificarEjercicio() {
+  const names = ['ei1','ei2','ei3','ei4','ei5','ei6','ei7','ei8'];
+  for (let n of names) {
+    if (!document.querySelector(`input[name="${n}"]:checked`)) {
+      alert('Por favor, responde todas las preguntas antes de verificar.');
+      return;
+    }
+  }
+  let correctas = 0;
+  names.forEach(n => {
+    const sel = document.querySelector(`input[name="${n}"]:checked`).value;
+    const fb = document.getElementById('fb-' + n);
+    const correct = ejercicioCorrects[n];
+    const feedbacks = ejercicioFeedbacks[n];
+    fb.innerHTML = feedbacks[sel] || '—';
+    if (sel === correct) {
+      correctas++;
+      fb.className = 'feedback-item feedback-correcto';
+    } else {
+      fb.className = 'feedback-item feedback-incorrecto';
+      fb.innerHTML += `<br/><em>La respuesta correcta era la opción (${correct}): ${feedbacks[correct]}</em>`;
+    }
+    fb.style.display = 'block';
+    document.querySelectorAll(`input[name="${n}"]`).forEach(r => r.disabled = true);
+  });
+  const pct = Math.round(correctas / names.length * 100);
+  const resBox = document.getElementById('resultado-ejercicio');
+  resBox.style.display = 'block';
+  document.getElementById('score-ej').textContent = `${correctas} / ${names.length} — ${pct}%`;
+  document.getElementById('barra-ej').style.width = pct + '%';
+  const msgs = [
+    [100, '🏆 ¡Perfecto! Dominas los niveles de lectura con maestría.'],
+    [80,  '🎯 ¡Muy bien! Comprendes los niveles con solidez.'],
+    [60,  '📘 Buen avance. Repasa los niveles que confundiste.'],
+    [40,  '⚠️ Hay confusiones conceptuales importantes. Relee el material.'],
+    [0,   '📖 Dedica más tiempo al estudio. ¡Puedes lograrlo!']
+  ];
+  document.getElementById('msg-ej').textContent = msgs.find(m => pct >= m[0])[1];
+  resBox.scrollIntoView({behavior:'smooth'});
+}
+
+function reiniciarEjercicio() {
+  ['ei1','ei2','ei3','ei4','ei5','ei6','ei7','ei8'].forEach(n => {
+    document.querySelectorAll(`input[name="${n}"]`).forEach(r => { r.checked = false; r.disabled = false; });
+    const fb = document.getElementById('fb-' + n);
+    fb.style.display = 'none';
+    fb.innerHTML = '';
+  });
+  document.getElementById('resultado-ejercicio').style.display = 'none';
+  document.getElementById('barra-ej').style.width = '0%';
+}
+
+// ── CUESTIONARIO ──────────────────────────────
+const quizCorrects = {
+  qi1:'c', qi2:'b', qi3:'c', qi4:'b', qi5:'d',
+  qi6:'b', qi7:'d', qi8:'b', qi9:'c', qi10:'d'
+};
+const quizFeedbacks = {
+  qi1:{
+    correct:'c',
+    c:'✅ Correcto. El nivel literal se define por recuperar información explícita: lo que el texto dice tal como lo dice.',
+    a:'❌ Incorrecto. Deducir información implícita es la función del nivel inferencial, no del literal.',
+    b:'❌ Incorrecto. Evaluar argumentos corresponde al nivel crítico-valorativo.',
+    d:'❌ Incorrecto. Relacionar el texto con otras obras o experiencias es la función del nivel analógico.'
+  },
+  qi2:{
+    correct:'b',
+    b:'✅ Correcto. El nivel inferencial se caracteriza por completar los vacíos del texto usando razonamiento y claves textuales presentes en el mismo texto.',
+    a:'❌ Incorrecto. Reproducir textualmente es la operación del nivel literal.',
+    c:'❌ Incorrecto. Memorizar datos es una función del nivel literal básico (reconocimiento y recuerdo).',
+    d:'❌ Incorrecto. Rechazar información contraria no es una operación lectora válida en ningún nivel; sería un sesgo cognitivo, no un nivel de comprensión.'
+  },
+  qi3:{
+    correct:'c',
+    c:'✅ Correcto. La lectura analógica también se denomina intertextual, porque establece relaciones entre textos diferentes.',
+    a:'❌ Incorrecto. "Lectura superficial" no es un nivel académicamente reconocido de comprensión lectora.',
+    b:'❌ Incorrecto. La lectura predictiva es un tipo de inferencia (dentro del nivel inferencial), no el nombre del nivel analógico.',
+    d:'❌ Incorrecto. "Lectura denotativa" hace referencia al significado literal de las palabras, lo cual se asocia más al nivel literal.'
+  },
+  qi4:{
+    correct:'b',
+    b:'✅ Correcto. El juicio crítico requiere argumentos, criterios y evidencia. La opinión puede ser espontánea y sin sustento.',
+    a:'❌ Incorrecto. Tanto las opiniones como los juicios críticos pueden ser positivos o negativos; no se distinguen por su valencia.',
+    c:'❌ Incorrecto. La diferencia es real y pedagógicamente fundamental: la capacidad de argumentar distingue el pensamiento crítico.',
+    d:'❌ Incorrecto. Los estudiantes pueden emitir juicios críticos; los expertos también pueden dar opiniones sin sustento. La distinción es estructural, no por quien habla.'
+  },
+  qi5:{
+    correct:'d',
+    d:'✅ Correcto. El nivel literal es la base y condición de posibilidad de todos los demás niveles. Sin comprender lo que el texto dice, no se puede inferir, relacionar ni evaluar.',
+    a:'❌ Incorrecto. El nivel analógico requiere previamente haber comprendido el texto en sus niveles básicos.',
+    b:'❌ Incorrecto. El nivel inferencial supone ya haber comprendido el nivel literal.',
+    c:'❌ Incorrecto. El nivel crítico-valorativo es el más complejo y el último de la secuencia, no el punto de partida.'
+  },
+  qi6:{
+    correct:'b',
+    b:'✅ Correcto. Una inferencia válida puede rastrearse hasta alguna clave en el texto. Si la deducción no tiene base textual, no es una inferencia lectora sino una proyección subjetiva.',
+    a:'❌ Incorrecto. Las inferencias se pueden hacer sobre cualquier tipo de texto, no solo científicos.',
+    c:'❌ Incorrecto. El idioma no es el criterio que define la validez de una inferencia.',
+    d:'❌ Incorrecto. El lector puede hacer inferencias que el propio autor no tenía en mente, siempre que las claves textuales las sustenten.'
+  },
+  qi7:{
+    correct:'d',
+    d:'✅ Correcto. En la Taxonomía de Bloom, "Evaluar" es el quinto nivel (en la versión original) y corresponde al nivel crítico-valorativo en lectura.',
+    a:'❌ Incorrecto. El nivel literal corresponde a "Recordar" (nivel 1 de Bloom).',
+    b:'❌ Incorrecto. El inferencial se asocia principalmente a "Comprender" y "Aplicar" (niveles 2 y 3 de Bloom).',
+    c:'❌ Incorrecto. El nivel analógico corresponde a "Analizar" (nivel 4 de Bloom), no a "Evaluar".'
+  },
+  qi8:{
+    correct:'b',
+    b:'✅ Correcto. Detectar que la ausencia de documentación podría esconder un desfalco es una inferencia: se deduce una irregularidad implícita a partir de indicios presentes en el texto.',
+    a:'❌ Incorrecto. El auditor sí leyó literalmente los números, pero la conclusión sobre "posible desfalco" es una inferencia, no un dato explícito.',
+    c:'❌ Incorrecto. Para que fuera analógica, debería comparar este informe con otros informes previos similares.',
+    d:'❌ Incorrecto. El nivel crítico evaluaría la solidez de la conclusión sobre el desfalco; aquí se está construyendo esa conclusión mediante inferencia.'
+  },
+  qi9:{
+    correct:'c',
+    c:'✅ Correcto. Conectar un caso de Perú con el caso Odebrecht en Ecuador para identificar patrones comunes es una operación analógica/intertextual: se relacionan dos textos o casos de contextos diferentes.',
+    a:'❌ Incorrecto. El nivel literal solo trabaja dentro de un texto; aquí se están conectando dos casos distintos.',
+    b:'❌ Incorrecto. La inferencia opera dentro del texto; este ejemplo trasciende a un segundo caso externo.',
+    d:'❌ Incorrecto. El nivel crítico evaluaría la validez de la comparación; aquí simplemente se establece la conexión.'
+  },
+  qi10:{
+    correct:'d',
+    d:'✅ Correcto. Señalar que "fuentes anónimas" son metodológicamente débiles para sustentar una afirmación de esa magnitud es una evaluación de la calidad de la evidencia — nivel crítico-valorativo.',
+    a:'❌ Incorrecto. Si bien el estudiante leyó literalmente "fuentes anónimas", su acción va mucho más allá: evalúa la validez metodológica de esas fuentes.',
+    b:'❌ Incorrecto. El estudiante no está deduciendo que la empresa sí evadió; está cuestionando si la evidencia presentada es suficiente para afirmarlo.',
+    c:'❌ Incorrecto. Para una lectura analógica, el estudiante debería comparar este artículo con otra fuente o caso. Aquí evalúa la fuente en sí.'
+  }
+};
+
+function verificarCuestionario() {
+  const names = ['qi1','qi2','qi3','qi4','qi5','qi6','qi7','qi8','qi9','qi10'];
+  for (let n of names) {
+    if (!document.querySelector(`input[name="${n}"]:checked`)) {
+      alert('Por favor, responde todas las preguntas antes de verificar.');
+      return;
+    }
+  }
+  let correctas = 0;
+  names.forEach(n => {
+    const sel = document.querySelector(`input[name="${n}"]:checked`).value;
+    const fb = document.getElementById('fb-' + n);
+    const correct = quizCorrects[n];
+    const feedbacks = quizFeedbacks[n];
+    fb.innerHTML = feedbacks[sel] || '—';
+    if (sel === correct) {
+      correctas++;
+      fb.className = 'feedback-item feedback-correcto';
+    } else {
+      fb.className = 'feedback-item feedback-incorrecto';
+      fb.innerHTML += `<br/><em>La respuesta correcta era la opción (${correct}): ${feedbacks[correct]}</em>`;
+    }
+    fb.style.display = 'block';
+    document.querySelectorAll(`input[name="${n}"]`).forEach(r => r.disabled = true);
+  });
+  const pct = Math.round(correctas / 10 * 100);
+  const resBox = document.getElementById('resultado-quiz');
+  resBox.style.display = 'block';
+  document.getElementById('score-quiz').textContent = `${correctas}/10 — ${pct}%`;
+  document.getElementById('barra-quiz').style.width = pct + '%';
+  const emojis = pct === 100 ? '🏆 ¡Excelente! Dominio total del tema.' :
+    pct >= 80 ? '🎯 ¡Muy bien! Comprensión sólida.' :
+    pct >= 60 ? '📘 Aprobado. Repasa los conceptos que fallaste.' :
+    pct >= 40 ? '⚠️ Necesitas reforzar los temas. Relee el material.' :
+    '📖 Dedica más tiempo al estudio. ¡Tú puedes!';
+  document.getElementById('msg-quiz').textContent = emojis;
+  resBox.scrollIntoView({behavior:'smooth'});
+}
+
+function reiniciarCuestionario() {
+  ['qi1','qi2','qi3','qi4','qi5','qi6','qi7','qi8','qi9','qi10'].forEach(n => {
+    document.querySelectorAll(`input[name="${n}"]`).forEach(r => { r.checked = false; r.disabled = false; });
+    const fb = document.getElementById('fb-' + n);
+    fb.style.display = 'none';
+    fb.innerHTML = '';
+  });
+  document.getElementById('resultado-quiz').style.display = 'none';
+  document.getElementById('barra-quiz').style.width = '0%';
+}
+</script>
+</body>
+</html>
