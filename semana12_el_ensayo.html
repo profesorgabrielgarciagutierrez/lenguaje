@@ -1,0 +1,1912 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Semana 12 – El Ensayo | Lenguaje y Comunicación</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   FRAGMENTO 1: CSS COMPLETO
+   Plan: 5 fragmentos — CSS | Repaso+Temas1-2 | Temas3-4+Herramienta | Ejercicio+Cuestionario | IA+Reflexión+Biblio+JS
+   ============================================================ */
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Source Sans 3', sans-serif;
+  background: #f4f6f9;
+  color: #1a1a2e;
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+/* ---- HEADER ---- */
+.ug-header {
+  background: #003366;
+  color: #fff;
+  padding: 18px 28px 14px;
+  text-align: center;
+}
+.ug-header .inst { font-family: 'Lora', serif; font-size: 1.05rem; font-weight: 400; letter-spacing: .5px; opacity: .9; }
+.ug-header .fac  { font-size: .88rem; opacity: .78; margin-top: 2px; }
+.ug-header h1    { font-family: 'Lora', serif; font-size: 1.65rem; font-weight: 700; margin: 10px 0 4px; line-height: 1.25; }
+.ug-header .meta { font-size: .82rem; opacity: .75; letter-spacing: .4px; }
+.ug-badge {
+  display: inline-block; background: rgba(255,255,255,.18);
+  border: 1px solid rgba(255,255,255,.4); border-radius: 20px;
+  padding: 3px 14px; font-size: .78rem; margin-top: 8px;
+}
+
+/* ---- TAB NAV ---- */
+.tab-nav-wrap {
+  background: #87CEEB;
+  overflow-x: auto;
+  white-space: nowrap;
+  scrollbar-width: thin;
+  scrollbar-color: #003366 #b8dfef;
+  position: sticky; top: 0; z-index: 100;
+  box-shadow: 0 2px 6px rgba(0,51,102,.18);
+}
+.tab-nav-wrap::-webkit-scrollbar { height: 5px; }
+.tab-nav-wrap::-webkit-scrollbar-thumb { background: #003366; border-radius: 3px; }
+.tab-nav { display: inline-flex; padding: 0 8px; }
+.tab-btn {
+  background: transparent; border: none; border-bottom: 3px solid transparent;
+  padding: 13px 16px 10px; font-family: 'Source Sans 3', sans-serif;
+  font-size: .85rem; font-weight: 600; color: #1a1a2e; cursor: pointer;
+  white-space: nowrap; transition: all .2s; border-radius: 4px 4px 0 0;
+}
+.tab-btn:hover { background: rgba(255,255,255,.55); }
+.tab-btn.active {
+  background: #fff; color: #003366; font-weight: 700;
+  border-bottom-color: #003366;
+}
+
+/* ---- CONTENIDO GENERAL ---- */
+.tab-content { display: none; padding: 28px 24px 40px; max-width: 980px; margin: 0 auto; }
+.tab-content.active { display: block; }
+
+/* ---- CAJAS DE CONTENIDO ---- */
+.box-concepto {
+  border-left: 5px solid #003366; background: #fff;
+  padding: 16px 20px; margin: 18px 0; border-radius: 0 8px 8px 0;
+  box-shadow: 0 2px 8px rgba(0,51,102,.08);
+}
+.box-concepto h3 { font-family:'Lora',serif; color:#003366; margin-bottom:8px; font-size:1.05rem; }
+
+.box-ejemplo {
+  background: #ddeeff; border: 1px solid #a8c8e8;
+  padding: 16px 20px; margin: 18px 0; border-radius: 8px;
+}
+.box-ejemplo .ej-titulo { font-weight: 700; color: #003366; margin-bottom: 6px; font-size: .95rem; }
+
+.box-clave {
+  border: 2px solid #c8a02a; background: #fffbee;
+  padding: 14px 20px; margin: 20px 0; border-radius: 8px;
+}
+.box-clave h4 { color: #8a6800; font-family:'Lora',serif; margin-bottom:6px; font-size:.98rem; }
+
+.box-escape {
+  background: linear-gradient(135deg, #1a1a4e 0%, #003366 100%);
+  color: #fff; border-radius: 12px; padding: 22px 26px; margin: 22px 0;
+}
+.box-escape h3 { font-family:'Lora',serif; color:#87CEEB; margin-bottom:10px; font-size:1.1rem; }
+.box-escape p { opacity:.92; }
+
+.box-tipo {
+  background: #fff; border: 1px solid #c8d8ea;
+  border-top: 4px solid #003366; border-radius: 8px;
+  padding: 16px 18px; margin: 14px 0;
+  box-shadow: 0 2px 6px rgba(0,51,102,.07);
+}
+.box-tipo h4 { font-family:'Lora',serif; color:#003366; font-size:1rem; margin-bottom:6px; }
+
+.section-title {
+  font-family:'Lora',serif; color:#003366; font-size:1.35rem;
+  font-weight:700; margin:24px 0 14px; padding-bottom:6px;
+  border-bottom: 2px solid #87CEEB;
+}
+.section-subtitle {
+  font-family:'Lora',serif; color:#003366; font-size:1.08rem;
+  font-weight:600; margin:18px 0 10px;
+}
+
+/* ---- ACORDEÓN REPASO ---- */
+.acord-item { border: 1px solid #c8d8ea; border-radius: 8px; margin-bottom: 10px; overflow: hidden; }
+.acord-btn {
+  width:100%; background:#e8f4fd; border:none; padding:13px 18px;
+  text-align:left; font-family:'Source Sans 3',sans-serif; font-size:.95rem;
+  font-weight:600; color:#003366; cursor:pointer; display:flex;
+  justify-content:space-between; align-items:center; transition:background .2s;
+}
+.acord-btn:hover { background:#cce4f6; }
+.acord-arrow { font-size:1rem; transition:transform .3s; display:inline-block; }
+.acord-panel { display:none; background:#fff; padding:16px 18px; font-size:.93rem; line-height:1.7; }
+.acord-panel.open { display:block; }
+
+/* ---- TABLA ---- */
+table { width:100%; border-collapse:collapse; margin:16px 0; font-size:.92rem; }
+th { background:#003366; color:#fff; padding:10px 14px; text-align:left; font-weight:600; }
+td { padding:9px 14px; border-bottom:1px solid #dde8f2; vertical-align:top; }
+tr:nth-child(even) td { background:#f0f6fb; }
+tr:hover td { background:#e4f0fa; }
+
+/* ---- LISTAS VISUALES ---- */
+.vis-list { list-style:none; padding:0; margin:10px 0; }
+.vis-list li {
+  padding:8px 12px 8px 36px; position:relative;
+  border-bottom:1px solid #eee; font-size:.94rem;
+}
+.vis-list li::before {
+  content:'✦'; position:absolute; left:10px; color:#003366; font-size:.75rem; top:10px;
+}
+
+/* ---- HERRAMIENTA CONSTRUCTORA DE ENSAYO ---- */
+.constructor-wrap {
+  background:#fff; border:1px solid #c8d8ea; border-radius:12px;
+  padding:24px; margin:20px 0; box-shadow:0 4px 16px rgba(0,51,102,.10);
+}
+.constructor-wrap h2 { font-family:'Lora',serif; color:#003366; font-size:1.25rem; margin-bottom:6px; }
+.constructor-desc { font-size:.9rem; color:#555; margin-bottom:18px; }
+
+.paso-barra {
+  display:flex; gap:6px; margin-bottom:22px; flex-wrap:wrap;
+}
+.paso-dot {
+  flex:1; min-width:60px; text-align:center;
+  padding:7px 4px; border-radius:6px; font-size:.78rem; font-weight:700;
+  background:#e0e8f0; color:#666; border:2px solid transparent; cursor:default;
+  transition:all .3s;
+}
+.paso-dot.activo { background:#003366; color:#fff; border-color:#003366; }
+.paso-dot.completo { background:#28a745; color:#fff; border-color:#28a745; }
+
+.paso-panel { display:none; }
+.paso-panel.activo { display:block; }
+
+.paso-panel h3 {
+  font-family:'Lora',serif; color:#003366; font-size:1.05rem;
+  margin-bottom:8px; display:flex; align-items:center; gap:8px;
+}
+.paso-num {
+  background:#003366; color:#fff; border-radius:50%;
+  width:26px; height:26px; display:inline-flex; align-items:center;
+  justify-content:center; font-size:.8rem; font-weight:700; flex-shrink:0;
+}
+
+.campo-grupo { margin-bottom:16px; }
+.campo-grupo label { display:block; font-weight:600; color:#003366; font-size:.88rem; margin-bottom:5px; }
+.campo-grupo .ayuda { font-size:.8rem; color:#666; margin-bottom:5px; font-style:italic; }
+.campo-input {
+  width:100%; padding:9px 13px; border:2px solid #c8d8ea;
+  border-radius:6px; font-family:'Source Sans 3',sans-serif;
+  font-size:.92rem; color:#1a1a2e; resize:vertical; transition:border .2s;
+}
+.campo-input:focus { outline:none; border-color:#003366; }
+textarea.campo-input { min-height:90px; }
+
+.cons-btn {
+  padding:9px 22px; border:none; border-radius:6px; font-size:.88rem;
+  font-weight:700; cursor:pointer; font-family:'Source Sans 3',sans-serif;
+  transition:all .2s;
+}
+.cons-btn-nav { background:#87CEEB; color:#003366; }
+.cons-btn-nav:hover { background:#5ab8e0; }
+.cons-btn-primary { background:#003366; color:#fff; }
+.cons-btn-primary:hover { background:#00224d; }
+.cons-btn-success { background:#28a745; color:#fff; }
+.cons-btn-success:hover { background:#1e7e34; }
+.cons-btn-pdf { background:#c8a02a; color:#fff; }
+.cons-btn-pdf:hover { background:#a07818; }
+.cons-btn-reset { background:#dc3545; color:#fff; }
+.cons-btn-reset:hover { background:#a81e2a; }
+
+.cons-nav-row { display:flex; gap:10px; margin-top:14px; align-items:center; flex-wrap:wrap; }
+
+.preview-ensayo {
+  background:#f9fbfd; border:1px solid #c8d8ea; border-radius:8px;
+  padding:20px; margin:18px 0; min-height:200px; white-space:pre-wrap;
+  font-family:'Source Sans 3',sans-serif; font-size:.9rem; line-height:1.75;
+  color:#1a1a2e;
+}
+.preview-ensayo strong { color:#003366; }
+
+/* ---- EJERCICIO / CUESTIONARIO ---- */
+.quiz-intro { background:#e8f4fd; border-radius:8px; padding:14px 18px; margin-bottom:18px; font-size:.93rem; }
+.quiz-item { background:#fff; border:1px solid #dde8f2; border-radius:8px; padding:16px 18px; margin-bottom:14px; }
+.quiz-item .q-num { font-weight:700; color:#003366; font-size:.88rem; margin-bottom:6px; }
+.quiz-item .q-texto { font-size:.95rem; margin-bottom:12px; line-height:1.6; }
+.quiz-item .q-badge {
+  display:inline-block; font-size:.72rem; font-weight:700; padding:2px 9px;
+  border-radius:12px; margin-left:8px; vertical-align:middle;
+}
+.badge-teorica { background:#ddeeff; color:#003366; }
+.badge-caso    { background:#fff0cc; color:#8a6800; }
+
+.opciones { display:flex; flex-direction:column; gap:7px; }
+.opcion-label {
+  display:flex; align-items:flex-start; gap:10px; padding:8px 12px;
+  border:2px solid #dde8f2; border-radius:6px; cursor:pointer;
+  font-size:.92rem; transition:all .2s; line-height:1.5;
+}
+.opcion-label:hover { border-color:#87CEEB; background:#f0faff; }
+.opcion-label input[type="radio"] { margin-top:3px; flex-shrink:0; accent-color:#003366; }
+.opcion-label.correcta  { border-color:#28a745; background:#eaffea; }
+.opcion-label.incorrecta{ border-color:#dc3545; background:#fff0f0; }
+.opcion-label.omitida   { border-color:#ffc107; background:#fffbee; }
+
+.q-feedback {
+  display:none; margin-top:10px; padding:10px 14px;
+  border-radius:6px; font-size:.88rem; line-height:1.55;
+}
+.q-feedback.correcto   { background:#d4edda; color:#155724; border:1px solid #c3e6cb; }
+.q-feedback.incorrecto { background:#f8d7da; color:#721c24; border:1px solid #f5c6cb; }
+
+.score-panel {
+  display:none; background:#fff; border:2px solid #003366;
+  border-radius:12px; padding:24px; text-align:center; margin-top:20px;
+}
+.score-emoji { font-size:3.5rem; margin-bottom:8px; }
+.score-pts   { font-family:'Lora',serif; font-size:1.6rem; font-weight:700; color:#003366; }
+.score-msg   { font-size:1rem; color:#444; margin:8px 0 16px; }
+.score-bar-wrap { background:#e0e8f0; border-radius:20px; height:18px; overflow:hidden; margin:10px 0; }
+.score-bar { height:100%; background:linear-gradient(90deg,#003366,#87CEEB); border-radius:20px; width:0%; transition:width 1.2s ease; }
+
+/* ---- BOTONES GENERALES ---- */
+.btn-verificar {
+  background:#003366; color:#fff; border:none; padding:11px 30px;
+  border-radius:8px; font-size:.95rem; font-weight:700; cursor:pointer;
+  margin-top:16px; display:block; font-family:'Source Sans 3',sans-serif;
+  transition:background .2s;
+}
+.btn-verificar:hover { background:#00224d; }
+.btn-reiniciar {
+  background:#6c757d; color:#fff; border:none; padding:9px 22px;
+  border-radius:8px; font-size:.88rem; font-weight:600; cursor:pointer;
+  margin-top:10px; font-family:'Source Sans 3',sans-serif;
+  transition:background .2s;
+}
+.btn-reiniciar:hover { background:#555; }
+
+/* ---- ACTIVIDAD IA ---- */
+.ia-box {
+  background:linear-gradient(135deg,#001a3a 0%,#003366 100%);
+  color:#fff; border-radius:12px; padding:22px 24px; margin:18px 0;
+}
+.ia-box h3 { font-family:'Lora',serif; color:#87CEEB; margin-bottom:10px; font-size:1.1rem; }
+.ia-box p  { opacity:.92; font-size:.93rem; }
+.prompt-box {
+  background:#001122; border:1px solid #87CEEB; border-radius:8px;
+  padding:16px 18px; margin:14px 0; font-family:monospace; font-size:.85rem;
+  color:#b8e4f9; white-space:pre-wrap; line-height:1.6;
+}
+.rubrica-item {
+  background:#fff; border-left:4px solid #28a745;
+  padding:10px 14px; margin:8px 0; border-radius:0 6px 6px 0;
+  font-size:.9rem;
+}
+.rubrica-item.nivel-1 { border-left-color:#dc3545; }
+.rubrica-item.nivel-2 { border-left-color:#ffc107; }
+.rubrica-item.nivel-3 { border-left-color:#28a745; }
+
+/* ---- REFLEXIÓN ---- */
+.ref-item {
+  background:#fff; border-radius:8px; padding:18px; margin:12px 0;
+  border-left:4px solid #c8a02a;
+  box-shadow:0 2px 8px rgba(0,51,102,.07);
+}
+.ref-item .ref-num { color:#c8a02a; font-weight:700; font-size:.85rem; }
+.ref-item .ref-pregunta { font-family:'Lora',serif; font-size:1rem; color:#003366; margin-top:4px; }
+.ref-item .ref-pista { font-size:.85rem; color:#666; margin-top:5px; font-style:italic; }
+
+/* ---- BIBLIOGRAFÍA ---- */
+.bib-card {
+  background:#fff; border-radius:8px; padding:16px 18px; margin:12px 0;
+  border-top:4px solid #003366;
+  box-shadow:0 2px 8px rgba(0,51,102,.07);
+}
+.bib-card .bib-autor  { font-weight:700; color:#003366; font-size:.9rem; }
+.bib-card .bib-titulo { font-style:italic; color:#1a1a2e; }
+.bib-card .bib-ref    { font-size:.85rem; color:#555; margin-top:4px; }
+.bib-nota {
+  background:#fffbee; border:1px solid #c8a02a; border-radius:6px;
+  padding:12px 16px; margin-top:18px; font-size:.85rem; color:#6b5000;
+}
+
+/* ---- TIPO ENSAYO CARD ---- */
+.tipo-card {
+  background:#fff; border:1px solid #c8d8ea; border-radius:10px;
+  padding:18px; margin:12px 0;
+  box-shadow:0 2px 8px rgba(0,51,102,.07);
+  border-top:4px solid #87CEEB;
+}
+.tipo-card.academico  { border-top-color:#003366; }
+.tipo-card.literario  { border-top-color:#8a2be2; }
+.tipo-card.critico    { border-top-color:#dc3545; }
+.tipo-card.filosofico { border-top-color:#28a745; }
+.tipo-card.personal   { border-top-color:#fd7e14; }
+.tipo-card.cientifico { border-top-color:#17a2b8; }
+.tipo-card.humoristico{ border-top-color:#ffc107; }
+.tipo-card h4 { font-family:'Lora',serif; font-size:1rem; margin-bottom:6px; }
+.tipo-card .tc-tag {
+  display:inline-block; font-size:.72rem; font-weight:700; padding:2px 9px;
+  border-radius:12px; margin-bottom:8px;
+}
+
+/* ---- VIDA Y ENSAYO ---- */
+.vida-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:14px; margin:16px 0; }
+.vida-card {
+  background:#fff; border-radius:8px; padding:16px;
+  border-top:4px solid #003366; text-align:center;
+  box-shadow:0 2px 6px rgba(0,51,102,.08); font-size:.88rem;
+}
+.vida-card .vc-icon { font-size:2rem; margin-bottom:8px; }
+.vida-card h4 { font-family:'Lora',serif; font-size:.95rem; color:#003366; margin-bottom:6px; }
+
+/* ---- SELECTOR DE TIPO (en herramienta) ---- */
+.tipo-selector { display:flex; flex-wrap:wrap; gap:8px; margin:10px 0; }
+.tipo-chip {
+  padding:5px 14px; border:2px solid #c8d8ea; border-radius:20px;
+  font-size:.82rem; cursor:pointer; font-weight:600; color:#003366;
+  transition:all .2s; background:#f0f6fb;
+}
+.tipo-chip:hover   { border-color:#003366; background:#ddeeff; }
+.tipo-chip.selected{ background:#003366; color:#fff; border-color:#003366; }
+
+/* ---- PROGRESO CONSTRUCTOR ---- */
+.cons-progress { background:#e0e8f0; border-radius:10px; height:8px; margin-bottom:16px; overflow:hidden; }
+.cons-progress-bar { height:100%; background:linear-gradient(90deg,#003366,#87CEEB); border-radius:10px; transition:width .4s; }
+
+/* ---- RESPONSIVE ---- */
+@media (max-width:640px) {
+  .ug-header h1 { font-size:1.3rem; }
+  .tab-content { padding:18px 14px 30px; }
+  .vida-grid { grid-template-columns:1fr 1fr; }
+  .paso-barra { gap:4px; }
+  .paso-dot { font-size:.7rem; padding:5px 3px; }
+}
+
+/* ---- ALERTA ---- */
+.alerta-pendiente {
+  background:#fff3cd; border:1px solid #ffc107; color:#856404;
+  padding:10px 16px; border-radius:6px; font-size:.88rem; margin-top:8px;
+  display:none;
+}
+</style>
+</head>
+<body>
+<!-- FRAGMENTO 2: Header, Nav, Repaso, Tema 1, Tema 2 -->
+
+<!-- HEADER -->
+<header class="ug-header">
+  <div class="inst">Universidad de Guayaquil</div>
+  <div class="fac">Facultad de Ciencias Administrativas · Carrera: Contabilidad y Auditoría</div>
+  <h1>El Ensayo</h1>
+  <div class="meta">Materia: Lenguaje y Comunicación &nbsp;·&nbsp; Unidad 3: Comprensión y análisis de textos</div>
+  <div class="ug-badge">Semana 12 &nbsp;·&nbsp; Primer Ciclo &nbsp;·&nbsp; Modalidad Virtual</div>
+</header>
+
+<!-- TAB NAV -->
+<nav class="tab-nav-wrap">
+  <div class="tab-nav">
+    <button class="tab-btn active" onclick="showTab('repaso')">📋 Repaso</button>
+    <button class="tab-btn" onclick="showTab('tema1')">📖 Tema 1</button>
+    <button class="tab-btn" onclick="showTab('tema2')">🎨 Tema 2</button>
+    <button class="tab-btn" onclick="showTab('tema3')">🌍 Tema 3</button>
+    <button class="tab-btn" onclick="showTab('tema4')">💙 Tema 4</button>
+    <button class="tab-btn" onclick="showTab('herramienta')">🛠️ Constructor</button>
+    <button class="tab-btn" onclick="showTab('ejercicio')">✏️ Ejercicio</button>
+    <button class="tab-btn" onclick="showTab('cuestionario')">📝 Cuestionario</button>
+    <button class="tab-btn" onclick="showTab('ia')">🤖 Actividad IA</button>
+    <button class="tab-btn" onclick="showTab('reflexion')">🌱 Reflexión</button>
+    <button class="tab-btn" onclick="showTab('bibliografia')">📚 Bibliografía</button>
+  </div>
+</nav>
+
+<!-- ============================================================
+     PESTAÑA: REPASO
+     ============================================================ -->
+<div id="repaso" class="tab-content active">
+  <h2 class="section-title">Repaso de Semanas Anteriores</h2>
+  <p style="margin-bottom:16px;font-size:.95rem;">Cada acordeón resume lo aprendido. Ábrelo para recordar los conceptos clave antes de continuar con el ensayo.</p>
+
+  <!-- S1 -->
+  <div class="acord-item">
+    <button class="acord-btn" onclick="toggleAcord(this)">
+      <span>Semana 1 · Importancia de la Comunicación. Diferencia entre hablar y comunicar</span>
+      <span class="acord-arrow">▶</span>
+    </button>
+    <div class="acord-panel">
+      <p><strong>Hablar</strong> es emitir sonidos articulados; <strong>comunicar</strong> es un proceso intencional y bidireccional en el que un mensaje produce un efecto real en el receptor. La comunicación no ocurre si el mensaje no es recibido, comprendido e interpretado. Desde Aristóteles hasta las teorías contemporáneas, comunicarse bien determina el éxito en la vida personal, académica y profesional. La comunicación ineficaz genera conflictos, malentendidos y pérdidas económicas en las organizaciones.</p>
+    </div>
+  </div>
+
+  <!-- S2 -->
+  <div class="acord-item">
+    <button class="acord-btn" onclick="toggleAcord(this)">
+      <span>Semana 2 · Lenguaje y Comunicación. Procesamiento de Mensajes. Tipos de Lenguaje</span>
+      <span class="acord-arrow">▶</span>
+    </button>
+    <div class="acord-panel">
+      <p>El <strong>lenguaje</strong> es el sistema de signos que hace posible la comunicación humana. Los mensajes se procesan en dos niveles: <em>denotativo</em> (significado literal) y <em>connotativo</em> (significado cultural y emocional). Existen tres grandes tipos de lenguaje: <strong>verbal</strong> (oral y escrito), <strong>no verbal</strong> (gestos, postura, mirada) y <strong>paraverbal</strong> (tono, ritmo, volumen). Un comunicador competente maneja los tres simultáneamente.</p>
+    </div>
+  </div>
+
+  <!-- S3 -->
+  <div class="acord-item">
+    <button class="acord-btn" onclick="toggleAcord(this)">
+      <span>Semana 3 · Tipos de Comunicación. Cómo funciona tu cerebro</span>
+      <span class="acord-arrow">▶</span>
+    </button>
+    <div class="acord-panel">
+      <p>La comunicación puede ser <strong>intrapersonal</strong> (el diálogo interno), <strong>interpersonal</strong> (entre dos personas), <strong>grupal</strong> y <strong>masiva</strong>. El cerebro procesa la comunicación en tres capas: el <em>reptiliano</em> (supervivencia e instinto), el <em>límbico</em> (emociones) y el <em>neocórtex</em> (razonamiento). Las emociones filtran la percepción del mensaje antes de que el razonamiento lógico lo analice, lo que explica por qué el clima emocional afecta la comprensión.</p>
+    </div>
+  </div>
+
+  <!-- S4 -->
+  <div class="acord-item">
+    <button class="acord-btn" onclick="toggleAcord(this)">
+      <span>Semana 4 · Importancia de la Lectura. Proceso de Comunicación</span>
+      <span class="acord-arrow">▶</span>
+    </button>
+    <div class="acord-panel">
+      <p>La lectura es la herramienta más poderosa de aprendizaje autónomo. El proceso de comunicación clásico comprende: <strong>emisor → codificación → canal → mensaje → decodificación → receptor → retroalimentación</strong>, atravesado en cada etapa por el <em>ruido</em> (cualquier interferencia). En contextos contables y de auditoría, la lectura de normas (NIC/NIIF, normativa SRI) requiere lectura técnica, precisa y crítica.</p>
+    </div>
+  </div>
+
+  <!-- S5 -->
+  <div class="acord-item">
+    <button class="acord-btn" onclick="toggleAcord(this)">
+      <span>Semana 5 · Componentes de la Comunicación</span>
+      <span class="acord-arrow">▶</span>
+    </button>
+    <div class="acord-panel">
+      <p>Los componentes fundamentales son: <strong>emisor, receptor, mensaje, código, canal, referente y contexto</strong>. Roman Jakobson añadió el <em>contacto</em> (conexión física o psicológica). Cada componente puede ser punto de falla; por eso un auditor que redacta un informe debe considerar quién lo leerá (receptor), qué nivel técnico tiene (código compartido) y en qué contexto institucional se usará (referente).</p>
+    </div>
+  </div>
+
+  <!-- S6 -->
+  <div class="acord-item">
+    <button class="acord-btn" onclick="toggleAcord(this)">
+      <span>Semana 6 · Habilidades Comunicativas</span>
+      <span class="acord-arrow">▶</span>
+    </button>
+    <div class="acord-panel">
+      <p>Las cuatro macrohabilidades lingüísticas son: <strong>escuchar, hablar, leer y escribir</strong>. La escucha activa, la asertividad, la empatía y la argumentación sólida son habilidades que se entrenan. La inteligencia emocional (Goleman) y la programación neurolingüística (O'Connor & Seymour) aportan herramientas para mejorar la calidad de la comunicación interpersonal.</p>
+    </div>
+  </div>
+
+  <!-- S7 -->
+  <div class="acord-item">
+    <button class="acord-btn" onclick="toggleAcord(this)">
+      <span>Semana 7 · Comunicación No Verbal. Comunicación Corporativa. Comunicación oral estratégica</span>
+      <span class="acord-arrow">▶</span>
+    </button>
+    <div class="acord-panel">
+      <p>El 55% del impacto comunicativo proviene del lenguaje corporal, el 38% del tono vocal y solo el 7% de las palabras (Mehrabian). La <em>comunicación corporativa</em> es la estrategia que unifica la imagen y los mensajes de una organización ante sus públicos. La comunicación oral estratégica exige planificación: definir el propósito, conocer al público, estructurar el discurso (introducción, desarrollo, conclusión) y practicar la entrega.</p>
+    </div>
+  </div>
+
+  <!-- S9 -->
+  <div class="acord-item">
+    <button class="acord-btn" onclick="toggleAcord(this)">
+      <span>Semana 9 · Tipos de textos y funciones del lenguaje</span>
+      <span class="acord-arrow">▶</span>
+    </button>
+    <div class="acord-panel">
+      <p>Los textos se clasifican por su función (Jakobson): <strong>narrativos, descriptivos, expositivos, argumentativos y conversacionales</strong>. Las funciones del lenguaje son: <em>referencial</em> (informa), <em>expresiva</em> (expresa al hablante), <em>apelativa</em> (actúa sobre el receptor), <em>poética</em> (centra en la forma del mensaje), <em>fática</em> (mantiene el canal) y <em>metalingüística</em> (habla sobre el lenguaje). Un ensayo combina principalmente las funciones referencial, expresiva y apelativa.</p>
+    </div>
+  </div>
+
+  <!-- S10 -->
+  <div class="acord-item">
+    <button class="acord-btn" onclick="toggleAcord(this)">
+      <span>Semana 10 · Niveles de lectura: literal, inferencial, analógico y crítico valorativo. Textos científicos</span>
+      <span class="acord-arrow">▶</span>
+    </button>
+    <div class="acord-panel">
+      <p>El nivel <strong>literal</strong> comprende lo que el texto dice explícitamente. El nivel <strong>inferencial</strong> deduce lo que no se dice pero se implica. El nivel <strong>analógico</strong> conecta el texto con otras experiencias y textos. El nivel <strong>crítico-valorativo</strong> emite un juicio fundamentado sobre el texto. Los textos científicos se caracterizan por su objetividad, precisión terminológica, sistematicidad y verificabilidad. Leer un ensayo con nivel crítico-valorativo es la base para poder escribir uno.</p>
+    </div>
+  </div>
+
+  <!-- S11 -->
+  <div class="acord-item">
+    <button class="acord-btn" onclick="toggleAcord(this)">
+      <span>Semana 11 · Tipos de informes: artículos científicos, ponencias y conferencias</span>
+      <span class="acord-arrow">▶</span>
+    </button>
+    <div class="acord-panel">
+      <p>El <strong>artículo científico</strong> es el texto de investigación más riguroso y corto; se publica en revistas indexadas. La <strong>ponencia</strong> es un texto para presentar en congreso; combina la profundidad del artículo con la oralidad de la conferencia. La <strong>conferencia</strong> es una presentación oral extensa ante un público especializado. Los tres géneros comparten la estructura IMRD (Introducción, Métodos, Resultados, Discusión) y exigen citación rigurosa. El <em>ensayo</em> de esta semana es diferente: admite la voz personal, el juicio propio y la reflexión abierta.</p>
+    </div>
+  </div>
+
+  <div class="box-clave">
+    <h4>🔗 Conexión con la Semana 12</h4>
+    <p>Todo lo aprendido sobre comunicación (verbal, no verbal, funciones del lenguaje, niveles de lectura, géneros textuales) converge en el ensayo: el género escrito donde el autor expresa, argumenta y reflexiona con su propia voz, con libertad estructurada y responsabilidad intelectual.</p>
+  </div>
+</div>
+
+<!-- ============================================================
+     PESTAÑA: TEMA 1 — Qué es el ensayo: definición, origen, características
+     ============================================================ -->
+<div id="tema1" class="tab-content">
+  <h2 class="section-title">Tema 1 · El Ensayo: Definición, Origen y Características</h2>
+
+  <div class="box-concepto">
+    <h3>¿Qué es el ensayo?</h3>
+    <p>El <strong>ensayo</strong> es un género textual de carácter argumentativo en el que un autor desarrolla, de manera libre y personal, su punto de vista sobre un tema, combinando el rigor intelectual con la expresividad individual. A diferencia del artículo científico —que exige neutralidad y método experimental—, el ensayo permite e incluso exige la presencia de la voz del autor, sus juicios, sus dudas y sus conclusiones. Es el género de la reflexión.</p>
+  </div>
+
+  <h3 class="section-subtitle">Origen histórico del ensayo</h3>
+  <p>El término <em>ensayo</em> fue acuñado por el escritor francés <strong>Michel de Montaigne</strong> en 1580 cuando publicó sus <em>Essais</em> ("tentativas" o "pruebas"). Montaigne exploró su propio pensamiento sin pretender decir la última palabra: "Yo mismo soy la materia de mi libro". En español, <strong>Francisco Bacon</strong> (1597) y más tarde <strong>José Ortega y Gasset</strong> y <strong>Alfonso Reyes</strong> consolidaron el ensayo en el mundo hispánico. El ensayo nació precisamente para decir lo que otros géneros no podían: el pensamiento en proceso, la inteligencia en diálogo consigo misma.</p>
+
+  <div class="box-ejemplo">
+    <div class="ej-titulo">📌 Ejemplo ecuatoriano</div>
+    <p>El ensayista ecuatoriano <strong>Benjamín Carrión</strong> (1897-1979) usó el ensayo para defender la identidad cultural latinoamericana. Su obra <em>Mapa de América</em> combina análisis político, reflexión cultural y voz personal. En la actualidad, estudiantes de Contabilidad y Auditoría de la Universidad de Guayaquil emplean el ensayo en sus portafolios académicos para reflexionar sobre ética profesional, fraude corporativo o la función social del contador.</p>
+  </div>
+
+  <h3 class="section-subtitle">Características fundamentales del ensayo</h3>
+  <table>
+    <tr><th>Característica</th><th>Explicación</th></tr>
+    <tr><td><strong>Brevedad relativa</strong></td><td>No tiene la extensión de un libro. Va de 3 a 30 páginas según el nivel.</td></tr>
+    <tr><td><strong>Subjetividad controlada</strong></td><td>El autor expresa su opinión, pero la sustenta con argumentos y fuentes.</td></tr>
+    <tr><td><strong>Libertad estructural</strong></td><td>No hay una estructura rígida, aunque siempre tiene introducción, desarrollo y conclusión.</td></tr>
+    <tr><td><strong>Profundidad reflexiva</strong></td><td>Va más allá de la descripción: analiza, cuestiona, propone.</td></tr>
+    <tr><td><strong>Estilo propio</strong></td><td>El autor desarrolla su voz: puede ser elegante, irónica, apasionada o coloquial.</td></tr>
+    <tr><td><strong>Intertextualidad</strong></td><td>Dialoga con otros textos, cita autores, polemiza con ideas previas.</td></tr>
+    <tr><td><strong>Tema abierto</strong></td><td>Puede abordar cualquier asunto: filosofía, ciencia, arte, política, vida cotidiana.</td></tr>
+  </table>
+
+  <h3 class="section-subtitle">¿Cuándo se usa el ensayo?</h3>
+  <ul class="vis-list">
+    <li>Cuando se quiere explorar un tema sin llegar a una conclusión definitiva, sino abrir el debate.</li>
+    <li>Cuando la posición del autor es parte del valor del texto (no se puede reemplazar por un resumen neutro).</li>
+    <li>Cuando el tema tiene dimensiones éticas, filosóficas, culturales o emocionales que trascienden los datos.</li>
+    <li>Cuando el lector necesita ser persuadido, no solo informado.</li>
+    <li>Cuando el escritor necesita procesar una experiencia o conflicto intelectual de forma pública o privada.</li>
+  </ul>
+
+  <div class="box-clave">
+    <h4>💡 Idea Clave</h4>
+    <p>El ensayo es el único género que <em>autoriza</em> al escritor a ser él mismo en el texto. Esa libertad no es un defecto: es su esencia. Pero la libertad sin argumento es solo opinión; el ensayo transforma la opinión en pensamiento articulado.</p>
+  </div>
+
+  <h3 class="section-subtitle">Diferencia entre ensayo, artículo, informe y texto expositivo</h3>
+  <table>
+    <tr><th>Género</th><th>Voz del autor</th><th>Estructura</th><th>Objetivo</th></tr>
+    <tr><td>Ensayo</td><td>Explícita y personal</td><td>Libre</td><td>Reflexionar y argumentar</td></tr>
+    <tr><td>Artículo científico</td><td>Impersonal y neutra</td><td>IMRD rígida</td><td>Reportar investigación</td></tr>
+    <tr><td>Informe</td><td>Neutra e institucional</td><td>Fija según tipo</td><td>Informar y documentar</td></tr>
+    <tr><td>Texto expositivo</td><td>Neutra</td><td>Variable</td><td>Explicar un tema</td></tr>
+  </table>
+</div>
+
+<!-- ============================================================
+     PESTAÑA: TEMA 2 — Tipos de ensayo
+     ============================================================ -->
+<div id="tema2" class="tab-content">
+  <h2 class="section-title">Tema 2 · Tipos de Ensayo: ¿Cuál usar y cuándo?</h2>
+
+  <p style="margin-bottom:16px;font-size:.95rem;">El ensayo no es un género único: tiene múltiples variantes según el propósito, el tono y el público. Conocerlas te permite elegir la más adecuada para cada situación de tu vida.</p>
+
+  <div class="tipo-card academico">
+    <span class="tc-tag" style="background:#ddeeff;color:#003366;">🎓 Académico</span>
+    <h4>Ensayo Académico</h4>
+    <p><strong>Qué es:</strong> Texto argumentativo que un estudiante o investigador escribe para demostrar comprensión crítica de un tema, dentro de un contexto universitario o científico.</p>
+    <p><strong>Características:</strong> Incluye tesis claramente formulada, argumentos sostenidos con fuentes, citas en norma APA o Vancouver, y un lenguaje formal y preciso.</p>
+    <p><strong>Cuándo usarlo:</strong> En exámenes escritos, trabajos finales de asignatura, portafolios académicos y artículos de revistas universitarias.</p>
+    <div class="box-ejemplo" style="margin-top:10px;">
+      <div class="ej-titulo">📌 Ejemplo UG</div>
+      <p>"<em>El impacto de las NIIF para Pymes en la transparencia financiera de las medianas empresas en Guayaquil: una reflexión crítica</em>" — Este sería un título típico de ensayo académico en Contabilidad y Auditoría.</p>
+    </div>
+  </div>
+
+  <div class="tipo-card literario">
+    <span class="tc-tag" style="background:#f0d8ff;color:#6a1ba0;">✒️ Literario</span>
+    <h4>Ensayo Literario</h4>
+    <p><strong>Qué es:</strong> Combina reflexión intelectual con calidad estética del lenguaje. El autor cuida tanto lo que dice como la belleza de cómo lo dice.</p>
+    <p><strong>Características:</strong> Uso de metáforas, ironía, digresiones deliberadas, prosa rica y personal. Puede analizar literatura, arte, música o cultura.</p>
+    <p><strong>Cuándo usarlo:</strong> Revistas culturales, libros de autor, periódicos de opinión, blogs literarios.</p>
+    <div class="box-ejemplo" style="margin-top:10px;">
+      <div class="ej-titulo">📌 Ejemplo</div>
+      <p>Los <em>Ensayos</em> de Montaigne, <em>El laberinto de la soledad</em> de Octavio Paz, o los ensayos de Jorge Luis Borges sobre el tiempo y el infinito.</p>
+    </div>
+  </div>
+
+  <div class="tipo-card critico">
+    <span class="tc-tag" style="background:#fdd;color:#8b0000;">🔍 Crítico</span>
+    <h4>Ensayo Crítico</h4>
+    <p><strong>Qué es:</strong> Analiza y evalúa una obra, un fenómeno, una política o una idea con criterios explícitos. El autor toma posición y la defiende.</p>
+    <p><strong>Características:</strong> Argumentación rigurosa, evidencia empírica o textual, estructura lógica y posición definida. Sin miedo a la polémica fundamentada.</p>
+    <p><strong>Cuándo usarlo:</strong> Reseñas académicas, debates públicos, análisis de política fiscal, evaluación de normativas contables.</p>
+    <div class="box-ejemplo" style="margin-top:10px;">
+      <div class="ej-titulo">📌 Ejemplo en auditoría</div>
+      <p>"<em>¿Es suficiente el control interno según COSO III para prevenir el fraude en instituciones públicas ecuatorianas?</em>" — Ensayo crítico que analiza la norma COSO y la contrasta con casos reales de la Contraloría General del Estado.</p>
+    </div>
+  </div>
+
+  <div class="tipo-card filosofico">
+    <span class="tc-tag" style="background:#d4f7d4;color:#145214;">🧠 Filosófico</span>
+    <h4>Ensayo Filosófico</h4>
+    <p><strong>Qué es:</strong> Explora preguntas fundamentales sobre la existencia, la ética, el conocimiento o la belleza. No busca respuestas definitivas sino profundizar en la pregunta.</p>
+    <p><strong>Características:</strong> Alto nivel de abstracción, uso de conceptos filosóficos clásicos, citas de pensadores, dialéctica (tesis-antítesis-síntesis).</p>
+    <p><strong>Cuándo usarlo:</strong> Cuando el tema trasciende los datos y exige preguntar "¿por qué?" y "¿para qué?".</p>
+    <div class="box-ejemplo" style="margin-top:10px;">
+      <div class="ej-titulo">📌 Ejemplo</div>
+      <p>"<em>¿Tiene el contador público una obligación moral de denunciar el fraude incluso cuando la ley no lo obliga?</em>" — Ensayo filosófico sobre ética profesional en Contabilidad.</p>
+    </div>
+  </div>
+
+  <div class="tipo-card personal">
+    <span class="tc-tag" style="background:#ffe8cc;color:#7a3500;">💛 Personal</span>
+    <h4>Ensayo Personal o Autobiográfico</h4>
+    <p><strong>Qué es:</strong> El autor se convierte en el principal objeto de reflexión. Explora su propia experiencia para extraer aprendizajes universales.</p>
+    <p><strong>Características:</strong> Primera persona, tono íntimo, anécdotas personales que se elevan a reflexión general, honestidad emocional.</p>
+    <p><strong>Cuándo usarlo:</strong> Terapia escrita, cartas abiertas, blogs, diarios reflexivos, procesos de duelo o transformación personal.</p>
+    <div class="box-ejemplo" style="margin-top:10px;">
+      <div class="ej-titulo">📌 Para ti</div>
+      <p>Escribir un ensayo personal sobre el miedo a equivocarse en el trabajo, sobre lo que significa ser el primero de tu familia en la universidad, o sobre una pérdida que te cambió, es un ejercicio profundamente sanador y formador.</p>
+    </div>
+  </div>
+
+  <div class="tipo-card cientifico">
+    <span class="tc-tag" style="background:#d0f4f9;color:#0a5060;">🔬 Científico-divulgativo</span>
+    <h4>Ensayo Científico o de Divulgación</h4>
+    <p><strong>Qué es:</strong> Presenta hallazgos científicos o técnicos con una voz reflexiva y accesible. Va más allá del informe: interpreta, contextualiza y llama a la reflexión.</p>
+    <p><strong>Características:</strong> Rigor conceptual, lenguaje accesible, perspectiva del autor, datos actualizados y fuentes verificables.</p>
+    <p><strong>Cuándo usarlo:</strong> Revistas de divulgación, medios digitales, colecciones académicas accesibles al público general.</p>
+    <div class="box-ejemplo" style="margin-top:10px;">
+      <div class="ej-titulo">📌 Ejemplo</div>
+      <p>"<em>La inteligencia artificial y el futuro de la auditoría en Ecuador: oportunidades y riesgos para el contador del siglo XXI</em>".</p>
+    </div>
+  </div>
+
+  <div class="tipo-card humoristico">
+    <span class="tc-tag" style="background:#fff4c0;color:#7a5c00;">😄 Humorístico</span>
+    <h4>Ensayo Humorístico o de Humor</h4>
+    <p><strong>Qué es:</strong> Usa la ironía, el sarcasmo, la paradoja y el humor para abordar temas serios o cotidianos. El humor es la estrategia argumentativa, no la evasión del argumento.</p>
+    <p><strong>Características:</strong> Tono lúdico, giros inesperados, exageraciones deliberadas, doble sentido. El humor bien usado revela verdades incómodas con más eficacia que el argumento serio.</p>
+    <p><strong>Cuándo usarlo:</strong> Columnas de opinión, discursos de graduación, blogs, crítica social y cultural.</p>
+    <div class="box-ejemplo" style="margin-top:10px;">
+      <div class="ej-titulo">📌 Ejemplo</div>
+      <p>"<em>Cómo fingir que entiendes el Estado de Situación Financiera en cinco pasos sencillos</em>" — Un ensayo humorístico que critica con gracia la memorización sin comprensión en las universidades.</p>
+    </div>
+  </div>
+
+  <h3 class="section-subtitle">Tabla comparativa de tipos de ensayo</h3>
+  <table>
+    <tr><th>Tipo</th><th>Tono</th><th>Público</th><th>Fuentes</th><th>Extensión típica</th></tr>
+    <tr><td>Académico</td><td>Formal</td><td>Universitario</td><td>Obligatorias</td><td>5–15 páginas</td></tr>
+    <tr><td>Literario</td><td>Estético</td><td>Culto general</td><td>Selectivas</td><td>3–20 páginas</td></tr>
+    <tr><td>Crítico</td><td>Argumentativo</td><td>Especializado</td><td>Necesarias</td><td>5–10 páginas</td></tr>
+    <tr><td>Filosófico</td><td>Reflexivo</td><td>Académico/culto</td><td>Filosóficas</td><td>5–25 páginas</td></tr>
+    <tr><td>Personal</td><td>Íntimo</td><td>General</td><td>Opcionales</td><td>1–10 páginas</td></tr>
+    <tr><td>Divulgativo</td><td>Accesible</td><td>Público amplio</td><td>Científicas</td><td>3–10 páginas</td></tr>
+    <tr><td>Humorístico</td><td>Irónico/lúdico</td><td>General</td><td>Opcionales</td><td>1–5 páginas</td></tr>
+  </table>
+
+  <div class="box-clave">
+    <h4>💡 Idea Clave</h4>
+    <p>No hay un ensayo "correcto" y uno "incorrecto". El tipo de ensayo que eliges debe estar alineado con tu propósito, tu lector y el contexto. Un auditor puede necesitar escribir un ensayo académico para su universidad, uno crítico para una revista profesional, uno personal para procesar una experiencia laboral difícil, y uno humorístico para el discurso de graduación. <strong>El ensayo acompaña toda la vida.</strong></p>
+  </div>
+</div>
+<!-- FRAGMENTO 3: Tema 3, Tema 4, Herramienta Constructora -->
+
+<!-- ============================================================
+     PESTAÑA: TEMA 3 — El ensayo en todas las dimensiones de la vida
+     ============================================================ -->
+<div id="tema3" class="tab-content">
+  <h2 class="section-title">Tema 3 · El Ensayo en Todas las Dimensiones de la Vida</h2>
+
+  <div class="box-concepto">
+    <h3>¿El ensayo es solo para la academia?</h3>
+    <p>No. El ensayo es una <strong>actitud ante la vida</strong>: la de quien no se conforma con recibir la realidad sin cuestionarla. Esa actitud ensayística puede expresarse en múltiples formas: un diario personal, una carta a un ser querido, una columna digital, un discurso de graduación o incluso una conversación reflexiva. Cuando escribes "¿por qué me siento así?" y lo desarrollas honestamente, ya estás ensayando.</p>
+  </div>
+
+  <div class="vida-grid">
+    <div class="vida-card">
+      <div class="vc-icon">🎓</div>
+      <h4>Vida Académica</h4>
+      <p>Trabajos de curso, tesis, portafolios, reseñas críticas, debates escritos. El ensayo académico es la forma más evaluada en la universidad.</p>
+    </div>
+    <div class="vida-card">
+      <div class="vc-icon">💼</div>
+      <h4>Vida Profesional</h4>
+      <p>Cartas de propuesta, memorandos argumentativos, informes con posición propia, columnas en revistas gremiales. Un auditor que sabe ensayar argumenta mejor sus hallazgos.</p>
+    </div>
+    <div class="vida-card">
+      <div class="vc-icon">❤️</div>
+      <h4>Vida Afectiva</h4>
+      <p>Cartas de amor, de reconciliación, de despedida. Diarios emocionales. El ensayo personal es el género más íntimo para explorar lo que sientes hacia otra persona.</p>
+    </div>
+    <div class="vida-card">
+      <div class="vc-icon">🙏</div>
+      <h4>Vida Espiritual</h4>
+      <p>Diarios de oración, meditaciones escritas, reflexiones sobre la fe. Muchos santos y teólogos —Agustín, Pascal, Merton— usaron el ensayo para acercarse a Dios.</p>
+    </div>
+    <div class="vida-card">
+      <div class="vc-icon">🎨</div>
+      <h4>Vida Artística</h4>
+      <p>Manifiesto artístico, crítica de arte, diario creativo, notas de autor. Los artistas usan el ensayo para explicar su obra y su proceso creativo.</p>
+    </div>
+    <div class="vida-card">
+      <div class="vc-icon">😄</div>
+      <h4>Vida Humorística</h4>
+      <p>Columnas de humor, monólogos cómicos elaborados, ensayos satíricos. El humor inteligente es un ensayo disfrazado de risa.</p>
+    </div>
+    <div class="vida-card">
+      <div class="vc-icon">🌱</div>
+      <h4>Vida Ciudadana</h4>
+      <p>Artículos de opinión, cartas al editor, manifiestos comunitarios. El ensayo ciudadano es la voz del pensador en la plaza pública.</p>
+    </div>
+    <div class="vida-card">
+      <div class="vc-icon">🏥</div>
+      <h4>Vida de la Salud Mental</h4>
+      <p>Diarios terapéuticos, cartas que nunca se envían, ejercicios de escritura expresiva. La escritura es reconocida por la psicología como herramienta de sanación.</p>
+    </div>
+  </div>
+
+  <h3 class="section-subtitle">El ensayo en la carrera de Contabilidad y Auditoría</h3>
+  <div class="box-ejemplo">
+    <div class="ej-titulo">📌 Momentos en que necesitarás escribir un ensayo como contador o auditor</div>
+    <table>
+      <tr><th>Situación</th><th>Tipo de ensayo</th><th>Ejemplo de tema</th></tr>
+      <tr><td>Trabajo final de materia</td><td>Académico</td><td>La evasión tributaria y el SRI: análisis de las estrategias de control fiscal 2020-2024</td></tr>
+      <tr><td>Congreso de contabilidad</td><td>Crítico-académico</td><td>¿Son suficientes las NIIF para detectar el fraude en PyMEs ecuatorianas?</td></tr>
+      <tr><td>Carta a tu equipo</td><td>Personal</td><td>Lo que aprendí de mi primer error como auditor</td></tr>
+      <tr><td>Revista gremial CCPGE</td><td>Divulgativo</td><td>El papel del contador ante el lavado de activos en Ecuador</td></tr>
+      <tr><td>Blog personal</td><td>Humorístico</td><td>Los 7 tipos de cliente que todo auditor conoce demasiado bien</td></tr>
+    </table>
+  </div>
+
+  <h3 class="section-subtitle">Estructura clásica del ensayo</h3>
+  <p style="margin-bottom:14px;">Aunque el ensayo tiene libertad estructural, siempre reconocemos tres partes fundamentales:</p>
+
+  <div class="box-tipo">
+    <h4>1. Introducción</h4>
+    <p>Capta la atención del lector con una pregunta provocadora, una cita, un dato sorprendente o una anécdota. Presenta el tema y, sobre todo, formula la <strong>tesis</strong>: la posición central que el ensayo va a defender o explorar. La introducción responde a la pregunta: <em>¿de qué trata este ensayo y qué pretende decir?</em></p>
+  </div>
+
+  <div class="box-tipo">
+    <h4>2. Desarrollo</h4>
+    <p>Es el cuerpo del ensayo. Aquí se despliegan los argumentos, se aportan evidencias, se citan fuentes, se refutan objeciones y se profundiza en los matices. Cada párrafo del desarrollo tiene una idea central (oración temática) que aporta a la tesis. El desarrollo responde a: <em>¿por qué el autor sostiene esa posición?</em></p>
+  </div>
+
+  <div class="box-tipo">
+    <h4>3. Conclusión</h4>
+    <p>No es un resumen mecánico. La conclusión sintetiza el recorrido intelectual, confirma (o matiza) la tesis, y puede abrir nuevas preguntas o llamar a la acción. Una buena conclusión deja al lector pensando. Responde a: <em>¿adónde llegó el pensamiento del autor?</em></p>
+  </div>
+
+  <div class="box-clave">
+    <h4>💡 Idea Clave</h4>
+    <p>Un ensayo sin tesis es un texto que da vueltas en círculos. Un ensayo sin evidencia es solo opinión. Un ensayo sin conclusión es un camino que no llega a ningún lugar. La estructura no limita la libertad: la organiza.</p>
+  </div>
+
+  <h3 class="section-subtitle">Importancia del ensayo en la vida profesional del contador</h3>
+  <ul class="vis-list">
+    <li><strong>Fortalece el pensamiento crítico:</strong> El contador que piensa con matices interpreta mejor las normas contables que cambian.</li>
+    <li><strong>Mejora la redacción de informes:</strong> El que sabe argumentar en un ensayo redacta dictámenes de auditoría más claros y persuasivos.</li>
+    <li><strong>Desarrolla la ética profesional:</strong> Escribir sobre ética obliga a asumir posiciones propias, no solo repetir el código deontológico.</li>
+    <li><strong>Abre puertas académicas:</strong> Muchas becas, maestrías y publicaciones exigen un ensayo de admisión o un ensayo de investigación.</li>
+    <li><strong>Construye una marca personal:</strong> Un contador que escribe bien y reflexiona en público sobre su profesión se diferencia en el mercado laboral.</li>
+  </ul>
+</div>
+
+<!-- ============================================================
+     PESTAÑA: TEMA 4 — El ensayo como herramienta de escape emocional
+     ============================================================ -->
+<div id="tema4" class="tab-content">
+  <h2 class="section-title">Tema 4 · El Ensayo como Herramienta de Sanación Emocional</h2>
+
+  <div class="box-escape">
+    <h3>🌙 Escribir para sanar: la escritura como "escape" de las emociones insanas</h3>
+    <p>Las emociones insanas —rabia retenida, miedo no procesado, vergüenza silenciada, culpa sin resolver, tristeza sin nombre— no desaparecen porque las ignoremos. Se acumulan, se expresan en el cuerpo (insomnio, tensión, enfermedad), en las relaciones (violencia, frialdad, dependencia) o en el comportamiento (procrastinación, adicciones, bloqueo). La escritura —y el ensayo en particular— es una de las vías más poderosas, accesibles y libres de efectos secundarios para liberarlas.</p>
+  </div>
+
+  <div class="box-concepto">
+    <h3>¿Qué dice la ciencia sobre escribir para sanar?</h3>
+    <p>El psicólogo <strong>James W. Pennebaker</strong> (University of Texas) demostró en múltiples estudios desde 1986 que <em>escribir sobre experiencias emocionalmente intensas durante 15-20 minutos al día, por 3 a 4 días consecutivos, produce mejoras mesurables en la salud física e inmunológica, reduce la ansiedad y mejora el desempeño académico</em>. No importa el nivel de escritura: lo que importa es la honestidad. Este proceso se conoce como <strong>escritura expresiva</strong>.</p>
+  </div>
+
+  <h3 class="section-subtitle">Tipos de ensayo terapéutico o emocional</h3>
+
+  <div class="box-tipo">
+    <h4>🌪️ La carta que nunca enviarás</h4>
+    <p>Escribe a quien te hirió, a quien perdiste, a quien extrañas, a quien no pudiste despedirte, incluso a una versión anterior de ti mismo. No hay reglas de cortesía: di lo que nunca dijiste. No la envíes. Quémala o guárdala. El acto de escribirla ya hace el trabajo.</p>
+    <p><em>Emoción que trabaja: rabia, duelo, culpa, amor no expresado.</em></p>
+  </div>
+
+  <div class="box-tipo">
+    <h4>🪞 El ensayo del espejo</h4>
+    <p>Escríbete a ti mismo en segunda persona ("Tú has sido valiente cuando…", "Tú llevas años cargando con…"). Te permite distanciarte de tu propia historia y verte con más compasión. Es especialmente útil después de un fracaso, una ruptura o un período de baja autoestima.</p>
+    <p><em>Emoción que trabaja: vergüenza, baja autoestima, autocrítica excesiva.</em></p>
+  </div>
+
+  <div class="box-tipo">
+    <h4>🌊 El ensayo de flujo libre (freewriting emocional)</h4>
+    <p>Pon un cronómetro en 10 minutos. Empieza con una frase disparadora ("Lo que más me pesa hoy es…", "Me da miedo que…", "Nunca le diría a nadie que…"). Escribe sin parar, sin corregir, sin juzgar. Lo que sale es material de tu subconsciente.</p>
+    <p><em>Emoción que trabaja: ansiedad difusa, confusión emocional, bloqueo creativo.</em></p>
+  </div>
+
+  <div class="box-tipo">
+    <h4>🌸 El ensayo de gratitud narrativa</h4>
+    <p>Distinto de la lista de gratitud, este ensayo narra con detalle un momento de tu vida en el que algo o alguien fue un regalo. No es solo "gracias por X": es la historia completa de ese momento y lo que significó para ti. La narrativa activa más regiones del cerebro que la lista.</p>
+    <p><em>Emoción que trabaja: depresión, vacío existencial, sensación de abandono.</em></p>
+  </div>
+
+  <div class="box-tipo">
+    <h4>📜 El ensayo de resignificación</h4>
+    <p>Toma un evento doloroso de tu vida y escríbelo dos veces: primero como la víctima que lo vivió; luego como el sobreviviente que aprendió de ello. No se trata de minimizar el dolor, sino de encontrar el sentido que transforma. Es el corazón de la <em>logoterapia</em> de Viktor Frankl.</p>
+    <p><em>Emoción que trabaja: trauma, rencor, sensación de sin-sentido.</em></p>
+  </div>
+
+  <div class="box-tipo">
+    <h4>💌 El ensayo de perdón</h4>
+    <p>Escribir sobre el proceso de perdonar —no como acto de debilidad, sino como liberación— es uno de los ejercicios más poderosos. No perdonas por el otro: te liberas a ti mismo de cargar una historia que ya ocurrió. Puedes escribir el ensayo antes, durante o después de que el perdón llegue.</p>
+    <p><em>Emoción que trabaja: rencor, amargura, resentimiento crónico.</em></p>
+  </div>
+
+  <h3 class="section-subtitle">El protocolo de escritura sanadora (5 pasos)</h3>
+  <table>
+    <tr><th>Paso</th><th>Acción</th><th>Duración sugerida</th></tr>
+    <tr><td>1. Preparar el espacio</td><td>Lugar tranquilo, sin interrupciones, papel o pantalla, quizás música suave. Toma tres respiraciones lentas.</td><td>2 min</td></tr>
+    <tr><td>2. Elegir el disparador</td><td>¿Qué emoción o situación quieres explorar hoy? Escribe una frase que inicie el proceso.</td><td>1 min</td></tr>
+    <tr><td>3. Escribir sin censura</td><td>Escribe lo que sale. Sin ortografía, sin coherencia obligatoria. La regla es: no borres.</td><td>10–20 min</td></tr>
+    <tr><td>4. Leer en silencio</td><td>Léelo como si lo hubiera escrito otra persona. ¿Qué ves? ¿Qué sientes leyéndolo?</td><td>5 min</td></tr>
+    <tr><td>5. Cerrar el ritual</td><td>Escribe una oración de cierre ("Hoy entiendo que…", "Me permito soltar…"). Guarda o destruye el texto.</td><td>2 min</td></tr>
+  </table>
+
+  <div class="box-ejemplo">
+    <div class="ej-titulo">📌 ¿Qué emoción libera cada tipo de ensayo? Guía rápida</div>
+    <table>
+      <tr><th>Emoción insana</th><th>Ensayo recomendado</th></tr>
+      <tr><td>Rabia acumulada</td><td>La carta que nunca enviarás</td></tr>
+      <tr><td>Vergüenza / baja autoestima</td><td>El ensayo del espejo</td></tr>
+      <tr><td>Ansiedad / confusión</td><td>Freewriting emocional</td></tr>
+      <tr><td>Tristeza / vacío</td><td>Ensayo de gratitud narrativa</td></tr>
+      <tr><td>Trauma / sin-sentido</td><td>Ensayo de resignificación</td></tr>
+      <tr><td>Rencor / amargura</td><td>Ensayo de perdón</td></tr>
+      <tr><td>Duelo</td><td>Carta + resignificación</td></tr>
+    </table>
+  </div>
+
+  <div class="box-clave">
+    <h4>💡 Idea Clave</h4>
+    <p>Escribir no reemplaza la terapia profesional cuando se la necesita. Pero es una herramienta disponible en cualquier momento, gratuita, sin efectos secundarios y profundamente transformadora. Montaigne lo sabía: "Cada hombre lleva en sí la forma entera de la condición humana." Al escribirte, te conoces; al conocerte, te liberas.</p>
+  </div>
+
+  <h3 class="section-subtitle">El ensayo espiritual: cuando la escritura se convierte en oración</h3>
+  <div class="box-ejemplo">
+    <div class="ej-titulo">📌 Tradición cristiana y escritura reflexiva</div>
+    <p>San Agustín de Hipona escribió las <em>Confesiones</em> (397 d.C.), el primer gran ensayo autobiográfico espiritual de la historia, dirigido directamente a Dios: "Nos hiciste para Ti, Señor, y nuestro corazón estará inquieto hasta que descanse en Ti." Pascal escribió sus <em>Pensamientos</em> como fragmentos ensayísticos sobre la fe y la razón. Escribir al Señor, escribir sobre tu fe, tus dudas, tu camino espiritual, es también hacer ensayo. Y es también sanación.</p>
+  </div>
+</div>
+
+<!-- ============================================================
+     PESTAÑA: HERRAMIENTA CONSTRUCTORA DE ENSAYO
+     ============================================================ -->
+<div id="herramienta" class="tab-content">
+  <h2 class="section-title">🛠️ Constructor Interactivo de Ensayo</h2>
+  <p style="margin-bottom:6px;font-size:.95rem;">Esta herramienta te guía paso a paso para construir un ensayo completo. Al final podrás descargarlo como texto o PDF. Guárdala: te servirá para todos tus ensayos futuros.</p>
+
+  <div class="constructor-wrap">
+    <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-bottom:16px;">
+      <h2 style="margin:0;">🖊️ Mi Constructor de Ensayo</h2>
+      <button class="cons-btn cons-btn-reset" onclick="resetConstructor()">↺ Reiniciar todo</button>
+    </div>
+
+    <!-- Selector de tipo -->
+    <div class="campo-grupo">
+      <label>1. Elige el tipo de ensayo que vas a escribir:</label>
+      <div class="tipo-selector" id="tipoSelector">
+        <span class="tipo-chip" data-tipo="Académico" onclick="selectTipo(this)">🎓 Académico</span>
+        <span class="tipo-chip" data-tipo="Crítico" onclick="selectTipo(this)">🔍 Crítico</span>
+        <span class="tipo-chip" data-tipo="Personal" onclick="selectTipo(this)">💛 Personal</span>
+        <span class="tipo-chip" data-tipo="Filosófico" onclick="selectTipo(this)">🧠 Filosófico</span>
+        <span class="tipo-chip" data-tipo="Literario" onclick="selectTipo(this)">✒️ Literario</span>
+        <span class="tipo-chip" data-tipo="Divulgativo" onclick="selectTipo(this)">🔬 Divulgativo</span>
+        <span class="tipo-chip" data-tipo="Humorístico" onclick="selectTipo(this)">😄 Humorístico</span>
+        <span class="tipo-chip" data-tipo="Terapéutico" onclick="selectTipo(this)">🌿 Terapéutico</span>
+      </div>
+    </div>
+
+    <!-- Barra de progreso -->
+    <div class="cons-progress"><div class="cons-progress-bar" id="consProgressBar" style="width:0%"></div></div>
+
+    <!-- Barra de pasos -->
+    <div class="paso-barra" id="pasoBarra">
+      <div class="paso-dot activo" id="dot0">1.Datos</div>
+      <div class="paso-dot" id="dot1">2.Intro</div>
+      <div class="paso-dot" id="dot2">3.Arg.1</div>
+      <div class="paso-dot" id="dot3">4.Arg.2</div>
+      <div class="paso-dot" id="dot4">5.Arg.3</div>
+      <div class="paso-dot" id="dot5">6.Conclu</div>
+      <div class="paso-dot" id="dot6">7.Vista</div>
+    </div>
+
+    <!-- PASO 0: Datos básicos -->
+    <div class="paso-panel activo" id="paso0">
+      <h3><span class="paso-num">1</span> Datos básicos del ensayo</h3>
+      <div class="campo-grupo">
+        <label for="ens_titulo">Título del ensayo</label>
+        <div class="ayuda">Un título claro y atractivo. Puede ser una pregunta, una afirmación provocadora o una metáfora.</div>
+        <input type="text" id="ens_titulo" class="campo-input" placeholder="Ej: La ética del silencio: cuando el contador sabe y no habla">
+      </div>
+      <div class="campo-grupo">
+        <label for="ens_autor">Tu nombre completo</label>
+        <input type="text" id="ens_autor" class="campo-input" placeholder="Ej: María Fernanda Loor Cevallos">
+      </div>
+      <div class="campo-grupo">
+        <label for="ens_fecha">Fecha</label>
+        <input type="text" id="ens_fecha" class="campo-input" placeholder="Ej: Guayaquil, junio 2025">
+      </div>
+      <div class="campo-grupo">
+        <label for="ens_tesis">Tesis central (la posición que defenderás)</label>
+        <div class="ayuda">Resume en 1-2 oraciones la idea principal de tu ensayo. Esta es la columna vertebral de todo lo demás.</div>
+        <textarea id="ens_tesis" class="campo-input" placeholder="Ej: El silencio del contador ante el fraude no es neutralidad: es complicidad, y debe ser tratada como tal por la normativa profesional ecuatoriana."></textarea>
+      </div>
+      <div class="cons-nav-row">
+        <button class="cons-btn cons-btn-nav" onclick="irPaso(1)">Siguiente → Introducción</button>
+      </div>
+    </div>
+
+    <!-- PASO 1: Introducción -->
+    <div class="paso-panel" id="paso1">
+      <h3><span class="paso-num">2</span> Introducción</h3>
+      <div class="box-concepto" style="margin-bottom:14px;">
+        <h3>¿Cómo abrir un ensayo?</h3>
+        <p>La introducción debe captar la atención en las primeras líneas. Puedes empezar con: una <strong>pregunta provocadora</strong>, una <strong>cita impactante</strong>, un <strong>dato sorprendente</strong>, una <strong>anécdota</strong>, o una <strong>paradoja</strong>. Luego presenta el tema y termina con tu <strong>tesis</strong>.</p>
+      </div>
+      <div class="campo-grupo">
+        <label for="ens_gancho">Gancho de apertura</label>
+        <div class="ayuda">La primera oración que enganchará al lector. Que sea impactante, inesperada o emotiva.</div>
+        <textarea id="ens_gancho" class="campo-input" placeholder="Ej: En 2023, la Contraloría General del Estado detectó irregularidades por más de $47 millones en contratos públicos firmados bajo la supervisión de contadores públicos certificados."></textarea>
+      </div>
+      <div class="campo-grupo">
+        <label for="ens_contexto">Contexto del tema</label>
+        <div class="ayuda">Explica brevemente de qué trata el tema, por qué es relevante y en qué ámbito se inscribe.</div>
+        <textarea id="ens_contexto" class="campo-input" placeholder="Ej: La ética profesional del contador en Ecuador está regulada por el Código de Ética de la IFAC, adoptado por la Federación Nacional de Contadores. Sin embargo..."></textarea>
+      </div>
+      <div class="campo-grupo">
+        <label for="ens_tesis_intro">Tu tesis (repite aquí lo que escribiste antes o ajústala para la introducción)</label>
+        <textarea id="ens_tesis_intro" class="campo-input" placeholder="La tesis debe cerrrar la introducción dejando claro al lector cuál es tu posición."></textarea>
+      </div>
+      <div class="cons-nav-row">
+        <button class="cons-btn cons-btn-nav" onclick="irPaso(0)">← Anterior</button>
+        <button class="cons-btn cons-btn-nav" onclick="irPaso(2)">Siguiente → Argumento 1</button>
+      </div>
+    </div>
+
+    <!-- PASO 2: Argumento 1 -->
+    <div class="paso-panel" id="paso2">
+      <h3><span class="paso-num">3</span> Primer Argumento de Desarrollo</h3>
+      <div class="box-concepto" style="margin-bottom:14px;">
+        <h3>¿Cómo construir un argumento sólido?</h3>
+        <p>Cada argumento tiene: <strong>oración temática</strong> (la idea principal del párrafo), <strong>evidencia</strong> (dato, cita, ejemplo), <strong>análisis</strong> (qué significa esa evidencia para tu tesis) y <strong>transición</strong> (conexión con lo siguiente).</p>
+      </div>
+      <div class="campo-grupo">
+        <label for="ens_arg1_idea">Idea principal del argumento 1</label>
+        <textarea id="ens_arg1_idea" class="campo-input" placeholder="Ej: El Código de Ética de la IFAC establece claramente la obligación de confidencialidad, pero con excepciones explícitas ante evidencia de fraude..."></textarea>
+      </div>
+      <div class="campo-grupo">
+        <label for="ens_arg1_evidencia">Evidencia, dato o ejemplo</label>
+        <div class="ayuda">Cita una fuente, un caso real, una estadística o un ejemplo concreto que sostenga esta idea.</div>
+        <textarea id="ens_arg1_evidencia" class="campo-input" placeholder="Ej: Según el artículo 140.7 del Código de Ética IFAC (IESBA, 2021), el profesional contable puede divulgar información confidencial cuando existe obligación legal o interés público prevaleciente..."></textarea>
+      </div>
+      <div class="campo-grupo">
+        <label for="ens_arg1_analisis">Tu análisis de esa evidencia</label>
+        <div class="ayuda">¿Qué concluyes de ese dato? ¿Por qué importa para tu tesis?</div>
+        <textarea id="ens_arg1_analisis" class="campo-input" placeholder="Ej: Esto evidencia que el silencio absoluto no es la posición que la normativa internacional adopta: hay casos en los que hablar no solo está permitido, sino exigido moralmente..."></textarea>
+      </div>
+      <div class="cons-nav-row">
+        <button class="cons-btn cons-btn-nav" onclick="irPaso(1)">← Anterior</button>
+        <button class="cons-btn cons-btn-nav" onclick="irPaso(3)">Siguiente → Argumento 2</button>
+      </div>
+    </div>
+
+    <!-- PASO 3: Argumento 2 -->
+    <div class="paso-panel" id="paso3">
+      <h3><span class="paso-num">4</span> Segundo Argumento de Desarrollo</h3>
+      <div class="campo-grupo">
+        <label for="ens_arg2_idea">Idea principal del argumento 2</label>
+        <textarea id="ens_arg2_idea" class="campo-input" placeholder="Ej: El miedo a las represalias laborales es la principal razón por la que los contadores callan..."></textarea>
+      </div>
+      <div class="campo-grupo">
+        <label for="ens_arg2_evidencia">Evidencia, dato o ejemplo</label>
+        <textarea id="ens_arg2_evidencia" class="campo-input" placeholder="Ej: Un estudio de ACFE (2022) indica que el 42% de los fraudes corporativos es detectado primero por empleados, pero solo el 38% de ellos lo reporta a tiempo..."></textarea>
+      </div>
+      <div class="campo-grupo">
+        <label for="ens_arg2_analisis">Tu análisis de esa evidencia</label>
+        <textarea id="ens_arg2_analisis" class="campo-input" placeholder="Ej: Esta brecha entre detección y reporte revela que el problema no es epistémico (no saber) sino volitivo (no atreverse), lo que ubica el debate en el terreno de la ética personal..."></textarea>
+      </div>
+      <div class="cons-nav-row">
+        <button class="cons-btn cons-btn-nav" onclick="irPaso(2)">← Anterior</button>
+        <button class="cons-btn cons-btn-nav" onclick="irPaso(4)">Siguiente → Argumento 3</button>
+      </div>
+    </div>
+
+    <!-- PASO 4: Argumento 3 -->
+    <div class="paso-panel" id="paso4">
+      <h3><span class="paso-num">5</span> Tercer Argumento (o contraargumento rebatido)</h3>
+      <div class="box-concepto" style="margin-bottom:14px;">
+        <h3>💡 El contraargumento: señal de pensamiento maduro</h3>
+        <p>Un ensayo poderoso no ignora las posiciones contrarias: las presenta con justicia y luego las rebate con argumentos sólidos. Esto demuestra que el autor conoce el debate y no solo predica a los convencidos.</p>
+      </div>
+      <div class="campo-grupo">
+        <label for="ens_arg3_idea">Tercer argumento O contraargumento que luego rebates</label>
+        <textarea id="ens_arg3_idea" class="campo-input" placeholder="Ej: Podría argumentarse que el contador no tiene herramientas legales para denunciar sin exponerse a consecuencias laborales..."></textarea>
+      </div>
+      <div class="campo-grupo">
+        <label for="ens_arg3_evidencia">Evidencia o desarrollo</label>
+        <textarea id="ens_arg3_evidencia" class="campo-input" placeholder="Ej: Sin embargo, la Ley de Compañías ecuatoriana y la Ley Orgánica de Contraloría establecen canales de denuncia anónima..."></textarea>
+      </div>
+      <div class="campo-grupo">
+        <label for="ens_arg3_analisis">Tu respuesta / análisis</label>
+        <textarea id="ens_arg3_analisis" class="campo-input" placeholder="Ej: El argumento del miedo, aunque comprensible humanamente, no puede ser validado institucionalmente si queremos construir una cultura de transparencia contable en Ecuador..."></textarea>
+      </div>
+      <div class="cons-nav-row">
+        <button class="cons-btn cons-btn-nav" onclick="irPaso(3)">← Anterior</button>
+        <button class="cons-btn cons-btn-nav" onclick="irPaso(5)">Siguiente → Conclusión</button>
+      </div>
+    </div>
+
+    <!-- PASO 5: Conclusión -->
+    <div class="paso-panel" id="paso5">
+      <h3><span class="paso-num">6</span> Conclusión</h3>
+      <div class="box-concepto" style="margin-bottom:14px;">
+        <h3>Una buena conclusión hace tres cosas:</h3>
+        <p>1. <strong>Sintetiza</strong> el recorrido del argumento (sin repetir mecánicamente). 2. <strong>Reafirma la tesis</strong> con la fuerza que le dan los argumentos presentados. 3. <strong>Abre hacia adelante</strong>: propone una reflexión final, una llamada a la acción o una pregunta que el lector seguirá pensando.</p>
+      </div>
+      <div class="campo-grupo">
+        <label for="ens_sintesis">Síntesis del recorrido argumentativo</label>
+        <textarea id="ens_sintesis" class="campo-input" placeholder="Ej: A lo largo de este ensayo hemos visto que la normativa internacional no avala el silencio absoluto, que el miedo es la causa real —no la imposibilidad legal— y que los canales existen pero no se usan..."></textarea>
+      </div>
+      <div class="campo-grupo">
+        <label for="ens_cierre">Afirmación final o llamada a la acción</label>
+        <div class="ayuda">La última oración que dejará pensando al lector. Hazla memorable.</div>
+        <textarea id="ens_cierre" class="campo-input" placeholder="Ej: El contador que calla ante el fraude no es solo un empleado leal a una empresa: es, sin quererlo, un arquitecto de la corrupción que después dice no haber sabido nada."></textarea>
+      </div>
+      <div class="campo-grupo">
+        <label for="ens_referencias">Referencias bibliográficas (opcional, en APA 7.ª)</label>
+        <div class="ayuda">Lista las fuentes que usaste. Una por línea.</div>
+        <textarea id="ens_referencias" class="campo-input" style="min-height:80px;" placeholder="Ej: IESBA. (2021). Código de Ética para Profesionales de la Contabilidad. IFAC.&#10;ACFE. (2022). Report to the Nations. Association of Certified Fraud Examiners."></textarea>
+      </div>
+      <div class="cons-nav-row">
+        <button class="cons-btn cons-btn-nav" onclick="irPaso(4)">← Anterior</button>
+        <button class="cons-btn cons-btn-primary" onclick="generarPreview()">✨ Generar mi ensayo</button>
+      </div>
+    </div>
+
+    <!-- PASO 6: Vista previa y descarga -->
+    <div class="paso-panel" id="paso6">
+      <h3><span class="paso-num">7</span> Vista Previa y Descarga</h3>
+      <p style="font-size:.88rem;color:#555;margin-bottom:12px;">Aquí está tu ensayo completo. Puedes descargarlo como texto o como HTML para impresión.</p>
+      <div class="preview-ensayo" id="previewEnsayo">Tu ensayo aparecerá aquí...</div>
+      <div class="cons-nav-row">
+        <button class="cons-btn cons-btn-nav" onclick="irPaso(5)">← Editar</button>
+        <button class="cons-btn cons-btn-success" onclick="descargarTXT()">⬇ Descargar como texto</button>
+        <button class="cons-btn cons-btn-pdf" onclick="descargarHTML()">🖨️ Imprimir / Guardar PDF</button>
+      </div>
+      <div style="margin-top:12px;font-size:.82rem;color:#666;">
+        <strong>Cómo guardar como PDF:</strong> En el botón "Imprimir / Guardar PDF", el navegador abrirá una ventana de impresión. Selecciona "Guardar como PDF" como destino de impresión.
+      </div>
+    </div>
+  </div>
+
+  <!-- Ejemplos de ensayos finalizados por tipo -->
+  <h2 class="section-title" style="margin-top:32px;">📄 Ejemplos de Ensayos por Tipo</h2>
+  <p style="margin-bottom:16px;font-size:.93rem;">Lee estos ejemplos para entender cómo se ve un ensayo terminado en cada modalidad.</p>
+
+  <div class="box-tipo">
+    <h4>🎓 Ejemplo de ensayo académico (fragmento)</h4>
+    <p><strong>Título:</strong> "La transparencia financiera como derecho ciudadano: análisis crítico de los mecanismos de rendición de cuentas del sector público ecuatoriano"</p>
+    <p><strong>Introducción:</strong> En 2022, solo el 34% de los Gobiernos Autónomos Descentralizados del Ecuador presentaron su información financiera dentro del plazo establecido por la Contraloría General del Estado (CGE, 2022). Esta cifra no es solo un dato técnico: es el síntoma de una cultura institucional que aún no internaliza la transparencia como obligación ética, sino como carga burocrática. El presente ensayo sostiene que la transparencia financiera no es un privilegio administrativo sino un <em>derecho ciudadano</em> que exige mecanismos de exigibilidad más robustos que los actuales...</p>
+  </div>
+
+  <div class="box-tipo">
+    <h4>💛 Ejemplo de ensayo personal (fragmento)</h4>
+    <p><strong>Título:</strong> "La noche antes de mi primer examen de auditoría"</p>
+    <p><strong>Introducción:</strong> Hay noches que no se olvidan. La del 14 de mayo de 2024, yo, con dieciocho años, mi calculadora, cuatro tazas de café y el código tributario subrayado en tres colores distintos, descubrí algo que ningún libro me había enseñado: que el miedo y la preparación pueden coexistir en la misma persona, en el mismo momento. Este ensayo es un intento de entender qué me enseñó esa noche sobre quién soy y adónde voy...</p>
+  </div>
+
+  <div class="box-tipo">
+    <h4>😄 Ejemplo de ensayo humorístico (fragmento)</h4>
+    <p><strong>Título:</strong> "Manual de supervivencia para el cliente que no entiende por qué le están cobrando IVA"</p>
+    <p><strong>Introducción:</strong> Cada contador tiene un cliente así. No, no el que paga tarde —ese es otro manual—. Hablo del cliente que, con la cara más seria del mundo, te mira a los ojos y te pregunta: "¿Y ese 15% del IVA no lo puedes poner en otro lado?" El presente ensayo, redactado desde las cicatrices de la experiencia, ofrece una taxonomía científica de los siete arquetipos del cliente que lucha contra el sistema tributario sin haber leído ninguna ley tributaria...</p>
+  </div>
+
+  <div class="box-tipo">
+    <h4>🌿 Ejemplo de ensayo terapéutico (fragmento)</h4>
+    <p><strong>Título:</strong> "Carta para la versión de mí que reprobó y creyó que todo había terminado"</p>
+    <p><strong>Apertura:</strong> Querida yo de septiembre de 2023: Sé que ahora mismo sientes que fallaste. Que miras esa nota y ves un número que parece decirte todo lo que no eres. Quiero decirte algo que todavía no puedes escuchar, pero que igual voy a decirte porque algún día lo leerás y lo entenderás: ese número no sabe quién eres tú. No sabe lo que dejaste ir para estudiar. No sabe lo que callaste. No sabe el peso que cargabas esa mañana de examen...</p>
+  </div>
+</div>
+<!-- FRAGMENTO 4: Ejercicio Interactivo y Cuestionario -->
+
+<!-- ============================================================
+     PESTAÑA: EJERCICIO INTERACTIVO
+     ============================================================ -->
+<div id="ejercicio" class="tab-content">
+  <h2 class="section-title">✏️ Ejercicio Interactivo</h2>
+  <div class="quiz-intro">
+    <strong>Instrucciones:</strong> Clasifica cada afirmación como VERDADERA o FALSA según lo estudiado sobre el ensayo. Responde todos los ítems antes de presionar <em>Verificar respuestas</em>.
+  </div>
+
+  <!-- ei1 -->
+  <div class="quiz-item" id="ej-item-1">
+    <div class="q-num">Ítem 1</div>
+    <div class="q-texto">El término "ensayo" como género literario fue acuñado por el escritor francés Michel de Montaigne en el siglo XVI.</div>
+    <div class="opciones">
+      <label class="opcion-label"><input type="radio" name="ei1" value="V"> V &nbsp; Verdadero</label>
+      <label class="opcion-label"><input type="radio" name="ei1" value="F"> F &nbsp; Falso</label>
+    </div>
+    <div class="q-feedback" id="fb-ei1"></div>
+  </div>
+
+  <!-- ei2 -->
+  <div class="quiz-item" id="ej-item-2">
+    <div class="q-num">Ítem 2</div>
+    <div class="q-texto">A diferencia del artículo científico, el ensayo permite e incluso exige la presencia de la voz personal del autor y sus juicios propios.</div>
+    <div class="opciones">
+      <label class="opcion-label"><input type="radio" name="ei2" value="V"> V &nbsp; Verdadero</label>
+      <label class="opcion-label"><input type="radio" name="ei2" value="F"> F &nbsp; Falso</label>
+    </div>
+    <div class="q-feedback" id="fb-ei2"></div>
+  </div>
+
+  <!-- ei3 -->
+  <div class="quiz-item" id="ej-item-3">
+    <div class="q-num">Ítem 3</div>
+    <div class="q-texto">La <em>tesis</em> de un ensayo es el resumen de sus argumentos y siempre aparece en la conclusión.</div>
+    <div class="opciones">
+      <label class="opcion-label"><input type="radio" name="ei3" value="V"> V &nbsp; Verdadero</label>
+      <label class="opcion-label"><input type="radio" name="ei3" value="F"> F &nbsp; Falso</label>
+    </div>
+    <div class="q-feedback" id="fb-ei3"></div>
+  </div>
+
+  <!-- ei4 -->
+  <div class="quiz-item" id="ej-item-4">
+    <div class="q-num">Ítem 4</div>
+    <div class="q-texto">El ensayo personal o autobiográfico puede usarse como herramienta terapéutica para procesar emociones difíciles.</div>
+    <div class="opciones">
+      <label class="opcion-label"><input type="radio" name="ei4" value="V"> V &nbsp; Verdadero</label>
+      <label class="opcion-label"><input type="radio" name="ei4" value="F"> F &nbsp; Falso</label>
+    </div>
+    <div class="q-feedback" id="fb-ei4"></div>
+  </div>
+
+  <!-- ei5 -->
+  <div class="quiz-item" id="ej-item-5">
+    <div class="q-num">Ítem 5</div>
+    <div class="q-texto">El ensayo humorístico no tiene valor intelectual porque usa el humor y, por lo tanto, no puede transmitir argumentos serios.</div>
+    <div class="opciones">
+      <label class="opcion-label"><input type="radio" name="ei5" value="V"> V &nbsp; Verdadero</label>
+      <label class="opcion-label"><input type="radio" name="ei5" value="F"> F &nbsp; Falso</label>
+    </div>
+    <div class="q-feedback" id="fb-ei5"></div>
+  </div>
+
+  <!-- ei6 -->
+  <div class="quiz-item" id="ej-item-6">
+    <div class="q-num">Ítem 6</div>
+    <div class="q-texto">Según el psicólogo James Pennebaker, la escritura expresiva sobre experiencias emocionalmente intensas puede producir mejoras en la salud física e inmunológica.</div>
+    <div class="opciones">
+      <label class="opcion-label"><input type="radio" name="ei6" value="V"> V &nbsp; Verdadero</label>
+      <label class="opcion-label"><input type="radio" name="ei6" value="F"> F &nbsp; Falso</label>
+    </div>
+    <div class="q-feedback" id="fb-ei6"></div>
+  </div>
+
+  <!-- ei7 -->
+  <div class="quiz-item" id="ej-item-7">
+    <div class="q-num">Ítem 7</div>
+    <div class="q-texto">El ensayo académico no requiere incluir fuentes ni citas porque, al ser un texto de opinión, la evidencia no es necesaria.</div>
+    <div class="opciones">
+      <label class="opcion-label"><input type="radio" name="ei7" value="V"> V &nbsp; Verdadero</label>
+      <label class="opcion-label"><input type="radio" name="ei7" value="F"> F &nbsp; Falso</label>
+    </div>
+    <div class="q-feedback" id="fb-ei7"></div>
+  </div>
+
+  <!-- ei8 -->
+  <div class="quiz-item" id="ej-item-8">
+    <div class="q-num">Ítem 8</div>
+    <div class="q-texto">Un contador o auditor puede usar el ensayo en su vida profesional para argumentar en revistas gremiales, reflexionar sobre ética o escribir propuestas institucionales.</div>
+    <div class="opciones">
+      <label class="opcion-label"><input type="radio" name="ei8" value="V"> V &nbsp; Verdadero</label>
+      <label class="opcion-label"><input type="radio" name="ei8" value="F"> F &nbsp; Falso</label>
+    </div>
+    <div class="q-feedback" id="fb-ei8"></div>
+  </div>
+
+  <div class="alerta-pendiente" id="alerta-ej">⚠️ Por favor responde todos los ítems antes de verificar.</div>
+  <button class="btn-verificar" onclick="verificarEjercicio()">✔ Verificar respuestas</button>
+
+  <div class="score-panel" id="score-ej">
+    <div class="score-emoji" id="emoji-ej">🏆</div>
+    <div class="score-pts" id="pts-ej">0 / 8</div>
+    <div class="score-msg" id="msg-ej"></div>
+    <div class="score-bar-wrap"><div class="score-bar" id="bar-ej"></div></div>
+    <button class="btn-reiniciar" onclick="reiniciarEjercicio()">↺ Reiniciar ejercicio</button>
+  </div>
+</div>
+
+<!-- ============================================================
+     PESTAÑA: CUESTIONARIO
+     ============================================================ -->
+<div id="cuestionario" class="tab-content">
+  <h2 class="section-title">📝 Cuestionario de Evaluación</h2>
+  <div class="quiz-intro">
+    <strong>Instrucciones:</strong> 10 preguntas de opción múltiple (7 teóricas + 3 de análisis de caso). Selecciona todas tus respuestas antes de presionar <em>Verificar respuestas</em>. Cada pregunta vale 1 punto.
+  </div>
+
+  <!-- qi1 -->
+  <div class="quiz-item" id="q-item-1">
+    <div class="q-num">Pregunta 1 <span class="q-badge badge-teorica">Teórica</span></div>
+    <div class="q-texto">¿Cuál es la característica que distingue fundamentalmente al ensayo del artículo científico?</div>
+    <div class="opciones">
+      <label class="opcion-label"><input type="radio" name="qi1" value="a"> a) El ensayo utiliza datos estadísticos mientras que el artículo no.</label>
+      <label class="opcion-label"><input type="radio" name="qi1" value="b"> b) El ensayo permite e integra la voz y el juicio personal del autor, mientras que el artículo científico exige neutralidad.</label>
+      <label class="opcion-label"><input type="radio" name="qi1" value="c"> c) El ensayo siempre es más largo que el artículo científico.</label>
+      <label class="opcion-label"><input type="radio" name="qi1" value="d"> d) El ensayo solo puede tratar temas literarios, a diferencia del artículo.</label>
+    </div>
+    <div class="q-feedback" id="fb-qi1"></div>
+  </div>
+
+  <!-- qi2 -->
+  <div class="quiz-item" id="q-item-2">
+    <div class="q-num">Pregunta 2 <span class="q-badge badge-teorica">Teórica</span></div>
+    <div class="q-texto">¿Qué escritor acuñó el término "ensayo" como género literario y en qué siglo?</div>
+    <div class="opciones">
+      <label class="opcion-label"><input type="radio" name="qi2" value="a"> a) Francisco Bacon, en el siglo XVII.</label>
+      <label class="opcion-label"><input type="radio" name="qi2" value="b"> b) Michel de Montaigne, en el siglo XVI.</label>
+      <label class="opcion-label"><input type="radio" name="qi2" value="c"> c) Jorge Luis Borges, en el siglo XX.</label>
+      <label class="opcion-label"><input type="radio" name="qi2" value="d"> d) Aristóteles, en la Antigüedad clásica.</label>
+    </div>
+    <div class="q-feedback" id="fb-qi2"></div>
+  </div>
+
+  <!-- qi3 -->
+  <div class="quiz-item" id="q-item-3">
+    <div class="q-num">Pregunta 3 <span class="q-badge badge-teorica">Teórica</span></div>
+    <div class="q-texto">¿Qué elemento estructural del ensayo constituye su "columna vertebral" y debe formularse claramente en la introducción?</div>
+    <div class="opciones">
+      <label class="opcion-label"><input type="radio" name="qi3" value="a"> a) El gancho narrativo.</label>
+      <label class="opcion-label"><input type="radio" name="qi3" value="b"> b) La conclusión anticipada.</label>
+      <label class="opcion-label"><input type="radio" name="qi3" value="c"> c) La tesis central.</label>
+      <label class="opcion-label"><input type="radio" name="qi3" value="d"> d) La bibliografía.</label>
+    </div>
+    <div class="q-feedback" id="fb-qi3"></div>
+  </div>
+
+  <!-- qi4 -->
+  <div class="quiz-item" id="q-item-4">
+    <div class="q-num">Pregunta 4 <span class="q-badge badge-teorica">Teórica</span></div>
+    <div class="q-texto">¿Qué tipo de ensayo usa la ironía, el sarcasmo y la paradoja para abordar temas serios de manera lúdica y revelar verdades incómodas?</div>
+    <div class="opciones">
+      <label class="opcion-label"><input type="radio" name="qi4" value="a"> a) El ensayo filosófico.</label>
+      <label class="opcion-label"><input type="radio" name="qi4" value="b"> b) El ensayo de divulgación científica.</label>
+      <label class="opcion-label"><input type="radio" name="qi4" value="c"> c) El ensayo humorístico.</label>
+      <label class="opcion-label"><input type="radio" name="qi4" value="d"> d) El ensayo autobiográfico.</label>
+    </div>
+    <div class="q-feedback" id="fb-qi4"></div>
+  </div>
+
+  <!-- qi5 -->
+  <div class="quiz-item" id="q-item-5">
+    <div class="q-num">Pregunta 5 <span class="q-badge badge-teorica">Teórica</span></div>
+    <div class="q-texto">¿Cuál es el propósito de incluir un contraargumento en el ensayo crítico?</div>
+    <div class="opciones">
+      <label class="opcion-label"><input type="radio" name="qi5" value="a"> a) Debilitar la tesis del autor para parecer objetivo.</label>
+      <label class="opcion-label"><input type="radio" name="qi5" value="b"> b) Demostrar madurez intelectual al presentar posiciones contrarias y luego rebatirlas con argumentos sólidos.</label>
+      <label class="opcion-label"><input type="radio" name="qi5" value="c"> c) Sustituir el argumento principal cuando el autor no tiene suficiente evidencia.</label>
+      <label class="opcion-label"><input type="radio" name="qi5" value="d"> d) Cumplir con la extensión mínima exigida por el docente.</label>
+    </div>
+    <div class="q-feedback" id="fb-qi5"></div>
+  </div>
+
+  <!-- qi6 -->
+  <div class="quiz-item" id="q-item-6">
+    <div class="q-num">Pregunta 6 <span class="q-badge badge-teorica">Teórica</span></div>
+    <div class="q-texto">El psicólogo James Pennebaker demostró que la escritura expresiva sobre experiencias emocionalmente intensas produce:</div>
+    <div class="opciones">
+      <label class="opcion-label"><input type="radio" name="qi6" value="a"> a) Únicamente beneficios estéticos y creativos sin impacto en la salud.</label>
+      <label class="opcion-label"><input type="radio" name="qi6" value="b"> b) Mejoras en la salud física e inmunológica, reducción de la ansiedad y mejora del desempeño académico.</label>
+      <label class="opcion-label"><input type="radio" name="qi6" value="c"> c) Efectos positivos solo cuando el autor tiene formación psicológica previa.</label>
+      <label class="opcion-label"><input type="radio" name="qi6" value="d"> d) Resultados negativos en personas sin habilidad literaria.</label>
+    </div>
+    <div class="q-feedback" id="fb-qi6"></div>
+  </div>
+
+  <!-- qi7 -->
+  <div class="quiz-item" id="q-item-7">
+    <div class="q-num">Pregunta 7 <span class="q-badge badge-teorica">Teórica</span></div>
+    <div class="q-texto">¿Cuál es la diferencia entre el ensayo y el texto expositivo según lo estudiado?</div>
+    <div class="opciones">
+      <label class="opcion-label"><input type="radio" name="qi7" value="a"> a) El texto expositivo es más largo y usa más citas que el ensayo.</label>
+      <label class="opcion-label"><input type="radio" name="qi7" value="b"> b) El ensayo tiene voz personal explícita y busca reflexionar y argumentar; el texto expositivo tiene voz neutra y busca explicar.</label>
+      <label class="opcion-label"><input type="radio" name="qi7" value="c"> c) El texto expositivo admite la opinión del autor mientras que el ensayo debe ser objetivo.</label>
+      <label class="opcion-label"><input type="radio" name="qi7" value="d"> d) No existe diferencia real; son sinónimos en la lingüística moderna.</label>
+    </div>
+    <div class="q-feedback" id="fb-qi7"></div>
+  </div>
+
+  <!-- qi8 — Análisis de caso -->
+  <div class="quiz-item" id="q-item-8">
+    <div class="q-num">Pregunta 8 <span class="q-badge badge-caso">Análisis de caso</span></div>
+    <div class="q-texto">
+      <strong>Caso:</strong> Valentina, estudiante de Contabilidad, recibe la tarea de escribir sobre el impacto del SRI en la recaudación fiscal de las PyMEs guayaquileñas. Escribe un texto de cinco páginas describiendo el funcionamiento del SRI, sus herramientas y sus datos estadísticos, pero no expresa ninguna posición propia, no formula tesis y no argumenta a favor de ningún punto de vista.<br><br>
+      ¿El texto de Valentina es un ensayo?
+    </div>
+    <div class="opciones">
+      <label class="opcion-label"><input type="radio" name="qi8" value="a"> a) Sí, porque tiene cinco páginas y trata un tema relevante para la carrera.</label>
+      <label class="opcion-label"><input type="radio" name="qi8" value="b"> b) Sí, porque usa datos estadísticos del SRI, lo que lo convierte en un ensayo científico.</label>
+      <label class="opcion-label"><input type="radio" name="qi8" value="c"> c) No, porque le falta la tesis y la voz argumentativa del autor; es un texto expositivo o descriptivo.</label>
+      <label class="opcion-label"><input type="radio" name="qi8" value="d"> d) No, porque un ensayo nunca puede usar datos estadísticos de instituciones públicas.</label>
+    </div>
+    <div class="q-feedback" id="fb-qi8"></div>
+  </div>
+
+  <!-- qi9 — Análisis de caso -->
+  <div class="quiz-item" id="q-item-9">
+    <div class="q-num">Pregunta 9 <span class="q-badge badge-caso">Análisis de caso</span></div>
+    <div class="q-texto">
+      <strong>Caso:</strong> Andrés lleva semanas sintiéndose paralizado por el fracaso en un examen de auditoría. No puede hablar del tema con nadie y evita pensar en ello. Su compañera le sugiere que escriba durante 15 minutos al día, sin reglas, sobre lo que siente respecto a ese fracaso.<br><br>
+      ¿Qué tipo de escritura le está recomendando su compañera, y qué efecto puede esperarse según la investigación de Pennebaker?
+    </div>
+    <div class="opciones">
+      <label class="opcion-label"><input type="radio" name="qi9" value="a"> a) Un ensayo académico, que le permitirá sistematizar el aprendizaje del examen con método científico.</label>
+      <label class="opcion-label"><input type="radio" name="qi9" value="b"> b) Escritura expresiva o ensayo terapéutico; puede reducir su ansiedad, mejorar su salud e incluso su rendimiento académico posterior.</label>
+      <label class="opcion-label"><input type="radio" name="qi9" value="c"> c) Un diario de metas, que reemplaza la escritura emocional con planificación.</label>
+      <label class="opcion-label"><input type="radio" name="qi9" value="d"> d) Un ensayo crítico, que le permitirá cuestionar el sistema de evaluación universitaria.</label>
+    </div>
+    <div class="q-feedback" id="fb-qi9"></div>
+  </div>
+
+  <!-- qi10 — Análisis de caso -->
+  <div class="quiz-item" id="q-item-10">
+    <div class="q-num">Pregunta 10 <span class="q-badge badge-caso">Análisis de caso</span></div>
+    <div class="q-texto">
+      <strong>Caso:</strong> La Revista de Ciencias Administrativas de la Universidad de Guayaquil convoca a un concurso de escritura para estudiantes. El tema es "Ética y responsabilidad del contador ecuatoriano ante el fraude corporativo". El jurado busca textos que tomen una posición clara, la defiendan con argumentos y fuentes, y la presenten con un estilo que refleje la voz del autor.<br><br>
+      ¿Qué tipo de texto deben presentar los participantes?
+    </div>
+    <div class="opciones">
+      <label class="opcion-label"><input type="radio" name="qi10" value="a"> a) Un informe técnico con estructura IMRD y voz impersonal.</label>
+      <label class="opcion-label"><input type="radio" name="qi10" value="b"> b) Un ensayo académico-crítico: con tesis, argumentos sostenidos con fuentes, y voz personal del autor.</label>
+      <label class="opcion-label"><input type="radio" name="qi10" value="c"> c) Un texto narrativo de ficción sobre un caso de fraude inventado.</label>
+      <label class="opcion-label"><input type="radio" name="qi10" value="d"> d) Un ensayo humorístico, ya que la ironía es más efectiva para abordar temas de ética.</label>
+    </div>
+    <div class="q-feedback" id="fb-qi10"></div>
+  </div>
+
+  <div class="alerta-pendiente" id="alerta-quiz">⚠️ Por favor responde todas las preguntas antes de verificar.</div>
+  <button class="btn-verificar" onclick="verificarCuestionario()">✔ Verificar respuestas</button>
+
+  <div class="score-panel" id="score-quiz">
+    <div class="score-emoji" id="emoji-quiz">🏆</div>
+    <div class="score-pts" id="pts-quiz">0 / 10</div>
+    <div class="score-msg" id="msg-quiz"></div>
+    <div class="score-bar-wrap"><div class="score-bar" id="bar-quiz"></div></div>
+    <button class="btn-reiniciar" onclick="reiniciarCuestionario()">↺ Reiniciar cuestionario</button>
+  </div>
+</div>
+<!-- FRAGMENTO 5: Actividad IA, Reflexión, Bibliografía, JavaScript -->
+
+<!-- ============================================================
+     PESTAÑA: ACTIVIDAD CON IA
+     ============================================================ -->
+<div id="ia" class="tab-content">
+  <h2 class="section-title">🤖 Actividad con Inteligencia Artificial</h2>
+
+  <div class="ia-box">
+    <h3>¿Por qué usar IA para aprender a escribir ensayos?</h3>
+    <p>La IA no escribe el ensayo por ti: te ayuda a pensar <em>contra</em> ella. Cuando la IA da una respuesta, tu trabajo es cuestionarla, matizarla, corregirla o enriquecerla con tu experiencia y contexto. Eso es pensamiento crítico aplicado. La herramienta recomendada es <strong>Claude en claude.ai</strong> (gratuito), por su capacidad de razonamiento matizado y respuestas largas.</p>
+  </div>
+
+  <h3 class="section-subtitle">🎯 Actividad: "La IA como primer lector de mi ensayo"</h3>
+  <p style="margin-bottom:14px;font-size:.93rem;">Esta actividad tiene tres fases. Léelas completas antes de empezar.</p>
+
+  <div class="box-tipo">
+    <h4>Fase 1: Generar (10 minutos)</h4>
+    <p>Elige un tema vinculado a tu carrera de Contabilidad y Auditoría. Puede ser ético, técnico, profesional o personal. Escribe una tesis provisional de dos oraciones. Luego usa el siguiente prompt con Claude.</p>
+  </div>
+
+  <div class="prompt-box">PROMPT EXACTO PARA COPIAR EN CLAUDE (claude.ai):
+
+"Soy estudiante de Contabilidad y Auditoría de la Universidad de Guayaquil, Ecuador. 
+Estoy escribiendo un ensayo académico-crítico sobre el siguiente tema:
+
+[ESCRIBE AQUÍ TU TEMA]
+
+Mi tesis provisional es: [ESCRIBE AQUÍ TU TESIS DE 1-2 ORACIONES]
+
+Necesito que hagas lo siguiente:
+1. Evalúa si mi tesis es suficientemente clara y argumentable, o si es demasiado general.
+2. Propón 3 argumentos principales que podrían sostener mi tesis.
+3. Señala el contraargumento más fuerte que alguien en desacuerdo con mi tesis podría usar.
+4. Sugiere 2 fuentes reales (con autor y año, sin inventar) que podrían respaldar 
+   esta posición en el contexto ecuatoriano o latinoamericano.
+5. Redacta un párrafo de introducción de ejemplo con gancho, contexto y tesis.
+
+Recuerda que el ensayo se enmarca en el contexto normativo ecuatoriano 
+(SRI, Contraloría General del Estado, NIIF adoptadas por Ecuador)."</div>
+
+  <div class="box-tipo">
+    <h4>Fase 2: Dialogar y cuestionar (15 minutos)</h4>
+    <p>Lee la respuesta de Claude con actitud crítica. Pregúntate: ¿Los argumentos que propone son los mejores para mi tesis? ¿Hay alguno que no me convence? ¿Las fuentes son reales y aplicables a Ecuador? ¿El párrafo de ejemplo suena a mi voz o a voz genérica?</p>
+    <p>Luego escribe en el chat de Claude al menos 3 preguntas de seguimiento, por ejemplo:</p>
+    <ul class="vis-list" style="margin-top:8px;">
+      <li>"El argumento 2 me parece débil porque… ¿cómo lo mejorarías?"</li>
+      <li>"La fuente que propones, ¿es aplicable al contexto de las PyMEs en Guayaquil específicamente?"</li>
+      <li>"¿Qué haría que mi introducción fuera más impactante para un lector ecuatoriano?"</li>
+    </ul>
+  </div>
+
+  <div class="box-tipo">
+    <h4>Fase 3: Crear (20 minutos)</h4>
+    <p>Con todo lo dialogado, escribe la introducción de tu propio ensayo. Debe ser <strong>100% tuya</strong>: en tu voz, con tus palabras, con tu experiencia. Puede incorporar ideas de Claude, pero no frases copiadas. Al terminar, comparte tu párrafo con Claude y pídele retroalimentación sobre la claridad de tu tesis y la fuerza de tu gancho.</p>
+  </div>
+
+  <h3 class="section-subtitle">📊 Criterio de evaluación: ¿Cómo saber si hice la actividad bien?</h3>
+  <div class="rubrica-item nivel-3">
+    <strong>🟢 Nivel 3 – Pensamiento crítico activo:</strong> El estudiante usa las respuestas de Claude como punto de partida, las cuestiona explícitamente, adapta los argumentos al contexto ecuatoriano y produce una introducción original que suena a su propia voz. Entrega también una reflexión de 3-5 oraciones sobre qué cambió de la propuesta de Claude y por qué.
+  </div>
+  <div class="rubrica-item nivel-2">
+    <strong>🟡 Nivel 2 – Uso instrumental sin cuestionamiento:</strong> El estudiante usa los argumentos de Claude tal como los propuso, sin adaptarlos ni cuestionarlos. La introducción mezcla frases del estudiante con frases de Claude sin distinguirlas.
+  </div>
+  <div class="rubrica-item nivel-1">
+    <strong>🔴 Nivel 1 – Copia de IA:</strong> El estudiante copia directamente el párrafo generado por Claude como si fuera suyo. No hay evidencia de diálogo ni de pensamiento propio. Esto invalida la actividad.
+  </div>
+
+  <div class="box-clave">
+    <h4>💡 Recuerda</h4>
+    <p>La inteligencia artificial es el "primer lector crítico" más disponible que has tenido en la historia de la educación. Pero un lector, por muy inteligente que sea, no puede pensar <em>por</em> ti. Lo que piensas tú, con tu historia, tu contexto y tus valores, es irreemplazable.</p>
+  </div>
+</div>
+
+<!-- ============================================================
+     PESTAÑA: REFLEXIÓN
+     ============================================================ -->
+<div id="reflexion" class="tab-content">
+  <h2 class="section-title">🌱 Preguntas de Reflexión Personal</h2>
+  <p style="margin-bottom:16px;font-size:.95rem;">No hay respuestas correctas ni incorrectas. Estas preguntas son para ti. Puedes responderlas en tu mente, en tu diario o en una conversación contigo mismo. El objetivo es que el ensayo deje de ser solo una tarea académica y se convierta en una forma de conocerte.</p>
+
+  <div class="ref-item">
+    <div class="ref-num">Reflexión 1 · Sobre tu voz</div>
+    <div class="ref-pregunta">¿Hay algo que piensas con mucha claridad pero que nunca dices en voz alta porque temes que no suene suficientemente inteligente o que nadie lo comparta?</div>
+    <div class="ref-pista">Eso —exactamente eso— es lo que debería estar en tu primer ensayo. El ensayo nació para decir lo que no cabe en ningún otro lugar.</div>
+  </div>
+
+  <div class="ref-item">
+    <div class="ref-num">Reflexión 2 · Sobre las emociones y la escritura</div>
+    <div class="ref-pregunta">¿Tienes alguna emoción que llevas cargando hace tiempo (rabia, tristeza, vergüenza, decepción) que nunca has podido soltar? ¿Qué pasaría si la pusieras en palabras durante 15 minutos, sin que nadie la vea?</div>
+    <div class="ref-pista">Pennebaker demostró que escribir esa emoción, aunque nadie lo lea, ya comienza a liberarla. Tu cuerpo lo sentirá.</div>
+  </div>
+
+  <div class="ref-item">
+    <div class="ref-num">Reflexión 3 · Sobre tu historia</div>
+    <div class="ref-pregunta">¿Cuál es el momento de tu vida —de fracaso, de pérdida, de miedo— que todavía sientes que "no has terminado de entender"? Si lo escribieras como un ensayo de resignificación, ¿qué título le pondrías?</div>
+    <div class="ref-pista">Viktor Frankl decía que el ser humano puede soportar cualquier cómo si tiene un por qué. El ensayo te ayuda a encontrar tu por qué.</div>
+  </div>
+
+  <div class="ref-item">
+    <div class="ref-num">Reflexión 4 · Sobre tu profesión y tus valores</div>
+    <div class="ref-pregunta">Si mañana descubrieras en tu trabajo una irregularidad financiera que nadie más ha visto, ¿qué harías? ¿Hablarías? ¿Callarías? ¿De qué dependería tu decisión? ¿Qué dice eso de ti?</div>
+    <div class="ref-pista">La ética no es una lista de normas: es una decisión que tomas cuando nadie te mira y cuando no hay una respuesta fácil. El ensayo filosófico o crítico es el espacio ideal para explorar esa decisión.</div>
+  </div>
+
+  <div class="ref-item">
+    <div class="ref-num">Reflexión 5 · Sobre el autoconocimiento</div>
+    <div class="ref-pregunta">¿Quién eres tú cuando nadie te está evaluando? ¿Tu voz en el ensayo personal sería diferente de la que usas en clase, con tu familia o con tus amigos? ¿Cuál de esas voces se parece más a tu yo auténtico?</div>
+    <div class="ref-pista">La PNL (Programación Neurolingüística) nos enseña que el lenguaje que usamos construye la realidad que vivimos. El ensayo personal es el laboratorio donde puedes elegir con qué palabras construirte.</div>
+  </div>
+
+  <div class="ref-item">
+    <div class="ref-num">Reflexión 6 · Sobre el perdón y la libertad</div>
+    <div class="ref-pregunta">¿Hay alguien a quien te cueste perdonar —incluyéndote a ti mismo— por algo del pasado? ¿Qué crees que pasaría contigo si escribieras, sin enviarla, una carta de perdón dirigida a esa persona o a esa versión de ti?</div>
+    <div class="ref-pista">"Perdonar no es olvidar. Es soltar la piedra que has estado cargando para poder caminar más liviano." Escribir el perdón es el primer paso de ese camino.</div>
+  </div>
+
+  <div class="box-escape" style="margin-top:24px;">
+    <h3>🌟 Un último pensamiento</h3>
+    <p>El ensayo no es una tarea. Es una conversación contigo mismo que quedó por escrito. Cada vez que lo escribes, te conoces un poco mejor. Cada vez que te conoces mejor, vives con más libertad y menos miedo. Escribe. No porque alguien lo pida: sino porque tienes algo que decir.</p>
+  </div>
+</div>
+
+<!-- ============================================================
+     PESTAÑA: BIBLIOGRAFÍA
+     ============================================================ -->
+<div id="bibliografia" class="tab-content">
+  <h2 class="section-title">📚 Bibliografía</h2>
+  <p style="margin-bottom:16px;font-size:.93rem;">Referencias en formato APA 7.ª edición. Solo fuentes verificadas y existentes.</p>
+
+  <div class="bib-card">
+    <div class="bib-autor">Montaigne, M. de (2007).</div>
+    <div class="bib-titulo">Ensayos completos.</div>
+    <div class="bib-ref">Cátedra. (Obra original publicada en 1580; traducción de Dolç i Pelayo revisada por Vicent Alonso)</div>
+  </div>
+
+  <div class="bib-card">
+    <div class="bib-autor">Pennebaker, J. W., & Beall, S. K. (1986).</div>
+    <div class="bib-titulo">Confronting a traumatic event: Toward an understanding of inhibition and disease.</div>
+    <div class="bib-ref"><em>Journal of Abnormal Psychology, 95</em>(3), 274–281. https://doi.org/10.1037/0021-843X.95.3.274</div>
+  </div>
+
+  <div class="bib-card">
+    <div class="bib-autor">Pennebaker, J. W. (2004).</div>
+    <div class="bib-titulo">Writing to heal: A guided journal for recovering from trauma and emotional upheaval.</div>
+    <div class="bib-ref">New Harbinger Publications.</div>
+  </div>
+
+  <div class="bib-card">
+    <div class="bib-autor">Reyes, A. (1997).</div>
+    <div class="bib-titulo">El deslinde: Prolegómenos a la teoría literaria.</div>
+    <div class="bib-ref">Fondo de Cultura Económica. (Obra original publicada en 1944)</div>
+  </div>
+
+  <div class="bib-card">
+    <div class="bib-autor">Ortega y Gasset, J. (2005).</div>
+    <div class="bib-titulo">La deshumanización del arte y otros ensayos de estética.</div>
+    <div class="bib-ref">Espasa-Calpe. (Obra original publicada en 1925)</div>
+  </div>
+
+  <div class="bib-card">
+    <div class="bib-autor">Frankl, V. E. (2004).</div>
+    <div class="bib-titulo">El hombre en busca de sentido.</div>
+    <div class="bib-ref">Herder Editorial. (Obra original publicada en 1946)</div>
+  </div>
+
+  <div class="bib-card">
+    <div class="bib-autor">Cassany, D. (2006).</div>
+    <div class="bib-titulo">Taller de textos: Leer, escribir y comentar en el aula.</div>
+    <div class="bib-ref">Paidós.</div>
+  </div>
+
+  <div class="bib-card">
+    <div class="bib-autor">Vásquez Rodríguez, F. (2011).</div>
+    <div class="bib-titulo">El ensayo: entre el cielo y la tierra.</div>
+    <div class="bib-ref"><em>Revista Enunciación, 16</em>(2), 99–111. Universidad Distrital Francisco José de Caldas.</div>
+  </div>
+
+  <div class="bib-nota">
+    📌 <strong>Nota:</strong> Se recomienda verificar cada referencia en Google Scholar en <a href="https://scholar.google.com" target="_blank" style="color:#8a6800;">scholar.google.com</a> o en el repositorio institucional de la Universidad de Guayaquil antes de citar en trabajos académicos.
+  </div>
+</div>
+
+<!-- ============================================================
+     JAVASCRIPT COMPLETO
+     ============================================================ -->
+<script>
+// ============================================================
+// SISTEMA DE PESTAÑAS
+// ============================================================
+function showTab(id) {
+  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  var el = document.getElementById(id);
+  if (el) el.classList.add('active');
+  var btns = document.querySelectorAll('.tab-btn');
+  btns.forEach(function(b) {
+    if (b.getAttribute('onclick') && b.getAttribute('onclick').indexOf("'" + id + "'") !== -1) {
+      b.classList.add('active');
+    }
+  });
+}
+
+// ============================================================
+// ACORDEÓN REPASO
+// ============================================================
+function toggleAcord(btn) {
+  var panel = btn.nextElementSibling;
+  var arrow = btn.querySelector('.acord-arrow');
+  if (panel.classList.contains('open')) {
+    panel.classList.remove('open');
+    panel.style.display = 'none';
+    arrow.textContent = '▶';
+  } else {
+    panel.classList.add('open');
+    panel.style.display = 'block';
+    arrow.textContent = '▼';
+  }
+}
+
+// ============================================================
+// EJERCICIO INTERACTIVO
+// ============================================================
+var respCorrectas_ej = {
+  ei1: 'V', ei2: 'V', ei3: 'F', ei4: 'V',
+  ei5: 'F', ei6: 'V', ei7: 'F', ei8: 'V'
+};
+
+var feedback_ej = {
+  ei1: { correcto: '✓ Correcto. Michel de Montaigne acuñó el término con sus <em>Essais</em> de 1580, obras que él mismo denominó "tentativas" de pensamiento.', incorrecto: '✗ Incorrecto. Fue Michel de Montaigne quien acuñó el término "ensayo" en 1580 con sus <em>Essais</em>.' },
+  ei2: { correcto: '✓ Correcto. La presencia de la voz personal y el juicio del autor es la característica definitoria del ensayo frente al artículo científico.', incorrecto: '✗ Incorrecto. El ensayo, a diferencia del artículo científico, permite e incluso exige la voz y el juicio personal del autor.' },
+  ei3: { correcto: '', incorrecto: '✗ Falso. La tesis es la posición central que el autor defiende y se formula en la <strong>introducción</strong>, no en la conclusión. La conclusión la reafirma, pero no la formula por primera vez.' },
+  ei4: { correcto: '✓ Correcto. El ensayo personal y la escritura expresiva son herramientas terapéuticas avaladas por la investigación de James Pennebaker, entre otros.', incorrecto: '✗ Incorrecto. El ensayo personal es efectivamente una herramienta de sanación emocional respaldada por investigación científica.' },
+  ei5: { correcto: '', incorrecto: '✗ Falso. El ensayo humorístico usa el humor como estrategia argumentativa para revelar verdades incómodas. El humor bien usado tiene alto valor intelectual y político.' },
+  ei6: { correcto: '✓ Correcto. Pennebaker demostró desde 1986 que la escritura expresiva mejora la salud física, reduce la ansiedad y mejora el rendimiento académico.', incorrecto: '✗ Incorrecto. Pennebaker sí demostró estos beneficios en múltiples estudios desde 1986.' },
+  ei7: { correcto: '', incorrecto: '✗ Falso. El ensayo académico requiere sustentar la opinión con fuentes, datos y argumentos. Sin evidencia, es solo opinión sin rigor.' },
+  ei8: { correcto: '✓ Correcto. El ensayo es un género versátil que acompaña toda la vida profesional del contador: revistas gremiales, reflexiones éticas, propuestas y más.', incorrecto: '✗ Incorrecto. El ensayo sí tiene múltiples aplicaciones en la vida profesional del contador y el auditor.' }
+};
+
+function verificarEjercicio() {
+  var nombres = ['ei1','ei2','ei3','ei4','ei5','ei6','ei7','ei8'];
+  var pendiente = false;
+  nombres.forEach(function(n) {
+    if (!document.querySelector('input[name="' + n + '"]:checked')) pendiente = true;
+  });
+  if (pendiente) {
+    document.getElementById('alerta-ej').style.display = 'block';
+    return;
+  }
+  document.getElementById('alerta-ej').style.display = 'none';
+  var correctos = 0;
+  nombres.forEach(function(n) {
+    var sel = document.querySelector('input[name="' + n + '"]:checked');
+    var val = sel ? sel.value : null;
+    var labels = document.querySelectorAll('input[name="' + n + '"]');
+    labels.forEach(function(inp) { inp.parentElement.classList.remove('correcta','incorrecta','omitida'); });
+    var fb = document.getElementById('fb-' + n);
+    fb.style.display = 'block';
+    if (val === respCorrectas_ej[n]) {
+      sel.parentElement.classList.add('correcta');
+      fb.className = 'q-feedback correcto';
+      fb.innerHTML = feedback_ej[n].correcto;
+      correctos++;
+    } else {
+      if (sel) sel.parentElement.classList.add('incorrecta');
+      var corrLabel = document.querySelector('input[name="' + n + '"][value="' + respCorrectas_ej[n] + '"]');
+      if (corrLabel) corrLabel.parentElement.classList.add('correcta');
+      fb.className = 'q-feedback incorrecto';
+      fb.innerHTML = feedback_ej[n].incorrecto;
+    }
+    labels.forEach(function(inp) { inp.disabled = true; });
+  });
+  var pct = Math.round((correctos / 8) * 100);
+  var scorePanel = document.getElementById('score-ej');
+  scorePanel.style.display = 'block';
+  document.getElementById('pts-ej').textContent = correctos + ' / 8 (' + pct + '%)';
+  var emojis = pct === 100 ? '🏆' : pct >= 80 ? '🎯' : pct >= 60 ? '📘' : pct >= 40 ? '⚠️' : '📖';
+  var msgs   = pct === 100 ? '¡Perfecto! Dominaste todos los conceptos del ensayo.' : pct >= 80 ? '¡Muy bien! Comprendes los fundamentos del ensayo.' : pct >= 60 ? 'Buen avance. Repasa los ítems incorrectos.' : pct >= 40 ? 'Sigue estudiando. Revisa las pestañas de contenido.' : 'Regresa al contenido y vuelve a intentarlo.';
+  document.getElementById('emoji-ej').textContent = emojis;
+  document.getElementById('msg-ej').textContent = msgs;
+  setTimeout(function() { document.getElementById('bar-ej').style.width = pct + '%'; }, 100);
+}
+
+function reiniciarEjercicio() {
+  ['ei1','ei2','ei3','ei4','ei5','ei6','ei7','ei8'].forEach(function(n) {
+    document.querySelectorAll('input[name="' + n + '"]').forEach(function(i) {
+      i.checked = false; i.disabled = false;
+      i.parentElement.classList.remove('correcta','incorrecta','omitida');
+    });
+    var fb = document.getElementById('fb-' + n);
+    fb.style.display = 'none'; fb.textContent = '';
+  });
+  document.getElementById('score-ej').style.display = 'none';
+  document.getElementById('bar-ej').style.width = '0%';
+  document.getElementById('alerta-ej').style.display = 'none';
+}
+
+// ============================================================
+// CUESTIONARIO
+// ============================================================
+var respCorrectas_q = {
+  qi1:'b', qi2:'b', qi3:'c', qi4:'c', qi5:'b',
+  qi6:'b', qi7:'b', qi8:'c', qi9:'b', qi10:'b'
+};
+
+var feedback_q = {
+  qi1:  { correcto: '✓ Correcto. La presencia explícita de la voz y el juicio del autor es la distinción esencial del ensayo frente al artículo científico.', incorrecto: '✗ La respuesta correcta es (b). El ensayo permite la voz personal del autor; el artículo científico exige neutralidad e impersonalidad.' },
+  qi2:  { correcto: '✓ Correcto. Michel de Montaigne publicó sus <em>Essais</em> en 1580, en el siglo XVI, y acuñó el término para el género.', incorrecto: '✗ La respuesta correcta es (b). Fue Michel de Montaigne en 1580 (siglo XVI) quien acuñó el término y fundó el género ensayístico.' },
+  qi3:  { correcto: '✓ Correcto. La tesis es la posición central del ensayo, su columna vertebral, y se formula claramente en la introducción.', incorrecto: '✗ La respuesta correcta es (c). La tesis es la posición central del ensayo y aparece en la introducción, no en la conclusión.' },
+  qi4:  { correcto: '✓ Correcto. El ensayo humorístico usa la ironía, el sarcasmo y la paradoja como herramientas argumentativas para revelar verdades incómodas.', incorrecto: '✗ La respuesta correcta es (c). El ensayo humorístico es el que usa la ironía y el sarcasmo como estrategia argumentativa.' },
+  qi5:  { correcto: '✓ Correcto. El contraargumento bien usado demuestra madurez intelectual: el autor conoce las posiciones contrarias y las rebate con solidez.', incorrecto: '✗ La respuesta correcta es (b). El contraargumento fortalece el ensayo al demostrar que el autor conoce y puede rebatir las posiciones opuestas.' },
+  qi6:  { correcto: '✓ Correcto. Pennebaker demostró que la escritura expresiva produce mejoras físicas, inmunológicas y académicas verificables.', incorrecto: '✗ La respuesta correcta es (b). Pennebaker documentó múltiples beneficios de salud física, inmunológica y académica en sus investigaciones desde 1986.' },
+  qi7:  { correcto: '✓ Correcto. El ensayo tiene voz personal explícita y busca reflexionar y argumentar; el expositivo tiene voz neutra y busca explicar sin posicionarse.', incorrecto: '✗ La respuesta correcta es (b). El ensayo tiene voz personal y argumenta; el texto expositivo tiene voz neutra y solo explica.' },
+  qi8:  { correcto: '✓ Correcto. El texto de Valentina describe y expone, pero no formula tesis ni argumenta: es un texto expositivo, no un ensayo.', incorrecto: '✗ La respuesta correcta es (c). Sin tesis y sin voz argumentativa, el texto de Valentina es expositivo o descriptivo, no un ensayo.' },
+  qi9:  { correcto: '✓ Correcto. La compañera le sugiere escritura expresiva (ensayo terapéutico), que según Pennebaker reduce la ansiedad y mejora el rendimiento.', incorrecto: '✗ La respuesta correcta es (b). Se trata de escritura expresiva o ensayo terapéutico, cuyo efecto es reducir la ansiedad y mejorar el rendimiento según Pennebaker.' },
+  qi10: { correcto: '✓ Correcto. La convocatoria pide posición clara, argumentos con fuentes y voz del autor: las características del ensayo académico-crítico.', incorrecto: '✗ La respuesta correcta es (b). La convocatoria describe exactamente un ensayo académico-crítico: tesis, argumentos con fuentes y voz propia.' }
+};
+
+function verificarCuestionario() {
+  var nombres = ['qi1','qi2','qi3','qi4','qi5','qi6','qi7','qi8','qi9','qi10'];
+  var pendiente = false;
+  nombres.forEach(function(n) {
+    if (!document.querySelector('input[name="' + n + '"]:checked')) pendiente = true;
+  });
+  if (pendiente) {
+    document.getElementById('alerta-quiz').style.display = 'block';
+    return;
+  }
+  document.getElementById('alerta-quiz').style.display = 'none';
+  var correctos = 0;
+  nombres.forEach(function(n) {
+    var sel = document.querySelector('input[name="' + n + '"]:checked');
+    var val = sel ? sel.value : null;
+    document.querySelectorAll('input[name="' + n + '"]').forEach(function(i) {
+      i.parentElement.classList.remove('correcta','incorrecta');
+    });
+    var fb = document.getElementById('fb-' + n);
+    fb.style.display = 'block';
+    if (val === respCorrectas_q[n]) {
+      if (sel) sel.parentElement.classList.add('correcta');
+      fb.className = 'q-feedback correcto';
+      fb.innerHTML = feedback_q[n].correcto;
+      correctos++;
+    } else {
+      if (sel) sel.parentElement.classList.add('incorrecta');
+      var corrLabel = document.querySelector('input[name="' + n + '"][value="' + respCorrectas_q[n] + '"]');
+      if (corrLabel) corrLabel.parentElement.classList.add('correcta');
+      fb.className = 'q-feedback incorrecto';
+      fb.innerHTML = feedback_q[n].incorrecto;
+    }
+    document.querySelectorAll('input[name="' + n + '"]').forEach(function(i) { i.disabled = true; });
+  });
+  var pct = Math.round((correctos / 10) * 100);
+  var scorePanel = document.getElementById('score-quiz');
+  scorePanel.style.display = 'block';
+  document.getElementById('pts-quiz').textContent = correctos + ' / 10 (' + pct + '%)';
+  var emojis = pct === 100 ? '🏆' : pct >= 80 ? '🎯' : pct >= 60 ? '📘' : pct >= 40 ? '⚠️' : '📖';
+  var msgs   = pct === 100 ? '¡Excelente! Dominaste completamente el tema del ensayo.' : pct >= 80 ? '¡Muy bien! Tienes sólida comprensión del ensayo.' : pct >= 60 ? 'Bien encaminado. Refuerza los temas donde fallaste.' : pct >= 40 ? 'Necesitas repasar el material. ¡Tú puedes!' : 'Regresa a las pestañas de contenido y vuelve a intentar.';
+  document.getElementById('emoji-quiz').textContent = emojis;
+  document.getElementById('msg-quiz').textContent = msgs;
+  setTimeout(function() { document.getElementById('bar-quiz').style.width = pct + '%'; }, 100);
+}
+
+function reiniciarCuestionario() {
+  ['qi1','qi2','qi3','qi4','qi5','qi6','qi7','qi8','qi9','qi10'].forEach(function(n) {
+    document.querySelectorAll('input[name="' + n + '"]').forEach(function(i) {
+      i.checked = false; i.disabled = false;
+      i.parentElement.classList.remove('correcta','incorrecta');
+    });
+    var fb = document.getElementById('fb-' + n);
+    if (fb) { fb.style.display = 'none'; fb.textContent = ''; }
+  });
+  document.getElementById('score-quiz').style.display = 'none';
+  document.getElementById('bar-quiz').style.width = '0%';
+  document.getElementById('alerta-quiz').style.display = 'none';
+}
+
+// ============================================================
+// HERRAMIENTA CONSTRUCTORA
+// ============================================================
+var pasoActual = 0;
+var tipoSeleccionado = '';
+var totalPasos = 7;
+
+function selectTipo(chip) {
+  document.querySelectorAll('.tipo-chip').forEach(function(c) { c.classList.remove('selected'); });
+  chip.classList.add('selected');
+  tipoSeleccionado = chip.getAttribute('data-tipo');
+}
+
+function irPaso(n) {
+  document.querySelectorAll('.paso-panel').forEach(function(p) { p.classList.remove('activo'); p.style.display = 'none'; });
+  document.querySelectorAll('.paso-dot').forEach(function(d) {
+    d.classList.remove('activo');
+    var idx = parseInt(d.id.replace('dot',''));
+    if (idx < n) d.classList.add('completo'); else d.classList.remove('completo');
+  });
+  var panel = document.getElementById('paso' + n);
+  if (panel) { panel.classList.add('activo'); panel.style.display = 'block'; }
+  var dot = document.getElementById('dot' + n);
+  if (dot) dot.classList.add('activo');
+  pasoActual = n;
+  var pct = Math.round((n / (totalPasos - 1)) * 100);
+  document.getElementById('consProgressBar').style.width = pct + '%';
+}
+
+function generarPreview() {
+  var tipo   = tipoSeleccionado || 'No especificado';
+  var titulo = document.getElementById('ens_titulo').value.trim() || '[Sin título]';
+  var autor  = document.getElementById('ens_autor').value.trim()  || '[Sin autor]';
+  var fecha  = document.getElementById('ens_fecha').value.trim()  || '[Sin fecha]';
+  var tesis  = document.getElementById('ens_tesis').value.trim()  || '';
+  var gancho = document.getElementById('ens_gancho').value.trim() || '';
+  var contexto= document.getElementById('ens_contexto').value.trim() || '';
+  var tesisIntro = document.getElementById('ens_tesis_intro').value.trim() || tesis;
+  var a1i    = document.getElementById('ens_arg1_idea').value.trim()      || '';
+  var a1e    = document.getElementById('ens_arg1_evidencia').value.trim() || '';
+  var a1a    = document.getElementById('ens_arg1_analisis').value.trim()  || '';
+  var a2i    = document.getElementById('ens_arg2_idea').value.trim()      || '';
+  var a2e    = document.getElementById('ens_arg2_evidencia').value.trim() || '';
+  var a2a    = document.getElementById('ens_arg2_analisis').value.trim()  || '';
+  var a3i    = document.getElementById('ens_arg3_idea').value.trim()      || '';
+  var a3e    = document.getElementById('ens_arg3_evidencia').value.trim() || '';
+  var a3a    = document.getElementById('ens_arg3_analisis').value.trim()  || '';
+  var sintesis = document.getElementById('ens_sintesis').value.trim()  || '';
+  var cierre   = document.getElementById('ens_cierre').value.trim()    || '';
+  var refs     = document.getElementById('ens_referencias').value.trim()|| '';
+
+  var texto = titulo + '\n';
+  texto += 'Tipo de ensayo: ' + tipo + '\n';
+  texto += 'Autor: ' + autor + '\n';
+  texto += fecha + '\n';
+  texto += '\n— INTRODUCCIÓN —\n\n';
+  if (gancho)    texto += gancho + '\n\n';
+  if (contexto)  texto += contexto + '\n\n';
+  if (tesisIntro) texto += tesisIntro + '\n';
+  texto += '\n— DESARROLLO —\n';
+  if (a1i) { texto += '\n[Argumento 1]\n' + a1i + '\n'; }
+  if (a1e) { texto += '\n' + a1e + '\n'; }
+  if (a1a) { texto += '\n' + a1a + '\n'; }
+  if (a2i) { texto += '\n[Argumento 2]\n' + a2i + '\n'; }
+  if (a2e) { texto += '\n' + a2e + '\n'; }
+  if (a2a) { texto += '\n' + a2a + '\n'; }
+  if (a3i) { texto += '\n[Argumento 3 / Contraargumento]\n' + a3i + '\n'; }
+  if (a3e) { texto += '\n' + a3e + '\n'; }
+  if (a3a) { texto += '\n' + a3a + '\n'; }
+  texto += '\n— CONCLUSIÓN —\n\n';
+  if (sintesis) texto += sintesis + '\n\n';
+  if (cierre)   texto += cierre + '\n';
+  if (refs) {
+    texto += '\n— REFERENCIAS —\n\n' + refs + '\n';
+  }
+
+  document.getElementById('previewEnsayo').textContent = texto;
+  irPaso(6);
+}
+
+function descargarTXT() {
+  var titulo = document.getElementById('ens_titulo').value.trim() || 'mi_ensayo';
+  var texto  = document.getElementById('previewEnsayo').textContent;
+  var blob   = new Blob([texto], {type:'text/plain;charset=utf-8'});
+  var a      = document.createElement('a');
+  a.href     = URL.createObjectURL(blob);
+  a.download = titulo.replace(/[^a-zA-Z0-9áéíóúÁÉÍÓÚñÑ _]/g,'_').substring(0,60) + '.txt';
+  a.click();
+}
+
+function descargarHTML() {
+  var titulo = document.getElementById('ens_titulo').value.trim() || 'Mi ensayo';
+  var autor  = document.getElementById('ens_autor').value.trim()  || '';
+  var fecha  = document.getElementById('ens_fecha').value.trim()  || '';
+  var texto  = document.getElementById('previewEnsayo').textContent;
+  var html = '<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8">';
+  html += '<title>' + titulo + '</title>';
+  html += '<style>body{font-family:Georgia,serif;max-width:750px;margin:60px auto;line-height:1.8;color:#1a1a2e;padding:0 20px;}';
+  html += 'h1{font-size:1.6rem;color:#003366;margin-bottom:4px;}';
+  html += '.meta{color:#666;font-size:.9rem;margin-bottom:30px;}';
+  html += 'pre{white-space:pre-wrap;font-family:Georgia,serif;font-size:1rem;}</style>';
+  html += '</head><body>';
+  html += '<h1>' + titulo + '</h1>';
+  html += '<div class="meta">' + autor + ' &nbsp;·&nbsp; ' + fecha + '</div>';
+  html += '<pre>' + texto + '</pre></body></html>';
+  var blob = new Blob([html], {type:'text/html;charset=utf-8'});
+  var a    = document.createElement('a');
+  a.href   = URL.createObjectURL(blob);
+  a.download = titulo.replace(/[^a-zA-Z0-9áéíóúÁÉÍÓÚñÑ _]/g,'_').substring(0,60) + '.html';
+  a.click();
+  setTimeout(function() { window.print(); }, 800);
+}
+
+function resetConstructor() {
+  if (!confirm('¿Deseas borrar todo el contenido del constructor y empezar desde cero?')) return;
+  ['ens_titulo','ens_autor','ens_fecha','ens_tesis','ens_gancho','ens_contexto','ens_tesis_intro',
+   'ens_arg1_idea','ens_arg1_evidencia','ens_arg1_analisis',
+   'ens_arg2_idea','ens_arg2_evidencia','ens_arg2_analisis',
+   'ens_arg3_idea','ens_arg3_evidencia','ens_arg3_analisis',
+   'ens_sintesis','ens_cierre','ens_referencias'].forEach(function(id) {
+    var el = document.getElementById(id);
+    if (el) el.value = '';
+  });
+  document.querySelectorAll('.tipo-chip').forEach(function(c) { c.classList.remove('selected'); });
+  tipoSeleccionado = '';
+  irPaso(0);
+  document.getElementById('consProgressBar').style.width = '0%';
+  document.getElementById('previewEnsayo').textContent = 'Tu ensayo aparecerá aquí...';
+}
+
+// Inicializar constructor (mostrar paso 0, ocultar resto)
+document.querySelectorAll('.paso-panel').forEach(function(p) {
+  p.style.display = 'none';
+});
+var p0 = document.getElementById('paso0');
+if (p0) { p0.style.display = 'block'; p0.classList.add('activo'); }
+var d0 = document.getElementById('dot0');
+if (d0) d0.classList.add('activo');
+</script>
+</body>
+</html>
