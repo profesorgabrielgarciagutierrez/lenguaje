@@ -1,0 +1,1154 @@
+<!--
+PLAN DE FRAGMENTOS - Semana 14 widget
+Fragmento 1: head + CSS completo + header + tab-nav + Tab Repaso (acordeón 13 semanas)
+Fragmento 2: Tema 1 (Conciencia lingüística) + Tema 2 (Conferencia)
+Fragmento 3: Tema 3 (Ponencia) + Tema 4 (Artículo y Ensayo: síntesis comparativa)
+Fragmento 4: Tema 5 (Taller Guiado interactivo de escritura académica) - HTML
+Fragmento 5: Ejercicio Interactivo (8 ítems) + Cuestionario (10 ítems)
+Fragmento 6: Actividad con IA + Reflexión + Bibliografía + cierre de body
+Fragmento 7: JavaScript completo (tabs, acordeón, ejercicio, cuestionario, taller guiado)
+Estimación: ~140-160 KB totales -> 7 fragmentos bajo 90KB c/u, concatenados en un solo archivo final.
+-->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Semana 14 | Escritura Académica y Conciencia Lingüística</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@500;600;700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --azul-oscuro:#003366;
+  --celeste:#87CEEB;
+  --azul-claro-fondo:#eaf4fb;
+  --oro:#c9a227;
+  --verde:#1e7e34;
+  --rojo:#b02a2a;
+  --gris-texto:#2b2b2b;
+  --gris-borde:#d7dee5;
+}
+*{box-sizing:border-box;}
+body{
+  margin:0; padding:0;
+  font-family:'Source Sans 3', sans-serif;
+  color:var(--gris-texto);
+  background:#f4f7fa;
+  line-height:1.6;
+}
+h1,h2,h3,h4{font-family:'Lora', serif; color:var(--azul-oscuro);}
+.container{max-width:980px; margin:0 auto; background:#fff; box-shadow:0 0 18px rgba(0,0,0,0.08); min-height:100vh;}
+.header{background:var(--azul-oscuro); color:#ffffff; padding:22px 28px; border-bottom:6px solid var(--oro);}
+.header .institucion{font-size:0.85rem; letter-spacing:0.4px; opacity:0.95; margin:0 0 4px 0; color:#ffffff;}
+.header h1{color:#ffffff; margin:4px 0; font-size:1.5rem;}
+.header .subtitle{font-size:0.95rem; color:#eaf4fb; margin:2px 0;}
+.header .meta-row{display:flex; flex-wrap:wrap; gap:10px; margin-top:10px;}
+.header .meta-tag{background:rgba(255,255,255,0.15); border:1px solid rgba(255,255,255,0.35); padding:4px 10px; border-radius:14px; font-size:0.8rem; color:#ffffff;}
+
+.tab-nav{
+  display:flex; overflow-x:auto; white-space:nowrap;
+  background:var(--celeste); border-bottom:3px solid var(--azul-oscuro);
+  -webkit-overflow-scrolling:touch;
+}
+.tab-nav::-webkit-scrollbar{height:8px;}
+.tab-nav::-webkit-scrollbar-thumb{background:var(--azul-oscuro); border-radius:4px;}
+.tab-button{
+  flex:0 0 auto;
+  background:transparent; border:none; cursor:pointer;
+  padding:13px 16px; font-family:'Source Sans 3', sans-serif;
+  font-size:0.88rem; font-weight:600; color:#0a1f33;
+  border-right:1px solid rgba(0,51,102,0.18);
+}
+.tab-button:hover{background:rgba(255,255,255,0.4);}
+.tab-button.active{background:#ffffff; color:var(--azul-oscuro); font-weight:700; box-shadow:inset 0 -3px 0 var(--oro);}
+
+.tab-content{display:none; padding:24px 28px 40px 28px;}
+.tab-content.active{display:block;}
+
+.concept-box{
+  border-left:5px solid var(--azul-oscuro);
+  background:#f7faff; padding:14px 18px; margin:16px 0; border-radius:0 6px 6px 0;
+}
+.example-box{
+  background:var(--azul-claro-fondo); padding:14px 18px; margin:16px 0; border-radius:6px;
+  border:1px solid #cfe3f2;
+}
+.key-idea-box{
+  border:2px solid var(--oro); background:#fffdf5; padding:14px 18px; margin:18px 0; border-radius:6px;
+}
+.key-idea-box strong{color:var(--azul-oscuro);}
+.concept-box h4, .example-box h4, .key-idea-box h4{margin-top:0; color:var(--azul-oscuro);}
+
+table.comparison-table{width:100%; border-collapse:collapse; margin:16px 0; font-size:0.92rem;}
+table.comparison-table th{background:var(--azul-oscuro); color:#fff; padding:9px 10px; text-align:left;}
+table.comparison-table td{padding:9px 10px; border-bottom:1px solid var(--gris-borde); vertical-align:top;}
+table.comparison-table tr:nth-child(even) td{background:#f7faff;}
+
+.card-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:14px; margin:16px 0;}
+.card{background:#fff; border:1px solid var(--gris-borde); border-top:4px solid var(--azul-oscuro); padding:14px; border-radius:6px;}
+.card h4{margin-top:0;}
+
+/* Acordeón Repaso */
+.accordion-item{border:1px solid var(--gris-borde); border-radius:6px; margin-bottom:10px; overflow:hidden;}
+.accordion-header{
+  width:100%; text-align:left; background:#eef4fa; border:none; cursor:pointer;
+  padding:13px 16px; font-family:'Lora', serif; font-weight:600; color:var(--azul-oscuro);
+  display:flex; justify-content:space-between; align-items:center; font-size:1rem;
+}
+.accordion-header:hover{background:#dfeaf5;}
+.accordion-icon{font-size:0.85rem; transition:transform 0.15s ease;}
+.accordion-content{display:none; padding:14px 18px; background:#ffffff; border-top:1px solid var(--gris-borde); font-size:0.95rem;}
+.accordion-content.open{display:block;}
+
+/* Botones genéricos */
+.btn{
+  display:inline-block; padding:10px 20px; border:none; border-radius:6px; cursor:pointer;
+  font-family:'Source Sans 3', sans-serif; font-weight:700; font-size:0.92rem; margin:6px 6px 6px 0;
+}
+.btn-primary{background:var(--azul-oscuro); color:#fff;}
+.btn-primary:hover{background:#024a8c;}
+.btn-secondary{background:#fff; color:var(--azul-oscuro); border:2px solid var(--azul-oscuro);}
+.btn-secondary:hover{background:#eaf4fb;}
+.btn-success{background:var(--verde); color:#fff;}
+.btn:disabled{opacity:0.5; cursor:not-allowed;}
+
+/* Ejercicio / Cuestionario */
+.exercise-item, .quiz-item{
+  border:1px solid var(--gris-borde); border-radius:6px; padding:16px; margin-bottom:16px; background:#fbfcfe;
+}
+.exercise-item p.enunciado, .quiz-item p.enunciado{font-weight:600; margin-top:0; color:var(--azul-oscuro);}
+.badge{display:inline-block; font-size:0.72rem; font-weight:700; padding:3px 9px; border-radius:12px; margin-bottom:8px; letter-spacing:0.3px;}
+.badge-teorica{background:#dbe9f7; color:var(--azul-oscuro);}
+.badge-caso{background:#fde7d2; color:#8a4b00;}
+.options-list{list-style:none; padding:0; margin:10px 0 0 0;}
+.options-list li{margin-bottom:8px;}
+.option-label{display:flex; align-items:flex-start; gap:8px; padding:8px 10px; border-radius:5px; cursor:pointer; border:1px solid transparent;}
+.option-label:hover{background:#eef4fa;}
+.option-label input{margin-top:3px;}
+.option-label.correct-answer{background:#e6f4ea; border-color:var(--verde);}
+.option-label.wrong-answer{background:#fbe9e9; border-color:var(--rojo);}
+.feedback-box{display:none; margin-top:10px; padding:10px 14px; border-radius:5px; font-size:0.9rem;}
+.feedback-box.show{display:block;}
+.feedback-box.correct{background:#e6f4ea; border-left:4px solid var(--verde); color:#155724;}
+.feedback-box.incorrect{background:#fbe9e9; border-left:4px solid var(--rojo); color:#7a1f1f;}
+.verify-bar{margin-top:18px; display:flex; align-items:center; gap:12px; flex-wrap:wrap;}
+.alert-incomplete{display:none; background:#fff3cd; border:1px solid #ffe69c; color:#664d03; padding:10px 14px; border-radius:5px; margin-top:10px;}
+.alert-incomplete.show{display:block;}
+.score-summary{display:none; margin-top:22px; padding:18px; background:#f7faff; border:2px solid var(--azul-oscuro); border-radius:8px; text-align:center;}
+.score-summary.show{display:block;}
+.score-summary .score-number{font-size:2.1rem; font-family:'Lora', serif; color:var(--azul-oscuro); font-weight:700;}
+.score-bar-container{background:#dde6ee; border-radius:10px; height:18px; margin:14px 0; overflow:hidden;}
+.score-bar-fill{height:100%; width:0%; background:linear-gradient(90deg,var(--azul-oscuro),var(--celeste)); border-radius:10px; transition:width 1s ease;}
+.score-message{font-size:1.4rem; margin-top:6px;}
+
+/* Actividad IA */
+.ai-prompt-box{background:#0d1b2a; color:#eaf4fb; padding:16px 18px; border-radius:8px; font-family:monospace; font-size:0.88rem; white-space:pre-wrap; margin:14px 0; line-height:1.5;}
+.ai-steps{background:#f7faff; border:1px solid var(--gris-borde); border-radius:6px; padding:14px 18px;}
+table.rubric-table{width:100%; border-collapse:collapse; margin:14px 0;}
+table.rubric-table th{background:var(--azul-oscuro); color:#fff; padding:8px;}
+table.rubric-table td{padding:8px; border:1px solid var(--gris-borde); font-size:0.88rem;}
+
+/* Reflexión */
+.reflection-question{background:#fff; border-left:5px solid var(--oro); padding:12px 16px; margin-bottom:12px; border-radius:0 6px 6px 0; font-style:italic;}
+
+/* Bibliografía */
+.biblio-card{background:#fff; border:1px solid var(--gris-borde); border-left:5px solid var(--azul-oscuro); border-radius:0 6px 6px 0; padding:12px 16px; margin-bottom:12px;}
+.biblio-card .autor-anio{font-weight:700; color:var(--azul-oscuro);}
+.biblio-footer-note{margin-top:18px; font-size:0.85rem; color:#555; background:#f4f7fa; padding:12px 16px; border-radius:6px;}
+
+/* Taller Guiado */
+.taller-box{background:#fff; border:1px solid var(--gris-borde); border-radius:8px; padding:18px;}
+.taller-progress{display:flex; gap:6px; margin-bottom:18px;}
+.taller-progress .step-dot{flex:1; height:6px; border-radius:3px; background:#dde6ee;}
+.taller-progress .step-dot.active{background:var(--azul-oscuro);}
+.taller-step{display:none;}
+.taller-step.active{display:block;}
+.text-type-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(190px,1fr)); gap:12px; margin:16px 0;}
+.text-type-card{border:2px solid var(--gris-borde); border-radius:8px; padding:14px; cursor:pointer; text-align:center; background:#fbfcfe;}
+.text-type-card:hover{border-color:var(--celeste);}
+.text-type-card.selected{border-color:var(--azul-oscuro); background:#eaf4fb;}
+.text-type-card h4{margin:6px 0 4px 0;}
+.text-type-card p{font-size:0.82rem; margin:0; color:#555;}
+.form-section{margin-bottom:18px;}
+.form-section label{display:block; font-weight:700; color:var(--azul-oscuro); margin-bottom:4px;}
+.taller-textarea{width:100%; min-height:90px; padding:10px; border:1px solid var(--gris-borde); border-radius:6px; font-family:'Source Sans 3',sans-serif; font-size:0.92rem; resize:vertical;}
+.tip-box{font-size:0.82rem; color:#555; background:#f7faff; border-left:3px solid var(--celeste); padding:6px 10px; margin-top:5px; border-radius:0 4px 4px 0;}
+.taller-nav-buttons{display:flex; justify-content:space-between; margin-top:20px;}
+.preview-box{background:#fdfdfb; border:1px dashed var(--oro); border-radius:8px; padding:18px; white-space:pre-wrap; font-family:'Lora', serif; font-size:0.95rem; max-height:480px; overflow-y:auto;}
+.checklist-item{display:flex; align-items:flex-start; gap:8px; margin-bottom:10px; padding:8px; border-radius:5px;}
+.checklist-item input{margin-top:4px;}
+
+@media (max-width:600px){
+  .header{padding:16px 18px;}
+  .tab-content{padding:18px 16px 32px 16px;}
+  .header h1{font-size:1.2rem;}
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="header">
+  <p class="institucion">Universidad de Guayaquil &mdash; Facultad de Ciencias Administrativas &mdash; Carrera de Contabilidad y Auditoría</p>
+  <h1>Semana 14 | Unidad 4: El proceso de la escritura en la construcción de textos</h1>
+  <p class="subtitle">Tema: Escritura académica: conciencia lingüística. Tipos de informes de investigación: conferencias, ponencias, artículos, ensayos.</p>
+  <div class="meta-row">
+    <span class="meta-tag">Materia: Lenguaje y Comunicación</span>
+    <span class="meta-tag">Modalidad: Virtual autónoma</span>
+    <span class="meta-tag">Ciclo: Primero</span>
+  </div>
+</div>
+
+<div class="tab-nav" id="tabNav">
+  <button class="tab-button active" onclick="showTab('repaso')">Repaso</button>
+  <button class="tab-button" onclick="showTab('tema1')">Tema 1</button>
+  <button class="tab-button" onclick="showTab('tema2')">Tema 2</button>
+  <button class="tab-button" onclick="showTab('tema3')">Tema 3</button>
+  <button class="tab-button" onclick="showTab('tema4')">Tema 4</button>
+  <button class="tab-button" onclick="showTab('tema5')">Taller Guiado</button>
+  <button class="tab-button" onclick="showTab('ejercicio')">Ejercicio Interactivo</button>
+  <button class="tab-button" onclick="showTab('cuestionario')">Cuestionario</button>
+  <button class="tab-button" onclick="showTab('actividadia')">Actividad con IA</button>
+  <button class="tab-button" onclick="showTab('reflexion')">Reflexión</button>
+  <button class="tab-button" onclick="showTab('bibliografia')">Bibliografía</button>
+</div>
+
+<!-- ============ TAB: REPASO ============ -->
+<div id="repaso" class="tab-content active">
+<h2>Repaso: el camino recorrido hasta la Semana 13</h2>
+<p>Antes de construir el tema de hoy, recuerda brevemente lo trabajado en cada semana. Haz clic sobre cada barra para desplegar el contenido.</p>
+
+<div class="accordion-item">
+  <button class="accordion-header" onclick="toggleAccordion(this)">Semana 1 — Importancia de la comunicación. Diferencia entre hablar y comunicar <span class="accordion-icon">▶</span></button>
+  <div class="accordion-content">
+    <p>Aprendiste que <strong>hablar</strong> es solo emitir sonidos articulados, mientras que <strong>comunicar</strong> implica que ese mensaje sea comprendido y genere una respuesta o efecto en el receptor. La comunicación es la base de toda relación humana y profesional, incluida la del contador o auditor que debe explicar cifras complejas a personas que no manejan lenguaje técnico.</p>
+  </div>
+</div>
+
+<div class="accordion-item">
+  <button class="accordion-header" onclick="toggleAccordion(this)">Semana 2 — Lenguaje y comunicación. Procesamiento de mensajes. Tipos de lenguaje <span class="accordion-icon">▶</span></button>
+  <div class="accordion-content">
+    <p>Viste que el <strong>lenguaje</strong> es el sistema de signos que hace posible la comunicación, y que existen distintos tipos: verbal (oral y escrito), no verbal, icónico, gestual, entre otros. También comprendiste cómo el cerebro procesa un mensaje desde que lo recibe hasta que lo interpreta y responde.</p>
+  </div>
+</div>
+
+<div class="accordion-item">
+  <button class="accordion-header" onclick="toggleAccordion(this)">Semana 3 — Tipos de comunicación. Cómo funciona tu cerebro <span class="accordion-icon">▶</span></button>
+  <div class="accordion-content">
+    <p>Estudiaste la comunicación intrapersonal, interpersonal, grupal y masiva, y conociste el modelo del <strong>cerebro triuno</strong> (reptiliano, límbico y neocórtex) para entender por qué reaccionamos de forma instintiva, emocional o racional ante un mensaje.</p>
+  </div>
+</div>
+
+<div class="accordion-item">
+  <button class="accordion-header" onclick="toggleAccordion(this)">Semana 4 — Importancia de la lectura. Proceso de comunicación <span class="accordion-icon">▶</span></button>
+  <div class="accordion-content">
+    <p>Reconociste la lectura como herramienta de pensamiento crítico y formación profesional, y formalizaste el <strong>proceso de comunicación</strong>: emisor, mensaje, código, canal, receptor, contexto y retroalimentación.</p>
+  </div>
+</div>
+
+<div class="accordion-item">
+  <button class="accordion-header" onclick="toggleAccordion(this)">Semana 5 — Componentes de la comunicación <span class="accordion-icon">▶</span></button>
+  <div class="accordion-content">
+    <p>Profundizaste en cada componente del proceso comunicativo y en los sistemas de representación VAK (visual, auditivo, kinestésico) de la Programación Neurolingüística, que explican cómo cada persona percibe y procesa la información de manera distinta.</p>
+  </div>
+</div>
+
+<div class="accordion-item">
+  <button class="accordion-header" onclick="toggleAccordion(this)">Semana 6 — Habilidades comunicativas <span class="accordion-icon">▶</span></button>
+  <div class="accordion-content">
+    <p>Trabajaste la autoestima (Branden), la inteligencia emocional (Goleman) y el modelo del Autoboicot de Bernardo Stamateas, vinculando el desarrollo personal con la capacidad de comunicarse de forma asertiva.</p>
+  </div>
+</div>
+
+<div class="accordion-item">
+  <button class="accordion-header" onclick="toggleAccordion(this)">Semana 7 — Comunicación no verbal. Comunicación corporativa. Comunicación oral estratégica <span class="accordion-icon">▶</span></button>
+  <div class="accordion-content">
+    <p>Analizaste el peso de la comunicación no verbal (Mehrabian), la comunicación corporativa institucional y las etapas de planeación de una intervención oral estratégica: análisis de audiencia, objetivo, estructura del discurso y cierre.</p>
+  </div>
+</div>
+
+<div class="accordion-item">
+  <button class="accordion-header" onclick="toggleAccordion(this)">Semana 8 — Examen del Primer Parcial <span class="accordion-icon">▶</span></button>
+  <div class="accordion-content">
+    <p>Consolidaste, mediante un simulador de evaluación, todo lo trabajado en las Unidades 1 y 2: fundamentos de la comunicación y habilidades comunicativas.</p>
+  </div>
+</div>
+
+<div class="accordion-item">
+  <button class="accordion-header" onclick="toggleAccordion(this)">Semana 9 — Tipos de textos y funciones del lenguaje <span class="accordion-icon">▶</span></button>
+  <div class="accordion-content">
+    <p>Conociste las seis funciones del lenguaje de Roman Jakobson (referencial, emotiva, conativa, fática, metalingüística y poética) y las siete propiedades del texto según Beaugrande &amp; Dressler (cohesión, coherencia, intencionalidad, aceptabilidad, informatividad, situacionalidad e intertextualidad), base directa de la conciencia lingüística que trabajarás hoy.</p>
+  </div>
+</div>
+
+<div class="accordion-item">
+  <button class="accordion-header" onclick="toggleAccordion(this)">Semana 10 — Niveles de lectura. Características de los textos científicos <span class="accordion-icon">▶</span></button>
+  <div class="accordion-content">
+    <p>Distinguiste los cuatro niveles de lectura (literal, inferencial, analógico y crítico-valorativo) y aprendiste la estructura <strong>IMRAD</strong> (Introducción, Métodos, Resultados y Discusión) propia de los textos científicos, antecedente directo del artículo académico que verás hoy.</p>
+  </div>
+</div>
+
+<div class="accordion-item">
+  <button class="accordion-header" onclick="toggleAccordion(this)">Semana 11 — Tipos de informes: artículos, ponencias y conferencias <span class="accordion-icon">▶</span></button>
+  <div class="accordion-content">
+    <p>Realizaste una primera aproximación a estos tres géneros de informes de investigación, identificando sus rasgos generales. Hoy, en la Semana 14, profundizarás en su estructura interna, sus diferencias precisas y la conciencia lingüística necesaria para redactarlos correctamente.</p>
+  </div>
+</div>
+
+<div class="accordion-item">
+  <button class="accordion-header" onclick="toggleAccordion(this)">Semana 12 — El ensayo <span class="accordion-icon">▶</span></button>
+  <div class="accordion-content">
+    <p>Definiste el ensayo como texto argumentativo de carácter personal, exploraste sus tipos y dominios temáticos, y comprendiste —apoyado en James Pennebaker— su función como herramienta de desahogo emocional y autoconocimiento a través de la escritura.</p>
+  </div>
+</div>
+
+<div class="accordion-item">
+  <button class="accordion-header" onclick="toggleAccordion(this)">Semana 13 — El proceso de planeación de un escrito. El párrafo: características, elementos y tipos <span class="accordion-icon">▶</span></button>
+  <div class="accordion-content">
+    <p>Abriste la Unidad 4 estudiando las etapas de planeación de cualquier escrito (selección y delimitación del tema, recopilación de información, elaboración de un esquema, redacción del borrador y revisión final), y profundizaste en el <strong>párrafo</strong> como unidad mínima de composición: sus características (unidad temática, coherencia y cohesión), sus elementos (oración temática, oraciones de apoyo, conectores) y sus tipos (narrativo, descriptivo, expositivo, argumentativo, de enumeración, de comparación-contraste y de causa-efecto). Ese párrafo bien construido es, precisamente, el ladrillo con el que hoy vas a levantar conferencias, ponencias, artículos y ensayos con conciencia lingüística.</p>
+  </div>
+</div>
+
+<div class="key-idea-box">
+<h4>Conexión con la Semana 14</h4>
+<p>Todo lo recorrido converge hoy: sabes qué es comunicar (S1-S4), cómo gestionar tus emociones al expresarte (S5-S7), qué propiedades debe tener un texto (S9), cómo se estructura un texto científico (S10), qué distingue a un artículo de una ponencia o una conferencia (S11), cómo argumentar con voz propia (S12) y cómo planear y construir párrafos sólidos (S13). Hoy aprenderás a aplicar <strong>conciencia lingüística</strong> —es decir, control consciente sobre tus decisiones de lenguaje— para producir estos cuatro géneros académicos con rigor profesional.</p>
+</div>
+
+</div>
+<!-- ============ TAB: TEMA 1 ============ -->
+<div id="tema1" class="tab-content">
+<h2>Tema 1: La conciencia lingüística en la escritura académica</h2>
+
+<div class="concept-box">
+<h4>Definición</h4>
+<p>La <strong>conciencia lingüística</strong> es la capacidad reflexiva que tiene quien escribe para observar, evaluar y ajustar de manera deliberada las decisiones de lenguaje que toma en un texto: qué palabra elegir, cómo construir una oración, qué conectores usar y qué grado de formalidad mantener, según el género discursivo, el destinatario y el propósito comunicativo. No es un talento innato: es una destreza que se entrena, igual que se entrena la lectura crítica o el cálculo financiero.</p>
+</div>
+
+<p>Escribir de manera mecánica significa producir frases sin detenerse a pensar si son las más precisas, si pueden generar ambigüedad o si encajan con el registro que la situación exige. Escribir con conciencia lingüística, en cambio, significa que el autor se pregunta constantemente: <em>¿esta palabra dice exactamente lo que quiero decir? ¿esta oración puede leerse de más de una manera? ¿el tono que estoy usando es el adecuado para quien me va a leer?</em> Esa vigilancia activa sobre el propio lenguaje es lo que separa un texto académico sólido de un texto improvisado.</p>
+
+<p>En el campo de la contabilidad y la auditoría esta destreza no es un adorno estilístico: es una herramienta profesional con consecuencias reales. Un informe de auditoría, un dictamen o un artículo técnico mal redactado —con términos imprecisos, oraciones ambiguas o un registro inapropiado— puede generar interpretaciones erróneas con implicaciones legales, tributarias o financieras. La precisión léxica al diferenciar, por ejemplo, "razonabilidad de los estados financieros" de "exactitud de los estados financieros" no es un matiz menor: bajo Normas Internacionales de Auditoría (NIA) estos términos tienen significados técnicos distintos y confundirlos puede alterar por completo el sentido de un dictamen.</p>
+
+<h3>Niveles de la conciencia lingüística</h3>
+<p>Para ejercer un control real sobre el propio texto, conviene revisarlo en cuatro niveles, que se construyen sobre las propiedades textuales de Beaugrande &amp; Dressler que estudiaste en la Semana 9:</p>
+
+<table class="comparison-table">
+<tr><th>Nivel</th><th>Qué controla</th><th>Pregunta guía</th></tr>
+<tr><td><strong>Léxico-semántico</strong></td><td>La precisión y pertinencia de las palabras elegidas</td><td>¿Es este el término técnico correcto, o estoy usando un sinónimo impreciso?</td></tr>
+<tr><td><strong>Sintáctico</strong></td><td>La construcción clara de oraciones, evitando ambigüedad estructural</td><td>¿Esta oración puede leerse de más de una manera?</td></tr>
+<tr><td><strong>Textual (cohesión y coherencia)</strong></td><td>El enlace lógico entre ideas, párrafos y secciones mediante conectores</td><td>¿Se entiende cómo una idea conduce a la siguiente?</td></tr>
+<tr><td><strong>Pragmático</strong></td><td>La adecuación del registro y el tono al destinatario y al contexto</td><td>¿Este nivel de formalidad es el que la situación exige?</td></tr>
+</table>
+
+<div class="example-box">
+<h4>Ejemplo aplicado: dos versiones del mismo párrafo</h4>
+<p><strong>Sin conciencia lingüística</strong> (informe interno de una cooperativa de ahorro en Ecuador): "El tema de las facturas está medio raro porque hay varias que no cuadran bien con lo que dice el sistema, así que capaz convendría revisar eso antes de mandar el informe al SRI."</p>
+<p><strong>Con conciencia lingüística aplicada:</strong> "Se identificaron diferencias entre el valor registrado en el sistema contable y el monto consignado en doce comprobantes de venta correspondientes al período enero-marzo. Se recomienda conciliar dichos comprobantes antes de remitir la declaración correspondiente al Servicio de Rentas Internas (SRI)."</p>
+<p>La segunda versión elimina el registro coloquial ("medio raro", "capaz"), precisa la cantidad exacta de comprobantes y el período, y usa terminología contable formal ("conciliar", "comprobantes de venta"), produciendo un texto apto para un informe profesional.</p>
+</div>
+
+<div class="key-idea-box">
+<h4>Idea clave</h4>
+<p>La conciencia lingüística convierte la escritura en una decisión profesional, no en un reflejo automático. Antes de entregar cualquier informe, ponencia o artículo, revisa tu texto en los cuatro niveles: palabra, oración, conexión entre ideas y registro. Esa revisión consciente es lo que distingue a un comunicador profesional de un simple transcriptor de ideas.</p>
+</div>
+</div>
+
+<!-- ============ TAB: TEMA 2 ============ -->
+<div id="tema2" class="tab-content">
+<h2>Tema 2: La conferencia como género académico</h2>
+
+<div class="concept-box">
+<h4>Definición</h4>
+<p>La <strong>conferencia</strong> es una exposición oral formal y planificada, dirigida a un público amplio (especializado o general), cuyo propósito principal es informar, divulgar o sensibilizar sobre un tema de interés. A diferencia de la ponencia, la conferencia no necesariamente presenta resultados de una investigación original propia: puede ser una síntesis, una actualización profesional o una reflexión experta sobre un tema ya conocido.</p>
+</div>
+
+<p>Quien dicta una conferencia actúa como mediador entre el conocimiento especializado y una audiencia que puede no dominar el tema con la misma profundidad. Por eso su lenguaje, aunque formal, suele ser más accesible que el de una ponencia, y su estructura permite mayor flexibilidad para conectar con el público mediante ejemplos, anécdotas o recursos visuales.</p>
+
+<h3>Estructura habitual de una conferencia</h3>
+<table class="comparison-table">
+<tr><th>Momento</th><th>Función</th></tr>
+<tr><td>Apertura y saludo protocolario</td><td>Presentación del conferencista, agradecimiento a la institución organizadora y al público</td></tr>
+<tr><td>Presentación del tema y objetivo</td><td>Se anuncia de qué se hablará y para qué le servirá esa información a la audiencia</td></tr>
+<tr><td>Desarrollo por bloques temáticos</td><td>Exposición ordenada de las ideas centrales, apoyada en diapositivas u otros recursos</td></tr>
+<tr><td>Momentos de interacción (opcional)</td><td>Preguntas dirigidas al público, encuestas rápidas o ejemplos participativos</td></tr>
+<tr><td>Cierre y síntesis</td><td>Recapitulación de las ideas clave y llamado a la reflexión o a la acción</td></tr>
+<tr><td>Agradecimientos y espacio de preguntas</td><td>Cierre protocolario y resolución de dudas del público</td></tr>
+</table>
+
+<h3>Características lingüísticas</h3>
+<p>La conciencia lingüística en una conferencia exige equilibrar formalidad con cercanía: el registro debe ser cuidado pero no excesivamente técnico, pues la audiencia puede incluir personas sin formación especializada en el tema. Es frecuente el uso de preguntas retóricas, marcadores de oralidad planificada ("como veremos a continuación", "retomemos la idea anterior") y conectores que guían al oyente, ya que —a diferencia de un texto escrito— el público no puede "releer" lo dicho.</p>
+
+<div class="example-box">
+<h4>Ejemplo aplicado: contexto ecuatoriano</h4>
+<p>El Colegio de Contadores Públicos del Guayas organiza periódicamente conferencias dirigidas a sus afiliados sobre reformas tributarias emitidas por el Servicio de Rentas Internas (SRI). Un contador invitado a dictar una de estas conferencias no presenta una investigación propia: sintetiza la nueva normativa, explica sus implicaciones prácticas para las empresas y responde preguntas del público. Su lenguaje debe ser preciso en lo técnico-tributario, pero suficientemente claro como para que un contador recién graduado o un empresario sin formación contable profunda pueda seguir la exposición.</p>
+</div>
+
+<div class="key-idea-box">
+<h4>Idea clave</h4>
+<p>La conferencia prioriza la claridad y la conexión con la audiencia por encima del formalismo técnico extremo. Su conciencia lingüística se mide en la capacidad de "traducir" conocimiento especializado a un lenguaje comprensible sin perder rigor ni precisión.</p>
+</div>
+</div>
+<!-- ============ TAB: TEMA 3 ============ -->
+<div id="tema3" class="tab-content">
+<h2>Tema 3: La ponencia académica</h2>
+
+<div class="concept-box">
+<h4>Definición</h4>
+<p>La <strong>ponencia</strong> es un texto —y su correspondiente exposición oral— que presenta los resultados de una investigación original o una postura argumentada con rigor metodológico, dirigida a una comunidad académica especializada, generalmente en el marco de un congreso, simposio o jornada científica. A diferencia de la conferencia, la ponencia suele someterse a un proceso de evaluación por pares (revisión científica) antes de ser aceptada para su presentación.</p>
+</div>
+
+<p>Quien presenta una ponencia no busca únicamente informar: busca aportar conocimiento nuevo, una mirada original sobre un problema, o evidencia que sustente una tesis dentro de su campo. Por esa razón, la ponencia exige un nivel de conciencia lingüística más exigente que la conferencia: cada término debe ser técnicamente exacto, cada afirmación debe estar respaldada, y la estructura debe seguir convenciones académicas reconocibles para cualquier especialista del área.</p>
+
+<h3>Estructura formal de una ponencia</h3>
+<table class="comparison-table">
+<tr><th>Sección</th><th>Contenido</th></tr>
+<tr><td>Título</td><td>Debe anunciar con precisión el tema y, si aplica, el enfoque metodológico</td></tr>
+<tr><td>Autoría y filiación institucional</td><td>Nombre del autor o autores y la institución a la que representan</td></tr>
+<tr><td>Resumen / Abstract y palabras clave</td><td>Síntesis de 150 a 250 palabras del problema, objetivo, método y principales hallazgos o argumentos, más 3 a 5 palabras clave</td></tr>
+<tr><td>Introducción</td><td>Planteamiento del problema, objetivo de la ponencia y justificación de su relevancia</td></tr>
+<tr><td>Desarrollo</td><td>Exposición de la metodología (si es investigación empírica) y de los resultados o la argumentación central</td></tr>
+<tr><td>Conclusiones</td><td>Síntesis de los hallazgos o de la postura defendida, y sus implicaciones</td></tr>
+<tr><td>Referencias</td><td>Fuentes citadas, en formato APA u otro estándar exigido por el congreso</td></tr>
+</table>
+
+<h3>Diferencias clave entre ponencia y conferencia</h3>
+<p>La ponencia tiene un tiempo de exposición generalmente más breve y rígido (entre 10 y 20 minutos), seguido de un espacio de preguntas técnicas del comité o del público especializado. Su lenguaje es más denso y técnico, pues se dirige a pares que dominan el campo. La conferencia, en cambio, tiene mayor libertad de tiempo y de tono, y se dirige a un público más heterogéneo.</p>
+
+<div class="example-box">
+<h4>Ejemplo aplicado: contexto ecuatoriano</h4>
+<p>En un Congreso de Contabilidad y Auditoría organizado por una universidad ecuatoriana, un grupo de estudiantes de cuarto año podría presentar la ponencia "Impacto de la adopción de las NIIF para PYMES en la información financiera de las microempresas de Guayaquil". El texto incluiría un resumen con el objetivo de la investigación, la metodología utilizada (por ejemplo, encuestas a contadores de microempresas), los resultados obtenidos y conclusiones sobre el nivel real de cumplimiento normativo. El comité científico del congreso evaluaría previamente si la metodología es sólida y si los hallazgos aportan algo nuevo antes de aceptar la ponencia.</p>
+</div>
+
+<div class="key-idea-box">
+<h4>Idea clave</h4>
+<p>La ponencia es, ante todo, un texto de investigación sometido a evaluación de pares: exige conciencia lingüística en su forma más rigurosa, porque cada palabra imprecisa puede debilitar la credibilidad científica del trabajo presentado.</p>
+</div>
+</div>
+
+<!-- ============ TAB: TEMA 4 ============ -->
+<div id="tema4" class="tab-content">
+<h2>Tema 4: Artículo y ensayo &mdash; síntesis comparativa de los cuatro géneros académicos</h2>
+
+<p>En la Semana 10 estudiaste la estructura <strong>IMRAD</strong> (Introducción, Métodos, Resultados y Discusión) propia del <strong>artículo científico</strong>, y en la Semana 12 trabajaste el <strong>ensayo</strong> como texto argumentativo de carácter más personal. Hoy cierras el panorama de géneros académicos comparándolos entre sí, junto con la conferencia y la ponencia ya estudiadas, para que puedas decidir con conciencia lingüística qué género usar según tu propósito comunicativo.</p>
+
+<div class="concept-box">
+<h4>Recordatorio: el artículo de investigación</h4>
+<p>Texto escrito, generalmente publicado en una revista académica indexada, que reporta de manera objetiva y sistemática los resultados de una investigación siguiendo la estructura IMRAD. Su lenguaje es impersonal, técnico y altamente preciso, y pasa por un proceso de revisión por pares antes de su publicación.</p>
+</div>
+
+<div class="concept-box">
+<h4>Recordatorio: el ensayo</h4>
+<p>Texto argumentativo que expone una postura personal y razonada sobre un tema, con mayor libertad estilística que el artículo o la ponencia. Permite la primera persona y un tono reflexivo, aunque en el ámbito académico debe mantener rigor argumentativo y respaldo conceptual.</p>
+</div>
+
+<h3>Cuadro comparativo de los cuatro géneros</h3>
+<table class="comparison-table">
+<tr><th>Criterio</th><th>Conferencia</th><th>Ponencia</th><th>Artículo</th><th>Ensayo</th></tr>
+<tr><td>Propósito</td><td>Divulgar / informar</td><td>Presentar investigación o postura ante pares</td><td>Reportar investigación de forma objetiva</td><td>Argumentar una postura personal</td></tr>
+<tr><td>Origina en investigación propia</td><td>No necesariamente</td><td>Sí, generalmente</td><td>Sí, siempre</td><td>No necesariamente</td></tr>
+<tr><td>Evaluación por pares</td><td>No</td><td>Sí (comité científico)</td><td>Sí (revisores de revista)</td><td>Variable según el contexto</td></tr>
+<tr><td>Registro / voz</td><td>Formal-accesible, oral</td><td>Formal-técnico, oral con respaldo escrito</td><td>Impersonal, objetivo</td><td>Personal, reflexivo, primera persona</td></tr>
+<tr><td>Estructura típica</td><td>Apertura, desarrollo temático, cierre</td><td>Resumen, introducción, desarrollo, conclusiones</td><td>IMRAD</td><td>Introducción, desarrollo argumentativo, conclusión</td></tr>
+<tr><td>Extensión habitual</td><td>20-60 minutos de exposición</td><td>10-20 minutos / 1500-3000 palabras</td><td>3000-8000 palabras</td><td>800-3000 palabras</td></tr>
+<tr><td>Contexto de uso</td><td>Capacitaciones, charlas institucionales</td><td>Congresos, simposios</td><td>Revistas indexadas</td><td>Publicaciones de opinión, trabajos académicos</td></tr>
+</table>
+
+<div class="example-box">
+<h4>Ejemplo aplicado: un mismo tema, cuatro tratamientos distintos</h4>
+<p>Tomemos el tema "la evasión tributaria en pequeños negocios de Guayaquil". Como <strong>conferencia</strong>, un experto del SRI explicaría a comerciantes cómo identificar y evitar la evasión. Como <strong>ponencia</strong>, un investigador presentaría ante un congreso los resultados de una encuesta sobre las causas de la evasión en ese sector. Como <strong>artículo</strong>, ese mismo estudio se publicaría en una revista indexada siguiendo la estructura IMRAD, con revisión de pares. Como <strong>ensayo</strong>, un estudiante de Contabilidad podría argumentar, desde su experiencia personal observando el comercio de su barrio, por qué cree que la cultura tributaria —y no solo el control fiscal— es la verdadera solución al problema.</p>
+</div>
+
+<div class="key-idea-box">
+<h4>Idea clave</h4>
+<p>No existe un género "superior" a otro: cada uno responde a un propósito comunicativo distinto. La conciencia lingüística de un comunicador profesional se demuestra precisamente en saber elegir el género correcto según la audiencia, el objetivo y el contexto, y en ajustar el lenguaje a las convenciones de ese género específico.</p>
+</div>
+</div>
+<!-- ============ TAB: TEMA 5 - TALLER GUIADO ============ -->
+<div id="tema5" class="tab-content">
+<h2>Tema 5: Taller Guiado &mdash; Constructor de Escritura Académica y Conciencia Lingüística</h2>
+<p>Esta herramienta te guía paso a paso para construir el borrador de una conferencia, ponencia, artículo o ensayo, aplicando en cada sección las recomendaciones de conciencia lingüística que estudiaste en el Tema 1. Al final podrás generar una vista previa, descargar tu borrador en formato TXT o imprimirlo.</p>
+
+<div class="taller-box">
+
+  <div class="taller-progress">
+    <div class="step-dot active" id="dot1"></div>
+    <div class="step-dot" id="dot2"></div>
+    <div class="step-dot" id="dot3"></div>
+    <div class="step-dot" id="dot4"></div>
+  </div>
+
+  <!-- PASO 1: selección de género -->
+  <div class="taller-step active" id="tallerStep1">
+    <h3>Paso 1 de 4 &mdash; Elige el género académico que vas a construir</h3>
+    <div class="text-type-grid">
+      <div class="text-type-card" id="cardConferencia" onclick="selectTextType('conferencia')">
+        <h4>Conferencia</h4>
+        <p>Exposición oral de divulgación dirigida a un público amplio.</p>
+      </div>
+      <div class="text-type-card" id="cardPonencia" onclick="selectTextType('ponencia')">
+        <h4>Ponencia</h4>
+        <p>Presentación de investigación o postura ante una comunidad académica.</p>
+      </div>
+      <div class="text-type-card" id="cardArticulo" onclick="selectTextType('articulo')">
+        <h4>Artículo</h4>
+        <p>Reporte objetivo de investigación con estructura IMRAD.</p>
+      </div>
+      <div class="text-type-card" id="cardEnsayo" onclick="selectTextType('ensayo')">
+        <h4>Ensayo</h4>
+        <p>Texto argumentativo de postura personal y reflexiva.</p>
+      </div>
+    </div>
+    <div class="taller-nav-buttons">
+      <span></span>
+      <button class="btn btn-primary" id="tallerNext1" onclick="tallerGoToStep(2)" disabled>Siguiente: completar estructura →</button>
+    </div>
+  </div>
+
+  <!-- PASO 2: estructura guiada (generada por JS) -->
+  <div class="taller-step" id="tallerStep2">
+    <h3>Paso 2 de 4 &mdash; Completa la estructura guiada</h3>
+    <p id="tallerStep2Subtitle">Escribe el contenido de cada sección. Lee la sugerencia de conciencia lingüística antes de redactar.</p>
+    <div id="tallerFormContainer"></div>
+    <div class="taller-nav-buttons">
+      <button class="btn btn-secondary" onclick="tallerGoToStep(1)">← Volver</button>
+      <button class="btn btn-primary" onclick="tallerGoToStep(3)">Siguiente: autorrevisión →</button>
+    </div>
+  </div>
+
+  <!-- PASO 3: checklist de autorrevisión -->
+  <div class="taller-step" id="tallerStep3">
+    <h3>Paso 3 de 4 &mdash; Lista de autorrevisión de conciencia lingüística</h3>
+    <p>Antes de generar tu documento final, revisa conscientemente cada uno de estos aspectos en lo que acabas de escribir. Marca cada casilla solo si ya lo verificaste de verdad.</p>
+
+    <label class="checklist-item"><input type="checkbox" id="chk1"><span>Revisé que cada término técnico esté usado correctamente y no como un sinónimo impreciso (nivel léxico-semántico).</span></label>
+    <label class="checklist-item"><input type="checkbox" id="chk2"><span>Eliminé expresiones coloquiales o informales que no corresponden al registro académico (nivel pragmático).</span></label>
+    <label class="checklist-item"><input type="checkbox" id="chk3"><span>Verifiqué que ninguna oración pueda leerse de más de una manera (nivel sintáctico, ambigüedad).</span></label>
+    <label class="checklist-item"><input type="checkbox" id="chk4"><span>Usé conectores lógicos (por lo tanto, sin embargo, en consecuencia, asimismo) para enlazar mis ideas entre párrafos (nivel textual).</span></label>
+    <label class="checklist-item"><input type="checkbox" id="chk5"><span>Mantuve el mismo nivel de formalidad en todo el texto, sin mezclar tonos coloquiales y técnicos.</span></label>
+    <label class="checklist-item"><input type="checkbox" id="chk6"><span>Adapté el lenguaje a la audiencia y al género que elegí en el Paso 1.</span></label>
+    <label class="checklist-item"><input type="checkbox" id="chk7"><span>Mi introducción anuncia con claridad el propósito del texto.</span></label>
+    <label class="checklist-item"><input type="checkbox" id="chk8"><span>Mi conclusión retoma la idea central y cierra con coherencia, sin introducir ideas nuevas no desarrolladas.</span></label>
+
+    <div class="taller-nav-buttons">
+      <button class="btn btn-secondary" onclick="tallerGoToStep(2)">← Volver</button>
+      <button class="btn btn-primary" onclick="tallerGoToStep(4)">Siguiente: generar documento →</button>
+    </div>
+  </div>
+
+  <!-- PASO 4: vista previa y descarga -->
+  <div class="taller-step" id="tallerStep4">
+    <h3>Paso 4 de 4 &mdash; Vista previa y descarga</h3>
+    <div class="preview-box" id="tallerPreview"></div>
+    <div class="taller-nav-buttons">
+      <button class="btn btn-secondary" onclick="tallerGoToStep(3)">← Volver</button>
+      <span>
+        <button class="btn btn-success" onclick="descargarTaller()">⬇ Descargar como TXT</button>
+        <button class="btn btn-secondary" onclick="imprimirTaller()">🖨 Imprimir</button>
+        <button class="btn btn-secondary" onclick="reiniciarTaller()">↺ Empezar de nuevo</button>
+      </span>
+    </div>
+  </div>
+
+</div>
+</div>
+<!-- ============ TAB: EJERCICIO INTERACTIVO ============ -->
+<div id="ejercicio" class="tab-content">
+<h2>Ejercicio Interactivo: clasifica el género académico</h2>
+<p>Lee cada situación y selecciona el género académico al que corresponde: <strong>Conferencia, Ponencia, Artículo</strong> o <strong>Ensayo</strong>. Responde las 8 situaciones y luego presiona "Verificar respuestas".</p>
+
+<div class="exercise-item">
+<p class="enunciado">1. Un grupo de investigadores presenta, ante un comité científico de un congreso universitario, los resultados de una encuesta sobre el nivel de cumplimiento de las NIIF en PYMES, en una exposición de 15 minutos seguida de preguntas técnicas.</p>
+<ul class="options-list">
+<li><label class="option-label"><input type="radio" name="ei1" value="conferencia"> Conferencia</label></li>
+<li><label class="option-label"><input type="radio" name="ei1" value="ponencia"> Ponencia</label></li>
+<li><label class="option-label"><input type="radio" name="ei1" value="articulo"> Artículo</label></li>
+<li><label class="option-label"><input type="radio" name="ei1" value="ensayo"> Ensayo</label></li>
+</ul>
+<div class="feedback-box" id="feedback-ei1"></div>
+</div>
+
+<div class="exercise-item">
+<p class="enunciado">2. Un funcionario del SRI explica a un grupo de comerciantes informales, en un evento organizado por el municipio, cómo emitir comprobantes electrónicos, usando lenguaje sencillo y ejemplos cotidianos.</p>
+<ul class="options-list">
+<li><label class="option-label"><input type="radio" name="ei2" value="conferencia"> Conferencia</label></li>
+<li><label class="option-label"><input type="radio" name="ei2" value="ponencia"> Ponencia</label></li>
+<li><label class="option-label"><input type="radio" name="ei2" value="articulo"> Artículo</label></li>
+<li><label class="option-label"><input type="radio" name="ei2" value="ensayo"> Ensayo</label></li>
+</ul>
+<div class="feedback-box" id="feedback-ei2"></div>
+</div>
+
+<div class="exercise-item">
+<p class="enunciado">3. Un estudio sobre el impacto del teletrabajo en la productividad contable se publica en una revista indexada, siguiendo la estructura Introducción, Métodos, Resultados y Discusión, y pasa por revisión de pares anónima.</p>
+<ul class="options-list">
+<li><label class="option-label"><input type="radio" name="ei3" value="conferencia"> Conferencia</label></li>
+<li><label class="option-label"><input type="radio" name="ei3" value="ponencia"> Ponencia</label></li>
+<li><label class="option-label"><input type="radio" name="ei3" value="articulo"> Artículo</label></li>
+<li><label class="option-label"><input type="radio" name="ei3" value="ensayo"> Ensayo</label></li>
+</ul>
+<div class="feedback-box" id="feedback-ei3"></div>
+</div>
+
+<div class="exercise-item">
+<p class="enunciado">4. Una estudiante de Contabilidad escribe, en primera persona, sobre cómo su experiencia ayudando en el negocio familiar le hizo entender la importancia de llevar registros contables ordenados.</p>
+<ul class="options-list">
+<li><label class="option-label"><input type="radio" name="ei4" value="conferencia"> Conferencia</label></li>
+<li><label class="option-label"><input type="radio" name="ei4" value="ponencia"> Ponencia</label></li>
+<li><label class="option-label"><input type="radio" name="ei4" value="articulo"> Artículo</label></li>
+<li><label class="option-label"><input type="radio" name="ei4" value="ensayo"> Ensayo</label></li>
+</ul>
+<div class="feedback-box" id="feedback-ei4"></div>
+</div>
+
+<div class="exercise-item">
+<p class="enunciado">5. ¿Qué género académico debe seguir obligatoriamente la estructura Introducción, Métodos, Resultados y Discusión (IMRAD)?</p>
+<ul class="options-list">
+<li><label class="option-label"><input type="radio" name="ei5" value="conferencia"> Conferencia</label></li>
+<li><label class="option-label"><input type="radio" name="ei5" value="ponencia"> Ponencia</label></li>
+<li><label class="option-label"><input type="radio" name="ei5" value="articulo"> Artículo</label></li>
+<li><label class="option-label"><input type="radio" name="ei5" value="ensayo"> Ensayo</label></li>
+</ul>
+<div class="feedback-box" id="feedback-ei5"></div>
+</div>
+
+<div class="exercise-item">
+<p class="enunciado">6. ¿Qué género académico se redacta predominantemente en primera persona y permite mayor libertad estilística sin perder rigor argumentativo?</p>
+<ul class="options-list">
+<li><label class="option-label"><input type="radio" name="ei6" value="conferencia"> Conferencia</label></li>
+<li><label class="option-label"><input type="radio" name="ei6" value="ponencia"> Ponencia</label></li>
+<li><label class="option-label"><input type="radio" name="ei6" value="articulo"> Artículo</label></li>
+<li><label class="option-label"><input type="radio" name="ei6" value="ensayo"> Ensayo</label></li>
+</ul>
+<div class="feedback-box" id="feedback-ei6"></div>
+</div>
+
+<div class="exercise-item">
+<p class="enunciado">7. ¿Qué género académico suele tener una exposición oral de entre 10 y 20 minutos y es evaluado previamente por un comité científico antes de ser aceptado?</p>
+<ul class="options-list">
+<li><label class="option-label"><input type="radio" name="ei7" value="conferencia"> Conferencia</label></li>
+<li><label class="option-label"><input type="radio" name="ei7" value="ponencia"> Ponencia</label></li>
+<li><label class="option-label"><input type="radio" name="ei7" value="articulo"> Artículo</label></li>
+<li><label class="option-label"><input type="radio" name="ei7" value="ensayo"> Ensayo</label></li>
+</ul>
+<div class="feedback-box" id="feedback-ei7"></div>
+</div>
+
+<div class="exercise-item">
+<p class="enunciado">8. ¿Qué género académico tiene como propósito principal divulgar o capacitar a una audiencia amplia, sin que necesariamente derive de una investigación original del expositor?</p>
+<ul class="options-list">
+<li><label class="option-label"><input type="radio" name="ei8" value="conferencia"> Conferencia</label></li>
+<li><label class="option-label"><input type="radio" name="ei8" value="ponencia"> Ponencia</label></li>
+<li><label class="option-label"><input type="radio" name="ei8" value="articulo"> Artículo</label></li>
+<li><label class="option-label"><input type="radio" name="ei8" value="ensayo"> Ensayo</label></li>
+</ul>
+<div class="feedback-box" id="feedback-ei8"></div>
+</div>
+
+<div class="alert-incomplete" id="alertEjercicio">Por favor responde las 8 situaciones antes de verificar tus respuestas.</div>
+<div class="verify-bar">
+<button class="btn btn-primary" onclick="verificarEjercicio()">Verificar respuestas</button>
+<button class="btn btn-secondary" onclick="reiniciarEjercicio()">Reiniciar</button>
+</div>
+<div class="score-summary" id="scoreEjercicio">
+<div class="score-number" id="scoreNumberEjercicio">0/8</div>
+<div class="score-bar-container"><div class="score-bar-fill" id="scoreBarEjercicio"></div></div>
+<div class="score-message" id="scoreMessageEjercicio"></div>
+</div>
+</div>
+
+<!-- ============ TAB: CUESTIONARIO ============ -->
+<div id="cuestionario" class="tab-content">
+<h2>Cuestionario: 10 preguntas</h2>
+<p>7 preguntas teóricas y 3 de análisis de caso (estas últimas son autónomas y pueden resolverse sin haber leído el widget). Responde todas y luego presiona "Verificar respuestas".</p>
+
+<div class="quiz-item">
+<span class="badge badge-teorica">Teórica</span>
+<p class="enunciado">1. ¿Qué se entiende por "conciencia lingüística" en la escritura académica?</p>
+<ul class="options-list">
+<li><label class="option-label"><input type="radio" name="qi1" value="a"> La cantidad de palabras técnicas que un texto contiene, sin importar su precisión.</label></li>
+<li><label class="option-label"><input type="radio" name="qi1" value="b"> La capacidad reflexiva de observar y ajustar de manera deliberada las decisiones de lenguaje según el género, el destinatario y el propósito.</label></li>
+<li><label class="option-label"><input type="radio" name="qi1" value="c"> Un sinónimo de ortografía correcta.</label></li>
+<li><label class="option-label"><input type="radio" name="qi1" value="d"> La velocidad con la que una persona redacta un texto.</label></li>
+</ul>
+<div class="feedback-box" id="feedback-qi1"></div>
+</div>
+
+<div class="quiz-item">
+<span class="badge badge-teorica">Teórica</span>
+<p class="enunciado">2. Según lo estudiado, ¿cuál de las siguientes opciones NO corresponde a un nivel de la conciencia lingüística?</p>
+<ul class="options-list">
+<li><label class="option-label"><input type="radio" name="qi2" value="a"> Nivel léxico-semántico</label></li>
+<li><label class="option-label"><input type="radio" name="qi2" value="b"> Nivel sintáctico</label></li>
+<li><label class="option-label"><input type="radio" name="qi2" value="c"> Nivel pragmático</label></li>
+<li><label class="option-label"><input type="radio" name="qi2" value="d"> Nivel cronológico</label></li>
+</ul>
+<div class="feedback-box" id="feedback-qi2"></div>
+</div>
+
+<div class="quiz-item">
+<span class="badge badge-teorica">Teórica</span>
+<p class="enunciado">3. ¿Cuál es la diferencia esencial entre una conferencia y una ponencia?</p>
+<ul class="options-list">
+<li><label class="option-label"><input type="radio" name="qi3" value="a"> La conferencia siempre es escrita y la ponencia siempre es oral.</label></li>
+<li><label class="option-label"><input type="radio" name="qi3" value="b"> La ponencia presenta investigación original evaluada por un comité científico; la conferencia no necesariamente.</label></li>
+<li><label class="option-label"><input type="radio" name="qi3" value="c"> No existe ninguna diferencia real entre ambas.</label></li>
+<li><label class="option-label"><input type="radio" name="qi3" value="d"> La conferencia solo puede tratar temas tributarios.</label></li>
+</ul>
+<div class="feedback-box" id="feedback-qi3"></div>
+</div>
+
+<div class="quiz-item">
+<span class="badge badge-teorica">Teórica</span>
+<p class="enunciado">4. ¿Qué estructura debe seguir, por convención, un artículo científico?</p>
+<ul class="options-list">
+<li><label class="option-label"><input type="radio" name="qi4" value="a"> Apertura, desarrollo, cierre.</label></li>
+<li><label class="option-label"><input type="radio" name="qi4" value="b"> Resumen, tesis, argumentos, conclusión.</label></li>
+<li><label class="option-label"><input type="radio" name="qi4" value="c"> Introducción, Métodos, Resultados y Discusión (IMRAD).</label></li>
+<li><label class="option-label"><input type="radio" name="qi4" value="d"> Saludo, objetivo, agradecimientos.</label></li>
+</ul>
+<div class="feedback-box" id="feedback-qi4"></div>
+</div>
+
+<div class="quiz-item">
+<span class="badge badge-teorica">Teórica</span>
+<p class="enunciado">5. ¿Qué caracteriza principalmente al ensayo frente a los otros géneros académicos estudiados?</p>
+<ul class="options-list">
+<li><label class="option-label"><input type="radio" name="qi5" value="a"> Es el único género que permite el uso de la primera persona y un tono argumentativo personal.</label></li>
+<li><label class="option-label"><input type="radio" name="qi5" value="b"> Es el único género que requiere evaluación por pares.</label></li>
+<li><label class="option-label"><input type="radio" name="qi5" value="c"> Es el único género que se presenta oralmente.</label></li>
+<li><label class="option-label"><input type="radio" name="qi5" value="d"> Es el único género que no puede tratar temas profesionales.</label></li>
+</ul>
+<div class="feedback-box" id="feedback-qi5"></div>
+</div>
+
+<div class="quiz-item">
+<span class="badge badge-teorica">Teórica</span>
+<p class="enunciado">6. Dentro de los niveles de conciencia lingüística, ¿qué controla específicamente el nivel pragmático?</p>
+<ul class="options-list">
+<li><label class="option-label"><input type="radio" name="qi6" value="a"> La ortografía de las palabras.</label></li>
+<li><label class="option-label"><input type="radio" name="qi6" value="b"> La adecuación del registro y el tono al destinatario y al contexto.</label></li>
+<li><label class="option-label"><input type="radio" name="qi6" value="c"> La cantidad de párrafos del texto.</label></li>
+<li><label class="option-label"><input type="radio" name="qi6" value="d"> El uso correcto de las comas.</label></li>
+</ul>
+<div class="feedback-box" id="feedback-qi6"></div>
+</div>
+
+<div class="quiz-item">
+<span class="badge badge-teorica">Teórica</span>
+<p class="enunciado">7. ¿Cuál de las siguientes opciones describe correctamente el resumen o abstract de una ponencia?</p>
+<ul class="options-list">
+<li><label class="option-label"><input type="radio" name="qi7" value="a"> Debe tener más de 1000 palabras y narrar toda la metodología en detalle.</label></li>
+<li><label class="option-label"><input type="radio" name="qi7" value="b"> Es opcional y puede omitirse si el tema ya es conocido por la audiencia.</label></li>
+<li><label class="option-label"><input type="radio" name="qi7" value="c"> Sintetiza en 150 a 250 palabras el problema, el objetivo, el método y los principales hallazgos o argumentos.</label></li>
+<li><label class="option-label"><input type="radio" name="qi7" value="d"> Solo se usa en conferencias, nunca en ponencias.</label></li>
+</ul>
+<div class="feedback-box" id="feedback-qi7"></div>
+</div>
+
+<div class="quiz-item">
+<span class="badge badge-caso">Análisis de caso</span>
+<p class="enunciado">8. Un auditor redacta en su informe: "Las cifras están medio desordenadas y habría que revisar varias cosas antes de presentar el informe a la junta." ¿Qué está fallando principalmente en esta redacción?</p>
+<ul class="options-list">
+<li><label class="option-label"><input type="radio" name="qi8" value="a"> El nivel sintáctico: la oración es ambigua y puede leerse de varias formas.</label></li>
+<li><label class="option-label"><input type="radio" name="qi8" value="b"> Los niveles léxico-semántico y pragmático: usa términos imprecisos ("varias cosas", "medio desordenadas") y un registro coloquial inapropiado para un informe profesional.</label></li>
+<li><label class="option-label"><input type="radio" name="qi8" value="c"> El nivel textual: faltan conectores lógicos entre las ideas.</label></li>
+<li><label class="option-label"><input type="radio" name="qi8" value="d"> No falla ningún nivel; el texto es apto para un informe de auditoría.</label></li>
+</ul>
+<div class="feedback-box" id="feedback-qi8"></div>
+</div>
+
+<div class="quiz-item">
+<span class="badge badge-caso">Análisis de caso</span>
+<p class="enunciado">9. Una estudiante debe presentar, ante un comité evaluador de un congreso universitario, los resultados de su investigación sobre el uso de NIIF en cooperativas de ahorro, en una exposición de 15 minutos con una posterior ronda de preguntas técnicas. ¿Qué género académico está produciendo?</p>
+<ul class="options-list">
+<li><label class="option-label"><input type="radio" name="qi9" value="a"> Conferencia</label></li>
+<li><label class="option-label"><input type="radio" name="qi9" value="b"> Ponencia</label></li>
+<li><label class="option-label"><input type="radio" name="qi9" value="c"> Artículo</label></li>
+<li><label class="option-label"><input type="radio" name="qi9" value="d"> Ensayo</label></li>
+</ul>
+<div class="feedback-box" id="feedback-qi9"></div>
+</div>
+
+<div class="quiz-item">
+<span class="badge badge-caso">Análisis de caso</span>
+<p class="enunciado">10. Un profesional de contabilidad escribe, en su tiempo libre y en primera persona, sobre cómo aprender a manejar las finanzas de su propio hogar le ayudó a comprender mejor su profesión, sin presentar datos de una investigación formal. ¿Qué género está utilizando y qué nivel de libertad estilística le permite?</p>
+<ul class="options-list">
+<li><label class="option-label"><input type="radio" name="qi10" value="a"> Artículo; debe mantener lenguaje impersonal y objetivo en todo momento.</label></li>
+<li><label class="option-label"><input type="radio" name="qi10" value="b"> Ponencia; debe pasar por evaluación de un comité científico antes de presentarse.</label></li>
+<li><label class="option-label"><input type="radio" name="qi10" value="c"> Ensayo; le permite usar la primera persona y un tono reflexivo y personal mientras mantenga rigor argumentativo.</label></li>
+<li><label class="option-label"><input type="radio" name="qi10" value="d"> Conferencia; debe necesariamente exponerse oralmente ante un público en vivo.</label></li>
+</ul>
+<div class="feedback-box" id="feedback-qi10"></div>
+</div>
+
+<div class="alert-incomplete" id="alertCuestionario">Por favor responde las 10 preguntas antes de verificar tus respuestas.</div>
+<div class="verify-bar">
+<button class="btn btn-primary" onclick="verificarCuestionario()">Verificar respuestas</button>
+<button class="btn btn-secondary" onclick="reiniciarCuestionario()">Reiniciar</button>
+</div>
+<div class="score-summary" id="scoreCuestionario">
+<div class="score-number" id="scoreNumberCuestionario">0/10</div>
+<div class="score-bar-container"><div class="score-bar-fill" id="scoreBarCuestionario"></div></div>
+<div class="score-message" id="scoreMessageCuestionario"></div>
+</div>
+</div>
+<!-- ============ TAB: ACTIVIDAD CON IA ============ -->
+<div id="actividadia" class="tab-content">
+<h2>Actividad con Inteligencia Artificial</h2>
+<p>Vas a usar <strong>Claude</strong> (disponible gratuitamente en <a href="https://claude.ai" target="_blank" rel="noopener">claude.ai</a>) como interlocutor crítico para poner a prueba tu conciencia lingüística, no como un generador de textos que copiarás sin pensar. El objetivo es que la IA te haga ver lo que tú, como autor, no alcanzas a notar en tu propio texto.</p>
+
+<div class="concept-box">
+<h4>Paso 1: redacta tu borrador</h4>
+<p>Antes de usar la IA, escribe un párrafo de al menos 100 palabras (puedes usar el Taller Guiado del Tema 5) sobre un tema contable o de auditoría de tu interés, simulando que es el inicio de una ponencia, un artículo o una conferencia.</p>
+</div>
+
+<div class="concept-box">
+<h4>Paso 2: usa este prompt exacto en Claude</h4>
+<div class="ai-prompt-box">Actúa como un revisor experto en conciencia lingüística y escritura académica. Voy a pegarte un párrafo que escribí. Analízalo en estos cuatro niveles, uno por uno, sin corregirlo todavía:
+
+1) Nivel léxico-semántico: ¿hay palabras imprecisas, redundantes o mal elegidas?
+2) Nivel sintáctico: ¿hay alguna oración ambigua o demasiado larga que dificulte la comprensión?
+3) Nivel textual: ¿las ideas están conectadas con conectores lógicos claros?
+4) Nivel pragmático: ¿el registro es coherente con un texto académico formal, o se mezcla con un tono coloquial?
+
+Para cada nivel, dame máximo dos observaciones concretas, citando la parte exacta de mi texto a la que te refieres. No reescribas todo el párrafo por mí: solo señala los problemas para que yo decida cómo corregirlos.
+
+Aquí está mi párrafo:
+[PEGA AQUÍ TU PÁRRAFO]</div>
+</div>
+
+<div class="concept-box">
+<h4>Paso 3: qué hacer con la respuesta de la IA</h4>
+<div class="ai-steps">
+<p>1. Lee las cuatro observaciones de Claude y decide, para cada una, si estás de acuerdo o no, y por qué.</p>
+<p>2. Reescribe tu párrafo aplicando solo las correcciones con las que estés de acuerdo. No aceptes ningún cambio sin entender la razón.</p>
+<p>3. Escribe, en dos o tres oraciones propias, qué aprendiste sobre tus propios hábitos de escritura al leer la retroalimentación.</p>
+</div>
+</div>
+
+<h3>Criterio de evaluación: pensamiento crítico vs. copia simple</h3>
+<table class="rubric-table">
+<tr><th>Nivel</th><th>Qué se observa</th></tr>
+<tr><td><strong>Copia simple (no aceptable)</strong></td><td>El estudiante pega la respuesta de la IA tal cual, sin explicar qué cambió ni por qué, y no entrega su propio párrafo de reflexión.</td></tr>
+<tr><td><strong>Pensamiento crítico intermedio</strong></td><td>El estudiante aplica algunas correcciones sugeridas, pero no explica con claridad por qué aceptó o rechazó cada observación.</td></tr>
+<tr><td><strong>Pensamiento crítico avanzado</strong></td><td>El estudiante evalúa cada observación de la IA, justifica su decisión de aceptarla o no, reescribe su párrafo con coherencia propia y reflexiona explícitamente sobre sus hábitos de escritura.</td></tr>
+</table>
+
+<div class="key-idea-box">
+<p>La IA es un espejo que te ayuda a ver lo que no notas en tu propio texto, pero la decisión final sobre cómo escribir siempre es tuya. Usarla bien significa cuestionarla, no obedecerla automáticamente.</p>
+</div>
+</div>
+
+<!-- ============ TAB: REFLEXIÓN ============ -->
+<div id="reflexion" class="tab-content">
+<h2>Reflexión personal</h2>
+<p>No hay respuestas correctas ni incorrectas. El objetivo es que conectes lo aprendido hoy con tu propia experiencia y tu desarrollo personal como comunicador.</p>
+
+<div class="reflection-question">¿En qué situaciones de tu vida diaria sientes que "hablas" en lugar de realmente "comunicar con conciencia"? ¿Qué cambiaría si aplicaras los cuatro niveles de conciencia lingüística también a tus conversaciones cotidianas, no solo a tus textos académicos?</div>
+
+<div class="reflection-question">Cuando debes expresar una idea formalmente ante otras personas —un profesor, un jefe, un cliente— ¿sientes seguridad o inseguridad? ¿Qué relación encuentras entre tu nivel de autoestima y tu disposición a revisar y mejorar conscientemente cómo te expresas?</div>
+
+<div class="reflection-question">De los cuatro géneros estudiados (conferencia, ponencia, artículo, ensayo), ¿cuál te resulta más cómodo escribir y cuál más difícil? ¿Qué te dice esa preferencia sobre tu propio estilo de pensar y comunicarte?</div>
+
+<div class="reflection-question">Piensa en una vez que escribiste algo de forma apresurada, sin revisar tu lenguaje, y que generó una confusión o un malentendido. ¿Qué nivel de conciencia lingüística faltó en ese momento, y cómo lo manejarías hoy de manera distinta?</div>
+
+<div class="reflection-question">Desde la Programación Neurolingüística, sabes que cada persona procesa la información de forma distinta (visual, auditiva o kinestésica). ¿Cómo podrías usar esa idea para escribir textos académicos que conecten mejor con lectores que procesan la información de un modo distinto al tuyo?</div>
+
+<div class="reflection-question">Si tuvieras que presentar, dentro de cinco años, una ponencia profesional sobre tu trabajo como contador o auditor, ¿qué tema elegirías hoy y por qué? ¿Qué te dice esa elección sobre lo que realmente te apasiona dentro de tu profesión?</div>
+</div>
+
+<!-- ============ TAB: BIBLIOGRAFÍA ============ -->
+<div id="bibliografia" class="tab-content">
+<h2>Bibliografía</h2>
+<p>Referencias en formato APA, 7.ª edición.</p>
+
+<div class="biblio-card"><span class="autor-anio">Cassany, D. (1995).</span> <em>La cocina de la escritura.</em> Anagrama.</div>
+<div class="biblio-card"><span class="autor-anio">Cassany, D. (1999).</span> <em>Construir la escritura.</em> Paidós.</div>
+<div class="biblio-card"><span class="autor-anio">Serafini, M. T. (1994).</span> <em>Cómo se escribe.</em> Paidós.</div>
+<div class="biblio-card"><span class="autor-anio">Eco, U. (1977).</span> <em>Cómo se hace una tesis: técnicas y procedimientos de estudio, investigación y escritura.</em> Gedisa.</div>
+<div class="biblio-card"><span class="autor-anio">Day, R. A., &amp; Gastel, B. (2016).</span> <em>How to write and publish a scientific paper</em> (8.ª ed.). Cambridge University Press.</div>
+<div class="biblio-card"><span class="autor-anio">Van Dijk, T. A. (1978).</span> <em>La ciencia del texto.</em> Paidós.</div>
+<div class="biblio-card"><span class="autor-anio">Beaugrande, R. de, &amp; Dressler, W. (1981).</span> <em>Introduction to text linguistics.</em> Longman.</div>
+<div class="biblio-card"><span class="autor-anio">American Psychological Association. (2020).</span> <em>Publication manual of the American Psychological Association</em> (7.ª ed.). https://doi.org/10.1037/0000165-000</div>
+
+<div class="biblio-footer-note">Se recomienda verificar cada referencia en Google Scholar (scholar.google.com) o en el repositorio institucional antes de citar en trabajos académicos.</div>
+</div>
+<script>
+/* ===================== NAVEGACIÓN DE PESTAÑAS ===================== */
+function showTab(tabId){
+  document.querySelectorAll('.tab-content').forEach(function(tc){ tc.classList.remove('active'); });
+  var target = document.getElementById(tabId);
+  if(target){ target.classList.add('active'); }
+  document.querySelectorAll('.tab-button').forEach(function(btn){
+    btn.classList.remove('active');
+    if(btn.getAttribute('onclick') === "showTab('" + tabId + "')"){ btn.classList.add('active'); }
+  });
+}
+
+/* ===================== ACORDEÓN DE REPASO ===================== */
+function toggleAccordion(btn){
+  var content = btn.nextElementSibling;
+  var icon = btn.querySelector('.accordion-icon');
+  var isOpen = content.classList.contains('open');
+  if(isOpen){
+    content.classList.remove('open');
+    icon.textContent = '▶';
+  } else {
+    content.classList.add('open');
+    icon.textContent = '▼';
+  }
+}
+
+/* ===================== MENSAJE DE CALIFICACIÓN ===================== */
+function getScoreMessage(pct){
+  if(pct >= 100){ return '🏆 ¡Excelente! Dominas completamente el tema.'; }
+  if(pct >= 80){ return '🎯 ¡Muy bien! Tienes un manejo sólido del tema, revisa lo que falló.'; }
+  if(pct >= 60){ return '📘 Vas bien, pero conviene repasar algunos puntos del contenido.'; }
+  if(pct >= 40){ return '⚠️ Necesitas reforzar el tema. Vuelve a leer los Temas 1 a 4.'; }
+  return '📖 Es importante que repases todo el contenido de esta semana antes de continuar.';
+}
+
+/* ===================== FUNCIÓN GENÉRICA DE VERIFICACIÓN ===================== */
+function verificarGrupo(prefix, count, answers, feedbacks, alertId, scoreSummaryId, scoreNumberId, scoreBarId, scoreMessageId){
+  var allAnswered = true;
+  for(var i = 1; i <= count; i++){
+    var name = prefix + i;
+    var checked = document.querySelector('input[name="' + name + '"]:checked');
+    if(!checked){ allAnswered = false; }
+  }
+  var alertEl = document.getElementById(alertId);
+  if(!allAnswered){
+    alertEl.classList.add('show');
+    return;
+  }
+  alertEl.classList.remove('show');
+  var score = 0;
+  for(var j = 1; j <= count; j++){
+    var qname = prefix + j;
+    var checkedInput = document.querySelector('input[name="' + qname + '"]:checked');
+    var correctValue = answers[qname];
+    var isCorrect = checkedInput.value === correctValue;
+    if(isCorrect){ score++; }
+    var allInputs = document.querySelectorAll('input[name="' + qname + '"]');
+    allInputs.forEach(function(inp){
+      var label = inp.closest('label');
+      label.classList.remove('correct-answer','wrong-answer');
+      if(inp.value === correctValue){
+        label.classList.add('correct-answer');
+      } else if(inp === checkedInput){
+        label.classList.add('wrong-answer');
+      }
+    });
+    var fb = document.getElementById('feedback-' + qname);
+    fb.textContent = feedbacks[qname];
+    fb.classList.remove('correct','incorrect');
+    fb.classList.add('show');
+    fb.classList.add(isCorrect ? 'correct' : 'incorrect');
+  }
+  var pct = Math.round((score / count) * 100);
+  document.getElementById(scoreNumberId).textContent = score + '/' + count;
+  document.getElementById(scoreBarId).style.width = pct + '%';
+  document.getElementById(scoreMessageId).textContent = getScoreMessage(pct);
+  document.getElementById(scoreSummaryId).classList.add('show');
+}
+
+function reiniciarGrupo(prefix, count, alertId, scoreSummaryId, scoreBarId){
+  for(var i = 1; i <= count; i++){
+    var name = prefix + i;
+    var inputs = document.querySelectorAll('input[name="' + name + '"]');
+    inputs.forEach(function(inp){
+      inp.checked = false;
+      var label = inp.closest('label');
+      label.classList.remove('correct-answer','wrong-answer');
+    });
+    var fb = document.getElementById('feedback-' + name);
+    fb.classList.remove('show','correct','incorrect');
+    fb.textContent = '';
+  }
+  document.getElementById(alertId).classList.remove('show');
+  document.getElementById(scoreSummaryId).classList.remove('show');
+  document.getElementById(scoreBarId).style.width = '0%';
+}
+
+/* ===================== EJERCICIO INTERACTIVO ===================== */
+var eiAnswers = {
+  ei1:'ponencia', ei2:'conferencia', ei3:'articulo', ei4:'ensayo',
+  ei5:'articulo', ei6:'ensayo', ei7:'ponencia', ei8:'conferencia'
+};
+var eiFeedback = {
+  ei1:'Es una Ponencia: presenta investigación original ante un comité científico, con tiempo limitado y ronda de preguntas técnicas.',
+  ei2:'Es una Conferencia: divulgación dirigida a un público amplio, sin presentar una investigación original propia, con lenguaje accesible.',
+  ei3:'Es un Artículo: publicado en revista indexada, sigue la estructura IMRAD y pasa por revisión de pares.',
+  ei4:'Es un Ensayo: texto en primera persona, de carácter personal y reflexivo, sin datos de una investigación formal.',
+  ei5:'Es el Artículo: la estructura IMRAD (Introducción, Métodos, Resultados y Discusión) es una convención obligatoria de este género.',
+  ei6:'Es el Ensayo: permite la primera persona y mayor libertad estilística que los otros tres géneros.',
+  ei7:'Es la Ponencia: tiempo de exposición breve (10 a 20 minutos) y evaluación previa por un comité científico.',
+  ei8:'Es la Conferencia: su propósito es divulgar o capacitar, no necesariamente presentar una investigación original.'
+};
+function verificarEjercicio(){
+  verificarGrupo('ei', 8, eiAnswers, eiFeedback, 'alertEjercicio', 'scoreEjercicio', 'scoreNumberEjercicio', 'scoreBarEjercicio', 'scoreMessageEjercicio');
+}
+function reiniciarEjercicio(){
+  reiniciarGrupo('ei', 8, 'alertEjercicio', 'scoreEjercicio', 'scoreBarEjercicio');
+}
+
+/* ===================== CUESTIONARIO ===================== */
+var qiAnswers = {
+  qi1:'b', qi2:'d', qi3:'b', qi4:'c', qi5:'a', qi6:'b', qi7:'c', qi8:'b', qi9:'b', qi10:'c'
+};
+var qiFeedback = {
+  qi1:'Correcto: la conciencia lingüística es la capacidad reflexiva de ajustar las decisiones de lenguaje según el género, el destinatario y el propósito.',
+  qi2:'Correcto: los niveles estudiados son léxico-semántico, sintáctico, textual y pragmático; "nivel cronológico" no es uno de ellos.',
+  qi3:'Correcto: la ponencia presenta investigación evaluada por un comité científico; la conferencia no necesariamente.',
+  qi4:'Correcto: IMRAD (Introducción, Métodos, Resultados y Discusión) es la estructura convencional del artículo científico.',
+  qi5:'Correcto: el ensayo es el único de los cuatro géneros que permite la primera persona y un tono argumentativo personal.',
+  qi6:'Correcto: el nivel pragmático controla la adecuación del registro y el tono al destinatario y al contexto.',
+  qi7:'Correcto: el resumen o abstract sintetiza en 150 a 250 palabras el problema, el objetivo, el método y los hallazgos o argumentos.',
+  qi8:'Correcto: el párrafo combina imprecisión léxica ("varias cosas", "medio desordenadas") con un registro coloquial inapropiado para un informe profesional (niveles léxico-semántico y pragmático).',
+  qi9:'Correcto: exposición oral breve, evaluada por un comité científico y con ronda de preguntas técnicas son rasgos propios de la Ponencia.',
+  qi10:'Correcto: es un Ensayo, género que permite la primera persona y un tono reflexivo manteniendo rigor argumentativo.'
+};
+function verificarCuestionario(){
+  verificarGrupo('qi', 10, qiAnswers, qiFeedback, 'alertCuestionario', 'scoreCuestionario', 'scoreNumberCuestionario', 'scoreBarCuestionario', 'scoreMessageCuestionario');
+}
+function reiniciarCuestionario(){
+  reiniciarGrupo('qi', 10, 'alertCuestionario', 'scoreCuestionario', 'scoreBarCuestionario');
+}
+
+/* ===================== TALLER GUIADO ===================== */
+var tallerStructures = {
+  conferencia: [
+    {id:'titulo', label:'Título de la conferencia', tip:'Debe anunciar el tema con claridad y, si es posible, despertar interés. Evita títulos vagos como "Charla sobre contabilidad".'},
+    {id:'apertura', label:'Apertura y saludo protocolario', tip:'Usa fórmulas formales pero cercanas: agradece a la institución organizadora y preséntate brevemente. Evita registros demasiado informales.'},
+    {id:'objetivo', label:'Presentación del tema y objetivo', tip:'Anuncia con precisión léxica qué vas a explicar y para qué le servirá esa información a la audiencia.'},
+    {id:'desarrollo', label:'Desarrollo por bloques temáticos', tip:'Organiza tus ideas en bloques claros, usando conectores que guíen al oyente: "en primer lugar", "a continuación", "por otra parte".'},
+    {id:'cierre', label:'Cierre, síntesis y llamado a la reflexión', tip:'Recapitula las ideas clave en pocas oraciones y cierra con una invitación a la acción o la reflexión.'}
+  ],
+  ponencia: [
+    {id:'titulo', label:'Título', tip:'Debe anunciar con precisión el tema y, si aplica, el enfoque metodológico. Evita ambigüedad léxica.'},
+    {id:'resumen', label:'Resumen / Abstract (150-250 palabras) y palabras clave', tip:'Usa lenguaje denso, objetivo y sin redundancias: cada palabra debe aportar información, no relleno.'},
+    {id:'introduccion', label:'Introducción: problema, objetivo y justificación', tip:'Sé explícito sobre el problema de investigación; evita formulaciones vagas como "esto es un tema importante".'},
+    {id:'desarrollo', label:'Desarrollo: metodología y resultados o argumentación', tip:'Mantén consistencia terminológica: si nombras una variable o categoría, llámala siempre igual a lo largo del texto.'},
+    {id:'conclusiones', label:'Conclusiones', tip:'Cierra retomando el objetivo planteado en la introducción; evita introducir ideas nuevas no desarrolladas antes.'}
+  ],
+  articulo: [
+    {id:'titulo', label:'Título', tip:'Preciso, específico, sin adjetivos subjetivos ni ambigüedad.'},
+    {id:'resumen', label:'Resumen estructurado', tip:'Sintetiza objetivo, método, resultados y conclusión en un solo párrafo, con lenguaje impersonal (evita "yo" o "nosotros").'},
+    {id:'introduccion', label:'Introducción', tip:'Contextualiza el problema con base en literatura previa; cada afirmación relevante debe estar respaldada o referenciada.'},
+    {id:'metodologia', label:'Metodología', tip:'Describe el procedimiento con verbos en pasado y voz pasiva o impersonal ("se aplicó una encuesta a..."), nunca en primera persona.'},
+    {id:'resultados', label:'Resultados', tip:'Reporta datos sin interpretarlos todavía; usa lenguaje cuantitativo preciso ("el 42% de los encuestados", no "muchos encuestados").'},
+    {id:'discusion', label:'Discusión / Conclusiones', tip:'Interpreta los resultados y contrástalos con estudios previos; distingue claramente entre lo que muestran los datos y tu interpretación.'}
+  ],
+  ensayo: [
+    {id:'titulo', label:'Título', tip:'Puede ser más sugerente que en otros géneros, pero debe seguir conectado con tu tesis central.'},
+    {id:'tesis', label:'Tesis o idea central', tip:'Formúlala en una sola oración clara: es la columna vertebral de todo el ensayo.'},
+    {id:'introduccion', label:'Introducción', tip:'Presenta el tema y anticipa tu postura sin agotar todos tus argumentos todavía.'},
+    {id:'desarrollo', label:'Desarrollo argumentativo', tip:'Cada párrafo debe defender una idea con argumentos y, si es posible, ejemplos; aquí sí puedes usar primera persona de forma reflexiva.'},
+    {id:'conclusion', label:'Conclusión', tip:'Retoma tu tesis sin repetirla literalmente y cierra con una reflexión final que aporte valor, no solo un resumen.'}
+  ]
+};
+var tallerCardIds = {conferencia:'cardConferencia', ponencia:'cardPonencia', articulo:'cardArticulo', ensayo:'cardEnsayo'};
+var tallerTipoLabels = {conferencia:'Conferencia', ponencia:'Ponencia', articulo:'Artículo', ensayo:'Ensayo'};
+var tallerSelectedType = null;
+var tallerPreviewText = '';
+
+function selectTextType(type){
+  tallerSelectedType = type;
+  Object.keys(tallerCardIds).forEach(function(key){
+    document.getElementById(tallerCardIds[key]).classList.remove('selected');
+  });
+  document.getElementById(tallerCardIds[type]).classList.add('selected');
+  document.getElementById('tallerNext1').disabled = false;
+}
+
+function tallerGoToStep(step){
+  for(var i = 1; i <= 4; i++){
+    document.getElementById('tallerStep' + i).classList.remove('active');
+    document.getElementById('dot' + i).classList.remove('active');
+  }
+  document.getElementById('tallerStep' + step).classList.add('active');
+  for(var d = 1; d <= step; d++){
+    document.getElementById('dot' + d).classList.add('active');
+  }
+  if(step === 2){ buildTallerForm(); }
+  if(step === 4){ generateTallerPreview(); }
+}
+
+function buildTallerForm(){
+  if(!tallerSelectedType){ return; }
+  var container = document.getElementById('tallerFormContainer');
+  container.innerHTML = '';
+  document.getElementById('tallerStep2Subtitle').textContent = 'Estás construyendo: ' + tallerTipoLabels[tallerSelectedType] + '. Completa cada sección y lee la sugerencia de conciencia lingüística antes de redactar.';
+  tallerStructures[tallerSelectedType].forEach(function(field){
+    var div = document.createElement('div');
+    div.className = 'form-section';
+    var label = document.createElement('label');
+    label.setAttribute('for', 'tallerField_' + field.id);
+    label.textContent = field.label;
+    var textarea = document.createElement('textarea');
+    textarea.className = 'taller-textarea';
+    textarea.id = 'tallerField_' + field.id;
+    var tip = document.createElement('div');
+    tip.className = 'tip-box';
+    tip.textContent = '💡 Conciencia lingüística: ' + field.tip;
+    div.appendChild(label);
+    div.appendChild(textarea);
+    div.appendChild(tip);
+    container.appendChild(div);
+  });
+}
+
+function generateTallerPreview(){
+  if(!tallerSelectedType){ return; }
+  var text = '=== ' + tallerTipoLabels[tallerSelectedType].toUpperCase() + ' ===\n';
+  text += 'Universidad de Guayaquil - Facultad de Ciencias Administrativas\n';
+  text += 'Carrera de Contabilidad y Auditoría\n\n';
+  tallerStructures[tallerSelectedType].forEach(function(field){
+    var ta = document.getElementById('tallerField_' + field.id);
+    var value = ta ? ta.value.trim() : '';
+    text += field.label.toUpperCase() + '\n';
+    text += (value || '[Sección no completada]') + '\n\n';
+  });
+  document.getElementById('tallerPreview').textContent = text;
+  tallerPreviewText = text;
+}
+
+function descargarTaller(){
+  var text = tallerPreviewText || document.getElementById('tallerPreview').textContent;
+  var blob = new Blob([text], {type:'text/plain;charset=utf-8'});
+  var url = URL.createObjectURL(blob);
+  var a = document.createElement('a');
+  a.href = url;
+  a.download = 'borrador_' + (tallerSelectedType || 'texto') + '.txt';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
+
+function imprimirTaller(){
+  var text = tallerPreviewText || document.getElementById('tallerPreview').textContent;
+  var safeText = text.split('&').join('&amp;').split('<').join('&lt;').split('>').join('&gt;');
+  var w = window.open('', '_blank');
+  w.document.write('<html><head><title>Borrador</title><style>body{font-family:Georgia,serif; padding:30px; white-space:pre-wrap; line-height:1.6;}</style></head><body>' + safeText + '</body></html>');
+  w.document.close();
+  w.focus();
+  setTimeout(function(){ w.print(); }, 300);
+}
+
+function reiniciarTaller(){
+  tallerSelectedType = null;
+  Object.keys(tallerCardIds).forEach(function(key){
+    document.getElementById(tallerCardIds[key]).classList.remove('selected');
+  });
+  document.getElementById('tallerNext1').disabled = true;
+  document.getElementById('tallerFormContainer').innerHTML = '';
+  document.querySelectorAll('.checklist-item input').forEach(function(c){ c.checked = false; });
+  document.getElementById('tallerPreview').textContent = '';
+  tallerPreviewText = '';
+  tallerGoToStep(1);
+}
+</script>
+</div>
+</body>
+</html>

@@ -1,0 +1,1582 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Semana 15 | Lenguaje y Comunicación | El abordaje preventivo en el uso y consumo de drogas</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@500;600;700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --azul-oscuro:#003366;
+  --celeste:#87CEEB;
+  --azul-claro-bg:#EAF5FC;
+  --dorado:#C8932A;
+  --verde:#1E7A34;
+  --rojo:#B3261E;
+  --gris-texto:#27313A;
+  --gris-suave:#5A6776;
+  --borde:#D7E3EC;
+}
+*{box-sizing:border-box;}
+body{
+  margin:0; padding:0;
+  font-family:'Source Sans 3', Arial, sans-serif;
+  color:var(--gris-texto);
+  background:#F4F8FB;
+  line-height:1.65;
+}
+h1,h2,h3,h4{font-family:'Lora', Georgia, serif; color:var(--azul-oscuro); margin-top:0;}
+img{max-width:100%;}
+a{color:var(--azul-oscuro);}
+.header{
+  background:var(--azul-oscuro);
+  color:#FFFFFF;
+  padding:22px 20px 18px;
+  text-align:center;
+}
+.header .institucion{
+  font-size:0.92rem;
+  letter-spacing:0.3px;
+  opacity:0.95;
+  margin-bottom:6px;
+}
+.header h1{
+  color:#FFFFFF;
+  font-size:1.55rem;
+  margin:6px 0 8px;
+  line-height:1.3;
+}
+.header .meta{
+  display:inline-block;
+  background:rgba(255,255,255,0.12);
+  border:1px solid rgba(255,255,255,0.35);
+  border-radius:20px;
+  padding:6px 16px;
+  font-size:0.95rem;
+  font-weight:600;
+  margin-top:4px;
+}
+.header .submeta{
+  font-size:0.9rem;
+  margin-top:10px;
+  opacity:0.92;
+}
+.nav-tabs{
+  display:flex;
+  overflow-x:auto;
+  white-space:nowrap;
+  background:var(--celeste);
+  border-bottom:3px solid var(--azul-oscuro);
+  -webkit-overflow-scrolling:touch;
+  scrollbar-width:thin;
+}
+.nav-tabs::-webkit-scrollbar{height:7px;}
+.nav-tabs::-webkit-scrollbar-thumb{background:var(--azul-oscuro); border-radius:6px;}
+.nav-tabs button{
+  flex:0 0 auto;
+  background:var(--celeste);
+  border:none;
+  border-right:1px solid rgba(0,51,102,0.18);
+  color:#062338;
+  font-family:'Source Sans 3', Arial, sans-serif;
+  font-size:0.92rem;
+  font-weight:600;
+  padding:13px 16px;
+  cursor:pointer;
+  transition:background 0.15s ease;
+}
+.nav-tabs button:hover{background:#74C2E8;}
+.nav-tabs button.active{
+  background:#FFFFFF;
+  color:var(--azul-oscuro);
+  font-weight:700;
+  box-shadow:inset 0 -3px 0 var(--azul-oscuro);
+}
+.contenido{max-width:920px; margin:0 auto; padding:8px 18px 60px;}
+.tab-content{display:none; padding-top:18px;}
+.tab-content.active{display:block;}
+.tab-content h2{
+  font-size:1.4rem;
+  border-bottom:2px solid var(--celeste);
+  padding-bottom:8px;
+  margin-bottom:14px;
+}
+.tab-content h3{font-size:1.12rem; margin-top:22px;}
+.intro-pestana{
+  background:#FFFFFF;
+  border:1px solid var(--borde);
+  border-radius:10px;
+  padding:14px 16px;
+  margin-bottom:18px;
+  font-size:0.95rem;
+  color:var(--gris-suave);
+}
+/* Cajas de contenido */
+.concept-box{
+  background:#FFFFFF;
+  border-left:5px solid var(--azul-oscuro);
+  border-radius:6px;
+  padding:14px 18px;
+  margin:16px 0;
+  box-shadow:0 1px 3px rgba(0,0,0,0.06);
+}
+.concept-box strong.titulo-concepto{
+  display:block;
+  color:var(--azul-oscuro);
+  font-family:'Lora', serif;
+  margin-bottom:4px;
+}
+.example-box{
+  background:var(--azul-claro-bg);
+  border-radius:6px;
+  padding:14px 18px;
+  margin:16px 0;
+  border:1px solid #CFE7F5;
+}
+.example-box .etiqueta{
+  font-weight:700;
+  color:var(--azul-oscuro);
+  display:block;
+  margin-bottom:4px;
+}
+.key-box{
+  background:#FFFBF0;
+  border:2px solid var(--dorado);
+  border-radius:8px;
+  padding:14px 18px;
+  margin:18px 0;
+}
+.key-box .etiqueta{
+  font-weight:700;
+  color:#9A6E1A;
+  display:block;
+  margin-bottom:4px;
+}
+.resource-box{
+  background:#F0FAF1;
+  border:1px solid #BCE3C0;
+  border-radius:8px;
+  padding:14px 18px;
+  margin:18px 0;
+  font-size:0.93rem;
+}
+.resource-box .etiqueta{font-weight:700; color:var(--verde); display:block; margin-bottom:4px;}
+.alert-box{
+  background:#FDEEEE;
+  border:1px solid #F0C2C0;
+  border-radius:8px;
+  padding:10px 14px;
+  font-size:0.9rem;
+  color:var(--rojo);
+  margin:10px 0;
+}
+/* Tablas comparativas */
+table.comparativa{
+  width:100%;
+  border-collapse:collapse;
+  margin:16px 0;
+  font-size:0.92rem;
+  background:#FFFFFF;
+}
+table.comparativa th{
+  background:var(--azul-oscuro);
+  color:#FFFFFF;
+  padding:9px 10px;
+  text-align:left;
+}
+table.comparativa td{
+  padding:9px 10px;
+  border-bottom:1px solid var(--borde);
+  vertical-align:top;
+}
+table.comparativa tr:nth-child(even) td{background:#F7FAFD;}
+/* Tarjetas */
+.card-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
+  gap:14px;
+  margin:16px 0;
+}
+.info-card{
+  background:#FFFFFF;
+  border:1px solid var(--borde);
+  border-top:4px solid var(--azul-oscuro);
+  border-radius:8px;
+  padding:14px 16px;
+}
+.info-card h4{margin:0 0 6px; font-size:1rem; color:var(--azul-oscuro);}
+.info-card p{margin:0; font-size:0.9rem; color:var(--gris-suave);}
+/* Acordeón Repaso */
+.accordion-item{
+  background:#FFFFFF;
+  border:1px solid var(--borde);
+  border-radius:8px;
+  margin-bottom:10px;
+  overflow:hidden;
+}
+.accordion-header{
+  width:100%;
+  text-align:left;
+  background:#F0F6FB;
+  border:none;
+  padding:13px 16px;
+  font-family:'Lora', serif;
+  font-weight:600;
+  font-size:0.98rem;
+  color:var(--azul-oscuro);
+  cursor:pointer;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+.accordion-header:hover{background:#E2EFF8;}
+.accordion-arrow{font-size:0.85rem; transition:transform 0.15s ease;}
+.accordion-panel{
+  display:none;
+  padding:14px 18px 16px;
+  font-size:0.93rem;
+  border-top:1px solid var(--borde);
+}
+.accordion-panel.open{display:block;}
+/* Ejercicios y Cuestionario */
+.ejercicio-item, .quiz-item{
+  background:#FFFFFF;
+  border:1px solid var(--borde);
+  border-radius:8px;
+  padding:16px 18px;
+  margin-bottom:16px;
+}
+.ejercicio-enunciado, .quiz-enunciado{
+  font-weight:600;
+  margin-bottom:10px;
+  color:var(--gris-texto);
+}
+.badge{
+  display:inline-block;
+  font-size:0.72rem;
+  font-weight:700;
+  padding:3px 10px;
+  border-radius:12px;
+  margin-bottom:8px;
+  text-transform:uppercase;
+  letter-spacing:0.3px;
+}
+.badge-teorica{background:#DCEBFA; color:var(--azul-oscuro);}
+.badge-caso{background:#FCE9D6; color:#9A4F0A;}
+.opcion-lista{list-style:none; padding:0; margin:0;}
+.opcion-item{margin-bottom:8px;}
+.opcion-item label{
+  display:flex;
+  align-items:flex-start;
+  gap:9px;
+  padding:9px 11px;
+  border:1px solid var(--borde);
+  border-radius:6px;
+  cursor:pointer;
+  font-size:0.93rem;
+  transition:background 0.12s ease;
+}
+.opcion-item label:hover{background:#F4F8FB;}
+.opcion-item input[type="radio"]{margin-top:3px; flex:0 0 auto;}
+.opcion-item.correcta label{background:#E5F4E7; border-color:var(--verde);}
+.opcion-item.incorrecta label{background:#FCEAEA; border-color:var(--rojo);}
+.feedback-item{
+  display:none;
+  margin-top:10px;
+  padding:10px 12px;
+  border-radius:6px;
+  font-size:0.88rem;
+}
+.feedback-item.mostrar{display:block;}
+.feedback-item.correcto{background:#E5F4E7; color:#155724; border:1px solid var(--verde);}
+.feedback-item.incorrecto{background:#FCEAEA; color:#7A1714; border:1px solid var(--rojo);}
+.btn{
+  display:inline-block;
+  background:var(--azul-oscuro);
+  color:#FFFFFF;
+  border:none;
+  padding:11px 22px;
+  border-radius:6px;
+  font-size:0.95rem;
+  font-weight:600;
+  cursor:pointer;
+  font-family:'Source Sans 3', Arial, sans-serif;
+  margin-right:10px;
+  margin-top:6px;
+}
+.btn:hover{background:#012547;}
+.btn-secundario{background:#FFFFFF; color:var(--azul-oscuro); border:2px solid var(--azul-oscuro);}
+.btn-secundario:hover{background:#EAF5FC;}
+.btn:disabled{background:#B7C3CC; cursor:not-allowed;}
+.resultado-final{
+  display:none;
+  background:#FFFFFF;
+  border:2px solid var(--azul-oscuro);
+  border-radius:10px;
+  padding:20px;
+  margin-top:18px;
+  text-align:center;
+}
+.resultado-final.mostrar{display:block;}
+.resultado-final .puntaje{font-size:1.7rem; font-weight:700; color:var(--azul-oscuro); font-family:'Lora',serif;}
+.resultado-final .emoji-resultado{font-size:2.4rem; margin:6px 0;}
+.barra-progreso-contenedor{
+  background:#E4ECF1;
+  border-radius:20px;
+  height:18px;
+  overflow:hidden;
+  margin:14px 0;
+}
+.barra-progreso-relleno{
+  height:100%;
+  width:0%;
+  background:linear-gradient(90deg, var(--azul-oscuro), var(--celeste));
+  border-radius:20px;
+  transition:width 0.8s ease;
+}
+.mensaje-motivacional{font-size:1rem; margin-top:6px; color:var(--gris-suave);}
+/* Herramienta interactiva / wizard */
+.stepper{display:flex; justify-content:space-between; margin:18px 0 22px; gap:4px;}
+.step-dot{
+  flex:1;
+  text-align:center;
+  font-size:0.78rem;
+  color:var(--gris-suave);
+  position:relative;
+  padding-top:30px;
+}
+.step-dot::before{
+  content:attr(data-step);
+  position:absolute;
+  top:0; left:50%;
+  transform:translateX(-50%);
+  width:26px; height:26px;
+  line-height:26px;
+  border-radius:50%;
+  background:#D7E3EC;
+  color:#FFFFFF;
+  font-weight:700;
+  font-size:0.85rem;
+}
+.step-dot.activo{color:var(--azul-oscuro); font-weight:700;}
+.step-dot.activo::before{background:var(--azul-oscuro);}
+.step-dot.completado::before{background:var(--verde); content:"✓";}
+.step-panel{display:none;}
+.step-panel.activo{display:block;}
+.wizard-box{
+  background:#FFFFFF;
+  border:1px solid var(--borde);
+  border-radius:10px;
+  padding:18px 20px;
+  margin-bottom:14px;
+}
+.wizard-box label.campo-label{display:block; font-weight:600; margin:12px 0 6px; color:var(--azul-oscuro);}
+.wizard-box input[type="text"], .wizard-box textarea, .wizard-box select{
+  width:100%;
+  padding:10px 12px;
+  border:1px solid var(--borde);
+  border-radius:6px;
+  font-family:'Source Sans 3', Arial, sans-serif;
+  font-size:0.93rem;
+}
+.wizard-box textarea{min-height:90px; resize:vertical;}
+.radio-linea{display:flex; gap:18px; flex-wrap:wrap; margin:6px 0;}
+.radio-linea label{display:flex; align-items:center; gap:6px; font-size:0.93rem; cursor:pointer;}
+.indicador-categoria{
+  border:1px solid var(--borde);
+  border-radius:8px;
+  padding:12px 14px;
+  margin-bottom:12px;
+  background:#FAFCFE;
+}
+.indicador-categoria h4{margin:0 0 8px; font-size:0.97rem; color:var(--azul-oscuro);}
+.indicador-check{display:flex; align-items:flex-start; gap:8px; font-size:0.89rem; margin-bottom:7px;}
+.indicador-check input{margin-top:3px;}
+.referral-box{
+  display:none;
+  background:#EAF5FC;
+  border:1px solid #B9DDF0;
+  border-radius:8px;
+  padding:12px 14px;
+  margin-top:10px;
+  font-size:0.9rem;
+}
+.referral-box.mostrar{display:block;}
+.documento-final{
+  background:#FFFFFF;
+  border:2px dashed var(--azul-oscuro);
+  border-radius:10px;
+  padding:20px;
+  margin-top:14px;
+  font-size:0.92rem;
+}
+.documento-final h3{border-bottom:1px solid var(--borde); padding-bottom:6px;}
+.documento-final .doc-seccion{margin-bottom:14px;}
+.documento-final .doc-seccion strong{color:var(--azul-oscuro); display:block; margin-bottom:4px;}
+/* Reflexión */
+.reflexion-item{
+  background:#FFFFFF;
+  border-left:4px solid var(--dorado);
+  border-radius:6px;
+  padding:14px 16px;
+  margin-bottom:12px;
+}
+.reflexion-item .numero{font-weight:700; color:#9A6E1A; margin-right:6px;}
+/* Bibliografía */
+.biblio-card{
+  background:#FFFFFF;
+  border:1px solid var(--borde);
+  border-left:4px solid var(--azul-oscuro);
+  border-radius:8px;
+  padding:14px 16px;
+  margin-bottom:12px;
+  font-size:0.92rem;
+}
+.biblio-card em{color:var(--azul-oscuro);}
+.footnote-box{
+  font-size:0.85rem;
+  color:var(--gris-suave);
+  border-top:1px solid var(--borde);
+  padding-top:12px;
+  margin-top:18px;
+}
+.footer-curso{
+  text-align:center;
+  font-size:0.82rem;
+  color:var(--gris-suave);
+  padding:20px;
+}
+@media (max-width:600px){
+  .header h1{font-size:1.25rem;}
+  .nav-tabs button{padding:11px 12px; font-size:0.85rem;}
+  .stepper{flex-wrap:wrap;}
+  .step-dot{flex:0 0 30%; margin-bottom:14px;}
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="institucion">Universidad de Guayaquil &nbsp;|&nbsp; Facultad de Ciencias Administrativas &nbsp;|&nbsp; Carrera de Contabilidad y Auditoría</div>
+  <h1>El abordaje preventivo en el uso y consumo de drogas.<br>Herramientas de captación de la adicción</h1>
+  <div class="meta">Semana 15 · Unidad 4 · El proceso de la escritura en la construcción de textos</div>
+  <div class="submeta">Asignatura: Lenguaje y Comunicación · Modalidad virtual autónoma</div>
+</div>
+
+<div class="nav-tabs" id="navTabs">
+  <button class="tab-btn active" data-tab="repaso" onclick="showTab('repaso')">Repaso</button>
+  <button class="tab-btn" data-tab="tema1" onclick="showTab('tema1')">Tema 1</button>
+  <button class="tab-btn" data-tab="tema2" onclick="showTab('tema2')">Tema 2</button>
+  <button class="tab-btn" data-tab="tema3" onclick="showTab('tema3')">Tema 3</button>
+  <button class="tab-btn" data-tab="tema4" onclick="showTab('tema4')">Tema 4</button>
+  <button class="tab-btn" data-tab="herramienta" onclick="showTab('herramienta')">Herramienta Interactiva</button>
+  <button class="tab-btn" data-tab="ejercicio" onclick="showTab('ejercicio')">Ejercicio Interactivo</button>
+  <button class="tab-btn" data-tab="cuestionario" onclick="showTab('cuestionario')">Cuestionario</button>
+  <button class="tab-btn" data-tab="ia" onclick="showTab('ia')">Actividad con IA</button>
+  <button class="tab-btn" data-tab="reflexion" onclick="showTab('reflexion')">Reflexión</button>
+  <button class="tab-btn" data-tab="bibliografia" onclick="showTab('bibliografia')">Bibliografía</button>
+</div>
+
+<div class="contenido">
+
+<!-- ============ PESTAÑA REPASO ============ -->
+<div id="tab-repaso" class="tab-content active">
+  <h2>Repaso: el camino recorrido hasta la Semana 14</h2>
+  <p class="intro-pestana">Antes de abordar el tema de hoy, recordemos brevemente lo trabajado en las catorce semanas anteriores. Haz clic en cada semana para desplegar su contenido. Este recorrido es importante porque la Semana 15 integra dos hilos que hemos construido desde la Unidad 1: la capacidad de comunicarnos con responsabilidad social, y el dominio del proceso de escritura para producir textos institucionales útiles, como la herramienta que construirás hoy.</p>
+
+  <div class="accordion-item">
+    <button class="accordion-header" onclick="toggleAcordeon(this)">Semana 1 — Importancia de la comunicación. Diferencia entre hablar y comunicar <span class="accordion-arrow">▶</span></button>
+    <div class="accordion-panel">
+      <p>Aprendimos que hablar es solo emitir sonidos articulados, mientras que comunicar implica lograr que el mensaje sea comprendido por el receptor de la forma que el emisor pretendía. Para un futuro contador o auditor, esta diferencia es crucial: un informe puede estar técnicamente bien hablado o escrito y, aun así, no comunicar nada si el destinatario no lo entiende. Esta misma exigencia de claridad guiará hoy la redacción de un documento preventivo: de nada sirve un texto correcto si no es comprendido por quien debe actuar a partir de él.</p>
+    </div>
+  </div>
+
+  <div class="accordion-item">
+    <button class="accordion-header" onclick="toggleAcordeon(this)">Semana 2 — Lenguaje y comunicación. Procesamiento de mensajes. Tipos de lenguaje <span class="accordion-arrow">▶</span></button>
+    <div class="accordion-panel">
+      <p>Revisamos el modelo emisor-código-canal-receptor-retroalimentación y los distintos tipos de lenguaje (verbal, no verbal, escrito, icónico, mixto). Reconocimos que un mismo mensaje puede codificarse de varias maneras según el público. Hoy aplicaremos exactamente esa idea: la misma información sobre señales de riesgo se redacta de forma distinta según el documento esté dirigido a una familia, a una institución educativa o a una empresa.</p>
+    </div>
+  </div>
+
+  <div class="accordion-item">
+    <button class="accordion-header" onclick="toggleAcordeon(this)">Semana 3 — Tipos de comunicación. Cómo funciona tu cerebro <span class="accordion-arrow">▶</span></button>
+    <div class="accordion-panel">
+      <p>Estudiamos la comunicación intrapersonal, interpersonal, grupal y masiva, y el modelo del cerebro triuno (reptiliano, límbico y neocórtex), que explica por qué reaccionamos primero emocionalmente y razonamos después. Esta noción es relevante para hoy: cuando una persona observa señales de alarma en otra, su cerebro límbico puede generar juicio o temor antes que comprensión; saber esto nos ayuda a diseñar herramientas de detección que inviten a observar con calma, sin reacciones impulsivas.</p>
+    </div>
+  </div>
+
+  <div class="accordion-item">
+    <button class="accordion-header" onclick="toggleAcordeon(this)">Semana 4 — Importancia de la lectura. Proceso de comunicación <span class="accordion-arrow">▶</span></button>
+    <div class="accordion-panel">
+      <p>Profundizamos en el proceso de comunicación completo, incluyendo barreras (ruido, prejuicios, diferencias de código) y la retroalimentación como cierre del ciclo. También destacamos la lectura como herramienta profesional indispensable. Identificar barreras de comunicación será útil hoy para entender por qué muchas familias o instituciones no logran detectar a tiempo señales de riesgo: con frecuencia el obstáculo no es la falta de información, sino una barrera comunicativa.</p>
+    </div>
+  </div>
+
+  <div class="accordion-item">
+    <button class="accordion-header" onclick="toggleAcordeon(this)">Semana 5 — Componentes de la comunicación <span class="accordion-arrow">▶</span></button>
+    <div class="accordion-panel">
+      <p>Profundizamos los componentes del proceso comunicativo: contexto, código, canal y ruido. Comprendimos que el contexto determina cómo debe construirse un mensaje. Esa noción de contexto es la base del primer paso del constructor guiado de hoy, donde definirás el ámbito (familiar, educativo o laboral) para el que se redactará la herramienta de detección.</p>
+    </div>
+  </div>
+
+  <div class="accordion-item">
+    <button class="accordion-header" onclick="toggleAcordeon(this)">Semana 6 — Habilidades comunicativas <span class="accordion-arrow">▶</span></button>
+    <div class="accordion-panel">
+      <p>Trabajamos las cuatro habilidades comunicativas básicas: escuchar, hablar, leer y escribir, y su aplicación profesional en contabilidad y auditoría. La escucha activa, en particular, es la habilidad central para captar señales tempranas de riesgo en otra persona sin imponer juicios.</p>
+    </div>
+  </div>
+
+  <div class="accordion-item">
+    <button class="accordion-header" onclick="toggleAcordeon(this)">Semana 7 — Comunicación no verbal. Comunicación corporativa. Comunicación oral estratégica <span class="accordion-arrow">▶</span></button>
+    <div class="accordion-panel">
+      <p>Analizamos cómo el cuerpo, el tono y los gestos comunican tanto o más que las palabras, y cómo las organizaciones gestionan su comunicación interna y externa de forma estratégica. Esta unidad conecta directamente con el Tema 4 de hoy, donde veremos que las empresas auditadas necesitan políticas internas claras y bien comunicadas sobre prevención de consumo de sustancias.</p>
+    </div>
+  </div>
+
+  <div class="accordion-item">
+    <button class="accordion-header" onclick="toggleAcordeon(this)">Semana 8 — Examen del Primer Parcial <span class="accordion-arrow">▶</span></button>
+    <div class="accordion-panel">
+      <p>Consolidamos mediante evaluación todo lo trabajado en las Unidades 1 y 2: fundamentos de la comunicación y habilidades comunicativas. Ese examen cerró la primera mitad del curso y dio paso al estudio de la comprensión y producción de textos.</p>
+    </div>
+  </div>
+
+  <div class="accordion-item">
+    <button class="accordion-header" onclick="toggleAcordeon(this)">Semana 9 — Tipos de textos y funciones del lenguaje <span class="accordion-arrow">▶</span></button>
+    <div class="accordion-panel">
+      <p>Estudiamos las seis funciones del lenguaje de Jakobson (referencial, emotiva, conativa, fática, metalingüística y poética) y las siete propiedades del texto de Beaugrande y Dressler. La ficha de detección que construirás hoy combina principalmente la función referencial (informar con objetividad) y la función conativa (orientar la acción de quien la lee).</p>
+    </div>
+  </div>
+
+  <div class="accordion-item">
+    <button class="accordion-header" onclick="toggleAcordeon(this)">Semana 10 — Niveles de lectura. Características de los textos científicos <span class="accordion-arrow">▶</span></button>
+    <div class="accordion-panel">
+      <p>Diferenciamos los niveles de lectura literal, inferencial, analógico y crítico-valorativo, y revisamos las características de un texto científico (objetividad, verificabilidad, precisión terminológica). Estas mismas exigencias de objetividad y precisión son indispensables al redactar un instrumento de detección, donde una palabra mal elegida puede estigmatizar a una persona en lugar de ayudarla.</p>
+    </div>
+  </div>
+
+  <div class="accordion-item">
+    <button class="accordion-header" onclick="toggleAcordeon(this)">Semana 11 — Tipos de informes: artículos, ponencias y conferencias <span class="accordion-arrow">▶</span></button>
+    <div class="accordion-panel">
+      <p>Diferenciamos estos tres géneros informativos según su propósito, estructura y formato de presentación. Aprendimos que cada tipo de informe responde a necesidades distintas de un mismo contenido, igual que hoy adaptaremos el contenido sobre prevención de drogas a un formato específico: la ficha o protocolo de detección temprana.</p>
+    </div>
+  </div>
+
+  <div class="accordion-item">
+    <button class="accordion-header" onclick="toggleAcordeon(this)">Semana 12 — El ensayo <span class="accordion-arrow">▶</span></button>
+    <div class="accordion-panel">
+      <p>Definimos el ensayo como texto argumentativo personal y exploramos su función catártica como herramienta de procesamiento emocional, según los hallazgos de James Pennebaker sobre la escritura expresiva. Esa misma idea —que escribir ayuda a procesar experiencias difíciles— es relevante hoy: la escritura reflexiva también puede ser un recurso de afrontamiento saludable frente a situaciones de estrés o presión social.</p>
+    </div>
+  </div>
+
+  <div class="accordion-item">
+    <button class="accordion-header" onclick="toggleAcordeon(this)">Semana 13 — El proceso de planeación de un escrito. El párrafo: características, elementos y tipos <span class="accordion-arrow">▶</span></button>
+    <div class="accordion-panel">
+      <p>Iniciamos la Unidad 4 con el modelo del proceso de escritura en tres grandes fases: planificación, textualización y revisión. Estudiamos también el párrafo como unidad básica de organización textual, con su oración temática, su desarrollo y su cierre, y sus tipos (descriptivo, narrativo, expositivo, argumentativo). Estas dos herramientas —el proceso de escritura y el párrafo bien construido— son la base metodológica exacta que usarás hoy en la pestaña "Herramienta Interactiva" para construir tu propio instrumento de detección.</p>
+    </div>
+  </div>
+
+  <div class="accordion-item">
+    <button class="accordion-header" onclick="toggleAcordeon(this)">Semana 14 — Escritura académica: conciencia lingüística. Tipos de informes de investigación <span class="accordion-arrow">▶</span></button>
+    <div class="accordion-panel">
+      <p>Profundizamos en la conciencia lingüística: la capacidad de revisar conscientemente nuestras propias decisiones de redacción (léxico, tono, registro) en lugar de escribir de forma automática. Revisamos también, desde la perspectiva del proceso de escritura, los informes de investigación: conferencias, ponencias, artículos y ensayos. Hoy aplicarás esa misma conciencia lingüística al elegir con cuidado las palabras de tu ficha de detección, evitando términos que estigmaticen o etiqueten a una persona.</p>
+    </div>
+  </div>
+
+</div>
+<!-- FIN PESTAÑA REPASO -->
+
+<!-- ============ PESTAÑA TEMA 1 ============ -->
+<div id="tab-tema1" class="tab-content">
+  <h2>Tema 1. Marco conceptual de la prevención del consumo de drogas</h2>
+  <p class="intro-pestana">En este primer tema construiremos el vocabulario técnico indispensable para hablar de este tema con rigor y sin prejuicios, y conoceremos el marco institucional ecuatoriano que respalda el trabajo de prevención.</p>
+
+  <h3>1.1 ¿Qué entendemos por droga, uso, abuso y dependencia?</h3>
+  <div class="concept-box">
+    <strong class="titulo-concepto">Droga o sustancia psicoactiva</strong>
+    Es toda sustancia que, al ingresar al organismo por cualquier vía, es capaz de modificar una o más funciones del sistema nervioso central, alterando el estado de ánimo, la percepción o la conducta. Bajo esta definición técnica se incluyen sustancias legales (alcohol, tabaco, ciertos medicamentos) e ilegales; lo que las agrupa no es su estatus legal sino su efecto sobre el cerebro.
+  </div>
+  <p>Es fundamental distinguir tres niveles en un continuo, y no tratarlos como si fueran lo mismo:</p>
+  <table class="comparativa">
+    <tr><th>Nivel</th><th>Definición</th><th>Ejemplo orientativo</th></tr>
+    <tr><td><strong>Uso o consumo experimental</strong></td><td>Contacto ocasional con la sustancia, generalmente por curiosidad o presión social puntual, sin consecuencias significativas evidentes.</td><td>Probar alcohol en una celebración familiar de forma esporádica.</td></tr>
+    <tr><td><strong>Abuso o consumo problemático</strong></td><td>Patrón de consumo recurrente que ya genera consecuencias negativas en lo académico, laboral, familiar o de salud, aunque la persona aún mantiene cierto control.</td><td>Faltar reiteradamente a clases o al trabajo tras consumir.</td></tr>
+    <tr><td><strong>Dependencia o adicción</strong></td><td>Pérdida progresiva del control sobre el consumo, con tolerancia (necesidad de mayor cantidad para el mismo efecto) y síndrome de abstinencia al suspenderlo; requiere atención profesional especializada.</td><td>Necesidad física y psicológica de consumir para "sentirse normal".</td></tr>
+  </table>
+  <div class="key-box">
+    <span class="etiqueta">Idea clave</span>
+    Ningún estudiante, familiar o futuro auditor debe usar estas categorías para diagnosticar a otra persona: el diagnóstico clínico corresponde exclusivamente a profesionales de la salud mental. Lo que sí podemos hacer —y es el objetivo de esta semana— es reconocer patrones que ameritan atención y saber a quién acudir.
+  </div>
+
+  <h3>1.2 Los tres niveles de prevención</h3>
+  <p>La salud pública organiza la prevención en tres niveles según el momento de la intervención. Comprender esta clasificación te permitirá, más adelante, identificar correctamente a qué nivel pertenece cada acción concreta.</p>
+  <div class="card-grid">
+    <div class="info-card">
+      <h4>Prevención primaria</h4>
+      <p>Actúa antes de que exista cualquier consumo. Busca fortalecer factores protectores (autoestima, habilidades sociales, proyecto de vida) mediante información y educación. Ejemplo: una campaña informativa en una institución educativa dirigida a todo el estudiantado.</p>
+    </div>
+    <div class="info-card">
+      <h4>Prevención secundaria</h4>
+      <p>Actúa cuando ya existen señales iniciales o un consumo incipiente, con el objetivo de detectarlo a tiempo e intervenir antes de que se agrave. Aquí se ubican las "herramientas de captación" que construiremos hoy: fichas, cuestionarios breves y protocolos de observación.</p>
+    </div>
+    <div class="info-card">
+      <h4>Prevención terciaria</h4>
+      <p>Actúa cuando ya existe dependencia establecida. Su objetivo es el tratamiento, la rehabilitación y la reducción de daños, a cargo de equipos clínicos especializados.</p>
+    </div>
+  </div>
+  <div class="example-box">
+    <span class="etiqueta">Ejemplo aplicado</span>
+    Una facultad universitaria en Guayaquil que organiza una charla informativa para todos sus estudiantes de primer ciclo está haciendo prevención primaria. Si esa misma facultad capacita a su Departamento de Bienestar Estudiantil para identificar señales de alarma en estudiantes específicos mediante una ficha de observación, está aplicando prevención secundaria. Si deriva a un estudiante con consumo problemático a un Centro Especializado de Tratamiento, entra en la prevención terciaria.
+  </div>
+
+  <h3>1.3 Marco legal e institucional en el Ecuador</h3>
+  <p>Todo trabajo de prevención que realicemos como ciudadanos, estudiantes o futuros profesionales se enmarca en una normativa nacional concreta. Conocerla evita improvisar y permite remitir correctamente a una persona hacia la instancia adecuada.</p>
+  <div class="concept-box">
+    <strong class="titulo-concepto">Ley Orgánica de Prevención Integral del Fenómeno Socio Económico de las Drogas</strong>
+    Publicada en el Registro Oficial el 26 de octubre de 2015, es la norma marco que organiza en el Ecuador la prevención integral del consumo de drogas y la regulación de sustancias catalogadas sujetas a fiscalización. Esta ley dio origen a la Secretaría Técnica de Drogas (SETED), entidad encargada de dirigir, coordinar y dar seguimiento técnico a la política pública nacional en esta materia, en articulación con el Ministerio de Salud Pública, el Ministerio de Educación —a través de los Departamentos de Consejería Estudiantil (DECE)— y el Ministerio de Inclusión Económica y Social.
+  </div>
+  <div class="resource-box">
+    <span class="etiqueta">Recurso de apoyo gratuito en Ecuador</span>
+    El Ministerio de Salud Pública mantiene activa la <strong>Línea 171, opción 6</strong>, un servicio telefónico gratuito de atención en crisis de salud mental y consumos problemáticos de drogas, disponible para cualquier persona que necesite orientación, ya sea para sí misma o para acompañar a un familiar. En situaciones de emergencia médica también puede contactarse al sistema <strong>ECU 911</strong>.
+  </div>
+  <div class="key-box">
+    <span class="etiqueta">Idea clave</span>
+    Las estructuras institucionales pueden reorganizarse con el tiempo (cambios de nombre, fusión de competencias entre ministerios). Por eso, antes de citar una institución específica en un trabajo académico o en un documento profesional, verifica su situación actual en el portal oficial <strong>www.gob.ec</strong>.
+  </div>
+
+</div>
+<!-- FIN PESTAÑA TEMA 1 -->
+
+<!-- ============ PESTAÑA TEMA 2 ============ -->
+<div id="tab-tema2" class="tab-content">
+  <h2>Tema 2. Factores de riesgo, factores protectores y señales de alerta temprana</h2>
+  <p class="intro-pestana">Para construir una herramienta de detección útil, primero debemos saber exactamente qué observar. En este tema identificamos los factores que aumentan o disminuyen la probabilidad de consumo, y las señales conductuales que ameritan atención y acompañamiento, sin caer en el error de etiquetar a una persona a partir de un solo indicador aislado.</p>
+
+  <h3>2.1 Factores de riesgo y factores protectores</h3>
+  <div class="concept-box">
+    <strong class="titulo-concepto">Factor de riesgo</strong>
+    Es cualquier característica individual, familiar, social o contextual que incrementa la probabilidad de que una persona inicie o mantenga un consumo problemático de sustancias.
+  </div>
+  <div class="concept-box">
+    <strong class="titulo-concepto">Factor protector</strong>
+    Es cualquier característica que reduce esa probabilidad, fortaleciendo la capacidad de la persona para resistir la presión de consumo o para tomar decisiones saludables.
+  </div>
+  <table class="comparativa">
+    <tr><th>Ámbito</th><th>Factores de riesgo (ejemplos)</th><th>Factores protectores (ejemplos)</th></tr>
+    <tr><td>Individual</td><td>Baja autoestima, dificultad para manejar la frustración, búsqueda intensa de sensaciones nuevas.</td><td>Autoestima saludable, inteligencia emocional, proyecto de vida claro.</td></tr>
+    <tr><td>Familiar</td><td>Comunicación deficiente, normas inconsistentes, consumo de sustancias dentro del hogar.</td><td>Vínculos afectivos sólidos, normas claras y consistentes, supervisión cercana sin ser invasiva.</td></tr>
+    <tr><td>Social / Académico-laboral</td><td>Presión de grupo, fácil acceso a sustancias, ambientes con normalización del consumo.</td><td>Pertenencia a grupos con normas saludables, actividades extracurriculares significativas, redes de apoyo.</td></tr>
+  </table>
+  <div class="key-box">
+    <span class="etiqueta">Idea clave</span>
+    Ningún factor de riesgo, por sí solo, determina que una persona vaya a consumir. La prevención eficaz no busca eliminar el riesgo por completo —algo imposible— sino fortalecer activamente los factores protectores.
+  </div>
+
+  <h3>2.2 Señales de alerta temprana: cuatro categorías de observación</h3>
+  <p>Las señales de alerta son cambios observables respecto al patrón habitual de comportamiento de una persona. La clave metodológica es esta: <strong>una señal aislada no significa nada por sí sola</strong>; lo que orienta la atención es un <strong>patrón de varias señales sostenido en el tiempo</strong>, que representa un cambio real respecto a cómo era esa persona antes.</p>
+
+  <div class="card-grid">
+    <div class="info-card">
+      <h4>Académicas / laborales</h4>
+      <p>Bajón sostenido en calificaciones o en el desempeño laboral, ausentismo frecuente sin justificación clara, dificultad para concentrarse o cumplir plazos que antes sí cumplía.</p>
+    </div>
+    <div class="info-card">
+      <h4>Conductuales</h4>
+      <p>Cambios de humor marcados, irritabilidad inusual, aislamiento de actividades que antes disfrutaba, mayor reserva o secretismo respecto a sus actividades.</p>
+    </div>
+    <div class="info-card">
+      <h4>Físicas</h4>
+      <p>Alteraciones notorias en el sueño o el apetito, descuido repentino de la higiene o la apariencia personal, fatiga o energía inusuales sin causa médica conocida.</p>
+    </div>
+    <div class="info-card">
+      <h4>Sociales</h4>
+      <p>Cambio repentino de amistades, distanciamiento de la familia, necesidades económicas inexplicables o desaparición de objetos de valor en el hogar.</p>
+    </div>
+  </div>
+
+  <div class="example-box">
+    <span class="etiqueta">Ejemplo aplicado al contexto universitario</span>
+    Un estudiante de Contabilidad y Auditoría que históricamente entregaba sus trabajos a tiempo comienza, durante un mes, a faltar a clases sin justificación, a mostrarse irritable con sus compañeros y a aislarse del grupo de estudio con el que siempre trabajaba. Ninguna de estas señales por separado sería motivo de alarma —cualquiera puede tener una mala semana—, pero la combinación sostenida de las tres sí constituye un patrón que amerita una conversación cercana y, de ser necesario, una derivación a Bienestar Estudiantil.
+  </div>
+
+  <div class="alert-box">
+    <strong>Importante:</strong> observar señales no equivale a diagnosticar ni a acusar. El objetivo de identificarlas es generar una conversación de apoyo y, si corresponde, una derivación profesional respetuosa y confidencial —nunca una sanción, una etiqueta ni un juicio público.
+  </div>
+
+</div>
+<!-- FIN PESTAÑA TEMA 2 -->
+
+<!-- ============ PESTAÑA TEMA 3 ============ -->
+<div id="tab-tema3" class="tab-content">
+  <h2>Tema 3. Herramientas de captación: instrumentos de tamizaje y protocolos de detección</h2>
+  <p class="intro-pestana">Una vez que sabemos qué observar, necesitamos instrumentos estructurados que ordenen esa observación. En este tema conocerás los tipos de herramientas que usan los profesionales de la salud y de la educación para la detección temprana, como referencia conceptual para construir tu propia ficha en la siguiente pestaña.</p>
+
+  <h3>3.1 ¿Qué es un instrumento de tamizaje?</h3>
+  <div class="concept-box">
+    <strong class="titulo-concepto">Instrumento de tamizaje (screening)</strong>
+    Es un cuestionario breve y estandarizado, aplicado por personal capacitado, que permite clasificar de forma rápida el nivel de riesgo de una persona respecto al consumo de sustancias, mediante preguntas sobre frecuencia, cantidad y consecuencias del consumo. Un tamizaje <strong>no diagnostica</strong>: su función es orientar si la persona requiere una evaluación clínica más profunda.
+  </div>
+  <p>Existen instrumentos de tamizaje validados científicamente y utilizados internacionalmente por profesionales de la salud. Conocer su existencia te permite distinguir un instrumento serio de uno improvisado:</p>
+  <table class="comparativa">
+    <tr><th>Instrumento</th><th>Propósito general</th><th>Quién lo aplica</th></tr>
+    <tr><td><strong>ASSIST</strong> (Alcohol, Smoking and Substance Involvement Screening Test)</td><td>Desarrollado por la Organización Mundial de la Salud; identifica el nivel de riesgo asociado a distintas sustancias en entornos de salud primaria.</td><td>Personal de salud capacitado.</td></tr>
+    <tr><td><strong>AUDIT</strong> (Alcohol Use Disorders Identification Test)</td><td>Instrumento de la OMS enfocado específicamente en el consumo de alcohol.</td><td>Personal de salud capacitado.</td></tr>
+    <tr><td><strong>CRAFFT</strong></td><td>Instrumento breve diseñado específicamente para adolescentes y jóvenes.</td><td>Profesionales de salud, orientadores escolares (DECE).</td></tr>
+  </table>
+  <div class="key-box">
+    <span class="etiqueta">Idea clave</span>
+    Estos instrumentos clínicos validados están reservados a profesionales capacitados porque requieren interpretación experta. Lo que sí está al alcance de cualquier persona —familia, docente, compañero de trabajo— es construir una <strong>ficha de observación de señales de alerta</strong>, que no diagnostica ni puntúa clínicamente, sino que organiza la observación y orienta hacia la derivación correcta. Eso es justamente lo que construirás en la siguiente pestaña.
+  </div>
+
+  <h3>3.2 Componentes de una buena herramienta de captación no clínica</h3>
+  <p>Una ficha de detección temprana, pensada para uso familiar, educativo o laboral, debe contener cuatro componentes estructurales, independientemente del contexto para el que se redacte:</p>
+  <div class="card-grid">
+    <div class="info-card">
+      <h4>1. Propósito claro</h4>
+      <p>Un enunciado breve que explique para qué sirve el documento y a quién está dirigido, evitando cualquier ambigüedad sobre su alcance.</p>
+    </div>
+    <div class="info-card">
+      <h4>2. Indicadores observables</h4>
+      <p>Una lista organizada de señales concretas y verificables, redactadas en lenguaje descriptivo y no acusatorio.</p>
+    </div>
+    <div class="info-card">
+      <h4>3. Protocolo de acción</h4>
+      <p>Pasos claros sobre qué hacer si se identifica un patrón de señales: cómo conversar, qué evitar y a quién acudir.</p>
+    </div>
+    <div class="info-card">
+      <h4>4. Canal de referencia</h4>
+      <p>El nombre concreto de la institución o persona responsable de recibir la derivación en ese contexto específico.</p>
+    </div>
+  </div>
+
+  <h3>3.3 Protocolos de referencia institucional en Ecuador</h3>
+  <table class="comparativa">
+    <tr><th>Contexto</th><th>Canal de referencia habitual</th></tr>
+    <tr><td>Educativo (colegios, universidades)</td><td>Departamento de Consejería Estudiantil (DECE) o instancia equivalente de bienestar estudiantil.</td></tr>
+    <tr><td>Laboral / empresarial</td><td>Departamento de Talento Humano y servicio de salud ocupacional de la organización.</td></tr>
+    <tr><td>Familiar / comunitario</td><td>Línea 171 (opción 6) del Ministerio de Salud Pública, o el centro de salud más cercano.</td></tr>
+  </table>
+  <div class="example-box">
+    <span class="etiqueta">Ejemplo aplicado al ámbito de la auditoría</span>
+    Una empresa auditada que cuenta con un protocolo escrito de detección y referencia para casos de consumo problemático entre su personal está cumpliendo, además, una buena práctica de control interno en el área de Talento Humano: tener canales claros de derivación reduce riesgos legales, mejora el clima laboral y forma parte de una gestión responsable de los recursos humanos, un aspecto que un auditor puede evaluar al revisar las políticas internas de una organización.
+  </div>
+
+</div>
+<!-- FIN PESTAÑA TEMA 3 -->
+
+<!-- ============ PESTAÑA TEMA 4 ============ -->
+<div id="tab-tema4" class="tab-content">
+  <h2>Tema 4. De la teoría al texto: redactar una herramienta preventiva con el proceso de escritura</h2>
+  <p class="intro-pestana">Este último tema conecta directamente todo lo aprendido en la Unidad 4 con el contenido de esta semana: aplicaremos el proceso de escritura (planificación, textualización y revisión) para producir un documento profesional real, y veremos por qué este tipo de documentos también importa para la profesión contable y de auditoría.</p>
+
+  <h3>4.1 El proceso de escritura aplicado a un documento preventivo</h3>
+  <p>En la Semana 13 estudiamos que todo texto bien construido atraviesa tres fases. Veamos cómo se aplican específicamente a una ficha de detección temprana:</p>
+  <table class="comparativa">
+    <tr><th>Fase</th><th>En qué consiste</th><th>Aplicación a la ficha de detección</th></tr>
+    <tr><td><strong>Planificación</strong></td><td>Definir el propósito, el destinatario y el contexto antes de escribir una sola palabra.</td><td>Decidir si el documento es para un ámbito familiar, educativo o laboral, y para qué población específica.</td></tr>
+    <tr><td><strong>Textualización</strong></td><td>Redactar el texto siguiendo una estructura organizada, con párrafos bien construidos (oración temática, desarrollo, cierre).</td><td>Escribir los indicadores observables y el protocolo de acción con precisión terminológica y sin ambigüedad.</td></tr>
+    <tr><td><strong>Revisión</strong></td><td>Releer de forma consciente el propio texto para corregir errores de contenido, claridad o tono.</td><td>Verificar que ningún término empleado estigmatice o etiquete a una persona, y que el documento incluya un canal de referencia real.</td></tr>
+  </table>
+  <div class="key-box">
+    <span class="etiqueta">Idea clave</span>
+    Un instrumento de prevención mal redactado puede causar más daño que beneficio: si etiqueta, asusta o estigmatiza, las personas evitarán acercarse a pedir ayuda. La calidad de la redacción no es un detalle estético: es parte central de la eficacia preventiva del documento.
+  </div>
+
+  <h3>4.2 El lenguaje no estigmatizante como principio de redacción</h3>
+  <p>La conciencia lingüística que trabajamos en la Semana 14 —revisar conscientemente nuestras decisiones léxicas— es especialmente relevante en este tema. Una sola palabra mal elegida puede transformar un documento de apoyo en un documento que excluye o discrimina.</p>
+  <table class="comparativa">
+    <tr><th>Lenguaje estigmatizante (evitar)</th><th>Lenguaje recomendado (centrado en la persona)</th></tr>
+    <tr><td>"Es un drogadicto" / "es un vicioso"</td><td>"Es una persona con consumo problemático de sustancias"</td></tr>
+    <tr><td>"Cayó en las drogas"</td><td>"Atraviesa una situación de consumo de riesgo"</td></tr>
+    <tr><td>"Hay que delatarlo"</td><td>"Hay que acompañarlo y derivarlo a la instancia adecuada"</td></tr>
+  </table>
+  <div class="example-box">
+    <span class="etiqueta">Ejemplo aplicado</span>
+    Compara estas dos versiones de una misma frase dentro de una ficha institucional: "Si el estudiante es un drogadicto, repórtalo a Secretaría" frente a "Si observas en el estudiante un patrón sostenido de las señales descritas, conversa con respeto y deriva el caso al DECE". La segunda versión es más larga, pero comunica con precisión, respeta la dignidad de la persona y orienta una acción constructiva: es el estándar que usarás en la herramienta que construirás a continuación.
+  </div>
+
+  <h3>4.3 La perspectiva del profesional contable y de auditoría</h3>
+  <p>Como futuro contador o auditor, es posible que en algún momento de tu carrera profesional debas revisar las políticas internas de una organización, incluido su sistema de control interno en el área de Talento Humano. La existencia de protocolos claros de prevención y referencia frente al consumo de sustancias en el entorno laboral forma parte de una gestión administrativa responsable, y puede ser objeto de evaluación en una auditoría de control interno o de cumplimiento.</p>
+  <div class="concept-box">
+    <strong class="titulo-concepto">¿Por qué le interesa esto a la auditoría?</strong>
+    Una organización sin política escrita sobre prevención de consumo de alcohol y drogas en el lugar de trabajo enfrenta riesgos operativos (accidentes, baja productividad), riesgos legales (ausencia de procedimientos disciplinarios claros y proporcionales) y riesgos reputacionales. Evaluar la existencia, claridad y aplicación efectiva de estas políticas es parte legítima del trabajo de un auditor administrativo o de control interno, en línea con los repertorios de buenas prácticas laborales internacionalmente reconocidos.
+  </div>
+  <div class="example-box">
+    <span class="etiqueta">Ejemplo aplicado a la auditoría</span>
+    Durante una auditoría de control interno al departamento de Talento Humano de una empresa guayaquileña, el equipo auditor constata que no existe ningún protocolo escrito de prevención ni canal de referencia ante señales de consumo problemático entre el personal. Esta ausencia constituye un hallazgo de control interno: el informe de auditoría puede recomendar la elaboración de una política institucional, exactamente del tipo que construirás en la siguiente pestaña, adaptada al contexto laboral de la empresa.
+  </div>
+
+</div>
+<!-- FIN PESTAÑA TEMA 4 -->
+
+<!-- ============ PESTAÑA HERRAMIENTA INTERACTIVA ============ -->
+<div id="tab-herramienta" class="tab-content">
+  <h2>Herramienta Interactiva: Constructor Guiado de una Ficha de Detección Temprana</h2>
+  <p class="intro-pestana">Vas a construir, paso a paso y aplicando el proceso de escritura completo (planificación → textualización → revisión), tu propia ficha de detección temprana de señales de riesgo en el consumo de drogas. Al finalizar, podrás descargar o imprimir tu documento. Recuerda: este instrumento <strong>no diagnostica</strong>; orienta la observación responsable y la derivación correcta.</p>
+
+  <div class="stepper" id="wizardStepper">
+    <div class="step-dot activo" data-step="1" id="dotStep1">Planificación</div>
+    <div class="step-dot" data-step="2" id="dotStep2">Indicadores</div>
+    <div class="step-dot" data-step="3" id="dotStep3">Protocolo</div>
+    <div class="step-dot" data-step="4" id="dotStep4">Revisión</div>
+    <div class="step-dot" data-step="5" id="dotStep5">Documento</div>
+  </div>
+
+  <!-- PASO 1 -->
+  <div class="step-panel activo" id="wizardStep1">
+    <div class="wizard-box">
+      <h3>Paso 1 — Planificación</h3>
+      <p>Todo buen escrito comienza por planificar: definir el propósito, el destinatario y el contexto, tal como vimos en la Semana 13.</p>
+      <label class="campo-label">Ámbito de aplicación de tu ficha</label>
+      <div class="radio-linea">
+        <label><input type="radio" name="ambito" value="educativo" checked> Educativo (institución educativa)</label>
+        <label><input type="radio" name="ambito" value="laboral"> Laboral (empresa)</label>
+        <label><input type="radio" name="ambito" value="familiar"> Familiar / comunitario</label>
+      </div>
+      <label class="campo-label" for="poblacion">Población destinataria (¿quién observará a partir de esta ficha?)</label>
+      <input type="text" id="poblacion" placeholder="Ejemplo: estudiantes de primer ciclo de la Facultad de Ciencias Administrativas">
+      <label class="campo-label" for="proposito">Propósito del documento (1 a 2 oraciones)</label>
+      <textarea id="proposito" placeholder="Ejemplo: Esta ficha orienta al personal docente para reconocer a tiempo señales de riesgo en el consumo de sustancias entre el estudiantado, y actuar mediante un protocolo de apoyo respetuoso y confidencial."></textarea>
+      <div class="alert-box" id="alertaStep1" style="display:none;">Completa la población destinataria y el propósito antes de continuar.</div>
+      <button class="btn" onclick="wizardSiguiente(1)">Siguiente →</button>
+    </div>
+  </div>
+
+  <!-- PASO 2 -->
+  <div class="step-panel" id="wizardStep2">
+    <div class="wizard-box">
+      <h3>Paso 2 — Textualización: selección de indicadores</h3>
+      <p>Selecciona al menos dos indicadores por categoría (los estudiados en el Tema 2), los más pertinentes para el ámbito elegido.</p>
+      <div class="indicador-categoria">
+        <h4>Académicos / laborales</h4>
+        <label class="indicador-check"><input type="checkbox" class="ind-categoria" data-cat="academico"> Bajón sostenido en calificaciones o en el rendimiento laboral</label>
+        <label class="indicador-check"><input type="checkbox" class="ind-categoria" data-cat="academico"> Ausentismo frecuente sin justificación clara</label>
+        <label class="indicador-check"><input type="checkbox" class="ind-categoria" data-cat="academico"> Dificultad para concentrarse o cumplir plazos</label>
+        <label class="indicador-check"><input type="checkbox" class="ind-categoria" data-cat="academico"> Incumplimiento reiterado de responsabilidades habituales</label>
+      </div>
+      <div class="indicador-categoria">
+        <h4>Conductuales</h4>
+        <label class="indicador-check"><input type="checkbox" class="ind-categoria" data-cat="conductual"> Cambios de humor marcados o irritabilidad inusual</label>
+        <label class="indicador-check"><input type="checkbox" class="ind-categoria" data-cat="conductual"> Aislamiento de actividades que antes disfrutaba</label>
+        <label class="indicador-check"><input type="checkbox" class="ind-categoria" data-cat="conductual"> Mayor reserva o secretismo respecto a sus actividades</label>
+        <label class="indicador-check"><input type="checkbox" class="ind-categoria" data-cat="conductual"> Reacciones desproporcionadas ante preguntas cotidianas</label>
+      </div>
+      <div class="indicador-categoria">
+        <h4>Físicos</h4>
+        <label class="indicador-check"><input type="checkbox" class="ind-categoria" data-cat="fisico"> Alteraciones notorias del sueño o del apetito</label>
+        <label class="indicador-check"><input type="checkbox" class="ind-categoria" data-cat="fisico"> Descuido repentino de la higiene o la apariencia personal</label>
+        <label class="indicador-check"><input type="checkbox" class="ind-categoria" data-cat="fisico"> Fatiga o energía inusual sin causa médica conocida</label>
+      </div>
+      <div class="indicador-categoria">
+        <h4>Sociales</h4>
+        <label class="indicador-check"><input type="checkbox" class="ind-categoria" data-cat="social"> Cambio repentino de amistades o de grupo habitual</label>
+        <label class="indicador-check"><input type="checkbox" class="ind-categoria" data-cat="social"> Distanciamiento de la familia o del entorno cercano</label>
+        <label class="indicador-check"><input type="checkbox" class="ind-categoria" data-cat="social"> Necesidades económicas inexplicables</label>
+      </div>
+      <label class="campo-label" for="parrafoIntro">Redacta el párrafo introductorio de tu ficha (oración temática + desarrollo + cierre, Semana 13)</label>
+      <textarea id="parrafoIntro" placeholder="Ejemplo: La detección temprana de señales de riesgo es una responsabilidad compartida dentro de cualquier comunidad educativa o laboral. Reconocer cambios sostenidos en el comportamiento de una persona, sin emitir juicios ni diagnósticos, permite ofrecer apoyo oportuno antes de que una situación se agrave. Por ello, esta ficha reúne indicadores observables y un protocolo claro de acción."></textarea>
+      <div class="alert-box" id="alertaStep2" style="display:none;">Selecciona al menos dos indicadores por categoría y redacta el párrafo introductorio antes de continuar.</div>
+      <button class="btn btn-secundario" onclick="wizardAnterior(2)">← Anterior</button>
+      <button class="btn" onclick="wizardSiguiente(2)">Siguiente →</button>
+    </div>
+  </div>
+
+  <!-- PASO 3 -->
+  <div class="step-panel" id="wizardStep3">
+    <div class="wizard-box">
+      <h3>Paso 3 — Protocolo de acción y canal de referencia</h3>
+      <p>Un protocolo de acción responsable sigue siempre estos cuatro principios:</p>
+      <ul>
+        <li>Observar y documentar de forma objetiva, sin emitir diagnósticos.</li>
+        <li>Conversar en privado, con escucha activa y sin juicio (Semana 6).</li>
+        <li>Mantener la confidencialidad de la información recogida.</li>
+        <li>Derivar el caso a la instancia profesional correspondiente, nunca improvisar un "tratamiento".</li>
+      </ul>
+      <div class="referral-box mostrar" id="cajaReferenciaEducativo">
+        <strong>Canal de referencia sugerido (ámbito educativo):</strong> Departamento de Consejería Estudiantil (DECE) o instancia de bienestar estudiantil de tu institución.
+      </div>
+      <div class="referral-box" id="cajaReferenciaLaboral">
+        <strong>Canal de referencia sugerido (ámbito laboral):</strong> Departamento de Talento Humano y servicio de salud ocupacional de la empresa.
+      </div>
+      <div class="referral-box" id="cajaReferenciaFamiliar">
+        <strong>Canal de referencia sugerido (ámbito familiar/comunitario):</strong> Línea 171 (opción 6) del Ministerio de Salud Pública, o el centro de salud más cercano.
+      </div>
+      <label class="campo-label" for="canalPersonalizado">Personaliza el canal de referencia para tu caso concreto</label>
+      <input type="text" id="canalPersonalizado" placeholder="Ejemplo: Departamento de Bienestar Estudiantil, Facultad de Ciencias Administrativas, Universidad de Guayaquil">
+      <div class="alert-box" id="alertaStep3" style="display:none;">Indica el canal de referencia personalizado antes de continuar.</div>
+      <button class="btn btn-secundario" onclick="wizardAnterior(3)">← Anterior</button>
+      <button class="btn" onclick="wizardSiguiente(3)">Siguiente →</button>
+    </div>
+  </div>
+
+  <!-- PASO 4 -->
+  <div class="step-panel" id="wizardStep4">
+    <div class="wizard-box">
+      <h3>Paso 4 — Revisión</h3>
+      <p>Esta es la tercera fase del proceso de escritura: revisar conscientemente lo redactado antes de darlo por terminado. Marca cada casilla solo si tu borrador realmente cumple esa condición.</p>
+      <label class="indicador-check"><input type="checkbox" id="rev1"> El lenguaje que usé es claro, objetivo y no estigmatizante (evité etiquetas como "adicto" o "vicioso").</label>
+      <label class="indicador-check"><input type="checkbox" id="rev2"> Seleccioné al menos dos indicadores observables por categoría.</label>
+      <label class="indicador-check"><input type="checkbox" id="rev3"> El protocolo de acción evita el diagnóstico y prioriza la escucha y la derivación.</label>
+      <label class="indicador-check"><input type="checkbox" id="rev4"> Incluí un canal de referencia institucional concreto y verificable.</label>
+      <label class="indicador-check"><input type="checkbox" id="rev5"> Mi párrafo introductorio tiene oración temática, desarrollo y cierre.</label>
+      <div class="alert-box" id="alertaStep4" style="display:none;">Marca las cinco casillas de revisión antes de generar tu documento final.</div>
+      <button class="btn btn-secundario" onclick="wizardAnterior(4)">← Anterior</button>
+      <button class="btn" onclick="wizardSiguiente(4)">Generar documento final →</button>
+    </div>
+  </div>
+
+  <!-- PASO 5 -->
+  <div class="step-panel" id="wizardStep5">
+    <div class="wizard-box">
+      <h3>Paso 5 — Tu documento final</h3>
+      <p>Este es el documento generado a partir de tus decisiones. Revísalo y, si lo deseas, descárgalo o imprímelo para tu portafolio académico.</p>
+      <div class="documento-final" id="documentoFinal"></div>
+      <button class="btn" onclick="descargarDocumento()">Descargar como TXT</button>
+      <button class="btn btn-secundario" onclick="window.print()">Imprimir</button>
+      <button class="btn btn-secundario" onclick="wizardReiniciar()">Reiniciar herramienta</button>
+    </div>
+  </div>
+
+</div>
+<!-- FIN PESTAÑA HERRAMIENTA INTERACTIVA -->
+
+<!-- ============ PESTAÑA EJERCICIO INTERACTIVO ============ -->
+<div id="tab-ejercicio" class="tab-content">
+  <h2>Ejercicio Interactivo</h2>
+  <p class="intro-pestana">Lee cada situación con atención y selecciona la opción correcta. Debes responder las 8 situaciones antes de poder verificar tus respuestas.</p>
+
+  <div class="ejercicio-item" id="ej1">
+    <p class="ejercicio-enunciado">1. Un docente observa que un estudiante, antes puntual, ha faltado a clases sin justificación cuatro veces en las últimas dos semanas y su rendimiento ha bajado notablemente. ¿A qué categoría de indicador corresponde principalmente esta observación?</p>
+    <div class="opcion-lista">
+      <div class="opcion-item"><label><input type="radio" name="ej1" value="a"> a) Indicador físico</label></div>
+      <div class="opcion-item"><label><input type="radio" name="ej1" value="b"> b) Indicador académico/laboral</label></div>
+      <div class="opcion-item"><label><input type="radio" name="ej1" value="c"> c) Indicador social</label></div>
+      <div class="opcion-item"><label><input type="radio" name="ej1" value="d"> d) Indicador conductual</label></div>
+    </div>
+    <div class="feedback-item" id="fb-ej1"></div>
+  </div>
+
+  <div class="ejercicio-item" id="ej2">
+    <p class="ejercicio-enunciado">2. Una campaña institucional dirigida a todos los estudiantes de primer ciclo, sin distinguir si tienen o no contacto previo con sustancias, que busca fortalecer factores protectores como la autoestima y la comunicación asertiva, corresponde al nivel de prevención:</p>
+    <div class="opcion-lista">
+      <div class="opcion-item"><label><input type="radio" name="ej2" value="a"> a) Terciaria</label></div>
+      <div class="opcion-item"><label><input type="radio" name="ej2" value="b"> b) Secundaria</label></div>
+      <div class="opcion-item"><label><input type="radio" name="ej2" value="c"> c) Primaria</label></div>
+      <div class="opcion-item"><label><input type="radio" name="ej2" value="d"> d) Diagnóstica</label></div>
+    </div>
+    <div class="feedback-item" id="fb-ej2"></div>
+  </div>
+
+  <div class="ejercicio-item" id="ej3">
+    <p class="ejercicio-enunciado">3. Un empleado que antes era sociable empieza a aislarse de sus compañeros, evita actividades grupales y se muestra reservado sobre lo que hace fuera del horario laboral. Esto corresponde principalmente a un indicador:</p>
+    <div class="opcion-lista">
+      <div class="opcion-item"><label><input type="radio" name="ej3" value="a"> a) Conductual</label></div>
+      <div class="opcion-item"><label><input type="radio" name="ej3" value="b"> b) Físico</label></div>
+      <div class="opcion-item"><label><input type="radio" name="ej3" value="c"> c) Académico/laboral</label></div>
+      <div class="opcion-item"><label><input type="radio" name="ej3" value="d"> d) Legal</label></div>
+    </div>
+    <div class="feedback-item" id="fb-ej3"></div>
+  </div>
+
+  <div class="ejercicio-item" id="ej4">
+    <p class="ejercicio-enunciado">4. Un centro de salud aplica un programa de acompañamiento y seguimiento a personas que ya completaron un proceso de tratamiento por consumo problemático, con el fin de evitar una recaída. Este programa corresponde al nivel de prevención:</p>
+    <div class="opcion-lista">
+      <div class="opcion-item"><label><input type="radio" name="ej4" value="a"> a) Primaria</label></div>
+      <div class="opcion-item"><label><input type="radio" name="ej4" value="b"> b) Secundaria</label></div>
+      <div class="opcion-item"><label><input type="radio" name="ej4" value="c"> c) Terciaria</label></div>
+      <div class="opcion-item"><label><input type="radio" name="ej4" value="d"> d) Primaria reforzada</label></div>
+    </div>
+    <div class="feedback-item" id="fb-ej4"></div>
+  </div>
+
+  <div class="ejercicio-item" id="ej5">
+    <p class="ejercicio-enunciado">5. Una madre de familia nota que su hijo adolescente presenta alteraciones notorias en sus horarios de sueño y un descuido repentino en su higiene personal. Estas observaciones corresponden principalmente a indicadores:</p>
+    <div class="opcion-lista">
+      <div class="opcion-item"><label><input type="radio" name="ej5" value="a"> a) Sociales</label></div>
+      <div class="opcion-item"><label><input type="radio" name="ej5" value="b"> b) Académicos</label></div>
+      <div class="opcion-item"><label><input type="radio" name="ej5" value="c"> c) Físicos</label></div>
+      <div class="opcion-item"><label><input type="radio" name="ej5" value="d"> d) Legales</label></div>
+    </div>
+    <div class="feedback-item" id="fb-ej5"></div>
+  </div>
+
+  <div class="ejercicio-item" id="ej6">
+    <p class="ejercicio-enunciado">6. El Ministerio de Educación distribuye en colegios públicos materiales informativos sobre los riesgos del consumo de sustancias, dirigidos a toda la población estudiantil sin distinción, antes de que exista cualquier señal de consumo. Esto es un ejemplo de prevención:</p>
+    <div class="opcion-lista">
+      <div class="opcion-item"><label><input type="radio" name="ej6" value="a"> a) Terciaria</label></div>
+      <div class="opcion-item"><label><input type="radio" name="ej6" value="b"> b) Primaria</label></div>
+      <div class="opcion-item"><label><input type="radio" name="ej6" value="c"> c) Secundaria</label></div>
+      <div class="opcion-item"><label><input type="radio" name="ej6" value="d"> d) Curativa</label></div>
+    </div>
+    <div class="feedback-item" id="fb-ej6"></div>
+  </div>
+
+  <div class="ejercicio-item" id="ej7">
+    <p class="ejercicio-enunciado">7. Un compañero de trabajo necesita constantemente dinero prestado sin razón aparente y ha dejado de frecuentar a su grupo habitual de amistades, acercándose a personas nuevas y desconocidas para sus colegas. Estas señales corresponden principalmente a la categoría:</p>
+    <div class="opcion-lista">
+      <div class="opcion-item"><label><input type="radio" name="ej7" value="a"> a) Física</label></div>
+      <div class="opcion-item"><label><input type="radio" name="ej7" value="b"> b) Académica/laboral</label></div>
+      <div class="opcion-item"><label><input type="radio" name="ej7" value="c"> c) Social</label></div>
+      <div class="opcion-item"><label><input type="radio" name="ej7" value="d"> d) Conductual</label></div>
+    </div>
+    <div class="feedback-item" id="fb-ej7"></div>
+  </div>
+
+  <div class="ejercicio-item" id="ej8">
+    <p class="ejercicio-enunciado">8. Un centro de rehabilitación ofrece terapia especializada a personas que ya presentan dependencia diagnosticada, con el objetivo de reducir el daño y reinsertarlas socialmente. Este servicio corresponde al nivel de prevención:</p>
+    <div class="opcion-lista">
+      <div class="opcion-item"><label><input type="radio" name="ej8" value="a"> a) Primaria</label></div>
+      <div class="opcion-item"><label><input type="radio" name="ej8" value="b"> b) Secundaria</label></div>
+      <div class="opcion-item"><label><input type="radio" name="ej8" value="c"> c) Terciaria</label></div>
+      <div class="opcion-item"><label><input type="radio" name="ej8" value="d"> d) Informativa</label></div>
+    </div>
+    <div class="feedback-item" id="fb-ej8"></div>
+  </div>
+
+  <div class="alert-box" id="alertaEjercicio" style="display:none;">Responde las 8 situaciones antes de verificar.</div>
+  <button class="btn" onclick="verificarEjercicio()">Verificar respuestas</button>
+  <button class="btn btn-secundario" onclick="reiniciarEjercicio()">Reiniciar</button>
+</div>
+
+<!-- ============ PESTAÑA CUESTIONARIO ============ -->
+<div id="tab-cuestionario" class="tab-content">
+  <h2>Cuestionario</h2>
+  <p class="intro-pestana">Responde las 10 preguntas (7 teóricas y 3 de análisis de caso). Debes completar todas antes de verificar tu puntaje.</p>
+
+  <div class="quiz-item" id="q1">
+    <span class="badge badge-teorica">Teórica</span>
+    <p class="quiz-enunciado">1. Según lo estudiado, un instrumento de detección temprana NO clínico tiene como propósito principal:</p>
+    <div class="opcion-lista">
+      <div class="opcion-item"><label><input type="radio" name="q1" value="a"> a) Diagnosticar formalmente una dependencia</label></div>
+      <div class="opcion-item"><label><input type="radio" name="q1" value="b"> b) Orientar la observación responsable y la derivación oportuna</label></div>
+      <div class="opcion-item"><label><input type="radio" name="q1" value="c"> c) Sustituir la evaluación de un profesional de salud</label></div>
+      <div class="opcion-item"><label><input type="radio" name="q1" value="d"> d) Sancionar disciplinariamente a la persona observada</label></div>
+    </div>
+    <div class="feedback-item" id="fb-q1"></div>
+  </div>
+
+  <div class="quiz-item" id="q2">
+    <span class="badge badge-teorica">Teórica</span>
+    <p class="quiz-enunciado">2. La institución técnica ecuatoriana encargada de coordinar la política pública en materia de drogas es:</p>
+    <div class="opcion-lista">
+      <div class="opcion-item"><label><input type="radio" name="q2" value="a"> a) SERCOP</label></div>
+      <div class="opcion-item"><label><input type="radio" name="q2" value="b"> b) SETED</label></div>
+      <div class="opcion-item"><label><input type="radio" name="q2" value="c"> c) SRI</label></div>
+      <div class="opcion-item"><label><input type="radio" name="q2" value="d"> d) Contraloría General del Estado</label></div>
+    </div>
+    <div class="feedback-item" id="fb-q2"></div>
+  </div>
+
+  <div class="quiz-item" id="q3">
+    <span class="badge badge-teorica">Teórica</span>
+    <p class="quiz-enunciado">3. El canal telefónico gratuito del Ministerio de Salud Pública para orientación en consumo problemático de sustancias en Ecuador es:</p>
+    <div class="opcion-lista">
+      <div class="opcion-item"><label><input type="radio" name="q3" value="a"> a) ECU 911 exclusivamente</label></div>
+      <div class="opcion-item"><label><input type="radio" name="q3" value="b"> b) Línea 171, opción 6</label></div>
+      <div class="opcion-item"><label><input type="radio" name="q3" value="c"> c) Línea 1800-SRI-SRI</label></div>
+      <div class="opcion-item"><label><input type="radio" name="q3" value="d"> d) No existe una línea nacional para este fin</label></div>
+    </div>
+    <div class="feedback-item" id="fb-q3"></div>
+  </div>
+
+  <div class="quiz-item" id="q4">
+    <span class="badge badge-teorica">Teórica</span>
+    <p class="quiz-enunciado">4. Instrumentos como el ASSIST de la OMS están diseñados para ser aplicados por:</p>
+    <div class="opcion-lista">
+      <div class="opcion-item"><label><input type="radio" name="q4" value="a"> a) Cualquier persona, sin formación previa</label></div>
+      <div class="opcion-item"><label><input type="radio" name="q4" value="b"> b) Profesionales de salud capacitados, en un contexto clínico</label></div>
+      <div class="opcion-item"><label><input type="radio" name="q4" value="c"> c) Auditores externos durante una auditoría financiera</label></div>
+      <div class="opcion-item"><label><input type="radio" name="q4" value="d"> d) Estudiantes de primer ciclo como autoevaluación</label></div>
+    </div>
+    <div class="feedback-item" id="fb-q4"></div>
+  </div>
+
+  <div class="quiz-item" id="q5">
+    <span class="badge badge-teorica">Teórica</span>
+    <p class="quiz-enunciado">5. En la fase de "revisión" del proceso de escritura aplicado a una ficha preventiva, el objetivo principal es:</p>
+    <div class="opcion-lista">
+      <div class="opcion-item"><label><input type="radio" name="q5" value="a"> a) Aumentar la cantidad de indicadores sin importar la precisión</label></div>
+      <div class="opcion-item"><label><input type="radio" name="q5" value="b"> b) Verificar que el lenguaje no estigmatice y que exista un canal de referencia real</label></div>
+      <div class="opcion-item"><label><input type="radio" name="q5" value="c"> c) Traducir el documento a otro idioma</label></div>
+      <div class="opcion-item"><label><input type="radio" name="q5" value="d"> d) Eliminar la sección de propósito del documento</label></div>
+    </div>
+    <div class="feedback-item" id="fb-q5"></div>
+  </div>
+
+  <div class="quiz-item" id="q6">
+    <span class="badge badge-teorica">Teórica</span>
+    <p class="quiz-enunciado">6. ¿Cuál de las siguientes opciones refleja correctamente el principio de lenguaje no estigmatizante estudiado en este tema?</p>
+    <div class="opcion-lista">
+      <div class="opcion-item"><label><input type="radio" name="q6" value="a"> a) "Es un drogadicto, hay que delatarlo"</label></div>
+      <div class="opcion-item"><label><input type="radio" name="q6" value="b"> b) "Atraviesa una situación de consumo de riesgo; hay que acompañarlo y derivarlo"</label></div>
+      <div class="opcion-item"><label><input type="radio" name="q6" value="c"> c) "Cayó en el vicio por su propia debilidad"</label></div>
+      <div class="opcion-item"><label><input type="radio" name="q6" value="d"> d) "Hay que aislarlo del resto del grupo"</label></div>
+    </div>
+    <div class="feedback-item" id="fb-q6"></div>
+  </div>
+
+  <div class="quiz-item" id="q7">
+    <span class="badge badge-teorica">Teórica</span>
+    <p class="quiz-enunciado">7. Frente a una señal de alerta aislada y puntual en una persona, lo más responsable según el protocolo estudiado es:</p>
+    <div class="opcion-lista">
+      <div class="opcion-item"><label><input type="radio" name="q7" value="a"> a) Diagnosticar de inmediato un problema de consumo</label></div>
+      <div class="opcion-item"><label><input type="radio" name="q7" value="b"> b) Difundir la observación al resto del grupo</label></div>
+      <div class="opcion-item"><label><input type="radio" name="q7" value="c"> c) Observar el patrón en el tiempo y evitar conclusiones apresuradas a partir de un solo indicador</label></div>
+      <div class="opcion-item"><label><input type="radio" name="q7" value="d"> d) Ignorar completamente cualquier señal observada</label></div>
+    </div>
+    <div class="feedback-item" id="fb-q7"></div>
+  </div>
+
+  <div class="quiz-item" id="q8">
+    <span class="badge badge-caso">Caso</span>
+    <p class="quiz-enunciado">8. Durante una auditoría de control interno al departamento de Talento Humano de una empresa, el equipo auditor constata que no existe ningún protocolo escrito de prevención ni canal de referencia ante señales de consumo problemático entre el personal. Desde la perspectiva de auditoría administrativa, esta situación constituye:</p>
+    <div class="opcion-lista">
+      <div class="opcion-item"><label><input type="radio" name="q8" value="a"> a) Un hallazgo de control interno que amerita una recomendación</label></div>
+      <div class="opcion-item"><label><input type="radio" name="q8" value="b"> b) Un asunto irrelevante para el alcance de la auditoría</label></div>
+      <div class="opcion-item"><label><input type="radio" name="q8" value="c"> c) Un delito tributario que debe reportarse al SRI</label></div>
+      <div class="opcion-item"><label><input type="radio" name="q8" value="d"> d) Una falta exclusivamente médica sin relación con el control interno</label></div>
+    </div>
+    <div class="feedback-item" id="fb-q8"></div>
+  </div>
+
+  <div class="quiz-item" id="q9">
+    <span class="badge badge-caso">Caso</span>
+    <p class="quiz-enunciado">9. Un docente, al revisar su ficha de detección antes de aplicarla, encuentra la frase "repórtalo de inmediato porque seguro es un drogadicto". Aplicando lo aprendido en la fase de revisión del proceso de escritura, lo correcto es:</p>
+    <div class="opcion-lista">
+      <div class="opcion-item"><label><input type="radio" name="q9" value="a"> a) Dejar la frase porque genera mayor impacto</label></div>
+      <div class="opcion-item"><label><input type="radio" name="q9" value="b"> b) Reescribirla con lenguaje objetivo y centrado en la persona, sin etiquetas ni diagnósticos anticipados</label></div>
+      <div class="opcion-item"><label><input type="radio" name="q9" value="c"> c) Eliminar toda la sección de protocolo</label></div>
+      <div class="opcion-item"><label><input type="radio" name="q9" value="d"> d) Cambiar la frase a otro idioma para suavizarla</label></div>
+    </div>
+    <div class="feedback-item" id="fb-q9"></div>
+  </div>
+
+  <div class="quiz-item" id="q10">
+    <span class="badge badge-caso">Caso</span>
+    <p class="quiz-enunciado">10. Una estudiante de Contabilidad y Auditoría, al elaborar su ficha de detección en la herramienta interactiva de esta semana, elige el ámbito "laboral" y debe seleccionar el canal de referencia más adecuado para ese contexto. ¿Cuál debería elegir?</p>
+    <div class="opcion-lista">
+      <div class="opcion-item"><label><input type="radio" name="q10" value="a"> a) El Departamento de Consejería Estudiantil (DECE)</label></div>
+      <div class="opcion-item"><label><input type="radio" name="q10" value="b"> b) El Departamento de Talento Humano y el servicio de salud ocupacional de la empresa</label></div>
+      <div class="opcion-item"><label><input type="radio" name="q10" value="c"> c) El Servicio de Rentas Internas (SRI)</label></div>
+      <div class="opcion-item"><label><input type="radio" name="q10" value="d"> d) Cualquier autoridad municipal, sin distinción</label></div>
+    </div>
+    <div class="feedback-item" id="fb-q10"></div>
+  </div>
+
+  <div class="alert-box" id="alertaCuestionario" style="display:none;">Responde las 10 preguntas antes de verificar tu puntaje.</div>
+  <button class="btn" onclick="verificarCuestionario()">Verificar puntaje</button>
+  <button class="btn btn-secundario" onclick="reiniciarCuestionario()">Reiniciar</button>
+
+  <div class="resultado-final" id="resultadoCuestionario">
+    <div class="barra-progreso-contenedor"><div class="barra-progreso-relleno" id="barraProgreso" style="width:0%;"></div></div>
+    <div class="puntaje" id="puntajeTexto"></div>
+    <div class="emoji-resultado" id="emojiResultado"></div>
+    <div class="mensaje-motivacional" id="mensajeMotivacional"></div>
+  </div>
+</div>
+<!-- FIN PESTAÑAS EJERCICIO Y CUESTIONARIO -->
+
+<!-- ============ PESTAÑA ACTIVIDAD CON IA ============ -->
+<div id="tab-ia" class="tab-content">
+  <h2>Actividad con IA</h2>
+  <p class="intro-pestana">Vas a usar Claude.ai como un revisor crítico de tu borrador, no como un generador de respuestas. El objetivo es que pienses junto con la IA, no que copies lo que te entregue.</p>
+
+  <div class="concept-box">
+    <strong class="titulo-concepto">Instrucciones</strong>
+    Toma el párrafo introductorio y el protocolo de acción que redactaste en la Herramienta Interactiva (Pasos 2 y 3). Copia exactamente el siguiente prompt en Claude.ai, sustituyendo el texto entre corchetes por tu propio contenido.
+  </div>
+
+  <div class="resource-box">
+    <strong>Prompt para Claude.ai</strong>
+    <p>"Actúa como un revisor experto en redacción de documentos preventivos en salud, con enfoque en lenguaje no estigmatizante. Te comparto el párrafo introductorio y el protocolo de acción de una ficha de detección temprana de señales de riesgo en consumo de drogas, para el ámbito [educativo/laboral/familiar], que estoy elaborando como estudiante de Contabilidad y Auditoría de la Universidad de Guayaquil.<br><br>
+    Párrafo introductorio: [pega aquí tu párrafo]<br>
+    Protocolo de acción: [pega aquí tu protocolo y canal de referencia]<br><br>
+    Por favor evalúa: (1) si el lenguaje usado es objetivo y no estigmatizante, señalando frases específicas que debería revisar; (2) si el párrafo cumple con la estructura de oración temática, desarrollo y cierre; (3) si el protocolo evita el diagnóstico y prioriza la escucha y la derivación responsable; y (4) sugiéreme una versión mejorada de una sola frase de mi borrador, explicando por qué es mejor. No reescribas todo el documento por mí: quiero entender el porqué de cada sugerencia para poder corregirlo yo mismo."</p>
+  </div>
+
+  <h3>Rúbrica de evaluación de tu interacción con la IA</h3>
+  <table class="comparativa">
+    <tr><th>Nivel</th><th>Descripción</th></tr>
+    <tr><td><strong>Nivel 3 — Pensamiento crítico</strong></td><td>Analizaste cada sugerencia de Claude, decidiste cuáles aplicar y cuáles no, y puedes explicar por qué. Tu versión final no es una copia literal de la respuesta de la IA.</td></tr>
+    <tr><td><strong>Nivel 2 — Uso parcial</strong></td><td>Aplicaste algunas sugerencias sin cuestionarlas a fondo, pero hiciste algún ajuste propio antes de finalizar tu documento.</td></tr>
+    <tr><td><strong>Nivel 1 — Copia simple</strong></td><td>Reemplazaste tu borrador completo por el texto generado por la IA, sin ningún análisis ni decisión propia.</td></tr>
+  </table>
+  <div class="key-box">
+    <span class="etiqueta">Idea clave</span>
+    La IA es una herramienta de revisión, no de autoría. El documento final que descargues en la Herramienta Interactiva debe seguir siendo tuyo: tus decisiones, tu redacción, tu criterio.
+  </div>
+</div>
+
+<!-- ============ PESTAÑA REFLEXIÓN ============ -->
+<div id="tab-reflexion" class="tab-content">
+  <h2>Reflexión</h2>
+  <p class="intro-pestana">Estas preguntas buscan conectar el contenido teórico con tu desarrollo personal y profesional. No es necesario que compartas información personal sensible; reflexiona desde la observación, la empatía y el rol que asumirás como profesional.</p>
+
+  <div class="reflexion-item">
+    <p><strong>1.</strong> Piensa en la Semana 6, donde trabajamos la escucha activa. ¿De qué manera una escucha activa y sin juicio puede marcar la diferencia entre que una persona pida ayuda o decida ocultar lo que le está pasando?</p>
+  </div>
+  <div class="reflexion-item">
+    <p><strong>2.</strong> Recordando el modelo de autoboicot de Stamateas (Semana 6), ¿cómo crees que el miedo al juicio o a la etiqueta social puede actuar como un obstáculo para que una persona acepte ayuda a tiempo?</p>
+  </div>
+  <div class="reflexion-item">
+    <p><strong>3.</strong> Si en tu entorno cercano —familiar, educativo o laboral— observaras dos o tres de los indicadores estudiados en una misma persona, ¿qué harías primero, según el protocolo de cuatro principios revisado en el Tema 3?</p>
+  </div>
+  <div class="reflexion-item">
+    <p><strong>4.</strong> ¿Por qué crees que un lenguaje no estigmatizante, como el que practicamos en este tema, es relevante no solo para hablar de consumo de sustancias, sino para cualquier situación en la que alguien atraviesa una dificultad personal?</p>
+  </div>
+  <div class="reflexion-item">
+    <p><strong>5.</strong> Como futuro profesional contable o de auditoría, ¿qué responsabilidad ética consideras que tienes al evaluar si una organización cuenta —o no— con protocolos claros de prevención y bienestar para su personal?</p>
+  </div>
+  <div class="reflexion-item">
+    <p><strong>6.</strong> ¿Qué aprendiste en esta semana sobre el proceso de escritura (planificación, textualización, revisión) que podrías aplicar a otros documentos profesionales que redactarás en tu carrera, más allá del tema de prevención de drogas?</p>
+  </div>
+</div>
+
+<!-- ============ PESTAÑA BIBLIOGRAFÍA ============ -->
+<div id="tab-bibliografia" class="tab-content">
+  <h2>Bibliografía</h2>
+  <p class="intro-pestana">Referencias en formato APA 7.ª edición utilizadas en la elaboración de este material.</p>
+
+  <div class="biblio-card">Becoña Iglesias, E. (2002). <em>Bases científicas de la prevención de las drogodependencias</em>. Delegación del Gobierno para el Plan Nacional sobre Drogas, Ministerio del Interior.</div>
+  <div class="biblio-card">Organización Internacional del Trabajo. (1996). <em>Tratamiento de cuestiones relacionadas con el alcohol y las drogas en el lugar de trabajo: Repertorio de recomendaciones prácticas de la OIT</em>. OIT.</div>
+  <div class="biblio-card">Oficina de las Naciones Unidas contra la Droga y el Delito, & Organización Mundial de la Salud. (2018). <em>International Standards on Drug Use Prevention</em> (2.ª ed. actualizada). UNODC.</div>
+  <div class="biblio-card">WHO ASSIST Working Group. (2002). The Alcohol, Smoking and Substance Involvement Screening Test (ASSIST): Development, reliability and feasibility. <em>Addiction, 97</em>(9), 1183–1194. https://doi.org/10.1046/j.1360-0443.2002.00185.x</div>
+  <div class="biblio-card">Asamblea Nacional del Ecuador. (2015). <em>Ley Orgánica de Prevención Integral del Fenómeno Socio Económico de las Drogas</em>. Registro Oficial 615.</div>
+  <div class="biblio-card">Cassany, D. (1995). <em>La cocina de la escritura</em>. Anagrama.</div>
+  <div class="biblio-card">Beaugrande, R. de, & Dressler, W. (1981). <em>Introduction to text linguistics</em>. Longman.</div>
+
+  <div class="footnote-box">
+    Las referencias institucionales (SETED, Línea 171) corresponden a información vigente verificada en fuentes oficiales (gob.ec, Ministerio de Salud Pública) al momento de elaboración de este material. Se recomienda al estudiante verificar la vigencia de canales y números de contacto en los portales oficiales antes de su aplicación práctica.
+  </div>
+</div>
+
+</div>
+<!-- FIN .contenido -->
+
+<div class="footer-curso">
+  Universidad de Guayaquil · Facultad de Ciencias Administrativas · Carrera de Contabilidad y Auditoría<br>
+  Lenguaje y Comunicación · Semana 15 · Unidad 4
+</div>
+
+<script>
+/* ============ NAVEGACIÓN DE PESTAÑAS ============ */
+function showTab(id){
+  document.querySelectorAll('.tab-content').forEach(function(el){ el.classList.remove('active'); });
+  document.querySelectorAll('.tab-btn').forEach(function(el){ el.classList.remove('active'); });
+  document.getElementById('tab-' + id).classList.add('active');
+  document.querySelector('.tab-btn[data-tab="' + id + '"]').classList.add('active');
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+/* ============ ACORDEÓN DE REPASO ============ */
+function toggleAcordeon(btn){
+  var item = btn.parentElement;
+  item.classList.toggle('open');
+}
+
+/* ============ EJERCICIO INTERACTIVO ============ */
+var respuestasEjercicio = {
+  ej1:'b', ej2:'c', ej3:'a', ej4:'c', ej5:'c', ej6:'b', ej7:'c', ej8:'c'
+};
+var retroEjercicio = {
+  ej1:{correcto:'Correcto. El ausentismo y la baja en el rendimiento son indicadores académicos/laborales.', incorrecto:'Incorrecto. El ausentismo y la baja en el rendimiento corresponden a la categoría académica/laboral.'},
+  ej2:{correcto:'Correcto. Dirigirse a toda la población sin distinción, antes de cualquier señal, es prevención primaria.', incorrecto:'Incorrecto. Esta es una acción dirigida a toda la población sin señales previas: prevención primaria.'},
+  ej3:{correcto:'Correcto. El aislamiento y la reserva son indicadores conductuales.', incorrecto:'Incorrecto. El aislamiento y la reserva corresponden a la categoría conductual.'},
+  ej4:{correcto:'Correcto. Acompañar a personas que ya pasaron por tratamiento para evitar recaídas es prevención terciaria.', incorrecto:'Incorrecto. Trabajar con personas que ya recibieron tratamiento para evitar recaídas es prevención terciaria.'},
+  ej5:{correcto:'Correcto. El sueño y la higiene personal son indicadores físicos.', incorrecto:'Incorrecto. Las alteraciones de sueño e higiene corresponden a la categoría física.'},
+  ej6:{correcto:'Correcto. Informar a toda la población sin señales previas de consumo es prevención primaria.', incorrecto:'Incorrecto. Difundir información general a toda la población es prevención primaria.'},
+  ej7:{correcto:'Correcto. El cambio de amistades y las necesidades económicas inexplicables son indicadores sociales.', incorrecto:'Incorrecto. El cambio de amistades y las necesidades económicas corresponden a la categoría social.'},
+  ej8:{correcto:'Correcto. Tratar a personas con dependencia ya diagnosticada y reducir el daño es prevención terciaria.', incorrecto:'Incorrecto. Atender a personas con dependencia ya diagnosticada corresponde a prevención terciaria.'}
+};
+function verificarEjercicio(){
+  var ids = Object.keys(respuestasEjercicio);
+  var faltan = ids.some(function(id){
+    return !document.querySelector('input[name="'+id+'"]:checked');
+  });
+  if(faltan){
+    document.getElementById('alertaEjercicio').style.display='block';
+    return;
+  }
+  document.getElementById('alertaEjercicio').style.display='none';
+  ids.forEach(function(id){
+    var sel = document.querySelector('input[name="'+id+'"]:checked').value;
+    var correcta = respuestasEjercicio[id];
+    var item = document.getElementById(id);
+    item.querySelectorAll('.opcion-item').forEach(function(op){
+      op.classList.remove('correcta','incorrecta');
+      var input = op.querySelector('input');
+      if(input.value === correcta){ op.classList.add('correcta'); }
+      else if(input.value === sel){ op.classList.add('incorrecta'); }
+    });
+    var fb = document.getElementById('fb-'+id);
+    fb.classList.remove('correcto','incorrecto');
+    if(sel === correcta){
+      fb.textContent = retroEjercicio[id].correcto;
+      fb.classList.add('correcto','mostrar');
+    } else {
+      fb.textContent = retroEjercicio[id].incorrecto;
+      fb.classList.add('incorrecto','mostrar');
+    }
+  });
+}
+function reiniciarEjercicio(){
+  Object.keys(respuestasEjercicio).forEach(function(id){
+    document.querySelectorAll('input[name="'+id+'"]').forEach(function(r){ r.checked=false; });
+    var item = document.getElementById(id);
+    item.querySelectorAll('.opcion-item').forEach(function(op){ op.classList.remove('correcta','incorrecta'); });
+    var fb = document.getElementById('fb-'+id);
+    fb.classList.remove('mostrar','correcto','incorrecto');
+    fb.textContent='';
+  });
+  document.getElementById('alertaEjercicio').style.display='none';
+}
+
+/* ============ CUESTIONARIO ============ */
+var respuestasCuestionario = {
+  q1:'b', q2:'b', q3:'b', q4:'b', q5:'b', q6:'b', q7:'c', q8:'a', q9:'b', q10:'b'
+};
+var retroCuestionario = {
+  q1:{correcto:'Correcto: orienta la observación y la derivación, no diagnostica.', incorrecto:'Recuerda: un instrumento no clínico orienta la observación y la derivación, no diagnostica.'},
+  q2:{correcto:'Correcto: SETED es la entidad técnica ecuatoriana en esta materia.', incorrecto:'La entidad técnica ecuatoriana encargada de esta política pública es la SETED.'},
+  q3:{correcto:'Correcto: Línea 171, opción 6, del MSP.', incorrecto:'El canal correcto es la Línea 171, opción 6, del Ministerio de Salud Pública.'},
+  q4:{correcto:'Correcto: requieren profesionales capacitados en contexto clínico.', incorrecto:'Instrumentos como el ASSIST requieren profesionales de salud capacitados, en contexto clínico.'},
+  q5:{correcto:'Correcto: revisar lenguaje y verificar el canal de referencia real.', incorrecto:'La revisión busca un lenguaje no estigmatizante y un canal de referencia real, no solo agregar contenido.'},
+  q6:{correcto:'Correcto: lenguaje centrado en la persona, sin etiquetas.', incorrecto:'La opción correcta usa lenguaje objetivo, centrado en la persona, sin etiquetas ni juicios.'},
+  q7:{correcto:'Correcto: observar el patrón en el tiempo, sin conclusiones apresuradas.', incorrecto:'Lo responsable es observar el patrón en el tiempo y evitar conclusiones a partir de un solo indicador.'},
+  q8:{correcto:'Correcto: la ausencia de protocolo es un hallazgo de control interno.', incorrecto:'La ausencia de protocolo escrito constituye un hallazgo de control interno que amerita recomendación.'},
+  q9:{correcto:'Correcto: reescribir con lenguaje objetivo y sin diagnósticos anticipados.', incorrecto:'Lo correcto es reescribir la frase con lenguaje objetivo, sin etiquetas ni diagnósticos anticipados.'},
+  q10:{correcto:'Correcto: Talento Humano y salud ocupacional es el canal del ámbito laboral.', incorrecto:'En el ámbito laboral, el canal adecuado es Talento Humano y el servicio de salud ocupacional.'}
+};
+function verificarCuestionario(){
+  var ids = Object.keys(respuestasCuestionario);
+  var faltan = ids.some(function(id){
+    return !document.querySelector('input[name="'+id+'"]:checked');
+  });
+  if(faltan){
+    document.getElementById('alertaCuestionario').style.display='block';
+    return;
+  }
+  document.getElementById('alertaCuestionario').style.display='none';
+  var correctas = 0;
+  ids.forEach(function(id){
+    var sel = document.querySelector('input[name="'+id+'"]:checked').value;
+    var correcta = respuestasCuestionario[id];
+    var item = document.getElementById(id);
+    item.querySelectorAll('.opcion-item').forEach(function(op){
+      op.classList.remove('correcta','incorrecta');
+      var input = op.querySelector('input');
+      if(input.value === correcta){ op.classList.add('correcta'); }
+      else if(input.value === sel){ op.classList.add('incorrecta'); }
+    });
+    var fb = document.getElementById('fb-'+id);
+    fb.classList.remove('correcto','incorrecto');
+    if(sel === correcta){
+      correctas++;
+      fb.textContent = retroCuestionario[id].correcto;
+      fb.classList.add('correcto','mostrar');
+    } else {
+      fb.textContent = retroCuestionario[id].incorrecto;
+      fb.classList.add('incorrecto','mostrar');
+    }
+  });
+  var porcentaje = Math.round((correctas/ids.length)*100);
+  document.getElementById('barraProgreso').style.width = porcentaje + '%';
+  document.getElementById('puntajeTexto').textContent = correctas + ' / ' + ids.length + ' (' + porcentaje + '%)';
+  var emoji, mensaje;
+  if(porcentaje >= 100){ emoji='🏆'; mensaje='¡Excelente! Dominas completamente el tema.'; }
+  else if(porcentaje >= 80){ emoji='🎯'; mensaje='¡Muy buen trabajo! Tienes un sólido manejo del tema.'; }
+  else if(porcentaje >= 60){ emoji='📘'; mensaje='Buen avance. Repasa los temas donde tuviste errores.'; }
+  else if(porcentaje >= 40){ emoji='⚠️'; mensaje='Necesitas repasar con más detenimiento el contenido de esta semana.'; }
+  else { emoji='📖'; mensaje='Te recomendamos volver a revisar todas las pestañas de contenido antes de continuar.'; }
+  document.getElementById('emojiResultado').textContent = emoji;
+  document.getElementById('mensajeMotivacional').textContent = mensaje;
+  document.getElementById('resultadoCuestionario').classList.add('mostrar');
+}
+function reiniciarCuestionario(){
+  Object.keys(respuestasCuestionario).forEach(function(id){
+    document.querySelectorAll('input[name="'+id+'"]').forEach(function(r){ r.checked=false; });
+    var item = document.getElementById(id);
+    item.querySelectorAll('.opcion-item').forEach(function(op){ op.classList.remove('correcta','incorrecta'); });
+    var fb = document.getElementById('fb-'+id);
+    fb.classList.remove('mostrar','correcto','incorrecto');
+    fb.textContent='';
+  });
+  document.getElementById('alertaCuestionario').style.display='none';
+  document.getElementById('resultadoCuestionario').classList.remove('mostrar');
+  document.getElementById('barraProgreso').style.width='0%';
+}
+
+/* ============ HERRAMIENTA INTERACTIVA (WIZARD) ============ */
+var wizardDatos = { ambito:'educativo', poblacion:'', proposito:'', indicadores:{academico:[],conductual:[],fisico:[],social:[]}, parrafo:'', canal:'' };
+
+function actualizarStepper(n){
+  for(var i=1;i<=5;i++){
+    var dot = document.getElementById('dotStep'+i);
+    dot.classList.remove('activo','completado');
+    if(i < n){ dot.classList.add('completado'); }
+    if(i === n){ dot.classList.add('activo'); }
+  }
+}
+
+function mostrarPaso(n){
+  document.querySelectorAll('.step-panel').forEach(function(p){ p.classList.remove('activo'); });
+  document.getElementById('wizardStep'+n).classList.add('activo');
+  actualizarStepper(n);
+  document.getElementById('wizardStepper').scrollIntoView({behavior:'smooth', block:'start'});
+}
+
+document.addEventListener('change', function(e){
+  if(e.target && e.target.name === 'ambito'){
+    document.querySelectorAll('.referral-box').forEach(function(b){ b.classList.remove('mostrar'); });
+    var mapa = {educativo:'cajaReferenciaEducativo', laboral:'cajaReferenciaLaboral', familiar:'cajaReferenciaFamiliar'};
+    document.getElementById(mapa[e.target.value]).classList.add('mostrar');
+  }
+});
+
+function wizardSiguiente(actual){
+  if(actual === 1){
+    var poblacion = document.getElementById('poblacion').value.trim();
+    var proposito = document.getElementById('proposito').value.trim();
+    if(poblacion === '' || proposito === ''){
+      document.getElementById('alertaStep1').style.display='block';
+      return;
+    }
+    document.getElementById('alertaStep1').style.display='none';
+    wizardDatos.ambito = document.querySelector('input[name="ambito"]:checked').value;
+    wizardDatos.poblacion = poblacion;
+    wizardDatos.proposito = proposito;
+    mostrarPaso(2);
+  } else if(actual === 2){
+    var cats = {academico:0,conductual:0,fisico:0,social:0};
+    document.querySelectorAll('.ind-categoria:checked').forEach(function(chk){
+      cats[chk.getAttribute('data-cat')]++;
+    });
+    var parrafo = document.getElementById('parrafoIntro').value.trim();
+    var faltaCategoria = Object.keys(cats).some(function(c){ return cats[c] < 2; });
+    if(faltaCategoria || parrafo === ''){
+      document.getElementById('alertaStep2').style.display='block';
+      return;
+    }
+    document.getElementById('alertaStep2').style.display='none';
+    var seleccionados = {academico:[],conductual:[],fisico:[],social:[]};
+    document.querySelectorAll('.ind-categoria:checked').forEach(function(chk){
+      var texto = chk.closest('label').textContent.trim();
+      seleccionados[chk.getAttribute('data-cat')].push(texto);
+    });
+    wizardDatos.indicadores = seleccionados;
+    wizardDatos.parrafo = parrafo;
+    mostrarPaso(3);
+  } else if(actual === 3){
+    var canal = document.getElementById('canalPersonalizado').value.trim();
+    if(canal === ''){
+      document.getElementById('alertaStep3').style.display='block';
+      return;
+    }
+    document.getElementById('alertaStep3').style.display='none';
+    wizardDatos.canal = canal;
+    mostrarPaso(4);
+  } else if(actual === 4){
+    var revisados = ['rev1','rev2','rev3','rev4','rev5'].every(function(id){
+      return document.getElementById(id).checked;
+    });
+    if(!revisados){
+      document.getElementById('alertaStep4').style.display='block';
+      return;
+    }
+    document.getElementById('alertaStep4').style.display='none';
+    generarDocumentoFinal();
+    mostrarPaso(5);
+  }
+}
+
+function wizardAnterior(actual){
+  mostrarPaso(actual-1);
+}
+
+function nombreAmbito(a){
+  if(a==='educativo') return 'Educativo';
+  if(a==='laboral') return 'Laboral';
+  return 'Familiar / comunitario';
+}
+function nombreCategoria(c){
+  var mapa = {academico:'Académicos / laborales', conductual:'Conductuales', fisico:'Físicos', social:'Sociales'};
+  return mapa[c];
+}
+
+function generarDocumentoFinal(){
+  var d = wizardDatos;
+  var html = '';
+  html += '<div class="doc-seccion"><strong>Ficha de Detección Temprana de Señales de Riesgo</strong><br>Ámbito: '+nombreAmbito(d.ambito)+'<br>Población destinataria: '+escaparHtml(d.poblacion)+'</div>';
+  html += '<div class="doc-seccion"><strong>Propósito</strong><br>'+escaparHtml(d.proposito)+'</div>';
+  html += '<div class="doc-seccion"><strong>Párrafo introductorio</strong><br>'+escaparHtml(d.parrafo)+'</div>';
+  html += '<div class="doc-seccion"><strong>Indicadores observables seleccionados</strong>';
+  Object.keys(d.indicadores).forEach(function(cat){
+    if(d.indicadores[cat].length){
+      html += '<br><em>'+nombreCategoria(cat)+':</em> '+d.indicadores[cat].join('; ');
+    }
+  });
+  html += '</div>';
+  html += '<div class="doc-seccion"><strong>Protocolo de acción</strong><br>1) Observar y documentar de forma objetiva, sin diagnosticar. 2) Conversar en privado, con escucha activa y sin juicio. 3) Mantener la confidencialidad. 4) Derivar a la instancia correspondiente.</div>';
+  html += '<div class="doc-seccion"><strong>Canal de referencia</strong><br>'+escaparHtml(d.canal)+'</div>';
+  document.getElementById('documentoFinal').innerHTML = html;
+}
+
+function escaparHtml(t){
+  var div = document.createElement('div');
+  div.textContent = t;
+  return div.innerHTML;
+}
+
+function descargarDocumento(){
+  var d = wizardDatos;
+  var texto = 'FICHA DE DETECCIÓN TEMPRANA DE SEÑALES DE RIESGO\n';
+  texto += '====================================================\n\n';
+  texto += 'Ámbito: ' + nombreAmbito(d.ambito) + '\n';
+  texto += 'Población destinataria: ' + d.poblacion + '\n\n';
+  texto += 'PROPÓSITO\n' + d.proposito + '\n\n';
+  texto += 'PÁRRAFO INTRODUCTORIO\n' + d.parrafo + '\n\n';
+  texto += 'INDICADORES OBSERVABLES SELECCIONADOS\n';
+  Object.keys(d.indicadores).forEach(function(cat){
+    if(d.indicadores[cat].length){
+      texto += '- ' + nombreCategoria(cat) + ': ' + d.indicadores[cat].join('; ') + '\n';
+    }
+  });
+  texto += '\nPROTOCOLO DE ACCIÓN\n';
+  texto += '1) Observar y documentar de forma objetiva, sin diagnosticar.\n';
+  texto += '2) Conversar en privado, con escucha activa y sin juicio.\n';
+  texto += '3) Mantener la confidencialidad de la información recogida.\n';
+  texto += '4) Derivar a la instancia profesional correspondiente.\n\n';
+  texto += 'CANAL DE REFERENCIA\n' + d.canal + '\n\n';
+  texto += '----------------------------------------------------\n';
+  texto += 'Universidad de Guayaquil - Facultad de Ciencias Administrativas\n';
+  texto += 'Lenguaje y Comunicación - Semana 15\n';
+  var blob = new Blob([texto], {type:'text/plain;charset=utf-8'});
+  var url = URL.createObjectURL(blob);
+  var a = document.createElement('a');
+  a.href = url;
+  a.download = 'ficha_deteccion_temprana.txt';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
+
+function wizardReiniciar(){
+  document.querySelectorAll('input[name="ambito"]').forEach(function(r){ r.checked = (r.value==='educativo'); });
+  document.getElementById('poblacion').value='';
+  document.getElementById('proposito').value='';
+  document.querySelectorAll('.ind-categoria').forEach(function(c){ c.checked=false; });
+  document.getElementById('parrafoIntro').value='';
+  document.getElementById('canalPersonalizado').value='';
+  document.querySelectorAll('.referral-box').forEach(function(b){ b.classList.remove('mostrar'); });
+  document.getElementById('cajaReferenciaEducativo').classList.add('mostrar');
+  ['rev1','rev2','rev3','rev4','rev5'].forEach(function(id){ document.getElementById(id).checked=false; });
+  document.getElementById('documentoFinal').innerHTML='';
+  ['alertaStep1','alertaStep2','alertaStep3','alertaStep4'].forEach(function(id){ document.getElementById(id).style.display='none'; });
+  wizardDatos = { ambito:'educativo', poblacion:'', proposito:'', indicadores:{academico:[],conductual:[],fisico:[],social:[]}, parrafo:'', canal:'' };
+  mostrarPaso(1);
+}
+</script>
+</body>
+</html>

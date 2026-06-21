@@ -1,0 +1,1224 @@
+<!DOCTYPE html>
+<!--
+PLAN DEL ARCHIVO (Semana 13 - El proceso de planeación de un escrito. El párrafo: características, elementos y tipos)
+Fragmento 1: head + CSS completo + header institucional + nav de pestañas + Repaso (acordeón 12 semanas) + Tema 1 (proceso de planeación)
+Fragmento 2: Tema 2 (el párrafo: características y elementos) + Tema 3 (tipos de párrafo parte 1)
+Fragmento 3: Tema 3b (tipos de párrafo parte 2 + tabla comparativa) + Tema 4 (el párrafo en la vida cotidiana / lectura-escritura como herramienta de bienestar)
+Fragmento 4: Herramienta interactiva - Constructor guiado de párrafos (HTML del formulario paso a paso, vista previa, checklist, botones de descarga)
+Fragmento 5: Ejercicio Interactivo (8 ítems de clasificación de tipo de párrafo / identificación de elementos)
+Fragmento 6: Cuestionario (10 preguntas: 7 teóricas + 3 de análisis de caso)
+Fragmento 7: Actividad con IA + Reflexión + Bibliografía + cierre de body
+Fragmento 8: JavaScript completo (pestañas, acordeón, ejercicio, cuestionario, herramienta de párrafos, descargas TXT/PDF) + cierre de html
+Todas las clases CSS nuevas introducidas en fragmentos 2-8 deben quedar declaradas en el <style> de este fragmento 1.
+-->
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Semana 13 | El proceso de planeación de un escrito. El párrafo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@500;600;700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --azul-oscuro:#003366;
+    --celeste:#87CEEB;
+    --azul-claro-bg:#eaf4fb;
+    --oro:#C9A227;
+    --verde:#1d7a3e;
+    --rojo:#b3261e;
+    --gris-texto:#2b2b2b;
+    --gris-borde:#d7dde3;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0; padding:0; background:#f4f7fa; color:var(--gris-texto);
+    font-family:'Source Sans 3', sans-serif; line-height:1.65; font-size:16px;
+  }
+  h1,h2,h3,h4{font-family:'Lora', serif; color:var(--azul-oscuro); margin-top:0;}
+  .header-inst{
+    background:var(--azul-oscuro); color:#ffffff; padding:22px 18px; text-align:center;
+  }
+  .header-inst .uni{font-size:0.95em; letter-spacing:0.5px; opacity:0.92;}
+  .header-inst h1{color:#ffffff; font-size:1.5em; margin:6px 0;}
+  .header-inst .meta{font-size:0.95em; opacity:0.95;}
+  .header-inst .tema-tag{
+    display:inline-block; margin-top:8px; background:rgba(255,255,255,0.15);
+    border:1px solid rgba(255,255,255,0.4); border-radius:20px; padding:5px 16px; font-size:0.9em;
+  }
+  .contenedor{max-width:980px; margin:0 auto; background:#fff; min-height:100vh;}
+  .tab-nav{
+    display:flex; overflow-x:auto; background:var(--celeste); border-bottom:3px solid var(--azul-oscuro);
+    -webkit-overflow-scrolling:touch; scrollbar-width:thin;
+  }
+  .tab-nav::-webkit-scrollbar{height:7px;}
+  .tab-nav::-webkit-scrollbar-thumb{background:var(--azul-oscuro); border-radius:5px;}
+  .tab-btn{
+    flex:0 0 auto; background:transparent; border:none; color:#06243f; font-weight:600;
+    padding:13px 16px; cursor:pointer; font-family:'Source Sans 3',sans-serif; font-size:0.88em;
+    white-space:nowrap; border-right:1px solid rgba(0,51,102,0.15); transition:background 0.15s;
+  }
+  .tab-btn:hover{background:rgba(255,255,255,0.35);}
+  .tab-btn.active{background:#ffffff; color:var(--azul-oscuro); font-weight:700; box-shadow:inset 0 -3px 0 var(--oro);}
+  .tab-content{display:none; padding:26px 22px 40px;}
+  .tab-content.active{display:block;}
+  .tab-content h2{border-bottom:3px solid var(--celeste); padding-bottom:8px; font-size:1.4em;}
+  .tab-content h3{font-size:1.15em; color:var(--azul-oscuro); margin-top:22px;}
+  .subtitulo{color:#445; font-style:italic; margin-bottom:18px;}
+
+  /* Acordeón */
+  .accordion-item{border:1px solid var(--gris-borde); border-radius:8px; margin-bottom:10px; overflow:hidden;}
+  .accordion-header{
+    width:100%; text-align:left; background:#f0f5fa; border:none; padding:13px 16px;
+    font-family:'Source Sans 3',sans-serif; font-weight:700; color:var(--azul-oscuro);
+    cursor:pointer; display:flex; justify-content:space-between; align-items:center; font-size:0.97em;
+  }
+  .accordion-header:hover{background:#e2edf6;}
+  .accordion-header .arrow{transition:transform 0.2s; font-size:0.85em;}
+  .accordion-content{display:none; padding:14px 18px; background:#fff; border-top:1px solid var(--gris-borde); font-size:0.96em;}
+  .accordion-content.open{display:block;}
+
+  /* Cajas de contenido */
+  .concept-box{
+    border-left:5px solid var(--azul-oscuro); background:#f6f9fc; padding:14px 18px; margin:16px 0; border-radius:4px;
+  }
+  .example-box{
+    background:var(--azul-claro-bg); border:1px solid #cfe3f2; padding:14px 18px; margin:16px 0; border-radius:6px;
+  }
+  .example-box .etiqueta{font-weight:700; color:var(--azul-oscuro); display:block; margin-bottom:6px; font-size:0.85em; text-transform:uppercase; letter-spacing:0.4px;}
+  .key-box{
+    border:2px solid var(--oro); background:#fffaf0; padding:14px 18px; margin:18px 0; border-radius:6px; position:relative;
+  }
+  .key-box::before{content:"💡 Idea clave"; display:block; font-weight:700; color:#8a6d10; margin-bottom:6px; font-family:'Lora',serif;}
+
+  table.comparativa{width:100%; border-collapse:collapse; margin:16px 0; font-size:0.92em;}
+  table.comparativa th{background:var(--azul-oscuro); color:#fff; padding:9px 10px; text-align:left;}
+  table.comparativa td{padding:9px 10px; border-bottom:1px solid var(--gris-borde); vertical-align:top;}
+  table.comparativa tr:nth-child(even) td{background:#f7fafc;}
+
+  .lista-visual{list-style:none; padding-left:0; margin:14px 0;}
+  .lista-visual li{
+    padding:9px 12px 9px 36px; margin-bottom:7px; background:#f6f9fc; border-radius:5px; position:relative; font-size:0.95em;
+  }
+  .lista-visual li::before{content:"▸"; position:absolute; left:12px; color:var(--azul-oscuro); font-weight:700;}
+
+  .tipo-card{border:1px solid var(--gris-borde); border-radius:8px; padding:14px 16px; margin:14px 0; background:#fff; border-top:4px solid var(--azul-oscuro);}
+  .tipo-card h4{margin-top:0; color:var(--azul-oscuro);}
+  .tipo-card .definicion{font-weight:600; margin-bottom:6px;}
+
+  .ambito-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:14px; margin:18px 0;}
+  .ambito-card{background:#fff; border:1px solid var(--gris-borde); border-radius:8px; padding:14px; border-left:4px solid var(--oro);}
+  .ambito-card h4{margin:0 0 6px 0; font-size:1em; color:var(--azul-oscuro);}
+  .ambito-card p{margin:0; font-size:0.9em;}
+
+  /* Botones generales */
+  .btn{
+    display:inline-block; background:var(--azul-oscuro); color:#fff; border:none; padding:11px 22px;
+    border-radius:6px; font-weight:700; cursor:pointer; font-family:'Source Sans 3',sans-serif; font-size:0.95em; margin:6px 6px 6px 0;
+  }
+  .btn:hover{background:#024a8c;}
+  .btn-secundario{background:#fff; color:var(--azul-oscuro); border:2px solid var(--azul-oscuro);}
+  .btn-secundario:hover{background:#eaf4fb;}
+  .btn-reiniciar{background:#6c757d;}
+  .btn-reiniciar:hover{background:#565e64;}
+  .btn-descarga{background:var(--verde);}
+  .btn-descarga:hover{background:#15602f;}
+  .btn:disabled{opacity:0.5; cursor:not-allowed;}
+
+  /* Ejercicio y cuestionario */
+  .pregunta-bloque{border:1px solid var(--gris-borde); border-radius:8px; padding:16px; margin-bottom:16px; background:#fbfcfd;}
+  .pregunta-bloque .enunciado{font-weight:700; margin-bottom:10px; color:var(--azul-oscuro);}
+  .pregunta-bloque .texto-ejemplo{background:#f0f5fa; padding:10px 12px; border-radius:5px; font-style:italic; margin-bottom:10px; font-size:0.93em;}
+  .opcion{display:block; padding:9px 12px; margin-bottom:7px; border:1px solid var(--gris-borde); border-radius:6px; cursor:pointer; transition:background .15s;}
+  .opcion:hover{background:#f0f5fa;}
+  .opcion input{margin-right:9px;}
+  .opcion.correcta-resaltada{background:#e6f4ea; border-color:var(--verde);}
+  .opcion.incorrecta-resaltada{background:#fbe9e7; border-color:var(--rojo);}
+  .feedback-item{display:none; margin-top:10px; padding:10px 12px; border-radius:6px; font-size:0.92em;}
+  .feedback-item.correcto{display:block; background:#e6f4ea; color:#0e4423; border:1px solid var(--verde);}
+  .feedback-item.incorrecto{display:block; background:#fbe9e7; color:#7a1410; border:1px solid var(--rojo);}
+  .badge{display:inline-block; font-size:0.72em; font-weight:700; padding:3px 10px; border-radius:12px; margin-left:8px; vertical-align:middle; text-transform:uppercase;}
+  .badge-teorica{background:#d6e8f7; color:var(--azul-oscuro);}
+  .badge-caso{background:#f5dfc2; color:#7a4a06;}
+
+  .resultado-panel{display:none; margin-top:22px; padding:20px; border-radius:8px; background:#f0f5fa; text-align:center; border:2px solid var(--azul-oscuro);}
+  .resultado-panel.mostrar{display:block;}
+  .resultado-panel .puntaje{font-size:2em; font-family:'Lora',serif; color:var(--azul-oscuro); font-weight:700;}
+  .barra-progreso-cont{background:#dde6ee; border-radius:20px; height:22px; margin:14px 0; overflow:hidden;}
+  .barra-progreso{height:100%; width:0%; background:linear-gradient(90deg,var(--azul-oscuro),var(--celeste)); border-radius:20px; transition:width 1.2s ease-out; display:flex; align-items:center; justify-content:flex-end; color:#fff; font-size:0.78em; font-weight:700; padding-right:8px;}
+  .mensaje-motivacional{font-size:1.15em; margin-top:8px; font-weight:600;}
+  .alerta-incompleto{display:none; background:#fbe9e7; color:#7a1410; border:1px solid var(--rojo); padding:10px 14px; border-radius:6px; margin-bottom:14px; font-weight:600;}
+  .alerta-incompleto.mostrar{display:block;}
+
+  /* Herramienta interactiva: constructor de párrafos */
+  .tool-wrap{background:#f7fafc; border:1px solid var(--gris-borde); border-radius:10px; padding:20px;}
+  .tool-step{background:#fff; border:1px solid var(--gris-borde); border-left:5px solid var(--oro); border-radius:8px; padding:16px 18px; margin-bottom:16px;}
+  .tool-step h4{margin-top:0; color:var(--azul-oscuro); font-family:'Lora',serif;}
+  .tool-label{display:block; font-weight:700; margin-bottom:6px; color:var(--azul-oscuro); font-size:0.92em;}
+  .tool-select, .tool-textarea, .tool-input{
+    width:100%; padding:10px 12px; border:1px solid var(--gris-borde); border-radius:6px;
+    font-family:'Source Sans 3',sans-serif; font-size:0.95em; margin-bottom:10px; background:#fff;
+  }
+  .tool-textarea{resize:vertical; min-height:70px;}
+  .tool-hint{font-size:0.85em; color:#445; margin:-4px 0 10px 0; font-style:italic;}
+  .conector-chips{display:flex; flex-wrap:wrap; gap:6px; margin-bottom:10px;}
+  .conector-chip{background:var(--azul-claro-bg); border:1px solid #b9d8ee; color:var(--azul-oscuro); padding:5px 11px; border-radius:14px; font-size:0.82em; cursor:pointer;}
+  .conector-chip:hover{background:#cfe3f2;}
+  .secundaria-grupo{border:1px dashed #b9c4ce; border-radius:6px; padding:10px; margin-bottom:10px; position:relative;}
+  .btn-quitar{position:absolute; top:6px; right:8px; background:#b3261e; color:#fff; border:none; border-radius:50%; width:22px; height:22px; font-size:0.8em; cursor:pointer; line-height:1;}
+  .checklist-item{display:flex; align-items:flex-start; gap:9px; padding:7px 0; font-size:0.93em;}
+  .checklist-item input{margin-top:3px;}
+  .tool-preview{background:#fffaf0; border:2px solid var(--oro); border-radius:8px; padding:18px; margin-top:14px; font-size:1em; min-height:60px; white-space:pre-wrap;}
+  .tool-preview.vacio{color:#888; font-style:italic;}
+  .tool-actions{margin-top:14px;}
+  .contador-caracteres{font-size:0.8em; color:#667; text-align:right; margin-top:-6px; margin-bottom:8px;}
+
+  /* IA y reflexión */
+  .prompt-ia-box{background:#0d2a47; color:#eaf4fb; padding:18px; border-radius:8px; font-family:monospace; font-size:0.88em; white-space:pre-wrap; line-height:1.6; margin:14px 0;}
+  .rubrica-tabla{width:100%; border-collapse:collapse; margin:14px 0; font-size:0.9em;}
+  .rubrica-tabla th{background:var(--azul-oscuro); color:#fff; padding:8px;}
+  .rubrica-tabla td{padding:8px; border:1px solid var(--gris-borde);}
+  .reflexion-item{background:#f6f9fc; border-left:4px solid var(--celeste); padding:12px 16px; margin-bottom:12px; border-radius:5px; font-size:0.97em;}
+
+  /* Bibliografía */
+  .biblio-card{background:#fff; border:1px solid var(--gris-borde); border-left:4px solid var(--azul-oscuro); border-radius:6px; padding:13px 16px; margin-bottom:11px; font-size:0.93em;}
+  .biblio-card .autor{font-weight:700;}
+  .biblio-nota{font-size:0.85em; color:#556; margin-top:16px; font-style:italic; border-top:1px solid var(--gris-borde); padding-top:12px;}
+
+  footer.pie{text-align:center; padding:16px; font-size:0.8em; color:#778; background:#eef2f6;}
+
+  @media print{
+    .tab-nav, .header-inst, .btn, footer.pie{display:none !important;}
+    .tab-content{display:none !important;}
+    .tab-content.imprimir-activo{display:block !important; padding:0;}
+  }
+  @media (max-width:600px){
+    .header-inst h1{font-size:1.2em;}
+    .tab-content{padding:18px 14px 30px;}
+    .resultado-panel .puntaje{font-size:1.5em;}
+  }
+</style>
+</head>
+<body>
+<div class="contenedor">
+
+  <header class="header-inst">
+    <div class="uni">Universidad de Guayaquil &middot; Facultad de Ciencias Administrativas &middot; Carrera de Contabilidad y Auditoría</div>
+    <h1>Lenguaje y Comunicación</h1>
+    <div class="meta">Semana 13 &middot; Unidad 4: El proceso de la escritura en la construcción de textos</div>
+    <div class="tema-tag">Tema: El proceso de planeación de un escrito. El párrafo: características, elementos y tipos</div>
+  </header>
+
+  <nav class="tab-nav" id="tabNav">
+    <button class="tab-btn active" onclick="showTab('repaso', this)">Repaso</button>
+    <button class="tab-btn" onclick="showTab('tema1', this)">Tema 1: Planeación del escrito</button>
+    <button class="tab-btn" onclick="showTab('tema2', this)">Tema 2: El párrafo</button>
+    <button class="tab-btn" onclick="showTab('tema3', this)">Tema 3: Tipos de párrafo (I)</button>
+    <button class="tab-btn" onclick="showTab('tema3b', this)">Tema 3b: Tipos de párrafo (II)</button>
+    <button class="tab-btn" onclick="showTab('tema4', this)">Tema 4: El párrafo en tu vida</button>
+    <button class="tab-btn" onclick="showTab('herramienta', this)">Herramienta: Constructor</button>
+    <button class="tab-btn" onclick="showTab('ejercicio', this)">Ejercicio Interactivo</button>
+    <button class="tab-btn" onclick="showTab('cuestionario', this)">Cuestionario</button>
+    <button class="tab-btn" onclick="showTab('ia', this)">Actividad con IA</button>
+    <button class="tab-btn" onclick="showTab('reflexion', this)">Reflexión</button>
+    <button class="tab-btn" onclick="showTab('biblio', this)">Bibliografía</button>
+  </nav>
+
+  <!-- ============ REPASO ============ -->
+  <section id="repaso" class="tab-content active">
+    <h2>Repaso: el camino recorrido hasta hoy</h2>
+    <p class="subtitulo">Cada semana construyó una pieza del rompecabezas que hoy usamos para planificar y redactar párrafos. Haz clic en cada semana para recordar su contenido y su conexión con el tema de hoy.</p>
+
+    <div class="accordion-item">
+      <button class="accordion-header" onclick="toggleAcordeon(this)">Semana 1: Importancia de la comunicación. Diferencia entre hablar y comunicar <span class="arrow">▶</span></button>
+      <div class="accordion-content">Hablar es emitir sonidos articulados; comunicar es lograr que el mensaje sea comprendido por el receptor, generando un significado compartido. Toda comunicación —incluida la escrita— busca ese mismo objetivo: ser entendida, no solo emitida. Por eso, antes de escribir un párrafo, debemos preguntarnos si realmente estamos comunicando o solo "llenando espacio" con palabras.</div>
+    </div>
+    <div class="accordion-item">
+      <button class="accordion-header" onclick="toggleAcordeon(this)">Semana 2: Lenguaje y comunicación. Procesamiento de mensajes. Tipos de lenguaje <span class="arrow">▶</span></button>
+      <div class="accordion-content">Distinguimos código, canal, emisor y receptor, así como los distintos tipos de lenguaje (verbal, no verbal, icónico, gestual). La escritura es uno de los lenguajes verbales más estructurados que existen, y precisamente por su exigencia de estructura requiere una planificación consciente: el tema central de esta semana.</div>
+    </div>
+    <div class="accordion-item">
+      <button class="accordion-header" onclick="toggleAcordeon(this)">Semana 3: Tipos de comunicación. Cómo funciona tu cerebro <span class="arrow">▶</span></button>
+      <div class="accordion-content">Conocimos el modelo del cerebro triuno: reptiliano, límbico y neocórtex. Escribir un párrafo activa principalmente el neocórtex (razonamiento, organización lógica), pero también el sistema límbico (emociones); por eso un buen párrafo conecta lógica y sentimiento, y no solo datos fríos.</div>
+    </div>
+    <div class="accordion-item">
+      <button class="accordion-header" onclick="toggleAcordeon(this)">Semana 4: Importancia de la lectura. Proceso de comunicación <span class="arrow">▶</span></button>
+      <div class="accordion-content">La lectura alimenta el vocabulario, los modelos mentales y los esquemas de organización textual que después usamos al escribir. Sin una base de lectura previa, la planificación de un escrito carece de referentes y modelos a seguir; quien lee poco, generalmente planifica y escribe con más dificultad.</div>
+    </div>
+    <div class="accordion-item">
+      <button class="accordion-header" onclick="toggleAcordeon(this)">Semana 5: Componentes de la comunicación <span class="arrow">▶</span></button>
+      <div class="accordion-content">Repasamos emisor, receptor, mensaje, canal, código, contexto y retroalimentación. Al planificar un escrito, el emisor (autor) debe definir con claridad quién es su destinatario y en qué contexto será leído el texto, exactamente igual que en cualquier otro acto comunicativo.</div>
+    </div>
+    <div class="accordion-item">
+      <button class="accordion-header" onclick="toggleAcordeon(this)">Semana 6: Habilidades comunicativas <span class="arrow">▶</span></button>
+      <div class="accordion-content">Trabajamos las cuatro habilidades comunicativas: escuchar, hablar, leer y escribir. La escritura es la más exigente de las cuatro porque no recibe retroalimentación inmediata del receptor; por eso necesita planificación y revisión, pasos que la conversación oral espontánea no exige.</div>
+    </div>
+    <div class="accordion-item">
+      <button class="accordion-header" onclick="toggleAcordeon(this)">Semana 7: Comunicación no verbal. Comunicación corporativa. Comunicación oral estratégica <span class="arrow">▶</span></button>
+      <div class="accordion-content">Aprendimos que la comunicación oral estratégica se planifica en etapas: análisis de audiencia, preparación del mensaje y ejecución. El proceso de planeación de un escrito —tema de hoy— sigue una lógica idéntica, aplicada a la palabra escrita en lugar de a la palabra hablada.</div>
+    </div>
+    <div class="accordion-item">
+      <button class="accordion-header" onclick="toggleAcordeon(this)">Semana 8: Examen del primer parcial <span class="arrow">▶</span></button>
+      <div class="accordion-content">Evaluamos de manera integrada los contenidos de las Unidades 1 y 2: comunicación, lenguaje, cerebro, lectura y habilidades comunicativas. Ese examen consolidó las bases sobre las que ahora construimos los procesos de escritura de la Unidad 4.</div>
+    </div>
+    <div class="accordion-item">
+      <button class="accordion-header" onclick="toggleAcordeon(this)">Semana 9: Tipos de textos y funciones del lenguaje <span class="arrow">▶</span></button>
+      <div class="accordion-content">Con el modelo de Jakobson identificamos las seis funciones del lenguaje (referencial, expresiva, apelativa, fática, metalingüística y poética). Cada párrafo que escribimos cumple una función dominante; identificarla antes de redactar orienta toda la planificación del escrito.</div>
+    </div>
+    <div class="accordion-item">
+      <button class="accordion-header" onclick="toggleAcordeon(this)">Semana 10: Niveles de lectura. Características de los textos científicos <span class="arrow">▶</span></button>
+      <div class="accordion-content">Distinguimos los niveles de lectura literal, inferencial, analógico y crítico-valorativo. Leer en nivel crítico-valorativo nos permite evaluar la calidad de los párrafos de otros autores y, por contraste, mejorar la planificación y redacción de los propios.</div>
+    </div>
+    <div class="accordion-item">
+      <button class="accordion-header" onclick="toggleAcordeon(this)">Semana 11: Tipos de informes: artículos, ponencias y conferencias <span class="arrow">▶</span></button>
+      <div class="accordion-content">Analizamos cómo se estructuran distintos tipos de informes profesionales y académicos. Todo informe se construye, en último término, a partir de párrafos bien planificados y conectados entre sí: la macroestructura de un texto depende directamente de la calidad de su microestructura, el párrafo.</div>
+    </div>
+    <div class="accordion-item">
+      <button class="accordion-header" onclick="toggleAcordeon(this)">Semana 12: El ensayo <span class="arrow">▶</span></button>
+      <div class="accordion-content">Vimos que el ensayo se organiza en introducción, desarrollo y conclusión, cada una compuesta por párrafos con una función específica, y que escribir —según Pennebaker— puede convertirse en una vía saludable de procesamiento emocional. Hoy profundizamos exactamente en esa unidad mínima de todo texto: cómo planificarla y construirla, el párrafo.</div>
+    </div>
+
+    <div class="key-box">Todo lo aprendido en las doce semanas anteriores —comunicación, lenguaje, lectura, funciones textuales, niveles de comprensión, tipos de informes— converge hoy en una sola pregunta práctica: ¿cómo planifico y construyo, paso a paso, un buen párrafo?</div>
+  </section>
+
+  <!-- ============ TEMA 1 ============ -->
+  <section id="tema1" class="tab-content">
+    <h2>Tema 1: El proceso de planeación de un escrito</h2>
+    <p class="subtitulo">Escribir bien no es un don misterioso: es un proceso que se puede aprender, planificar y repetir.</p>
+
+    <div class="concept-box">
+      <strong>Planificación textual:</strong> es la etapa previa a la redacción en la que el autor define el propósito del texto, identifica a su destinatario, genera y organiza ideas, y decide la estructura general antes de escribir la primera palabra del borrador. No es un paso opcional ni una pérdida de tiempo: es la diferencia entre un texto que comunica con eficacia y uno que confunde a quien lo lee.
+    </div>
+
+    <h3>¿Por qué planificar antes de escribir?</h3>
+    <p>Muchas personas creen que escribir es "sentarse y que las ideas fluyan". Esa creencia produce textos desordenados, con ideas repetidas, párrafos que no se conectan entre sí y conclusiones que no responden a lo planteado al inicio. La escritura profesional y académica —la que un contador o auditor usará durante toda su carrera— exige lo contrario: pensar antes de escribir reduce el tiempo total de redacción, porque evita reescribir desde cero un texto mal encaminado.</p>
+
+    <h3>Las tres grandes etapas del proceso de escritura</h3>
+    <table class="comparativa">
+      <tr><th>Etapa</th><th>¿Qué se hace?</th><th>Preguntas guía</th></tr>
+      <tr><td><strong>1. Planificación</strong></td><td>Generar ideas, organizarlas y definir propósito, destinatario y estructura.</td><td>¿Para qué escribo? ¿Para quién? ¿Qué quiero que el lector haga o entienda al final?</td></tr>
+      <tr><td><strong>2. Textualización (redacción)</strong></td><td>Convertir el plan en oraciones y párrafos completos: el primer borrador.</td><td>¿Cómo paso mis ideas organizadas a oraciones coherentes y conectadas?</td></tr>
+      <tr><td><strong>3. Revisión</strong></td><td>Releer, corregir, reorganizar y, si es necesario, reescribir partes del texto.</td><td>¿Se entiende? ¿Sobra o falta algo? ¿Cada párrafo cumple su función?</td></tr>
+    </table>
+    <p>Este modelo de tres etapas —planificación, textualización y revisión— es la base de la mayoría de los enfoques modernos sobre el proceso de escritura, y coincide con lo que proponen autores como Daniel Cassany en sus obras sobre composición escrita.</p>
+
+    <h3>Herramientas para la etapa de planificación</h3>
+    <ul class="lista-visual">
+      <li><strong>Lluvia de ideas (brainstorming):</strong> anotar libremente todo lo que se nos ocurre sobre el tema, sin filtrar ni corregir, para luego seleccionar lo útil.</li>
+      <li><strong>Mapa conceptual o esquema:</strong> organizar las ideas generadas en una estructura jerárquica o secuencial, mostrando qué va antes, qué va después y qué ideas se subordinan a otras.</li>
+      <li><strong>Definición del propósito comunicativo:</strong> decidir si el texto busca informar, persuadir, narrar, describir o argumentar.</li>
+      <li><strong>Perfil del destinatario:</strong> identificar quién leerá el texto (un gerente, un cliente, el SRI, un profesor) y qué nivel de formalidad y de detalle técnico espera.</li>
+      <li><strong>Borrador de estructura:</strong> un esqueleto simple con los párrafos o secciones que tendrá el texto, antes de redactar oración por oración.</li>
+    </ul>
+
+    <div class="example-box">
+      <span class="etiqueta">Ejemplo aplicado: contexto contable-auditor</span>
+      Antes de redactar un informe de auditoría para una empresa guayaquileña, un auditor júnior no debería abrir el procesador de texto y empezar a escribir de inmediato. Primero planifica: el <strong>propósito</strong> es comunicar hallazgos sobre el cumplimiento tributario ante el SRI; el <strong>destinatario</strong> es la gerencia financiera, que entiende términos técnicos pero necesita conclusiones claras; la <strong>estructura</strong> incluirá antecedentes, metodología, hallazgos y recomendaciones. Solo después de definir esto, empieza a redactar el primer párrafo.
+    </div>
+
+    <h3>Términos clave que debes dominar</h3>
+    <div class="concept-box">
+      <strong>Borrador:</strong> primera versión escrita de un texto, todavía sujeta a corrección y mejora; no es el producto final.<br><br>
+      <strong>Propósito comunicativo:</strong> el objetivo que persigue el texto (informar, persuadir, narrar, describir, solicitar, agradecer, etc.).<br><br>
+      <strong>Destinatario:</strong> la persona o grupo de personas a quienes va dirigido el texto, cuyas expectativas y nivel de conocimiento condicionan el lenguaje que se usará.
+    </div>
+
+    <div class="key-box">Planificar antes de escribir no retrasa el trabajo: lo acelera. Un párrafo bien planificado se escribe una sola vez; un párrafo improvisado, generalmente, se reescribe varias.</div>
+  </section>
+
+  <!-- ============ TEMA 2 ============ -->
+  <section id="tema2" class="tab-content">
+    <h2>Tema 2: El párrafo — características y elementos</h2>
+    <p class="subtitulo">El párrafo es la unidad mínima de redacción: si no se domina el párrafo, no se domina la escritura.</p>
+
+    <div class="concept-box">
+      <strong>Párrafo:</strong> unidad de redacción compuesta por una o más oraciones que desarrollan una sola idea principal, claramente delimitada por un punto y aparte (o un cambio de línea con sangría). El párrafo es, en el plano de la escritura, lo que el ladrillo es a una pared: cada uno debe estar bien construido para que el texto completo se sostenga.
+    </div>
+
+    <h3>Características de un buen párrafo</h3>
+    <ul class="lista-visual">
+      <li><strong>Unidad temática:</strong> desarrolla una sola idea central; si aparece una idea nueva que no se relaciona con la anterior, debe iniciar un párrafo distinto.</li>
+      <li><strong>Coherencia:</strong> las ideas dentro del párrafo guardan una relación lógica entre sí y con el resto del texto; nada se siente "fuera de lugar".</li>
+      <li><strong>Cohesión:</strong> las oraciones están conectadas mediante conectores, pronombres y sinónimos que evitan repeticiones innecesarias y guían al lector de una idea a la siguiente.</li>
+      <li><strong>Extensión moderada:</strong> ni tan corto que resulte incompleto (una sola oración aislada rara vez desarrolla una idea), ni tan largo que canse o disperse al lector; en textos académicos y profesionales suele oscilar entre 5 y 12 líneas.</li>
+      <li><strong>Marca visual de inicio:</strong> sangría en la primera línea o un espacio adicional entre párrafos, según el estilo del documento, que señala al lector visualmente dónde comienza una nueva unidad de sentido.</li>
+    </ul>
+
+    <h3>Elementos internos de un párrafo</h3>
+    <table class="comparativa">
+      <tr><th>Elemento</th><th>Función</th></tr>
+      <tr><td><strong>Oración temática (o tópica)</strong></td><td>Presenta la idea principal del párrafo; en textos expositivos y argumentativos suele ir al inicio.</td></tr>
+      <tr><td><strong>Oraciones secundarias (de apoyo o desarrollo)</strong></td><td>Explican, ejemplifican, argumentan o detallan la idea principal planteada en la oración temática.</td></tr>
+      <tr><td><strong>Conectores</strong></td><td>Palabras o frases que enlazan las oraciones entre sí (además, sin embargo, por lo tanto, en consecuencia, así mismo).</td></tr>
+      <tr><td><strong>Oración de cierre (opcional)</strong></td><td>Resume, concluye o enlaza la idea del párrafo con el siguiente; no siempre es necesaria, especialmente en párrafos narrativos o descriptivos.</td></tr>
+    </table>
+
+    <div class="example-box">
+      <span class="etiqueta">Ejemplo aplicado: informe de auditoría</span>
+      "Durante la revisión de los comprobantes de retención del periodo fiscal 2025 <em>(oración temática: presenta el hallazgo)</em>, se identificaron doce facturas sin el respaldo del comprobante electrónico exigido por el SRI <em>(oración secundaria: detalla el hallazgo)</em>. Esta omisión representa un riesgo de glosa tributaria para la empresa <em>(oración secundaria: explica la consecuencia)</em>. Por lo tanto, se recomienda implementar un control cruzado mensual entre el área contable y el departamento de compras <em>(oración de cierre: propone una acción)</em>."
+    </div>
+
+    <h3>El párrafo y la unidad temática: un error frecuente</h3>
+    <p>Uno de los errores más comunes entre estudiantes universitarios es escribir párrafos extensos que en realidad contienen dos o tres ideas distintas mezcladas. Esto rompe la unidad temática y obliga al lector a "desenredar" el texto. La regla práctica es simple: si al terminar de escribir un párrafo puedes resumir su contenido en una sola oración, ese párrafo tiene unidad temática; si necesitas dos oraciones para resumirlo, probablemente debiste dividirlo en dos párrafos.</p>
+
+    <div class="key-box">Un párrafo sin unidad temática es como una factura con productos de dos clientes distintos mezclados en una sola línea: técnicamente contiene información, pero genera confusión y errores de interpretación.</div>
+  </section>
+
+  <!-- ============ TEMA 3 ============ -->
+  <section id="tema3" class="tab-content">
+    <h2>Tema 3: Tipos de párrafo (I)</h2>
+    <p class="subtitulo">Cada tipo de párrafo cumple una función distinta; reconocerlos te permite elegir el adecuado según lo que quieras comunicar.</p>
+
+    <div class="tipo-card">
+      <h4>1. Párrafo descriptivo</h4>
+      <p class="definicion">Definición: presenta las características, cualidades o rasgos de una persona, objeto, lugar o situación, apelando a los sentidos y a la observación detallada.</p>
+      <p>Se usa cuando el objetivo es que el lector pueda "ver" mentalmente aquello de lo que se habla. Predominan los adjetivos calificativos y los verbos en presente o pasado de estado (ser, estar, parecer, presentar).</p>
+      <div class="example-box"><span class="etiqueta">Ejemplo</span>El edificio matriz de la Superintendencia de Compañías en Guayaquil se levanta como una estructura imponente de líneas rectas y fachada de vidrio espejado, que refleja el movimiento constante de la avenida 9 de Octubre. Sus pasillos amplios y silenciosos contrastan con el bullicio administrativo que se percibe apenas se cruzan sus puertas giratorias.</div>
+    </div>
+
+    <div class="tipo-card">
+      <h4>2. Párrafo narrativo</h4>
+      <p class="definicion">Definición: relata hechos, acciones o sucesos que ocurren en una secuencia temporal, con frecuencia protagonizados por personas o entidades identificables.</p>
+      <p>Se usa para contar historias, describir procesos cronológicos o relatar experiencias. Predominan los verbos de acción y los conectores temporales (luego, después, mientras tanto, finalmente).</p>
+      <div class="example-box"><span class="etiqueta">Ejemplo</span>El lunes por la mañana, la junta de accionistas se reunió de manera extraordinaria. Primero revisaron el balance del trimestre; luego, el gerente financiero presentó las proyecciones para el siguiente semestre; finalmente, tras casi dos horas de debate, aprobaron por mayoría la inversión en nueva maquinaria contable.</div>
+    </div>
+
+    <div class="tipo-card">
+      <h4>3. Párrafo expositivo</h4>
+      <p class="definicion">Definición: explica, informa o desarrolla un concepto, proceso o tema de manera objetiva, con el propósito de que el lector comprenda algo que antes no sabía o no tenía claro.</p>
+      <p>Es el tipo de párrafo más usado en textos académicos, informes técnicos y manuales. Predomina un tono neutral, sin opiniones personales, y suele apoyarse en definiciones, clasificaciones y ejemplos.</p>
+      <div class="example-box"><span class="etiqueta">Ejemplo</span>El IVA (Impuesto al Valor Agregado) es un tributo indirecto que grava la transferencia de bienes y la prestación de servicios en cada etapa de la cadena de comercialización. En Ecuador, su tarifa general es regulada por el Servicio de Rentas Internas y puede variar según disposiciones legales vigentes, aplicándose tanto a la venta de bienes muebles como a determinados servicios.</div>
+    </div>
+
+    <div class="tipo-card">
+      <h4>4. Párrafo argumentativo</h4>
+      <p class="definicion">Definición: defiende una postura, opinión o tesis mediante razones, evidencias o ejemplos, con el propósito de persuadir o convencer al lector.</p>
+      <p>Se usa en ensayos, editoriales, alegatos e informes que requieren tomar posición. Predominan los conectores lógico-argumentativos (sin embargo, por consiguiente, es evidente que, no obstante).</p>
+      <div class="example-box"><span class="etiqueta">Ejemplo</span>La implementación de auditorías internas trimestrales, y no solo anuales, debería ser obligatoria para las pymes ecuatorianas. Aunque representa un costo adicional a corto plazo, los hallazgos tempranos evitan sanciones del SRI que en muchos casos superan ampliamente el valor de una auditoría preventiva. Por consiguiente, lo que parece un gasto es, en realidad, una inversión en seguridad jurídica y financiera.</div>
+    </div>
+
+    <div class="key-box">No existe un tipo de párrafo "superior" a otro: la elección depende del propósito comunicativo. Un mismo informe de auditoría puede combinar párrafos expositivos (para explicar normativa), descriptivos (para detallar hallazgos físicos) y argumentativos (para sustentar recomendaciones).</div>
+  </section>
+
+  <!-- ============ TEMA 3B ============ -->
+  <section id="tema3b" class="tab-content">
+    <h2>Tema 3b: Tipos de párrafo (II)</h2>
+    <p class="subtitulo">Continuamos con cuatro tipos adicionales, muy usados en textos técnicos, académicos y de opinión.</p>
+
+    <div class="tipo-card">
+      <h4>5. Párrafo de comparación / contraste</h4>
+      <p class="definicion">Definición: establece semejanzas, diferencias o ambas entre dos o más elementos, ideas o situaciones.</p>
+      <p>Se usa cuando es necesario evaluar opciones o resaltar relaciones entre conceptos. Predominan conectores como mientras que, a diferencia de, de igual manera, en cambio, por el contrario.</p>
+      <div class="example-box"><span class="etiqueta">Ejemplo</span>Mientras que el régimen general del IVA aplica a la mayoría de bienes y servicios, el Régimen Impositivo Simplificado (RIMPE) está diseñado para emprendedores y pequeños negocios con ingresos limitados. A diferencia del régimen general, el RIMPE simplifica las obligaciones formales, aunque restringe el monto de ingresos que un contribuyente puede facturar anualmente.</div>
+    </div>
+
+    <div class="tipo-card">
+      <h4>6. Párrafo de causa-efecto</h4>
+      <p class="definicion">Definición: explica las razones (causas) que originan un hecho y las consecuencias (efectos) que se derivan de él.</p>
+      <p>Se usa con frecuencia en informes técnicos, dictámenes y análisis de riesgo. Predominan conectores como debido a, como consecuencia, por lo tanto, esto provoca, dado que.</p>
+      <div class="example-box"><span class="etiqueta">Ejemplo</span>Debido a la falta de conciliaciones bancarias mensuales, la empresa acumuló diferencias no detectadas durante seis meses. Como consecuencia, el cierre contable anual requirió ajustes extraordinarios y horas adicionales del equipo financiero, lo que elevó el costo operativo del departamento de contabilidad.</div>
+    </div>
+
+    <div class="tipo-card">
+      <h4>7. Párrafo de enumeración</h4>
+      <p class="definicion">Definición: presenta una serie ordenada de elementos, pasos, características o ejemplos relacionados con una misma idea central.</p>
+      <p>Se usa para listar requisitos, pasos de un proceso o características de un concepto dentro de un texto corrido. Predominan conectores de orden: en primer lugar, en segundo lugar, además, finalmente, por último.</p>
+      <div class="example-box"><span class="etiqueta">Ejemplo</span>Para constituir una compañía en Ecuador ante la Superintendencia de Compañías se requiere, en primer lugar, reservar la denominación social; en segundo lugar, elaborar la escritura pública de constitución; además, aperturar la cuenta de integración de capital; y, finalmente, inscribir la compañía en el Registro Mercantil correspondiente.</div>
+    </div>
+
+    <div class="tipo-card">
+      <h4>8. Párrafo de definición</h4>
+      <p class="definicion">Definición: explica el significado preciso de un término, concepto o categoría, generalmente ubicándolo dentro de una clase más amplia y señalando sus rasgos distintivos.</p>
+      <p>Se usa al introducir conceptos técnicos que el lector podría desconocer. Predominan estructuras como se entiende por, se define como, hace referencia a, consiste en.</p>
+      <div class="example-box"><span class="etiqueta">Ejemplo</span>Se entiende por materialidad, en el contexto de la auditoría financiera, el umbral a partir del cual una omisión o un error en los estados financieros podría influir en las decisiones económicas de los usuarios de dicha información. Este concepto permite al auditor priorizar los hallazgos verdaderamente relevantes.</div>
+    </div>
+
+    <h3>Tabla comparativa: los ocho tipos de párrafo</h3>
+    <table class="comparativa">
+      <tr><th>Tipo</th><th>Propósito principal</th><th>Conectores típicos</th></tr>
+      <tr><td>Descriptivo</td><td>Mostrar cualidades o rasgos</td><td>que presenta, se caracteriza por, destaca por</td></tr>
+      <tr><td>Narrativo</td><td>Relatar hechos en el tiempo</td><td>luego, después, mientras tanto, finalmente</td></tr>
+      <tr><td>Expositivo</td><td>Explicar o informar objetivamente</td><td>cabe destacar, es decir, en otras palabras</td></tr>
+      <tr><td>Argumentativo</td><td>Persuadir o defender una postura</td><td>sin embargo, por consiguiente, es evidente que</td></tr>
+      <tr><td>Comparación/contraste</td><td>Resaltar semejanzas o diferencias</td><td>mientras que, a diferencia de, en cambio</td></tr>
+      <tr><td>Causa-efecto</td><td>Explicar razones y consecuencias</td><td>debido a, como consecuencia, dado que</td></tr>
+      <tr><td>Enumeración</td><td>Listar elementos ordenados</td><td>en primer lugar, además, por último</td></tr>
+      <tr><td>Definición</td><td>Precisar el significado de un término</td><td>se entiende por, se define como, consiste en</td></tr>
+    </table>
+
+    <div class="key-box">Un mismo texto profesional rara vez usa un solo tipo de párrafo: un informe de auditoría completo puede abrir con un párrafo expositivo (contexto normativo), continuar con uno de enumeración (procedimientos aplicados), incluir uno de causa-efecto (hallazgos) y cerrar con uno argumentativo (recomendaciones).</div>
+  </section>
+
+  <!-- ============ TEMA 4 ============ -->
+  <section id="tema4" class="tab-content">
+    <h2>Tema 4: El párrafo en tu vida — más allá del aula</h2>
+    <p class="subtitulo">Escribimos párrafos todos los días, aunque no los llamemos así.</p>
+
+    <p>Es común pensar que "escribir párrafos" es una tarea exclusivamente académica. En realidad, construimos párrafos —de manera consciente o no— en prácticamente todos los ámbitos de la vida. Reconocer esto ayuda a entender por qué dominar esta habilidad tiene un impacto que va mucho más allá de una calificación.</p>
+
+    <div class="ambito-grid">
+      <div class="ambito-card"><h4>Ámbito personal</h4><p>Un diario, una nota de agradecimiento o un mensaje explicando una decisión importante a la familia son, estructuralmente, párrafos: una idea central con oraciones de apoyo.</p></div>
+      <div class="ambito-card"><h4>Ámbito profesional</h4><p>Un correo a un cliente, un informe de auditoría, un memorando o un mensaje en un grupo de trabajo de Contabilidad se construyen, casi siempre, con párrafos expositivos o argumentativos.</p></div>
+      <div class="ambito-card"><h4>Ámbito académico</h4><p>Ensayos, resúmenes, respuestas de examen y trabajos de investigación dependen por completo de la capacidad de organizar ideas en párrafos coherentes.</p></div>
+      <div class="ambito-card"><h4>Ámbito afectivo y amoroso</h4><p>Una carta, un mensaje de disculpa sincero o una declaración de afecto bien escrita suelen ser, en esencia, párrafos descriptivos o expresivos cargados de intención comunicativa.</p></div>
+      <div class="ambito-card"><h4>Ámbito artístico</h4><p>La prosa poética, los microrrelatos y muchas letras de canciones se construyen sobre la misma lógica de unidad temática y cohesión que un párrafo técnico, aunque con licencias estéticas.</p></div>
+      <div class="ambito-card"><h4>Ámbito humorístico</h4><p>Un buen chiste escrito o una anécdota graciosa contada por mensaje de texto suele seguir una estructura narrativa de párrafo: planteamiento, desarrollo y un cierre que sorprende (el remate).</p></div>
+    </div>
+
+    <h3>Leer y escribir como herramienta de bienestar emocional</h3>
+    <p>Más allá de su utilidad práctica, leer y escribir cumplen una función psicológica importante. El psicólogo James W. Pennebaker demostró, a través de varias décadas de investigación, que escribir de manera estructurada sobre experiencias y emociones —ponerlas en palabras, organizarlas en oraciones y párrafos con sentido— ayuda a procesarlas de forma más saludable que mantenerlas como pensamientos dispersos y desorganizados. Cuando convertimos una emoción confusa en un párrafo coherente, le damos forma, la entendemos mejor y, con frecuencia, sentimos alivio.</p>
+
+    <div class="concept-box">
+      Esto no significa que escribir reemplace el apoyo profesional cuando es necesario, sino que la <strong>escritura expresiva</strong> —un hábito breve, honesto y regular de poner en palabras lo que sentimos— es una herramienta complementaria de autorregulación emocional, accesible para cualquier persona en cualquier momento del día.
+    </div>
+
+    <p>De la misma manera, leer textos bien escritos, coherentes y con un contenido moralmente sano —ya sea un ensayo, una novela, un artículo o incluso una buena conversación por escrito— ofrece una pausa consciente frente a las exigencias del día: una facultad, un trabajo, una auditoría pendiente. No se trata de "escapar" de la realidad evadiéndola, sino de tomarse un espacio breve y saludable para ordenar la mente antes de volver a ella con más claridad.</p>
+
+    <div class="example-box">
+      <span class="etiqueta">Ejemplo aplicado</span>
+      Un estudiante de Contabilidad y Auditoría que atraviesa una semana de exámenes y entregas puede escribir, durante diez minutos antes de dormir, un párrafo breve sobre cómo se sintió ese día. No es una tarea académica ni necesita mostrárselo a nadie: es un ejercicio de inteligencia emocional que, además, mejora —sin que se lo proponga— su fluidez para escribir párrafos coherentes en contextos profesionales.
+    </div>
+
+    <div class="key-box">Aprender a construir un buen párrafo no es solo una destreza académica: es una herramienta que te acompañará para comunicarte mejor en tu profesión, expresar lo que sientes con más claridad y, cuando lo necesites, ordenar tus propios pensamientos a través de la escritura.</div>
+  </section>
+
+  <!-- ============ HERRAMIENTA INTERACTIVA ============ -->
+  <section id="herramienta" class="tab-content">
+    <h2>Herramienta: Constructor Guiado de Párrafos</h2>
+    <p class="subtitulo">Aplica todo lo aprendido: construye un párrafo paso a paso, revísalo con la lista de verificación y descárgalo para usarlo cuando quieras. Esta herramienta te servirá para futuros escritos académicos y profesionales.</p>
+
+    <div class="tool-wrap">
+
+      <div class="tool-step">
+        <h4>Paso 1 — Elige el tipo de párrafo</h4>
+        <label class="tool-label" for="toolTipo">Tipo de párrafo a construir:</label>
+        <select id="toolTipo" class="tool-select" onchange="actualizarConectores()">
+          <option value="">— Selecciona un tipo —</option>
+          <option value="descriptivo">Descriptivo</option>
+          <option value="narrativo">Narrativo</option>
+          <option value="expositivo">Expositivo</option>
+          <option value="argumentativo">Argumentativo</option>
+          <option value="comparacion">Comparación / contraste</option>
+          <option value="causaefecto">Causa-efecto</option>
+          <option value="enumeracion">Enumeración</option>
+          <option value="definicion">Definición</option>
+        </select>
+        <p class="tool-hint" id="toolTipoHint">Selecciona un tipo para ver su recomendación de redacción.</p>
+      </div>
+
+      <div class="tool-step">
+        <h4>Paso 2 — Elige el ámbito de tu párrafo</h4>
+        <label class="tool-label" for="toolAmbito">¿Sobre qué área de tu vida o tu carrera escribirás?</label>
+        <select id="toolAmbito" class="tool-select">
+          <option value="profesional">Profesional / contable-auditor</option>
+          <option value="academico">Académico</option>
+          <option value="personal">Personal</option>
+          <option value="afectivo">Afectivo / amoroso</option>
+          <option value="artistico">Artístico</option>
+          <option value="humoristico">Humorístico</option>
+        </select>
+        <p class="tool-hint">Esto es solo para enfocar tu inspiración; no afecta la estructura del párrafo.</p>
+      </div>
+
+      <div class="tool-step">
+        <h4>Paso 3 — Escribe tu oración temática</h4>
+        <label class="tool-label" for="toolTematica">Oración temática (la idea principal del párrafo):</label>
+        <textarea id="toolTematica" class="tool-textarea" maxlength="220" placeholder="Ejemplo: La conciliación bancaria mensual es una práctica esencial para evitar errores contables acumulados." oninput="contarCaracteres('toolTematica','contadorTematica',220); previsualizar()" onfocus="ultimoCampoActivo=this"></textarea>
+        <div class="contador-caracteres" id="contadorTematica">0 / 220</div>
+      </div>
+
+      <div class="tool-step">
+        <h4>Paso 4 — Agrega tus oraciones secundarias</h4>
+        <p class="tool-hint">Sugerencias de conectores según el tipo elegido (haz clic para insertar uno en el último campo):</p>
+        <div class="conector-chips" id="conectorChips"></div>
+        <div id="secundariasContenedor"></div>
+        <button type="button" class="btn btn-secundario" onclick="agregarSecundaria()">+ Agregar oración secundaria</button>
+      </div>
+
+      <div class="tool-step">
+        <h4>Paso 5 — Oración de cierre (opcional)</h4>
+        <label class="tool-label" for="toolCierre">Oración de cierre o conclusión:</label>
+        <textarea id="toolCierre" class="tool-textarea" maxlength="220" placeholder="Ejemplo: Por lo tanto, automatizar este control reduce significativamente el riesgo de errores no detectados." oninput="contarCaracteres('toolCierre','contadorCierre',220); previsualizar()" onfocus="ultimoCampoActivo=this"></textarea>
+        <div class="contador-caracteres" id="contadorCierre">0 / 220</div>
+      </div>
+
+      <div class="tool-step">
+        <h4>Paso 6 — Vista previa de tu párrafo</h4>
+        <div id="toolPreview" class="tool-preview vacio">Tu párrafo aparecerá aquí a medida que lo escribas...</div>
+      </div>
+
+      <div class="tool-step">
+        <h4>Paso 7 — Lista de autoevaluación</h4>
+        <p class="tool-hint">Antes de descargar, verifica tu párrafo con esta lista (no afecta la descarga, es solo para tu propio criterio):</p>
+        <div class="checklist-item"><input type="checkbox" id="chk1"><label for="chk1">Mi párrafo desarrolla <strong>una sola idea central</strong> (unidad temática).</label></div>
+        <div class="checklist-item"><input type="checkbox" id="chk2"><label for="chk2">Las oraciones están <strong>conectadas</strong> con conectores adecuados (cohesión).</label></div>
+        <div class="checklist-item"><input type="checkbox" id="chk3"><label for="chk3">El contenido tiene una <strong>relación lógica</strong> entre sí (coherencia).</label></div>
+        <div class="checklist-item"><input type="checkbox" id="chk4"><label for="chk4">La extensión es <strong>adecuada</strong>: ni demasiado corta ni excesivamente larga.</label></div>
+        <div class="checklist-item"><input type="checkbox" id="chk5"><label for="chk5">El tipo de párrafo elegido <strong>corresponde</strong> a lo que realmente quiero comunicar.</label></div>
+      </div>
+
+      <div class="tool-actions">
+        <button type="button" class="btn btn-descarga" onclick="descargarTXT()">⬇ Descargar como TXT</button>
+        <button type="button" class="btn btn-descarga" onclick="descargarPDF()">⬇ Descargar / Imprimir como PDF</button>
+        <button type="button" class="btn btn-reiniciar" onclick="reiniciarHerramienta()">↺ Empezar un nuevo párrafo</button>
+      </div>
+      <p class="tool-hint">"Descargar / Imprimir como PDF" abre el cuadro de impresión de tu navegador; selecciona "Guardar como PDF" como destino.</p>
+    </div>
+
+    <div class="key-box" style="margin-top:22px;">Guarda los párrafos que construyas aquí: te servirán como plantilla y como evidencia de tu propio progreso al escribir, semana tras semana, a lo largo del curso.</div>
+  </section>
+
+  <!-- ============ EJERCICIO INTERACTIVO ============ -->
+  <section id="ejercicio" class="tab-content">
+    <h2>Ejercicio Interactivo</h2>
+    <p class="subtitulo">Lee cada párrafo de ejemplo e identifica su tipo, o identifica el elemento estructural señalado. Responde los 8 ítems y luego presiona "Verificar respuestas".</p>
+
+    <div class="alerta-incompleto" id="alertaEjercicio">⚠ Debes responder los 8 ítems antes de verificar.</div>
+
+    <div class="pregunta-bloque">
+      <div class="enunciado">1. ¿Qué tipo de párrafo es el siguiente?</div>
+      <div class="texto-ejemplo">"El nuevo edificio de la matriz bancaria tiene fachada de cristal azulado, columnas de mármol blanco en su entrada y un vestíbulo amplio iluminado por una claraboya circular."</div>
+      <label class="opcion"><input type="radio" name="ei1" value="a"> a) Narrativo</label>
+      <label class="opcion"><input type="radio" name="ei1" value="b"> b) Descriptivo</label>
+      <label class="opcion"><input type="radio" name="ei1" value="c"> c) Argumentativo</label>
+      <label class="opcion"><input type="radio" name="ei1" value="d"> d) De definición</label>
+      <div class="feedback-item" id="fb_ei1"></div>
+    </div>
+
+    <div class="pregunta-bloque">
+      <div class="enunciado">2. ¿Qué tipo de párrafo es el siguiente?</div>
+      <div class="texto-ejemplo">"Primero, el contador revisó los asientos del mes; después, comparó los saldos con el estado de cuenta bancario; finalmente, registró los ajustes necesarios antes del cierre."</div>
+      <label class="opcion"><input type="radio" name="ei2" value="a"> a) Narrativo</label>
+      <label class="opcion"><input type="radio" name="ei2" value="b"> b) Comparación/contraste</label>
+      <label class="opcion"><input type="radio" name="ei2" value="c"> c) Expositivo</label>
+      <label class="opcion"><input type="radio" name="ei2" value="d"> d) De enumeración</label>
+      <div class="feedback-item" id="fb_ei2"></div>
+    </div>
+
+    <div class="pregunta-bloque">
+      <div class="enunciado">3. ¿Qué tipo de párrafo es el siguiente?</div>
+      <div class="texto-ejemplo">"Se entiende por activo corriente aquel recurso de la empresa que se espera convertir en efectivo, vender o consumir en un plazo no mayor a un año."</div>
+      <label class="opcion"><input type="radio" name="ei3" value="a"> a) De definición</label>
+      <label class="opcion"><input type="radio" name="ei3" value="b"> b) Narrativo</label>
+      <label class="opcion"><input type="radio" name="ei3" value="c"> c) Causa-efecto</label>
+      <label class="opcion"><input type="radio" name="ei3" value="d"> d) Descriptivo</label>
+      <div class="feedback-item" id="fb_ei3"></div>
+    </div>
+
+    <div class="pregunta-bloque">
+      <div class="enunciado">4. ¿Qué tipo de párrafo es el siguiente?</div>
+      <div class="texto-ejemplo">"Debido a la falta de respaldo documental en varias transacciones, la empresa enfrentó observaciones del SRI que derivaron en una glosa tributaria significativa."</div>
+      <label class="opcion"><input type="radio" name="ei4" value="a"> a) De enumeración</label>
+      <label class="opcion"><input type="radio" name="ei4" value="b"> b) Causa-efecto</label>
+      <label class="opcion"><input type="radio" name="ei4" value="c"> c) Descriptivo</label>
+      <label class="opcion"><input type="radio" name="ei4" value="d"> d) Argumentativo</label>
+      <div class="feedback-item" id="fb_ei4"></div>
+    </div>
+
+    <div class="pregunta-bloque">
+      <div class="enunciado">5. ¿Qué tipo de párrafo es el siguiente?</div>
+      <div class="texto-ejemplo">"Mientras que el régimen general grava la mayoría de transacciones comerciales, el RIMPE simplifica las obligaciones formales para pequeños negocios, aunque limita el monto de ingresos permitido."</div>
+      <label class="opcion"><input type="radio" name="ei5" value="a"> a) Comparación/contraste</label>
+      <label class="opcion"><input type="radio" name="ei5" value="b"> b) Narrativo</label>
+      <label class="opcion"><input type="radio" name="ei5" value="c"> c) De definición</label>
+      <label class="opcion"><input type="radio" name="ei5" value="d"> d) Expositivo</label>
+      <div class="feedback-item" id="fb_ei5"></div>
+    </div>
+
+    <div class="pregunta-bloque">
+      <div class="enunciado">6. ¿Qué tipo de párrafo es el siguiente?</div>
+      <div class="texto-ejemplo">"Las auditorías internas, aunque representan un costo adicional, deberían realizarse de forma trimestral y no solo anual, porque los hallazgos tempranos previenen sanciones mucho más costosas."</div>
+      <label class="opcion"><input type="radio" name="ei6" value="a"> a) Argumentativo</label>
+      <label class="opcion"><input type="radio" name="ei6" value="b"> b) Descriptivo</label>
+      <label class="opcion"><input type="radio" name="ei6" value="c"> c) De enumeración</label>
+      <label class="opcion"><input type="radio" name="ei6" value="d"> d) Narrativo</label>
+      <div class="feedback-item" id="fb_ei6"></div>
+    </div>
+
+    <div class="pregunta-bloque">
+      <div class="enunciado">7. En el siguiente párrafo, ¿cuál es la oración temática?<br><em>"La materialidad es el umbral a partir del cual un error podría influir en las decisiones de los usuarios de los estados financieros. Por ejemplo, una diferencia de 50 dólares rara vez es material para una empresa grande, pero sí podría serlo para un pequeño negocio. Por ello, cada auditoría define su propio umbral según el tamaño de la entidad."</em></div>
+      <label class="opcion"><input type="radio" name="ei7" value="a"> a) "La materialidad es el umbral a partir del cual un error podría influir en las decisiones de los usuarios de los estados financieros."</label>
+      <label class="opcion"><input type="radio" name="ei7" value="b"> b) "Por ejemplo, una diferencia de 50 dólares rara vez es material para una empresa grande."</label>
+      <label class="opcion"><input type="radio" name="ei7" value="c"> c) "Por ello, cada auditoría define su propio umbral según el tamaño de la entidad."</label>
+      <label class="opcion"><input type="radio" name="ei7" value="d"> d) Ninguna; el párrafo carece de oración temática.</label>
+      <div class="feedback-item" id="fb_ei7"></div>
+    </div>
+
+    <div class="pregunta-bloque">
+      <div class="enunciado">8. ¿Cuál de las siguientes opciones es el conector MÁS adecuado para iniciar un párrafo de causa-efecto?</div>
+      <label class="opcion"><input type="radio" name="ei8" value="a"> a) "En primer lugar..."</label>
+      <label class="opcion"><input type="radio" name="ei8" value="b"> b) "A diferencia de..."</label>
+      <label class="opcion"><input type="radio" name="ei8" value="c"> c) "Debido a..."</label>
+      <label class="opcion"><input type="radio" name="ei8" value="d"> d) "Se entiende por..."</label>
+      <div class="feedback-item" id="fb_ei8"></div>
+    </div>
+
+    <button class="btn" onclick="verificarEjercicio()">Verificar respuestas</button>
+    <button class="btn btn-reiniciar" onclick="reiniciarEjercicio()">Reiniciar</button>
+
+    <div class="resultado-panel" id="resultadoEjercicio">
+      <div class="puntaje" id="puntajeEjercicio"></div>
+      <div class="barra-progreso-cont"><div class="barra-progreso" id="barraEjercicio">0%</div></div>
+      <div class="mensaje-motivacional" id="mensajeEjercicio"></div>
+    </div>
+  </section>
+
+  <!-- ============ CUESTIONARIO ============ -->
+  <section id="cuestionario" class="tab-content">
+    <h2>Cuestionario</h2>
+    <p class="subtitulo">10 preguntas: 7 teóricas y 3 de análisis de caso. Responde todas y luego presiona "Verificar respuestas".</p>
+
+    <div class="alerta-incompleto" id="alertaCuestionario">⚠ Debes responder las 10 preguntas antes de verificar.</div>
+
+    <div class="pregunta-bloque">
+      <div class="enunciado">1. Según el modelo del proceso de escritura visto esta semana, ¿cuál es la primera etapa? <span class="badge badge-teorica">Teórica</span></div>
+      <label class="opcion"><input type="radio" name="qi1" value="a"> a) Revisión</label>
+      <label class="opcion"><input type="radio" name="qi1" value="b"> b) Planificación</label>
+      <label class="opcion"><input type="radio" name="qi1" value="c"> c) Publicación</label>
+      <label class="opcion"><input type="radio" name="qi1" value="d"> d) Textualización</label>
+      <div class="feedback-item" id="fb_qi1"></div>
+    </div>
+
+    <div class="pregunta-bloque">
+      <div class="enunciado">2. ¿Qué elemento del párrafo presenta la idea principal que será desarrollada? <span class="badge badge-teorica">Teórica</span></div>
+      <label class="opcion"><input type="radio" name="qi2" value="a"> a) La oración de cierre</label>
+      <label class="opcion"><input type="radio" name="qi2" value="b"> b) El conector</label>
+      <label class="opcion"><input type="radio" name="qi2" value="c"> c) La oración temática</label>
+      <label class="opcion"><input type="radio" name="qi2" value="d"> d) La sangría</label>
+      <div class="feedback-item" id="fb_qi2"></div>
+    </div>
+
+    <div class="pregunta-bloque">
+      <div class="enunciado">3. ¿Qué característica del párrafo se pierde cuando dentro de él aparecen dos ideas sin relación entre sí? <span class="badge badge-teorica">Teórica</span></div>
+      <label class="opcion"><input type="radio" name="qi3" value="a"> a) La extensión</label>
+      <label class="opcion"><input type="radio" name="qi3" value="b"> b) La unidad temática</label>
+      <label class="opcion"><input type="radio" name="qi3" value="c"> c) La sangría</label>
+      <label class="opcion"><input type="radio" name="qi3" value="d"> d) El destinatario</label>
+      <div class="feedback-item" id="fb_qi3"></div>
+    </div>
+
+    <div class="pregunta-bloque">
+      <div class="enunciado">4. ¿Cuál es la función principal de los conectores dentro de un párrafo? <span class="badge badge-teorica">Teórica</span></div>
+      <label class="opcion"><input type="radio" name="qi4" value="a"> a) Decorar el texto con palabras formales</label>
+      <label class="opcion"><input type="radio" name="qi4" value="b"> b) Enlazar las oraciones y dar cohesión al párrafo</label>
+      <label class="opcion"><input type="radio" name="qi4" value="c"> c) Marcar el final obligatorio de todo párrafo</label>
+      <label class="opcion"><input type="radio" name="qi4" value="d"> d) Reemplazar la oración temática</label>
+      <div class="feedback-item" id="fb_qi4"></div>
+    </div>
+
+    <div class="pregunta-bloque">
+      <div class="enunciado">5. ¿Qué tipo de párrafo predomina en un texto cuyo objetivo es persuadir al lector de adoptar una postura? <span class="badge badge-teorica">Teórica</span></div>
+      <label class="opcion"><input type="radio" name="qi5" value="a"> a) Descriptivo</label>
+      <label class="opcion"><input type="radio" name="qi5" value="b"> b) Narrativo</label>
+      <label class="opcion"><input type="radio" name="qi5" value="c"> c) Argumentativo</label>
+      <label class="opcion"><input type="radio" name="qi5" value="d"> d) De definición</label>
+      <div class="feedback-item" id="fb_qi5"></div>
+    </div>
+
+    <div class="pregunta-bloque">
+      <div class="enunciado">6. ¿Cuál de los siguientes conectores es típico de un párrafo de enumeración? <span class="badge badge-teorica">Teórica</span></div>
+      <label class="opcion"><input type="radio" name="qi6" value="a"> a) "Mientras que..."</label>
+      <label class="opcion"><input type="radio" name="qi6" value="b"> b) "En primer lugar..."</label>
+      <label class="opcion"><input type="radio" name="qi6" value="c"> c) "Se entiende por..."</label>
+      <label class="opcion"><input type="radio" name="qi6" value="d"> d) "Debido a..."</label>
+      <div class="feedback-item" id="fb_qi6"></div>
+    </div>
+
+    <div class="pregunta-bloque">
+      <div class="enunciado">7. Antes de redactar un escrito, durante la etapa de planificación, ¿qué debe definir el autor? <span class="badge badge-teorica">Teórica</span></div>
+      <label class="opcion"><input type="radio" name="qi7" value="a"> a) Únicamente el número de páginas que tendrá el documento</label>
+      <label class="opcion"><input type="radio" name="qi7" value="b"> b) El propósito comunicativo y el destinatario del texto</label>
+      <label class="opcion"><input type="radio" name="qi7" value="c"> c) El tipo de letra y el tamaño de fuente</label>
+      <label class="opcion"><input type="radio" name="qi7" value="d"> d) Nada; estos aspectos se definen solo al final</label>
+      <div class="feedback-item" id="fb_qi7"></div>
+    </div>
+
+    <div class="pregunta-bloque">
+      <div class="enunciado">8. Un estudiante entrega un párrafo en el que mezcla, sin separación, una crítica al sistema educativo, una anécdota personal sin relación aparente con el tema y una recomendación final no vinculada a lo anterior. ¿Qué problema estructural presenta este párrafo? <span class="badge badge-caso">Análisis de caso</span></div>
+      <label class="opcion"><input type="radio" name="qi8" value="a"> a) Le sobran conectores</label>
+      <label class="opcion"><input type="radio" name="qi8" value="b"> b) Falta de unidad temática: debió dividirse en varios párrafos</label>
+      <label class="opcion"><input type="radio" name="qi8" value="c"> c) Tiene una extensión excesivamente corta</label>
+      <label class="opcion"><input type="radio" name="qi8" value="d"> d) No tiene ningún problema, todo párrafo puede combinar varias ideas libremente</label>
+      <div class="feedback-item" id="fb_qi8"></div>
+    </div>
+
+    <div class="pregunta-bloque">
+      <div class="enunciado">9. Una empresa envía un correo a un proveedor en el que enumera, una tras otra y sin ningún conector ni signo de enlace, cinco condiciones de pago distintas. ¿Qué elemento del párrafo está claramente ausente en este texto? <span class="badge badge-caso">Análisis de caso</span></div>
+      <label class="opcion"><input type="radio" name="qi9" value="a"> a) La oración temática</label>
+      <label class="opcion"><input type="radio" name="qi9" value="b"> b) Los conectores, lo que afecta la cohesión del párrafo</label>
+      <label class="opcion"><input type="radio" name="qi9" value="c"> c) La sangría inicial</label>
+      <label class="opcion"><input type="radio" name="qi9" value="d"> d) El destinatario del mensaje</label>
+      <div class="feedback-item" id="fb_qi9"></div>
+    </div>
+
+    <div class="pregunta-bloque">
+      <div class="enunciado">10. Un auditor necesita explicar, en un único párrafo de su informe, por qué un retraso reiterado en los pagos a proveedores generó intereses moratorios adicionales para la empresa. ¿Qué tipo de párrafo es el más adecuado para este propósito? <span class="badge badge-caso">Análisis de caso</span></div>
+      <label class="opcion"><input type="radio" name="qi10" value="a"> a) Descriptivo</label>
+      <label class="opcion"><input type="radio" name="qi10" value="b"> b) De enumeración</label>
+      <label class="opcion"><input type="radio" name="qi10" value="c"> c) Causa-efecto</label>
+      <label class="opcion"><input type="radio" name="qi10" value="d"> d) Humorístico</label>
+      <div class="feedback-item" id="fb_qi10"></div>
+    </div>
+
+    <button class="btn" onclick="verificarCuestionario()">Verificar respuestas</button>
+    <button class="btn btn-reiniciar" onclick="reiniciarCuestionario()">Reiniciar</button>
+
+    <div class="resultado-panel" id="resultadoCuestionario">
+      <div class="puntaje" id="puntajeCuestionario"></div>
+      <div class="barra-progreso-cont"><div class="barra-progreso" id="barraCuestionario">0%</div></div>
+      <div class="mensaje-motivacional" id="mensajeCuestionario"></div>
+    </div>
+  </section>
+
+  <!-- ============ ACTIVIDAD CON IA ============ -->
+  <section id="ia" class="tab-content">
+    <h2>Actividad con Inteligencia Artificial</h2>
+    <p class="subtitulo">Usa Claude (claude.ai) como interlocutor crítico, no como un generador de respuestas para copiar.</p>
+
+    <div class="concept-box">
+      <strong>Objetivo de la actividad:</strong> escribir un párrafo propio usando la herramienta de esta semana, someterlo al análisis de la IA y, a partir de su respuesta, mejorar tu párrafo aplicando criterio propio, no copiando literalmente lo que la IA sugiera.
+    </div>
+
+    <h3>Paso 1: Escribe tu párrafo</h3>
+    <p>Usa la pestaña "Herramienta: Constructor" para escribir un párrafo de cualquier tipo (descriptivo, narrativo, expositivo, argumentativo, comparación, causa-efecto, enumeración o definición) sobre un tema real de tu vida académica, profesional o personal.</p>
+
+    <h3>Paso 2: Copia este prompt exacto en claude.ai</h3>
+    <div class="prompt-ia-box">Actúa como un editor experto en redacción universitaria. Voy a compartirte un párrafo que escribí. Analízalo siguiendo estos criterios, uno por uno:
+
+1. Identifica el tipo de párrafo (descriptivo, narrativo, expositivo, argumentativo, comparación/contraste, causa-efecto, enumeración o definición) y confirma si coincide con el tipo que yo quería escribir.
+2. Evalúa si tiene unidad temática (una sola idea central) o si mezcla ideas que no se relacionan.
+3. Evalúa la coherencia y la cohesión: ¿las oraciones están bien conectadas? ¿faltan o sobran conectores?
+4. Evalúa si la extensión es adecuada para el propósito del párrafo.
+5. Dame 2 sugerencias concretas de mejora, explicando el porqué de cada una, SIN reescribir tú el párrafo completo por mí.
+
+Mi párrafo es el siguiente:
+[PEGA AQUÍ TU PÁRRAFO]</div>
+
+    <h3>Paso 3: Qué hacer con la respuesta de la IA</h3>
+    <ul class="lista-visual">
+      <li>Lee cada uno de los cinco puntos de análisis que te entregue la IA.</li>
+      <li>Decide, con tu propio criterio, qué sugerencias aplicarás y cuáles no, y por qué.</li>
+      <li>Reescribe tú mismo tu párrafo (no le pidas a la IA que lo reescriba por ti) incorporando las mejoras que consideres válidas.</li>
+      <li>Guarda ambas versiones (la original y la mejorada) usando la herramienta de descarga de esta misma semana.</li>
+    </ul>
+
+    <h3>Criterio de evaluación: pensamiento crítico vs. copia simple</h3>
+    <table class="rubrica-tabla">
+      <tr><th>Nivel</th><th>Evidencia</th></tr>
+      <tr><td><strong>Copia simple (insuficiente)</strong></td><td>El estudiante pide a la IA que reescriba el párrafo y lo entrega tal cual, sin cambios propios ni justificación.</td></tr>
+      <tr><td><strong>Aplicación básica</strong></td><td>El estudiante aplica las sugerencias de la IA pero no explica por qué las aceptó o las descartó.</td></tr>
+      <tr><td><strong>Pensamiento crítico (esperado)</strong></td><td>El estudiante analiza cada sugerencia, decide cuáles aplicar con argumentos propios, reescribe el párrafo con su propia voz y entrega ambas versiones con una breve justificación de los cambios realizados.</td></tr>
+    </table>
+
+    <div class="key-box">La IA es un espejo que te muestra cómo se ve tu texto desde afuera, no un sustituto de tu propia capacidad de decidir cómo escribir mejor.</div>
+  </section>
+
+  <!-- ============ REFLEXIÓN ============ -->
+  <section id="reflexion" class="tab-content">
+    <h2>Reflexión</h2>
+    <p class="subtitulo">No hay respuestas correctas ni incorrectas. El objetivo es que conectes el contenido de esta semana con tu vida real.</p>
+
+    <div class="reflexion-item">1. Piensa en el último mensaje importante que escribiste (a un familiar, una pareja, un profesor o un jefe). ¿Lo planificaste antes de escribirlo o lo redactaste de corrido? ¿Cambiaría algo si lo hubieras planificado primero?</div>
+    <div class="reflexion-item">2. ¿En qué ámbito de tu vida —personal, afectivo, profesional, académico o artístico— sientes que se te hace más difícil "ordenar tus ideas en párrafos" cuando hablas o escribes? ¿Por qué crees que ocurre eso?</div>
+    <div class="reflexion-item">3. ¿Recuerdas alguna vez en que escribir sobre algo que te preocupaba (un mensaje, un diario, una nota) te ayudó a sentirte más tranquilo o a ver la situación con más claridad? Descríbelo brevemente, si te sientes cómodo haciéndolo.</div>
+    <div class="reflexion-item">4. Cuando escribes sobre ti mismo —tus logros, tus errores, tus metas— ¿lo haces con el mismo respeto y cuidado con el que escribirías sobre otra persona? ¿Qué dice esto sobre tu autoestima y tu manera de hablarte a ti mismo?</div>
+    <div class="reflexion-item">5. Piensa en una persona con la que te comunicas frecuentemente. Si tuvieras que escribirle un párrafo describiendo cómo te sientes respecto a esa relación hoy, ¿qué tipo de párrafo usarías —descriptivo, argumentativo, narrativo— y por qué crees que elegirías justamente ese?</div>
+    <div class="reflexion-item">6. ¿Qué hábito de lectura o escritura te gustaría incorporar a tu rutina semanal, aunque sea por diez minutos, pensando no solo en tu carrera sino en tu propio bienestar emocional?</div>
+  </section>
+
+  <!-- ============ BIBLIOGRAFÍA ============ -->
+  <section id="biblio" class="tab-content">
+    <h2>Bibliografía</h2>
+    <p class="subtitulo">Referencias en formato APA 7.ª edición.</p>
+
+    <div class="biblio-card"><span class="autor">Cassany, D.</span> (1995). <em>La cocina de la escritura.</em> Anagrama.</div>
+    <div class="biblio-card"><span class="autor">Cassany, D.</span> (1999). <em>Construir la escritura.</em> Paidós.</div>
+    <div class="biblio-card"><span class="autor">Serafini, M. T.</span> (1989). <em>Cómo se escribe.</em> Paidós.</div>
+    <div class="biblio-card"><span class="autor">Flower, L., & Hayes, J. R.</span> (1981). A cognitive process theory of writing. <em>College Composition and Communication, 32</em>(4), 365–387.</div>
+    <div class="biblio-card"><span class="autor">Halliday, M. A. K., & Hasan, R.</span> (1976). <em>Cohesion in English.</em> Longman.</div>
+    <div class="biblio-card"><span class="autor">Van Dijk, T. A.</span> (1980). <em>Estructuras y funciones del discurso.</em> Siglo XXI Editores.</div>
+    <div class="biblio-card"><span class="autor">Pennebaker, J. W.</span> (1997). <em>Opening up: The healing power of expressing emotions.</em> Guilford Press.</div>
+    <div class="biblio-card"><span class="autor">Niño Rojas, V. M.</span> (2011). <em>Competencias en la comunicación: Hacia las prácticas del discurso.</em> Ecoe Ediciones.</div>
+
+    <p class="biblio-nota">Se recomienda verificar cada referencia en Google Scholar en scholar.google.com o en el repositorio institucional antes de citar en trabajos académicos.</p>
+  </section>
+
+  <footer class="pie">Universidad de Guayaquil &middot; Facultad de Ciencias Administrativas &middot; Lenguaje y Comunicación &middot; Semana 13</footer>
+
+  </div>
+
+<script>
+/* ===================== NAVEGACIÓN DE PESTAÑAS ===================== */
+function showTab(id, btn){
+  document.querySelectorAll('.tab-content').forEach(function(t){ t.classList.remove('active'); });
+  document.querySelectorAll('.tab-btn').forEach(function(b){ b.classList.remove('active'); });
+  document.getElementById(id).classList.add('active');
+  if(btn){ btn.classList.add('active'); }
+  document.getElementById(id).scrollIntoView({behavior:'smooth', block:'start'});
+}
+
+/* ===================== ACORDEÓN DE REPASO ===================== */
+function toggleAcordeon(header){
+  var contenido = header.nextElementSibling;
+  var flecha = header.querySelector('.arrow');
+  var abierto = contenido.classList.contains('open');
+  if(abierto){
+    contenido.classList.remove('open');
+    flecha.textContent = '▶';
+  } else {
+    contenido.classList.add('open');
+    flecha.textContent = '▼';
+  }
+}
+
+/* ===================== HERRAMIENTA: CONSTRUCTOR DE PÁRRAFOS ===================== */
+var ultimoCampoActivo = null;
+var secCount = 0;
+
+var conectoresPorTipo = {
+  descriptivo:    {hint:'Usa adjetivos calificativos y verbos de estado (ser, estar, presentar). Apela a los sentidos del lector.', chips:['que presenta','se caracteriza por','destaca por','asimismo']},
+  narrativo:      {hint:'Usa verbos de acción y conectores temporales. Cuenta los hechos en un orden cronológico claro.', chips:['luego','después','mientras tanto','finalmente']},
+  expositivo:     {hint:'Mantén un tono objetivo y neutral. Explica el concepto con claridad, sin opiniones personales.', chips:['es decir','cabe destacar que','en otras palabras','por ejemplo']},
+  argumentativo:  {hint:'Defiende una postura con razones y evidencia. Usa conectores lógico-argumentativos.', chips:['sin embargo','por consiguiente','es evidente que','no obstante']},
+  comparacion:    {hint:'Señala semejanzas o diferencias claras entre dos elementos o situaciones.', chips:['mientras que','a diferencia de','de igual manera','en cambio']},
+  causaefecto:    {hint:'Explica primero la causa y luego la consecuencia que se deriva de ella.', chips:['debido a','como consecuencia','por lo tanto','dado que']},
+  enumeracion:    {hint:'Ordena los elementos con conectores secuenciales claros y consistentes.', chips:['en primer lugar','además','finalmente','por último']},
+  definicion:     {hint:'Ubica el término dentro de una categoría más amplia y señala su rasgo distintivo.', chips:['se entiende por','se define como','hace referencia a','consiste en']}
+};
+
+function actualizarConectores(){
+  var tipo = document.getElementById('toolTipo').value;
+  var hintEl = document.getElementById('toolTipoHint');
+  var chipsEl = document.getElementById('conectorChips');
+  chipsEl.innerHTML = '';
+  if(!tipo){
+    hintEl.textContent = 'Selecciona un tipo para ver su recomendación de redacción.';
+    return;
+  }
+  var datos = conectoresPorTipo[tipo];
+  hintEl.textContent = datos.hint;
+  datos.chips.forEach(function(c){
+    var span = document.createElement('span');
+    span.className = 'conector-chip';
+    span.textContent = c;
+    span.onclick = function(){ insertarConector(c); };
+    chipsEl.appendChild(span);
+  });
+}
+
+function insertarConector(texto){
+  var campo = ultimoCampoActivo || document.getElementById('toolTematica');
+  var inicio = (campo.selectionStart != null) ? campo.selectionStart : campo.value.length;
+  var fin = (campo.selectionEnd != null) ? campo.selectionEnd : campo.value.length;
+  var antes = campo.value.substring(0, inicio);
+  var despues = campo.value.substring(fin);
+  var separador = (antes.length > 0 && !/\s$/.test(antes)) ? ' ' : '';
+  var insercion = texto.charAt(0).toUpperCase() + texto.slice(1) + ' ';
+  campo.value = antes + separador + insercion + despues;
+  campo.focus();
+  if(campo.id === 'toolTematica'){ contarCaracteres('toolTematica','contadorTematica',220); }
+  if(campo.id === 'toolCierre'){ contarCaracteres('toolCierre','contadorCierre',220); }
+  previsualizar();
+}
+
+function agregarSecundaria(){
+  secCount++;
+  var id = secCount;
+  var div = document.createElement('div');
+  div.className = 'secundaria-grupo';
+  div.id = 'secGrupo' + id;
+  div.innerHTML =
+    '<button type="button" class="btn-quitar" onclick="quitarSecundaria(' + id + ')">×</button>' +
+    '<label class="tool-label">Oración secundaria ' + id + ':</label>' +
+    '<textarea class="tool-textarea sec-textarea" maxlength="220" placeholder="Escribe una oración que apoye, explique o ejemplifique tu idea principal..." oninput="previsualizar()" onfocus="ultimoCampoActivo=this"></textarea>';
+  document.getElementById('secundariasContenedor').appendChild(div);
+  previsualizar();
+}
+
+function quitarSecundaria(id){
+  var el = document.getElementById('secGrupo' + id);
+  if(el){ el.parentNode.removeChild(el); previsualizar(); }
+}
+
+function contarCaracteres(idCampo, idContador, max){
+  var campo = document.getElementById(idCampo);
+  var contador = document.getElementById(idContador);
+  contador.textContent = campo.value.length + ' / ' + max;
+}
+
+function construirParrafo(){
+  var tematica = document.getElementById('toolTematica').value.trim();
+  var cierre = document.getElementById('toolCierre').value.trim();
+  var secundarias = document.querySelectorAll('.sec-textarea');
+  var partes = [];
+  if(tematica){ partes.push(tematica); }
+  secundarias.forEach(function(el){
+    var v = el.value.trim();
+    if(v){ partes.push(v); }
+  });
+  if(cierre){ partes.push(cierre); }
+  return partes.join(' ');
+}
+
+function previsualizar(){
+  var texto = construirParrafo();
+  var preview = document.getElementById('toolPreview');
+  if(texto){
+    preview.textContent = texto;
+    preview.classList.remove('vacio');
+  } else {
+    preview.textContent = 'Tu párrafo aparecerá aquí a medida que lo escribas...';
+    preview.classList.add('vacio');
+  }
+}
+
+function descargarTXT(){
+  var texto = construirParrafo();
+  if(!texto){
+    alert('Escribe al menos la oración temática antes de descargar.');
+    return;
+  }
+  var tipoSelect = document.getElementById('toolTipo');
+  var tipo = tipoSelect.value || 'parrafo';
+  var blob = new Blob([texto], {type:'text/plain;charset=utf-8'});
+  var url = URL.createObjectURL(blob);
+  var a = document.createElement('a');
+  a.href = url;
+  a.download = 'parrafo_' + tipo + '.txt';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
+
+function descargarPDF(){
+  var texto = construirParrafo();
+  if(!texto){
+    alert('Escribe al menos la oración temática antes de descargar.');
+    return;
+  }
+  var tipoSelect = document.getElementById('toolTipo');
+  var ambitoSelect = document.getElementById('toolAmbito');
+  var tipoTexto = tipoSelect.selectedIndex > 0 ? tipoSelect.options[tipoSelect.selectedIndex].text : 'Párrafo (tipo no especificado)';
+  var ambitoTexto = ambitoSelect.options[ambitoSelect.selectedIndex].text;
+  var fecha = new Date().toLocaleDateString('es-EC');
+  var textoEscapado = texto.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  var ventana = window.open('', '_blank');
+  if(!ventana){
+    alert('Tu navegador bloqueó la ventana emergente. Permite ventanas emergentes para descargar el PDF.');
+    return;
+  }
+  ventana.document.write(
+    '<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><title>Mi párrafo</title>' +
+    '<style>body{font-family:Georgia,\'Times New Roman\',serif;max-width:720px;margin:50px auto;padding:0 24px;line-height:1.8;color:#222;}' +
+    'h1{font-family:Arial,sans-serif;font-size:1.15em;color:#003366;border-bottom:2px solid #87CEEB;padding-bottom:8px;}' +
+    'p.meta{color:#556;font-size:0.85em;margin-top:4px;}p.texto{font-size:1.08em;text-align:justify;margin-top:26px;}' +
+    'footer{margin-top:50px;font-size:0.75em;color:#889;text-align:center;}</style></head><body>' +
+    '<h1>Universidad de Guayaquil &middot; Facultad de Ciencias Administrativas</h1>' +
+    '<p class="meta">Lenguaje y Comunicación &middot; Semana 13 &middot; Tipo: ' + tipoTexto + ' &middot; Ámbito: ' + ambitoTexto + ' &middot; ' + fecha + '</p>' +
+    '<p class="texto">' + textoEscapado + '</p>' +
+    '<footer>Generado con el Constructor Guiado de Párrafos &mdash; guarda este documento para futuros escritos.</footer>' +
+    '</body></html>'
+  );
+  ventana.document.close();
+  ventana.focus();
+  setTimeout(function(){ ventana.print(); }, 350);
+}
+
+function reiniciarHerramienta(){
+  document.getElementById('toolTipo').value = '';
+  document.getElementById('toolAmbito').value = 'profesional';
+  document.getElementById('toolTematica').value = '';
+  document.getElementById('toolCierre').value = '';
+  document.getElementById('secundariasContenedor').innerHTML = '';
+  document.getElementById('conectorChips').innerHTML = '';
+  document.getElementById('toolTipoHint').textContent = 'Selecciona un tipo para ver su recomendación de redacción.';
+  contarCaracteres('toolTematica','contadorTematica',220);
+  contarCaracteres('toolCierre','contadorCierre',220);
+  secCount = 0;
+  document.querySelectorAll('#herramienta input[type=checkbox]').forEach(function(c){ c.checked = false; });
+  previsualizar();
+}
+</script>
+<script>
+/* ===================== EJERCICIO INTERACTIVO ===================== */
+var respuestasEjercicio = {
+  ei1: {correcta:'b', explicacion:'Correcto: es un párrafo descriptivo porque presenta cualidades físicas (fachada, columnas, vestíbulo) apelando a la observación, sin narrar una secuencia de acciones.'},
+  ei2: {correcta:'a', explicacion:'Correcto: es narrativo porque relata una secuencia de acciones en el tiempo, usando conectores temporales (primero, después, finalmente).'},
+  ei3: {correcta:'a', explicacion:'Correcto: es un párrafo de definición porque ubica "activo corriente" dentro de una categoría más amplia y señala su rasgo distintivo, usando la estructura "se entiende por".'},
+  ei4: {correcta:'b', explicacion:'Correcto: es causa-efecto porque explica una causa (falta de respaldo documental) y su consecuencia (observaciones del SRI y glosa tributaria).'},
+  ei5: {correcta:'a', explicacion:'Correcto: es de comparación/contraste porque señala diferencias entre el régimen general y el RIMPE usando "mientras que" y "aunque".'},
+  ei6: {correcta:'a', explicacion:'Correcto: es argumentativo porque defiende una postura (las auditorías deberían ser trimestrales) con una razón que la sustenta.'},
+  ei7: {correcta:'a', explicacion:'Correcto: la primera oración presenta la idea principal (qué es la materialidad); las siguientes la ejemplifican y la explican, por lo que son oraciones secundarias.'},
+  ei8: {correcta:'c', explicacion:'Correcto: "Debido a..." introduce una causa, por lo que es el conector más adecuado para iniciar un párrafo de causa-efecto.'}
+};
+
+function verificarEjercicio(){
+  var claves = Object.keys(respuestasEjercicio);
+  var faltantes = claves.some(function(k){
+    return !document.querySelector('input[name="' + k + '"]:checked');
+  });
+  var alerta = document.getElementById('alertaEjercicio');
+  if(faltantes){
+    alerta.classList.add('mostrar');
+    alerta.scrollIntoView({behavior:'smooth', block:'center'});
+    return;
+  }
+  alerta.classList.remove('mostrar');
+
+  var correctas = 0;
+  claves.forEach(function(k){
+    var seleccionado = document.querySelector('input[name="' + k + '"]:checked').value;
+    var datos = respuestasEjercicio[k];
+    var feedback = document.getElementById('fb_' + k);
+    var opciones = document.querySelectorAll('input[name="' + k + '"]');
+    opciones.forEach(function(op){
+      op.closest('.opcion').classList.remove('correcta-resaltada','incorrecta-resaltada');
+    });
+    if(seleccionado === datos.correcta){
+      correctas++;
+      feedback.className = 'feedback-item correcto';
+      feedback.textContent = '✓ ' + datos.explicacion;
+      document.querySelector('input[name="' + k + '"][value="' + datos.correcta + '"]').closest('.opcion').classList.add('correcta-resaltada');
+    } else {
+      feedback.className = 'feedback-item incorrecto';
+      feedback.textContent = '✗ Incorrecto. ' + datos.explicacion;
+      document.querySelector('input[name="' + k + '"]:checked').closest('.opcion').classList.add('incorrecta-resaltada');
+      document.querySelector('input[name="' + k + '"][value="' + datos.correcta + '"]').closest('.opcion').classList.add('correcta-resaltada');
+    }
+  });
+
+  var total = claves.length;
+  var porcentaje = Math.round((correctas / total) * 100);
+  document.getElementById('puntajeEjercicio').textContent = correctas + ' / ' + total;
+  var panel = document.getElementById('resultadoEjercicio');
+  panel.classList.add('mostrar');
+  var barra = document.getElementById('barraEjercicio');
+  setTimeout(function(){
+    barra.style.width = porcentaje + '%';
+    barra.textContent = porcentaje + '%';
+  }, 100);
+
+  var mensaje = document.getElementById('mensajeEjercicio');
+  if(porcentaje >= 100){ mensaje.textContent = '🏆 ¡Excelente! Dominas la clasificación de párrafos.'; }
+  else if(porcentaje >= 80){ mensaje.textContent = '🎯 ¡Muy bien! Tienes un buen manejo de los tipos de párrafo.'; }
+  else if(porcentaje >= 60){ mensaje.textContent = '📘 Vas bien. Repasa los tipos en los que fallaste.'; }
+  else if(porcentaje >= 40){ mensaje.textContent = '⚠️ Necesitas reforzar el contenido de los Temas 3 y 3b.'; }
+  else { mensaje.textContent = '📖 Te recomendamos releer los Temas 3 y 3b antes de continuar.'; }
+
+  panel.scrollIntoView({behavior:'smooth', block:'center'});
+}
+
+function reiniciarEjercicio(){
+  Object.keys(respuestasEjercicio).forEach(function(k){
+    var opciones = document.querySelectorAll('input[name="' + k + '"]');
+    opciones.forEach(function(op){
+      op.checked = false;
+      op.closest('.opcion').classList.remove('correcta-resaltada','incorrecta-resaltada');
+    });
+    var feedback = document.getElementById('fb_' + k);
+    feedback.className = 'feedback-item';
+    feedback.textContent = '';
+  });
+  document.getElementById('alertaEjercicio').classList.remove('mostrar');
+  document.getElementById('resultadoEjercicio').classList.remove('mostrar');
+  document.getElementById('barraEjercicio').style.width = '0%';
+  document.getElementById('barraEjercicio').textContent = '0%';
+  document.getElementById('ejercicio').scrollIntoView({behavior:'smooth', block:'start'});
+}
+
+/* ===================== CUESTIONARIO ===================== */
+var respuestasCuestionario = {
+  qi1: {correcta:'b', explicacion:'La primera etapa del proceso de escritura es la planificación: definir propósito, destinatario y estructura antes de redactar.'},
+  qi2: {correcta:'c', explicacion:'La oración temática es el elemento que presenta la idea principal que el resto del párrafo desarrollará.'},
+  qi3: {correcta:'b', explicacion:'La unidad temática es la característica que asegura que el párrafo desarrolle una sola idea central; se pierde cuando aparecen ideas no relacionadas.'},
+  qi4: {correcta:'b', explicacion:'Los conectores enlazan las oraciones entre sí, dando cohesión al párrafo y guiando al lector de una idea a la siguiente.'},
+  qi5: {correcta:'c', explicacion:'El párrafo argumentativo predomina cuando el objetivo es persuadir o defender una postura mediante razones y evidencias.'},
+  qi6: {correcta:'b', explicacion:'"En primer lugar..." es un conector de orden, típico de los párrafos de enumeración.'},
+  qi7: {correcta:'b', explicacion:'En la etapa de planificación, el autor debe definir el propósito comunicativo del texto y quién será su destinatario.'},
+  qi8: {correcta:'b', explicacion:'Cuando un párrafo mezcla ideas sin relación entre sí, pierde la unidad temática; cada idea no relacionada debió desarrollarse en un párrafo distinto.'},
+  qi9: {correcta:'b', explicacion:'La ausencia de conectores entre las cinco condiciones enumeradas afecta directamente la cohesión del párrafo, dificultando su lectura.'},
+  qi10: {correcta:'c', explicacion:'Para explicar cómo un retraso en pagos generó intereses moratorios, el tipo de párrafo adecuado es el de causa-efecto, que vincula una razón con su consecuencia.'}
+};
+
+function verificarCuestionario(){
+  var claves = Object.keys(respuestasCuestionario);
+  var faltantes = claves.some(function(k){
+    return !document.querySelector('input[name="' + k + '"]:checked');
+  });
+  var alerta = document.getElementById('alertaCuestionario');
+  if(faltantes){
+    alerta.classList.add('mostrar');
+    alerta.scrollIntoView({behavior:'smooth', block:'center'});
+    return;
+  }
+  alerta.classList.remove('mostrar');
+
+  var correctas = 0;
+  claves.forEach(function(k){
+    var seleccionado = document.querySelector('input[name="' + k + '"]:checked').value;
+    var datos = respuestasCuestionario[k];
+    var feedback = document.getElementById('fb_' + k);
+    var opciones = document.querySelectorAll('input[name="' + k + '"]');
+    opciones.forEach(function(op){
+      op.closest('.opcion').classList.remove('correcta-resaltada','incorrecta-resaltada');
+    });
+    if(seleccionado === datos.correcta){
+      correctas++;
+      feedback.className = 'feedback-item correcto';
+      feedback.textContent = '✓ ' + datos.explicacion;
+      document.querySelector('input[name="' + k + '"][value="' + datos.correcta + '"]').closest('.opcion').classList.add('correcta-resaltada');
+    } else {
+      feedback.className = 'feedback-item incorrecto';
+      feedback.textContent = '✗ Incorrecto. ' + datos.explicacion;
+      document.querySelector('input[name="' + k + '"]:checked').closest('.opcion').classList.add('incorrecta-resaltada');
+      document.querySelector('input[name="' + k + '"][value="' + datos.correcta + '"]').closest('.opcion').classList.add('correcta-resaltada');
+    }
+  });
+
+  var total = claves.length;
+  var porcentaje = Math.round((correctas / total) * 100);
+  document.getElementById('puntajeCuestionario').textContent = correctas + ' / ' + total + ' (' + porcentaje + '%)';
+  var panel = document.getElementById('resultadoCuestionario');
+  panel.classList.add('mostrar');
+  var barra = document.getElementById('barraCuestionario');
+  setTimeout(function(){
+    barra.style.width = porcentaje + '%';
+    barra.textContent = porcentaje + '%';
+  }, 100);
+
+  var mensaje = document.getElementById('mensajeCuestionario');
+  if(porcentaje >= 100){ mensaje.textContent = '🏆 ¡Calificación perfecta! Dominas la planeación del escrito y el párrafo.'; }
+  else if(porcentaje >= 80){ mensaje.textContent = '🎯 ¡Muy buen resultado! Tienes un sólido manejo del tema.'; }
+  else if(porcentaje >= 60){ mensaje.textContent = '📘 Buen avance. Repasa los temas donde tuviste errores.'; }
+  else if(porcentaje >= 40){ mensaje.textContent = '⚠️ Resultado regular. Te conviene repasar el contenido de esta semana.'; }
+  else { mensaje.textContent = '📖 Te recomendamos releer todos los temas antes de continuar con la Semana 14.'; }
+
+  panel.scrollIntoView({behavior:'smooth', block:'center'});
+}
+
+function reiniciarCuestionario(){
+  Object.keys(respuestasCuestionario).forEach(function(k){
+    var opciones = document.querySelectorAll('input[name="' + k + '"]');
+    opciones.forEach(function(op){
+      op.checked = false;
+      op.closest('.opcion').classList.remove('correcta-resaltada','incorrecta-resaltada');
+    });
+    var feedback = document.getElementById('fb_' + k);
+    feedback.className = 'feedback-item';
+    feedback.textContent = '';
+  });
+  document.getElementById('alertaCuestionario').classList.remove('mostrar');
+  document.getElementById('resultadoCuestionario').classList.remove('mostrar');
+  document.getElementById('barraCuestionario').style.width = '0%';
+  document.getElementById('barraCuestionario').textContent = '0%';
+  document.getElementById('cuestionario').scrollIntoView({behavior:'smooth', block:'start'});
+}
+
+/* ===================== INICIALIZACIÓN ===================== */
+document.addEventListener('DOMContentLoaded', function(){
+  previsualizar();
+});
+</script>
+</body>
+</html>
